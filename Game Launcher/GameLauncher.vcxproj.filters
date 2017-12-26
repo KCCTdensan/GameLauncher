@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="winmain.cpp">
+    <ClCompile Include="source\winmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wndproc.cpp">
+    <ClCompile Include="source\wndproc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="wndproc.h">
+    <ClInclude Include="source\wndproc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameLauncher", "Game Launcher\GameLauncher.vcxproj", "{788E8ECC-519A-4596-958D-554FDD5953C6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Comment Editor", "Text Editor\Comment Editor\Comment Editor.vcxproj", "{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Comment Editor", "Comment Editor\Comment Editor.vcxproj", "{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
