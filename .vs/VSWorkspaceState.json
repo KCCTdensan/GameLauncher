@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Game Launcher"
   ],
-  "SelectedNode": "\\winmain.cpp",
+  "SelectedNode": "\\GameLauncher.sln",
   "PreviewInSolutionExplorer": false
 }

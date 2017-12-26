@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameLauncher", "GameLauncher.vcxproj", "{788E8ECC-519A-4596-958D-554FDD5953C6}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameLauncher", "Game Launcher\GameLauncher.vcxproj", "{788E8ECC-519A-4596-958D-554FDD5953C6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Comment Editor", "Text Editor\Comment Editor\Comment Editor.vcxproj", "{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{788E8ECC-519A-4596-958D-554FDD5953C6}.Release|x64.Build.0 = Release|x64
 		{788E8ECC-519A-4596-958D-554FDD5953C6}.Release|x86.ActiveCfg = Release|Win32
 		{788E8ECC-519A-4596-958D-554FDD5953C6}.Release|x86.Build.0 = Release|Win32
+		{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}.Debug|x64.ActiveCfg = Debug|x64
+		{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}.Debug|x64.Build.0 = Debug|x64
+		{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}.Debug|x86.ActiveCfg = Debug|Win32
+		{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}.Debug|x86.Build.0 = Debug|Win32
+		{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}.Release|x64.ActiveCfg = Release|x64
+		{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}.Release|x64.Build.0 = Release|x64
+		{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}.Release|x86.ActiveCfg = Release|Win32
+		{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
