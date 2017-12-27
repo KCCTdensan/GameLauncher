@@ -1,5 +1,8 @@
 #include "wndproc.hpp"
+#include "file.hpp"
+#include "filename.hpp"
 #include "menu.hpp"
+#include "wnd.hpp"
 #include "wmsg.h"
 
 
@@ -19,13 +22,30 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 		MENU::onWM_COMMAND(hWnd, wp);
 		return 0;
 
-	case WM_EXIT:
-		DestroyWindow(hWnd);
+	case WM_LOADFILE:
+		FILE::Load(((FILENAMESTRUCT*)wp)->FilePath, (int)lp);
+		SendMessage(hWnd, WM_SETWNDTEXTFILENAME, (WPARAM)(((FILENAMESTRUCT*)wp)->FileTitle), 0);
 		return 0;
 
-	case WM_FILEOPEN:
-	case WM_FILESAVE:
-	case WM_FILESAVEAS:
+	case WM_SAVEFILE:
+		FILE::Save(((FILENAMESTRUCT*)wp)->FilePath, (int)lp);
+		SendMessage(hWnd, WM_SETWNDTEXTFILENAME, (WPARAM)(((FILENAMESTRUCT*)wp)->FileTitle), 0);
+		return 0;
+
+	case WM_SETWNDTEXTFILENAME:
+		WND::SetWndTextFileName(hWnd, (LPCTSTR)wp);
+		return 0;
+
+	case WM_FILE_OPEN:
+		FILENAME::Open(hWnd);
+		return 0;
+
+	case WM_FILE_SAVE:
+		FILENAME::Save(hWnd);
+		return 0;
+
+	case WM_FILE_SAVEAS:
+		FILENAME::SaveAs(hWnd);
 		return 0;
 
 	default:

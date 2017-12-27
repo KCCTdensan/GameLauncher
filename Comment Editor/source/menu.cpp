@@ -85,19 +85,19 @@ void MENU::onWM_COMMAND(HWND hWnd, WPARAM wp)
 	switch (msg)
 	{
 	case IDM_FILE_OPEN:
-		PostMessage(hWnd, WM_FILEOPEN, 0, 0);
+		PostMessage(hWnd, WM_FILE_OPEN, 0, 0);
 		return;
 
 	case IDM_FILE_SAVE:
-		PostMessage(hWnd, WM_FILESAVE, 0, 0);
+		PostMessage(hWnd, WM_FILE_SAVE, 0, 0);
 		return;
 
 	case IDM_FILE_SAVEAS:
-		PostMessage(hWnd, WM_FILESAVEAS, 0, 0);
+		PostMessage(hWnd, WM_FILE_SAVEAS, 0, 0);
 		return;
 
 	case IDM_FILE_EXIT:
-		PostMessage(hWnd, WM_EXIT, 0, 0);
+		DestroyWindow(hWnd);
 		return;
 
 	case IDM_HELP_HOWTOUSE:
