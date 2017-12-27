@@ -155,6 +155,7 @@
     <ClCompile Include="source\wndproc.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\contents.hpp" />
     <ClInclude Include="source\file.hpp" />
     <ClInclude Include="source\filename.hpp" />
     <ClInclude Include="source\menu.hpp" />

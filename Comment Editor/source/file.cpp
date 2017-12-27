@@ -1,17 +1,5 @@
 #include "file.hpp"
-
-
-namespace FILE
-{
-	const static int MAX_CREATOR = 32;
-	const static int MAX_LANGUAGE = 32;
-
-	struct CONTENTS
-	{
-		TCHAR Creator[MAX_CREATOR];
-		TCHAR Language[MAX_LANGUAGE];
-	};
-}
+#include "contents.hpp"
 
 
 void FILE::Load(LPCTSTR FilePath, int MaxPath)
