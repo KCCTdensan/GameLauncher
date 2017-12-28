@@ -27,7 +27,7 @@ void FILENAME::Open(HWND hWnd)
 
 	fns.MaxPath = fns.MaxTitle = MAX_PATH;
 
-	SendMessage(hWnd, WM_LOADFILE, (WPARAM)&fns, MAX_PATH);
+	SendMessage(hWnd, WM_LOADDOCUMENT, (WPARAM)&fns, MAX_PATH);
 }
 
 void FILENAME::Save(HWND hWnd)
@@ -60,5 +60,5 @@ void FILENAME::SaveAs(HWND hWnd)
 
 	fns.MaxPath = fns.MaxTitle = MAX_PATH;
 
-	SendMessage(hWnd, WM_SAVEFILE, (WPARAM)&fns, MAX_PATH);
+	SendMessage(hWnd, WM_SAVEDOCUMENT, (WPARAM)&fns, MAX_PATH);
 }

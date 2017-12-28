@@ -2,14 +2,21 @@
 #include "wmsg.h"
 
 
-#define IDM_FILE				0x0000
-#define IDM_FILE_OPEN			0x0001
-#define IDM_FILE_SAVE			0x0002
-#define IDM_FILE_SAVEAS			0x0003
-#define IDM_FILE_EXIT			0x0004
-#define IDM_HELP				0x0300
-#define IDM_HELP_HOWTOUSE		0x0301
-#define IDM_HELP_VERSION		0x0302
+enum
+{
+	IDM_FILE,
+	IDM_FILE_NEW,
+	IDM_FILE_OPEN,
+	IDM_FILE_SAVE,
+	IDM_FILE_SAVEAS,
+	IDM_FILE_EXIT,
+	IDM_HELP,
+	IDM_HELP_HOWTOUSE,
+	IDM_HELP_VERSION,
+#ifdef MDI
+	IDM_EDIT
+#endif
+};
 
 
 namespace MENU
@@ -17,12 +24,16 @@ namespace MENU
 	HMENU hMenu;
 	HMENU hMenu_File;
 	HMENU hMenu_Help;
+#ifdef MDI
+	HMENU hMenu_Edit;
+#endif
 }
 
 
 void MENU::CreateWndMenu(HWND hWnd)
 {
 	TCHAR Str_File[] = TEXT("ファイル(&F)");
+	TCHAR Str_File_New[] = TEXT("新規作成(&N)");
 	TCHAR Str_File_Open[] = TEXT("開く(&O)");
 	TCHAR Str_File_Save[] = TEXT("上書き保存(&S)");
 	TCHAR Str_File_SaveAs[] = TEXT("名前を付けて保存(&A)");
@@ -30,6 +41,7 @@ void MENU::CreateWndMenu(HWND hWnd)
 	TCHAR Str_Help[] = TEXT("ヘルプ(&H)");
 	TCHAR Str_Help_HowToUse[] = TEXT("GEOMETRYの使い方(&U)");
 	TCHAR Str_Help_Version[] = TEXT("バージョン情報(&A)");
+	TCHAR Str_Edit[] = TEXT("編集中のドキュメント(&E)");
 
 	MENUITEMINFO mii;
 
@@ -46,6 +58,9 @@ void MENU::CreateWndMenu(HWND hWnd)
 	InsertMenuItem(hMenu, IDM_FILE, true, &mii);
 
 	mii.fMask = MIIM_TYPE | MIIM_ID;
+	mii.wID = IDM_FILE_NEW;
+	mii.dwTypeData = Str_File_New;
+	InsertMenuItem(hMenu_File, IDM_FILE_NEW, true, &mii);
 	mii.wID = IDM_FILE_OPEN;
 	mii.dwTypeData = Str_File_Open;
 	InsertMenuItem(hMenu_File, IDM_FILE_OPEN, true, &mii);
@@ -75,6 +90,15 @@ void MENU::CreateWndMenu(HWND hWnd)
 	mii.dwTypeData = Str_Help_Version;
 	InsertMenuItem(hMenu_Help, IDM_HELP_VERSION, true, &mii);
 
+#ifdef MDI
+	hMenu_Edit = CreateMenu();
+	mii.fMask = MIIM_TYPE | MIIM_SUBMENU | MIIM_ID;
+	mii.wID = IDM_EDIT;
+	mii.hSubMenu = hMenu_Edit;
+	mii.dwTypeData = Str_Edit;
+	InsertMenuItem(hMenu, IDM_EDIT, true, &mii);
+#endif
+
 	SetMenu(hWnd, hMenu);
 }
 
@@ -84,6 +108,10 @@ void MENU::onWM_COMMAND(HWND hWnd, WPARAM wp)
 
 	switch (msg)
 	{
+	case IDM_FILE_NEW:
+		PostMessage(hWnd, WM_CREATEDOCUMENT, 0, 0);
+		return;
+
 	case IDM_FILE_OPEN:
 		PostMessage(hWnd, WM_FILE_OPEN, 0, 0);
 		return;
@@ -105,3 +133,12 @@ void MENU::onWM_COMMAND(HWND hWnd, WPARAM wp)
 		return;
 	}
 }
+
+#ifdef MDI
+
+HMENU MENU::GetEditMenuHandle()
+{
+	return hMenu_Edit;
+}
+
+#endif

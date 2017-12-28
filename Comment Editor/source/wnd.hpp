@@ -8,7 +8,18 @@
 
 namespace WND
 {
+	ATOM RegWndCls(HINSTANCE hInstance);
+	bool CreateMainWnd();
+
+#ifdef MDI
+	ATOM RegMDIChildCls(HINSTANCE hInstance);
+	HWND CreateClientWnd(HWND hWnd);
+	HWND CreateMDIWnd(HWND hClientWnd);
+#else
+	void Startup(LPTSTR lpCmdLine);
 	void SetWndTextFileName(HWND hWnd, LPCTSTR FileName);
+#endif
+
 }
 
 

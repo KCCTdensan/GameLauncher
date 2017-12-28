@@ -2,8 +2,9 @@
 
 #include <Windows.h>
 
-#define WM_LOADFILE				0x0400
-#define WM_SAVEFILE				0x0401
+#define WM_CREATEDOCUMENT		0x0400
+#define WM_LOADDOCUMENT			0x0401
+#define WM_SAVEDOCUMENT			0x0402
 struct FILENAMESTRUCT
 {
 	TCHAR FilePath[MAX_PATH];
