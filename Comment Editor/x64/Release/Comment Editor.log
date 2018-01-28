@@ -1,10 +1,1 @@
-﻿cl : コマンド ライン warning D9025: '/DMDI' より '/UMDI' が優先されます。
-  file.cpp
-  menu.cpp
-  wndproc.cpp
-  コード生成しています。
-  6 of 30 functions (20.0%) were compiled, the rest were copied from previous compilation.
-    3 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
-  コード生成が終了しました。
-  Comment Editor.vcxproj -> D:\Documents\Visual Studio 2017\Repos\GameLauncher\x64\Release\Comment Editor.exe
+﻿
