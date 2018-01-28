@@ -10,10 +10,11 @@
 namespace EDIT
 {
 	bool Prepare(HWND hWnd);
-	void Command(WPARAM msg, WPARAM ID);
+	void Command(HWND hWnd, WPARAM msg, WPARAM ID);
 	void Paint(HWND hWnd);
 	CONTENTS GetContents();
 	void SetContents(const CONTENTS&Contents);
+	void UpdateCommentNumOfWritten(HWND hWnd);
 }
 
 

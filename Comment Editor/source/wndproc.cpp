@@ -28,7 +28,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 
 	case WM_COMMAND:
 		MENU::Command(hWnd, LOWORD(wp));
-		EDIT::Command(HIWORD(wp), LOWORD(wp));
+		EDIT::Command(hWnd, HIWORD(wp), LOWORD(wp));
 		return 0;
 
 	case WM_CREATEDOCUMENT:
@@ -38,6 +38,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 	case WM_LOADDOCUMENT:
 		FILE::LoadDocument(hWnd, (LPTSTR)wp);
 		EDIT::SetContents(FILE::GetContents());
+		EDIT::UpdateCommentNumOfWritten(hWnd);
 		return 0;
 
 	case WM_SAVEDOCUMENT:

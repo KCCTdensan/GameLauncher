@@ -11,13 +11,13 @@ bool FILENAME::Open(HWND hWnd)
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = hWnd;
 	ofn.lpstrFilter = TEXT(
-		"ランチャーコメントファイル(*.apc)\0*.apc\0"
+		"ランチャー用作品説明ファイル(*.apc)\0*.apc\0"
 		"すべてのファイル(*.*)\0*.*\0\0");
 	ofn.lpstrFile = FilePath;
 	ofn.nMaxFile = MAX_PATH;
 	ofn.lpstrFileTitle = FileTitle;
 	ofn.nMaxFileTitle = MAX_PATH;
-	ofn.lpstrTitle = TEXT("ランチャーコメントファイルを開く");
+	ofn.lpstrTitle = TEXT("ランチャー用作品説明ファイルを開く");
 	ofn.Flags = OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
 	ofn.lpstrDefExt = TEXT("apc");
 
@@ -40,13 +40,13 @@ bool FILENAME::SaveAs(HWND hWnd)
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = hWnd;
 	ofn.lpstrFilter = TEXT(
-		"ランチャーコメントファイル(*.apc)\0*.apc\0"
+		"ランチャー用作品説明ファイル(*.apc)\0*.apc\0"
 		"すべてのファイル(*.*)\0*.*\0\0");
 	ofn.lpstrFile = FilePath;
 	ofn.nMaxFile = MAX_PATH;
 	ofn.lpstrFileTitle = FileTitle;
 	ofn.nMaxFileTitle = MAX_PATH;
-	ofn.lpstrTitle = TEXT("ランチャーコメントファイルを開く");
+	ofn.lpstrTitle = TEXT("ランチャー用作品説明ファイルを開く");
 	ofn.Flags = OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
 	ofn.lpstrDefExt = TEXT("apc");
 

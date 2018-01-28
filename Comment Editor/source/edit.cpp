@@ -23,7 +23,7 @@ namespace EDIT
 		TEXT("カテゴリ"),
 		TEXT("ジャンル"),
 		TEXT("開発言語"),
-		TEXT("開発環境"),
+		TEXT("制作環境"),
 		TEXT("コメント")
 	};
 	LPCTSTR ComboItem[MAX_CATEGORY] = {
@@ -44,6 +44,10 @@ namespace EDIT
 	HWND hEdit_Language;
 	HWND hEdit_Environment;
 	HWND hEdit_Comment;
+	RECT TextRect = { CONTROL_LEFT + CONTROL_WIDTH - 150 ,330,CONTROL_LEFT + CONTROL_WIDTH ,360 };
+	int Comment_NumOfWritten;
+
+	void DrawCharNumText(HDC hdc, int Top, int Right, int NumOfWritten, int Max);
 }
 
 bool EDIT::Prepare(HWND hWnd)
@@ -71,16 +75,20 @@ bool EDIT::Prepare(HWND hWnd)
 		CONTROL_LEFT, 280, CONTROL_WIDTH, EDIT_HEIGHT,
 		hWnd, (HMENU)ID_EDIT_ENVIRONMENT, NULL, NULL);
 	hEdit_Comment = CreateWindow(TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | WS_VSCROLL | ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL,
-		CONTROL_LEFT, 330, CONTROL_WIDTH, 200,
+		CONTROL_LEFT, 360, CONTROL_WIDTH, 200,
 		hWnd, (HMENU)ID_EDIT_COMMENT, NULL, NULL);
 
 	return true;
 }
 
-void EDIT::Command(WPARAM msg, WPARAM ID)
+void EDIT::Command(HWND hWnd, WPARAM msg, WPARAM ID)
 {
 	switch (msg)
 	{
+	case CBN_SELCHANGE:
+		Contents.Category = (CATEGORY)SendMessage(hCombo_Category, CB_GETCURSEL, 0, 0);
+		return;
+
 	case EN_UPDATE:
 		switch (ID)
 		{
@@ -106,12 +114,9 @@ void EDIT::Command(WPARAM msg, WPARAM ID)
 
 		case ID_EDIT_COMMENT:
 			GetWindowText(hEdit_Comment, Contents.Comment, MAX_COMMENT);
+			UpdateCommentNumOfWritten(hWnd);
 			break;
 		}
-		return;
-
-	case CBN_SELCHANGE:
-		Contents.Category = (CATEGORY)SendMessage(hCombo_Category, CB_GETCURSEL, 0, 0);
 		return;
 	}
 }
@@ -126,6 +131,7 @@ void EDIT::Paint(HWND hWnd)
 		RECT TextRect = { 50,i * 50 + 30,CONTROL_LEFT,i * 50 + 60 };
 		DrawText(hdc, PaintText[i], lstrlen(PaintText[i]), &TextRect, DT_LEFT | DT_VCENTER);
 	}
+	DrawCharNumText(hdc, 330, CONTROL_LEFT + CONTROL_WIDTH, Comment_NumOfWritten, MAX_COMMENT - 1);
 
 	EndPaint(hWnd, &ps);
 }
@@ -145,4 +151,19 @@ void EDIT::SetContents(const CONTENTS&Contents)
 	SetWindowText(hEdit_Language, Contents.Language);
 	SetWindowText(hEdit_Environment, Contents.Environment);
 	SetWindowText(hEdit_Comment, Contents.Comment);
+}
+
+void EDIT::UpdateCommentNumOfWritten(HWND hWnd)
+{
+	Comment_NumOfWritten = lstrlen(Contents.Comment);
+	InvalidateRect(hWnd, &TextRect, true);
+	UpdateWindow(hWnd);
+}
+
+void EDIT::DrawCharNumText(HDC hdc, int Top, int Right, int NumOfWritten, int Max)
+{
+	TCHAR Buf[30];
+
+	wsprintf(Buf, TEXT("( %d / %d 文字 )"), NumOfWritten, Max);
+	DrawText(hdc, Buf, lstrlen(Buf), &TextRect, DT_RIGHT | DT_VCENTER);
 }
