@@ -3,7 +3,7 @@
 
 
 const static TCHAR CLS_NAME[] = TEXT("MAINWND");
-const static TCHAR WND_NAME[] = TEXT("Comment Editor");
+const static TCHAR WND_NAME[] = TEXT("Comment Editor for KCCT Launcher");
 
 ATOM RegWndCls(HINSTANCE hInst)
 {
