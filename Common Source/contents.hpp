@@ -25,7 +25,7 @@ const static int MAX_COMMENT = 1024;
 
 struct CONTENTS
 {
-	WCHAR Header[MAX_HEADER] = L"KCCT Lancher Comment Editor 1.0.0";
+	WCHAR Header[MAX_HEADER] = L"KCCT Lancher Comment Editor 1.0.0.s";
 	WCHAR Title[MAX_TITLE];
 	WCHAR Creator[MAX_CREATOR];
 	CATEGORY Category;
