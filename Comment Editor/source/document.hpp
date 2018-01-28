@@ -1,19 +1,26 @@
 #pragma once
 
-#include <Windows.h>
+#include <contents.hpp>
 
 #ifndef INCLUDE_DOCUMENT_HPP
 #define INCLUDE_DOCUMENT_HPP
 
 
-namespace DOCUMENT
+class DOCUMENT
 {
-	void LoadFile(LPCTSTR FilePath, int MaxPath);
-	void SaveFile(LPCTSTR FilePath, int MaxPath);
-#ifdef MDI
-	void CreateDocument(HWND hClientWnd);
-#endif
-}
+	CONTENTS Contents;
+	TCHAR FilePath[MAX_PATH];
+
+public:
+	DOCUMENT();
+	DOCUMENT(CONTENTS Contents);
+	bool LoadFile(LPCTSTR FilePath);
+	bool SaveFile();
+	bool SaveAsFile(LPCTSTR FilePath);
+	void SetFilePath(LPTSTR FilePath);
+	CONTENTS GetContents();
+	void SetContents(const CONTENTS&Contents);
+};
 
 
 #endif

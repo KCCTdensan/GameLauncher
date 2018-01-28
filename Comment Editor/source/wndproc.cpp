@@ -1,24 +1,21 @@
 #include "wndproc.hpp"
+#include "wmsg.hpp"
 #include "document.hpp"
+#include "edit.hpp"
+#include "file.hpp"
 #include "filename.hpp"
 #include "menu.hpp"
 #include "wnd.hpp"
-#include "wmsg.h"
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 {
-#ifdef MDI
-	static HWND hClientWnd;
-#endif
-
 	switch (msg)
 	{
 	case WM_CREATE:
 		MENU::CreateWndMenu(hWnd);
-#ifdef MDI
-		hClientWnd = WND::CreateClientWnd(hWnd);
-#endif
+		EDIT::Prepare(hWnd);
+		ShowWindow(hWnd, SW_SHOW);
 		return 0;
 
 	case WM_DESTROY:
@@ -26,50 +23,42 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 		return 0;
 
 	case WM_COMMAND:
-		MENU::onWM_COMMAND(hWnd, wp);
+		MENU::Command(hWnd, LOWORD(wp));
+		EDIT::Command(HIWORD(wp), LOWORD(wp));
 		return 0;
 
 	case WM_CREATEDOCUMENT:
-#ifdef MDI
-		DOCUMENT::CreateDocument(hClientWnd);
-#else
 		WND::Startup(GetCommandLine());
-#endif
 		return 0;
 
 	case WM_LOADDOCUMENT:
-		DOCUMENT::LoadFile(((FILENAMESTRUCT*)wp)->FilePath, (int)lp);
-		SendMessage(hWnd, WM_SETWNDTEXTFILENAME, (WPARAM)((FILENAMESTRUCT*)wp)->FileTitle, 0);
+		FILE::LoadDocument(hWnd, (LPTSTR)wp);
+		EDIT::SetContents(FILE::GetContents());
 		return 0;
 
 	case WM_SAVEDOCUMENT:
-		DOCUMENT::SaveFile(((FILENAMESTRUCT*)wp)->FilePath, (int)lp);
-		SendMessage(hWnd, WM_SETWNDTEXTFILENAME, (WPARAM)((FILENAMESTRUCT*)wp)->FileTitle, 0);
+		FILE::SetContents(EDIT::GetContents());
+		FILE::SaveDocument();
+		return 0;
+
+	case WM_SAVEASDOCUMENT:
+		FILE::SetContents(EDIT::GetContents());
+		FILE::SaveAsDocument(hWnd, (LPTSTR)wp);
 		return 0;
 
 	case WM_SETWNDTEXTFILENAME:
-#ifndef MDI
 		WND::SetWndTextFileName(hWnd, (LPCTSTR)wp);
-#endif
 		return 0;
 
-	case WM_FILE_OPEN:
+	case WM_FILENAME_OPEN:
 		FILENAME::Open(hWnd);
 		return 0;
 
-	case WM_FILE_SAVE:
-		FILENAME::Save(hWnd);
-		return 0;
-
-	case WM_FILE_SAVEAS:
+	case WM_FILENAME_SAVEAS:
 		FILENAME::SaveAs(hWnd);
 		return 0;
 
 	default:
-#ifdef MDI
-		return DefFrameProc(hWnd, hClientWnd, msg, wp, lp);
-#else
 		return DefWindowProc(hWnd, msg, wp, lp);
-#endif
 	}
 }

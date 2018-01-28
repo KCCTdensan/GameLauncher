@@ -9,10 +9,7 @@
 namespace MENU
 {
 	void CreateWndMenu(HWND hWnd);
-	void onWM_COMMAND(HWND hWnd, WPARAM wp);
-#ifdef MDI
-	HMENU GetEditMenuHandle();
-#endif
+	void Command(HWND hWnd, WPARAM msg);
 }
 
 

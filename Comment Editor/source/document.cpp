@@ -1,35 +1,79 @@
 #include "document.hpp"
-#include "wnd.hpp"
-#include "contents.hpp"
 
 
-void DOCUMENT::LoadFile(LPCTSTR FilePath, int MaxPath)
+DOCUMENT::DOCUMENT()
 {
-	CONTENTS Buf;
+	Contents = { 0 };
+}
 
+DOCUMENT::DOCUMENT(CONTENTS Contents)
+{
+	DOCUMENT::Contents = Contents;
+}
+
+bool DOCUMENT::LoadFile(LPCTSTR FilePath)
+{
 	HANDLE hFile = CreateFile(FilePath, GENERIC_READ, 0, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (hFile == INVALID_HANDLE_VALUE)
+	{
+		return false;
+	}
 
-	ReadFile(hFile, &Buf, sizeof(CONTENTS), NULL, NULL);
+	ReadFile(hFile, &Contents, sizeof(CONTENTS), NULL, NULL);
 
 	CloseHandle(hFile);
+
+	return true;
 }
 
-void DOCUMENT::SaveFile(LPCTSTR FilePath, int MaxPath)
+bool DOCUMENT::SaveFile()
 {
-	CONTENTS Buf;
-
 	HANDLE hFile = CreateFile(FilePath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-	
-	WriteFile(hFile, &Buf, sizeof(CONTENTS), NULL, NULL);
+	if (hFile == INVALID_HANDLE_VALUE)
+	{
+		return false;
+	}
+
+	WriteFile(hFile, &Contents, sizeof(CONTENTS), NULL, NULL);
 
 	CloseHandle(hFile);
+
+	return true;
 }
 
-#ifdef MDI
-
-void DOCUMENT::CreateDocument(HWND hClientWnd)
+bool DOCUMENT::SaveAsFile(LPCTSTR FilePath)
 {
-	WND::CreateMDIWnd(hClientWnd);
+	HANDLE hFile = CreateFile(FilePath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (hFile == INVALID_HANDLE_VALUE)
+	{
+		return false;
+	}
+
+	WriteFile(hFile, &Contents, sizeof(CONTENTS), NULL, NULL);
+
+	CloseHandle(hFile);
+
+	return true;
 }
 
-#endif
+void DOCUMENT::SetFilePath(LPTSTR FilePath)
+{
+	for (int i = 0; i < MAX_PATH; i++)
+	{
+		DOCUMENT::FilePath[i] = FilePath[i];
+		if (FilePath[i] == '\0')
+		{
+			break;
+		}
+	}
+}
+
+CONTENTS DOCUMENT::GetContents()
+{
+	return Contents;
+}
+
+void DOCUMENT::SetContents(const CONTENTS&Contents)
+{
+	DOCUMENT::Contents = Contents;
+}

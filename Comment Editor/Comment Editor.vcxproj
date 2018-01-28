@@ -91,6 +91,7 @@
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <UndefinePreprocessorDefinitions>MDI</UndefinePreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../Common Source/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -106,6 +107,7 @@
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <UndefinePreprocessorDefinitions>MDI</UndefinePreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../Common Source/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -123,6 +125,7 @@
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <UndefinePreprocessorDefinitions>MDI</UndefinePreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../Common Source/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -142,6 +145,7 @@
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <UndefinePreprocessorDefinitions>MDI</UndefinePreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../Common Source/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -152,6 +156,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\document.cpp" />
+    <ClCompile Include="source\edit.cpp" />
+    <ClCompile Include="source\file.cpp" />
     <ClCompile Include="source\filename.cpp" />
     <ClCompile Include="source\menu.cpp" />
     <ClCompile Include="source\winmain.cpp" />
@@ -159,11 +165,15 @@
     <ClCompile Include="source\wndproc.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\contents.hpp" />
+    <ClInclude Include="..\Common Source\contents.hpp" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="source\document.hpp" />
+    <ClInclude Include="source\edit.hpp" />
+    <ClInclude Include="source\file.hpp" />
     <ClInclude Include="source\filename.hpp" />
     <ClInclude Include="source\menu.hpp" />
-    <ClInclude Include="source\wmsg.h" />
+    <ClInclude Include="source\wmsg.hpp" />
     <ClInclude Include="source\wnd.hpp" />
     <ClInclude Include="source\wndproc.hpp" />
   </ItemGroup>

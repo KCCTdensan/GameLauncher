@@ -1,44 +1,66 @@
 #include <Windows.h>
-#include "wnd.hpp"
+#include "wndproc.hpp"
 
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
+const static TCHAR CLS_NAME[] = TEXT("MAINWND");
+const static TCHAR WND_NAME[] = TEXT("Comment Editor");
+
+ATOM RegWndCls(HINSTANCE hInst)
 {
-	bool loop = true;
-	MSG msg;
+	WNDCLASS wndcls;
 
-	if (WND::RegWndCls(hInstance) == 0)
+	wndcls.style = CS_HREDRAW | CS_VREDRAW;
+	wndcls.lpfnWndProc = WndProc;
+	wndcls.cbClsExtra = 0;
+	wndcls.cbWndExtra = 0;
+	wndcls.hInstance = hInst;
+	wndcls.hIcon = NULL;
+	wndcls.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wndcls.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	wndcls.lpszMenuName = NULL;
+	wndcls.lpszClassName = CLS_NAME;
+
+	return RegisterClass(&wndcls);
+}
+
+bool CreateMainWnd()
+{
+	return CreateWindow(CLS_NAME, WND_NAME, WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT, CW_USEDEFAULT, 650, 650,
+		NULL, NULL, NULL, NULL) != NULL;
+}
+
+int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
+{
+	bool Loop = true;
+	MSG Msg;
+
+	if (RegWndCls(hInst) == 0)
 	{
 		return -1;
 	}
-#ifdef MDI
-	if (WND::RegMDIChildCls(hInstance) == 0)
-	{
-		return -1;
-	}
-#endif
-	if (!WND::CreateMainWnd())
+	if (!CreateMainWnd())
 	{
 		return -1;
 	}
 
-	while (loop)
+	while (Loop)
 	{
-		BOOL ret = GetMessage(&msg, NULL, 0, 0);
+		BOOL Ret = GetMessage(&Msg, NULL, 0, 0);
 
-		switch (ret)
+		switch (Ret)
 		{
 		case -1:
 		case 0:
-			loop = false;
+			Loop = false;
 			break;
 
 		default:
-			DispatchMessage(&msg);
-			TranslateMessage(&msg);
+			DispatchMessage(&Msg);
+			TranslateMessage(&Msg);
 			break;
 		}
 	}
 
-	return (int)msg.wParam;
+	return (int)Msg.wParam;
 }

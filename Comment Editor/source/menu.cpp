@@ -1,32 +1,25 @@
 #include "menu.hpp"
-#include "wmsg.h"
-
-
-enum
-{
-	IDM_FILE,
-	IDM_FILE_NEW,
-	IDM_FILE_OPEN,
-	IDM_FILE_SAVE,
-	IDM_FILE_SAVEAS,
-	IDM_FILE_EXIT,
-	IDM_HELP,
-	IDM_HELP_HOWTOUSE,
-	IDM_HELP_VERSION,
-#ifdef MDI
-	IDM_EDIT
-#endif
-};
+#include "wmsg.hpp"
 
 
 namespace MENU
 {
+	enum
+	{
+		IDM_FILE = 0x00,
+		IDM_FILE_NEW,
+		IDM_FILE_OPEN,
+		IDM_FILE_SAVE,
+		IDM_FILE_SAVEAS,
+		IDM_FILE_EXIT,
+		IDM_HELP,
+		IDM_HELP_HOWTOUSE,
+		IDM_HELP_VERSION,
+	};
+
 	HMENU hMenu;
 	HMENU hMenu_File;
 	HMENU hMenu_Help;
-#ifdef MDI
-	HMENU hMenu_Edit;
-#endif
 }
 
 
@@ -41,7 +34,6 @@ void MENU::CreateWndMenu(HWND hWnd)
 	TCHAR Str_Help[] = TEXT("ヘルプ(&H)");
 	TCHAR Str_Help_HowToUse[] = TEXT("GEOMETRYの使い方(&U)");
 	TCHAR Str_Help_Version[] = TEXT("バージョン情報(&A)");
-	TCHAR Str_Edit[] = TEXT("編集中のドキュメント(&E)");
 
 	MENUITEMINFO mii;
 
@@ -90,22 +82,11 @@ void MENU::CreateWndMenu(HWND hWnd)
 	mii.dwTypeData = Str_Help_Version;
 	InsertMenuItem(hMenu_Help, IDM_HELP_VERSION, true, &mii);
 
-#ifdef MDI
-	hMenu_Edit = CreateMenu();
-	mii.fMask = MIIM_TYPE | MIIM_SUBMENU | MIIM_ID;
-	mii.wID = IDM_EDIT;
-	mii.hSubMenu = hMenu_Edit;
-	mii.dwTypeData = Str_Edit;
-	InsertMenuItem(hMenu, IDM_EDIT, true, &mii);
-#endif
-
 	SetMenu(hWnd, hMenu);
 }
 
-void MENU::onWM_COMMAND(HWND hWnd, WPARAM wp)
+void MENU::Command(HWND hWnd, WPARAM msg)
 {
-	WPARAM msg = LOWORD(wp);
-
 	switch (msg)
 	{
 	case IDM_FILE_NEW:
@@ -113,15 +94,15 @@ void MENU::onWM_COMMAND(HWND hWnd, WPARAM wp)
 		return;
 
 	case IDM_FILE_OPEN:
-		PostMessage(hWnd, WM_FILE_OPEN, 0, 0);
+		PostMessage(hWnd, WM_FILENAME_OPEN, 0, 0);
 		return;
 
 	case IDM_FILE_SAVE:
-		PostMessage(hWnd, WM_FILE_SAVE, 0, 0);
+		PostMessage(hWnd, WM_SAVEDOCUMENT, 0, 0);
 		return;
 
 	case IDM_FILE_SAVEAS:
-		PostMessage(hWnd, WM_FILE_SAVEAS, 0, 0);
+		PostMessage(hWnd, WM_FILENAME_SAVEAS, 0, 0);
 		return;
 
 	case IDM_FILE_EXIT:
@@ -133,12 +114,3 @@ void MENU::onWM_COMMAND(HWND hWnd, WPARAM wp)
 		return;
 	}
 }
-
-#ifdef MDI
-
-HMENU MENU::GetEditMenuHandle()
-{
-	return hMenu_Edit;
-}
-
-#endif

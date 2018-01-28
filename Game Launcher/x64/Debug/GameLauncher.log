@@ -1,5 +1,2 @@
-﻿cl : コマンド ライン warning D9030: '/Gm' はマルチプロセシングと互換性がありません。/MP スイッチを無視します
-  wndproc.cpp
-  winmain.cpp
-  コードを生成中...
+﻿  winmain.cpp
   GameLauncher.vcxproj -> D:\Documents\Visual Studio 2017\Repos\GameLauncher\x64\Debug\GameLauncher.exe
