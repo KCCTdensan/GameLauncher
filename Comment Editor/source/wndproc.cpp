@@ -22,6 +22,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 		PostQuitMessage(0);
 		return 0;
 
+	case WM_PAINT:
+		EDIT::Paint(hWnd);
+		return 0;
+
 	case WM_COMMAND:
 		MENU::Command(hWnd, LOWORD(wp));
 		EDIT::Command(HIWORD(wp), LOWORD(wp));
@@ -38,13 +42,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 
 	case WM_SAVEDOCUMENT:
 		FILE::SetContents(EDIT::GetContents());
-		FILE::SaveDocument();
-		return 0;
+		return FILE::SaveDocument() ? 0 : -1;
 
 	case WM_SAVEASDOCUMENT:
 		FILE::SetContents(EDIT::GetContents());
-		FILE::SaveAsDocument(hWnd, (LPTSTR)wp);
-		return 0;
+		return FILE::SaveAsDocument(hWnd, (LPTSTR)wp) ? 0 : -1;
 
 	case WM_SETWNDTEXTFILENAME:
 		WND::SetWndTextFileName(hWnd, (LPCTSTR)wp);

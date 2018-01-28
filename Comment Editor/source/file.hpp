@@ -9,9 +9,9 @@
 
 namespace FILE
 {
-	void LoadDocument(HWND hWnd, LPTSTR FilePath);
-	void SaveDocument();
-	void SaveAsDocument(HWND hWnd, LPTSTR FilePath);
+	bool LoadDocument(HWND hWnd, LPTSTR FilePath);
+	bool SaveDocument();
+	bool SaveAsDocument(HWND hWnd, LPTSTR FilePath);
 	CONTENTS GetContents();
 	void SetContents(const CONTENTS&Contents);
 }

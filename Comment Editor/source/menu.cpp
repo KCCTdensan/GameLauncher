@@ -98,7 +98,10 @@ void MENU::Command(HWND hWnd, WPARAM msg)
 		return;
 
 	case IDM_FILE_SAVE:
-		PostMessage(hWnd, WM_SAVEDOCUMENT, 0, 0);
+		if (SendMessage(hWnd, WM_SAVEDOCUMENT, 0, 0) == -1)
+		{
+			PostMessage(hWnd, WM_FILENAME_SAVEAS, 0, 0);
+		}
 		return;
 
 	case IDM_FILE_SAVEAS:

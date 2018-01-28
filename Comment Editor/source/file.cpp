@@ -8,29 +8,37 @@ namespace FILE
 	DOCUMENT Document;
 }
 
-void FILE::LoadDocument(HWND hWnd, LPTSTR FilePath)
+bool FILE::LoadDocument(HWND hWnd, LPTSTR FilePath)
 {
+	bool Ret;
+
 	TCHAR FileTitle[MAX_PATH];
 	GetFileTitle(FilePath, FileTitle, MAX_PATH);
 
-	Document.LoadFile(FilePath);
+	Ret = Document.LoadFile(FilePath);
 	Document.SetFilePath(FilePath);
 	SendMessage(hWnd, WM_SETWNDTEXTFILENAME, (WPARAM)FileTitle, 0);
+
+	return Ret;
 }
 
-void FILE::SaveDocument()
+bool FILE::SaveDocument()
 {
-	Document.SaveFile();
+	return Document.SaveFile();
 }
 
-void FILE::SaveAsDocument(HWND hWnd, LPTSTR FilePath)
+bool FILE::SaveAsDocument(HWND hWnd, LPTSTR FilePath)
 {
+	bool Ret;
+
 	TCHAR FileTitle[MAX_PATH];
 	GetFileTitle(FilePath, FileTitle, MAX_PATH);
 
-	Document.SaveAsFile(FilePath);
+	Ret = Document.SaveAsFile(FilePath);
 	Document.SetFilePath(FilePath);
 	SendMessage(hWnd, WM_SETWNDTEXTFILENAME, (WPARAM)FileTitle, 0);
+
+	return Ret;
 }
 
 CONTENTS FILE::GetContents()

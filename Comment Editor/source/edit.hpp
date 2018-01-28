@@ -11,6 +11,7 @@ namespace EDIT
 {
 	bool Prepare(HWND hWnd);
 	void Command(WPARAM msg, WPARAM ID);
+	void Paint(HWND hWnd);
 	CONTENTS GetContents();
 	void SetContents(const CONTENTS&Contents);
 }
