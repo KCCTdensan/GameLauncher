@@ -1,19 +1,22 @@
 #include "menu.hpp"
-#include "wmsg.h"
-
-
-#define IDM_FILE				0x0000
-#define IDM_FILE_OPEN			0x0001
-#define IDM_FILE_SAVE			0x0002
-#define IDM_FILE_SAVEAS			0x0003
-#define IDM_FILE_EXIT			0x0004
-#define IDM_HELP				0x0300
-#define IDM_HELP_HOWTOUSE		0x0301
-#define IDM_HELP_VERSION		0x0302
+#include "wmsg.hpp"
 
 
 namespace MENU
 {
+	enum
+	{
+		IDM_FILE = 0x00,
+		IDM_FILE_NEW,
+		IDM_FILE_OPEN,
+		IDM_FILE_SAVE,
+		IDM_FILE_SAVEAS,
+		IDM_FILE_EXIT,
+		IDM_HELP,
+		IDM_HELP_HOWTOUSE,
+		IDM_HELP_VERSION,
+	};
+
 	HMENU hMenu;
 	HMENU hMenu_File;
 	HMENU hMenu_Help;
@@ -23,6 +26,7 @@ namespace MENU
 void MENU::CreateWndMenu(HWND hWnd)
 {
 	TCHAR Str_File[] = TEXT("ファイル(&F)");
+	TCHAR Str_File_New[] = TEXT("新規作成(&N)");
 	TCHAR Str_File_Open[] = TEXT("開く(&O)");
 	TCHAR Str_File_Save[] = TEXT("上書き保存(&S)");
 	TCHAR Str_File_SaveAs[] = TEXT("名前を付けて保存(&A)");
@@ -46,6 +50,9 @@ void MENU::CreateWndMenu(HWND hWnd)
 	InsertMenuItem(hMenu, IDM_FILE, true, &mii);
 
 	mii.fMask = MIIM_TYPE | MIIM_ID;
+	mii.wID = IDM_FILE_NEW;
+	mii.dwTypeData = Str_File_New;
+	InsertMenuItem(hMenu_File, IDM_FILE_NEW, true, &mii);
 	mii.wID = IDM_FILE_OPEN;
 	mii.dwTypeData = Str_File_Open;
 	InsertMenuItem(hMenu_File, IDM_FILE_OPEN, true, &mii);
@@ -78,26 +85,31 @@ void MENU::CreateWndMenu(HWND hWnd)
 	SetMenu(hWnd, hMenu);
 }
 
-void MENU::onWM_COMMAND(HWND hWnd, WPARAM wp)
+void MENU::Command(HWND hWnd, WPARAM msg)
 {
-	WPARAM msg = LOWORD(wp);
-
 	switch (msg)
 	{
+	case IDM_FILE_NEW:
+		PostMessage(hWnd, WM_CREATEDOCUMENT, 0, 0);
+		return;
+
 	case IDM_FILE_OPEN:
-		PostMessage(hWnd, WM_FILEOPEN, 0, 0);
+		PostMessage(hWnd, WM_FILENAME_OPEN, 0, 0);
 		return;
 
 	case IDM_FILE_SAVE:
-		PostMessage(hWnd, WM_FILESAVE, 0, 0);
+		if (SendMessage(hWnd, WM_SAVEDOCUMENT, 0, 0) == -1)
+		{
+			PostMessage(hWnd, WM_FILENAME_SAVEAS, 0, 0);
+		}
 		return;
 
 	case IDM_FILE_SAVEAS:
-		PostMessage(hWnd, WM_FILESAVEAS, 0, 0);
+		PostMessage(hWnd, WM_FILENAME_SAVEAS, 0, 0);
 		return;
 
 	case IDM_FILE_EXIT:
-		PostMessage(hWnd, WM_EXIT, 0, 0);
+		DestroyWindow(hWnd);
 		return;
 
 	case IDM_HELP_HOWTOUSE:

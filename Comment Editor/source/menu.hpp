@@ -9,7 +9,7 @@
 namespace MENU
 {
 	void CreateWndMenu(HWND hWnd);
-	void onWM_COMMAND(HWND hWnd, WPARAM wp);
+	void Command(HWND hWnd, WPARAM msg);
 }
 
 
