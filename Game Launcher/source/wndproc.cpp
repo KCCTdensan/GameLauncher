@@ -12,29 +12,39 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 	case WM_CREATE:
 	{
 		RECT WindowRect;
-		GetClientRect(hWnd, &WindowRect);
+		GetClientRect(hWnd, &WindowRect);//クライアントエリアのサイズを取得
 		SceneManager = new MasterScene(hWnd, Scene_StartUp, WindowRect.right, WindowRect.bottom);
 	}
 		ShowWindow(hWnd, SW_SHOW);
 		return 0;
 
 	case WM_DESTROY:
+		SceneManager->Finalize(hWnd);
 		delete SceneManager;
 		SceneManager = nullptr;
 		PostQuitMessage(0);
 		return 0;
 
 	case WM_PAINT:
-		SceneManager->Paint(hWnd);
-		return 0;
+		return SceneManager->Paint(hWnd);
+
+	case WM_MOUSEMOVE:
+		return SceneManager->MouseMove(hWnd, wp, lp);
+
+	case WM_LBUTTONDOWN:
+		return SceneManager->LButtonDown(hWnd, wp, lp);
 
 	case WM_LBUTTONUP:
-		DestroyWindow(hWnd);
-		return 0;
+		return SceneManager->LButtonUp(hWnd, wp, lp);
+
+	case WM_RBUTTONDOWN:
+		return SceneManager->RButtonDown(hWnd, wp, lp);
+
+	case WM_RBUTTONUP:
+		return SceneManager->RButtonUp(hWnd, wp, lp);
 
 	case WM_GUI_UPDATE:
-		SceneManager->Update(hWnd);
-		return 0;
+		return SceneManager->Update(hWnd);
 
 	default:
 		return DefWindowProc(hWnd, msg, wp, lp);

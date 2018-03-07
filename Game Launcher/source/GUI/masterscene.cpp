@@ -1,12 +1,14 @@
 #include "masterscene.hpp"
 #include "startup.hpp"
+#include "mainmenu.hpp"
 
 
 MasterScene::MasterScene(HWND hWnd, SceneName FirstScene, unsigned short BmpWidth, unsigned short BmpHeight) :Scene(BmpWidth, BmpHeight)
 {
 	Scenes[Scene_StartUp] = new StartUp(hWnd, BmpWidth, BmpHeight);
+	Scenes[Scene_MainMenu] = new MainMenu(hWnd, BmpWidth, BmpHeight);
 
-	CurrentScene = Scenes[Scene_StartUp];
+	CurrentScene = Scenes[FirstScene];
 	CurrentScene->Initialize(hWnd);
 }
 
@@ -20,11 +22,13 @@ MasterScene::~MasterScene()
 
 int MasterScene::Initialize(HWND hWnd)
 {
+	CurrentScene->Initialize(hWnd);
 	return 0;
 }
 
 int MasterScene::Finalize(HWND hWnd)
 {
+	CurrentScene->Finalize(hWnd);
 	return 0;
 }
 

@@ -42,6 +42,9 @@
     <ClCompile Include="source\GUI\masterscene.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="source\GUI\mainmenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\wndproc.hpp">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="source\wmsg.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\mainmenu.hpp">
+      <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

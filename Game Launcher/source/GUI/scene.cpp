@@ -6,6 +6,21 @@ Scene::Scene(unsigned short BmpWidth, unsigned short BmpHeight) :MemDC(BmpWidth,
 
 }
 
+int Scene::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+{
+	return 0;
+}
+
+int Scene::RButtonDown(HWND hWnd, WPARAM wp, LPARAM lp)
+{
+	return 0;
+}
+
+int Scene::RButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+{
+	return 0;
+}
+
 int Scene::Update(HWND hWnd)
 {
 	return 0;
@@ -19,7 +34,12 @@ int Scene::Paint(HWND hWnd)
 	return 0;
 }
 
-int Scene::ChangeScene(HWND hWnd, int NextScene)
+int Scene::MouseMove(HWND hWnd, WPARAM wp, LPARAM lp)
+{
+	return 0;
+}
+
+int Scene::LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp)
 {
 	return 0;
 }

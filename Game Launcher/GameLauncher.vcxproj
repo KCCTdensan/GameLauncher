@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\GUI\mainmenu.cpp" />
     <ClCompile Include="source\GUI\MemDC.cpp" />
     <ClCompile Include="source\GUI\scene.cpp" />
     <ClCompile Include="source\GUI\masterscene.cpp" />
@@ -28,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp" />
+    <ClInclude Include="source\GUI\mainmenu.hpp" />
     <ClInclude Include="source\GUI\MemDC.hpp" />
     <ClInclude Include="source\GUI\scene.hpp" />
     <ClInclude Include="source\GUI\masterscene.hpp" />

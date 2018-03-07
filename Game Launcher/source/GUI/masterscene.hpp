@@ -9,6 +9,7 @@
 enum SceneName
 {
 	Scene_StartUp,
+	Scene_MainMenu,
 	NumSceneName
 };
 

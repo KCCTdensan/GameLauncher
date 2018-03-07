@@ -8,12 +8,13 @@
 
 class StartUp :public Scene
 {
+	HBRUSH hBrushBkgnd;//”wŒi“h‚è‚Â‚Ô‚µ—p
+
 public:
 	StartUp(HWND hWnd, unsigned short BmpWidth, unsigned short BmpHeight);
 	~StartUp();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
-	int Paint(HWND hWnd);
 };
 
 
