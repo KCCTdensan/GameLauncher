@@ -1,9 +1,7 @@
-#include <Windows.h>
 #include "wndproc.hpp"
 
 
 const static TCHAR WND_CLS_NAME[] = TEXT("GAMELAUNCHER");
-
 
 ATOM RegWndCls(HINSTANCE hInstance)
 {
@@ -29,18 +27,9 @@ bool CreateMainWnd()
 
 	GetWindowRect(GetDesktopWindow(), &WindowRect);
 
-	HWND hWnd = CreateWindow(WND_CLS_NAME, TEXT("Game Launcher"), WS_POPUP,
+	return CreateWindow(WND_CLS_NAME, TEXT("Game Launcher"), WS_POPUP,
 		0, 0, WindowRect.right, WindowRect.bottom,
-		NULL, NULL, NULL, NULL);
-
-	if (hWnd == NULL)
-	{
-		return false;
-	}
-
-	ShowWindow(hWnd, SW_SHOW);
-
-	return true;
+		NULL, NULL, NULL, NULL) != NULL;
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
@@ -57,7 +46,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 	{
 		return -1;
 	}
-
 
 	while (loop)
 	{

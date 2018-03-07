@@ -166,8 +166,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="resource1.h" />
     <ClInclude Include="source\document.hpp" />
     <ClInclude Include="source\edit.hpp" />
     <ClInclude Include="source\file.hpp" />
