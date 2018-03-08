@@ -20,8 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\GUI\SceneManager.cpp" />
+    <ClCompile Include="source\GUI\Scene\AppGallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\GameGallery.cpp" />
     <ClCompile Include="source\GUI\Scene\MainMenu.cpp" />
     <ClCompile Include="source\GUI\Scene\MemDC.cpp" />
+    <ClCompile Include="source\GUI\Scene\Scene.cpp" />
     <ClCompile Include="source\GUI\Scene\StartUp.cpp" />
     <ClCompile Include="source\WinMain.cpp" />
     <ClCompile Include="source\WndProc.cpp" />
@@ -29,8 +32,11 @@
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp" />
     <ClInclude Include="source\GUI\SceneManager.hpp" />
+    <ClInclude Include="source\GUI\Scene\AppGallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\GameGallery.hpp" />
     <ClInclude Include="source\GUI\Scene\MainMenu.hpp" />
     <ClInclude Include="source\GUI\Scene\MemDC.hpp" />
+    <ClInclude Include="source\GUI\Scene\Scene.hpp" />
     <ClInclude Include="source\GUI\Scene\SceneChangerInterface.hpp" />
     <ClInclude Include="source\GUI\Scene\StartUp.hpp" />
     <ClInclude Include="source\GUI\Scene\Task.hpp" />

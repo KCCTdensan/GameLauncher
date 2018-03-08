@@ -1,12 +1,16 @@
 #include "SceneManager.hpp"
 #include "Scene/StartUp.hpp"
 #include "Scene/MainMenu.hpp"
+#include "Scene/AppGallery.hpp"
+#include "Scene/GameGallery.hpp"
 
 
 SceneManager::SceneManager(HWND hWnd, SceneName FirstScene, unsigned short BmpWidth, unsigned short BmpHeight)
 {
 	Scenes[SceneName_StartUp] = new StartUp(hWnd, this, BmpWidth, BmpHeight);
 	Scenes[SceneName_MainMenu] = new MainMenu(hWnd, this, BmpWidth, BmpHeight);
+	Scenes[SceneName_AppGallery] = new AppGallery(hWnd, this, BmpWidth, BmpHeight);
+	Scenes[SceneName_GameGallery] = new GameGallery(hWnd, this, BmpWidth, BmpHeight);
 	CurrentScene = Scenes[FirstScene];
 }
 

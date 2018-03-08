@@ -10,6 +10,8 @@ enum SceneName
 {
 	SceneName_StartUp,
 	SceneName_MainMenu,
+	SceneName_AppGallery,
+	SceneName_GameGallery,
 
 	NumSceneName
 };

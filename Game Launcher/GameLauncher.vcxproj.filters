@@ -48,6 +48,15 @@
     <ClCompile Include="source\GUI\Scene\MemDC.cpp">
       <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="source\GUI\Scene\Scene.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\GameGallery.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\AppGallery.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp">
@@ -75,6 +84,15 @@
       <Filter>Header Files\GUI\Scene</Filter>
     </ClInclude>
     <ClInclude Include="source\GUI\Scene\MemDC.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\Scene.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\GameGallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\AppGallery.hpp">
       <Filter>Header Files\GUI\Scene</Filter>
     </ClInclude>
   </ItemGroup>

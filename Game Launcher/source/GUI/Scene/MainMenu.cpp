@@ -37,7 +37,7 @@ int MainMenu::Finalize(HWND hWnd)
 	return 0;
 }
 
-int MainMenu::LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp)
+int MainMenu::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
 	DestroyWindow(hWnd);
 	return 0;

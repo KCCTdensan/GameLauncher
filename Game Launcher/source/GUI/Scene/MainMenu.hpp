@@ -17,7 +17,7 @@ public:
 	~MainMenu();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
-	int LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp);
+	int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);
 	int Update(HWND hWnd);
 };
 
