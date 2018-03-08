@@ -1,4 +1,4 @@
-#include "wndproc.hpp"
+#include "WndProc.hpp"
 
 
 const static TCHAR WND_CLS_NAME[] = TEXT("GAMELAUNCHER");

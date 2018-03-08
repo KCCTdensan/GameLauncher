@@ -1,0 +1,24 @@
+#pragma once
+
+#include <Windows.h>
+
+#ifndef INCLUDE_SCENECHANGERINTERFACE_HPP
+#define INCLUDE_SCENECHANGERINTERFACE_HPP
+
+
+enum SceneName
+{
+	SceneName_StartUp,
+	SceneName_MainMenu,
+
+	NumSceneName
+};
+
+class SceneChangerInterface
+{
+public:
+	virtual int ChangeScene(HWND hWnd, SceneName NextScene) = 0;
+};
+
+
+#endif

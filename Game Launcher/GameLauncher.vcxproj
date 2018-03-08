@@ -19,23 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\GUI\mainmenu.cpp" />
-    <ClCompile Include="source\GUI\MemDC.cpp" />
-    <ClCompile Include="source\GUI\scene.cpp" />
-    <ClCompile Include="source\GUI\masterscene.cpp" />
-    <ClCompile Include="source\GUI\startup.cpp" />
-    <ClCompile Include="source\winmain.cpp" />
-    <ClCompile Include="source\wndproc.cpp" />
+    <ClCompile Include="source\GUI\SceneManager.cpp" />
+    <ClCompile Include="source\GUI\Scene\MainMenu.cpp" />
+    <ClCompile Include="source\GUI\Scene\MemDC.cpp" />
+    <ClCompile Include="source\GUI\Scene\StartUp.cpp" />
+    <ClCompile Include="source\WinMain.cpp" />
+    <ClCompile Include="source\WndProc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp" />
-    <ClInclude Include="source\GUI\mainmenu.hpp" />
-    <ClInclude Include="source\GUI\MemDC.hpp" />
-    <ClInclude Include="source\GUI\scene.hpp" />
-    <ClInclude Include="source\GUI\masterscene.hpp" />
-    <ClInclude Include="source\GUI\startup.hpp" />
+    <ClInclude Include="source\GUI\SceneManager.hpp" />
+    <ClInclude Include="source\GUI\Scene\MainMenu.hpp" />
+    <ClInclude Include="source\GUI\Scene\MemDC.hpp" />
+    <ClInclude Include="source\GUI\Scene\SceneChangerInterface.hpp" />
+    <ClInclude Include="source\GUI\Scene\StartUp.hpp" />
+    <ClInclude Include="source\GUI\Scene\Task.hpp" />
     <ClInclude Include="source\wmsg.h" />
-    <ClInclude Include="source\wndproc.hpp" />
+    <ClInclude Include="source\WndProc.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

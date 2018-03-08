@@ -1,50 +1,50 @@
-#include "wndproc.hpp"
-#include "GUI/masterscene.hpp"
+#include "WndProc.hpp"
+#include "GUI/SceneManager.hpp"
 #include <wmsg.h>
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 {
-	static MasterScene*SceneManager = nullptr;
+	static SceneManager*Scene = nullptr;
 
 	switch (msg)
 	{
 	case WM_CREATE:
-	{
-		RECT WindowRect;
-		GetClientRect(hWnd, &WindowRect);//クライアントエリアのサイズを取得
-		SceneManager = new MasterScene(hWnd, Scene_StartUp, WindowRect.right, WindowRect.bottom);
-	}
+		Scene = new SceneManager(hWnd, SceneName_StartUp, ((LPCREATESTRUCT)lp)->cx, ((LPCREATESTRUCT)lp)->cy);
+		Scene->Initialize(hWnd);
 		ShowWindow(hWnd, SW_SHOW);
 		return 0;
 
 	case WM_DESTROY:
-		SceneManager->Finalize(hWnd);
-		delete SceneManager;
-		SceneManager = nullptr;
+		Scene->Finalize(hWnd);
+		delete Scene;
+		Scene = nullptr;
 		PostQuitMessage(0);
 		return 0;
 
 	case WM_PAINT:
-		return SceneManager->Paint(hWnd);
+		return Scene->Paint(hWnd);
+
+	case WM_ERASEBKGND:
+		return true;
 
 	case WM_MOUSEMOVE:
-		return SceneManager->MouseMove(hWnd, wp, lp);
+		return Scene->MouseMove(hWnd, wp, lp);
 
 	case WM_LBUTTONDOWN:
-		return SceneManager->LButtonDown(hWnd, wp, lp);
+		return Scene->LButtonDown(hWnd, wp, lp);
 
 	case WM_LBUTTONUP:
-		return SceneManager->LButtonUp(hWnd, wp, lp);
+		return Scene->LButtonUp(hWnd, wp, lp);
 
 	case WM_RBUTTONDOWN:
-		return SceneManager->RButtonDown(hWnd, wp, lp);
+		return Scene->RButtonDown(hWnd, wp, lp);
 
 	case WM_RBUTTONUP:
-		return SceneManager->RButtonUp(hWnd, wp, lp);
+		return Scene->RButtonUp(hWnd, wp, lp);
 
 	case WM_GUI_UPDATE:
-		return SceneManager->Update(hWnd);
+		return Scene->Update(hWnd);
 
 	default:
 		return DefWindowProc(hWnd, msg, wp, lp);

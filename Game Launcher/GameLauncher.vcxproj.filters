@@ -22,54 +22,60 @@
     <Filter Include="Source Files\GUI">
       <UniqueIdentifier>{576d3108-0308-44b2-bd47-f81efc48651b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GUI\Scene">
+      <UniqueIdentifier>{83f34818-920f-409f-8350-ab5ac2a10487}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\Scene">
+      <UniqueIdentifier>{ab96b93c-b3ad-4117-a3b8-e4c11a4e7f3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\winmain.cpp">
+    <ClCompile Include="source\WinMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\wndproc.cpp">
+    <ClCompile Include="source\WndProc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\GUI\startup.cpp">
+    <ClCompile Include="source\GUI\SceneManager.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="source\GUI\scene.cpp">
-      <Filter>Source Files\GUI</Filter>
+    <ClCompile Include="source\GUI\Scene\StartUp.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="source\GUI\MemDC.cpp">
-      <Filter>Source Files\GUI</Filter>
+    <ClCompile Include="source\GUI\Scene\MainMenu.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="source\GUI\masterscene.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GUI\mainmenu.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="source\GUI\Scene\MemDC.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\wndproc.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common Source\contents.hpp">
       <Filter>Header Files\Common Source</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\startup.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\MemDC.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\scene.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\masterscene.hpp">
-      <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="source\wmsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\GUI\mainmenu.hpp">
+    <ClInclude Include="source\WndProc.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\SceneManager.hpp">
       <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\MainMenu.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\StartUp.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\Task.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\SceneChangerInterface.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\MemDC.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
