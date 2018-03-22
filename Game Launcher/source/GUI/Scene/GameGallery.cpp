@@ -1,7 +1,7 @@
 #include "GameGallery.hpp"
 
 
-GameGallery::GameGallery(HWND hWnd, SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :Scene(SceneChanger, BmpWidth, BmpHeight)
+GameGallery::GameGallery(HWND hWnd, SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :Gallery(SceneChanger, BmpWidth, BmpHeight)
 {
 
 }

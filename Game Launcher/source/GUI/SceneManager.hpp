@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Scene/Task.hpp"
-#include "Scene/SceneChangerInterface.hpp"
+#include "Task.hpp"
+#include "SceneChangerInterface.hpp"
 
 #ifndef INCLUDE_SCENEMANAGER_HPP
 #define INCLUDE_SCENEMANAGER_HPP

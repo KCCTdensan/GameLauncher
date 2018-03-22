@@ -39,23 +39,23 @@
     <ClCompile Include="source\GUI\SceneManager.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="source\GUI\Scene\StartUp.cpp">
-      <Filter>Source Files\GUI\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="source\GUI\Scene\MainMenu.cpp">
       <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="source\GUI\Scene\MemDC.cpp">
+    <ClCompile Include="source\GUI\Scene\AppGallery.cpp">
       <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\GameGallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\MemDC.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="source\GUI\Scene\Scene.cpp">
       <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="source\GUI\Scene\GameGallery.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GUI\Scene\AppGallery.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="source\GUI\Scene\Gallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,25 +74,25 @@
     <ClInclude Include="source\GUI\Scene\MainMenu.hpp">
       <Filter>Header Files\GUI\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="source\GUI\Scene\StartUp.hpp">
-      <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Scene\Task.hpp">
-      <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Scene\SceneChangerInterface.hpp">
-      <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Scene\MemDC.hpp">
-      <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Scene\Scene.hpp">
-      <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="source\GUI\Scene\GameGallery.hpp">
       <Filter>Header Files\GUI\Scene</Filter>
     </ClInclude>
     <ClInclude Include="source\GUI\Scene\AppGallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\MemDC.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\SceneChangerInterface.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Task.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\Scene.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\Gallery.hpp">
       <Filter>Header Files\GUI\Scene</Filter>
     </ClInclude>
   </ItemGroup>

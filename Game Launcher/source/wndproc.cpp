@@ -10,7 +10,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 	switch (msg)
 	{
 	case WM_CREATE:
-		Scene = new SceneManager(hWnd, SceneName_StartUp, ((LPCREATESTRUCT)lp)->cx, ((LPCREATESTRUCT)lp)->cy);
+		Scene = new SceneManager(hWnd, SceneName_MainMenu, ((LPCREATESTRUCT)lp)->cx, ((LPCREATESTRUCT)lp)->cy);
 		Scene->Initialize(hWnd);
 		ShowWindow(hWnd, SW_SHOW);
 		return 0;

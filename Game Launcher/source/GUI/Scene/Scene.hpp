@@ -1,8 +1,8 @@
 #pragma once
 
-#include "MemDC.hpp"
-#include "Task.hpp"
-#include "SceneChangerInterface.hpp"
+#include "../MemDC.hpp"
+#include "../Task.hpp"
+#include "../SceneChangerInterface.hpp"
 
 #ifndef INCLUDE_SCENE_HPP
 #define INCLUDE_SCENE_HPP
