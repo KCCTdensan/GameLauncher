@@ -9,9 +9,8 @@ MainMenu::MainMenu(HWND hWnd, SceneChangerInterface*SceneChanger, unsigned short
 
 MainMenu::~MainMenu()
 {
-	HDC hdc = GethMemDC();
-	SelectObject(hdc, GetStockObject(NULL_BRUSH));//hMemDCがまだ破棄されていないので、別のブラシを選択しておく
-	SelectObject(hdc, GetStockObject(NULL_PEN));//hMemDCがまだ破棄されていないので、別のペンを選択しておく
+	SelectObject(hMemDC, GetStockObject(NULL_BRUSH));//hMemDCがまだ破棄されていないので、別のブラシを選択しておく
+	SelectObject(hMemDC, GetStockObject(NULL_PEN));//hMemDCがまだ破棄されていないので、別のペンを選択しておく
 	DeleteObject(hBrushBkgnd);
 	DeleteObject(hPenBkgnd);
 	hBrushBkgnd = NULL;
@@ -20,12 +19,10 @@ MainMenu::~MainMenu()
 
 int MainMenu::Initialize(HWND hWnd)
 {
-	HDC hdc = GethMemDC();
-
 	//背景を塗りつぶす
-	SelectObject(hdc, hBrushBkgnd);
-	SelectObject(hdc, hPenBkgnd);
-	Rectangle(hdc, 0, 0, GetWidth(), GetHeight());
+	SelectObject(hMemDC, hBrushBkgnd);
+	SelectObject(hMemDC, hPenBkgnd);
+	Rectangle(hMemDC, 0, 0, Width, Height);
 	InvalidateRect(hWnd, NULL, false);
 	UpdateWindow(hWnd);
 

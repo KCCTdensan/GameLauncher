@@ -4,8 +4,7 @@
 void MemDC::PrepareMemDC()
 {
 	HDC hdc = GetDC(NULL);
-	hMemBmp = CreateCompatibleBitmap(hdc, w, h);
-	hMemDC = CreateCompatibleDC(NULL);
+	hMemBmp = CreateCompatibleBitmap(hdc, Width, Height);
 	SelectObject(hMemDC, hMemBmp);
 	ReleaseDC(NULL, hdc);
 }
@@ -16,10 +15,8 @@ void MemDC::UnprepareMemDC()
 	DeleteObject(hMemBmp);
 }
 
-MemDC::MemDC(unsigned short Width, unsigned short Height)
+MemDC::MemDC(unsigned short Width, unsigned short Height) :hMemDC(CreateCompatibleDC(NULL)), Width(Width), Height(Height)
 {
-	w = Width;
-	h = Height;
 	PrepareMemDC();
 }
 
@@ -30,20 +27,5 @@ MemDC::~MemDC()
 
 void MemDC::Paint(HDC hDC)
 {
-	BitBlt(hDC, 0, 0, w, h, hMemDC, 0, 0, SRCCOPY);
-}
-
-HDC MemDC::GethMemDC()
-{
-	return hMemDC;
-}
-
-unsigned short MemDC::GetWidth()
-{
-	return w;
-}
-
-unsigned short MemDC::GetHeight()
-{
-	return h;
+	BitBlt(hDC, 0, 0, Width, Height, hMemDC, 0, 0, SRCCOPY);
 }
