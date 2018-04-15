@@ -40,7 +40,7 @@ int Scene::Paint(HWND hWnd)
 {
 	PAINTSTRUCT ps;
 	HDC hdc = BeginPaint(hWnd, &ps);
-	BitBlt(hdc, 0, 0, GetWidth(), GetHeight(), GethMemDC(), 0, 0, SRCCOPY);
+	BitBlt(hdc, 0, 0, Width, Height, hMemDC, 0, 0, SRCCOPY);
 	EndPaint(hWnd, &ps);
 	return 0;
 }

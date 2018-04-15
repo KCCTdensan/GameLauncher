@@ -8,21 +8,19 @@
 
 class MemDC
 {
-	unsigned short w;
-	unsigned short h;
-	HDC hMemDC;
 	HBITMAP hMemBmp;
 
 	void PrepareMemDC();
 	void UnprepareMemDC();
 
 public:
+	const HDC hMemDC;
+	const unsigned short Width;
+	const unsigned short Height;
+
 	MemDC(unsigned short Width, unsigned short Height);
 	~MemDC();
 	void Paint(HDC hDC);
-	HDC GethMemDC();
-	unsigned short GetWidth();
-	unsigned short GetHeight();
 };
 
 

@@ -9,9 +9,8 @@ Gallery::Gallery(SceneChangerInterface*SceneChanger, unsigned short BmpWidth, un
 
 Gallery::~Gallery()
 {
-	HDC hdc = GethMemDC();
-	SelectObject(hdc, GetStockObject(NULL_BRUSH));//hMemDCがまだ破棄されていないので、別のブラシを選択しておく
-	SelectObject(hdc, GetStockObject(NULL_PEN));//hMemDCがまだ破棄されていないので、別のペンを選択しておく
+	SelectObject(hMemDC, GetStockObject(NULL_BRUSH));//hMemDCがまだ破棄されていないので、別のブラシを選択しておく
+	SelectObject(hMemDC, GetStockObject(NULL_PEN));//hMemDCがまだ破棄されていないので、別のペンを選択しておく
 	DeleteObject(hBrushBkgnd);
 	DeleteObject(hPenBkgnd);
 	hBrushBkgnd = NULL;
