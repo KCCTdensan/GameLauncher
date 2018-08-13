@@ -1,7 +1,18 @@
 #include "Scene.hpp"
 
 
-Scene::Scene(SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :MemDC(BmpWidth, BmpHeight)
+Color Scene::ColorBkgnd(RGB(0x1f, 0x1f, 0x1f));
+Color Scene::ColorAccent[MAX_CATEGORY] = {
+	RGB(0xdf, 0x3f, 0x3f),
+	RGB(0xbf, 0xbf, 0x3f),
+	RGB(0xaf, 0x2f, 0x9f),
+	RGB(0x2f, 0xaf, 0xaf),
+	RGB(0x2f, 0x5f, 0xdf),
+	RGB(0x2f, 0xdf, 0x5f),
+	RGB(0xaf, 0xaf, 0xaf)
+};
+
+Scene::Scene(SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :MemDC(BmpWidth, BmpHeight)
 {
 	Scene::SceneChanger = SceneChanger;
 }

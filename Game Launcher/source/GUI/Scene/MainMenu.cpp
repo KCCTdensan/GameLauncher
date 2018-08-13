@@ -1,28 +1,33 @@
 #include "MainMenu.hpp"
 
 
-MainMenu::MainMenu(HWND hWnd, SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :Scene(SceneChanger, BmpWidth, BmpHeight)
+MainMenu::MainMenu(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
+	:Scene(SceneChanger, BmpWidth, BmpHeight)
 {
-	hBrushBkgnd = CreateSolidBrush(BkgndColor);
-	hPenBkgnd = CreatePen(PS_SOLID, 0, BkgndColor);
+	int Split = ((MAX_CATEGORY / 2) + 1) * 2;
+	int Block = BmpWidth / Split;
+	int GalleryButtonWidth = Block * 5 / 6;
+	for(int i = 0; i < MAX_CATEGORY; ++i)
+	{
+		GalleryButtons[i].left = (Split == MAX_CATEGORY) ? Block * i + Block / 10 : Block * i + Block / 2 + Block / 10;
+		GalleryButtons[i].top = (BmpHeight - GalleryButtonWidth) / 2;
+		GalleryButtons[i].right = GalleryButtons[i].left + GalleryButtonWidth;
+		GalleryButtons[i].bottom = GalleryButtons[i].top + GalleryButtonWidth;
+	}
 }
 
 MainMenu::~MainMenu()
 {
-	SelectObject(hMemDC, GetStockObject(NULL_BRUSH));//hMemDC‚ª‚Ü‚¾”jŠü‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅA•Ê‚Ìƒuƒ‰ƒV‚ð‘I‘ð‚µ‚Ä‚¨‚­
-	SelectObject(hMemDC, GetStockObject(NULL_PEN));//hMemDC‚ª‚Ü‚¾”jŠü‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅA•Ê‚Ìƒyƒ“‚ð‘I‘ð‚µ‚Ä‚¨‚­
-	DeleteObject(hBrushBkgnd);
-	DeleteObject(hPenBkgnd);
-	hBrushBkgnd = NULL;
-	hPenBkgnd = NULL;
+
 }
 
 int MainMenu::Initialize(HWND hWnd)
 {
-	//”wŒi‚ð“h‚è‚Â‚Ô‚·
-	SelectObject(hMemDC, hBrushBkgnd);
-	SelectObject(hMemDC, hPenBkgnd);
-	Rectangle(hMemDC, 0, 0, Width, Height);
+	ColorBkgnd.Rectangle(hMemDC, 0, 0, Width, Height);
+	for(int i = 0; i < MAX_CATEGORY; ++i)
+	{
+		ColorAccent[i].Rectangle(hMemDC, GalleryButtons[i]);
+	}
 	InvalidateRect(hWnd, NULL, false);
 	UpdateWindow(hWnd);
 
@@ -34,9 +39,23 @@ int MainMenu::Finalize(HWND hWnd)
 	return 0;
 }
 
+int MainMenu::LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp)
+{
+	return 0;
+}
+
 int MainMenu::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
-	DestroyWindow(hWnd);
+	POINT MousePoint;
+	MousePoint.x = LOWORD(lp);
+	MousePoint.y = HIWORD(lp);
+	for(int i = 0; i < MAX_CATEGORY; ++i)
+	{
+		if(PtInRect(&GalleryButtons[i], MousePoint))
+		{
+			SceneChanger->ChangeScene(hWnd, (SceneName)(i + 1));
+		}
+	}
 	return 0;
 }
 

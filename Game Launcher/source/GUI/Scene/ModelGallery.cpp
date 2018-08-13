@@ -2,7 +2,7 @@
 
 
 ModelGallery::ModelGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(Interface, BmpWidth, BmpHeight, RGB(0x2f, 0x5f, 0xdf))
+	:Gallery(Interface, BmpWidth, BmpHeight)
 {
 
 }
@@ -23,6 +23,7 @@ int ModelGallery::Finalize(HWND hWnd)
 
 int ModelGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
+	DestroyWindow(hWnd);
 	return 0;
 }
 

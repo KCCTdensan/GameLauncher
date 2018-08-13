@@ -2,7 +2,7 @@
 
 
 VideoGallery::VideoGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(Interface, BmpWidth, BmpHeight, RGB(0x2f, 0xdf, 0x5f))
+	:Gallery(Interface, BmpWidth, BmpHeight)
 {
 
 }
@@ -24,6 +24,7 @@ int VideoGallery::Finalize(HWND hWnd)
 
 int VideoGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
+	DestroyWindow(hWnd);
 	return 0;
 }
 

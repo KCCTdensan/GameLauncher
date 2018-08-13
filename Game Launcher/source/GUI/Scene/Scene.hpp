@@ -3,6 +3,8 @@
 #include "../MemDC.hpp"
 #include "../Task.hpp"
 #include "../SceneChangerInterface.hpp"
+#include "../Color.hpp"
+#include "contents.hpp"
 
 #ifndef INCLUDE_SCENE_HPP
 #define INCLUDE_SCENE_HPP
@@ -11,10 +13,12 @@
 class Scene :public MemDC, public Task
 {
 protected:
-	SceneChangerInterface*SceneChanger;
+	static Color ColorBkgnd;
+	static Color ColorAccent[MAX_CATEGORY];
+	SceneChangerInterface *SceneChanger;
 
 public:
-	Scene(SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	Scene(SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
 	virtual int Initialize(HWND hWnd);
 	virtual int Finalize(HWND hWnd);
 	virtual int Paint(HWND hWnd);

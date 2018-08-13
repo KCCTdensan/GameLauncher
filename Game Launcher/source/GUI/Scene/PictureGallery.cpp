@@ -2,7 +2,7 @@
 
 
 PictureGallery::PictureGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(Interface, BmpWidth, BmpHeight, RGB(0x2f, 0xaf, 0xaf))
+	:Gallery(Interface, BmpWidth, BmpHeight)
 {
 
 }
@@ -24,6 +24,7 @@ int PictureGallery::Finalize(HWND hWnd)
 
 int PictureGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
+	DestroyWindow(hWnd);
 	return 0;
 }
 

@@ -2,7 +2,7 @@
 
 
 MusicGallery::MusicGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(Interface, BmpWidth, BmpHeight, RGB(0xaf, 0x2f, 0x9f))
+	:Gallery(Interface, BmpWidth, BmpHeight)
 {
 
 }
@@ -24,6 +24,7 @@ int MusicGallery::Finalize(HWND hWnd)
 
 int MusicGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
+	DestroyWindow(hWnd);
 	return 0;
 }
 
