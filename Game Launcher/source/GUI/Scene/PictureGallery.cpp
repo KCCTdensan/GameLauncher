@@ -1,7 +1,7 @@
 #include "PictureGallery.hpp"
 
 
-PictureGallery::PictureGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
+PictureGallery::PictureGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
 	:Gallery(Interface, BmpWidth, BmpHeight)
 {
 
@@ -14,6 +14,9 @@ PictureGallery::~PictureGallery()
 
 int PictureGallery::Initialize(HWND hWnd)
 {
+	DrawBkgnd();
+	InvalidateRect(hWnd, NULL, false);
+	UpdateWindow(hWnd);
 	return 0;
 }
 

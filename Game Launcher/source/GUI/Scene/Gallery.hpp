@@ -8,8 +8,16 @@
 
 class Gallery :public Scene
 {
+	const int MenuWidth;
+
+	MemDC MenuDC;
+	MemDC PreviewDC;
+
+protected:
+	void DrawBkgnd();
+
 public:
-	Gallery(SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	Gallery(SceneManagerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
 	~Gallery();
 };
 

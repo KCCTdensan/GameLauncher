@@ -77,13 +77,17 @@ int SceneManager::Update(HWND hWnd)
 	return CurrentScene->Update(hWnd);
 }
 
-int SceneManager::ChangeScene(HWND hWnd, SceneName NextScene)
+int SceneManager::ChangeScene(HWND hWnd, WPARAM wp)
 {
+	if(wp < 0 || wp >= NumSceneName)
+	{
+		return -1;
+	}
 	int Ret = CurrentScene->Finalize(hWnd);
 	if (Ret != 0)
 	{
 		return Ret;
 	}
-	CurrentScene = Scenes[NextScene];
+	CurrentScene = Scenes[wp];
 	return CurrentScene->Initialize(hWnd);
 }

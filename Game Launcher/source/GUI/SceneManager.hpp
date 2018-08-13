@@ -9,7 +9,7 @@
 
 class Scene;
 
-class SceneManager :public Task, public SceneChangerInterface
+class SceneManager :public Task, public SceneManagerInterface
 {
 	Scene*Scenes[NumSceneName];
 	Scene*CurrentScene;
@@ -26,7 +26,7 @@ public:
 	int RButtonDown(HWND hWnd, WPARAM wp, LPARAM lp);
 	int RButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);
 	int Update(HWND hWnd);
-	int ChangeScene(HWND hWnd, SceneName NextScene);
+	int ChangeScene(HWND hWnd, WPARAM wp);
 };
 
 

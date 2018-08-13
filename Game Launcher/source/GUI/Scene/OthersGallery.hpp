@@ -9,7 +9,7 @@
 class OthersGallery :public Gallery
 {
 public:
-	OthersGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
+	OthersGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
 	~OthersGallery();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);

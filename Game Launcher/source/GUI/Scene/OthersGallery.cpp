@@ -1,7 +1,7 @@
 #include "OthersGallery.hpp"
 
 
-OthersGallery::OthersGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
+OthersGallery::OthersGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
 	:Gallery(Interface, BmpWidth, BmpHeight)
 {
 
@@ -14,6 +14,9 @@ OthersGallery::~OthersGallery()
 
 int OthersGallery::Initialize(HWND hWnd)
 {
+	DrawBkgnd();
+	InvalidateRect(hWnd, NULL, false);
+	UpdateWindow(hWnd);
 	return 0;
 }
 

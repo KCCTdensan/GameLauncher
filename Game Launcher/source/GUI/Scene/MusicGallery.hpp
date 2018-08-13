@@ -9,7 +9,7 @@
 class MusicGallery :public Gallery
 {
 public:
-	MusicGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
+	MusicGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
 	~MusicGallery();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);

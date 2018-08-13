@@ -20,10 +20,10 @@ enum SceneName
 	NumSceneName
 };
 
-class SceneChangerInterface
+class SceneManagerInterface
 {
 public:
-	virtual int ChangeScene(HWND hWnd, SceneName NextScene) = 0;
+
 };
 
 

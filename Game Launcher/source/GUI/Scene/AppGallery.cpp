@@ -1,7 +1,7 @@
 #include "AppGallery.hpp"
 
 
-AppGallery::AppGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
+AppGallery::AppGallery(HWND hWnd, SceneManagerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
 	:Gallery(SceneChanger, BmpWidth, BmpHeight)
 {
 
@@ -14,7 +14,7 @@ AppGallery::~AppGallery()
 
 int AppGallery::Initialize(HWND hWnd)
 {
-	ColorBkgnd.Rectangle(hMemDC, 0, 0, Width, Height);
+	DrawBkgnd();
 	InvalidateRect(hWnd, NULL, false);
 	UpdateWindow(hWnd);
 	return 0;

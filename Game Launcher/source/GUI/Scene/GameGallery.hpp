@@ -9,7 +9,7 @@
 class GameGallery :public Gallery
 {
 public:
-	GameGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	GameGallery(HWND hWnd, SceneManagerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
 	~GameGallery();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);

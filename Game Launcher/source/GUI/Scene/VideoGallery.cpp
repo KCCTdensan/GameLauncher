@@ -1,7 +1,7 @@
 #include "VideoGallery.hpp"
 
 
-VideoGallery::VideoGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
+VideoGallery::VideoGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
 	:Gallery(Interface, BmpWidth, BmpHeight)
 {
 
@@ -14,6 +14,9 @@ VideoGallery::~VideoGallery()
 
 int VideoGallery::Initialize(HWND hWnd)
 {
+	DrawBkgnd();
+	InvalidateRect(hWnd, NULL, false);
+	UpdateWindow(hWnd);
 	return 0;
 }
 

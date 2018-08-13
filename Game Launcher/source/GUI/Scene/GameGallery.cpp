@@ -1,7 +1,7 @@
 #include "GameGallery.hpp"
 
 
-GameGallery::GameGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
+GameGallery::GameGallery(HWND hWnd, SceneManagerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
 	:Gallery(SceneChanger, BmpWidth, BmpHeight)
 {
 
@@ -14,6 +14,9 @@ GameGallery::~GameGallery()
 
 int GameGallery::Initialize(HWND hWnd)
 {
+	DrawBkgnd();
+	InvalidateRect(hWnd, NULL, false);
+	UpdateWindow(hWnd);
 	return 0;
 }
 

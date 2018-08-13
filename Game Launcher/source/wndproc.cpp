@@ -46,6 +46,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 	case WM_GUI_UPDATE:
 		return Scene->Update(hWnd);
 
+	case WM_GUI_CHANGESCENE:
+		return Scene->ChangeScene(hWnd, wp);
+
 	default:
 		return DefWindowProc(hWnd, msg, wp, lp);
 	}

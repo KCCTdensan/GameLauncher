@@ -10,10 +10,11 @@
 
 class MainMenu :public Scene
 {
-	RECT GalleryButtons[MAX_CATEGORY];
+	MemDC *GalleryButtonDCs[MAX_CATEGORY];
+	RECT GalleryButtonRects[MAX_CATEGORY];
 
 public:
-	MainMenu(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	MainMenu(HWND hWnd, SceneManagerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
 	~MainMenu();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);

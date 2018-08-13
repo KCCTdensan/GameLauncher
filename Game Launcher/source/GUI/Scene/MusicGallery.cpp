@@ -1,7 +1,7 @@
 #include "MusicGallery.hpp"
 
 
-MusicGallery::MusicGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
+MusicGallery::MusicGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
 	:Gallery(Interface, BmpWidth, BmpHeight)
 {
 
@@ -14,6 +14,9 @@ MusicGallery::~MusicGallery()
 
 int MusicGallery::Initialize(HWND hWnd)
 {
+	DrawBkgnd();
+	InvalidateRect(hWnd, NULL, false);
+	UpdateWindow(hWnd);
 	return 0;
 }
 

@@ -9,7 +9,7 @@
 class ModelGallery :public Gallery
 {
 public:
-	ModelGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
+	ModelGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
 	~ModelGallery();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);

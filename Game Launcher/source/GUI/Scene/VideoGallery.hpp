@@ -9,7 +9,7 @@
 class VideoGallery :public Gallery
 {
 public:
-	VideoGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
+	VideoGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
 	~VideoGallery();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
