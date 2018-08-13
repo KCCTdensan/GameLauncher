@@ -2,6 +2,11 @@
 #include "Scene/MainMenu.hpp"
 #include "Scene/AppGallery.hpp"
 #include "Scene/GameGallery.hpp"
+#include "Scene/MusicGallery.hpp"
+#include "Scene/PictureGallery.hpp"
+#include "Scene/ModelGallery.hpp"
+#include "Scene/VideoGallery.hpp"
+#include "Scene/OthersGallery.hpp"
 
 
 SceneManager::SceneManager(HWND hWnd, SceneName FirstScene, unsigned short BmpWidth, unsigned short BmpHeight)
@@ -9,6 +14,11 @@ SceneManager::SceneManager(HWND hWnd, SceneName FirstScene, unsigned short BmpWi
 	Scenes[SceneName_MainMenu] = new MainMenu(hWnd, this, BmpWidth, BmpHeight);
 	Scenes[SceneName_AppGallery] = new AppGallery(hWnd, this, BmpWidth, BmpHeight);
 	Scenes[SceneName_GameGallery] = new GameGallery(hWnd, this, BmpWidth, BmpHeight);
+	Scenes[SceneName_MusicGallery] = new MusicGallery(hWnd, this, BmpWidth, BmpHeight);
+	Scenes[SceneName_PictureGallery] = new PictureGallery(hWnd, this, BmpWidth, BmpHeight);
+	Scenes[SceneName_3DModelGallery] = new ModelGallery(hWnd, this, BmpWidth, BmpHeight);
+	Scenes[SceneName_VideoGallery] = new VideoGallery(hWnd, this, BmpWidth, BmpHeight);
+	Scenes[SceneName_OthersGallery] = new OthersGallery(hWnd, this, BmpWidth, BmpHeight);
 	CurrentScene = Scenes[FirstScene];
 }
 

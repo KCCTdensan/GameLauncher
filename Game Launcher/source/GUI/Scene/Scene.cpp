@@ -9,7 +9,7 @@ Color Scene::ColorAccent[MAX_CATEGORY] = {
 	RGB(0x2f, 0xaf, 0xaf),
 	RGB(0x2f, 0x5f, 0xdf),
 	RGB(0x2f, 0xdf, 0x5f),
-	RGB(0xaf, 0xaf, 0xaf)
+	RGB(0x7f, 0x7f, 0x7f)
 };
 
 Scene::Scene(SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :MemDC(BmpWidth, BmpHeight)
