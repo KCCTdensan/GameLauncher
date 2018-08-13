@@ -1,7 +1,13 @@
 #include "AppGallery.hpp"
 
 
-AppGallery::AppGallery(HWND hWnd, SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :Gallery(SceneChanger, BmpWidth, BmpHeight)
+AppGallery::AppGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
+	:Gallery(SceneChanger, BmpWidth, BmpHeight, RGB(0xdf, 0x3f, 0x3f))
+{
+
+}
+
+AppGallery::~AppGallery()
 {
 
 }

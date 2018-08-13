@@ -1,10 +1,13 @@
 #include "Gallery.hpp"
 
 
-Gallery::Gallery(SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :Scene(SceneChanger, BmpWidth, BmpHeight)
+Gallery::Gallery(SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight, COLORREF AccentColor)
+	:Scene(SceneChanger, BmpWidth, BmpHeight), AccentColor(AccentColor)
 {
 	hBrushBkgnd = CreateSolidBrush(BkgndColor);
 	hPenBkgnd = CreatePen(PS_SOLID, 0, BkgndColor);
+	hBrushAccent = CreateSolidBrush(AccentColor);
+	hPenAccent = CreatePen(PS_SOLID, 0, AccentColor);
 }
 
 Gallery::~Gallery()
@@ -13,6 +16,6 @@ Gallery::~Gallery()
 	SelectObject(hMemDC, GetStockObject(NULL_PEN));//hMemDCÇ™Ç‹Çæîjä¸Ç≥ÇÍÇƒÇ¢Ç»Ç¢ÇÃÇ≈ÅAï ÇÃÉyÉìÇëIëÇµÇƒÇ®Ç≠
 	DeleteObject(hBrushBkgnd);
 	DeleteObject(hPenBkgnd);
-	hBrushBkgnd = NULL;
-	hPenBkgnd = NULL;
+	DeleteObject(hBrushAccent);
+	DeleteObject(hPenAccent);
 }

@@ -5,7 +5,7 @@
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 {
-	static SceneManager*Scene = nullptr;
+	static SceneManager *Scene = nullptr;
 
 	switch (msg)
 	{

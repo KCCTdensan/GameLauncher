@@ -12,8 +12,13 @@ class Gallery :public Scene
 	HBRUSH hBrushBkgnd;//”wŒi“h‚è‚Â‚Ô‚µ—p
 	HPEN hPenBkgnd;//”wŒi“h‚è‚Â‚Ô‚µ—p
 
+protected:
+	const COLORREF AccentColor;
+	HBRUSH hBrushAccent;
+	HPEN hPenAccent;
+
 public:
-	Gallery(SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	Gallery(SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight, COLORREF AccentColor);
 	~Gallery();
 };
 
