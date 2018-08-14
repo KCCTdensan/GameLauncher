@@ -4,7 +4,8 @@
 AppGallery::AppGallery(HWND hWnd, SceneManagerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
 	:Gallery(SceneChanger, BmpWidth, BmpHeight)
 {
-
+	Items = ItemManager::GetItems(CAT_APP);
+	
 }
 
 AppGallery::~AppGallery()

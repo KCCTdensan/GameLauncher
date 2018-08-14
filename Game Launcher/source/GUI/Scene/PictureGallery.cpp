@@ -4,7 +4,7 @@
 PictureGallery::PictureGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
 	:Gallery(Interface, BmpWidth, BmpHeight)
 {
-
+	Items = ItemManager::GetItems(CAT_PICTURE);
 }
 
 PictureGallery::~PictureGallery()

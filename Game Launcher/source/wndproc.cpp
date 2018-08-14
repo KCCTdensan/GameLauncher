@@ -1,4 +1,5 @@
 #include "WndProc.hpp"
+#include "ItemManager.hpp"
 #include "GUI/SceneManager.hpp"
 #include <wmsg.h>
 
@@ -10,6 +11,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 	switch (msg)
 	{
 	case WM_CREATE:
+		ItemManager::ScanItems();
 		Scene = new SceneManager(hWnd, SceneName_MainMenu, ((LPCREATESTRUCT)lp)->cx, ((LPCREATESTRUCT)lp)->cy);
 		Scene->Initialize(hWnd);
 		ShowWindow(hWnd, SW_SHOW);
@@ -42,6 +44,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 
 	case WM_RBUTTONUP:
 		return Scene->RButtonUp(hWnd, wp, lp);
+
+	case WM_ITEM_SCAN:
+		return ItemManager::ScanItems();
+
+	case WM_ITEM_CLEAR:
+		ItemManager::ClearItems();
+		return 0;
 
 	case WM_GUI_UPDATE:
 		return Scene->Update(hWnd);

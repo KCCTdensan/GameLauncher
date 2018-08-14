@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Gallery.hpp"
+#include "../../ItemManager.hpp"
 
 #ifndef INCLUDE_OTHERSGALLERY_HPP
 #define INCLUDE_OTHERSGALLERY_HPP
@@ -8,6 +9,8 @@
 
 class OthersGallery :public Gallery
 {
+	vector<ItemInfo*> Items;
+
 public:
 	OthersGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
 	~OthersGallery();

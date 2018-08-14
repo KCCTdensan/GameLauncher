@@ -4,7 +4,7 @@
 GameGallery::GameGallery(HWND hWnd, SceneManagerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
 	:Gallery(SceneChanger, BmpWidth, BmpHeight)
 {
-
+	Items = ItemManager::GetItems(CAT_GAME);
 }
 
 GameGallery::~GameGallery()
