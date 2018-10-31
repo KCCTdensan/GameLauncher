@@ -1,7 +1,7 @@
 #include "MemDC.hpp"
 
 
-void MemDC::PrepareMemDC()
+void mem_dc::PrepareMemDC()
 {
 	HDC hdc = GetDC(NULL);
 	hMemBmp = CreateCompatibleBitmap(hdc, Width, Height);
@@ -9,23 +9,23 @@ void MemDC::PrepareMemDC()
 	ReleaseDC(NULL, hdc);
 }
 
-void MemDC::UnprepareMemDC()
+void mem_dc::UnprepareMemDC()
 {
 	DeleteDC(hMemDC);
 	DeleteObject(hMemBmp);
 }
 
-MemDC::MemDC(unsigned short Width, unsigned short Height) :hMemDC(CreateCompatibleDC(NULL)), Width(Width), Height(Height)
+mem_dc::mem_dc(unsigned short Width, unsigned short Height) :hMemDC(CreateCompatibleDC(NULL)), Width(Width), Height(Height)
 {
 	PrepareMemDC();
 }
 
-MemDC::~MemDC()
+mem_dc::~mem_dc()
 {
 	UnprepareMemDC();
 }
 
-void MemDC::Paint(HDC hDC)
+void mem_dc::Paint(HDC hDC)const
 {
 	BitBlt(hDC, 0, 0, Width, Height, hMemDC, 0, 0, SRCCOPY);
 }

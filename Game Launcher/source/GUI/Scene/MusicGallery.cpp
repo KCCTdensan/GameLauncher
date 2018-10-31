@@ -1,18 +1,18 @@
 #include "MusicGallery.hpp"
 
 
-MusicGallery::MusicGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(Interface, BmpWidth, BmpHeight)
+music_gallery::music_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
+	:gallery(Interface, BmpWidth, BmpHeight)
 {
 	Items = ItemManager::GetItems(CAT_MUSIC);
 }
 
-MusicGallery::~MusicGallery()
+music_gallery::~music_gallery()
 {
 
 }
 
-int MusicGallery::Initialize(HWND hWnd)
+int music_gallery::Initialize(HWND hWnd)
 {
 	DrawBkgnd();
 	InvalidateRect(hWnd, NULL, false);
@@ -20,18 +20,18 @@ int MusicGallery::Initialize(HWND hWnd)
 	return 0;
 }
 
-int MusicGallery::Finalize(HWND hWnd)
+int music_gallery::Finalize(HWND hWnd)
 {
 	return 0;
 }
 
-int MusicGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int music_gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
 	DestroyWindow(hWnd);
 	return 0;
 }
 
-int MusicGallery::Update(HWND hWnd)
+int music_gallery::Update(HWND hWnd)
 {
 	return 0;
 }

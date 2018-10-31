@@ -3,7 +3,7 @@
 #include <Windows.h>
 
 
-enum CATEGORY
+enum category
 {
 	CAT_APP,
 	CAT_GAME,
@@ -24,13 +24,13 @@ const static int MAX_LANGUAGE = 32;
 const static int MAX_ENVIRONMENT = 32;
 const static int MAX_COMMENT = 1024;
 
-struct CONTENTS
+struct contents
 {
 	WCHAR Header[MAX_HEADER] = L"Comment Editor for KCCT Launcher 1.0.0.b";
 	WCHAR File[MAX_FILE];
 	WCHAR Title[MAX_TITLE];
 	WCHAR Creator[MAX_CREATOR];
-	CATEGORY Category;
+	category Category;
 	WCHAR Genre[MAX_GENRE];
 	WCHAR Language[MAX_LANGUAGE];
 	WCHAR Environment[MAX_ENVIRONMENT];

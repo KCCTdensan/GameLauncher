@@ -1,23 +1,21 @@
 #pragma once
 
 #include "Gallery.hpp"
-#include "../../ItemManager.hpp"
 
 #ifndef INCLUDE_MODELGALLERY_HPP
 #define INCLUDE_MODELGALLERY_HPP
 
 
-class ModelGallery :public Gallery
+class model_gallery :public gallery
 {
-	vector<ItemInfo*> Items;
-
 public:
-	ModelGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
-	~ModelGallery();
+	model_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
+	~model_gallery();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
 	int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);
 	int Update(HWND hWnd);
 };
+
 
 #endif

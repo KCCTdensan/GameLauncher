@@ -6,7 +6,7 @@
 #define INCLUDE_TASK_HPP
 
 
-class Task
+class task
 {
 public:
 	virtual int Initialize(HWND hWnd) = 0;//ƒV[ƒ“‚ªØ‚è‘Ö‚í‚Á‚½‚Ì‰Šúˆ—

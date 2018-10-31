@@ -1,17 +1,17 @@
 #include "ModelGallery.hpp"
 
 
-ModelGallery::ModelGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(Interface, BmpWidth, BmpHeight)
+model_gallery::model_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
+	:gallery(Interface, BmpWidth, BmpHeight)
 {
 	Items = ItemManager::GetItems(CAT_3DMODEL);
 }
 
-ModelGallery::~ModelGallery()
+model_gallery::~model_gallery()
 {
 }
 
-int ModelGallery::Initialize(HWND hWnd)
+int model_gallery::Initialize(HWND hWnd)
 {
 	DrawBkgnd();
 	InvalidateRect(hWnd, NULL, false);
@@ -19,18 +19,18 @@ int ModelGallery::Initialize(HWND hWnd)
 	return 0;
 }
 
-int ModelGallery::Finalize(HWND hWnd)
+int model_gallery::Finalize(HWND hWnd)
 {
 	return 0;
 }
 
-int ModelGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int model_gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
 	DestroyWindow(hWnd);
 	return 0;
 }
 
-int ModelGallery::Update(HWND hWnd)
+int model_gallery::Update(HWND hWnd)
 {
 	return 0;
 }

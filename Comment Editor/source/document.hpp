@@ -8,18 +8,18 @@
 
 class DOCUMENT
 {
-	CONTENTS Contents;
+	contents Contents;
 	TCHAR FilePath[MAX_PATH];
 
 public:
 	DOCUMENT();
-	DOCUMENT(CONTENTS Contents);
+	DOCUMENT(contents Contents);
 	bool LoadFile(LPCTSTR FilePath);
 	bool SaveFile();
 	bool SaveAsFile(LPCTSTR FilePath);
 	void SetFilePath(LPTSTR FilePath);
-	CONTENTS GetContents();
-	void SetContents(const CONTENTS&Contents);
+	contents GetContents();
+	void SetContents(const contents&Contents);
 };
 
 

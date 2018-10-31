@@ -1,18 +1,18 @@
 #include "VideoGallery.hpp"
 
 
-VideoGallery::VideoGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(Interface, BmpWidth, BmpHeight)
+video_gallery::video_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
+	:gallery(Interface, BmpWidth, BmpHeight)
 {
 	Items = ItemManager::GetItems(CAT_VIDEO);
 }
 
-VideoGallery::~VideoGallery()
+video_gallery::~video_gallery()
 {
 
 }
 
-int VideoGallery::Initialize(HWND hWnd)
+int video_gallery::Initialize(HWND hWnd)
 {
 	DrawBkgnd();
 	InvalidateRect(hWnd, NULL, false);
@@ -20,18 +20,18 @@ int VideoGallery::Initialize(HWND hWnd)
 	return 0;
 }
 
-int VideoGallery::Finalize(HWND hWnd)
+int video_gallery::Finalize(HWND hWnd)
 {
 	return 0;
 }
 
-int VideoGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int video_gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
 	DestroyWindow(hWnd);
 	return 0;
 }
 
-int VideoGallery::Update(HWND hWnd)
+int video_gallery::Update(HWND hWnd)
 {
 	return 0;
 }

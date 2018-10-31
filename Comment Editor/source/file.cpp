@@ -41,12 +41,12 @@ bool FILE::SaveAsDocument(HWND hWnd, LPTSTR FilePath)
 	return Ret;
 }
 
-CONTENTS FILE::GetContents()
+contents FILE::GetContents()
 {
 	return Document.GetContents();
 }
 
-void FILE::SetContents(const CONTENTS&Contents)
+void FILE::SetContents(const contents&Contents)
 {
 	Document.SetContents(Contents);
 }

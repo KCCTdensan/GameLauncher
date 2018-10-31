@@ -6,15 +6,15 @@
 
 using namespace std;
 
-struct ItemInfo
+struct item_info
 {
-	CONTENTS Contents;
-	WCHAR FileName[MAX_PATH];
+	contents Contents;
+	WCHAR FilePath[MAX_PATH];
 };
 
 namespace ItemManager
 {
 	int ScanItems();
 	void ClearItems();
-	vector<ItemInfo*> GetItems(CATEGORY Category);
+	vector<item_info*> GetItems(category Category);
 };

@@ -1,18 +1,18 @@
 #include "OthersGallery.hpp"
 
 
-OthersGallery::OthersGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(Interface, BmpWidth, BmpHeight)
+others_gallery::others_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
+	:gallery(Interface, BmpWidth, BmpHeight)
 {
 	Items = ItemManager::GetItems(CAT_OTHERS);
 }
 
-OthersGallery::~OthersGallery()
+others_gallery::~others_gallery()
 {
 
 }
 
-int OthersGallery::Initialize(HWND hWnd)
+int others_gallery::Initialize(HWND hWnd)
 {
 	DrawBkgnd();
 	InvalidateRect(hWnd, NULL, false);
@@ -20,18 +20,18 @@ int OthersGallery::Initialize(HWND hWnd)
 	return 0;
 }
 
-int OthersGallery::Finalize(HWND hWnd)
+int others_gallery::Finalize(HWND hWnd)
 {
 	return 0;
 }
 
-int OthersGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int others_gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
 	DestroyWindow(hWnd);
 	return 0;
 }
 
-int OthersGallery::Update(HWND hWnd)
+int others_gallery::Update(HWND hWnd)
 {
 	return 0;
 }

@@ -6,7 +6,7 @@
 #define INCLUDE_COLOR_HPP
 
 
-class Color
+class color
 {
 	COLORREF Code;
 	COLORREF SubCode;
@@ -16,12 +16,12 @@ class Color
 	HPEN hPenSub;
 
 public:
-	Color(COLORREF ColorCode);
-	~Color();
-	void Rectangle(HDC hDC, RECT &Rect);
-	void Rectangle(HDC hDC, int Left, int Top, int Right, int Bottom);
-	void RectangleGradation(HDC hDC, RECT &Rect);
-	void RectangleGradation(HDC hDC, int Left, int Top, int Right, int Bottom);
+	color(COLORREF ColorCode);
+	~color();
+	void Rectangle(HDC hDC, RECT &Rect)const;
+	void Rectangle(HDC hDC, int Left, int Top, int Right, int Bottom)const;
+	void RectangleGradation(HDC hDC, RECT &Rect)const;
+	void RectangleGradation(HDC hDC, int Left, int Top, int Right, int Bottom)const;
 };
 
 

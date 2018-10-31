@@ -3,7 +3,7 @@
 
 namespace ItemManager
 {
-	vector<ItemInfo*> Items[MAX_CATEGORY];
+	vector<item_info*> Items[MAX_CATEGORY];
 
 	void ClearItems()
 	{
@@ -20,42 +20,49 @@ namespace ItemManager
 
 	void LoadItem(wstring FilePath)
 	{
-		ItemInfo *Info = new ItemInfo;
+		item_info *Info = new item_info;
 		HANDLE hFile = CreateFile(FilePath.c_str(), GENERIC_READ, 0, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 		if(hFile == INVALID_HANDLE_VALUE)
 		{
 			return;
 		}
-		ReadFile(hFile, &Info->Contents, sizeof(CONTENTS), NULL, NULL);
-		FilePath.copy(Info->FileName, FilePath.length());
+		ReadFile(hFile, &Info->Contents, sizeof(contents), NULL, NULL);
+		FilePath.copy(Info->FilePath, FilePath.length());
 		Items[Info->Contents.Category].push_back(Info);
 		CloseHandle(hFile);
 	}
 
-	void Directory(wstring FilePath)
+	void ScanDirectory(wstring FilePath)
 	{
 		HANDLE hFind;
-		WIN32_FIND_DATA wfd;
-		wstring StrFile = FilePath;
+		WIN32_FIND_DATA wfd = {};
 		wstring exception1 = L".";
 		wstring exception2 = L"..";
-		StrFile += L"*.apc";
-		hFind = FindFirstFile(StrFile.c_str(), &wfd);
+		hFind = FindFirstFile(FilePath.c_str(), &wfd);
 		if(hFind == INVALID_HANDLE_VALUE)
 		{
 			return;
 		}
 		do
 		{
-			if((wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && (exception1 != wfd.cFileName && exception2 != wfd.cFileName))
+			if (exception1 == wfd.cFileName || exception2 == wfd.cFileName)
 			{
-				FilePath += L"/";
+				continue;
+			}
+			if(wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+			{
 				FilePath += wfd.cFileName;
-				Directory(FilePath);
+				FilePath += L'/';
+				ScanDirectory(FilePath);
 			}
 			else
 			{
-				FilePath += L"/";
+				wstring FileName = wfd.cFileName;
+				wstring Ex = FileName.substr(FileName.length() - 4, 4);
+				if (L".apc" != Ex)
+				{
+					continue;
+				}
 				FilePath += wfd.cFileName;
 				LoadItem(FilePath);
 			}
@@ -66,13 +73,12 @@ namespace ItemManager
 	int ScanItems()
 	{
 		ClearItems();
-		Directory(L"./");
+		ScanDirectory(L"Works/");
 		return 0;
 	}
 
-	vector<ItemInfo*> GetItems(CATEGORY Category)
+	vector<item_info*> GetItems(category Category)
 	{
 		return Items[Category];
 	}
-
 }

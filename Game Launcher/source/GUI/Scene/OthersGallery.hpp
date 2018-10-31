@@ -1,19 +1,16 @@
 #pragma once
 
 #include "Gallery.hpp"
-#include "../../ItemManager.hpp"
 
 #ifndef INCLUDE_OTHERSGALLERY_HPP
 #define INCLUDE_OTHERSGALLERY_HPP
 
 
-class OthersGallery :public Gallery
+class others_gallery :public gallery
 {
-	vector<ItemInfo*> Items;
-
 public:
-	OthersGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
-	~OthersGallery();
+	others_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
+	~others_gallery();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
 	int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);

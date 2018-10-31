@@ -6,7 +6,7 @@ DOCUMENT::DOCUMENT()
 	Contents = { 0 };
 }
 
-DOCUMENT::DOCUMENT(CONTENTS Contents)
+DOCUMENT::DOCUMENT(contents Contents)
 {
 	DOCUMENT::Contents = Contents;
 }
@@ -19,7 +19,7 @@ bool DOCUMENT::LoadFile(LPCTSTR FilePath)
 		return false;
 	}
 
-	ReadFile(hFile, &Contents, sizeof(CONTENTS), NULL, NULL);
+	ReadFile(hFile, &Contents, sizeof(contents), NULL, NULL);
 
 	CloseHandle(hFile);
 
@@ -34,7 +34,7 @@ bool DOCUMENT::SaveFile()
 		return false;
 	}
 
-	WriteFile(hFile, &Contents, sizeof(CONTENTS), NULL, NULL);
+	WriteFile(hFile, &Contents, sizeof(contents), NULL, NULL);
 
 	CloseHandle(hFile);
 
@@ -49,7 +49,7 @@ bool DOCUMENT::SaveAsFile(LPCTSTR FilePath)
 		return false;
 	}
 
-	WriteFile(hFile, &Contents, sizeof(CONTENTS), NULL, NULL);
+	WriteFile(hFile, &Contents, sizeof(contents), NULL, NULL);
 
 	CloseHandle(hFile);
 
@@ -68,12 +68,12 @@ void DOCUMENT::SetFilePath(LPTSTR FilePath)
 	}
 }
 
-CONTENTS DOCUMENT::GetContents()
+contents DOCUMENT::GetContents()
 {
 	return Contents;
 }
 
-void DOCUMENT::SetContents(const CONTENTS&Contents)
+void DOCUMENT::SetContents(const contents&Contents)
 {
 	DOCUMENT::Contents = Contents;
 }

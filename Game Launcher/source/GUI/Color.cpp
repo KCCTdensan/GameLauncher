@@ -1,7 +1,7 @@
 #include "Color.hpp"
 
 
-Color::Color(COLORREF ColorCode)
+color::color(COLORREF ColorCode)
 {
 	Code = ColorCode;
 	unsigned char rs = (unsigned char)Code / 2;
@@ -14,7 +14,7 @@ Color::Color(COLORREF ColorCode)
 	hPenSub = CreatePen(PS_SOLID, 0, SubCode);
 }
 
-Color::~Color()
+color::~color()
 {
 	DeleteObject(hBrush);
 	DeleteObject(hBrushSub);
@@ -22,24 +22,24 @@ Color::~Color()
 	DeleteObject(hPenSub);
 }
 
-void Color::Rectangle(HDC hDC, RECT &Rect)
+void color::Rectangle(HDC hDC, RECT &Rect)const
 {
 	Rectangle(hDC, Rect.left, Rect.top, Rect.right, Rect.bottom);
 }
 
-void Color::Rectangle(HDC hDC, int Left, int Top, int Right, int Bottom)
+void color::Rectangle(HDC hDC, int Left, int Top, int Right, int Bottom)const
 {
 	SelectObject(hDC, hBrush);
 	SelectObject(hDC, hPen);
 	::Rectangle(hDC, Left, Top, Right, Bottom);
 }
 
-void Color::RectangleGradation(HDC hDC, RECT &Rect)
+void color::RectangleGradation(HDC hDC, RECT &Rect)const
 {
 	RectangleGradation(hDC, Rect.left, Rect.top, Rect.right, Rect.bottom);
 }
 
-void Color::RectangleGradation(HDC hDC, int Left, int Top, int Right, int Bottom)
+void color::RectangleGradation(HDC hDC, int Left, int Top, int Right, int Bottom)const
 {
 	unsigned char r = (unsigned char)Code;
 	unsigned char g = (unsigned char)(Code >> 8);

@@ -6,7 +6,7 @@
 #include <Windows.h>
 
 
-class MemDC
+class mem_dc
 {
 	HBITMAP hMemBmp;
 
@@ -18,9 +18,9 @@ public:
 	const unsigned short Width;
 	const unsigned short Height;
 
-	MemDC(unsigned short Width, unsigned short Height);
-	~MemDC();
-	void Paint(HDC hDC);
+	mem_dc(unsigned short Width, unsigned short Height);
+	~mem_dc();
+	void Paint(HDC hDC)const;
 };
 
 

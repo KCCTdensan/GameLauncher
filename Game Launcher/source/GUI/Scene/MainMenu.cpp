@@ -1,25 +1,26 @@
 #include "MainMenu.hpp"
+#include "Gallery.hpp"
 #include "wmsg.h"
 
 
-MainMenu::MainMenu(HWND hWnd, SceneManagerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Scene(SceneChanger, BmpWidth, BmpHeight)
+main_menu::main_menu(HWND hWnd, scene_manager_interface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
+	:scene(SceneChanger, BmpWidth, BmpHeight)
 {
 	int Split = ((MAX_CATEGORY / 2) + 1) * 2;
 	int Block = BmpWidth / Split;
 	int GalleryButtonWidth = Block * 5 / 6;
 	for(int i = 0; i < MAX_CATEGORY; ++i)
 	{
-		GalleryButtonDCs[i] = new MemDC(GalleryButtonWidth, GalleryButtonWidth);
+		GalleryButtonDCs[i] = new mem_dc(GalleryButtonWidth, GalleryButtonWidth);
 		GalleryButtonRects[i].left = (Split == MAX_CATEGORY) ? Block * i + Block / 10 : Block * i + Block / 2 + Block / 10;
 		GalleryButtonRects[i].top = (BmpHeight - GalleryButtonWidth) / 2;
 		GalleryButtonRects[i].right = GalleryButtonRects[i].left + GalleryButtonWidth;
 		GalleryButtonRects[i].bottom = GalleryButtonRects[i].top + GalleryButtonWidth;
-		ColorAccent[i].RectangleGradation(GalleryButtonDCs[i]->hMemDC, 0, 0, GalleryButtonWidth, GalleryButtonWidth);
+		gallery::ColorAccent[i].RectangleGradation(GalleryButtonDCs[i]->hMemDC, 0, 0, GalleryButtonWidth, GalleryButtonWidth);
 	}
 }
 
-MainMenu::~MainMenu()
+main_menu::~main_menu()
 {
 	for(int i = 0; i < MAX_CATEGORY; ++i)
 	{
@@ -27,7 +28,7 @@ MainMenu::~MainMenu()
 	}
 }
 
-int MainMenu::Initialize(HWND hWnd)
+int main_menu::Initialize(HWND hWnd)
 {
 	ColorBkgnd.Rectangle(hMemDC, 0, 0, Width, Height);
 	for(int i = 0; i < MAX_CATEGORY; ++i)
@@ -41,17 +42,17 @@ int MainMenu::Initialize(HWND hWnd)
 	return 0;
 }
 
-int MainMenu::Finalize(HWND hWnd)
+int main_menu::Finalize(HWND hWnd)
 {
 	return 0;
 }
 
-int MainMenu::LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp)
+int main_menu::LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp)
 {
 	return 0;
 }
 
-int MainMenu::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int main_menu::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
 	POINT MousePoint;
 	MousePoint.x = LOWORD(lp);
@@ -67,7 +68,7 @@ int MainMenu::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 	return 0;
 }
 
-int MainMenu::Update(HWND hWnd)
+int main_menu::Update(HWND hWnd)
 {
 	return 0;
 }

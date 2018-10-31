@@ -1,35 +1,38 @@
 #include "WndProc.hpp"
 
 
-const static TCHAR WND_CLS_NAME[] = TEXT("GAMELAUNCHER");
-
-ATOM RegWndCls(HINSTANCE hInstance)
+namespace
 {
-	WNDCLASS wndcls;
+	const TCHAR WND_CLS_NAME[] = TEXT("GAMELAUNCHER");
 
-	wndcls.style = CS_HREDRAW | CS_VREDRAW;
-	wndcls.lpfnWndProc = WndProc;
-	wndcls.cbClsExtra = 0;
-	wndcls.cbWndExtra = 0;
-	wndcls.hInstance = hInstance;
-	wndcls.hIcon = NULL;
-	wndcls.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wndcls.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
-	wndcls.lpszMenuName = NULL;
-	wndcls.lpszClassName = WND_CLS_NAME;
+	ATOM RegWndCls(HINSTANCE hInstance)
+	{
+		WNDCLASS wndcls;
 
-	return RegisterClass(&wndcls);
-}
+		wndcls.style = CS_HREDRAW | CS_VREDRAW;
+		wndcls.lpfnWndProc = WndProc;
+		wndcls.cbClsExtra = 0;
+		wndcls.cbWndExtra = 0;
+		wndcls.hInstance = hInstance;
+		wndcls.hIcon = NULL;
+		wndcls.hCursor = LoadCursor(NULL, IDC_ARROW);
+		wndcls.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+		wndcls.lpszMenuName = NULL;
+		wndcls.lpszClassName = WND_CLS_NAME;
 
-bool CreateMainWnd()
-{
-	RECT WindowRect;
+		return RegisterClass(&wndcls);
+	}
 
-	GetWindowRect(GetDesktopWindow(), &WindowRect);
+	bool CreateMainWnd()
+	{
+		RECT WindowRect;
 
-	return CreateWindow(WND_CLS_NAME, TEXT("Game Launcher"), WS_POPUP,
-		0, 0, WindowRect.right, WindowRect.bottom,
-		NULL, NULL, NULL, NULL) != NULL;
+		GetWindowRect(GetDesktopWindow(), &WindowRect);
+
+		return CreateWindow(WND_CLS_NAME, TEXT("Game Launcher"), WS_POPUP,
+			0, 0, WindowRect.right, WindowRect.bottom,
+			NULL, NULL, NULL, NULL) != NULL;
+	}
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)

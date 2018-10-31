@@ -1,19 +1,16 @@
 #pragma once
 
 #include "Gallery.hpp"
-#include "../../ItemManager.hpp"
 
 #ifndef INCLUDE_MUSICGALLERY_HPP
 #define INCLUDE_MUSICGALLERY_HPP
 
 
-class MusicGallery :public Gallery
+class music_gallery :public gallery
 {
-	vector<ItemInfo*> Items;
-
 public:
-	MusicGallery(HWND hWnd, SceneManagerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
-	~MusicGallery();
+	music_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
+	~music_gallery();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
 	int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);

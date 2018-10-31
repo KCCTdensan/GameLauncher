@@ -38,7 +38,7 @@ namespace EDIT
 		TEXT("‚»‚Ì‘¼")
 	};
 
-	CONTENTS Contents;
+	contents Contents;
 	HWND hEdit_File;
 	HWND hEdit_Title;
 	HWND hEdit_Creator;
@@ -92,7 +92,7 @@ void EDIT::Command(HWND hWnd, WPARAM msg, WPARAM ID)
 	switch (msg)
 	{
 	case CBN_SELCHANGE:
-		Contents.Category = (CATEGORY)SendMessage(hCombo_Category, CB_GETCURSEL, 0, 0);
+		Contents.Category = (category)SendMessage(hCombo_Category, CB_GETCURSEL, 0, 0);
 		return;
 
 	case EN_UPDATE:
@@ -146,12 +146,12 @@ void EDIT::Paint(HWND hWnd)
 	EndPaint(hWnd, &ps);
 }
 
-CONTENTS EDIT::GetContents()
+contents EDIT::GetContents()
 {
 	return Contents;
 }
 
-void EDIT::SetContents(const CONTENTS&Contents)
+void EDIT::SetContents(const contents&Contents)
 {
 	EDIT::Contents = Contents;
 	SetWindowText(hEdit_File, Contents.File);
