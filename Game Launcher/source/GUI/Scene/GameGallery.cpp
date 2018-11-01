@@ -27,7 +27,7 @@ int game_gallery::Finalize(HWND hWnd)
 
 int game_gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
-	DestroyWindow(hWnd);
+	gallery::LButtonUp(hWnd, wp, lp);
 	return 0;
 }
 

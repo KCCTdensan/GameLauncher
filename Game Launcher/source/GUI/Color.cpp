@@ -62,3 +62,13 @@ void color::RectangleGradation(HDC hDC, int Left, int Top, int Right, int Bottom
 		DeleteObject(hPenCurrent);
 	}
 }
+
+COLORREF color::GetColorCode()const
+{
+	return Code;
+}
+
+COLORREF color::GetColorSubCode()const
+{
+	return SubCode;
+}

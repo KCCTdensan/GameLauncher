@@ -27,7 +27,7 @@ int music_gallery::Finalize(HWND hWnd)
 
 int music_gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
-	DestroyWindow(hWnd);
+	gallery::LButtonUp(hWnd, wp, lp);
 	return 0;
 }
 

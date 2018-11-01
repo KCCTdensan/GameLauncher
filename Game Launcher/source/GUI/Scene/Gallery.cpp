@@ -1,4 +1,5 @@
 #include "Gallery.hpp"
+#include "wmsg.h"
 
 
 item_button::item_button(unsigned short Width, unsigned short Height)
@@ -30,8 +31,9 @@ void gallery::CreateButtons()
 	{
 		Buttons[i] = new item_button(Width / 2, Height / 10);
 		Buttons[i]->SetPosition(0, Height * i / 10);
-		ColorBkgnd.RectangleGradation(Buttons[i]->hMemDC, Buttons[i]->GetRelativeRect());
+		ButtonColor.RectangleGradation(Buttons[i]->hMemDC, Buttons[i]->GetRelativeRect());
 	}
+	ColorAccent[Category].RectangleGradation(MainMenuButton.hMemDC, MainMenuButton.GetRelativeRect());
 }
 
 void gallery::DeleteButtons()
@@ -49,6 +51,7 @@ void gallery::DrawBkgnd()
 	{
 		Buttons[i]->Paint(MenuWindow.hMemDC);
 	}
+	MainMenuButton.Paint(hMemDC);
 	MenuWindow.Paint(hMemDC);
 	PreviewWindow.Paint(hMemDC);
 }
@@ -56,17 +59,18 @@ void gallery::DrawBkgnd()
 gallery::gallery(scene_manager_interface *SceneChanger, category Category, unsigned short BmpWidth, unsigned short BmpHeight)
 	:scene(SceneChanger, BmpWidth, BmpHeight),
 	Category(Category),
+	ButtonColor(ColorAccent[Category].GetColorSubCode()),
 	MenuWidth(BmpWidth / 2),
-	PreviewWindow(BmpWidth - MenuWidth, BmpHeight),
 	MainMenuButton(200, 100),
 	Items(ItemManager::GetItems(Category)),
-	MenuWindow(MenuWidth, Items.size() * BmpHeight / 10)
+	MenuWindow(MenuWidth, Items.size() * BmpHeight / 10),
+	PreviewWindow(BmpWidth - MenuWidth, BmpHeight - 150)
 {
 	CreateButtons();
 	MenuWindow.SetPosition(0, 0);
 	MenuWindow.SetWindowSize(MenuWidth, BmpHeight);
 	PreviewWindow.SetPosition(MenuWidth, 0);
-	PreviewWindow.SetWindowSize(BmpWidth - MenuWidth, BmpHeight);
+	PreviewWindow.SetWindowSize(BmpWidth - MenuWidth, BmpHeight - 150);
 	MainMenuButton.SetPosition(BmpWidth - 300, BmpHeight - 150);
 	ColorBkgnd.Rectangle(MenuWindow.hMemDC, 0, 0, MenuWidth, Height);
 	ColorBkgnd.Rectangle(PreviewWindow.hMemDC, 0, 0, Width - MenuWidth, Height);
@@ -75,4 +79,15 @@ gallery::gallery(scene_manager_interface *SceneChanger, category Category, unsig
 gallery::~gallery()
 {
 	DeleteButtons();
+}
+
+int gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+{
+	unsigned short x = LOWORD(lp);
+	unsigned short y = HIWORD(lp);
+	if (MainMenuButton.PointInButtonRect(x, y))
+	{
+		PostMessage(hWnd, WM_GUI_CHANGESCENE, SceneName_MainMenu, 0);
+	}
+	return 0;
 }

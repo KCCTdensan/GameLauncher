@@ -21,6 +21,7 @@ class gallery :public scene
 {
 	const int MenuWidth;
 	const category Category;
+	const color ButtonColor;
 	window MenuWindow;
 	window PreviewWindow;
 
@@ -38,6 +39,7 @@ public:
 
 	gallery(scene_manager_interface *SceneChanger, category Category, unsigned short BmpWidth, unsigned short BmpHeight);
 	~gallery();
+	virtual int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);
 };
 
 

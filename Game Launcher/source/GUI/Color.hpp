@@ -22,6 +22,8 @@ public:
 	void Rectangle(HDC hDC, int Left, int Top, int Right, int Bottom)const;
 	void RectangleGradation(HDC hDC, RECT &Rect)const;
 	void RectangleGradation(HDC hDC, int Left, int Top, int Right, int Bottom)const;
+	COLORREF GetColorCode()const;
+	COLORREF GetColorSubCode()const;
 };
 
 
