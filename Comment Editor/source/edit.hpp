@@ -12,8 +12,8 @@ namespace EDIT
 	bool Prepare(HWND hWnd);
 	void Command(HWND hWnd, WPARAM msg, WPARAM ID);
 	void Paint(HWND hWnd);
-	CONTENTS GetContents();
-	void SetContents(const CONTENTS&Contents);
+	contents GetContents();
+	void SetContents(const contents&Contents);
 	void UpdateCommentNumOfWritten(HWND hWnd);
 }
 

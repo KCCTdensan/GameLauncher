@@ -5,7 +5,8 @@ namespace EDIT
 {
 	enum
 	{
-		ID_EDIT_TITLE = 0x10,
+		ID_EDIT_FILE = 0x10,
+		ID_EDIT_TITLE,
 		ID_EDIT_CREATOR,
 		ID_COMBO_CATEGORY,
 		ID_EDIT_GENRE,
@@ -18,6 +19,7 @@ namespace EDIT
 	const static int CONTROL_WIDTH = 400;
 	const static int EDIT_HEIGHT = 30;
 	LPCTSTR PaintText[] = {
+		TEXT("ファイル名"),
 		TEXT("タイトル"),
 		TEXT("制作者"),
 		TEXT("カテゴリ"),
@@ -36,7 +38,8 @@ namespace EDIT
 		TEXT("その他")
 	};
 
-	CONTENTS Contents;
+	contents Contents;
+	HWND hEdit_File;
 	HWND hEdit_Title;
 	HWND hEdit_Creator;
 	HWND hCombo_Category;
@@ -44,7 +47,7 @@ namespace EDIT
 	HWND hEdit_Language;
 	HWND hEdit_Environment;
 	HWND hEdit_Comment;
-	RECT TextRect = { CONTROL_LEFT + CONTROL_WIDTH - 150 ,330,CONTROL_LEFT + CONTROL_WIDTH ,360 };
+	RECT TextRect;
 	int Comment_NumOfWritten;
 
 	void DrawCharNumText(HDC hdc, int Top, int Right, int NumOfWritten, int Max);
@@ -52,30 +55,33 @@ namespace EDIT
 
 bool EDIT::Prepare(HWND hWnd)
 {
-	hEdit_Title = CreateWindow(TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
+	hEdit_File = CreateWindow(TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
 		CONTROL_LEFT, 30, CONTROL_WIDTH, EDIT_HEIGHT,
+		hWnd, (HMENU)ID_EDIT_FILE, NULL, NULL);
+	hEdit_Title = CreateWindow(TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
+		CONTROL_LEFT, 80, CONTROL_WIDTH, EDIT_HEIGHT,
 		hWnd, (HMENU)ID_EDIT_TITLE, NULL, NULL);
 	hEdit_Creator = CreateWindow(TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
-		CONTROL_LEFT, 80, CONTROL_WIDTH, EDIT_HEIGHT,
+		CONTROL_LEFT, 130, CONTROL_WIDTH, EDIT_HEIGHT,
 		hWnd, (HMENU)ID_EDIT_CREATOR, NULL, NULL);
 	hCombo_Category = CreateWindow(TEXT("COMBOBOX"), NULL, WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST,
-		CONTROL_LEFT, 130, CONTROL_WIDTH, 300,
+		CONTROL_LEFT, 180, CONTROL_WIDTH, 300,
 		hWnd, (HMENU)ID_COMBO_CATEGORY, NULL, NULL);
 	for (int i = 0; i < MAX_CATEGORY; i++)
 	{
-		int ret=SendMessage(hCombo_Category, CB_ADDSTRING, 0, (LPARAM)ComboItem[i]);
+		SendMessage(hCombo_Category, CB_ADDSTRING, 0, (LPARAM)ComboItem[i]);
 	}
 	hEdit_Genre = CreateWindow(TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
-		CONTROL_LEFT, 180, CONTROL_WIDTH, EDIT_HEIGHT,
+		CONTROL_LEFT, 230, CONTROL_WIDTH, EDIT_HEIGHT,
 		hWnd, (HMENU)ID_EDIT_GENRE, NULL, NULL);
 	hEdit_Language = CreateWindow(TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
-		CONTROL_LEFT, 230, CONTROL_WIDTH, EDIT_HEIGHT,
+		CONTROL_LEFT, 280, CONTROL_WIDTH, EDIT_HEIGHT,
 		hWnd, (HMENU)ID_EDIT_LANGUAGE, NULL, NULL);
 	hEdit_Environment = CreateWindow(TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
-		CONTROL_LEFT, 280, CONTROL_WIDTH, EDIT_HEIGHT,
+		CONTROL_LEFT, 330, CONTROL_WIDTH, EDIT_HEIGHT,
 		hWnd, (HMENU)ID_EDIT_ENVIRONMENT, NULL, NULL);
 	hEdit_Comment = CreateWindow(TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | WS_VSCROLL | ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL,
-		CONTROL_LEFT, 360, CONTROL_WIDTH, 200,
+		CONTROL_LEFT, 380, CONTROL_WIDTH, 200,
 		hWnd, (HMENU)ID_EDIT_COMMENT, NULL, NULL);
 
 	return true;
@@ -86,12 +92,16 @@ void EDIT::Command(HWND hWnd, WPARAM msg, WPARAM ID)
 	switch (msg)
 	{
 	case CBN_SELCHANGE:
-		Contents.Category = (CATEGORY)SendMessage(hCombo_Category, CB_GETCURSEL, 0, 0);
+		Contents.Category = (category)SendMessage(hCombo_Category, CB_GETCURSEL, 0, 0);
 		return;
 
 	case EN_UPDATE:
 		switch (ID)
 		{
+		case ID_EDIT_FILE:
+			GetWindowText(hEdit_File, Contents.File, MAX_FILE);
+			break;
+
 		case ID_EDIT_TITLE:
 			GetWindowText(hEdit_Title, Contents.Title, MAX_TITLE);
 			break;
@@ -126,24 +136,25 @@ void EDIT::Paint(HWND hWnd)
 	PAINTSTRUCT ps;
 	HDC hdc = BeginPaint(hWnd, &ps);
 
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		RECT TextRect = { 50,i * 50 + 30,CONTROL_LEFT,i * 50 + 60 };
 		DrawText(hdc, PaintText[i], lstrlen(PaintText[i]), &TextRect, DT_LEFT | DT_VCENTER);
 	}
-	DrawCharNumText(hdc, 330, CONTROL_LEFT + CONTROL_WIDTH, Comment_NumOfWritten, MAX_COMMENT - 1);
+	DrawCharNumText(hdc, 580, CONTROL_LEFT + CONTROL_WIDTH, Comment_NumOfWritten, MAX_COMMENT - 1);
 
 	EndPaint(hWnd, &ps);
 }
 
-CONTENTS EDIT::GetContents()
+contents EDIT::GetContents()
 {
 	return Contents;
 }
 
-void EDIT::SetContents(const CONTENTS&Contents)
+void EDIT::SetContents(const contents&Contents)
 {
 	EDIT::Contents = Contents;
+	SetWindowText(hEdit_File, Contents.File);
 	SetWindowText(hEdit_Title, Contents.Title);
 	SetWindowText(hEdit_Creator, Contents.Creator);
 	SendMessage(hCombo_Category, CB_SETCURSEL, Contents.Category, 0);
@@ -163,7 +174,10 @@ void EDIT::UpdateCommentNumOfWritten(HWND hWnd)
 void EDIT::DrawCharNumText(HDC hdc, int Top, int Right, int NumOfWritten, int Max)
 {
 	TCHAR Buf[30];
-
 	wsprintf(Buf, TEXT("( %d / %d 文字 )"), NumOfWritten, Max);
+	TextRect.top = Top;
+	TextRect.right = Right;
+	TextRect.left = Right - 150;
+	TextRect.bottom = Top + 30;
 	DrawText(hdc, Buf, lstrlen(Buf), &TextRect, DT_RIGHT | DT_VCENTER);
 }

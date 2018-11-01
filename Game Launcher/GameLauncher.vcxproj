@@ -19,17 +19,53 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\winmain.cpp" />
-    <ClCompile Include="source\wndproc.cpp" />
+    <ClCompile Include="source\GUI\Button.cpp" />
+    <ClCompile Include="source\GUI\Color.cpp" />
+    <ClCompile Include="source\GUI\MemDC.cpp" />
+    <ClCompile Include="source\GUI\SceneManager.cpp" />
+    <ClCompile Include="source\GUI\Scene\AppGallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\Gallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\GameGallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\MainMenu.cpp" />
+    <ClCompile Include="source\GUI\Scene\ModelGallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\MusicGallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\OthersGallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\PictureGallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\Scene.cpp" />
+    <ClCompile Include="source\GUI\Scene\VideoGallery.cpp" />
+    <ClCompile Include="source\GUI\Window.cpp" />
+    <ClCompile Include="source\ItemManager.cpp" />
+    <ClCompile Include="source\WinMain.cpp" />
+    <ClCompile Include="source\WndProc.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\wndproc.hpp" />
+    <ClInclude Include="..\Common Source\contents.hpp" />
+    <ClInclude Include="source\GUI\Button.hpp" />
+    <ClInclude Include="source\GUI\Color.hpp" />
+    <ClInclude Include="source\GUI\MemDC.hpp" />
+    <ClInclude Include="source\GUI\SceneChangerInterface.hpp" />
+    <ClInclude Include="source\GUI\SceneManager.hpp" />
+    <ClInclude Include="source\GUI\Scene\AppGallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\Gallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\GameGallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\MainMenu.hpp" />
+    <ClInclude Include="source\GUI\Scene\ModelGallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\MusicGallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\OthersGallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\PictureGallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\Scene.hpp" />
+    <ClInclude Include="source\GUI\Scene\VideoGallery.hpp" />
+    <ClInclude Include="source\GUI\Task.hpp" />
+    <ClInclude Include="source\GUI\Window.hpp" />
+    <ClInclude Include="source\ItemManager.hpp" />
+    <ClInclude Include="source\wmsg.h" />
+    <ClInclude Include="source\WndProc.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{788E8ECC-519A-4596-958D-554FDD5953C6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -88,6 +124,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>source;../Common Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -101,10 +138,11 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <Optimization>Full</Optimization>
+      <Optimization>MinSpace</Optimization>
       <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>source;../Common Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -117,16 +155,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <Optimization>Full</Optimization>
+      <Optimization>MinSpace</Optimization>
       <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>source;../Common Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>source;../Common Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

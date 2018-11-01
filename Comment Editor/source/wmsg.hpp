@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Windows.h>
-
 #define WM_CREATEDOCUMENT		0x0400
 #define WM_LOADDOCUMENT			0x0401
 #define WM_SAVEDOCUMENT			0x0402

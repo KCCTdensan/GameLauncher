@@ -13,18 +13,141 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{2a09f066-ffdf-4de4-8a35-00f1f414f699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{576d3108-0308-44b2-bd47-f81efc48651b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI\Scene">
+      <UniqueIdentifier>{83f34818-920f-409f-8350-ab5ac2a10487}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\Scene">
+      <UniqueIdentifier>{ab96b93c-b3ad-4117-a3b8-e4c11a4e7f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\Common Source">
+      <UniqueIdentifier>{f418479f-76a7-482a-ae82-c8314efbb58b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\winmain.cpp">
+    <ClCompile Include="source\WinMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\wndproc.cpp">
+    <ClCompile Include="source\WndProc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\SceneManager.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\MainMenu.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\AppGallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\GameGallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\MemDC.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\Scene.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\Gallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Color.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ItemManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\ModelGallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\MusicGallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\OthersGallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\PictureGallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\VideoGallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\wndproc.hpp">
+    <ClInclude Include="..\Common Source\contents.hpp">
+      <Filter>Header Files\GUI\Common Source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\wmsg.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WndProc.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\SceneManager.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\MainMenu.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\GameGallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\AppGallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\MemDC.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\SceneChangerInterface.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Task.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\Scene.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\Gallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ItemManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Color.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\ModelGallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\MusicGallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\OthersGallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\PictureGallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\VideoGallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Window.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Button.hpp">
+      <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
