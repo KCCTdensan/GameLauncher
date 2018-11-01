@@ -29,9 +29,9 @@ void gallery::CreateButtons()
 	Buttons.resize(NumItems);
 	for (int i = 0; i < NumItems; ++i)
 	{
-		Buttons[i] = new item_button(Width / 2, Height / 10);
-		Buttons[i]->SetPosition(0, Height * i / 10);
-		ButtonColor.RectangleGradation(Buttons[i]->hMemDC, Buttons[i]->GetRelativeRect());
+		Buttons[i] = new item_button(MenuWidth - 10, Height / 10 - 10);
+		Buttons[i]->SetPosition(5, Height * i / 10 + 5);
+		ButtonColor.Rectangle(Buttons[i]->hMemDC, Buttons[i]->GetRelativeRect());
 	}
 	ColorAccent[Category].RectangleGradation(MainMenuButton.hMemDC, MainMenuButton.GetRelativeRect());
 }
