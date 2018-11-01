@@ -5,6 +5,7 @@ video_gallery::video_gallery(HWND hWnd, scene_manager_interface *Interface, unsi
 	:gallery(Interface, BmpWidth, BmpHeight)
 {
 	Items = ItemManager::GetItems(CAT_VIDEO);
+	CreateButtons();
 }
 
 video_gallery::~video_gallery()

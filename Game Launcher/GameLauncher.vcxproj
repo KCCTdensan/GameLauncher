@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\GUI\Button.cpp" />
     <ClCompile Include="source\GUI\Color.cpp" />
     <ClCompile Include="source\GUI\MemDC.cpp" />
     <ClCompile Include="source\GUI\SceneManager.cpp" />
@@ -32,12 +33,14 @@
     <ClCompile Include="source\GUI\Scene\PictureGallery.cpp" />
     <ClCompile Include="source\GUI\Scene\Scene.cpp" />
     <ClCompile Include="source\GUI\Scene\VideoGallery.cpp" />
+    <ClCompile Include="source\GUI\Window.cpp" />
     <ClCompile Include="source\ItemManager.cpp" />
     <ClCompile Include="source\WinMain.cpp" />
     <ClCompile Include="source\WndProc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp" />
+    <ClInclude Include="source\GUI\Button.hpp" />
     <ClInclude Include="source\GUI\Color.hpp" />
     <ClInclude Include="source\GUI\MemDC.hpp" />
     <ClInclude Include="source\GUI\SceneChangerInterface.hpp" />
@@ -53,6 +56,7 @@
     <ClInclude Include="source\GUI\Scene\Scene.hpp" />
     <ClInclude Include="source\GUI\Scene\VideoGallery.hpp" />
     <ClInclude Include="source\GUI\Task.hpp" />
+    <ClInclude Include="source\GUI\Window.hpp" />
     <ClInclude Include="source\ItemManager.hpp" />
     <ClInclude Include="source\wmsg.h" />
     <ClInclude Include="source\WndProc.hpp" />

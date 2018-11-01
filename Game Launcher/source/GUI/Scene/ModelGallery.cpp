@@ -5,6 +5,7 @@ model_gallery::model_gallery(HWND hWnd, scene_manager_interface *Interface, unsi
 	:gallery(Interface, BmpWidth, BmpHeight)
 {
 	Items = ItemManager::GetItems(CAT_3DMODEL);
+	CreateButtons();
 }
 
 model_gallery::~model_gallery()

@@ -11,12 +11,9 @@ main_menu::main_menu(HWND hWnd, scene_manager_interface *SceneChanger, unsigned 
 	int GalleryButtonWidth = Block * 5 / 6;
 	for(int i = 0; i < MAX_CATEGORY; ++i)
 	{
-		GalleryButtonDCs[i] = new mem_dc(GalleryButtonWidth, GalleryButtonWidth);
-		GalleryButtonRects[i].left = (Split == MAX_CATEGORY) ? Block * i + Block / 10 : Block * i + Block / 2 + Block / 10;
-		GalleryButtonRects[i].top = (BmpHeight - GalleryButtonWidth) / 2;
-		GalleryButtonRects[i].right = GalleryButtonRects[i].left + GalleryButtonWidth;
-		GalleryButtonRects[i].bottom = GalleryButtonRects[i].top + GalleryButtonWidth;
-		gallery::ColorAccent[i].RectangleGradation(GalleryButtonDCs[i]->hMemDC, 0, 0, GalleryButtonWidth, GalleryButtonWidth);
+		GalleryButtons[i] = new button(GalleryButtonWidth, GalleryButtonWidth);
+		GalleryButtons[i]->SetPosition((Split == MAX_CATEGORY) ? Block * i + Block / 10 : Block * i + Block / 2 + Block / 10, (BmpHeight - GalleryButtonWidth) / 2);
+		gallery::ColorAccent[i].RectangleGradation(GalleryButtons[i]->hMemDC, 0, 0, GalleryButtonWidth, GalleryButtonWidth);
 	}
 }
 
@@ -24,7 +21,7 @@ main_menu::~main_menu()
 {
 	for(int i = 0; i < MAX_CATEGORY; ++i)
 	{
-		delete GalleryButtonDCs[i];
+		delete GalleryButtons[i];
 	}
 }
 
@@ -33,8 +30,7 @@ int main_menu::Initialize(HWND hWnd)
 	ColorBkgnd.Rectangle(hMemDC, 0, 0, Width, Height);
 	for(int i = 0; i < MAX_CATEGORY; ++i)
 	{
-		BitBlt(hMemDC, GalleryButtonRects[i].left, GalleryButtonRects[i].top, GalleryButtonRects[i].right - GalleryButtonRects[i].left, GalleryButtonRects[i].bottom - GalleryButtonRects[i].top,
-			   GalleryButtonDCs[i]->hMemDC, 0, 0, SRCCOPY);
+		GalleryButtons[i]->Paint(hMemDC);
 	}
 	InvalidateRect(hWnd, NULL, false);
 	UpdateWindow(hWnd);
@@ -54,14 +50,13 @@ int main_menu::LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp)
 
 int main_menu::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
-	POINT MousePoint;
-	MousePoint.x = LOWORD(lp);
-	MousePoint.y = HIWORD(lp);
+	unsigned short x = LOWORD(lp);
+	unsigned short y = HIWORD(lp);
 	for(int i = 0; i < MAX_CATEGORY; ++i)
 	{
-		if(PtInRect(&GalleryButtonRects[i], MousePoint))
+		if (GalleryButtons[i]->PointInButtonRect(x, y))
 		{
-			PostMessage(hWnd, WM_GUI_CHANGESCENE, i + 1, 0);
+			PostMessage(hWnd, WM_GUI_CHANGESCENE, i + SceneName_AppGallery, 0);
 			break;
 		}
 	}

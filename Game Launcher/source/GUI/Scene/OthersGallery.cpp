@@ -5,6 +5,7 @@ others_gallery::others_gallery(HWND hWnd, scene_manager_interface *Interface, un
 	:gallery(Interface, BmpWidth, BmpHeight)
 {
 	Items = ItemManager::GetItems(CAT_OTHERS);
+	CreateButtons();
 }
 
 others_gallery::~others_gallery()

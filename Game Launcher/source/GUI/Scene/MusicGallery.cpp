@@ -5,6 +5,7 @@ music_gallery::music_gallery(HWND hWnd, scene_manager_interface *Interface, unsi
 	:gallery(Interface, BmpWidth, BmpHeight)
 {
 	Items = ItemManager::GetItems(CAT_MUSIC);
+	CreateButtons();
 }
 
 music_gallery::~music_gallery()

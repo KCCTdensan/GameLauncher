@@ -21,6 +21,7 @@ public:
 	mem_dc(unsigned short Width, unsigned short Height);
 	~mem_dc();
 	void Paint(HDC hDC)const;
+	void Paint(HDC hDC, int x, int y)const;
 };
 
 

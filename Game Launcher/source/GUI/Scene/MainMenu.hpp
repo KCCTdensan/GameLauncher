@@ -2,6 +2,7 @@
 
 #include "Scene.hpp"
 #include "../Color.hpp"
+#include "../Button.hpp"
 #include "contents.hpp"
 
 #ifndef INCLUDE_MAINMENU_HPP
@@ -10,8 +11,7 @@
 
 class main_menu :public scene
 {
-	mem_dc *GalleryButtonDCs[MAX_CATEGORY];
-	RECT GalleryButtonRects[MAX_CATEGORY];
+	button *GalleryButtons[MAX_CATEGORY];
 
 public:
 	main_menu(HWND hWnd, scene_manager_interface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);

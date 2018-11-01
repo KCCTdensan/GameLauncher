@@ -29,3 +29,8 @@ void mem_dc::Paint(HDC hDC)const
 {
 	BitBlt(hDC, 0, 0, Width, Height, hMemDC, 0, 0, SRCCOPY);
 }
+
+void mem_dc::Paint(HDC hDC, int x, int y)const
+{
+	BitBlt(hDC, x, y, Width, Height, hMemDC, 0, 0, SRCCOPY);
+}

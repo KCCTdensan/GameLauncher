@@ -5,6 +5,7 @@ picture_gallery::picture_gallery(HWND hWnd, scene_manager_interface *Interface, 
 	:gallery(Interface, BmpWidth, BmpHeight)
 {
 	Items = ItemManager::GetItems(CAT_PICTURE);
+	CreateButtons();
 }
 
 picture_gallery::~picture_gallery()
