@@ -38,7 +38,7 @@ namespace ItemManager
 		WIN32_FIND_DATA wfd = {};
 		wstring exception1 = L".";
 		wstring exception2 = L"..";
-		hFind = FindFirstFile(FilePath.c_str(), &wfd);
+		hFind = FindFirstFile((FilePath + L'*').c_str(), &wfd);
 		if(hFind == INVALID_HANDLE_VALUE)
 		{
 			return;
@@ -51,9 +51,7 @@ namespace ItemManager
 			}
 			if(wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 			{
-				FilePath += wfd.cFileName;
-				FilePath += L'/';
-				ScanDirectory(FilePath);
+				ScanDirectory(FilePath + wfd.cFileName + L'/');
 			}
 			else
 			{
@@ -63,8 +61,7 @@ namespace ItemManager
 				{
 					continue;
 				}
-				FilePath += wfd.cFileName;
-				LoadItem(FilePath);
+				LoadItem(FilePath + FileName);
 			}
 		} while(FindNextFile(hFind, &wfd));
 		FindClose(hFind);

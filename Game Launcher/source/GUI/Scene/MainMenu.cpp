@@ -13,7 +13,7 @@ main_menu::main_menu(HWND hWnd, scene_manager_interface *SceneChanger, unsigned 
 	{
 		GalleryButtons[i] = new button(GalleryButtonWidth, GalleryButtonWidth);
 		GalleryButtons[i]->SetPosition((Split == MAX_CATEGORY) ? Block * i + Block / 10 : Block * i + Block / 2 + Block / 10, (BmpHeight - GalleryButtonWidth) / 2);
-		gallery::ColorAccent[i].RectangleGradation(GalleryButtons[i]->hMemDC, 0, 0, GalleryButtonWidth, GalleryButtonWidth);
+		gallery::ColorAccent[i].RectangleGradation(GalleryButtons[i]->hMemDC, GalleryButtons[i]->GetRelativeRect());
 	}
 }
 

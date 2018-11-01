@@ -2,9 +2,9 @@
 
 
 model_gallery::model_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:gallery(Interface,CAT_3DMODEL, BmpWidth, BmpHeight)
+	:gallery(Interface, CAT_3DMODEL, BmpWidth, BmpHeight)
 {
-	
+
 }
 
 model_gallery::~model_gallery()

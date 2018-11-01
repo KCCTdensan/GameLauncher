@@ -2,7 +2,7 @@
 
 
 music_gallery::music_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:gallery(Interface,CAT_MUSIC, BmpWidth, BmpHeight)
+	:gallery(Interface, CAT_MUSIC, BmpWidth, BmpHeight)
 {
 
 }

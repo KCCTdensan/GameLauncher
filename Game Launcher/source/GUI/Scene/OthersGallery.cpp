@@ -2,9 +2,9 @@
 
 
 others_gallery::others_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight)
-	:gallery(Interface,CAT_OTHERS, BmpWidth, BmpHeight)
+	:gallery(Interface, CAT_OTHERS, BmpWidth, BmpHeight)
 {
-	
+
 }
 
 others_gallery::~others_gallery()

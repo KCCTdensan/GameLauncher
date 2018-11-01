@@ -2,9 +2,9 @@
 
 
 game_gallery::game_gallery(HWND hWnd, scene_manager_interface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
-	:gallery(SceneChanger,CAT_GAME, BmpWidth, BmpHeight)
+	:gallery(SceneChanger, CAT_GAME, BmpWidth, BmpHeight)
 {
-	
+
 }
 
 game_gallery::~game_gallery()

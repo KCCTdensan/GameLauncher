@@ -30,6 +30,7 @@ void gallery::CreateButtons()
 	{
 		Buttons[i] = new item_button(Width / 2, Height / 10);
 		Buttons[i]->SetPosition(0, Height * i / 10);
+		ColorBkgnd.RectangleGradation(Buttons[i]->hMemDC, Buttons[i]->GetRelativeRect());
 	}
 }
 
@@ -46,27 +47,28 @@ void gallery::DrawBkgnd()
 {
 	for (int i = 0; i < Items.size(); ++i)
 	{
-		Buttons[i]->Paint(MenuWindow->hMemDC);
+		Buttons[i]->Paint(MenuWindow.hMemDC);
 	}
-	BitBlt(hMemDC, 0, 0, MenuWidth, Height, MenuWindow->hMemDC, 0, 0, SRCCOPY);
-	BitBlt(hMemDC, MenuWidth, 0, Width - MenuWidth, Height, PreviewWindow.hMemDC, 0, 0, SRCCOPY);
+	MenuWindow.Paint(hMemDC);
+	PreviewWindow.Paint(hMemDC);
 }
 
 gallery::gallery(scene_manager_interface *SceneChanger, category Category, unsigned short BmpWidth, unsigned short BmpHeight)
 	:scene(SceneChanger, BmpWidth, BmpHeight),
+	Category(Category),
 	MenuWidth(BmpWidth / 2),
 	PreviewWindow(BmpWidth - MenuWidth, BmpHeight),
-	MainMenuButton(200, 100)
+	MainMenuButton(200, 100),
+	Items(ItemManager::GetItems(Category)),
+	MenuWindow(MenuWidth, Items.size() * BmpHeight / 10)
 {
-	Items = ItemManager::GetItems(Category);
 	CreateButtons();
-	MenuWindow = new window(MenuWidth, Items.size() * BmpHeight / 10);
-	MenuWindow->SetPosition(0, 0);
-	MenuWindow->SetWindowSize(MenuWidth, BmpHeight);
+	MenuWindow.SetPosition(0, 0);
+	MenuWindow.SetWindowSize(MenuWidth, BmpHeight);
 	PreviewWindow.SetPosition(MenuWidth, 0);
 	PreviewWindow.SetWindowSize(BmpWidth - MenuWidth, BmpHeight);
 	MainMenuButton.SetPosition(BmpWidth - 300, BmpHeight - 150);
-	ColorBkgnd.Rectangle(MenuWindow->hMemDC, 0, 0, MenuWidth, Height);
+	ColorBkgnd.Rectangle(MenuWindow.hMemDC, 0, 0, MenuWidth, Height);
 	ColorBkgnd.Rectangle(PreviewWindow.hMemDC, 0, 0, Width - MenuWidth, Height);
 }
 

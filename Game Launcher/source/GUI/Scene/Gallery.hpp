@@ -20,8 +20,8 @@ public:
 class gallery :public scene
 {
 	const int MenuWidth;
-
-	window *MenuWindow;
+	const category Category;
+	window MenuWindow;
 	window PreviewWindow;
 
 protected:
