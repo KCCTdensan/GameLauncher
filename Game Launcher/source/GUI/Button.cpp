@@ -34,6 +34,11 @@ void button::Paint(HDC hDC)const
 	BitBlt(hDC, x, y, Width, Height, hMemDC, 0, 0, SRCCOPY);
 }
 
+void button::Mask(HDC hDC)
+{
+	BitBlt(hMemDC, 0, 0, Width, Height, hDC, 0, 0, SRCAND);
+}
+
 RECT button::GetAbsoluteRect()const
 {
 	return RECT{x, y, x + Width, y + Height};

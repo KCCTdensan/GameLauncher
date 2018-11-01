@@ -17,6 +17,7 @@ public:
 	void SetPosition(unsigned short x, unsigned short y);
 	bool PointInButtonRect(unsigned short x, unsigned short y)const;
 	void Paint(HDC hDC)const;
+	void Mask(HDC hDC);
 	RECT GetAbsoluteRect()const;
 	RECT GetRelativeRect()const;
 };
