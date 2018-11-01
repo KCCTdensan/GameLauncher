@@ -34,6 +34,10 @@ void gallery::CreateButtons()
 		ButtonColor.Rectangle(Buttons[i]->hMemDC, Buttons[i]->GetRelativeRect());
 	}
 	ColorAccent[Category].RectangleGradation(MainMenuButton.hMemDC, MainMenuButton.GetRelativeRect());
+	HDC hMaskDC = CreateCompatibleDC(NULL);
+	HANDLE hExitBmp = LoadImage(NULL, L"img/Exit.bmp", IMAGE_BITMAP, 200, 100, LR_LOADFROMFILE);
+	SelectObject(hMaskDC, hExitBmp);
+	MainMenuButton.Mask(hMaskDC);
 }
 
 void gallery::DeleteButtons()
