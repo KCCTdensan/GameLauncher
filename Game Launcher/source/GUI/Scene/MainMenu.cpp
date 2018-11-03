@@ -10,7 +10,7 @@ main_menu::main_menu(HWND hWnd, scene_manager_interface *SceneChanger, unsigned 
 		L"img/IconApp.bmp",
 		L"img/IconGame.bmp",
 		L"img/IconMusic.bmp",
-		L"",
+		L"img/IconPic.bmp",
 		L"",
 		L"img/IconMovie.bmp",
 		L"",
