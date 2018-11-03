@@ -40,9 +40,10 @@ int scene::Update(HWND hWnd)
 
 int scene::Paint(HWND hWnd)
 {
-	HDC hdc = GetDC(hWnd);
+	PAINTSTRUCT ps;
+	HDC hdc = BeginPaint(hWnd, &ps);
 	BitBlt(hdc, 0, 0, Width, Height, hMemDC, 0, 0, SRCCOPY);
-	ReleaseDC(hWnd, hdc);
+	EndPaint(hWnd, &ps);
 	return 0;
 }
 

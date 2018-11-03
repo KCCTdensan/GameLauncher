@@ -84,13 +84,26 @@ namespace ItemManager
 		STARTUPINFO si = {};
 		si.cb = sizeof(STARTUPINFO);
 		PROCESS_INFORMATION pi = {};
-
+		wstring Directory = Item.FilePath;
+		while (Directory.back() != L'/')
+		{
+			Directory.pop_back();
+		}
+		Directory += Item.Contents.FilePath;
+		WCHAR CommandLine[MAX_PATH];
+		int i = -1;
+		do
+		{
+			i++;
+			CommandLine[i] = Directory[i];
+		} while (Directory[i] != L'\0');
 		switch (Item.Contents.Category)
 		{
 		case CAT_APP:
 		case CAT_GAME:
-			BOOL Ret = CreateProcess(Item.FilePath, NULL, NULL, NULL, false, NULL, NULL, NULL, &si, &pi);
+			BOOL Ret = CreateProcess(CommandLine, NULL, NULL, NULL, false, NULL, NULL, NULL, &si, &pi);
 			return Ret != 0;
 		}
+		return false;
 	}
 }

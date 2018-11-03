@@ -96,6 +96,7 @@ int gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 			{
 				MessageBox(NULL, TEXT("ãNìÆÇ…é∏îsÇµÇ‹ÇµÇΩÅB"), TEXT("Error"), MB_OK);
 			}
+			return 0;
 		}
 	}
 	if (MainMenuButton.PointInButtonRect(x, y))
