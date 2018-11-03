@@ -3,12 +3,12 @@
 #include "wmsg.hpp"
 
 
-namespace FILE
+namespace file
 {
-	DOCUMENT Document;
+	document Document;
 }
 
-bool FILE::LoadDocument(HWND hWnd, LPTSTR FilePath)
+bool file::LoadDocument(HWND hWnd, LPTSTR FilePath)
 {
 	bool Ret;
 
@@ -22,12 +22,12 @@ bool FILE::LoadDocument(HWND hWnd, LPTSTR FilePath)
 	return Ret;
 }
 
-bool FILE::SaveDocument()
+bool file::SaveDocument()
 {
 	return Document.SaveFile();
 }
 
-bool FILE::SaveAsDocument(HWND hWnd, LPTSTR FilePath)
+bool file::SaveAsDocument(HWND hWnd, LPTSTR FilePath)
 {
 	bool Ret;
 
@@ -41,12 +41,12 @@ bool FILE::SaveAsDocument(HWND hWnd, LPTSTR FilePath)
 	return Ret;
 }
 
-contents FILE::GetContents()
+contents file::GetContents()
 {
 	return Document.GetContents();
 }
 
-void FILE::SetContents(const contents&Contents)
+void file::SetContents(const contents&Contents)
 {
 	Document.SetContents(Contents);
 }

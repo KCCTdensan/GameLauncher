@@ -6,7 +6,7 @@
 #define INCLUDE_MENU_HPP
 
 
-namespace MENU
+namespace menu
 {
 	void CreateWndMenu(HWND hWnd);
 	void Command(HWND hWnd, WPARAM msg);

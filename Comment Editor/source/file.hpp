@@ -7,7 +7,7 @@
 #define INCLUDE_FILE_HPP
 
 
-namespace FILE
+namespace file
 {
 	bool LoadDocument(HWND hWnd, LPTSTR FilePath);
 	bool SaveDocument();

@@ -91,7 +91,11 @@ int gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 	{
 		if (Buttons[i]->PointInButtonRect(x, y))
 		{
-			ItemManager::ExecuteItem(*Items[i]);
+			bool Ret = ItemManager::ExecuteItem(*Items[i]);
+			if (!Ret)
+			{
+				MessageBox(NULL, TEXT("ãNìÆÇ…é∏îsÇµÇ‹ÇµÇΩÅB"), TEXT("Error"), MB_OK);
+			}
 		}
 	}
 	if (MainMenuButton.PointInButtonRect(x, y))

@@ -6,14 +6,14 @@
 #define INCLUDE_DOCUMENT_HPP
 
 
-class DOCUMENT
+class document
 {
 	contents Contents;
 	TCHAR FilePath[MAX_PATH];
 
 public:
-	DOCUMENT();
-	DOCUMENT(contents Contents);
+	document();
+	document(const contents &Contents);
 	bool LoadFile(LPCTSTR FilePath);
 	bool SaveFile();
 	bool SaveAsFile(LPCTSTR FilePath);

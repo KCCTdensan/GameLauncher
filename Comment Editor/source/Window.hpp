@@ -6,7 +6,7 @@
 #define INCLUDE_WND_HPP
 
 
-namespace WND
+namespace window
 {
 	void Startup(LPTSTR lpCmdLine);
 	void SetWndTextFileName(HWND hWnd, LPCTSTR FileName);

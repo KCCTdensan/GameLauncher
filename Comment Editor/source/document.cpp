@@ -1,17 +1,17 @@
 #include "document.hpp"
 
 
-DOCUMENT::DOCUMENT()
+document::document()
 {
 	Contents = { 0 };
 }
 
-DOCUMENT::DOCUMENT(contents Contents)
+document::document(const contents &Contents)
 {
-	DOCUMENT::Contents = Contents;
+	document::Contents = Contents;
 }
 
-bool DOCUMENT::LoadFile(LPCTSTR FilePath)
+bool document::LoadFile(LPCTSTR FilePath)
 {
 	HANDLE hFile = CreateFile(FilePath, GENERIC_READ, 0, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE)
@@ -26,7 +26,7 @@ bool DOCUMENT::LoadFile(LPCTSTR FilePath)
 	return true;
 }
 
-bool DOCUMENT::SaveFile()
+bool document::SaveFile()
 {
 	HANDLE hFile = CreateFile(FilePath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE)
@@ -41,7 +41,7 @@ bool DOCUMENT::SaveFile()
 	return true;
 }
 
-bool DOCUMENT::SaveAsFile(LPCTSTR FilePath)
+bool document::SaveAsFile(LPCTSTR FilePath)
 {
 	HANDLE hFile = CreateFile(FilePath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE)
@@ -56,11 +56,11 @@ bool DOCUMENT::SaveAsFile(LPCTSTR FilePath)
 	return true;
 }
 
-void DOCUMENT::SetFilePath(LPTSTR FilePath)
+void document::SetFilePath(LPTSTR FilePath)
 {
 	for (int i = 0; i < MAX_PATH; i++)
 	{
-		DOCUMENT::FilePath[i] = FilePath[i];
+		document::FilePath[i] = FilePath[i];
 		if (FilePath[i] == '\0')
 		{
 			break;
@@ -68,12 +68,12 @@ void DOCUMENT::SetFilePath(LPTSTR FilePath)
 	}
 }
 
-contents DOCUMENT::GetContents()
+contents document::GetContents()
 {
 	return Contents;
 }
 
-void DOCUMENT::SetContents(const contents&Contents)
+void document::SetContents(const contents&Contents)
 {
-	DOCUMENT::Contents = Contents;
+	document::Contents = Contents;
 }

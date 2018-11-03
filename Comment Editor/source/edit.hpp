@@ -7,7 +7,7 @@
 #define INCLUDE_EDIT_HPP
 
 
-namespace EDIT
+namespace edit
 {
 	bool Prepare(HWND hWnd);
 	void Command(HWND hWnd, WPARAM msg, WPARAM ID);

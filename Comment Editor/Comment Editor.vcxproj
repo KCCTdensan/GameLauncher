@@ -157,25 +157,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\document.cpp" />
-    <ClCompile Include="source\edit.cpp" />
-    <ClCompile Include="source\file.cpp" />
-    <ClCompile Include="source\filename.cpp" />
-    <ClCompile Include="source\menu.cpp" />
-    <ClCompile Include="source\winmain.cpp" />
-    <ClCompile Include="source\wnd.cpp" />
-    <ClCompile Include="source\wndproc.cpp" />
+    <ClCompile Include="source\Document.cpp" />
+    <ClCompile Include="source\Edit.cpp" />
+    <ClCompile Include="source\File.cpp" />
+    <ClCompile Include="source\FileName.cpp" />
+    <ClCompile Include="source\Menu.cpp" />
+    <ClCompile Include="source\WinMain.cpp" />
+    <ClCompile Include="source\Window.cpp" />
+    <ClCompile Include="source\WndProc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp" />
-    <ClInclude Include="source\document.hpp" />
-    <ClInclude Include="source\edit.hpp" />
-    <ClInclude Include="source\file.hpp" />
-    <ClInclude Include="source\filename.hpp" />
-    <ClInclude Include="source\menu.hpp" />
+    <ClInclude Include="source\Document.hpp" />
+    <ClInclude Include="source\Edit.hpp" />
+    <ClInclude Include="source\File.hpp" />
+    <ClInclude Include="source\FileName.hpp" />
+    <ClInclude Include="source\Menu.hpp" />
     <ClInclude Include="source\wmsg.hpp" />
-    <ClInclude Include="source\wnd.hpp" />
-    <ClInclude Include="source\wndproc.hpp" />
+    <ClInclude Include="source\Window.hpp" />
+    <ClInclude Include="source\WndProc.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

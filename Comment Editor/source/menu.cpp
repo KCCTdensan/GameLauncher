@@ -2,7 +2,7 @@
 #include "wmsg.hpp"
 
 
-namespace MENU
+namespace menu
 {
 	enum
 	{
@@ -23,7 +23,7 @@ namespace MENU
 }
 
 
-void MENU::CreateWndMenu(HWND hWnd)
+void menu::CreateWndMenu(HWND hWnd)
 {
 	TCHAR Str_File[] = TEXT("ファイル(&F)");
 	TCHAR Str_File_New[] = TEXT("新規作成(&N)");
@@ -85,7 +85,7 @@ void MENU::CreateWndMenu(HWND hWnd)
 	SetMenu(hWnd, hMenu);
 }
 
-void MENU::Command(HWND hWnd, WPARAM msg)
+void menu::Command(HWND hWnd, WPARAM msg)
 {
 	switch (msg)
 	{

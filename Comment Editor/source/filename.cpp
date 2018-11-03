@@ -2,7 +2,7 @@
 #include "wmsg.hpp"
 
 
-bool FILENAME::Open(HWND hWnd)
+bool file_name::Open(HWND hWnd)
 {
 	TCHAR FilePath[MAX_PATH] = { 0 };
 	TCHAR FileTitle[MAX_PATH] = { 0 };
@@ -31,7 +31,7 @@ bool FILENAME::Open(HWND hWnd)
 	return true;
 }
 
-bool FILENAME::SaveAs(HWND hWnd)
+bool file_name::SaveAs(HWND hWnd)
 {
 	TCHAR FilePath[MAX_PATH] = { 0 };
 	TCHAR FileTitle[MAX_PATH] = { 0 };

@@ -25,7 +25,7 @@
     <Filter Include="Header Files\GUI\Scene">
       <UniqueIdentifier>{ab96b93c-b3ad-4117-a3b8-e4c11a4e7f3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GUI\Common Source">
+    <Filter Include="Header Files\Common Source">
       <UniqueIdentifier>{f418479f-76a7-482a-ae82-c8314efbb58b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -87,7 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp">
-      <Filter>Header Files\GUI\Common Source</Filter>
+      <Filter>Header Files\Common Source</Filter>
     </ClInclude>
     <ClInclude Include="source\wmsg.h">
       <Filter>Header Files</Filter>

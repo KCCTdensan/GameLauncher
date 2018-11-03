@@ -1,14 +1,14 @@
-#include "wnd.hpp"
+#include "Window.hpp"
 
 
-void WND::Startup(LPTSTR lpCmdLine)
+void window::Startup(LPTSTR lpCmdLine)
 {
-	PROCESS_INFORMATION pi = { 0 };
-	STARTUPINFO si = { 0 };
+	PROCESS_INFORMATION pi = {};
+	STARTUPINFO si = {};
 	CreateProcess(NULL, lpCmdLine, NULL, NULL, false, NORMAL_PRIORITY_CLASS, NULL, NULL, &si, &pi);
 }
 
-void WND::SetWndTextFileName(HWND hWnd, LPCTSTR FileName)
+void window::SetWndTextFileName(HWND hWnd, LPCTSTR FileName)
 {
 	TCHAR WndText[MAX_PATH];
 	wsprintf(WndText, TEXT("%s - Launcher Comment Editor"), FileName);

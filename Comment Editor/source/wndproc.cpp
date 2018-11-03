@@ -5,7 +5,7 @@
 #include "file.hpp"
 #include "filename.hpp"
 #include "menu.hpp"
-#include "wnd.hpp"
+#include "Window.hpp"
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
@@ -13,8 +13,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 	switch (msg)
 	{
 	case WM_CREATE:
-		MENU::CreateWndMenu(hWnd);
-		EDIT::Prepare(hWnd);
+		menu::CreateWndMenu(hWnd);
+		edit::Prepare(hWnd);
 		ShowWindow(hWnd, SW_SHOW);
 		return 0;
 
@@ -23,42 +23,42 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 		return 0;
 
 	case WM_PAINT:
-		EDIT::Paint(hWnd);
+		edit::Paint(hWnd);
 		return 0;
 
 	case WM_COMMAND:
-		MENU::Command(hWnd, LOWORD(wp));
-		EDIT::Command(hWnd, HIWORD(wp), LOWORD(wp));
+		menu::Command(hWnd, LOWORD(wp));
+		edit::Command(hWnd, HIWORD(wp), LOWORD(wp));
 		return 0;
 
 	case WM_CREATEDOCUMENT:
-		WND::Startup(GetCommandLine());
+		window::Startup(GetCommandLine());
 		return 0;
 
 	case WM_LOADDOCUMENT:
-		FILE::LoadDocument(hWnd, (LPTSTR)wp);
-		EDIT::SetContents(FILE::GetContents());
-		EDIT::UpdateCommentNumOfWritten(hWnd);
+		file::LoadDocument(hWnd, (LPTSTR)wp);
+		edit::SetContents(file::GetContents());
+		edit::UpdateCommentNumOfWritten(hWnd);
 		return 0;
 
 	case WM_SAVEDOCUMENT:
-		FILE::SetContents(EDIT::GetContents());
-		return FILE::SaveDocument() ? 0 : -1;
+		file::SetContents(edit::GetContents());
+		return file::SaveDocument() ? 0 : -1;
 
 	case WM_SAVEASDOCUMENT:
-		FILE::SetContents(EDIT::GetContents());
-		return FILE::SaveAsDocument(hWnd, (LPTSTR)wp) ? 0 : -1;
+		file::SetContents(edit::GetContents());
+		return file::SaveAsDocument(hWnd, (LPTSTR)wp) ? 0 : -1;
 
 	case WM_SETWNDTEXTFILENAME:
-		WND::SetWndTextFileName(hWnd, (LPCTSTR)wp);
+		window::SetWndTextFileName(hWnd, (LPCTSTR)wp);
 		return 0;
 
 	case WM_FILENAME_OPEN:
-		FILENAME::Open(hWnd);
+		file_name::Open(hWnd);
 		return 0;
 
 	case WM_FILENAME_SAVEAS:
-		FILENAME::SaveAs(hWnd);
+		file_name::SaveAs(hWnd);
 		return 0;
 
 	default:

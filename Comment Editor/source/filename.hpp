@@ -6,7 +6,7 @@
 #define INCLUDE_FILENAME_HPP
 
 
-namespace FILENAME
+namespace file_name
 {
 	bool Open(HWND hWnd);
 	bool SaveAs(HWND hWnd);
