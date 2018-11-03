@@ -34,6 +34,26 @@ void button::Paint(HDC hDC)const
 	BitBlt(hDC, x, y, Width, Height, hMemDC, 0, 0, SRCCOPY);
 }
 
+void button::Color(const color &Color)
+{
+	Color.Rectangle(hMemDC, 0, 0, Width, Height);
+}
+
+void button::ColorGradation(const color &Color)
+{
+	Color.RectangleGradation(hMemDC, 0, 0, Width, Height);
+}
+
+void button::MaskBitmap(LPCTSTR FilePath)
+{
+	HDC hMaskDC = CreateCompatibleDC(NULL);
+	HANDLE hMaskBmp = LoadImage(NULL, FilePath, IMAGE_BITMAP, Width, Height, LR_LOADFROMFILE);
+	SelectObject(hMaskDC, hMaskBmp);
+	Mask(hMaskDC);
+	DeleteDC(hMaskDC);
+	DeleteObject(hMaskBmp);
+}
+
 void button::Mask(HDC hDC)
 {
 	BitBlt(hMemDC, 0, 0, Width, Height, hDC, 0, 0, SRCAND);

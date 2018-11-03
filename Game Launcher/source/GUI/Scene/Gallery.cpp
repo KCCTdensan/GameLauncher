@@ -31,13 +31,10 @@ void gallery::CreateButtons()
 	{
 		Buttons[i] = new item_button(MenuWidth - 10, Height / 10 - 10);
 		Buttons[i]->SetPosition(5, Height * i / 10 + 5);
-		ButtonColor.Rectangle(Buttons[i]->hMemDC, Buttons[i]->GetRelativeRect());
+		Buttons[i]->ColorGradation(ButtonColor);
 	}
-	ColorAccent[Category].RectangleGradation(MainMenuButton.hMemDC, MainMenuButton.GetRelativeRect());
-	HDC hMaskDC = CreateCompatibleDC(NULL);
-	HANDLE hExitBmp = LoadImage(NULL, L"img/Exit.bmp", IMAGE_BITMAP, 200, 100, LR_LOADFROMFILE);
-	SelectObject(hMaskDC, hExitBmp);
-	MainMenuButton.Mask(hMaskDC);
+	MainMenuButton.ColorGradation(ColorAccent[Category]);
+	MainMenuButton.MaskBitmap(L"img/Exit.bmp");
 }
 
 void gallery::DeleteButtons()
@@ -89,6 +86,14 @@ int gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
 	unsigned short x = LOWORD(lp);
 	unsigned short y = HIWORD(lp);
+	int NumItems = (int)Items.size();
+	for (int i = 0; i < NumItems; ++i)
+	{
+		if (Buttons[i]->PointInButtonRect(x, y))
+		{
+			ItemManager::ExecuteItem(*Items[i]);
+		}
+	}
 	if (MainMenuButton.PointInButtonRect(x, y))
 	{
 		PostMessage(hWnd, WM_GUI_CHANGESCENE, SceneName_MainMenu, 0);

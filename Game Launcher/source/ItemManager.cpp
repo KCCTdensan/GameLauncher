@@ -78,4 +78,19 @@ namespace ItemManager
 	{
 		return Items[Category];
 	}
+
+	bool ExecuteItem(const item_info &Item)
+	{
+		STARTUPINFO si = {};
+		si.cb = sizeof(STARTUPINFO);
+		PROCESS_INFORMATION pi = {};
+
+		switch (Item.Contents.Category)
+		{
+		case CAT_APP:
+		case CAT_GAME:
+			BOOL Ret = CreateProcess(Item.FilePath, NULL, NULL, NULL, false, NULL, NULL, NULL, &si, &pi);
+			return Ret != 0;
+		}
+	}
 }

@@ -17,4 +17,5 @@ namespace ItemManager
 	int ScanItems();
 	void ClearItems();
 	vector<item_info*> GetItems(category Category);
+	bool ExecuteItem(const item_info &Item);
 };
