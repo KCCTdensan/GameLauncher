@@ -79,30 +79,47 @@ namespace ItemManager
 		return Items[Category];
 	}
 
-	bool ExecuteItem(const item_info &Item)
+	bool ExecuteProgram(LPCTSTR DirectoryPath, LPCTSTR FilePath)
 	{
 		STARTUPINFO si = {};
 		si.cb = sizeof(STARTUPINFO);
 		PROCESS_INFORMATION pi = {};
+		WCHAR CurrentDirectoryPrev[MAX_PATH];
+		WCHAR Directory[MAX_PATH];
+		GetCurrentDirectory(MAX_PATH, CurrentDirectoryPrev);
+		SetCurrentDirectory(DirectoryPath);
+		GetCurrentDirectory(MAX_PATH, Directory);
+		SetCurrentDirectory(CurrentDirectoryPrev);
+		bool Ret = CreateProcess(FilePath, L"", NULL, NULL, false, NORMAL_PRIORITY_CLASS, NULL, Directory, &si, &pi) != 0;
+		CloseHandle(pi.hThread);
+		CloseHandle(pi.hProcess);
+		return Ret;
+	}
+
+	bool ExecuteExplorer(LPCTSTR DirectoryPath)
+	{
+		ShellExecute(NULL, L"open", DirectoryPath, NULL, NULL, SW_SHOWNORMAL);
+		return true;
+	}
+
+	bool ExecuteItem(const item_info &Item)
+	{
 		wstring Directory = Item.FilePath;
 		while (Directory.back() != L'/')
 		{
 			Directory.pop_back();
 		}
-		Directory += Item.Contents.FilePath;
-		WCHAR CommandLine[MAX_PATH];
-		int i = -1;
-		do
-		{
-			i++;
-			CommandLine[i] = Directory[i];
-		} while (Directory[i] != L'\0');
+
 		switch (Item.Contents.Category)
 		{
 		case CAT_APP:
 		case CAT_GAME:
-			BOOL Ret = CreateProcess(CommandLine, NULL, NULL, NULL, false, NULL, NULL, NULL, &si, &pi);
-			return Ret != 0;
+			Directory.pop_back();
+			return ExecuteProgram(Directory.c_str(), (Directory + Item.Contents.FilePath).c_str());
+
+		case CAT_OTHERS:
+			Directory.pop_back();
+			return ExecuteExplorer(Directory.c_str());
 		}
 		return false;
 	}
