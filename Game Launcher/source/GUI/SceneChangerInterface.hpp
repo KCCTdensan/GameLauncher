@@ -6,7 +6,7 @@
 #define INCLUDE_SCENECHANGERINTERFACE_HPP
 
 
-enum scene_name
+enum SceneName
 {
 	SceneName_MainMenu,
 	SceneName_AppGallery,
@@ -20,7 +20,7 @@ enum scene_name
 	NumSceneName
 };
 
-class scene_manager_interface
+class SceneChangerInterface
 {
 public:
 

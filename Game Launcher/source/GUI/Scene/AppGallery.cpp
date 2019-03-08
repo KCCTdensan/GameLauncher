@@ -1,18 +1,18 @@
 #include "AppGallery.hpp"
 
 
-app_gallery::app_gallery(HWND hWnd, scene_manager_interface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
-	:gallery(SceneChanger, CAT_APP, BmpWidth, BmpHeight)
+AppGallery::AppGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
+	:Gallery(SceneChanger, CAT_APP, BmpWidth, BmpHeight)
 {
 
 }
 
-app_gallery::~app_gallery()
+AppGallery::~AppGallery()
 {
 
 }
 
-int app_gallery::Initialize(HWND hWnd)
+int AppGallery::Initialize(HWND hWnd)
 {
 	DrawBkgnd();
 	InvalidateRect(hWnd, NULL, false);
@@ -20,18 +20,18 @@ int app_gallery::Initialize(HWND hWnd)
 	return 0;
 }
 
-int app_gallery::Finalize(HWND hWnd)
+int AppGallery::Finalize(HWND hWnd)
 {
 	return 0;
 }
 
-int app_gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int AppGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
-	gallery::LButtonUp(hWnd, wp, lp);
+	Gallery::LButtonUp(hWnd, wp, lp);
 	return 0;
 }
 
-int app_gallery::Update(HWND hWnd)
+int AppGallery::Update(HWND hWnd)
 {
 	return 0;
 }

@@ -8,7 +8,7 @@
 #define INCLUDE_SCENE_HPP
 
 
-class Scene :public MemDC, public Task
+class Scene : public MemDC, public Task
 {
 protected:
 	SceneChangerInterface* SceneChanger;

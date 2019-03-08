@@ -6,7 +6,7 @@
 #define INCLUDE_MAINMENU_HPP
 
 
-class MainMenu :public Scene
+class MainMenu : public Scene
 {
 	const static COLORREF BkgndColor = RGB(0x1f, 0x1f, 0x1f);
 	HBRUSH hBrushBkgnd;//”wŒi“h‚è‚Â‚Ô‚µ—p

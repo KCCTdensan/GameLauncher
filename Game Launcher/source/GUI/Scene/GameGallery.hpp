@@ -2,8 +2,8 @@
 
 #include "Gallery.hpp"
 
-#ifndef INCLUDE_GAMEGALLERY_HPP
-#define INCLUDE_GAMEGALLERY_HPP
+#ifndef INCLUDE_GAMEGallery_HPP
+#define INCLUDE_GAMEGallery_HPP
 
 
 class GameGallery :public Gallery

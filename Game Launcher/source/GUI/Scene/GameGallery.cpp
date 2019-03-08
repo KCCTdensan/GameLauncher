@@ -1,18 +1,18 @@
 #include "GameGallery.hpp"
 
 
-game_gallery::game_gallery(HWND hWnd, scene_manager_interface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
-	:gallery(SceneChanger, CAT_GAME, BmpWidth, BmpHeight)
+GameGallery::GameGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
+	:Gallery(SceneChanger, CAT_GAME, BmpWidth, BmpHeight)
 {
 
 }
 
-game_gallery::~game_gallery()
+GameGallery::~GameGallery()
 {
 
 }
 
-int game_gallery::Initialize(HWND hWnd)
+int GameGallery::Initialize(HWND hWnd)
 {
 	DrawBkgnd();
 	InvalidateRect(hWnd, NULL, false);
@@ -20,18 +20,18 @@ int game_gallery::Initialize(HWND hWnd)
 	return 0;
 }
 
-int game_gallery::Finalize(HWND hWnd)
+int GameGallery::Finalize(HWND hWnd)
 {
 	return 0;
 }
 
-int game_gallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int GameGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
-	gallery::LButtonUp(hWnd, wp, lp);
+	Gallery::LButtonUp(hWnd, wp, lp);
 	return 0;
 }
 
-int game_gallery::Update(HWND hWnd)
+int GameGallery::Update(HWND hWnd)
 {
 	return 0;
 }

@@ -6,13 +6,13 @@
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 {
-	static scene_manager *Scene = nullptr;
+	static SceneManager *Scene = nullptr;
 
 	switch (msg)
 	{
 	case WM_CREATE:
 		SendMessage(hWnd, WM_ITEM_SCAN, 0, 0);
-		Scene = new scene_manager(hWnd, SceneName_MainMenu, ((LPCREATESTRUCT)lp)->cx, ((LPCREATESTRUCT)lp)->cy);
+		Scene = new SceneManager(hWnd, SceneName_MainMenu, ((LPCREATESTRUCT)lp)->cx, ((LPCREATESTRUCT)lp)->cy);
 		Scene->Initialize(hWnd);
 		ShowWindow(hWnd, SW_SHOW);
 		return 0;

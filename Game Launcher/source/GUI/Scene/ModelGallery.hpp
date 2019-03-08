@@ -2,15 +2,15 @@
 
 #include "Gallery.hpp"
 
-#ifndef INCLUDE_MODELGALLERY_HPP
-#define INCLUDE_MODELGALLERY_HPP
+#ifndef INCLUDE_MODELGallery_HPP
+#define INCLUDE_MODELGallery_HPP
 
 
-class model_gallery :public gallery
+class model_Gallery :public Gallery
 {
 public:
-	model_gallery(HWND hWnd, scene_manager_interface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
-	~model_gallery();
+	model_Gallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
+	~model_Gallery();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
 	int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);

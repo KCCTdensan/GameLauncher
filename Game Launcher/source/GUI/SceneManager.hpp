@@ -7,16 +7,16 @@
 #define INCLUDE_SCENEMANAGER_HPP
 
 
-class scene;
+class Scene;
 
-class scene_manager :public task, public scene_manager_interface
+class SceneManager : public Task, public SceneChangerInterface
 {
-	scene*Scenes[NumSceneName];
-	scene*CurrentScene;
+	Scene *Scenes[NumSceneName];
+	Scene *CurrentScene;
 
 public:
-	scene_manager(HWND hWnd, scene_name FirstScene, unsigned short BmpWidth, unsigned short BmpHeight);
-	~scene_manager();
+	SceneManager(HWND hWnd, SceneName FirstScene, unsigned short BmpWidth, unsigned short BmpHeight);
+	~SceneManager();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
 	int Paint(HWND hWnd);
