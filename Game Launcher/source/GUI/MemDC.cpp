@@ -15,7 +15,8 @@ void MemDC::UnprepareMemDC()
 	DeleteObject(hMemBmp);
 }
 
-MemDC::MemDC(unsigned short Width, unsigned short Height) :hMemDC(CreateCompatibleDC(NULL)), Width(Width), Height(Height)
+MemDC::MemDC(unsigned short Width, unsigned short Height)
+	:hMemDC(CreateCompatibleDC(NULL)), Width(Width), Height(Height)
 {
 	PrepareMemDC();
 }
