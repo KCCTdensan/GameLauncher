@@ -1,7 +1,7 @@
 #include "Gallery.hpp"
 
 
-Gallery::Gallery(SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :Scene(SceneChanger, BmpWidth, BmpHeight)
+Gallery::Gallery(SceneChangerInterface* SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :Scene(SceneChanger, BmpWidth, BmpHeight)
 {
 	hBrushBkgnd = CreateSolidBrush(BkgndColor);
 	hPenBkgnd = CreatePen(PS_SOLID, 0, BkgndColor);

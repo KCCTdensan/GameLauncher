@@ -11,10 +11,10 @@
 class Scene :public MemDC, public Task
 {
 protected:
-	SceneChangerInterface*SceneChanger;
+	SceneChangerInterface* SceneChanger;
 
 public:
-	Scene(SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	Scene(SceneChangerInterface* SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
 	virtual int Initialize(HWND hWnd);
 	virtual int Finalize(HWND hWnd);
 	virtual int Paint(HWND hWnd);

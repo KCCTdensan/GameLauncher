@@ -13,7 +13,7 @@ class Gallery :public Scene
 	HPEN hPenBkgnd;//”wŒi“h‚è‚Â‚Ô‚µ—p
 
 public:
-	Gallery(SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	Gallery(SceneChangerInterface* SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
 	~Gallery();
 };
 

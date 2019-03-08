@@ -13,7 +13,7 @@ class MainMenu :public Scene
 	HPEN hPenBkgnd;//”wŒi“h‚è‚Â‚Ô‚µ—p
 
 public:
-	MainMenu(HWND hWnd, SceneChangerInterface*SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	MainMenu(HWND hWnd, SceneChangerInterface* SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
 	~MainMenu();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
