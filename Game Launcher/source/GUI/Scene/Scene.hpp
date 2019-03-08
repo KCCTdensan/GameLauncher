@@ -3,21 +3,18 @@
 #include "../MemDC.hpp"
 #include "../Task.hpp"
 #include "../SceneChangerInterface.hpp"
-#include "../Color.hpp"
-#include "contents.hpp"
 
 #ifndef INCLUDE_SCENE_HPP
 #define INCLUDE_SCENE_HPP
 
 
-class scene :public mem_dc, public task
+class Scene :public MemDC, public Task
 {
 protected:
-	static color ColorBkgnd;
-	scene_manager_interface *SceneChanger;
+	SceneChangerInterface* SceneChanger;
 
 public:
-	scene(scene_manager_interface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	Scene(SceneChangerInterface* SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
 	virtual int Initialize(HWND hWnd);
 	virtual int Finalize(HWND hWnd);
 	virtual int Paint(HWND hWnd);

@@ -1,79 +1,46 @@
 #include "MainMenu.hpp"
-#include "Gallery.hpp"
-#include "wmsg.h"
 
 
-main_menu::main_menu(HWND hWnd, scene_manager_interface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
-	:scene(SceneChanger, BmpWidth, BmpHeight)
+MainMenu::MainMenu(HWND hWnd, SceneChangerInterface* SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight) :Scene(SceneChanger, BmpWidth, BmpHeight)
 {
-	LPCTSTR menuimage[] = {
-		L"img/IconApp.bmp",
-		L"img/IconGame.bmp",
-		L"img/IconMusic.bmp",
-		L"img/IconPic.bmp",
-		L"",
-		L"img/IconMovie.bmp",
-		L"",
-	};
-	int Split = ((MAX_CATEGORY / 2) + 1) * 2;
-	int Block = BmpWidth / Split;
-	int GalleryButtonWidth = Block * 5 / 6;
-	for(int i = 0; i < MAX_CATEGORY; ++i)
-	{
-		GalleryButtons[i] = new button(GalleryButtonWidth, GalleryButtonWidth);
-		GalleryButtons[i]->SetPosition((Split == MAX_CATEGORY) ? Block * i + Block / 10 : Block * i + Block / 2 + Block / 10, (BmpHeight - GalleryButtonWidth) / 2);
-		gallery::ColorAccent[i].RectangleGradation(GalleryButtons[i]->hMemDC, GalleryButtons[i]->GetRelativeRect());
-		GalleryButtons[i]->MaskBitmap(menuimage[i]);
-	}
+	hBrushBkgnd = CreateSolidBrush(BkgndColor);
+	hPenBkgnd = CreatePen(PS_SOLID, 0, BkgndColor);
 }
 
-main_menu::~main_menu()
+MainMenu::~MainMenu()
 {
-	for(int i = 0; i < MAX_CATEGORY; ++i)
-	{
-		delete GalleryButtons[i];
-	}
+	SelectObject(hMemDC, GetStockObject(NULL_BRUSH));//hMemDC‚ª‚Ü‚¾”jŠü‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅA•Ê‚Ìƒuƒ‰ƒV‚ð‘I‘ð‚µ‚Ä‚¨‚­
+	SelectObject(hMemDC, GetStockObject(NULL_PEN));//hMemDC‚ª‚Ü‚¾”jŠü‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅA•Ê‚Ìƒyƒ“‚ð‘I‘ð‚µ‚Ä‚¨‚­
+	DeleteObject(hBrushBkgnd);
+	DeleteObject(hPenBkgnd);
+	hBrushBkgnd = NULL;
+	hPenBkgnd = NULL;
 }
 
-int main_menu::Initialize(HWND hWnd)
+int MainMenu::Initialize(HWND hWnd)
 {
-	ColorBkgnd.Rectangle(hMemDC, 0, 0, Width, Height);
-	for(int i = 0; i < MAX_CATEGORY; ++i)
-	{
-		GalleryButtons[i]->Paint(hMemDC);
-	}
+	//”wŒi‚ð“h‚è‚Â‚Ô‚·
+	SelectObject(hMemDC, hBrushBkgnd);
+	SelectObject(hMemDC, hPenBkgnd);
+	Rectangle(hMemDC, 0, 0, Width, Height);
 	InvalidateRect(hWnd, NULL, false);
 	UpdateWindow(hWnd);
 
 	return 0;
 }
 
-int main_menu::Finalize(HWND hWnd)
+int MainMenu::Finalize(HWND hWnd)
 {
 	return 0;
 }
 
-int main_menu::LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp)
+int MainMenu::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
+	DestroyWindow(hWnd);
 	return 0;
 }
 
-int main_menu::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
-{
-	unsigned short x = LOWORD(lp);
-	unsigned short y = HIWORD(lp);
-	for(int i = 0; i < MAX_CATEGORY; ++i)
-	{
-		if (GalleryButtons[i]->PointInButtonRect(x, y))
-		{
-			PostMessage(hWnd, WM_GUI_CHANGESCENE, i + SceneName_AppGallery, 0);
-			break;
-		}
-	}
-	return 0;
-}
-
-int main_menu::Update(HWND hWnd)
+int MainMenu::Update(HWND hWnd)
 {
 	return 0;
 }

@@ -1,24 +1,22 @@
 #pragma once
 
 #include "Scene.hpp"
-#include "../Color.hpp"
-#include "../Button.hpp"
-#include "contents.hpp"
 
 #ifndef INCLUDE_MAINMENU_HPP
 #define INCLUDE_MAINMENU_HPP
 
 
-class main_menu :public scene
+class MainMenu :public Scene
 {
-	button *GalleryButtons[MAX_CATEGORY];
+	const static COLORREF BkgndColor = RGB(0x1f, 0x1f, 0x1f);
+	HBRUSH hBrushBkgnd;//”wŒi“h‚è‚Â‚Ô‚µ—p
+	HPEN hPenBkgnd;//”wŒi“h‚è‚Â‚Ô‚µ—p
 
 public:
-	main_menu(HWND hWnd, scene_manager_interface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
-	~main_menu();
+	MainMenu(HWND hWnd, SceneChangerInterface* SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	~MainMenu();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
-	int LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp);
 	int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);
 	int Update(HWND hWnd);
 };
