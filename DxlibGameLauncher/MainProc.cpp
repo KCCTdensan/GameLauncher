@@ -11,6 +11,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		SetDrawScreen(DX_SCREEN_BACK);
 
+
 	}
 
 	return 0;				// ソフトの終了 
