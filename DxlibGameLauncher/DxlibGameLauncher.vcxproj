@@ -162,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainScene.h" />
+    <ClInclude Include="OperationData.h" />
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneManager.h" />
   </ItemGroup>
