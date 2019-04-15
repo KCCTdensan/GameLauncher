@@ -1,5 +1,9 @@
 #pragma once
+
+#include "ObjectData.h"
 #include <string>
+
+#define OBJECT_MAX 256
 
 using namespace std;
 
@@ -15,5 +19,9 @@ public:
 
 	void Update();
 	void Draw();
+
+private:
+
+	ObjectData object[OBJECT_MAX];
 };
 

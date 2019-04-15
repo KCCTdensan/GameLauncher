@@ -23,6 +23,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		SetDrawScreen(DX_SCREEN_BACK);
 
 	}
-
+	DxLib_End();
 	return 0;				// ソフトの終了 
 }

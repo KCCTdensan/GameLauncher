@@ -4,6 +4,10 @@
 
 ObjectManager::ObjectManager()
 {
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		object[i].ExistenceFlag = FALSE;
+	}
 }
 
 
@@ -28,6 +32,10 @@ int ObjectManager::ObjectRoundnessSetup(string stg, bool flag, int size)
 
 void ObjectManager::Update()
 {
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag) continue;
+	}
 }
 
 void ObjectManager::Draw()
