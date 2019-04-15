@@ -156,10 +156,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MainProc.cpp" />
+    <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="SceneData.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MainScene.h" />
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneManager.h" />
   </ItemGroup>
