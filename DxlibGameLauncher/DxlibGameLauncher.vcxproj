@@ -163,6 +163,7 @@
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppData.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="ObjectData.h" />
     <ClInclude Include="ObjectManager.h" />
