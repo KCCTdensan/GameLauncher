@@ -7,9 +7,12 @@ int Ope::CURRENT_WINDOW_SIZE_Y = 0;
 
 SceneManager Ope::sceneManager;
 
+#pragma warning(push)
+#pragma warning(disable:28251)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	SetAlwaysRunFlag(TRUE);
+
 
 	if(DxLib_Init() == -1)		// ＤＸライブラリ初期化処理
 	{
@@ -26,3 +29,4 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	DxLib_End();
 	return 0;				// ソフトの終了 
 }
+#pragma warning(pop)

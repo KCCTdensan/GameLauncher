@@ -1,6 +1,32 @@
 #include "ObjectManager.h"
 
+/*
 
+
+	object[i].pictureHandleTmp;
+	object[i].pictureHandle;
+
+	object[i].WritingFlag = FALSE;
+	object[i].writing;
+	object[i].writingX;
+	object[i].writingY;
+	object[i].WritingWidth;
+
+	object[i].writingColor;
+	object[i].writingFont;
+	object[i].ritingSize;
+
+	object[i].ListFlag;
+	object[i].ListArrengement;
+	object[i].ListData[LIST_MAX];
+	object[i].ListDataX[LIST_MAX];
+	object[i].ListDataY[LIST_MAX];
+	object[i].ListDataWidth[LIST_MAX];
+	object[i].ListOneSizeheight[LIST_MAX];
+
+
+
+*/
 
 ObjectManager::ObjectManager()
 {
@@ -15,8 +41,21 @@ ObjectManager::~ObjectManager()
 {
 }
 
-int ObjectManager::ObjectSetup(string stg, int x, int y, int sizeX, int sizeY, bool AnimationFlag)
+int ObjectManager::ObjectSetup(string stg, int x, int y, int sizeX, int sizeY)
 {
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (object[i].ExistenceFlag) continue;
+
+		object[i].ExistenceFlag = TRUE;
+		object[i].EffectiveFlag = TRUE;
+
+		object[i].x;
+		object[i].y;
+		object[i].xSize;
+		object[i].ySize;
+
+	}
 	return 0;
 }
 

@@ -13,7 +13,7 @@ public:
 	ObjectManager();
 	~ObjectManager();
 
-	int ObjectSetup(string stg, int x, int y, int sizeX, int sizeY, bool AnimationFlag);
+	int ObjectSetup(string stg, int x, int y, int sizeX, int sizeY);
 	int ObjectColorSetup(string stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor);
 	int ObjectRoundnessSetup(string stg, bool flag, int size);
 
