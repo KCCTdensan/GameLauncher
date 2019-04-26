@@ -3,6 +3,8 @@
 #include "DxLib.h"
 #define LIST_MAX 64
 
+using namespace std;
+
 class ObjectData
 {
 public:
@@ -10,6 +12,8 @@ public:
 	~ObjectData();
 
 	int ObjectType;
+
+	string name;
 
 	bool ExistenceFlag = FALSE;//存在フラグ
 	bool EffectiveFlag = TRUE;//有効フラグ
@@ -28,6 +32,12 @@ public:
 	int xSize;
 	int ySize;
 
+	bool insideFlag;
+	bool outsideFlag;
+	int insideColor;
+	int outsideColor;
+	int outsidePixel;
+
 	int pictureHandleTmp;
 	int pictureHandle;
 
@@ -41,8 +51,9 @@ public:
 	int writingFont;
 	int writingSize;
 
+	int WritingArrengement;
+
 	bool ListFlag;
-	int ListArrengement;
 	string ListData[LIST_MAX];
 	int ListDataX[LIST_MAX];
 	int ListDataY[LIST_MAX];
