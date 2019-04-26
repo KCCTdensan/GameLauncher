@@ -1,6 +1,8 @@
 #include "SceneManager.h"
 #include "DxLib.h"
 
+#include "MainScene.h"
+
 
 SceneData *SceneManager::currentScene = NULL;
 //SceneData *SceneManager::currentSceneLoad = new LoadScene();
@@ -25,25 +27,14 @@ int SceneManager::ChanegeScene(SCENE scene)
 
 	switch(scene)
 	{
-	case SCENE::WINDOWSIZECHANGE:
-		currentScene = new WindowSizeChangeScene();
+	case SCENE::MAIN:
+		currentScene = new MainScene();
 		i = TRUE;
 		break;
-	case SCENE::TITLE:
-		currentScene = new TitleScene();
-		i = TRUE;
-		break;
-	case SCENE::GAMEPLAY:
-		currentScene = new GamePlayScene();
-		i = TRUE;
-		break;
-	case SCENE::LOADFILE:
-		currentScene = new LoadFileScene();
-		i = TRUE;
-		break;
+	
 	default:
 		i = FALSE;
-		Ope::APPLICATION_END_FLAG = TRUE;
+		
 	}
 	return i;
 }
