@@ -42,7 +42,7 @@ public:
 	int pictureHandle;
 
 	bool WritingFlag = FALSE;
-	string writing;
+	wstring writing;
 	int writingX;
 	int writingY;
 	int WritingWidth;
@@ -50,6 +50,8 @@ public:
 	int writingColor;
 	int writingFont;
 	int writingSize;
+
+	int FontHandle;
 
 	int WritingArrengement;
 

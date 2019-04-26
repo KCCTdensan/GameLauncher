@@ -1,4 +1,6 @@
 #include "ObjectManager.h"
+#include "AppData.h"
+
 
 /*
 
@@ -92,7 +94,7 @@ int ObjectManager::RoundnessSet(string stg, bool flag, int size)
 	return 0;
 }
 
-int ObjectManager::WritingSet(string stg, bool flag, string data)
+int ObjectManager::WritingSet(string stg, bool flag, wstring data)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -105,7 +107,7 @@ int ObjectManager::WritingSet(string stg, bool flag, string data)
 	return 0;
 }
 
-int ObjectManager::WritingFontSet(string stg, int font, int color,int arrengement)
+int ObjectManager::WritingFontSet(string stg, int font, int color, int arrengement)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -115,10 +117,40 @@ int ObjectManager::WritingFontSet(string stg, int font, int color,int arrengemen
 		object[i].writingFont = font;
 		object[i].writingColor = color;
 		object[i].WritingArrengement = arrengement;
-		
+
 		re_num = 0;
 
+		string a;
 
+		switch (object[i].writingFont)
+		{
+		case OBJECT_FONT_GOTHIC:
+			a = App::FONT_GOTHIC;
+
+			break;
+		}
+
+		object[i].FontHandle = CreateFontToHandle(a.c_str, object[i].writingSize, -1, DX_FONTTYPE_ANTIALIASING);
+
+		int len;
+
+		switch (object[i].WritingArrengement)
+		{
+		case ARRANGEMENT_LEFT:
+			object[i].writingX = object[i].x + object[i].outsidePixel;
+			break;
+		case ARRANGEMENT_CENTER:
+			len = lstrlen(object[i].writing.c_str());
+			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
+			object[i].writingX = object[i].x + (object[i].xSize - object[i].WritingWidth) / 2;
+			break;
+		case ARRANGEMENT_RIGHT:
+			len = lstrlen(object[i].writing.c_str());
+			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
+			object[i].writingX = object[i].x + object[i].xSize - object[i].WritingWidth - object[i].outsidePixel;
+			break;
+		}
+		object[i].writingY = object[i].y + (object[i].ySize - object[i].writingSize) / 2;
 	}
 
 	return re_num;
