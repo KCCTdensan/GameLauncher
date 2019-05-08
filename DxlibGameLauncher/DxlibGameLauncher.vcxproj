@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MainProc.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="ObjectData.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\OneDrive - Office365 Dateless\Document\Visual Studio\BlockShoot2\InputManager.h" />
     <ClInclude Include="AppData.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="ObjectData.h" />
