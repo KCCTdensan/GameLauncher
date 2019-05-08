@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ObjectData.h"
-#include <string>
 
 #define OBJECT_MAX 256
 
@@ -11,7 +10,6 @@
 
 #define OBJECT_FONT_GOTHIC 0
 
-using namespace std;
 
 class ObjectManager
 {
@@ -32,4 +30,3 @@ private:
 
 	ObjectData object[OBJECT_MAX];
 };
-

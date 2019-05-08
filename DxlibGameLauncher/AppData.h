@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace App {
 
 	constexpr int BACKGROUND_SIZE_X = 1920;

@@ -1,7 +1,9 @@
 #pragma once
+
 #include "SceneData.h"
-class MainScene :
-	public SceneData
+
+
+class MainScene : public SceneData
 {
 public:
 	MainScene();
@@ -10,4 +12,3 @@ public:
 	void Update();
 	void Draw();
 };
-

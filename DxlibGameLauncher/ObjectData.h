@@ -1,12 +1,9 @@
 #pragma once
 
-#include <string>
-#include "DxLib.h"
+#include <DxLib.h>
 #include "OperationData.h"
 
 #define LIST_MAX 64
-
-using namespace std;
 
 
 class ObjectData

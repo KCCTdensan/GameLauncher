@@ -6,7 +6,6 @@ SceneData::SceneData()
 {
 }
 
-
 SceneData::~SceneData()
 {
 }

@@ -1,6 +1,8 @@
 #pragma once
+
+#include <DxLib.h>
 #include "SceneData.h"
-#include "DxLib.h"
+
 
 class SceneManager
 {
@@ -23,4 +25,3 @@ private:
 
 	static SceneData* currentScene;
 };
-

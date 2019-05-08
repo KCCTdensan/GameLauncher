@@ -13,6 +13,7 @@ using tstring = std::string;
 
 #endif
 
+
 namespace Ope {
 
 	extern int CURRENT_WINDOW_SIZE_X;
@@ -20,5 +21,4 @@ namespace Ope {
 	extern int CURRENT_WINDOW_COLOR_BIT;
 
 	extern SceneManager sceneManager;
-
 }

@@ -1,6 +1,4 @@
 #include "SceneManager.h"
-#include "DxLib.h"
-
 #include "MainScene.h"
 
 
@@ -9,8 +7,8 @@ SceneData *SceneManager::currentScene = NULL;
 
 SceneManager::SceneManager()
 {
-}
 
+}
 
 SceneManager::~SceneManager()
 {
