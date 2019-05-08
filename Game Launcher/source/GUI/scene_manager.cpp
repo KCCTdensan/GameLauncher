@@ -1,4 +1,4 @@
-#include "SceneManager.hpp"
+#include "scene_manager.hpp"
 #include "Scene/MainMenu.hpp"
 #include "Scene/AppGallery.hpp"
 #include "Scene/GameGallery.hpp"

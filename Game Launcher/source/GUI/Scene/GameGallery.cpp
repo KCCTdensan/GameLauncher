@@ -2,7 +2,7 @@
 
 
 GameGallery::GameGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(SceneChanger, CAT_GAME, BmpWidth, BmpHeight)
+	:Gallery(SceneChanger, BmpWidth, BmpHeight)
 {
 
 }

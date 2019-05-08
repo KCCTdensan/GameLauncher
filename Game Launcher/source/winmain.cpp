@@ -1,11 +1,11 @@
-#include "WndProc.hpp"
+#include "window_procedure.hpp"
 
 
 namespace
 {
-	const TCHAR WND_CLS_NAME[] = TEXT("GAMELAUNCHER");
+	constexpr LPTSTR windowClassName = TEXT("GAMELAUNCHER");
 
-	ATOM RegWndCls(HINSTANCE hInstance)
+	ATOM registerWindowClass(HINSTANCE hInstance)
 	{
 		WNDCLASS wndcls;
 
@@ -18,34 +18,34 @@ namespace
 		wndcls.hCursor = LoadCursor(NULL, IDC_ARROW);
 		wndcls.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 		wndcls.lpszMenuName = NULL;
-		wndcls.lpszClassName = WND_CLS_NAME;
+		wndcls.lpszClassName = windowClassName;
 
 		return RegisterClass(&wndcls);
 	}
 
-	bool CreateMainWnd()
+	bool createMainWindow()
 	{
-		RECT WindowRect;
+		RECT windowRect;
 
-		GetWindowRect(GetDesktopWindow(), &WindowRect);
+		GetWindowRect(GetDesktopWindow(), &windowRect);
 
-		return CreateWindow(WND_CLS_NAME, TEXT("Game Launcher"), WS_POPUP,
-			0, 0, WindowRect.right, WindowRect.bottom,
+		return CreateWindow(windowClassName, TEXT("Game Launcher"), WS_POPUP,
+			0, 0, windowRect.right, windowRect.bottom,
 			NULL, NULL, NULL, NULL) != NULL;
 	}
 }
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
 	bool loop = true;
 	MSG msg;
 
-	if (RegWndCls(hInstance) == 0)
+	if (registerWindowClass(hInstance) == 0)
 	{
 		return -1;
 	}
 
-	if (!CreateMainWnd())
+	if (!createMainWindow())
 	{
 		return -1;
 	}

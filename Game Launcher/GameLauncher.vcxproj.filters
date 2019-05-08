@@ -30,15 +30,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\WinMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\WndProc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GUI\SceneManager.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="source\GUI\Scene\MainMenu.cpp">
       <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
@@ -57,6 +48,18 @@
     <ClCompile Include="source\GUI\Scene\Gallery.cpp">
       <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="source\winmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\window_procedure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\item_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\scene_manager.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp">
@@ -64,12 +67,6 @@
     </ClInclude>
     <ClInclude Include="source\wmsg.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\WndProc.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\SceneManager.hpp">
-      <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="source\GUI\Scene\MainMenu.hpp">
       <Filter>Header Files\GUI\Scene</Filter>
@@ -94,6 +91,15 @@
     </ClInclude>
     <ClInclude Include="source\GUI\Scene\Gallery.hpp">
       <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\window_procedure.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\item_manager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\scene_manager.hpp">
+      <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
