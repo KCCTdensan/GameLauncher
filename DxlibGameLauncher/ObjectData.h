@@ -42,7 +42,7 @@ public:
 	int pictureHandle;
 
 	bool WritingFlag = FALSE;
-	wstring writing;
+	string writing;
 	int writingX;
 	int writingY;
 	int WritingWidth;

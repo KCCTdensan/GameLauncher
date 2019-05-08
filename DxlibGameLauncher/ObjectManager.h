@@ -22,7 +22,7 @@ public:
 	int Set(string stg, int x, int y, int sizeX, int sizeY);
 	int ColorSet(string stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor);
 	int RoundnessSet(string stg, bool flag, int size);
-	int WritingSet(string stg, bool flag, wstring data);
+	int WritingSet(string stg, bool flag, string data);
 	int WritingFontSet(string stg, int Font = 0, int Color = 0, int arrengement = 0);
 
 	void Update();
