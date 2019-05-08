@@ -1,9 +1,13 @@
 #pragma once
+
 #include <string>
 #include "DxLib.h"
+#include "OperationData.h"
+
 #define LIST_MAX 64
 
 using namespace std;
+
 
 class ObjectData
 {
@@ -13,7 +17,7 @@ public:
 
 	int ObjectType;
 
-	string name;
+	tstring name;
 
 	bool ExistenceFlag = FALSE;//存在フラグ
 	bool EffectiveFlag = TRUE;//有効フラグ
@@ -42,7 +46,7 @@ public:
 	int pictureHandle;
 
 	bool WritingFlag = FALSE;
-	string writing;
+	tstring writing;
 	int writingX;
 	int writingY;
 	int WritingWidth;
@@ -56,7 +60,7 @@ public:
 	int WritingArrengement;
 
 	bool ListFlag;
-	string ListData[LIST_MAX];
+	tstring ListData[LIST_MAX];
 	int ListDataX[LIST_MAX];
 	int ListDataY[LIST_MAX];
 	int ListDataWidth[LIST_MAX];

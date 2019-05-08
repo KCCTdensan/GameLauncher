@@ -1,5 +1,17 @@
 #pragma once
+
+#include <string>
 #include "SceneManager.h"
+
+#ifdef UNICODE
+
+using tstring = std::wstring;
+
+#else
+
+using tstring = std::string;
+
+#endif
 
 namespace Ope {
 

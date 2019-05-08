@@ -8,6 +8,5 @@ namespace App {
 	constexpr int DEFAULT_WINDOW_SIZE_X = 1920;
 	constexpr int DEFAULT_WINDOW_SIZE_Y = 1080;
 
-	constexpr char FONT_GOTHIC[] = "MS PGothic";
-
+	constexpr TCHAR FONT_GOTHIC[] = TEXT("MS PGothic");
 }

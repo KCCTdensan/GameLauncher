@@ -1,7 +1,8 @@
 #include "DxLib.h"
-#include "OperationData.h"
 #include <Windows.h>
+#include "OperationData.h"
 #include "AppData.h"
+
 
 int Ope::CURRENT_WINDOW_COLOR_BIT = 0;
 int Ope::CURRENT_WINDOW_SIZE_X = 0;
@@ -11,12 +12,12 @@ SceneManager Ope::sceneManager;
 
 #pragma warning(push)
 #pragma warning(disable:28251)
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
 {
 	SetAlwaysRunFlag(TRUE);
 	ChangeWindowMode(FALSE);
 
-	SetWindowText(_T("GameLauncher"));
+	SetWindowText(TEXT("GameLauncher"));
 
 	SetDrawArea(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y);
 
@@ -25,7 +26,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		return -1;			// エラーが起きたら直ちに終了
 	}
-
 
 
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())

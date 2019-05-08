@@ -43,7 +43,7 @@ ObjectManager::~ObjectManager()
 {
 }
 
-int ObjectManager::Set(string stg, int x, int y, int sizeX, int sizeY)
+int ObjectManager::Set(tstring stg, int x, int y, int sizeX, int sizeY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -61,7 +61,7 @@ int ObjectManager::Set(string stg, int x, int y, int sizeX, int sizeY)
 	return 0;
 }
 
-int ObjectManager::ColorSet(string stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
+int ObjectManager::ColorSet(tstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -80,7 +80,7 @@ int ObjectManager::ColorSet(string stg, bool outsideFlag, int outsideColor, int 
 	return re_num;
 }
 
-int ObjectManager::RoundnessSet(string stg, bool flag, int size)
+int ObjectManager::RoundnessSet(tstring stg, bool flag, int size)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -94,7 +94,7 @@ int ObjectManager::RoundnessSet(string stg, bool flag, int size)
 	return 0;
 }
 
-int ObjectManager::WritingSet(string stg, bool flag, string data)
+int ObjectManager::WritingSet(tstring stg, bool flag, tstring data)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -107,7 +107,7 @@ int ObjectManager::WritingSet(string stg, bool flag, string data)
 	return 0;
 }
 
-int ObjectManager::WritingFontSet(string stg, int font, int color, int arrengement)
+int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrengement)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -120,7 +120,7 @@ int ObjectManager::WritingFontSet(string stg, int font, int color, int arrengeme
 
 		re_num = 0;
 
-		string a;
+		tstring a;
 
 		switch (object[i].writingFont)
 		{
@@ -140,12 +140,12 @@ int ObjectManager::WritingFontSet(string stg, int font, int color, int arrengeme
 			object[i].writingX = object[i].x + object[i].outsidePixel;
 			break;
 		case ARRANGEMENT_CENTER:
-			len = strlen(object[i].writing.c_str());
+			len = (int)lstrlen(object[i].writing.c_str());
 			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
 			object[i].writingX = object[i].x + (object[i].xSize - object[i].WritingWidth) / 2;
 			break;
 		case ARRANGEMENT_RIGHT:
-			len = strlen(object[i].writing.c_str());
+			len = (int)lstrlen(object[i].writing.c_str());
 			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
 			object[i].writingX = object[i].x + object[i].xSize - object[i].WritingWidth - object[i].outsidePixel;
 			break;

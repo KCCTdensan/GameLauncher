@@ -57,33 +57,6 @@
     <ClCompile Include="source\GUI\Scene\Gallery.cpp">
       <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="source\GUI\Color.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ItemManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GUI\Scene\ModelGallery.cpp">
-      <Filter>Source Files\GUI\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GUI\Scene\MusicGallery.cpp">
-      <Filter>Source Files\GUI\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GUI\Scene\OthersGallery.cpp">
-      <Filter>Source Files\GUI\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GUI\Scene\PictureGallery.cpp">
-      <Filter>Source Files\GUI\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GUI\Scene\VideoGallery.cpp">
-      <Filter>Source Files\GUI\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GUI\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GUI\Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp">
@@ -121,33 +94,6 @@
     </ClInclude>
     <ClInclude Include="source\GUI\Scene\Gallery.hpp">
       <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Color.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Scene\ModelGallery.hpp">
-      <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Scene\MusicGallery.hpp">
-      <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Scene\OthersGallery.hpp">
-      <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Scene\PictureGallery.hpp">
-      <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Scene\VideoGallery.hpp">
-      <Filter>Header Files\GUI\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Window.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GUI\Button.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ItemManager.hpp">
-      <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
