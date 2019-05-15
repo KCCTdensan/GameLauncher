@@ -162,6 +162,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SceneData.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\OneDrive - Office365 Dateless\Document\Visual Studio\BlockShoot2\InputManager.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="OperationData.h" />
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

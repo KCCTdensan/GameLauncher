@@ -8,12 +8,19 @@ int Ope::CURRENT_WINDOW_COLOR_BIT = 0;
 int Ope::CURRENT_WINDOW_SIZE_X = 0;
 int Ope::CURRENT_WINDOW_SIZE_Y = 0;
 
+float Ope::WINDOW_SIZE_RATE = 1.0f;
+float Ope::WINDOW_SIZE_RATE_TIME = 1.0f;
+
+HWND Ope::MAIN_WINDOW_HANDLE = -1;
+
 SceneManager Ope::sceneManager;
 
 #pragma warning(push)
 #pragma warning(disable:28251)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
 {
+	Ope::MAIN_WINDOW_HANDLE = GetMainWindowHandle();
+
 	SetAlwaysRunFlag(TRUE);
 	ChangeWindowMode(FALSE);
 
