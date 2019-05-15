@@ -38,6 +38,7 @@ ObjectManager::ObjectManager()
 	}
 }
 
+
 ObjectManager::~ObjectManager()
 {
 }

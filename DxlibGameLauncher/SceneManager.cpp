@@ -1,14 +1,16 @@
 #include "SceneManager.h"
+#include "DxLib.h"
 #include "MainScene.h"
 
-
+using namespace std;
 SceneData *SceneManager::currentScene = NULL;
-//SceneData *SceneManager::currentSceneLoad = new LoadScene();
+SceneData* scenes[SCENE_NUM];
+
 
 SceneManager::SceneManager()
 {
-
 }
+
 
 SceneManager::~SceneManager()
 {
@@ -25,7 +27,7 @@ int SceneManager::ChanegeScene(SCENE scene)
 
 	switch(scene)
 	{
-	case SCENE::MAIN:
+	case MAIN:
 		currentScene = new MainScene();
 		i = TRUE;
 		break;
