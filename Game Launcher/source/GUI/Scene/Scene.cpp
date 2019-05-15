@@ -1,13 +1,13 @@
 #include "Scene.hpp"
 
 
-Scene::Scene(SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
-	:MemDC(BmpWidth, BmpHeight)
+Scene::Scene(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
+	:MemDC(BmpWidth, BmpHeight), Task(hWnd)
 {
 	Scene::SceneChanger = SceneChanger;
 }
 
-int Scene::Paint(HWND hWnd)
+int Scene::paint()
 {
 	PAINTSTRUCT ps;
 	HDC hdc = BeginPaint(hWnd, &ps);

@@ -14,7 +14,6 @@ AppGallery::~AppGallery()
 
 int AppGallery::Initialize(HWND hWnd)
 {
-	DrawBkgnd();
 	InvalidateRect(hWnd, NULL, false);
 	UpdateWindow(hWnd);
 	return 0;
@@ -27,7 +26,7 @@ int AppGallery::Finalize(HWND hWnd)
 
 int AppGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
-	Gallery::LButtonUp(hWnd, wp, lp);
+	Gallery::buttonLUp(hWnd, wp, lp);
 	return 0;
 }
 

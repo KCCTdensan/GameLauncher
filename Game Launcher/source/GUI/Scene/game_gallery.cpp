@@ -7,14 +7,8 @@ GameGallery::GameGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigne
 
 }
 
-GameGallery::~GameGallery()
-{
-
-}
-
 int GameGallery::Initialize(HWND hWnd)
 {
-	DrawBkgnd();
 	InvalidateRect(hWnd, NULL, false);
 	UpdateWindow(hWnd);
 	return 0;
@@ -27,7 +21,7 @@ int GameGallery::Finalize(HWND hWnd)
 
 int GameGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
 {
-	Gallery::LButtonUp(hWnd, wp, lp);
+	Gallery::buttonLUp(hWnd, wp, lp);
 	return 0;
 }
 

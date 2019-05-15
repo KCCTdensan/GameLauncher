@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Windows.h>
-
 #ifndef INCLUDE_SCENECHANGERINTERFACE_HPP
 #define INCLUDE_SCENECHANGERINTERFACE_HPP
 
@@ -17,13 +15,13 @@ enum SceneName
 	SceneName_VideoGallery,
 	SceneName_OthersGallery,
 
-	NumSceneName
+	numScene
 };
 
 class SceneChangerInterface
 {
 public:
-
+	virtual int changeScene(SceneName nextScene) = 0;
 };
 
 

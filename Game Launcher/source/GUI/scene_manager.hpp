@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Task.hpp"
-#include "SceneChangerInterface.hpp"
+#include "task.hpp"
+#include "scene_changer_interface.hpp"
 
 #ifndef INCLUDE_SCENEMANAGER_HPP
 #define INCLUDE_SCENEMANAGER_HPP
@@ -11,22 +11,22 @@ class Scene;
 
 class SceneManager : public Task, public SceneChangerInterface
 {
-	Scene *Scenes[NumSceneName];
-	Scene *CurrentScene;
+	Scene *scenes[numScene];
+	Scene *currentScene;
 
 public:
-	SceneManager(HWND hWnd, SceneName FirstScene, unsigned short BmpWidth, unsigned short BmpHeight);
+	SceneManager(HWND hWnd, SceneName firstScene, unsigned short bmpWidth, unsigned short bmpHeight);
 	~SceneManager();
-	int Initialize(HWND hWnd);
-	int Finalize(HWND hWnd);
-	int Paint(HWND hWnd);
-	int MouseMove(HWND hWnd, WPARAM wp, LPARAM lp);
-	int LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp);
-	int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);
-	int RButtonDown(HWND hWnd, WPARAM wp, LPARAM lp);
-	int RButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);
-	int Update(HWND hWnd);
-	int ChangeScene(HWND hWnd, WPARAM wp);
+	int initialize();
+	int finalize();
+	int paint();
+	int mouseMove(unsigned short x, unsigned short y, unsigned int param);
+	int buttonLDown(unsigned short x, unsigned short y);
+	int buttonLUp(unsigned short x, unsigned short y);
+	int buttonRDown(unsigned short x, unsigned short y);
+	int buttonRUp(unsigned short x, unsigned short y);
+	int update();
+	int changeScene(SceneName nextScene);
 };
 
 

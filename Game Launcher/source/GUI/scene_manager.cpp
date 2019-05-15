@@ -9,85 +9,82 @@
 #include "Scene/OthersGallery.hpp"
 
 
-SceneManager::SceneManager(HWND hWnd, SceneName FirstScene, unsigned short BmpWidth, unsigned short BmpHeight)
+SceneManager::SceneManager(HWND hWnd, SceneName firstScene, unsigned short bmpWidth, unsigned short bmpHeight)
+	: Task(hWnd)
 {
-	Scenes[SceneName_MainMenu] = new MainMenu(hWnd, this, BmpWidth, BmpHeight);
-	Scenes[SceneName_AppGallery] = new AppGallery(hWnd, this, BmpWidth, BmpHeight);
-	Scenes[SceneName_GameGallery] = new GameGallery(hWnd, this, BmpWidth, BmpHeight);
-	Scenes[SceneName_MusicGallery] = new music_Gallery(hWnd, this, BmpWidth, BmpHeight);
-	Scenes[SceneName_PictureGallery] = new picture_Gallery(hWnd, this, BmpWidth, BmpHeight);
-	Scenes[SceneName_3DModelGallery] = new model_Gallery(hWnd, this, BmpWidth, BmpHeight);
-	Scenes[SceneName_VideoGallery] = new video_Gallery(hWnd, this, BmpWidth, BmpHeight);
-	Scenes[SceneName_OthersGallery] = new others_Gallery(hWnd, this, BmpWidth, BmpHeight);
-	CurrentScene = Scenes[FirstScene];
+	scenes[SceneName_MainMenu] = new MainMenu(hWnd, this, bmpWidth, bmpHeight);
+	scenes[SceneName_AppGallery] = new AppGallery(hWnd, this, bmpWidth, bmpHeight);
+	scenes[SceneName_GameGallery] = new GameGallery(hWnd, this, bmpWidth, bmpHeight);
+	scenes[SceneName_MusicGallery] = new MusicGallery(hWnd, this, bmpWidth, bmpHeight);
+	scenes[SceneName_PictureGallery] = new PictureGallery(hWnd, this, bmpWidth, bmpHeight);
+	scenes[SceneName_3DModelGallery] = new ModelGallery(hWnd, this, bmpWidth, bmpHeight);
+	scenes[SceneName_VideoGallery] = new VideoGallery(hWnd, this, bmpWidth, bmpHeight);
+	scenes[SceneName_OthersGallery] = new OthersGallery(hWnd, this, bmpWidth, bmpHeight);
+	currentScene = scenes[firstScene];
 }
 
 SceneManager::~SceneManager()
 {
-	for (int i = 0; i < NumSceneName; i++)
+	for (int i = 0; i < numScene; i++)
 	{
-		delete Scenes[i];
-		Scenes[i] = nullptr;
+		delete scenes[i];
+		scenes[i] = nullptr;
 	}
-	CurrentScene = nullptr;
+	currentScene = nullptr;
 }
 
-int SceneManager::Initialize(HWND hWnd)
+int SceneManager::initialize()
 {
-	return CurrentScene->Initialize(hWnd);
+	return currentScene->initialize();
 }
 
-int SceneManager::Finalize(HWND hWnd)
+int SceneManager::finalize()
 {
-	return CurrentScene->Finalize(hWnd);
+	return currentScene->finalize();
 }
 
-int SceneManager::Paint(HWND hWnd)
+int SceneManager::paint()
 {
-	return CurrentScene->Paint(hWnd);
+	return currentScene->paint();
 }
 
-int SceneManager::MouseMove(HWND hWnd, WPARAM wp, LPARAM lp)
+int SceneManager::mouseMove(unsigned short x, unsigned short y, unsigned int param)
 {
-	return CurrentScene->MouseMove(hWnd, wp, lp);
+	return currentScene->mouseMove(x, y, param);
 }
 
-int SceneManager::LButtonDown(HWND hWnd, WPARAM wp, LPARAM lp)
+int SceneManager::buttonLDown(unsigned short x, unsigned short y)
 {
-	return CurrentScene->LButtonDown(hWnd, wp, lp);
+	return currentScene->buttonLDown(x, y);
 }
 
-int SceneManager::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int SceneManager::buttonLUp(unsigned short x, unsigned short y)
 {
-	return CurrentScene->LButtonUp(hWnd, wp, lp);
+	return currentScene->buttonLUp(x, y);
 }
 
-int SceneManager::RButtonDown(HWND hWnd, WPARAM wp, LPARAM lp)
+int SceneManager::buttonRDown(unsigned short x, unsigned short y)
 {
-	return CurrentScene->RButtonDown(hWnd, wp, lp);
+	return currentScene->buttonRDown(x, y);
 }
 
-int SceneManager::RButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int SceneManager::buttonRUp(unsigned short x, unsigned short y)
 {
-	return CurrentScene->RButtonUp(hWnd, wp, lp);
+	return currentScene->buttonRUp(x, y);
 }
 
-int SceneManager::Update(HWND hWnd)
+int SceneManager::update()
 {
-	return CurrentScene->Update(hWnd);
+	return currentScene->update();
 }
 
-int SceneManager::ChangeScene(HWND hWnd, WPARAM wp)
+int SceneManager::changeScene(SceneName nextScene)
 {
-	if(wp < 0 || wp >= NumSceneName)
+	int ret = currentScene->finalize();
+	if(ret != 0)
 	{
-		return -1;
+		return ret;
 	}
-	int Ret = CurrentScene->Finalize(hWnd);
-	if (Ret != 0)
-	{
-		return Ret;
-	}
-	CurrentScene = Scenes[wp];
-	return CurrentScene->Initialize(hWnd);
+	currentScene = scenes[nextScene];
+	return currentScene->initialize();
 }

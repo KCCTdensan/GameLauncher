@@ -6,11 +6,11 @@
 #define INCLUDE_PICTUREGallery_HPP
 
 
-class picture_Gallery :public Gallery
+class PictureGallery :public Gallery
 {
 public:
-	picture_Gallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
-	~picture_Gallery();
+	PictureGallery(HWND hWnd, SceneChangerInterface *Interface, unsigned short BmpWidth, unsigned short BmpHeight);
+	~PictureGallery();
 	int Initialize(HWND hWnd);
 	int Finalize(HWND hWnd);
 	int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);

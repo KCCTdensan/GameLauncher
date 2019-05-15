@@ -1,12 +1,13 @@
 #pragma once
 
-#include "../MemDC.hpp"
-#include "../Task.hpp"
-#include "../SceneChangerInterface.hpp"
+#include "../mem_dc.hpp"
+#include "../task.hpp"
 
 #ifndef INCLUDE_SCENE_HPP
 #define INCLUDE_SCENE_HPP
 
+
+class SceneChangerInterface;
 
 class Scene : public MemDC, public Task
 {
@@ -14,8 +15,8 @@ protected:
 	SceneChangerInterface *SceneChanger;
 
 public:
-	Scene(SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
-	virtual int Paint(HWND hWnd);
+	Scene(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	virtual int paint();
 };
 
 

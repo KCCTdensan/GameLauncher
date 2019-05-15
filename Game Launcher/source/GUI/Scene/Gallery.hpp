@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Scene.hpp"
+#include "scene.hpp"
 
-#ifndef INCLUDE_Gallery_HPP
-#define INCLUDE_Gallery_HPP
+#ifndef GALLERY_HPP
+#define GALLERY_HPP
 
 
 class Gallery : public Scene
@@ -13,7 +13,7 @@ class Gallery : public Scene
 	HPEN hPenBkgnd;//”wŒi“h‚è‚Â‚Ô‚µ—p
 
 public:
-	Gallery(SceneChangerInterface* SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	Gallery(HWND hWnd, SceneChangerInterface* sceneChanger, unsigned short bmpWidth, unsigned short bmpHeight);
 	~Gallery();
 };
 
