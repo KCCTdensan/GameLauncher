@@ -60,6 +60,21 @@
     <ClCompile Include="source\GUI\Scene\app_gallery.cpp">
       <Filter>Source Files\GUI\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="source\GUI\Scene\model_gallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\music_gallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\others_gallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\picture_gallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI\Scene\video_gallery.cpp">
+      <Filter>Source Files\GUI\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp">
@@ -99,6 +114,21 @@
       <Filter>Header Files\GUI\Scene</Filter>
     </ClInclude>
     <ClInclude Include="source\GUI\Scene\app_gallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\model_gallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\music_gallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\others_gallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\picture_gallery.hpp">
+      <Filter>Header Files\GUI\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GUI\Scene\video_gallery.hpp">
       <Filter>Header Files\GUI\Scene</Filter>
     </ClInclude>
   </ItemGroup>

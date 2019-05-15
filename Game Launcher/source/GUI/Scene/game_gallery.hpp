@@ -2,18 +2,18 @@
 
 #include "Gallery.hpp"
 
-#ifndef INCLUDE_GAMEGallery_HPP
-#define INCLUDE_GAMEGallery_HPP
+#ifndef GAME_GALLERY_HPP
+#define GAME_GALLERY_HPP
 
 
 class GameGallery :public Gallery
 {
 public:
-	GameGallery(HWND hWnd, SceneChangerInterface* SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
-	int Initialize(HWND hWnd);
-	int Finalize(HWND hWnd);
-	int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);
-	int Update(HWND hWnd);
+	GameGallery(HWND hWnd, SceneChangerInterface* sceneChanger, unsigned short bmpWidth, unsigned short bmpHeight);
+	int initialize();
+	int finalize();
+	int buttonLUp(unsigned short x, unsigned short y, unsigned int param);
+	int update();
 };
 
 

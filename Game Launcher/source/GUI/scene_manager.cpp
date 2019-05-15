@@ -1,12 +1,12 @@
 #include "scene_manager.hpp"
-#include "Scene/MainMenu.hpp"
-#include "Scene/AppGallery.hpp"
-#include "Scene/GameGallery.hpp"
-#include "Scene/MusicGallery.hpp"
-#include "Scene/PictureGallery.hpp"
-#include "Scene/ModelGallery.hpp"
-#include "Scene/VideoGallery.hpp"
-#include "Scene/OthersGallery.hpp"
+#include "Scene/main_menu.hpp"
+#include "Scene/app_gallery.hpp"
+#include "Scene/game_gallery.hpp"
+#include "Scene/music_gallery.hpp"
+#include "Scene/picture_gallery.hpp"
+#include "Scene/model_gallery.hpp"
+#include "Scene/video_gallery.hpp"
+#include "Scene/others_gallery.hpp"
 
 
 SceneManager::SceneManager(HWND hWnd, SceneName firstScene, unsigned short bmpWidth, unsigned short bmpHeight)

@@ -1,31 +1,30 @@
-#include "GameGallery.hpp"
+#include "game_gallery.hpp"
 
 
-GameGallery::GameGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(SceneChanger, BmpWidth, BmpHeight)
+GameGallery::GameGallery(HWND hWnd, SceneChangerInterface *sceneChanger, unsigned short bmpWidth, unsigned short bmpHeight)
+	:Gallery(hWnd, sceneChanger, bmpWidth, bmpHeight)
 {
 
 }
 
-int GameGallery::Initialize(HWND hWnd)
+int GameGallery::initialize()
 {
 	InvalidateRect(hWnd, NULL, false);
 	UpdateWindow(hWnd);
 	return 0;
 }
 
-int GameGallery::Finalize(HWND hWnd)
+int GameGallery::finalize()
 {
 	return 0;
 }
 
-int GameGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int GameGallery::buttonLUp(unsigned short x, unsigned short y, unsigned int param)
 {
-	Gallery::buttonLUp(hWnd, wp, lp);
 	return 0;
 }
 
-int GameGallery::Update(HWND hWnd)
+int GameGallery::update()
 {
 	return 0;
 }

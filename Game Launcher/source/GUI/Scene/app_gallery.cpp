@@ -1,36 +1,30 @@
-#include "AppGallery.hpp"
+#include "app_gallery.hpp"
 
 
-AppGallery::AppGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Gallery(SceneChanger, BmpWidth, BmpHeight)
+AppGallery::AppGallery(HWND hWnd, SceneChangerInterface *sceneChanger, unsigned short bmpWidth, unsigned short bmpHeight)
+	:Gallery(hWnd, sceneChanger, bmpWidth, bmpHeight)
 {
 
 }
 
-AppGallery::~AppGallery()
-{
-
-}
-
-int AppGallery::Initialize(HWND hWnd)
+int AppGallery::initialize()
 {
 	InvalidateRect(hWnd, NULL, false);
 	UpdateWindow(hWnd);
 	return 0;
 }
 
-int AppGallery::Finalize(HWND hWnd)
+int AppGallery::finalize()
 {
 	return 0;
 }
 
-int AppGallery::LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp)
+int AppGallery::buttonLUp(unsigned short x, unsigned short y, unsigned int param)
 {
-	Gallery::buttonLUp(hWnd, wp, lp);
 	return 0;
 }
 
-int AppGallery::Update(HWND hWnd)
+int AppGallery::update()
 {
 	return 0;
 }

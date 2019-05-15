@@ -20,6 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\GUI\mem_dc.cpp" />
+    <ClCompile Include="source\GUI\Scene\model_gallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\music_gallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\others_gallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\picture_gallery.cpp" />
+    <ClCompile Include="source\GUI\Scene\video_gallery.cpp" />
     <ClCompile Include="source\GUI\scene_manager.cpp" />
     <ClCompile Include="source\GUI\Scene\app_gallery.cpp" />
     <ClCompile Include="source\GUI\Scene\gallery.cpp" />
@@ -33,6 +38,11 @@
   <ItemGroup>
     <ClInclude Include="..\Common Source\contents.hpp" />
     <ClInclude Include="source\GUI\mem_dc.hpp" />
+    <ClInclude Include="source\GUI\Scene\model_gallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\music_gallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\others_gallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\picture_gallery.hpp" />
+    <ClInclude Include="source\GUI\Scene\video_gallery.hpp" />
     <ClInclude Include="source\GUI\scene_changer_interface.hpp" />
     <ClInclude Include="source\GUI\scene_manager.hpp" />
     <ClInclude Include="source\GUI\Scene\app_gallery.hpp" />

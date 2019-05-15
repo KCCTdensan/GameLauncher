@@ -10,8 +10,8 @@ void MainMenu::drawBackground()
 	UpdateWindow(hWnd);
 }
 
-MainMenu::MainMenu(HWND hWnd, SceneChangerInterface* SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
-	:Scene(hWnd, SceneChanger, BmpWidth, BmpHeight)
+MainMenu::MainMenu(HWND hWnd, SceneChangerInterface* sceneChanger, unsigned short BmpWidth, unsigned short BmpHeight)
+	:Scene(hWnd, sceneChanger, BmpWidth, BmpHeight)
 {
 	hBrushBkgnd = CreateSolidBrush(BkgndColor);
 	hPenBkgnd = CreatePen(PS_SOLID, 0, BkgndColor);

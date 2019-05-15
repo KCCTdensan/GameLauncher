@@ -12,10 +12,10 @@ class SceneChangerInterface;
 class Scene : public MemDC, public Task
 {
 protected:
-	SceneChangerInterface *SceneChanger;
+	SceneChangerInterface *sceneChanger;
 
 public:
-	Scene(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
+	Scene(HWND hWnd, SceneChangerInterface *sceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
 	virtual int paint();
 };
 

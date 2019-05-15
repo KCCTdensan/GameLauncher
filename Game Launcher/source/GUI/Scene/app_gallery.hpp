@@ -9,12 +9,11 @@
 class AppGallery :public Gallery
 {
 public:
-	AppGallery(HWND hWnd, SceneChangerInterface *SceneChanger, unsigned short BmpWidth, unsigned short BmpHeight);
-	~AppGallery();
-	int Initialize(HWND hWnd);
-	int Finalize(HWND hWnd);
-	int LButtonUp(HWND hWnd, WPARAM wp, LPARAM lp);
-	int Update(HWND hWnd);
+	AppGallery(HWND hWnd, SceneChangerInterface *sceneChanger, unsigned short bmpWidth, unsigned short bmpHeight);
+	int initialize();
+	int finalize();
+	int buttonLUp(unsigned short x, unsigned short y, unsigned int param);
+	int update();
 };
 
 
