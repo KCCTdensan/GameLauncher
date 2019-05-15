@@ -1,6 +1,5 @@
 #pragma once
 
-#include <string>
 #include "DxLib.h"
 #include "OperationData.h"
 
@@ -41,9 +40,9 @@ public:
 	int insideColor;
 	int outsideColor;
 	int outsidePixel;
-
-	int pictureHandleTmp;
-	int pictureHandle;
+	
+	bool pictureFlag;
+	int pictureEnum;
 
 	bool WritingFlag = FALSE;
 	tstring writing;

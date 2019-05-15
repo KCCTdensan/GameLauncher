@@ -166,5 +166,45 @@ void ObjectManager::Update()
 
 void ObjectManager::Draw()
 {
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag) continue;//ŽlŠp•`‰æ or ‘È‰~
+
+		switch (object[i].pictureFlag)
+		{
+		case TRUE:
+			switch (object[i].RoundnessFlag)
+			{
+			case TRUE:
+				if (object[i].outsideFlag) {
+					DrawRoundRect(object[i].x, object[i].y, object[i].x + object[i].xSize, object[i].y + object[i].ySize, object[i].RoundnessSize, object[i].RoundnessSize, object[i].outsideColor, TRUE);
+				}
+				if (object[i].insideFlag) {
+					DrawRoundRect(object[i].x - object[i].outsidePixel, object[i].y - object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].RoundnessSize, object[i].RoundnessSize, object[i].insideColor, TRUE);
+				}
+				break;
+			case FALSE:
+				if (object[i].outsideFlag) {
+					DrawBox(object[i].x, object[i].y, object[i].xSize + object[i].x, object[i].ySize + object[i].y, object[i].outsideColor, TRUE);
+				}
+				if (object[i].insideFlag)
+				{
+					DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].insideColor, TRUE);
+				}
+			}
+			break;
+		case FALSE:
+			break;
+		}
+
+		// todo effect
+
+		// todo writing
+
+
+
+
+
+	}
 
 }
