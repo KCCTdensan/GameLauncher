@@ -1,5 +1,6 @@
 #include "ObjectManager.h"
 #include "AppData.h"
+#include "InputManager.h"
 
 
 /*
@@ -156,11 +157,38 @@ int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrengem
 	return re_num;
 }
 
-void ObjectManager::Update()
+int ObjectManager::ImageChestSet(tstring stg)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
 		if (!object[i].ExistenceFlag) continue;
+
+		//todo
+
+	}
+
+	return 0;
+}
+
+void ObjectManager::Update()
+{
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag && !object[i].EffectiveFlag) continue;
+
+		if (object[i].x <= Input::Mouse::MOUSE_WIN_X &&
+			object[i].x + object[i].xSize >= Input::Mouse::MOUSE_WIN_X &&
+			object[i].y <= Input::Mouse::MOUSE_WIN_Y &&
+			object[i].y + object[i].ySize >= Input::Mouse::MOUSE_WIN_Y)
+		{
+			object[i].MouseFlag = TRUE;
+
+			//todo hit
+		}
+		else {
+			object[i].MouseFlag = FALSE;
+		}
+
 	}
 }
 
@@ -172,7 +200,7 @@ void ObjectManager::Draw()
 
 		switch (object[i].pictureFlag)
 		{
-		case TRUE:
+		case FALSE:
 			switch (object[i].RoundnessFlag)
 			{
 			case TRUE:
@@ -193,7 +221,7 @@ void ObjectManager::Draw()
 				}
 			}
 			break;
-		case FALSE:
+		case TRUE:
 			break;
 		}
 

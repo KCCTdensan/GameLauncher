@@ -22,6 +22,7 @@ public:
 	bool EffectiveFlag = TRUE;//—LŒøƒtƒ‰ƒO
 
 	bool ActivationFlag;
+	bool MouseFlag;
 
 	int AnimationBlend;
 	bool AnimationFlag;
