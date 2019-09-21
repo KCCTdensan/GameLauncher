@@ -9,10 +9,10 @@
 #define ARRANGEMENT_CENTER	1
 #define ARRANGEMENT_RIGHT	2
 
-#define OBJECT_FONT_GOTHIC 0
+#define OBJECT_FONT_GOTHIC	0
 
-#define OBJECT_BUTTON 0
-#define OBJECT_INPUT 1
+#define OBJECT_BUTTON		0
+#define OBJECT_INPUT		1
 
 using namespace std;
 
@@ -22,12 +22,12 @@ public:
 	ObjectManager();
 	~ObjectManager();
 
-	int Set(tstring stg, int x, int y, int sizeX, int sizeY);
-	int ColorSet(tstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor);
-	int RoundnessSet(tstring stg, bool flag, int size);
-	int WritingSet(tstring stg, bool flag, tstring data);
-	int WritingFontSet(tstring stg, int Font = 0, int Color = 0, int arrengement = 0);
-	int ImageChestSet(tstring stg);
+	int Set					(tstring stg, int x, int y, int sizeX, int sizeY);
+	int ColorSet			(tstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor);
+	int RoundnessSet		(tstring stg, bool flag, int size);
+	int WritingSet			(tstring stg, bool flag, tstring data);
+	int WritingFontSet		(tstring stg, int Font = 0, int Color = 0, int arrengement = 0);
+	int ImageChestSet		(tstring stg);
 
 	void Update();
 	void Draw();
