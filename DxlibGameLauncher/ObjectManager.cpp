@@ -220,7 +220,7 @@ int ObjectManager::ImageChestSet(tstring stg, bool flag, TCHAR PicPath, int size
 			object[i].pictureNum = object[i].pictureNumTmp;
 
 		}
-
+		
 		break;
 	}
 

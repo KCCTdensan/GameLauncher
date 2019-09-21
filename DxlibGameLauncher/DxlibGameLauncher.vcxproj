@@ -158,23 +158,29 @@
     <ClCompile Include="ImageChest.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MainProc.cpp" />
-    <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="ObjectData.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SceneData.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="TAB_APP_Scene.cpp" />
+    <ClCompile Include="TAB_GAME_Scene.cpp" />
+    <ClCompile Include="TAB_HOME_Scene.cpp" />
+    <ClCompile Include="TAB_MUSIC_Scene.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\OneDrive - Office365 Dateless\Document\Visual Studio\BlockShoot2\InputManager.h" />
     <ClInclude Include="AppData.h" />
     <ClInclude Include="ImageChest.h" />
-    <ClInclude Include="MainScene.h" />
     <ClInclude Include="ObjectData.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="OperationData.h" />
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="TAB_APP_Scene.h" />
+    <ClInclude Include="TAB_GAME_Scene.h" />
+    <ClInclude Include="TAB_HOME_Scene.h" />
+    <ClInclude Include="TAB_MUSIC_Scene.h" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

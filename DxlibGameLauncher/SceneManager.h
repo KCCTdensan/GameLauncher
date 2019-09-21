@@ -2,6 +2,11 @@
 #include "SceneData.h"
 #include "DxLib.h"
 
+#include "TAB_APP_Scene.h"
+#include "TAB_GAME_Scene.h"
+#include "TAB_HOME_Scene.h"
+#include "TAB_MUSIC_Scene.h"
+
 constexpr int SCENE_NUM = 1;
 
 enum SCENE

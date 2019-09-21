@@ -17,6 +17,10 @@
 
 using namespace std;
 
+enum OBJECT_TYPE {
+
+};
+
 class ObjectManager
 {
 public:
