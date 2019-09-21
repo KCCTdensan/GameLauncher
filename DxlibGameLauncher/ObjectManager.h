@@ -2,7 +2,6 @@
 
 #include "ObjectData.h"
 #include <string>
-#include "ImageChest.h"
 
 #define OBJECT_MAX 256
 
@@ -40,6 +39,5 @@ public:
 private:
 
 	ObjectData object[OBJECT_MAX];
-	ImageChest imageChest;
 };
 

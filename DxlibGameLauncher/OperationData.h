@@ -2,7 +2,6 @@
 
 #include <string>
 #include "SceneManager.h"
-#include "ImageChest.h"
 
 #ifdef UNICODE
 
