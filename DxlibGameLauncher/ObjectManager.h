@@ -28,7 +28,7 @@ public:
 	int RoundnessSet		(tstring stg, bool flag, int size = NULL);
 	int WritingSet			(tstring stg, bool flag, tstring data);
 	int WritingFontSet		(tstring stg, int Font = 0, int Color = 0, int arrengement = 0);
-	int ImageChestSet		(tstring stg, bool flag, tstring PicPath = NULL, int startX = 0, int startY = 0, int sizeX = 0, int sizeY = 0); //FLAG‚ÌŽž‚à‰Â
+	int ImageChestSet		(tstring stg, bool flag, TCHAR PicPath = NULL, int sizeX = 0, int sizeY = 0); //FLAG‚ÌŽž‚à‰Â
 
 	void Update();
 	void Draw();

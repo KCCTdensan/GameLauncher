@@ -33,7 +33,7 @@
 	int insideColor;
 	int outsideColor;
 	int outsidePixel;
-	
+
 	bool pictureFlag;
 	int pictureEnum;
 
@@ -80,6 +80,8 @@ int ObjectManager::Set(tstring stg, int x, int y, int sizeX, int sizeY)
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
 		if (object[i].ExistenceFlag) continue;
+
+		object[i].name = stg;
 
 		object[i].ExistenceFlag = TRUE;
 		object[i].EffectiveFlag = TRUE;
@@ -188,7 +190,7 @@ int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrengem
 	return re_num;
 }
 
-int ObjectManager::ImageChestSet(tstring stg, bool flag, tstring PicPath = "", int startX, int startY, int sizeX, int sizeY)
+int ObjectManager::ImageChestSet(tstring stg, bool flag, TCHAR PicPath, int sizeX, int sizeY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -199,6 +201,27 @@ int ObjectManager::ImageChestSet(tstring stg, bool flag, tstring PicPath = "", i
 			return 0;
 		}
 
+		object[i].pictureNumTmp = LoadGraph(&PicPath);
+
+		int getSizeX, getSizeY;
+		GetGraphSize(object[i].pictureNumTmp, &getSizeX, &getSizeY);
+		if (getSizeX != sizeX || getSizeY != sizeY)
+		{
+			object[i].pictureNum = MakeScreen(sizeX, sizeY, TRUE);
+			if (object[i].pictureNum == -1) {
+				DeleteGraph(object[i].pictureNumTmp);
+				return -1;
+			}
+			SetDrawScreen(object[i].pictureNum);
+			DrawExtendGraph(0, 0, sizeX, sizeY, object[i].pictureNumTmp, TRUE);
+			DeleteGraph(object[i].pictureNumTmp);
+		}
+		else {
+			object[i].pictureNum = object[i].pictureNumTmp;
+
+		}
+
+		break;
 	}
 
 	return 0;

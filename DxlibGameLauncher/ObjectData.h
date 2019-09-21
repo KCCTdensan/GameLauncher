@@ -43,7 +43,8 @@ public:
 	int outsidePixel;
 	
 	bool pictureFlag;
-	int pictureEnum;
+	int pictureNum;
+	int pictureNumTmp;
 
 	bool WritingFlag = FALSE;
 	tstring writing;
