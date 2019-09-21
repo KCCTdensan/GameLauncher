@@ -6,28 +6,59 @@
 /*
 
 
-	object[i].pictureHandleTmp;
-	object[i].pictureHandle;
+		int ObjectType;
 
-	object[i].WritingFlag = FALSE;
-	object[i].writing;
-	object[i].writingX;
-	object[i].writingY;
-	object[i].WritingWidth;
+	tstring name;
 
-	object[i].writingColor;
-	object[i].writingFont;
-	object[i].ritingSize;
+	bool ExistenceFlag = FALSE;//存在フラグ
+	bool EffectiveFlag = TRUE;//有効フラグ
 
-	object[i].ListFlag;
-	object[i].ListArrengement;
-	object[i].ListData[LIST_MAX];
-	object[i].ListDataX[LIST_MAX];
-	object[i].ListDataY[LIST_MAX];
-	object[i].ListDataWidth[LIST_MAX];
-	object[i].ListOneSizeheight[LIST_MAX];
+	bool ActivationFlag;
+	bool MouseFlag;
 
+	int AnimationBlend;
+	bool AnimationFlag;
+	int AnimationTick = 0;
 
+	bool RoundnessFlag;
+	int RoundnessSize;
+
+	int x;
+	int y;
+	int xSize;
+	int ySize;
+
+	bool insideFlag;
+	bool outsideFlag;
+	int insideColor;
+	int outsideColor;
+	int outsidePixel;
+	
+	bool pictureFlag;
+	int pictureEnum;
+
+	bool WritingFlag = FALSE;
+	tstring writing;
+	int writingX;
+	int writingY;
+	int WritingWidth;
+
+	int writingColor;
+	int writingFont;
+	int writingSize;
+
+	int FontHandle;
+
+	int WritingArrengement;
+
+	bool ListFlag;
+	tstring ListData[LIST_MAX];
+	int ListDataX[LIST_MAX];
+	int ListDataY[LIST_MAX];
+	int ListDataWidth[LIST_MAX];
+	int ListOneSizeheight[LIST_MAX];
+
+	変数一覧です。現在のobjectdata一つずつに入ってるものです
 
 */
 

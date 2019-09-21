@@ -1,5 +1,7 @@
 #include "ImageChest.h"
 
+#pragma warning(push)
+#pragma warning(disable:26495)
 
 namespace
 {
@@ -29,3 +31,5 @@ int ImageChest::GetImageHandle(ImageHandleNo handleName)
 {
 	return chest[handleName];
 }
+
+#pragma warning(pop)
