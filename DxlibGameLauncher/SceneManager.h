@@ -6,7 +6,10 @@ constexpr int SCENE_NUM = 1;
 
 enum SCENE
 {
-	MAIN
+	TAB_HOME,
+	TAB_APP,
+	TAB_GAME,
+	TAB_MUSIC
 };
 
 class SceneManager

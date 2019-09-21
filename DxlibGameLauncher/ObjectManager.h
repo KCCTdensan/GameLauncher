@@ -2,6 +2,7 @@
 
 #include "ObjectData.h"
 #include <string>
+#include "ImageChest.h"
 
 #define OBJECT_MAX 256
 
@@ -23,11 +24,11 @@ public:
 	~ObjectManager();
 
 	int Set					(tstring stg, int x, int y, int sizeX, int sizeY);
-	int ColorSet			(tstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor);
-	int RoundnessSet		(tstring stg, bool flag, int size);
+	int ColorSet			(tstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //w’è‚µ‚È‚¢ê‡NULL
+	int RoundnessSet		(tstring stg, bool flag, int size = NULL);
 	int WritingSet			(tstring stg, bool flag, tstring data);
 	int WritingFontSet		(tstring stg, int Font = 0, int Color = 0, int arrengement = 0);
-	int ImageChestSet		(tstring stg);
+	int ImageChestSet		(tstring stg, bool flag, tstring PicPath = NULL, int startX = 0, int startY = 0, int sizeX = 0, int sizeY = 0); //FLAG‚Ì‚à‰Â
 
 	void Update();
 	void Draw();
@@ -35,5 +36,6 @@ public:
 private:
 
 	ObjectData object[OBJECT_MAX];
+	ImageChest imageChest;
 };
 

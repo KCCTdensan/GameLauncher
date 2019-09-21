@@ -26,6 +26,5 @@ namespace Ope {
 	extern HWND MAIN_WINDOW_HANDLE;
 
 	extern SceneManager sceneManager;
-	extern ImageChest imageChest;
 
 }

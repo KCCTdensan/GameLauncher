@@ -14,6 +14,7 @@ WindowManager::~WindowManager()
 
 void WindowManager::Update()
 {
+	RECT rec;
 	GetClientRect(Ope::MAIN_WINDOW_HANDLE, &rec);
 	Ope::CURRENT_WINDOW_SIZE_X = rec.right - rec.left;
 	Ope::CURRENT_WINDOW_SIZE_Y = rec.bottom - rec.top;

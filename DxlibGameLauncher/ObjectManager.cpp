@@ -188,13 +188,16 @@ int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrengem
 	return re_num;
 }
 
-int ObjectManager::ImageChestSet(tstring stg)
+int ObjectManager::ImageChestSet(tstring stg, bool flag, tstring PicPath = "", int startX, int startY, int sizeX, int sizeY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
-		if (!object[i].ExistenceFlag) continue;
+		if (object[i].ExistenceFlag && object[i].name != stg) continue;
 
-		//todo
+		object[i].pictureFlag = flag;
+		if (flag == FALSE) {
+			return 0;
+		}
 
 	}
 

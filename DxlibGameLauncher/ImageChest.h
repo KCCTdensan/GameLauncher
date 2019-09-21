@@ -13,10 +13,11 @@ enum ImageHandleNo
 
 class ImageChest
 {
-	int chest[NumImageHandle];
-
 public:
 	ImageChest();
 	~ImageChest();
 	int GetImageHandle(ImageHandleNo handleName);
+
+private:
+	int chest[NumImageHandle];
 };

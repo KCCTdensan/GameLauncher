@@ -5,10 +5,6 @@ public:
 	WindowManager();
 	~WindowManager();
 
-	void Update();
-
-private:
-
-	RECT rec;
+	void Update();	
 };
 

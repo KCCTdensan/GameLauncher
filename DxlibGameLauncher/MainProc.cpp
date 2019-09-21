@@ -34,6 +34,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 		return -1;			// エラーが起きたら直ちに終了
 	}
 
+	Ope::sceneManager.ChanegeScene(TAB_HOME);//初回起動はホーム
+
 
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
 	{
