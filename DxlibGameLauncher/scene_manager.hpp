@@ -25,7 +25,7 @@ public:
 	SceneManager(ObjectManager &objectManager);
 	~SceneManager();
 
-	int changeScene(SceneID sceneID);
+	void changeScene(SceneID sceneID);
 	void update();
 	void draw();
 };

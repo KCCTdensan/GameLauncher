@@ -2,6 +2,7 @@
 
 #include "../position.hpp"
 #include "../size.hpp"
+#include <Windows.h>
 
 
 namespace input

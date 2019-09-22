@@ -1,9 +1,11 @@
 #pragma once
 
+#include "object.hpp"
+
 
 namespace object
 {
-	class Button
+	class Button : public Object
 	{
 
 	};

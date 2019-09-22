@@ -22,7 +22,7 @@ SceneManager::~SceneManager()
 	}
 }
 
-int SceneManager::changeScene(SceneID sceneID)
+void SceneManager::changeScene(SceneID sceneID)
 {
 	currentScene->finalize();
 	currentScene = scenes[sceneID];

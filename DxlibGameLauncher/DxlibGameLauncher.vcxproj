@@ -103,6 +103,7 @@
     <ClInclude Include="input\keyboard.hpp" />
     <ClInclude Include="input\mouse.hpp" />
     <ClInclude Include="object\button.hpp" />
+    <ClInclude Include="object\object.hpp" />
     <ClInclude Include="object\picture.hpp" />
     <ClInclude Include="OperationData.h" />
     <ClInclude Include="position.hpp" />
