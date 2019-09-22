@@ -294,9 +294,9 @@ void ObjectManager::Draw()
 				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].insideColor, TRUE);
 			}
 		}
-		
-		if (object[i].pictureFlag) {
 
+		if (object[i].pictureFlag) {
+			DrawGraph(object[i].x + object[i].pictureX, object[i].y + object[i].pictureY, object[i].pictureNum, TRUE);
 		}
 
 
