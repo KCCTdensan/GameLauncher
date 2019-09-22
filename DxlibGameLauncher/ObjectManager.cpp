@@ -8,7 +8,7 @@
 
 		int ObjectType;
 
-	tstring name;
+	WCHAR name;
 
 	bool ExistenceFlag = FALSE;//存在フラグ
 	bool EffectiveFlag = TRUE;//有効フラグ
@@ -38,7 +38,7 @@
 	int pictureEnum;
 
 	bool WritingFlag = FALSE;
-	tstring writing;
+	WCHAR writing;
 	int writingX;
 	int writingY;
 	int WritingWidth;
@@ -52,7 +52,7 @@
 	int WritingArrengement;
 
 	bool ListFlag;
-	tstring ListData[LIST_MAX];
+	WCHAR ListData[LIST_MAX];
 	int ListDataX[LIST_MAX];
 	int ListDataY[LIST_MAX];
 	int ListDataWidth[LIST_MAX];
@@ -75,7 +75,7 @@ ObjectManager::~ObjectManager()
 {
 }
 
-int ObjectManager::Set(tstring stg, int x, int y, int sizeX, int sizeY)
+int ObjectManager::Set(WCHAR stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -91,11 +91,13 @@ int ObjectManager::Set(tstring stg, int x, int y, int sizeX, int sizeY)
 		object[i].xSize = sizeX;
 		object[i].ySize = sizeY;
 
+		object[i].ObjectType = type;
+
 	}
 	return 0;
 }
 
-int ObjectManager::ColorSet(tstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
+int ObjectManager::ColorSet(WCHAR stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -114,7 +116,7 @@ int ObjectManager::ColorSet(tstring stg, bool outsideFlag, int outsideColor, int
 	return re_num;
 }
 
-int ObjectManager::RoundnessSet(tstring stg, bool flag, int size)
+int ObjectManager::RoundnessSet(WCHAR stg, bool flag, int size)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -128,7 +130,7 @@ int ObjectManager::RoundnessSet(tstring stg, bool flag, int size)
 	return 0;
 }
 
-int ObjectManager::WritingSet(tstring stg, bool flag, tstring data)
+int ObjectManager::WritingSet(WCHAR stg, bool flag, WCHAR data)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -141,7 +143,7 @@ int ObjectManager::WritingSet(tstring stg, bool flag, tstring data)
 	return 0;
 }
 
-int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrangementX, int arrangementY)
+int ObjectManager::WritingFontSet(WCHAR stg, int font, int color, int arrangementX, int arrangementY)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -154,17 +156,17 @@ int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrangem
 
 		re_num = 0;
 
-		tstring a;
+		WCHAR a;
 
 		switch (object[i].writingFont)
 		{
 		case OBJECT_FONT_GOTHIC:
-			a = App::FONT_GOTHIC;
+			a = *App::FONT_GOTHIC;
 
 			break;
 		}
 
-		object[i].FontHandle = CreateFontToHandle(a.c_str(), object[i].writingSize, -1, DX_FONTTYPE_ANTIALIASING);
+		object[i].FontHandle = CreateFontToHandle(&a, object[i].writingSize, -1, DX_FONTTYPE_ANTIALIASING);
 
 		int len;
 
@@ -174,13 +176,13 @@ int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrangem
 			object[i].writingX = object[i].x + object[i].outsidePixel;
 			break;
 		case ARRANGEMENT_X_CENTER:
-			len = (int)lstrlen(object[i].writing.c_str());
-			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
+			len = (int)lstrlen(&object[i].writing);
+			object[i].WritingWidth = GetDrawStringWidthToHandle(&object[i].writing, len, object[i].FontHandle);
 			object[i].writingX = object[i].x + (object[i].xSize - object[i].WritingWidth) / 2;
 			break;
 		case ARRANGEMENT_X_RIGHT:
-			len = (int)lstrlen(object[i].writing.c_str());
-			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
+			len = (int)lstrlen(&object[i].writing);
+			object[i].WritingWidth = GetDrawStringWidthToHandle(&object[i].writing, len, object[i].FontHandle);
 			object[i].writingX = object[i].x + object[i].xSize - object[i].WritingWidth - object[i].outsidePixel;
 			break;
 		}
@@ -201,7 +203,7 @@ int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrangem
 	return re_num;
 }
 
-int ObjectManager::ImageChestSet(tstring stg, bool flag, TCHAR PicPath, int sizeX, int sizeY, int setX, int setY)
+int ObjectManager::ImageChestSet(WCHAR stg, bool flag, TCHAR PicPath, int sizeX, int sizeY, int setX, int setY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -275,28 +277,41 @@ void ObjectManager::Draw()
 	{
 		if (!object[i].ExistenceFlag) continue;//四角描画 or 楕円
 
-		switch (object[i].RoundnessFlag)
-		{
-		case TRUE:
-			if (object[i].outsideFlag) {
-				DrawRoundRect(object[i].x, object[i].y, object[i].x + object[i].xSize, object[i].y + object[i].ySize, object[i].RoundnessSize, object[i].RoundnessSize, object[i].outsideColor, TRUE);
-			}
-			if (object[i].insideFlag) {
-				DrawRoundRect(object[i].x - object[i].outsidePixel, object[i].y - object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].RoundnessSize, object[i].RoundnessSize, object[i].insideColor, TRUE);
-			}
-			break;
-		case FALSE:
-			if (object[i].outsideFlag) {
-				DrawBox(object[i].x, object[i].y, object[i].xSize + object[i].x, object[i].ySize + object[i].y, object[i].outsideColor, TRUE);
-			}
-			if (object[i].insideFlag)
-			{
-				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].insideColor, TRUE);
-			}
-		}
+		switch (object[i].ObjectType) {
 
-		if (object[i].pictureFlag) {
+		case BUTTON:
+			switch (object[i].RoundnessFlag)
+			{
+			case TRUE:
+				if (object[i].outsideFlag) {
+					DrawRoundRect(object[i].x, object[i].y, object[i].x + object[i].xSize, object[i].y + object[i].ySize, object[i].RoundnessSize, object[i].RoundnessSize, object[i].outsideColor, TRUE);
+				}
+				if (object[i].insideFlag) {
+					DrawRoundRect(object[i].x - object[i].outsidePixel, object[i].y - object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].RoundnessSize, object[i].RoundnessSize, object[i].insideColor, TRUE);
+				}
+				break;
+			case FALSE:
+				if (object[i].outsideFlag) {
+					DrawBox(object[i].x, object[i].y, object[i].xSize + object[i].x, object[i].ySize + object[i].y, object[i].outsideColor, TRUE);
+				}
+				if (object[i].insideFlag)
+				{
+					DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].insideColor, TRUE);
+				}
+			}
+
+			if (object[i].pictureFlag) {
+				DrawGraph(object[i].x + object[i].pictureX, object[i].y + object[i].pictureY, object[i].pictureNum, TRUE);
+			}
+
+			break;
+
+		case PICTURE:
+
 			DrawGraph(object[i].x + object[i].pictureX, object[i].y + object[i].pictureY, object[i].pictureNum, TRUE);
+
+			break;
+
 		}
 
 

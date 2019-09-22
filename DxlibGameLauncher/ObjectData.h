@@ -16,7 +16,7 @@ public:
 
 	int ObjectType;
 
-	tstring name;
+	WCHAR name;
 
 	bool ExistenceFlag = FALSE;//存在フラグ
 	bool EffectiveFlag = TRUE;//有効フラグ
@@ -50,7 +50,7 @@ public:
 	int pictureY;
 
 	bool WritingFlag = FALSE;
-	tstring writing;
+	WCHAR writing;
 	int writingX;
 	int writingY;
 	int WritingWidth;
@@ -63,12 +63,5 @@ public:
 
 	int WritingArrengementX;
 	int WritingArrengementY;
-
-	bool ListFlag;
-	tstring ListData[LIST_MAX];
-	int ListDataX[LIST_MAX];
-	int ListDataY[LIST_MAX];
-	int ListDataWidth[LIST_MAX];
-	int ListOneSizeheight[LIST_MAX];
 };
 

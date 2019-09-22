@@ -14,6 +14,7 @@ float Ope::WINDOW_SIZE_RATE_TIME = 1.0f;
 HWND Ope::MAIN_WINDOW_HANDLE = (HWND)-1;
 
 SceneManager Ope::sceneManager;
+ObjectManager Ope::objectManager;
 
 #pragma warning(push)
 #pragma warning(disable:28251)
@@ -40,8 +41,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
 	{
-		SetDrawScreen(DX_SCREEN_BACK);
+		Ope::sceneManager.Update();
 
+		SetDrawScreen(DX_SCREEN_BACK);
+		Ope::sceneManager.Draw();
 
 	}
 	DxLib_End();

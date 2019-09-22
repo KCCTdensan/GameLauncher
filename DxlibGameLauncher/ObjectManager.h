@@ -2,6 +2,7 @@
 
 #include "ObjectData.h"
 #include <string>
+#include "OperationData.h"
 
 #define OBJECT_MAX 256
 
@@ -21,7 +22,8 @@
 using namespace std;
 
 enum OBJECT_TYPE {
-
+	BUTTON,
+	PICTURE
 };
 
 class ObjectManager
@@ -30,12 +32,12 @@ public:
 	ObjectManager();
 	~ObjectManager();
 
-	int Set					(tstring stg, int x, int y, int sizeX, int sizeY);
-	int ColorSet			(tstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //指定しない場合NULL
-	int RoundnessSet		(tstring stg, bool flag, int size = NULL);
-	int WritingSet			(tstring stg, bool flag, tstring data);
-	int WritingFontSet		(tstring stg, int Font = 0, int Color = 0, int arrengementX = 0, int arrengementY = 0);
-	int ImageChestSet		(tstring stg, bool flag, TCHAR PicPath = NULL, int sizeX = 0, int sizeY = 0, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
+	int Set					(WCHAR stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type);
+	int ColorSet			(WCHAR stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //指定しない場合NULL
+	int RoundnessSet		(WCHAR stg, bool flag, int size = NULL);
+	int WritingSet			(WCHAR stg, bool flag, WCHAR data);
+	int WritingFontSet		(WCHAR stg, int Font = 0, int Color = 0, int arrengementX = 0, int arrengementY = 0);
+	int ImageChestSet		(WCHAR stg, bool flag, TCHAR PicPath = NULL, int sizeX = 0, int sizeY = 0, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
 
 	void Update();
 	void Draw();
