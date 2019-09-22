@@ -16,7 +16,7 @@ public:
 
 	int ObjectType;
 
-	WCHAR name;
+	string name;
 
 	bool ExistenceFlag = FALSE;//存在フラグ
 	bool EffectiveFlag = TRUE;//有効フラグ
@@ -50,7 +50,7 @@ public:
 	int pictureY;
 
 	bool WritingFlag = FALSE;
-	WCHAR writing;
+	string writing;
 	int writingX;
 	int writingY;
 	int WritingWidth;

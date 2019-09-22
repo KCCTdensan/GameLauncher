@@ -5,8 +5,8 @@ using namespace Ope;
 
 TAB_HOME_Scene::TAB_HOME_Scene()
 {
-	objectManager.Set(WCHAR("test"), 100, 100, 100, 100, BUTTON);
-	objectManager.ColorSet(WCHAR("test"), FALSE, NULL, NULL, TRUE, GetColor(255,255,255));
+	objectManager.Set("test", 100, 100, 100, 100, BUTTON);
+	objectManager.ColorSet("test", FALSE, NULL, NULL, TRUE, GetColor(255,255,255));
 
 }
 

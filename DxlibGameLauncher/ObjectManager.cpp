@@ -75,7 +75,7 @@ ObjectManager::~ObjectManager()
 {
 }
 
-int ObjectManager::Set(WCHAR stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
+int ObjectManager::Set(string stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -97,7 +97,7 @@ int ObjectManager::Set(WCHAR stg, int x, int y, int sizeX, int sizeY, OBJECT_TYP
 	return 0;
 }
 
-int ObjectManager::ColorSet(WCHAR stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
+int ObjectManager::ColorSet(string stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -116,7 +116,7 @@ int ObjectManager::ColorSet(WCHAR stg, bool outsideFlag, int outsideColor, int o
 	return re_num;
 }
 
-int ObjectManager::RoundnessSet(WCHAR stg, bool flag, int size)
+int ObjectManager::RoundnessSet(string stg, bool flag, int size)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -130,7 +130,7 @@ int ObjectManager::RoundnessSet(WCHAR stg, bool flag, int size)
 	return 0;
 }
 
-int ObjectManager::WritingSet(WCHAR stg, bool flag, WCHAR data)
+int ObjectManager::WritingSet(string stg, bool flag, string data)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -143,7 +143,7 @@ int ObjectManager::WritingSet(WCHAR stg, bool flag, WCHAR data)
 	return 0;
 }
 
-int ObjectManager::WritingFontSet(WCHAR stg, int font, int color, int arrangementX, int arrangementY)
+int ObjectManager::WritingFontSet(string stg, int font, int color, int arrangementX, int arrangementY)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -156,7 +156,7 @@ int ObjectManager::WritingFontSet(WCHAR stg, int font, int color, int arrangemen
 
 		re_num = 0;
 
-		WCHAR a;
+		string a;
 
 		switch (object[i].writingFont)
 		{
@@ -166,7 +166,7 @@ int ObjectManager::WritingFontSet(WCHAR stg, int font, int color, int arrangemen
 			break;
 		}
 
-		object[i].FontHandle = CreateFontToHandle(&a, object[i].writingSize, -1, DX_FONTTYPE_ANTIALIASING);
+		object[i].FontHandle = CreateFontToHandle(a.c_str(), object[i].writingSize, -1, DX_FONTTYPE_ANTIALIASING);
 
 		int len;
 
@@ -176,13 +176,13 @@ int ObjectManager::WritingFontSet(WCHAR stg, int font, int color, int arrangemen
 			object[i].writingX = object[i].x + object[i].outsidePixel;
 			break;
 		case ARRANGEMENT_X_CENTER:
-			len = (int)lstrlen(&object[i].writing);
-			object[i].WritingWidth = GetDrawStringWidthToHandle(&object[i].writing, len, object[i].FontHandle);
+			len = (int)lstrlen(object[i].writing.c_str());
+			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
 			object[i].writingX = object[i].x + (object[i].xSize - object[i].WritingWidth) / 2;
 			break;
 		case ARRANGEMENT_X_RIGHT:
-			len = (int)lstrlen(&object[i].writing);
-			object[i].WritingWidth = GetDrawStringWidthToHandle(&object[i].writing, len, object[i].FontHandle);
+			len = (int)lstrlen(object[i].writing.c_str());
+			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
 			object[i].writingX = object[i].x + object[i].xSize - object[i].WritingWidth - object[i].outsidePixel;
 			break;
 		}
@@ -203,7 +203,7 @@ int ObjectManager::WritingFontSet(WCHAR stg, int font, int color, int arrangemen
 	return re_num;
 }
 
-int ObjectManager::ImageChestSet(WCHAR stg, bool flag, TCHAR PicPath, int sizeX, int sizeY, int setX, int setY)
+int ObjectManager::ImageChestSet(string stg, bool flag, string PicPath, int sizeX, int sizeY, int setX, int setY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -214,7 +214,7 @@ int ObjectManager::ImageChestSet(WCHAR stg, bool flag, TCHAR PicPath, int sizeX,
 			return 0;
 		}
 
-		object[i].pictureNumTmp = LoadGraph(&PicPath);
+		object[i].pictureNumTmp = LoadGraph(PicPath.c_str());
 
 		int getSizeX, getSizeY;
 		GetGraphSize(object[i].pictureNumTmp, &getSizeX, &getSizeY);
