@@ -9,6 +9,8 @@
 
 using namespace std;
 
+#pragma warning(push)
+#pragma warning(disable:26495)
 
 struct ObjectData
 {
@@ -68,4 +70,6 @@ struct ObjectData
 	int WritingArrengementX;
 	int WritingArrengementY;
 };
+
+#pragma warning(pop)
 
