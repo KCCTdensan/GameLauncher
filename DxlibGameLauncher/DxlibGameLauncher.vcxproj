@@ -86,35 +86,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="MainProc.cpp" />
-    <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="TAB_3DMODEL_Scene.cpp" />
-    <ClCompile Include="TAB_APP_Scene.cpp" />
-    <ClCompile Include="TAB_GAME_Scene.cpp" />
-    <ClCompile Include="TAB_HOME_Scene.cpp" />
-    <ClCompile Include="TAB_MUSIC_Scene.cpp" />
-    <ClCompile Include="TAB_OTHERS_Scene.cpp" />
-    <ClCompile Include="TAB_VIDEO_Scene.cpp" />
-    <ClCompile Include="WindowManager.cpp" />
+    <ClCompile Include="input\keyboard.cpp" />
+    <ClCompile Include="input\mouse.cpp" />
+    <ClCompile Include="main_procedure.cpp" />
+    <ClCompile Include="scene_manager.cpp" />
+    <ClCompile Include="scene\TAB_3DMODEL_Scene.cpp" />
+    <ClCompile Include="scene\TAB_APP_Scene.cpp" />
+    <ClCompile Include="scene\TAB_GAME_Scene.cpp" />
+    <ClCompile Include="scene\TAB_HOME_Scene.cpp" />
+    <ClCompile Include="scene\TAB_MUSIC_Scene.cpp" />
+    <ClCompile Include="scene\TAB_OTHERS_Scene.cpp" />
+    <ClCompile Include="scene\TAB_VIDEO_Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppData.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="ObjectData.h" />
-    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="input\keyboard.hpp" />
+    <ClInclude Include="input\mouse.hpp" />
+    <ClInclude Include="object\button.hpp" />
+    <ClInclude Include="object\picture.hpp" />
     <ClInclude Include="OperationData.h" />
-    <ClInclude Include="SceneData.hpp" />
-    <ClInclude Include="SceneManager.hpp" />
-    <ClInclude Include="TAB_3DMODEL_Scene.hpp" />
-    <ClInclude Include="TAB_APP_Scene.hpp" />
-    <ClInclude Include="TAB_GAME_Scene.hpp" />
-    <ClInclude Include="TAB_HOME_Scene.hpp" />
-    <ClInclude Include="TAB_MUSIC_Scene.hpp" />
-    <ClInclude Include="TAB_OTHERS_Scene.hpp" />
-    <ClInclude Include="TAB_VIDEO_Scene.hpp" />
-    <ClInclude Include="WindowManager.h" />
+    <ClInclude Include="position.hpp" />
+    <ClInclude Include="scene_manager.hpp" />
+    <ClInclude Include="scene\scene_base.hpp" />
+    <ClInclude Include="scene\TAB_3DMODEL_Scene.hpp" />
+    <ClInclude Include="scene\TAB_APP_Scene.hpp" />
+    <ClInclude Include="scene\TAB_GAME_Scene.hpp" />
+    <ClInclude Include="scene\TAB_HOME_Scene.hpp" />
+    <ClInclude Include="scene\TAB_MUSIC_Scene.hpp" />
+    <ClInclude Include="scene\TAB_OTHERS_Scene.hpp" />
+    <ClInclude Include="scene\TAB_VIDEO_Scene.hpp" />
+    <ClInclude Include="size.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

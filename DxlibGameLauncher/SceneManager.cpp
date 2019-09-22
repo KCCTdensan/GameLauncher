@@ -1,5 +1,5 @@
-#include "SceneManager.hpp"
-#include "DxLib.h"
+#include "sce"
+
 
 
 SceneManager::SceneManager(ObjectManager &objectManager)

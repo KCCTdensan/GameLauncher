@@ -1,6 +1,6 @@
 #pragma once
 
-
+/*
 namespace Ope
 {
 	extern int CURRENT_WINDOW_SIZE_X;
@@ -10,3 +10,4 @@ namespace Ope
 	extern float WINDOW_SIZE_RATE;
 	extern float WINDOW_SIZE_RATE_TIME;
 }
+*/
