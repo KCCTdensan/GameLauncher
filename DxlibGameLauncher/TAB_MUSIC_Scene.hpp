@@ -1,12 +1,11 @@
 #pragma once
-#include "SceneData.h"
+
+#include "SceneData.hpp"
+
+
 class TAB_MUSIC_Scene :
 	public SceneData
 {
 public:
-	TAB_MUSIC_Scene();
-
-	void Update();
-	void Draw();
+	TAB_MUSIC_Scene(ObjectManager &objectManager);
 };
-

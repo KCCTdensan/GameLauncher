@@ -1,10 +1,9 @@
-#include "SceneManager.h"
+#include "SceneManager.hpp"
 #include "DxLib.h"
 
-//SceneData* scenes[SCENE_NUM];
 
-SceneManager::SceneManager()
-	: currentScene(nullptr)
+SceneManager::SceneManager(ObjectManager &objectManager)
+	: objectManager(objectManager), currentScene(nullptr)
 {
 	//quitFlag = FALSE;
 }
@@ -23,19 +22,19 @@ int SceneManager::ChanegeScene(SCENE scene)
 	switch(scene)
 	{
 	case TAB_HOME:
-		currentScene = new TAB_HOME_Scene();
+		currentScene = new TAB_HOME_Scene(objectManager);
 		return TRUE;
 
 	case TAB_APP:
-		currentScene = new TAB_APP_Scene();
+		currentScene = new TAB_APP_Scene(objectManager);
 		return TRUE;
 
 	case TAB_GAME:
-		currentScene = new TAB_GAME_Scene();
+		currentScene = new TAB_GAME_Scene(objectManager);
 		return TRUE;
 
 	case TAB_MUSIC:
-		currentScene = new TAB_MUSIC_Scene();
+		currentScene = new TAB_MUSIC_Scene(objectManager);
 		return TRUE;
 
 	default:

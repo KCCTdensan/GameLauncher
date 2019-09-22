@@ -1,14 +1,11 @@
 #pragma once
 
-#include "SceneData.h"
+#include "SceneData.hpp"
 
 
 class TAB_HOME_Scene :
 	public SceneData
 {
 public:
-	TAB_HOME_Scene();
-
-	void Update();
-	void Draw();
+	TAB_HOME_Scene(ObjectManager &objectManager);
 };

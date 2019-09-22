@@ -105,8 +105,8 @@
     <ClInclude Include="ObjectData.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="OperationData.h" />
-    <ClInclude Include="SceneData.h" />
-    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SceneData.hpp" />
+    <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="TAB_3DMODEL_Scene.hpp" />
     <ClInclude Include="TAB_APP_Scene.hpp" />
     <ClInclude Include="TAB_GAME_Scene.hpp" />

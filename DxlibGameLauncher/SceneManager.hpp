@@ -4,23 +4,21 @@
 #include "TAB_GAME_Scene.hpp"
 #include "TAB_HOME_Scene.hpp"
 #include "TAB_MUSIC_Scene.hpp"
-#include <array>
 
-
-constexpr int SCENE_NUM = 1;
 
 enum SCENE
 {
 	TAB_HOME,
 	TAB_APP,
 	TAB_GAME,
-	TAB_MUSIC
+	TAB_MUSIC,
+	SCENE_NUM
 };
 
 class SceneManager
 {
 public:
-	SceneManager();
+	SceneManager(ObjectManager &objectManager);
 	~SceneManager();
 
 	int ChanegeScene(SCENE scene);
@@ -30,6 +28,6 @@ public:
 	//bool quitFlag;
 
 private:
-	std::array<SceneData, SCENE_NUM> scenes;
+	ObjectManager &objectManager;
 	SceneData *currentScene;
 };

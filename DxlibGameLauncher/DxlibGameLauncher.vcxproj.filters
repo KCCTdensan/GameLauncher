@@ -74,17 +74,11 @@
     <ClInclude Include="WindowManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneData.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
     <ClInclude Include="ObjectData.h">
       <Filter>ヘッダー ファイル\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="TAB_APP_Scene.hpp">
       <Filter>ヘッダー ファイル\Scene</Filter>
@@ -109,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneData.hpp">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.hpp">
+      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
