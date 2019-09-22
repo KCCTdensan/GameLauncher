@@ -16,10 +16,7 @@ HWND Ope::MAIN_WINDOW_HANDLE = (HWND)-1;
 SceneManager Ope::sceneManager;
 ObjectManager Ope::objectManager;
 
-#pragma warning(push)
-#pragma warning(disable:28251)
-
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
 	Ope::MAIN_WINDOW_HANDLE = GetMainWindowHandle();
 
@@ -30,16 +27,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 
 	SetDrawArea(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y);
 
-
-	if (DxLib_Init() == -1)		// ＤＸライブラリ初期化処理
+	if(DxLib_Init() == -1)
 	{
-		return -1;			// エラーが起きたら直ちに終了
+		return -1;
 	}
 
 	Ope::sceneManager.ChanegeScene(TAB_HOME);//初回起動はホーム
 
-
-	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
+	while(!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
 	{
 		Ope::sceneManager.Update();
 
@@ -48,6 +43,5 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 
 	}
 	DxLib_End();
-	return 0;				// ソフトの終了 
+	return 0;
 }
-#pragma warning(pop)

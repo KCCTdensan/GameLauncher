@@ -2,25 +2,19 @@
 
 #include <contents.hpp>
 
-#ifndef INCLUDE_DOCUMENT_HPP
-#define INCLUDE_DOCUMENT_HPP
 
-
-class document
+class Document
 {
-	contents Contents;
+	Contents contents;
 	TCHAR FilePath[MAX_PATH];
 
 public:
-	document();
-	document(const contents &Contents);
-	bool LoadFile(LPCTSTR FilePath);
+	Document();
+	Document(const Contents &contents);
+	bool LoadFile(LPCTSTR filePath);
 	bool SaveFile();
-	bool SaveAsFile(LPCTSTR FilePath);
-	void SetFilePath(LPTSTR FilePath);
-	contents GetContents();
-	void SetContents(const contents&Contents);
+	bool SaveAsFile(LPCTSTR filePath);
+	void SetFilePath(LPTSTR filePath);
+	Contents GetContents();
+	void SetContents(const Contents &contents);
 };
-
-
-#endif

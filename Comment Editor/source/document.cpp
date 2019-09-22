@@ -1,17 +1,18 @@
 #include "document.hpp"
 
 
-document::document()
+Document::Document()
+	: contents {0}
 {
-	Contents = { 0 };
+
 }
 
-document::document(const contents &Contents)
+Document::Document(const Contents &contents)
 {
-	document::Contents = Contents;
+	this->contents = contents;
 }
 
-bool document::LoadFile(LPCTSTR FilePath)
+bool Document::LoadFile(LPCTSTR FilePath)
 {
 	HANDLE hFile = CreateFile(FilePath, GENERIC_READ, 0, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE)
@@ -19,14 +20,14 @@ bool document::LoadFile(LPCTSTR FilePath)
 		return false;
 	}
 
-	ReadFile(hFile, &Contents, sizeof(contents), NULL, NULL);
+	ReadFile(hFile, &contents, sizeof(Contents), NULL, NULL);
 
 	CloseHandle(hFile);
 
 	return true;
 }
 
-bool document::SaveFile()
+bool Document::SaveFile()
 {
 	HANDLE hFile = CreateFile(FilePath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE)
@@ -34,33 +35,33 @@ bool document::SaveFile()
 		return false;
 	}
 
-	WriteFile(hFile, &Contents, sizeof(contents), NULL, NULL);
+	WriteFile(hFile, &contents, sizeof(Contents), NULL, NULL);
 
 	CloseHandle(hFile);
 
 	return true;
 }
 
-bool document::SaveAsFile(LPCTSTR FilePath)
+bool Document::SaveAsFile(LPCTSTR filePath)
 {
-	HANDLE hFile = CreateFile(FilePath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	HANDLE hFile = CreateFile(filePath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE)
 	{
 		return false;
 	}
 
-	WriteFile(hFile, &Contents, sizeof(contents), NULL, NULL);
+	WriteFile(hFile, &contents, sizeof(Contents), NULL, NULL);
 
 	CloseHandle(hFile);
 
 	return true;
 }
 
-void document::SetFilePath(LPTSTR FilePath)
+void Document::SetFilePath(LPTSTR FilePath)
 {
 	for (int i = 0; i < MAX_PATH; i++)
 	{
-		document::FilePath[i] = FilePath[i];
+		Document::FilePath[i] = FilePath[i];
 		if (FilePath[i] == '\0')
 		{
 			break;
@@ -68,12 +69,12 @@ void document::SetFilePath(LPTSTR FilePath)
 	}
 }
 
-contents document::GetContents()
+Contents Document::GetContents()
 {
-	return Contents;
+	return contents;
 }
 
-void document::SetContents(const contents&Contents)
+void Document::SetContents(const Contents &contents)
 {
-	document::Contents = Contents;
+	this->contents = contents;
 }

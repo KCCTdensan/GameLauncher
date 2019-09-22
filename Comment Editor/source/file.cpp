@@ -5,7 +5,7 @@
 
 namespace file
 {
-	document Document;
+	Document Document;
 }
 
 bool file::LoadDocument(HWND hWnd, LPTSTR FilePath)
@@ -41,12 +41,12 @@ bool file::SaveAsDocument(HWND hWnd, LPTSTR FilePath)
 	return Ret;
 }
 
-contents file::GetContents()
+Contents file::GetContents()
 {
 	return Document.GetContents();
 }
 
-void file::SetContents(const contents&Contents)
+void file::SetContents(const Contents&Contents)
 {
 	Document.SetContents(Contents);
 }

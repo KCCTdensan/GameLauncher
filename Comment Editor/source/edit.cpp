@@ -40,7 +40,7 @@ namespace edit
 		TEXT("‚»‚Ì‘¼")
 	};
 
-	contents Contents;
+	Contents contents;
 	HWND hEdit_File;
 	HWND hEdit_Preview;
 	HWND hEdit_Title;
@@ -98,42 +98,42 @@ void edit::Command(HWND hWnd, WPARAM msg, WPARAM ID)
 	switch (msg)
 	{
 	case CBN_SELCHANGE:
-		Contents.Category = (category)SendMessage(hCombo_Category, CB_GETCURSEL, 0, 0);
+		contents.Category = (Category)SendMessage(hCombo_Category, CB_GETCURSEL, 0, 0);
 		return;
 
 	case EN_UPDATE:
 		switch (ID)
 		{
 		case ID_EDIT_FILE:
-			GetWindowText(hEdit_File, Contents.FilePath, MAX_FILEPATH);
+			GetWindowText(hEdit_File, contents.FilePath, MAX_FILEPATH);
 			break;
 
 		case ID_EDIT_PREVIEW:
-			GetWindowText(hEdit_Preview, Contents.PreviewImagePath, MAX_PREVIEWIMAGEPATH);
+			GetWindowText(hEdit_Preview, contents.PreviewImagePath, MAX_PREVIEWIMAGEPATH);
 			break;
 
 		case ID_EDIT_TITLE:
-			GetWindowText(hEdit_Title, Contents.Title, MAX_TITLE);
+			GetWindowText(hEdit_Title, contents.Title, MAX_TITLE);
 			break;
 
 		case ID_EDIT_CREATOR:
-			GetWindowText(hEdit_Creator, Contents.Creator, MAX_CREATOR);
+			GetWindowText(hEdit_Creator, contents.Creator, MAX_CREATOR);
 			break;
 
 		case ID_EDIT_GENRE:
-			GetWindowText(hEdit_Genre, Contents.Genre, MAX_GENRE);
+			GetWindowText(hEdit_Genre, contents.Genre, MAX_GENRE);
 			break;
 
 		case ID_EDIT_LANGUAGE:
-			GetWindowText(hEdit_Language, Contents.Language, MAX_LANGUAGE);
+			GetWindowText(hEdit_Language, contents.Language, MAX_LANGUAGE);
 			break;
 
 		case ID_EDIT_ENVIRONMENT:
-			GetWindowText(hEdit_Environment, Contents.Environment, MAX_ENVIRONMENT);
+			GetWindowText(hEdit_Environment, contents.Environment, MAX_ENVIRONMENT);
 			break;
 
 		case ID_EDIT_COMMENT:
-			GetWindowText(hEdit_Comment, Contents.Comment, MAX_COMMENT);
+			GetWindowText(hEdit_Comment, contents.Comment, MAX_COMMENT);
 			UpdateCommentNumOfWritten(hWnd);
 			break;
 		}
@@ -156,28 +156,28 @@ void edit::Paint(HWND hWnd)
 	EndPaint(hWnd, &ps);
 }
 
-contents edit::GetContents()
+Contents edit::GetContents()
 {
-	return Contents;
+	return contents;
 }
 
-void edit::SetContents(const contents&Contents)
+void edit::SetContents(const Contents &contents)
 {
-	edit::Contents = Contents;
-	SetWindowText(hEdit_File, Contents.FilePath);
-	SetWindowText(hEdit_Preview, Contents.PreviewImagePath);
-	SetWindowText(hEdit_Title, Contents.Title);
-	SetWindowText(hEdit_Creator, Contents.Creator);
-	SendMessage(hCombo_Category, CB_SETCURSEL, Contents.Category, 0);
-	SetWindowText(hEdit_Genre, Contents.Genre);
-	SetWindowText(hEdit_Language, Contents.Language);
-	SetWindowText(hEdit_Environment, Contents.Environment);
-	SetWindowText(hEdit_Comment, Contents.Comment);
+	edit::contents = contents;
+	SetWindowText(hEdit_File, contents.FilePath);
+	SetWindowText(hEdit_Preview, contents.PreviewImagePath);
+	SetWindowText(hEdit_Title, contents.Title);
+	SetWindowText(hEdit_Creator, contents.Creator);
+	SendMessage(hCombo_Category, CB_SETCURSEL, contents.Category, 0);
+	SetWindowText(hEdit_Genre, contents.Genre);
+	SetWindowText(hEdit_Language, contents.Language);
+	SetWindowText(hEdit_Environment, contents.Environment);
+	SetWindowText(hEdit_Comment, contents.Comment);
 }
 
 void edit::UpdateCommentNumOfWritten(HWND hWnd)
 {
-	Comment_NumOfWritten = lstrlen(Contents.Comment);
+	Comment_NumOfWritten = lstrlen(contents.Comment);
 	InvalidateRect(hWnd, &TextRect, true);
 	UpdateWindow(hWnd);
 }

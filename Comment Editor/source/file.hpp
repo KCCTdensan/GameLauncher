@@ -12,8 +12,8 @@ namespace file
 	bool LoadDocument(HWND hWnd, LPTSTR FilePath);
 	bool SaveDocument();
 	bool SaveAsDocument(HWND hWnd, LPTSTR FilePath);
-	contents GetContents();
-	void SetContents(const contents&Contents);
+	Contents GetContents();
+	void SetContents(const Contents &contents);
 }
 
 
