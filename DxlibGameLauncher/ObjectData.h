@@ -20,7 +20,7 @@ struct ObjectData
 
 	int ObjectType;
 
-	string name;
+	wstring name;
 
 	bool ExistenceFlag;//存在フラグ
 	bool EffectiveFlag;//有効フラグ
@@ -54,7 +54,7 @@ struct ObjectData
 	int pictureY;
 
 	bool WritingFlag;
-	string writing;
+	wstring writing;
 	int writingX;
 	int writingY;
 	int WritingWidth;

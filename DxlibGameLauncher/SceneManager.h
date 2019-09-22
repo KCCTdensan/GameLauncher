@@ -1,13 +1,10 @@
 #pragma once
 
-#include <DxLib.h>
-#include "SceneData.h"
+#include "TAB_APP_Scene.hpp"
+#include "TAB_GAME_Scene.hpp"
+#include "TAB_HOME_Scene.hpp"
+#include "TAB_MUSIC_Scene.hpp"
 
-
-#include "TAB_APP_Scene.h"
-#include "TAB_GAME_Scene.h"
-#include "TAB_HOME_Scene.h"
-#include "TAB_MUSIC_Scene.h"
 
 constexpr int SCENE_NUM = 1;
 
@@ -22,17 +19,15 @@ enum SCENE
 class SceneManager
 {
 public:
-
 	SceneManager();
 	~SceneManager();
 
-	static int ChanegeScene(SCENE scene);
-	static void Update();
-	static void Draw();
+	int ChanegeScene(SCENE scene);
+	void Update();
+	void Draw();
 
-	bool quitFlag = FALSE;
+	//bool quitFlag;
 
 private:
-
-	static SceneData* currentScene;
+	SceneData *currentScene;
 };

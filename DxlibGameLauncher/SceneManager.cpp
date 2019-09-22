@@ -1,15 +1,13 @@
 #include "SceneManager.h"
 #include "DxLib.h"
 
-using namespace std;
-SceneData *SceneManager::currentScene = NULL;
-SceneData* scenes[SCENE_NUM];
-
+//SceneData* scenes[SCENE_NUM];
 
 SceneManager::SceneManager()
+	: currentScene(nullptr)
 {
+	//quitFlag = FALSE;
 }
-
 
 SceneManager::~SceneManager()
 {
@@ -18,47 +16,39 @@ SceneManager::~SceneManager()
 
 int SceneManager::ChanegeScene(SCENE scene)
 {
-	if(currentScene != NULL)
+	if(currentScene != nullptr)
 	{
 		delete currentScene;
 	}
-	bool i = FALSE;
-
 	switch(scene)
 	{
 	case TAB_HOME:
 		currentScene = new TAB_HOME_Scene();
-		i = TRUE;
-		break;
+		return TRUE;
+
 	case TAB_APP:
 		currentScene = new TAB_APP_Scene();
-		i = TRUE;
-		break;
+		return TRUE;
+
 	case TAB_GAME:
 		currentScene = new TAB_GAME_Scene();
-		i = TRUE;
-		break;
+		return TRUE;
+
 	case TAB_MUSIC:
 		currentScene = new TAB_MUSIC_Scene();
-		i = TRUE;
-		break;
+		return TRUE;
+
 	default:
-		i = FALSE;
-		break;
+		return FALSE;
 	}
-	return i;
 }
 
 void SceneManager::Update()
 {
 	currentScene->Update();
-
-	return;
 }
 
 void SceneManager::Draw()
 {
 	currentScene->Draw();
-
-	return;
 }

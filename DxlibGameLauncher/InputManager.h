@@ -4,9 +4,9 @@
 #define KEYBOARD_PRESS_FIRST 1
 #define KEYBOARD_PRESS_MUCH 2
 
+
 namespace Input
 {
-
 	class KeyBoard
 	{
 	public:

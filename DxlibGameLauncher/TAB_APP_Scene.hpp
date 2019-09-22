@@ -3,11 +3,11 @@
 #include "SceneData.h"
 
 
-class TAB_GAME_Scene :
+class TAB_APP_Scene :
 	public SceneData
 {
 public:
-	TAB_GAME_Scene();
+	TAB_APP_Scene();
 
 	void Update();
 	void Draw();

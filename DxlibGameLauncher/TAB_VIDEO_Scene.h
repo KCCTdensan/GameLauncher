@@ -1,5 +1,8 @@
 #pragma once
-#include "SceneData.h"
+
+#include "SceneData.hpp"
+
+
 class TAB_VIDEO_Scene :
 	public SceneData
 {
@@ -9,4 +12,3 @@ public:
 	void Update();
 	void Draw();
 };
-

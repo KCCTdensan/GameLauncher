@@ -1,11 +1,10 @@
 #pragma once
 #include "SceneData.h"
-class TAB_OTHERS_Scene :
+class TAB_3DMODEL_Scene :
 	public SceneData
 {
 public:
-
-	TAB_OTHERS_Scene();
+	TAB_3DMODEL_Scene();
 
 	void Update();
 	void Draw();

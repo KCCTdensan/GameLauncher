@@ -22,7 +22,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -89,7 +89,6 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MainProc.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="SceneData.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TAB_3DMODEL_Scene.cpp" />
     <ClCompile Include="TAB_APP_Scene.cpp" />
@@ -101,20 +100,20 @@
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\OneDrive - Office365 Dateless\Document\Visual Studio\BlockShoot2\InputManager.h" />
     <ClInclude Include="AppData.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="ObjectData.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="OperationData.h" />
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="TAB_3DMODEL_Scene.h" />
-    <ClInclude Include="TAB_APP_Scene.h" />
-    <ClInclude Include="TAB_GAME_Scene.h" />
-    <ClInclude Include="TAB_HOME_Scene.h" />
-    <ClInclude Include="TAB_MUSIC_Scene.h" />
-    <ClInclude Include="TAB_OTHERS_Scene.h" />
-    <ClInclude Include="TAB_VIDEO_Scene.h" />
+    <ClInclude Include="TAB_3DMODEL_Scene.hpp" />
+    <ClInclude Include="TAB_APP_Scene.hpp" />
+    <ClInclude Include="TAB_GAME_Scene.hpp" />
+    <ClInclude Include="TAB_HOME_Scene.hpp" />
+    <ClInclude Include="TAB_MUSIC_Scene.hpp" />
+    <ClInclude Include="TAB_OTHERS_Scene.hpp" />
+    <ClInclude Include="TAB_VIDEO_Scene.hpp" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

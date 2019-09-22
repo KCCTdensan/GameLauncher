@@ -1,13 +1,13 @@
 #include "WindowManager.h"
 #include "OperationData.h"
 #include "AppData.h"
-#include <Windows.h>
+//#include <Windows.h>
 
 
-void WindowManager::Update()
+void WindowManager::Update(HWND mainWindowHandle)
 {
 	RECT rec;
-	GetClientRect(Ope::MAIN_WINDOW_HANDLE, &rec);
+	GetClientRect(mainWindowHandle, &rec);
 	Ope::CURRENT_WINDOW_SIZE_X = rec.right - rec.left;
 	Ope::CURRENT_WINDOW_SIZE_Y = rec.bottom - rec.top;
 
