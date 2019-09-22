@@ -1,32 +1,64 @@
 #include "ObjectManager.h"
 #include "AppData.h"
+#include "InputManager.h"
 
 
 /*
 
 
-	object[i].pictureHandleTmp;
-	object[i].pictureHandle;
+		int ObjectType;
 
-	object[i].WritingFlag = FALSE;
-	object[i].writing;
-	object[i].writingX;
-	object[i].writingY;
-	object[i].WritingWidth;
+	WCHAR name;
 
-	object[i].writingColor;
-	object[i].writingFont;
-	object[i].ritingSize;
+	bool ExistenceFlag = FALSE;//存在フラグ
+	bool EffectiveFlag = TRUE;//有効フラグ
 
-	object[i].ListFlag;
-	object[i].ListArrengement;
-	object[i].ListData[LIST_MAX];
-	object[i].ListDataX[LIST_MAX];
-	object[i].ListDataY[LIST_MAX];
-	object[i].ListDataWidth[LIST_MAX];
-	object[i].ListOneSizeheight[LIST_MAX];
+	bool ActivationFlag;
+	bool MouseFlag;
 
+	int AnimationBlend;
+	bool AnimationFlag;
+	int AnimationTick = 0;
 
+	bool RoundnessFlag;
+	int RoundnessSize;
+
+	int x;
+	int y;
+	int xSize;
+	int ySize;
+
+	bool insideFlag;
+	bool outsideFlag;
+	int insideColor;
+	int outsideColor;
+	int outsidePixel;
+
+	bool pictureFlag;
+	int pictureEnum;
+
+	bool WritingFlag = FALSE;
+	WCHAR writing;
+	int writingX;
+	int writingY;
+	int WritingWidth;
+
+	int writingColor;
+	int writingFont;
+	int writingSize;
+
+	int FontHandle;
+
+	int WritingArrengement;
+
+	bool ListFlag;
+	WCHAR ListData[LIST_MAX];
+	int ListDataX[LIST_MAX];
+	int ListDataY[LIST_MAX];
+	int ListDataWidth[LIST_MAX];
+	int ListOneSizeheight[LIST_MAX];
+
+	変数一覧です。現在のobjectdata一つずつに入ってるものです
 
 */
 
@@ -38,16 +70,13 @@ ObjectManager::ObjectManager()
 	}
 }
 
-
-ObjectManager::~ObjectManager()
-{
-}
-
-int ObjectManager::Set(tstring stg, int x, int y, int sizeX, int sizeY)
+int ObjectManager::Set(const wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
 		if (object[i].ExistenceFlag) continue;
+
+		object[i].name = stg;
 
 		object[i].ExistenceFlag = TRUE;
 		object[i].EffectiveFlag = TRUE;
@@ -57,11 +86,12 @@ int ObjectManager::Set(tstring stg, int x, int y, int sizeX, int sizeY)
 		object[i].xSize = sizeX;
 		object[i].ySize = sizeY;
 
+		object[i].ObjectType = type;
 	}
 	return 0;
 }
 
-int ObjectManager::ColorSet(tstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
+int ObjectManager::ColorSet(wstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -80,7 +110,7 @@ int ObjectManager::ColorSet(tstring stg, bool outsideFlag, int outsideColor, int
 	return re_num;
 }
 
-int ObjectManager::RoundnessSet(tstring stg, bool flag, int size)
+int ObjectManager::RoundnessSet(wstring stg, bool flag, int size)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -94,7 +124,7 @@ int ObjectManager::RoundnessSet(tstring stg, bool flag, int size)
 	return 0;
 }
 
-int ObjectManager::WritingSet(tstring stg, bool flag, tstring data)
+int ObjectManager::WritingSet(wstring stg, bool flag, WCHAR data)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -107,7 +137,7 @@ int ObjectManager::WritingSet(tstring stg, bool flag, tstring data)
 	return 0;
 }
 
-int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrengement)
+int ObjectManager::WritingFontSet(wstring stg, int font, int color, int arrangementX, int arrangementY)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -116,55 +146,178 @@ int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrengem
 
 		object[i].writingFont = font;
 		object[i].writingColor = color;
-		object[i].WritingArrengement = arrengement;
+		object[i].WritingArrengementX = arrangementX;
 
 		re_num = 0;
 
-		tstring a;
+		WCHAR a;
 
 		switch (object[i].writingFont)
 		{
 		case OBJECT_FONT_GOTHIC:
-			a = App::FONT_GOTHIC;
+			a = *App::FONT_GOTHIC;
 
 			break;
 		}
 
-		object[i].FontHandle = CreateFontToHandle(a.c_str(), object[i].writingSize, -1, DX_FONTTYPE_ANTIALIASING);
+		object[i].FontHandle = CreateFontToHandle(&a, object[i].writingSize, -1, DX_FONTTYPE_ANTIALIASING);
 
 		int len;
 
-		switch (object[i].WritingArrengement)
+		switch (object[i].WritingArrengementX)
 		{
-		case ARRANGEMENT_LEFT:
+		case ARRANGEMENT_X_LEFT:
 			object[i].writingX = object[i].x + object[i].outsidePixel;
 			break;
-		case ARRANGEMENT_CENTER:
-			len = (int)lstrlen(object[i].writing.c_str());
-			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
+		case ARRANGEMENT_X_CENTER:
+			len = (int)lstrlen(&object[i].writing);
+			object[i].WritingWidth = GetDrawStringWidthToHandle(&object[i].writing, len, object[i].FontHandle);
 			object[i].writingX = object[i].x + (object[i].xSize - object[i].WritingWidth) / 2;
 			break;
-		case ARRANGEMENT_RIGHT:
-			len = (int)lstrlen(object[i].writing.c_str());
-			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
+		case ARRANGEMENT_X_RIGHT:
+			len = (int)lstrlen(&object[i].writing);
+			object[i].WritingWidth = GetDrawStringWidthToHandle(&object[i].writing, len, object[i].FontHandle);
 			object[i].writingX = object[i].x + object[i].xSize - object[i].WritingWidth - object[i].outsidePixel;
 			break;
 		}
-		object[i].writingY = object[i].y + (object[i].ySize - object[i].writingSize) / 2;
+		switch (object[i].WritingArrengementY)
+		{
+		case ARRANGEMENT_Y_TOP:
+			object[i].writingY = object[i].ySize;
+			break;
+		case ARRANGEMENT_Y_CENTER:
+			object[i].writingY = object[i].y + (object[i].ySize - object[i].writingSize) / 2;
+			break;
+		case ARRANGEMENT_Y_BOTTOM:
+			object[i].writingY = object[i].y + object[i].ySize - object[i].writingSize;
+			break;
+		}
 	}
 
 	return re_num;
+}
+
+int ObjectManager::ImageChestSet(wstring stg, bool flag, const WCHAR* PicPath, int sizeX, int sizeY, int setX, int setY)
+{
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (object[i].ExistenceFlag && object[i].name != stg) continue;
+
+		object[i].pictureFlag = flag;
+		if (flag == FALSE) {
+			return 0;
+		}
+
+		object[i].pictureNumTmp = LoadGraph(PicPath);
+
+		int getSizeX, getSizeY;
+		GetGraphSize(object[i].pictureNumTmp, &getSizeX, &getSizeY);
+		if (getSizeX != sizeX || getSizeY != sizeY)
+		{
+			object[i].pictureNum = MakeScreen(sizeX, sizeY, TRUE);
+			if (object[i].pictureNum == -1) {
+				DeleteGraph(object[i].pictureNumTmp);
+				return -1;
+			}
+			SetDrawScreen(object[i].pictureNum);
+			DrawExtendGraph(0, 0, sizeX, sizeY, object[i].pictureNumTmp, TRUE);
+			DeleteGraph(object[i].pictureNumTmp);
+		}
+		else {
+			object[i].pictureNum = object[i].pictureNumTmp;
+
+		}
+
+		object[i].pictureX = setX;
+		object[i].pictureY = setY;
+
+		break;
+	}
+
+	return 0;
 }
 
 void ObjectManager::Update()
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
-		if (!object[i].ExistenceFlag) continue;
+		if (!object[i].ExistenceFlag && !object[i].EffectiveFlag) continue;
+
+		if (object[i].x <= Input::Mouse::MOUSE_WIN_X &&
+			object[i].x + object[i].xSize >= Input::Mouse::MOUSE_WIN_X &&
+			object[i].y <= Input::Mouse::MOUSE_WIN_Y &&
+			object[i].y + object[i].ySize >= Input::Mouse::MOUSE_WIN_Y)
+		{
+			object[i].MouseFlag = TRUE;
+			if (Input::Mouse::MOUSE_CLICK & MOUSE_INPUT_LEFT)
+			{
+				for (int j = 0;j < OBJECT_MAX;j++) {
+					object[j].ActivationFlag = FALSE;
+
+				}
+				object[i].ActivationFlag = TRUE;
+			}
+		}
+		else {
+			object[i].MouseFlag = FALSE;
+		}
+
 	}
 }
 
 void ObjectManager::Draw()
 {
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag) continue;//四角描画 or 楕円
+
+		switch (object[i].ObjectType) {
+
+		case BUTTON:
+			switch (object[i].RoundnessFlag)
+			{
+			case TRUE:
+				if (object[i].outsideFlag) {
+					DrawRoundRect(object[i].x, object[i].y, object[i].x + object[i].xSize, object[i].y + object[i].ySize, object[i].RoundnessSize, object[i].RoundnessSize, object[i].outsideColor, TRUE);
+				}
+				if (object[i].insideFlag) {
+					DrawRoundRect(object[i].x - object[i].outsidePixel, object[i].y - object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].RoundnessSize, object[i].RoundnessSize, object[i].insideColor, TRUE);
+				}
+				break;
+			case FALSE:
+				if (object[i].outsideFlag) {
+					DrawBox(object[i].x, object[i].y, object[i].xSize + object[i].x, object[i].ySize + object[i].y, object[i].outsideColor, TRUE);
+				}
+				if (object[i].insideFlag)
+				{
+					DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].insideColor, TRUE);
+				}
+			}
+
+			if (object[i].pictureFlag) {
+				DrawGraph(object[i].x + object[i].pictureX, object[i].y + object[i].pictureY, object[i].pictureNum, TRUE);
+			}
+
+			break;
+
+		case PICTURE:
+
+			DrawGraph(object[i].x + object[i].pictureX, object[i].y + object[i].pictureY, object[i].pictureNum, TRUE);
+
+			break;
+
+		}
+
+
+	}
+
+	// todo effect
+
+	// todo writing
+
+
+
+
 
 }
+

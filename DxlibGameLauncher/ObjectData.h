@@ -1,25 +1,32 @@
 #pragma once
 
-#include <DxLib.h>
+#include "DxLib.h"
 #include "OperationData.h"
+#include <string>
+
 
 #define LIST_MAX 64
 
+using namespace std;
 
-class ObjectData
+
+struct ObjectData
 {
-public:
-	ObjectData();
-	~ObjectData();
+	ObjectData()
+		: ExistenceFlag(FALSE), EffectiveFlag(TRUE), AnimationTick(0), WritingFlag(FALSE)
+	{
+
+	}
 
 	int ObjectType;
 
-	tstring name;
+	wstring name;
 
-	bool ExistenceFlag = FALSE;//存在フラグ
-	bool EffectiveFlag = TRUE;//有効フラグ
+	bool ExistenceFlag;//存在フラグ
+	bool EffectiveFlag;//有効フラグ
 
 	bool ActivationFlag;
+	bool MouseFlag;
 
 	int AnimationBlend;
 	bool AnimationFlag;
@@ -38,12 +45,16 @@ public:
 	int insideColor;
 	int outsideColor;
 	int outsidePixel;
+	
+	bool pictureFlag;
+	int pictureNum;
+	int pictureNumTmp;
 
-	int pictureHandleTmp;
-	int pictureHandle;
+	int pictureX;
+	int pictureY;
 
-	bool WritingFlag = FALSE;
-	tstring writing;
+	bool WritingFlag;
+	WCHAR writing;
 	int writingX;
 	int writingY;
 	int WritingWidth;
@@ -54,13 +65,7 @@ public:
 
 	int FontHandle;
 
-	int WritingArrengement;
-
-	bool ListFlag;
-	tstring ListData[LIST_MAX];
-	int ListDataX[LIST_MAX];
-	int ListDataY[LIST_MAX];
-	int ListDataWidth[LIST_MAX];
-	int ListOneSizeheight[LIST_MAX];
+	int WritingArrengementX;
+	int WritingArrengementY;
 };
 

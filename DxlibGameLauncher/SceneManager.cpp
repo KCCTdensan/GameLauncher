@@ -1,6 +1,5 @@
 #include "SceneManager.h"
 #include "DxLib.h"
-#include "MainScene.h"
 
 using namespace std;
 SceneData *SceneManager::currentScene = NULL;
@@ -27,14 +26,25 @@ int SceneManager::ChanegeScene(SCENE scene)
 
 	switch(scene)
 	{
-	case MAIN:
-		currentScene = new MainScene();
+	case TAB_HOME:
+		currentScene = new TAB_HOME_Scene();
 		i = TRUE;
 		break;
-	
+	case TAB_APP:
+		currentScene = new TAB_APP_Scene();
+		i = TRUE;
+		break;
+	case TAB_GAME:
+		currentScene = new TAB_GAME_Scene();
+		i = TRUE;
+		break;
+	case TAB_MUSIC:
+		currentScene = new TAB_MUSIC_Scene();
+		i = TRUE;
+		break;
 	default:
 		i = FALSE;
-		
+		break;
 	}
 	return i;
 }
