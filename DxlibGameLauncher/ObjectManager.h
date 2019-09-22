@@ -35,7 +35,7 @@ public:
 	int RoundnessSet		(tstring stg, bool flag, int size = NULL);
 	int WritingSet			(tstring stg, bool flag, tstring data);
 	int WritingFontSet		(tstring stg, int Font = 0, int Color = 0, int arrengementX = 0, int arrengementY = 0);
-	int ImageChestSet		(tstring stg, bool flag, TCHAR PicPath = NULL, int sizeX = 0, int sizeY = 0); //FLAGの時も可
+	int ImageChestSet		(tstring stg, bool flag, TCHAR PicPath = NULL, int sizeX = 0, int sizeY = 0, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
 
 	void Update();
 	void Draw();

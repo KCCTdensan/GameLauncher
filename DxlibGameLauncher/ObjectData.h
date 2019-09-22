@@ -46,6 +46,9 @@ public:
 	int pictureNum;
 	int pictureNumTmp;
 
+	int pictureX;
+	int pictureY;
+
 	bool WritingFlag = FALSE;
 	tstring writing;
 	int writingX;

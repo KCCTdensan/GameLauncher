@@ -141,7 +141,7 @@ int ObjectManager::WritingSet(tstring stg, bool flag, tstring data)
 	return 0;
 }
 
-int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrengementX, int arrengementY)
+int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrangementX, int arrangementY)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -150,7 +150,7 @@ int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrengem
 
 		object[i].writingFont = font;
 		object[i].writingColor = color;
-		object[i].WritingArrengementX = arrengementX;
+		object[i].WritingArrengementX = arrangementX;
 
 		re_num = 0;
 
@@ -186,15 +186,22 @@ int ObjectManager::WritingFontSet(tstring stg, int font, int color, int arrengem
 		}
 		switch (object[i].WritingArrengementY)
 		{
+		case ARRANGEMENT_Y_TOP:
+			object[i].writingY = object[i].ySize;
+			break;
+		case ARRANGEMENT_Y_CENTER:
+			object[i].writingY = object[i].y + (object[i].ySize - object[i].writingSize) / 2;
+			break;
+		case ARRANGEMENT_Y_BOTTOM:
+			object[i].writingY = object[i].y + object[i].ySize - object[i].writingSize;
+			break;
 		}
-
-		object[i].writingY = object[i].y + (object[i].ySize - object[i].writingSize) / 2;
 	}
 
 	return re_num;
 }
 
-int ObjectManager::ImageChestSet(tstring stg, bool flag, TCHAR PicPath, int sizeX, int sizeY)
+int ObjectManager::ImageChestSet(tstring stg, bool flag, TCHAR PicPath, int sizeX, int sizeY, int setX, int setY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -224,7 +231,10 @@ int ObjectManager::ImageChestSet(tstring stg, bool flag, TCHAR PicPath, int size
 			object[i].pictureNum = object[i].pictureNumTmp;
 
 		}
-		
+
+		object[i].pictureX = setX;
+		object[i].pictureY = setY;
+
 		break;
 	}
 
@@ -243,8 +253,14 @@ void ObjectManager::Update()
 			object[i].y + object[i].ySize >= Input::Mouse::MOUSE_WIN_Y)
 		{
 			object[i].MouseFlag = TRUE;
+			if (Input::Mouse::MOUSE_CLICK & MOUSE_INPUT_LEFT)
+			{
+				for (int j = 0;j < OBJECT_MAX;j++) {
+					object[j].ActivationFlag = FALSE;
 
-			//todo hit
+				}
+				object[i].ActivationFlag = TRUE;
+			}
 		}
 		else {
 			object[i].MouseFlag = FALSE;
@@ -259,41 +275,40 @@ void ObjectManager::Draw()
 	{
 		if (!object[i].ExistenceFlag) continue;//ŽlŠp•`‰æ or ‘È‰~
 
-		switch (object[i].pictureFlag)
+		switch (object[i].RoundnessFlag)
 		{
-		case FALSE:
-			switch (object[i].RoundnessFlag)
-			{
-			case TRUE:
-				if (object[i].outsideFlag) {
-					DrawRoundRect(object[i].x, object[i].y, object[i].x + object[i].xSize, object[i].y + object[i].ySize, object[i].RoundnessSize, object[i].RoundnessSize, object[i].outsideColor, TRUE);
-				}
-				if (object[i].insideFlag) {
-					DrawRoundRect(object[i].x - object[i].outsidePixel, object[i].y - object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].RoundnessSize, object[i].RoundnessSize, object[i].insideColor, TRUE);
-				}
-				break;
-			case FALSE:
-				if (object[i].outsideFlag) {
-					DrawBox(object[i].x, object[i].y, object[i].xSize + object[i].x, object[i].ySize + object[i].y, object[i].outsideColor, TRUE);
-				}
-				if (object[i].insideFlag)
-				{
-					DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].insideColor, TRUE);
-				}
+		case TRUE:
+			if (object[i].outsideFlag) {
+				DrawRoundRect(object[i].x, object[i].y, object[i].x + object[i].xSize, object[i].y + object[i].ySize, object[i].RoundnessSize, object[i].RoundnessSize, object[i].outsideColor, TRUE);
+			}
+			if (object[i].insideFlag) {
+				DrawRoundRect(object[i].x - object[i].outsidePixel, object[i].y - object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].RoundnessSize, object[i].RoundnessSize, object[i].insideColor, TRUE);
 			}
 			break;
-		case TRUE:
-			break;
+		case FALSE:
+			if (object[i].outsideFlag) {
+				DrawBox(object[i].x, object[i].y, object[i].xSize + object[i].x, object[i].ySize + object[i].y, object[i].outsideColor, TRUE);
+			}
+			if (object[i].insideFlag)
+			{
+				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].insideColor, TRUE);
+			}
 		}
+		
+		if (object[i].pictureFlag) {
 
-		// todo effect
-
-		// todo writing
-
-
-
+		}
 
 
 	}
 
+	// todo effect
+
+	// todo writing
+
+
+
+
+
 }
+
