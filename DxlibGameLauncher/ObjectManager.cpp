@@ -64,10 +64,6 @@
 
 ObjectManager::ObjectManager()
 {
-	for (int i = 0; i < OBJECT_MAX; i++)
-	{
-		object[i].ExistenceFlag = FALSE;
-	}
 }
 
 int ObjectManager::Set(string stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
