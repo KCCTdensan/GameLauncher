@@ -58,7 +58,8 @@ public:
 
 	int FontHandle;
 
-	int WritingArrengement;
+	int WritingArrengementX;
+	int WritingArrengementY;
 
 	bool ListFlag;
 	tstring ListData[LIST_MAX];

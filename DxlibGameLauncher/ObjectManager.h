@@ -5,14 +5,18 @@
 
 #define OBJECT_MAX 256
 
-#define ARRANGEMENT_LEFT	0
-#define ARRANGEMENT_CENTER	1
-#define ARRANGEMENT_RIGHT	2
+#define ARRANGEMENT_X_LEFT		0
+#define ARRANGEMENT_X_CENTER	1
+#define ARRANGEMENT_X_RIGHT		2
 
-#define OBJECT_FONT_GOTHIC	0
+#define ARRANGEMENT_Y_TOP		0
+#define ARRANGEMENT_Y_CENTER	1
+#define ARRANGEMENT_Y_BOTTOM	2
 
-#define OBJECT_BUTTON		0
-#define OBJECT_INPUT		1
+#define OBJECT_FONT_GOTHIC		0
+
+#define OBJECT_BUTTON			0
+#define OBJECT_INPUT			1
 
 using namespace std;
 
@@ -30,7 +34,7 @@ public:
 	int ColorSet			(tstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //éwíËÇµÇ»Ç¢èÍçáNULL
 	int RoundnessSet		(tstring stg, bool flag, int size = NULL);
 	int WritingSet			(tstring stg, bool flag, tstring data);
-	int WritingFontSet		(tstring stg, int Font = 0, int Color = 0, int arrengement = 0);
+	int WritingFontSet		(tstring stg, int Font = 0, int Color = 0, int arrengementX = 0, int arrengementY = 0);
 	int ImageChestSet		(tstring stg, bool flag, TCHAR PicPath = NULL, int sizeX = 0, int sizeY = 0); //FLAGÇÃéûÇ‡â¬
 
 	void Update();

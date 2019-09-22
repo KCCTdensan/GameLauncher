@@ -17,6 +17,7 @@ SceneManager Ope::sceneManager;
 
 #pragma warning(push)
 #pragma warning(disable:28251)
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
 {
 	Ope::MAIN_WINDOW_HANDLE = GetMainWindowHandle();
