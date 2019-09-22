@@ -1,13 +1,8 @@
-#include "TAB_VIDEO_Scene.h"
+#include "TAB_VIDEO_Scene.hpp"
 
-TAB_VIDEO_Scene::TAB_VIDEO_Scene()
-{
-}
 
-void TAB_VIDEO_Scene::Update()
+TAB_VIDEO_Scene::TAB_VIDEO_Scene(ObjectManager &objectManager)
+	: SceneData(objectManager)
 {
-}
 
-void TAB_VIDEO_Scene::Draw()
-{
 }

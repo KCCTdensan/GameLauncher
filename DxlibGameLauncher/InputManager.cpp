@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "OperationData.h"
 
+
 using namespace Input;
 
 int KeyBoard::KEY[256];

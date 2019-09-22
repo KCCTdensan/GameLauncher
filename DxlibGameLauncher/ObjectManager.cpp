@@ -7,7 +7,7 @@ ObjectManager::ObjectManager()
 {
 }
 
-int ObjectManager::Set(string stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
+int ObjectManager::Set(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -28,7 +28,7 @@ int ObjectManager::Set(string stg, int x, int y, int sizeX, int sizeY, OBJECT_TY
 	return 0;
 }
 
-int ObjectManager::ColorSet(string stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
+int ObjectManager::ColorSet(wstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -47,7 +47,7 @@ int ObjectManager::ColorSet(string stg, bool outsideFlag, int outsideColor, int 
 	return re_num;
 }
 
-int ObjectManager::RoundnessSet(string stg, bool flag, int size)
+int ObjectManager::RoundnessSet(wstring stg, bool flag, int size)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -61,7 +61,7 @@ int ObjectManager::RoundnessSet(string stg, bool flag, int size)
 	return 0;
 }
 
-int ObjectManager::WritingSet(string stg, bool flag, string data)
+int ObjectManager::WritingSet(wstring stg, bool flag, wstring data)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -74,7 +74,7 @@ int ObjectManager::WritingSet(string stg, bool flag, string data)
 	return 0;
 }
 
-int ObjectManager::WritingFontSet(string stg, int font, int color, int arrangementX, int arrangementY)
+int ObjectManager::WritingFontSet(wstring stg, int font, int color, int arrangementX, int arrangementY)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -87,7 +87,7 @@ int ObjectManager::WritingFontSet(string stg, int font, int color, int arrangeme
 
 		re_num = 0;
 
-		string a;
+		wstring a;
 
 		switch (object[i].writingFont)
 		{
@@ -134,7 +134,7 @@ int ObjectManager::WritingFontSet(string stg, int font, int color, int arrangeme
 	return re_num;
 }
 
-int ObjectManager::ImageChestSet(string stg, bool flag, string PicPath, int sizeX, int sizeY, int setX, int setY)
+int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int sizeX, int sizeY, int setX, int setY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{

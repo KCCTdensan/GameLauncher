@@ -1,8 +1,10 @@
 #pragma once
 
+#include <Windows.h>
+
 
 class WindowManager
 {
 public:
-	void Update();	
+	void Update(HWND mainWindowHandle);
 };

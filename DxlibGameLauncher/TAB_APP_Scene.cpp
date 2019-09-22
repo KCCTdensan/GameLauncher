@@ -1,13 +1,8 @@
-#include "TAB_APP_Scene.h"
+#include "TAB_APP_Scene.hpp"
 
-TAB_APP_Scene::TAB_APP_Scene()
-{
-}
 
-void TAB_APP_Scene::Update()
+TAB_APP_Scene::TAB_APP_Scene(ObjectManager &objectManager)
+	: SceneData(objectManager)
 {
-}
 
-void TAB_APP_Scene::Draw()
-{
 }

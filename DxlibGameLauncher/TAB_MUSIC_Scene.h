@@ -1,5 +1,8 @@
 #pragma once
+
 #include "SceneData.h"
+
+
 class TAB_MUSIC_Scene :
 	public SceneData
 {
@@ -9,4 +12,3 @@ public:
 	void Update();
 	void Draw();
 };
-
