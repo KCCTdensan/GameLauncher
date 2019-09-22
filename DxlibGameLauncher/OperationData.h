@@ -2,6 +2,7 @@
 
 #include "SceneManager.h"
 #include "ObjectManager.h"
+#include "DxLib.h"
 
 
 namespace Ope
