@@ -70,12 +70,7 @@ ObjectManager::ObjectManager()
 	}
 }
 
-
-ObjectManager::~ObjectManager()
-{
-}
-
-int ObjectManager::Set(WCHAR stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
+int ObjectManager::Set(const wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -92,12 +87,11 @@ int ObjectManager::Set(WCHAR stg, int x, int y, int sizeX, int sizeY, OBJECT_TYP
 		object[i].ySize = sizeY;
 
 		object[i].ObjectType = type;
-
 	}
 	return 0;
 }
 
-int ObjectManager::ColorSet(WCHAR stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
+int ObjectManager::ColorSet(wstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -116,7 +110,7 @@ int ObjectManager::ColorSet(WCHAR stg, bool outsideFlag, int outsideColor, int o
 	return re_num;
 }
 
-int ObjectManager::RoundnessSet(WCHAR stg, bool flag, int size)
+int ObjectManager::RoundnessSet(wstring stg, bool flag, int size)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -130,7 +124,7 @@ int ObjectManager::RoundnessSet(WCHAR stg, bool flag, int size)
 	return 0;
 }
 
-int ObjectManager::WritingSet(WCHAR stg, bool flag, WCHAR data)
+int ObjectManager::WritingSet(wstring stg, bool flag, WCHAR data)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -143,7 +137,7 @@ int ObjectManager::WritingSet(WCHAR stg, bool flag, WCHAR data)
 	return 0;
 }
 
-int ObjectManager::WritingFontSet(WCHAR stg, int font, int color, int arrangementX, int arrangementY)
+int ObjectManager::WritingFontSet(wstring stg, int font, int color, int arrangementX, int arrangementY)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -203,7 +197,7 @@ int ObjectManager::WritingFontSet(WCHAR stg, int font, int color, int arrangemen
 	return re_num;
 }
 
-int ObjectManager::ImageChestSet(WCHAR stg, bool flag, TCHAR PicPath, int sizeX, int sizeY, int setX, int setY)
+int ObjectManager::ImageChestSet(wstring stg, bool flag, const WCHAR* PicPath, int sizeX, int sizeY, int setX, int setY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -214,7 +208,7 @@ int ObjectManager::ImageChestSet(WCHAR stg, bool flag, TCHAR PicPath, int sizeX,
 			return 0;
 		}
 
-		object[i].pictureNumTmp = LoadGraph(&PicPath);
+		object[i].pictureNumTmp = LoadGraph(PicPath);
 
 		int getSizeX, getSizeY;
 		GetGraphSize(object[i].pictureNumTmp, &getSizeX, &getSizeY);

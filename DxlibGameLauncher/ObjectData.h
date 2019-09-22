@@ -2,24 +2,28 @@
 
 #include "DxLib.h"
 #include "OperationData.h"
+#include <string>
+
 
 #define LIST_MAX 64
 
 using namespace std;
 
 
-class ObjectData
+struct ObjectData
 {
-public:
-	ObjectData();
-	~ObjectData();
+	ObjectData()
+		: ExistenceFlag(FALSE), EffectiveFlag(TRUE), AnimationTick(0), WritingFlag(FALSE)
+	{
+
+	}
 
 	int ObjectType;
 
-	WCHAR name;
+	wstring name;
 
-	bool ExistenceFlag = FALSE;//存在フラグ
-	bool EffectiveFlag = TRUE;//有効フラグ
+	bool ExistenceFlag;//存在フラグ
+	bool EffectiveFlag;//有効フラグ
 
 	bool ActivationFlag;
 	bool MouseFlag;
@@ -49,7 +53,7 @@ public:
 	int pictureX;
 	int pictureY;
 
-	bool WritingFlag = FALSE;
+	bool WritingFlag;
 	WCHAR writing;
 	int writingX;
 	int writingY;

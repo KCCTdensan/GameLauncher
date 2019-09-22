@@ -51,9 +51,6 @@
     <ClCompile Include="SceneData.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectData.cpp">
-      <Filter>ソース ファイル\Object</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
