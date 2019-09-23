@@ -89,6 +89,8 @@
     <ClCompile Include="input\keyboard.cpp" />
     <ClCompile Include="input\mouse.cpp" />
     <ClCompile Include="main_procedure.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="object\object.cpp" />
     <ClCompile Include="scene_manager.cpp" />
     <ClCompile Include="scene\TAB_3DMODEL_Scene.cpp" />
     <ClCompile Include="scene\TAB_APP_Scene.cpp" />
@@ -102,7 +104,10 @@
     <ClInclude Include="AppData.h" />
     <ClInclude Include="input\keyboard.hpp" />
     <ClInclude Include="input\mouse.hpp" />
+    <ClInclude Include="ObjectData.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="object\button.hpp" />
+    <ClInclude Include="object\graph.hpp" />
     <ClInclude Include="object\object.hpp" />
     <ClInclude Include="object\picture.hpp" />
     <ClInclude Include="OperationData.h" />

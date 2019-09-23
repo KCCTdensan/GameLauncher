@@ -2,29 +2,9 @@
 #include "AppData.h"
 
 
-ObjectManager::ObjectManager()
+void ObjectManager::addObject(const object::Object &object)
 {
-}
-
-int ObjectManager::Set(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
-{
-	for (int i = 0; i < OBJECT_MAX; i++)
-	{
-		if (object[i].ExistenceFlag) continue;
-
-		object[i].name = stg;
-
-		object[i].ExistenceFlag = TRUE;
-		object[i].EffectiveFlag = TRUE;
-
-		object[i].x = x;
-		object[i].y = y;
-		object[i].xSize = sizeX;
-		object[i].ySize = sizeY;
-
-		object[i].ObjectType = type;
-	}
-	return 0;
+	objectList.emplace_back(object);
 }
 
 int ObjectManager::ColorSet(wstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)

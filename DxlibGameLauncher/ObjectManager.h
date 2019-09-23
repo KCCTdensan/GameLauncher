@@ -1,11 +1,10 @@
 #pragma once
 
+#include "object/object.hpp"
 #include "ObjectData.h"
 #include "OperationData.h"
 #include <string>
-#include <array>
-
-constexpr int OBJECT_MAX = 256;
+#include <vector>
 
 constexpr int ARRANGEMENT_X_LEFT = 0;
 constexpr int ARRANGEMENT_X_CENTER = 1;
@@ -23,18 +22,12 @@ constexpr int OBJECT_INPUT = 1;
 
 using namespace std;
 
-enum OBJECT_TYPE
-{
-	BUTTON,
-	PICTURE
-};
-
 class ObjectManager
 {
-public:
-	ObjectManager();
+	std::vector<ObjectData> objectList;
 
-	int Set					(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type);
+public:
+	void addObject(const object::Object &object);
 	int ColorSet			(wstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //éwíËÇµÇ»Ç¢èÍçáNULL
 	int RoundnessSet		(wstring stg, bool flag, int size = NULL);
 	int WritingSet			(wstring stg, bool flag, wstring data);
@@ -43,9 +36,5 @@ public:
 
 	void Update();
 	void Draw();
-
-private:
-
-	std::array<ObjectData, OBJECT_MAX> object;
 };
 

@@ -9,23 +9,13 @@
 
 using namespace std;
 
-#pragma warning(push)
-#pragma warning(disable:26495)
-
 struct ObjectData
 {
 	ObjectData()
-		: ExistenceFlag(FALSE), EffectiveFlag(TRUE), AnimationTick(0), WritingFlag(FALSE)
+		: AnimationTick(0), WritingFlag(FALSE)
 	{
 
 	}
-
-	int ObjectType;
-
-	wstring name;
-
-	bool ExistenceFlag;//存在フラグ
-	bool EffectiveFlag;//有効フラグ
 
 	bool ActivationFlag;
 	bool MouseFlag;
@@ -36,11 +26,6 @@ struct ObjectData
 
 	bool RoundnessFlag;
 	int RoundnessSize;
-
-	int x;
-	int y;
-	int xSize;
-	int ySize;
 
 	bool insideFlag;
 	bool outsideFlag;
@@ -70,6 +55,3 @@ struct ObjectData
 	int WritingArrengementX;
 	int WritingArrengementY;
 };
-
-#pragma warning(pop)
-
