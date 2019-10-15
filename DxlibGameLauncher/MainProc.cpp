@@ -20,7 +20,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle();
 
 	SetAlwaysRunFlag(TRUE);
-	ChangeWindowMode(FALSE);
+	ChangeWindowMode(false);
+	SetWindowSizeChangeEnableFlag(TRUE);//ウインドウ可変変更
+	SetUseDirectInputFlag(TRUE);
 
 	SetWindowText(L"GameLauncher");
 

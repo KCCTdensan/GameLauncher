@@ -8,4 +8,7 @@ class TAB_APP_Scene :
 {
 public:
 	TAB_APP_Scene(ObjectManager &objectManager);
+
+	void Update();
+	void Draw();
 };

@@ -176,6 +176,8 @@ int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int si
 
 void ObjectManager::Update()
 {
+	Input::Mouse::Update();
+
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
 		if (!object[i].ExistenceFlag && !object[i].EffectiveFlag) continue;
@@ -234,6 +236,8 @@ void ObjectManager::Draw()
 			if (object[i].pictureFlag) {
 				DrawGraph(object[i].x + object[i].pictureX, object[i].y + object[i].pictureY, object[i].pictureNum, TRUE);
 			}
+
+			//
 
 			break;
 

@@ -8,4 +8,7 @@ class TAB_3DMODEL_Scene :
 {
 public:
 	TAB_3DMODEL_Scene(ObjectManager &objectManager);
+
+	void Update();
+	void Draw();
 };

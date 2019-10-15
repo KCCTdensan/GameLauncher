@@ -6,3 +6,11 @@ TAB_OTHERS_Scene::TAB_OTHERS_Scene(ObjectManager &objectManager)
 {
 
 }
+
+void TAB_OTHERS_Scene::Update()
+{
+}
+
+void TAB_OTHERS_Scene::Draw()
+{
+}

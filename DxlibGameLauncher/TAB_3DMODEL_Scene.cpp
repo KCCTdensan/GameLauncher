@@ -6,3 +6,11 @@ TAB_3DMODEL_Scene::TAB_3DMODEL_Scene(ObjectManager &objectManager)
 {
 
 }
+
+void TAB_3DMODEL_Scene::Update()
+{
+}
+
+void TAB_3DMODEL_Scene::Draw()
+{
+}

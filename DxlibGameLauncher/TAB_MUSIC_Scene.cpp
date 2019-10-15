@@ -6,3 +6,11 @@ TAB_MUSIC_Scene::TAB_MUSIC_Scene(ObjectManager &objectManager)
 {
 
 }
+
+void TAB_MUSIC_Scene::Update()
+{
+}
+
+void TAB_MUSIC_Scene::Draw()
+{
+}

@@ -6,3 +6,11 @@ TAB_APP_Scene::TAB_APP_Scene(ObjectManager &objectManager)
 {
 
 }
+
+void TAB_APP_Scene::Update()
+{
+}
+
+void TAB_APP_Scene::Draw()
+{
+}

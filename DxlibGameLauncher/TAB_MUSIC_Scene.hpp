@@ -8,4 +8,7 @@ class TAB_MUSIC_Scene :
 {
 public:
 	TAB_MUSIC_Scene(ObjectManager &objectManager);
+
+	void Update();
+	void Draw();
 };

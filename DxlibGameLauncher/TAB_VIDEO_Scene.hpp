@@ -8,5 +8,8 @@ class TAB_VIDEO_Scene :
 {
 public:
 	TAB_VIDEO_Scene(ObjectManager &objectManager);
+
+	void Update();
+	void Draw();
 };
 

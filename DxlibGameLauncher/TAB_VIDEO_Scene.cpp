@@ -6,3 +6,11 @@ TAB_VIDEO_Scene::TAB_VIDEO_Scene(ObjectManager &objectManager)
 {
 
 }
+
+void TAB_VIDEO_Scene::Update()
+{
+}
+
+void TAB_VIDEO_Scene::Draw()
+{
+}

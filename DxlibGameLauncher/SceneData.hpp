@@ -14,12 +14,8 @@ public:
 	{
 
 	}
-	virtual void Update()
-	{
-		objectManager.Update();
-	}
-	virtual void Draw()
-	{
-		objectManager.Draw();
-	}
+	virtual void Update() = 0;
+	
+	virtual void Draw() = 0;
+	
 };
