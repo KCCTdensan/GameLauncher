@@ -8,6 +8,7 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager)
 	objectManager.ColorSet(L"test", FALSE, NULL, NULL, TRUE, GetColor(255, 255, 255));
 	objectManager.WritingSet(L"test", TRUE, L"DEBUG");
 	objectManager.WritingFontSet(L"test", OBJECT_FONT_GOTHIC, 30, GetColor(0, 0, 0), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_CENTER);
+	objectManager.ImageChestSet(L"test", TRUE, L"D:\\Users\\seiya\\Desktop\\–³‘è.png", 100, 100, 0, 0);
 }
 
 void TAB_HOME_Scene::Update()

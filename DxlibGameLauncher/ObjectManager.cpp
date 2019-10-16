@@ -59,6 +59,7 @@ int ObjectManager::RoundnessSet(wstring stg, bool flag, int size)
 		object[i].RoundnessFlag = flag;
 		object[i].RoundnessSize = size;
 
+		break;
 	}
 	return 0;
 }
@@ -72,6 +73,8 @@ int ObjectManager::WritingSet(wstring stg, bool flag, wstring data)
 
 		object[i].WritingFlag = flag;
 		object[i].writing = data;
+
+		break;
 	}
 	return 0;
 }
@@ -132,6 +135,8 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, in
 			object[i].writingY = object[i].y + object[i].ySize - object[i].writingSize;
 			break;
 		}
+
+		break;
 	}
 
 	return re_num;
@@ -247,9 +252,15 @@ void ObjectManager::Draw()
 
 
 			if (object[i].MouseFlag && !object[i].ActivationFlag) {
-
+				SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
+				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
 			}
-			if (object[i].ActivationFlag) {
+			else if (object[i].ActivationFlag) {
+				SetDrawBlendMode(DX_BLENDMODE_ALPHA, 30);
+				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
+			}
+			
+			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 			break;
 

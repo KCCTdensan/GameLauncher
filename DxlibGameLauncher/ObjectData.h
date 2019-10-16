@@ -1,7 +1,6 @@
 #pragma once
 
 #include "DxLib.h"
-#include "OperationData.h"
 #include <string>
 
 
@@ -30,8 +29,8 @@ struct ObjectData
 	bool ActivationFlag;
 	bool MouseFlag;
 
-	int AnimationBlend;
-	bool AnimationFlag;
+	int AnimationBlend; // Žg—p‚·‚é‚©‚Í•s–¾
+	bool AnimationFlag = TRUE;
 	int AnimationTick = 50;
 
 	bool RoundnessFlag;
