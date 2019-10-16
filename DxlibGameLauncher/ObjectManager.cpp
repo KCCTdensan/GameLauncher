@@ -24,6 +24,8 @@ int ObjectManager::Set(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_T
 		object[i].ySize = sizeY;
 
 		object[i].ObjectType = type;
+
+		break;
 	}
 	return 0;
 }
@@ -33,7 +35,7 @@ int ObjectManager::ColorSet(wstring stg, bool outsideFlag, int outsideColor, int
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
-		if (object[i].ExistenceFlag && object[i].name != stg) continue;
+		if (!object[i].ExistenceFlag || object[i].name != stg) continue;
 
 		object[i].outsideFlag = outsideFlag;
 		object[i].insideFlag = insideFlag;
@@ -52,7 +54,7 @@ int ObjectManager::RoundnessSet(wstring stg, bool flag, int size)
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
-		if (object[i].ExistenceFlag && object[i].name != stg) continue;
+		if (!object[i].ExistenceFlag || object[i].name != stg) continue;
 
 		object[i].RoundnessFlag = flag;
 		object[i].RoundnessSize = size;
@@ -66,7 +68,7 @@ int ObjectManager::WritingSet(wstring stg, bool flag, wstring data)
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
-		if (object[i].ExistenceFlag && object[i].name != stg) continue;
+		if (!object[i].ExistenceFlag || object[i].name != stg) continue;
 
 		object[i].WritingFlag = flag;
 		object[i].writing = data;
@@ -74,16 +76,17 @@ int ObjectManager::WritingSet(wstring stg, bool flag, wstring data)
 	return 0;
 }
 
-int ObjectManager::WritingFontSet(wstring stg, int font, int color, int arrangementX, int arrangementY)
+int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, int arrangementX, int arrangementY)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
-		if (object[i].ExistenceFlag && object[i].name != stg) continue;
+		if (!object[i].ExistenceFlag || object[i].name != stg) continue;
 
 		object[i].writingFont = font;
 		object[i].writingColor = color;
 		object[i].WritingArrengementX = arrangementX;
+		object[i].writingSize = size;
 
 		re_num = 0;
 
@@ -123,7 +126,7 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int color, int arrangem
 			object[i].writingY = object[i].ySize;
 			break;
 		case ARRANGEMENT_Y_CENTER:
-			object[i].writingY = object[i].y + (object[i].ySize - object[i].writingSize) / 2;
+			object[i].writingY = object[i].y + ((object[i].ySize - object[i].writingSize) / 2);
 			break;
 		case ARRANGEMENT_Y_BOTTOM:
 			object[i].writingY = object[i].y + object[i].ySize - object[i].writingSize;
@@ -138,7 +141,7 @@ int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int si
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
-		if (object[i].ExistenceFlag && object[i].name != stg) continue;
+		if (!object[i].ExistenceFlag || object[i].name != stg) continue;
 
 		object[i].pictureFlag = flag;
 		if (flag == FALSE) {
@@ -177,6 +180,7 @@ int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int si
 void ObjectManager::Update()
 {
 	Input::Mouse::Update();
+	Input::KeyBoard::Update();
 
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -237,7 +241,15 @@ void ObjectManager::Draw()
 				DrawGraph(object[i].x + object[i].pictureX, object[i].y + object[i].pictureY, object[i].pictureNum, TRUE);
 			}
 
-			//
+			if (object[i].WritingFlag) {
+				DrawFormatStringToHandle(object[i].writingX, object[i].writingY, object[i].writingColor, object[i].FontHandle, object[i].writing.c_str());
+			}
+
+
+			if (object[i].MouseFlag && !object[i].ActivationFlag) {
+
+			}
+			if (object[i].ActivationFlag) {
 
 			break;
 

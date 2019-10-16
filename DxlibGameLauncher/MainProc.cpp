@@ -20,7 +20,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle();
 
 	SetAlwaysRunFlag(TRUE);
-	ChangeWindowMode(false);
+	ChangeWindowMode(TRUE);
 	SetWindowSizeChangeEnableFlag(TRUE);//ウインドウ可変変更
 	SetUseDirectInputFlag(TRUE);
 
@@ -33,6 +33,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		return -1;
 	}
 
+	SetGraphMode(App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, 32);
+
+	//SetWindowSize(App::DEFAULT_WINDOW_SIZE_X, App::DEFAULT_WINDOW_SIZE_Y);
+	SetWindowSize(960,540);
+
+	SetMouseDispFlag(TRUE);
+
 	sceneManager.ChanegeScene(TAB_HOME);//初回起動はホーム
 
 	while(!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
@@ -41,6 +48,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 		SetDrawScreen(DX_SCREEN_BACK);
 		sceneManager.Draw();
+
+		if (Input::KeyBoard::KEY[KEY_INPUT_ESCAPE] == KEYBOARD_PRESS_FIRST) {
+			break;
+		}
 	}
 	DxLib_End();
 	return 0;

@@ -32,7 +32,7 @@ struct ObjectData
 
 	int AnimationBlend;
 	bool AnimationFlag;
-	int AnimationTick = 0;
+	int AnimationTick = 50;
 
 	bool RoundnessFlag;
 	int RoundnessSize;
