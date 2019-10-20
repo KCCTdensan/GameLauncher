@@ -91,6 +91,7 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, in
 		object[i].writingFont = font;
 		object[i].writingColor = color;
 		object[i].WritingArrengementX = arrangementX;
+		object[i].WritingArrengementY = arrangementY;
 		object[i].writingSize = size;
 
 		re_num = 0;
@@ -144,7 +145,7 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, in
 	return re_num;
 }
 
-int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int sizeX, int sizeY, int setX, int setY)
+int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int setX, int setY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -157,7 +158,7 @@ int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int si
 
 		object[i].pictureNumTmp = LoadGraph(PicPath.c_str());
 
-		int getSizeX, getSizeY;
+		/*int getSizeX, getSizeY;
 		GetGraphSize(object[i].pictureNumTmp, &getSizeX, &getSizeY);
 		if (getSizeX != sizeX || getSizeY != sizeY)
 		{
@@ -167,13 +168,16 @@ int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int si
 				return -1;
 			}
 			SetDrawScreen(object[i].pictureNum);
-			DrawExtendGraph(0, 0, sizeX, sizeY, object[i].pictureNumTmp, TRUE);
+			//DrawBox(0, 0, 100, 100, GetColor(255, 255, 255), TRUE);
+			int we = DrawExtendGraph(0, 0, sizeX, sizeY, object[i].pictureNumTmp, TRUE);
 			DeleteGraph(object[i].pictureNumTmp);
 		}
 		else {
-			object[i].pictureNum = object[i].pictureNumTmp;
+			
 
-		}
+		}*/
+
+		object[i].pictureNum = object[i].pictureNumTmp;
 
 		object[i].pictureX = setX;
 		object[i].pictureY = setY;
@@ -267,6 +271,10 @@ void ObjectManager::Draw()
 			break;
 
 		case PICTURE:
+
+			if (object[i].WritingFlag) {
+				DrawFormatStringToHandle(object[i].writingX, object[i].writingY, object[i].writingColor, object[i].FontHandle, object[i].writing.c_str());
+			}
 
 			DrawGraph(object[i].x + object[i].pictureX, object[i].y + object[i].pictureY, object[i].pictureNum, TRUE);
 

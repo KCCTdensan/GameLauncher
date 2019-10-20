@@ -2,22 +2,41 @@
 
 HEADER_Scene::HEADER_Scene(ObjectManager& objectManager)
 {
-	/*objectManager.Set(L"HHSB", 100, 250, 300, 100, BUTTON);
-	objectManager.ColorSet(L"HHSB", FALSE, NULL, NULL, TRUE, GetColor(255, 255, 255));
-	objectManager.WritingSet(L"HHSB", TRUE, L"HOME");
-	objectManager.WritingFontSet(L"HHSB", OBJECT_FONT_GOTHIC, 50, GetColor(0, 0, 0), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_CENTER);*/
+	objectManager.Set(L"HHSB", 50, 250, 250, 100, BUTTON);
+	objectManager.ColorSet(L"HHSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.WritingSet(L"HHSB", TRUE, L"Home");
+	objectManager.WritingFontSet(L"HHSB", OBJECT_FONT_GOTHIC, 50, GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
 
-	//objectManager.Set(L"testA", 200, 100, 100, 100, BUTTON);
-	//ColorSet(L"testA", FALSE, NULL, NULL, TRUE, GetColor(255, 255, 255));
-	//objectManager.WritingSet(L"testA", TRUE, L"DEBUG");
-	//objectManager.WritingFontSet(L"testA", OBJECT_FONT_GOTHIC, 30, GetColor(0, 0, 0), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_CENTER);
-	//objectManager.ImageChestSet(L"testA", TRUE, L"D:\\Users\\seiya\\Desktop\\–³‘è.png", 100, 100, 0, 0);
+	objectManager.Set(L"HASB", 50, 350, 250, 100, BUTTON);
+	objectManager.ColorSet(L"HASB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.WritingSet(L"HASB", TRUE, L"App");
+	objectManager.WritingFontSet(L"HASB", OBJECT_FONT_GOTHIC, 50, GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
 
-	objectManager.Set(L"testa", 200, 100, 100, 100, BUTTON);
-	objectManager.ColorSet(L"testa", FALSE, NULL, NULL, TRUE, GetColor(255, 255, 255));
-	objectManager.WritingSet(L"testa", TRUE, L"DEBUG");
-	objectManager.WritingFontSet(L"testa", OBJECT_FONT_GOTHIC, 30, GetColor(0, 0, 0), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_CENTER);
-	objectManager.ImageChestSet(L"testa", TRUE, L"D:\\Users\\seiya\\Desktop\\–³‘è.png", 100, 100, 0, 0);
+	objectManager.Set(L"HGSB", 50, 450, 250, 100, BUTTON);
+	objectManager.ColorSet(L"HGSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.WritingSet(L"HGSB", TRUE, L"Game");
+	objectManager.WritingFontSet(L"HGSB", OBJECT_FONT_GOTHIC, 50, GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
+
+	objectManager.Set(L"H3SB", 50, 550, 250, 100, BUTTON);
+	objectManager.ColorSet(L"H3SB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.WritingSet(L"H3SB", TRUE, L"3D Model");
+	objectManager.WritingFontSet(L"H3SB", OBJECT_FONT_GOTHIC, 50, GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
+
+	objectManager.Set(L"HMSB", 50, 650, 250, 100, BUTTON);
+	objectManager.ColorSet(L"HMSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.WritingSet(L"HMSB", TRUE, L"Music");
+	objectManager.WritingFontSet(L"HMSB", OBJECT_FONT_GOTHIC, 50, GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
+
+	objectManager.Set(L"HVSB", 50, 750, 250, 100, BUTTON);
+	objectManager.ColorSet(L"HVSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.WritingSet(L"HVSB", TRUE, L"Video");
+	objectManager.WritingFontSet(L"HVSB", OBJECT_FONT_GOTHIC, 50, GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
+
+	objectManager.Set(L"HOSB", 50, 850, 250, 100, BUTTON);
+	objectManager.ColorSet(L"HOSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.WritingSet(L"HOSB", TRUE, L"Others");
+	objectManager.WritingFontSet(L"HOSB", OBJECT_FONT_GOTHIC, 50, GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
+
 }
 
 void HEADER_Scene::Update()
@@ -27,4 +46,8 @@ void HEADER_Scene::Update()
 
 void HEADER_Scene::Draw()
 {
+
+	DrawBox(0, 0, 350, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
+	DrawBox(1400, 0, 1920, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
+
 }

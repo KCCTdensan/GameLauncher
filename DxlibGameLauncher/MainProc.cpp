@@ -56,8 +56,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		SetDrawScreen(DX_SCREEN_BACK);
 		
 		sceneManager.Draw();
-		objectManager.Draw();
 		headerScene.Draw();
+		objectManager.Draw();
 
 		if (Input::KeyBoard::KEY[KEY_INPUT_ESCAPE] == KEYBOARD_PRESS_FIRST) {
 			break;

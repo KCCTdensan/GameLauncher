@@ -1,6 +1,9 @@
 #pragma once
 
 #include "SceneData.hpp"
+#include "AppData.h"
+
+using namespace App;
 
 class HEADER_Scene
 {
