@@ -63,6 +63,9 @@
     <ClCompile Include="TAB_VIDEO_Scene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="HEADER_Scene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OperationData.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="SceneManager.hpp">
       <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="HEADER_Scene.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

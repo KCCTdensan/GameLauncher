@@ -46,6 +46,7 @@ public:
 
 private:
 
-	std::array<ObjectData, OBJECT_MAX> object;
+	//std::array<ObjectData, OBJECT_MAX> object;
+	ObjectData object[OBJECT_MAX];
 };
 

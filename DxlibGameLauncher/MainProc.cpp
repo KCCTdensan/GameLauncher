@@ -4,6 +4,7 @@
 #include "AppData.h"
 #include "ObjectManager.h"
 #include "SceneManager.hpp"
+#include "HEADER_Scene.h"
 
 
 int Ope::CURRENT_WINDOW_COLOR_BIT = 0;
@@ -17,6 +18,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 {
 	static ObjectManager objectManager;
 	SceneManager sceneManager(objectManager);
+	
 	HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle();
 
 	SetAlwaysRunFlag(TRUE);
@@ -42,12 +44,20 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	sceneManager.ChanegeScene(TAB_HOME);//èââÒãNìÆÇÕÉzÅ[ÉÄ
 
+	HEADER_Scene headerScene(objectManager);
+
 	while(!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
 	{
+
+		objectManager.Update();
 		sceneManager.Update();
+		headerScene.Update();
 
 		SetDrawScreen(DX_SCREEN_BACK);
+		
 		sceneManager.Draw();
+		objectManager.Draw();
+		headerScene.Draw();
 
 		if (Input::KeyBoard::KEY[KEY_INPUT_ESCAPE] == KEYBOARD_PRESS_FIRST) {
 			break;

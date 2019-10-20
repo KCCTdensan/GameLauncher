@@ -86,6 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HEADER_Scene.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MainProc.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -101,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppData.h" />
+    <ClInclude Include="HEADER_Scene.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="ObjectData.h" />
     <ClInclude Include="ObjectManager.h" />

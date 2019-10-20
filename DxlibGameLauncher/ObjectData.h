@@ -14,7 +14,7 @@ using namespace std;
 struct ObjectData
 {
 	ObjectData()
-		: ExistenceFlag(FALSE), EffectiveFlag(TRUE), AnimationTick(0), WritingFlag(FALSE)
+		: ExistenceFlag(FALSE), EffectiveFlag(TRUE), AnimationTick(0), WritingFlag(FALSE), FontHandle(0)
 	{
 
 	}

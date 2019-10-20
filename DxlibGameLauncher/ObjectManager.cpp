@@ -44,6 +44,8 @@ int ObjectManager::ColorSet(wstring stg, bool outsideFlag, int outsideColor, int
 		object[i].outsidePixel = outsideSize;
 
 		re_num = 0;
+
+		break;
 	}
 
 	return re_num;
@@ -98,7 +100,7 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, in
 		switch (object[i].writingFont)
 		{
 		case OBJECT_FONT_GOTHIC:
-			a = *App::FONT_GOTHIC;
+			a = App::FONT_GOTHIC;
 
 			break;
 		}
