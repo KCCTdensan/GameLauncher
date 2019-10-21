@@ -145,6 +145,11 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, in
 	return re_num;
 }
 
+int ObjectManager::WritingFontSetToHandle(wstring stg, wstring handleName, int Color, int arrengementX, int arrengementY)
+{
+	return 0;
+}
+
 int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int setX, int setY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -225,8 +230,6 @@ int ObjectManager::HandleFontSet(wstring stg, int font, int size)
 
 void ObjectManager::Update()
 {
-	Input::Mouse::Update();
-	Input::KeyBoard::Update();
 
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{

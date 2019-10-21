@@ -5,6 +5,8 @@
 #include "ObjectManager.h"
 #include "SceneManager.hpp"
 #include "HEADER_Scene.h"
+#include "InputManager.h"
+#include "ExePath.h"
 
 
 int Ope::CURRENT_WINDOW_COLOR_BIT = 0;
@@ -48,6 +50,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	while(!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
 	{
+
+		Input::Mouse::Update();
+		Input::KeyBoard::Update();
 
 		objectManager.Update();
 		sceneManager.Update();

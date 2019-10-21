@@ -37,12 +37,13 @@ class ObjectManager
 public:
 	ObjectManager();
 
-	int Set					(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type);
-	int ColorSet			(wstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //指定しない場合NULL
-	int RoundnessSet		(wstring stg, bool flag, int size = NULL);
-	int WritingSet			(wstring stg, bool flag, wstring data);
-	int WritingFontSet		(wstring stg, int Font = 0, int size = 1, int Color = 0, int arrengementX = 0, int arrengementY = 0);
-	int ImageChestSet		(wstring stg, bool flag, wstring PicPath = NULL, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
+	int Set							(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type);
+	int ColorSet					(wstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //指定しない場合NULL
+	int RoundnessSet				(wstring stg, bool flag, int size = NULL);
+	int WritingSet					(wstring stg, bool flag, wstring data);
+	int WritingFontSet				(wstring stg, int Font = 0, int size = 1, int Color = 0, int arrengementX = 0, int arrengementY = 0);
+	int WritingFontSetToHandle		(wstring stg, wstring handleName, int Color = 0, int arrengementX = 0, int arrengementY = 0);
+	int ImageChestSet				(wstring stg, bool flag, wstring PicPath = NULL, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
 	//delete
 	//delete all
 
