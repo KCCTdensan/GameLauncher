@@ -20,6 +20,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 {
 	static ObjectManager objectManager;
 	SceneManager sceneManager(objectManager);
+	ExePath exePath;
 	
 	HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle();
 
@@ -36,6 +37,14 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	{
 		return -1;
 	}
+
+#if _DEBUG
+	// .vcxprojのディレクトリに放り込む
+#else
+	SetCurrentDirectory(exePath.GetPath());//こちらにも完成時にCopy&Paste
+#endif
+
+	//SetCurrentDirectory(exePath.GetPath());
 
 	SetGraphMode(App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, 32);
 

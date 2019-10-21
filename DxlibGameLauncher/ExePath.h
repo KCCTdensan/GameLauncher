@@ -5,14 +5,14 @@
 class ExePath 
 {
 public:
-	static const TCHAR* GetPath()
-	{
-		static ExePath path;
-		return path.m_Path;
-	}
 
-private:
 	ExePath();
+	~ExePath() {}
+
+	const TCHAR* GetPath() const
+	{
+		return m_Path;
+	}
 
 protected:
 	TCHAR m_Path[MAX_PATH];
@@ -20,7 +20,6 @@ protected:
 
 ExePath::ExePath()
 {
-
 	if (::GetModuleFileName(NULL, m_Path, MAX_PATH))    //実行ファイルのフルパスを取得
 	{   //取得に成功
 		TCHAR* ptmp = _tcsrchr(m_Path, _T('\\')); // \の最後の出現位置を取得
