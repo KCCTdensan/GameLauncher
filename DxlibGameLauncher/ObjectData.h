@@ -65,6 +65,7 @@ struct ObjectData
 	int writingSize;
 
 	int FontHandle;
+	bool fontOwnFlag = TRUE;
 
 	int WritingArrengementX;
 	int WritingArrengementY;

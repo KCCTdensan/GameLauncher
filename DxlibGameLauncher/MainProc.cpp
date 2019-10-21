@@ -53,6 +53,16 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SetMouseDispFlag(TRUE);
 
+	//******************************************************************
+
+	//必要最低限のフォントハンドル作成
+
+	objectManager.HandleFontSet(L"G50", OBJECT_FONT_GOTHIC, 50);//ヘッダーに必要
+
+	//******************************************************************
+
+
+
 	sceneManager.ChanegeScene(TAB_HOME);//初回起動はホーム
 
 	HEADER_Scene headerScene(objectManager);

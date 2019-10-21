@@ -108,6 +108,8 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, in
 
 		object[i].FontHandle = CreateFontToHandle(a.c_str(), object[i].writingSize, -1, DX_FONTTYPE_ANTIALIASING);
 
+		object[i].fontOwnFlag = TRUE;
+
 		int len;
 
 		switch (object[i].WritingArrengementX)
@@ -145,9 +147,67 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, in
 	return re_num;
 }
 
-int ObjectManager::WritingFontSetToHandle(wstring stg, wstring handleName, int Color, int arrengementX, int arrengementY)
+int ObjectManager::WritingFontSetToHandle(wstring stg, wstring handleName, int Color, int arrangementX, int arrangementY)
 {
-	return 0;
+	int re_num = -1;
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag || object[i].name != stg) continue;
+
+		object[i].writingColor = Color;
+		object[i].WritingArrengementX = arrangementX;
+		object[i].WritingArrengementY = arrangementY;
+
+		re_num = 0;
+
+		int bufSize = 15;
+
+		for (int j = 0;j < FONT_HANDLE_MAX;j++)
+		{
+			if (!fontData[j].ActiveFlag || fontData[j].name != handleName) continue;
+
+			object[i].fontOwnFlag = FALSE;
+
+			object[i].FontHandle = fontData[j].handle;
+			bufSize = fontData[j].size;
+
+		}
+
+		int len;
+
+		switch (object[i].WritingArrengementX)
+		{
+		case ARRANGEMENT_X_LEFT:
+			object[i].writingX = object[i].x + object[i].outsidePixel;
+			break;
+		case ARRANGEMENT_X_CENTER:
+			len = static_cast<int>(lstrlen(object[i].writing.c_str()));
+			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
+			object[i].writingX = object[i].x + (object[i].xSize - object[i].WritingWidth) / 2;
+			break;
+		case ARRANGEMENT_X_RIGHT:
+			len = static_cast<int>(lstrlen(object[i].writing.c_str()));
+			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
+			object[i].writingX = object[i].x + object[i].xSize - object[i].WritingWidth - object[i].outsidePixel;
+			break;
+		}
+		switch (object[i].WritingArrengementY)
+		{
+		case ARRANGEMENT_Y_TOP:
+			object[i].writingY = object[i].ySize;
+			break;
+		case ARRANGEMENT_Y_CENTER:
+			object[i].writingY = object[i].y + ((object[i].ySize - bufSize) / 2);
+			break;
+		case ARRANGEMENT_Y_BOTTOM:
+			object[i].writingY = object[i].y + object[i].ySize - bufSize;
+			break;
+		}
+
+		break;
+	}
+
+	return re_num;
 }
 
 int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int setX, int setY)
@@ -209,7 +269,7 @@ int ObjectManager::HandleFontSet(wstring stg, int font, int size)
 		fontData[i].size = size;
 
 		wstring a;
-		
+
 		switch (font)
 		{
 		case OBJECT_FONT_GOTHIC:
