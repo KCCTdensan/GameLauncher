@@ -37,6 +37,8 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager)
 	objectManager.WritingSet(L"HOSB", TRUE, L"Others");
 	objectManager.WritingFontSet(L"HOSB", OBJECT_FONT_GOTHIC, 50, GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
 
+	objectManager.HandleFontSet(L"Debug", OBJECT_FONT_GOTHIC, 15);
+
 }
 
 void HEADER_Scene::Update()

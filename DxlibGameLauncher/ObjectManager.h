@@ -1,11 +1,14 @@
 #pragma once
 
 #include "ObjectData.h"
+#include "FontData.h"
 #include "OperationData.h"
 #include <string>
 #include <array>
+#include "DxLib.h"
 
 constexpr int OBJECT_MAX = 256;
+constexpr int FONT_HANDLE_MAX = 256;
 
 constexpr int ARRANGEMENT_X_LEFT = 1;
 constexpr int ARRANGEMENT_X_CENTER = 0;
@@ -40,13 +43,19 @@ public:
 	int WritingSet			(wstring stg, bool flag, wstring data);
 	int WritingFontSet		(wstring stg, int Font = 0, int size = 1, int Color = 0, int arrengementX = 0, int arrengementY = 0);
 	int ImageChestSet		(wstring stg, bool flag, wstring PicPath = NULL, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
+	//delete
+	//delete all
+
+	int HandleFontSet		(wstring stg, int font = 0, int size = 15);
+	//delete
 
 	void Update();
 	void Draw();
 
 private:
 
-	//std::array<ObjectData, OBJECT_MAX> object;
-	ObjectData object[OBJECT_MAX];
+	std::array<ObjectData, OBJECT_MAX> object;
+	std::array<FontData, FONT_HANDLE_MAX> fontData;
+	//ObjectData object[OBJECT_MAX];
 };
 

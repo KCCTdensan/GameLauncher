@@ -102,11 +102,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppData.h" />
+    <ClInclude Include="FontData.h" />
     <ClInclude Include="HEADER_Scene.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="ObjectData.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="OperationData.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.hpp" />
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="TAB_3DMODEL_Scene.hpp" />
@@ -117,6 +119,9 @@
     <ClInclude Include="TAB_OTHERS_Scene.hpp" />
     <ClInclude Include="TAB_VIDEO_Scene.hpp" />
     <ClInclude Include="WindowManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DxlibGameLauncher.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

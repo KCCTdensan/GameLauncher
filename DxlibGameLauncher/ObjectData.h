@@ -1,7 +1,7 @@
 #pragma once
 
-#include "DxLib.h"
 #include <string>
+#include "DxLib.h"
 
 
 #define LIST_MAX 64

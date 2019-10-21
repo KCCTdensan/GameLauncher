@@ -173,9 +173,13 @@ int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int se
 			DeleteGraph(object[i].pictureNumTmp);
 		}
 		else {
-			
 
-		}*/
+
+		}
+
+		‚±‚±‚ð‚Ç‚¤‚É‚©‚µ‚½‚¢
+
+		*/
 
 		object[i].pictureNum = object[i].pictureNumTmp;
 
@@ -184,6 +188,37 @@ int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int se
 
 		break;
 	}
+
+	return 0;
+}
+
+int ObjectManager::HandleFontSet(wstring stg, int font, int size)
+{
+	for (int i = 0;i < FONT_HANDLE_MAX;i++)
+	{
+		if (fontData[i].ActiveFlag) continue;
+
+		fontData[i].ActiveFlag = TRUE;
+
+		fontData[i].name = stg;
+		fontData[i].size = size;
+
+		wstring a;
+		
+		switch (font)
+		{
+		case OBJECT_FONT_GOTHIC:
+			a = App::FONT_GOTHIC;
+
+			break;
+		}
+
+		fontData[i].handle = CreateFontToHandle(a.c_str(), fontData[i].size, -1, DX_FONTTYPE_ANTIALIASING);
+
+		break;
+
+	}
+
 
 	return 0;
 }
@@ -265,7 +300,7 @@ void ObjectManager::Draw()
 				SetDrawBlendMode(DX_BLENDMODE_ALPHA, 30);
 				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
 			}
-			
+
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 			break;
