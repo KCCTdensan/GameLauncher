@@ -1,5 +1,5 @@
 #pragma once
-
+#include "SceneList.h"
 
 namespace Ope
 {
@@ -9,4 +9,7 @@ namespace Ope
 
 	extern float WINDOW_SIZE_RATE;
 	extern float WINDOW_SIZE_RATE_TIME;
+
+	extern bool SCENE_CHANGE_FLAG;
+	extern SCENE SCENE_CHANGE_NUM;
 }

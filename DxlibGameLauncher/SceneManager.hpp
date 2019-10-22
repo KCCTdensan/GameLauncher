@@ -1,19 +1,14 @@
 #pragma once
+#include "SceneList.h"
 
 #include "TAB_APP_Scene.hpp"
 #include "TAB_GAME_Scene.hpp"
 #include "TAB_HOME_Scene.hpp"
 #include "TAB_MUSIC_Scene.hpp"
+#include "TAB_3DMODEL_Scene.hpp"
+#include "TAB_VIDEO_Scene.hpp"
+#include "TAB_OTHERS_Scene.hpp"
 
-
-enum SCENE
-{
-	TAB_HOME,
-	TAB_APP,
-	TAB_GAME,
-	TAB_MUSIC,
-	SCENE_NUM
-};
 
 class SceneManager
 {

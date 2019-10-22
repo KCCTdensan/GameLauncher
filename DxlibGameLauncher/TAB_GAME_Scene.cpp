@@ -13,4 +13,6 @@ void TAB_GAME_Scene::Update()
 
 void TAB_GAME_Scene::Draw()
 {
+	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont(L"G50"), L"Game");
+
 }

@@ -111,6 +111,7 @@
     <ClInclude Include="OperationData.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.hpp" />
+    <ClInclude Include="SceneList.h" />
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="TAB_3DMODEL_Scene.hpp" />
     <ClInclude Include="TAB_APP_Scene.hpp" />

@@ -257,6 +257,197 @@ int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int se
 	return 0;
 }
 
+int ObjectManager::ChangeVarInt(wstring stg, VAR var, int num)
+{
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag || object[i].name != stg) continue;
+
+		switch (var)
+		{
+		case X:
+			object[i].x = num;
+			break;
+		case Y:
+			object[i].y = num;
+			break;
+		case SIZE_X:
+			object[i].xSize = num;
+			break;
+		case SIZE_Y:
+			object[i].ySize = num;
+			break;
+		case WRITING_X:
+			object[i].writingX = num;
+			break;
+		case WRITING_Y:
+			object[i].writingY = num;
+			break;
+		default:
+			break;
+		}
+
+		break;
+	}
+
+	return 0;
+}
+
+int ObjectManager::ChangeVarBool(wstring stg, VAR var, bool flag)
+{
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag || object[i].name != stg) continue;
+
+		switch (var)
+		{
+		case EFFECTIVE_FLAG:
+			object[i].EffectiveFlag = flag;
+			break;
+		case MOUSE_FLAG:
+			object[i].MouseFlag = flag;
+			break;
+		case ANIMATION_FLAG:
+			object[i].AnimationFlag = flag;
+			break;
+		case WRITING_FLAG:
+			object[i].WritingFlag = flag;
+			break;
+		default:
+			break;
+		}
+
+		break;
+	}
+
+	return 0;
+}
+
+int ObjectManager::GetVarInt(wstring stg, VAR var)
+{
+	int num = -1;
+
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag || object[i].name != stg) continue;
+
+		switch (var)
+		{
+		case X:
+			num = object[i].x;
+			break;
+		case Y:
+			num = object[i].y;
+			break;
+		case SIZE_X:
+			num = object[i].xSize;
+			break;
+		case SIZE_Y:
+			num = object[i].ySize;
+			break;
+		case WRITING_X:
+			num = object[i].writingX;
+			break;
+		case WRITING_Y:
+			num = object[i].writingY;
+			break;
+		default:
+			break;
+		}
+
+		break;
+	}
+
+	return num;
+}
+
+bool ObjectManager::GetVarBool(wstring stg, VAR var)
+{
+
+	bool flag = FALSE;
+
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag || object[i].name != stg) continue;
+
+		switch (var)
+		{
+		case EFFECTIVE_FLAG:
+			flag = object[i].EffectiveFlag;
+			break;
+		case MOUSE_FLAG:
+			flag = object[i].MouseFlag;
+			break;
+		case ANIMATION_FLAG:
+			flag = object[i].AnimationFlag;
+			break;
+		case WRITING_FLAG:
+			flag = object[i].WritingFlag;
+			break;
+		case ACTIVATION_FLAG:
+			flag = object[i].ActivationFlag;
+			break;
+		default:
+			break;
+		}
+
+		break;
+	}
+
+	return flag;
+}
+
+int ObjectManager::Delete(wstring stg)
+{
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+
+		if (object[i].name != stg) continue;
+
+		object[i].ExistenceFlag = FALSE;
+		object[i].EffectiveFlag = FALSE;
+
+		object[i].name = L"";
+
+		object[i].x = 0;
+		object[i].y = 0;
+		object[i].xSize = 1;
+		object[i].ySize = 1;
+
+		if (object[i].fontOwnFlag)
+		{
+			DeleteFontToHandle(object[i].FontHandle);
+		}
+
+		break;
+
+	}
+	return 0;
+}
+
+int ObjectManager::DeleteAll(void)
+{
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		object[i].ExistenceFlag = FALSE;
+		object[i].EffectiveFlag = FALSE;
+
+		object[i].name = L"";
+
+		object[i].x = 0;
+		object[i].y = 0;
+		object[i].xSize = 1;
+		object[i].ySize = 1;
+		
+		if (object[i].fontOwnFlag)
+		{
+			DeleteFontToHandle(object[i].FontHandle);
+		}
+
+	}
+	return 0;
+}
+
 int ObjectManager::HandleFontSet(wstring stg, int font, int size)
 {
 	for (int i = 0;i < FONT_HANDLE_MAX;i++)
@@ -285,6 +476,51 @@ int ObjectManager::HandleFontSet(wstring stg, int font, int size)
 	}
 
 
+	return 0;
+}
+
+int ObjectManager::GetHandleFont(wstring stg)
+{
+	int num;
+
+	for (int i = 0;i < FONT_HANDLE_MAX;i++)
+	{
+		num = fontData[i].handle;
+
+		break;
+	}
+
+	return num;
+}
+
+int ObjectManager::DeleteHandleFont(wstring stg)
+{
+	for (int i = 0;i < FONT_HANDLE_MAX;i++)
+	{
+		if (fontData[i].ActiveFlag)
+		{
+			if (fontData[i].handle != -1)
+			{
+				DeleteFontToHandle(fontData[i].handle);
+			}
+		}
+	}
+
+	return 0;
+}
+
+int ObjectManager::DeleteHandleFontAll(void)
+{
+	for (int i = 0;i < FONT_HANDLE_MAX;i++)
+	{
+		if (fontData[i].ActiveFlag)
+		{
+			if (fontData[i].handle != -1)
+			{
+				DeleteFontToHandle(fontData[i].handle);
+			}
+		}
+	}
 	return 0;
 }
 

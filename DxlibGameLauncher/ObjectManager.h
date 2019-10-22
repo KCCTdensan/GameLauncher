@@ -32,31 +32,51 @@ enum OBJECT_TYPE
 	PICTURE
 };
 
+enum VAR
+{
+	X,
+	Y,
+	SIZE_X,
+	SIZE_Y,
+	EFFECTIVE_FLAG,
+	MOUSE_FLAG,
+	ANIMATION_FLAG,
+	ACTIVATION_FLAG,
+	WRITING_FLAG,
+	WRITING_X,
+	WRITING_Y
+};
+
 class ObjectManager
 {
 public:
 	ObjectManager();
 
-	int Set							(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type);
-	int ColorSet					(wstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //指定しない場合NULL
-	int RoundnessSet				(wstring stg, bool flag, int size = NULL);
-	int WritingSet					(wstring stg, bool flag, wstring data);
-	int WritingFontSet				(wstring stg, int Font = 0, int size = 1, int Color = 0, int arrangementX = 0, int arrangementY = 0);
-	int WritingFontSetToHandle		(wstring stg, wstring handleName, int Color = 0, int arrangementX = 0, int arrangementY = 0);
-	int ImageChestSet				(wstring stg, bool flag, wstring PicPath = NULL, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
-	//delete
-	//delete all
+	int		Set							(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type);
+	int		ColorSet					(wstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //指定しない場合NULL
+	int		RoundnessSet				(wstring stg, bool flag, int size = NULL);
+	int		WritingSet					(wstring stg, bool flag, wstring data);
+	int		WritingFontSet				(wstring stg, int Font = 0, int size = 1, int Color = 0, int arrangementX = 0, int arrangementY = 0);
+	int		WritingFontSetToHandle		(wstring stg, wstring handleName, int Color = 0, int arrangementX = 0, int arrangementY = 0);
+	int		ImageChestSet				(wstring stg, bool flag, wstring PicPath = NULL, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
+	int		ChangeVarInt				(wstring stg, VAR var, int num);
+	int		ChangeVarBool				(wstring stg, VAR var, bool flag);
+	int		GetVarInt					(wstring stg, VAR var);
+	bool	GetVarBool					(wstring stg, VAR var);
+	int		Delete						(wstring stg);
+	int		DeleteAll					(void);
+	
+	int		HandleFontSet				(wstring stg, int font = 0, int size = 15);
+	int		GetHandleFont				(wstring stg);
+	int		DeleteHandleFont			(wstring stg);
+	int		DeleteHandleFontAll			(void);
 
-	int HandleFontSet		(wstring stg, int font = 0, int size = 15);
-	//delete
-
-	void Update();
-	void Draw();
+	void	Update						(void);
+	void	Draw						(void);
 
 private:
 
 	std::array<ObjectData, OBJECT_MAX> object;
 	std::array<FontData, FONT_HANDLE_MAX> fontData;
-	//ObjectData object[OBJECT_MAX];
 };
 

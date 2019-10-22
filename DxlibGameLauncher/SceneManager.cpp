@@ -19,6 +19,7 @@ int SceneManager::ChanegeScene(SCENE scene)
 	{
 		delete currentScene;
 	}
+
 	switch(scene)
 	{
 	case TAB_HOME:
@@ -35,6 +36,18 @@ int SceneManager::ChanegeScene(SCENE scene)
 
 	case TAB_MUSIC:
 		currentScene = new TAB_MUSIC_Scene(objectManager);
+		return TRUE;
+
+	case TAB_3DMODEL:
+		currentScene = new TAB_3DMODEL_Scene(objectManager);
+		return TRUE;
+
+	case TAB_VIDEO:
+		currentScene = new TAB_VIDEO_Scene(objectManager);
+		return TRUE;
+
+	case TAB_OTHERS:
+		currentScene = new TAB_OTHERS_Scene(objectManager);
 		return TRUE;
 
 	default:

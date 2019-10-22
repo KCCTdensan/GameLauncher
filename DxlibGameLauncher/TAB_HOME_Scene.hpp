@@ -12,4 +12,8 @@ public:
 
 	void Update();
 	void Draw();
+
+private:
+
+	//ObjectManager* manager;
 };

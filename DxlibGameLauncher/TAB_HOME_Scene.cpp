@@ -4,6 +4,8 @@
 TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager)
 	: SceneData(objectManager)
 {
+	//manager = &objectManager;
+
 	/*
 
 	objectManager.Set(L"test", 100, 100, 100, 100, BUTTON);
@@ -19,11 +21,13 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager)
 
 void TAB_HOME_Scene::Update()
 {
+	
 	// ‘I‚Î‚ê‚½”Ô†‚ğæ“¾‚µ‚Ä‚»‚ê‚É”º‚Á‚½•\¦‚ğ‚³‚¹‚é
 }
 
 void TAB_HOME_Scene::Draw()
 {
+	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont(L"G50"), L"Home");
 
 	//DrawFormatString(0, 0, GetColor(255, 255, 255), L"x: %d", Input::Mouse::MOUSE_WIN_X);
 }

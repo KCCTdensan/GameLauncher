@@ -40,10 +40,41 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager)
 	objectManager.Set(L"HPicKCCT", 50, 50, 250, 250, PICTURE);
 	objectManager.ImageChestSet(L"HPicKCCT", TRUE, L".\\pic\\KCCTicon.png", 0, 0);
 
+	manager = &objectManager;
+
 }
 
 void HEADER_Scene::Update()
 {
+	if (manager->GetVarBool(L"HHSB", ACTIVATION_FLAG)) {
+		Ope::SCENE_CHANGE_FLAG = TRUE;
+		Ope::SCENE_CHANGE_NUM = TAB_HOME;
+	}
+	if (manager->GetVarBool(L"HASB", ACTIVATION_FLAG)) {
+		Ope::SCENE_CHANGE_FLAG = TRUE;
+		Ope::SCENE_CHANGE_NUM = TAB_APP;
+	}
+	if (manager->GetVarBool(L"HGSB", ACTIVATION_FLAG)) {
+		Ope::SCENE_CHANGE_FLAG = TRUE;
+		Ope::SCENE_CHANGE_NUM = TAB_GAME;
+	}
+	if (manager->GetVarBool(L"H3SB", ACTIVATION_FLAG)) {
+		Ope::SCENE_CHANGE_FLAG = TRUE;
+		Ope::SCENE_CHANGE_NUM = TAB_3DMODEL;
+	}
+	if (manager->GetVarBool(L"HMSB", ACTIVATION_FLAG)) {
+		Ope::SCENE_CHANGE_FLAG = TRUE;
+		Ope::SCENE_CHANGE_NUM = TAB_MUSIC;
+	}
+	if (manager->GetVarBool(L"HVSB", ACTIVATION_FLAG)) {
+		Ope::SCENE_CHANGE_FLAG = TRUE;
+		Ope::SCENE_CHANGE_NUM = TAB_VIDEO;
+	}
+	if (manager->GetVarBool(L"HOSB", ACTIVATION_FLAG)) {
+		Ope::SCENE_CHANGE_FLAG = TRUE;
+		Ope::SCENE_CHANGE_NUM = TAB_OTHERS;
+	}
+
 	//ここにヘッダー処理を書く　（ＴＡＢ切り替え等）　
 }
 

@@ -2,6 +2,7 @@
 
 #include "SceneData.hpp"
 #include "AppData.h"
+#include "OperationData.h"
 
 using namespace App;
 
@@ -12,5 +13,9 @@ public:
 
 	void Update();
 	void Draw();
+
+private:
+
+	ObjectManager* manager;
 };
 

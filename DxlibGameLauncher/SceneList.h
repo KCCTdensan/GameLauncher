@@ -1,0 +1,13 @@
+#pragma once
+
+enum SCENE
+{
+	TAB_HOME,
+	TAB_APP,
+	TAB_GAME,
+	TAB_MUSIC,
+	TAB_3DMODEL,
+	TAB_VIDEO,
+	TAB_OTHERS,
+	SCENE_NUM
+};
