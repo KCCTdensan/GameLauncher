@@ -17,7 +17,7 @@ float Ope::WINDOW_SIZE_RATE = 1.0f;
 float Ope::WINDOW_SIZE_RATE_TIME = 1.0f;
 
 bool Ope::SCENE_CHANGE_FLAG = FALSE;
-SCENE Ope::SCENE_CHANGE_NUM = TAB_HOME;
+SCENE Ope::SCENE_CHANGE_NUM = SCENE::TAB_HOME;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {	
@@ -64,7 +64,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SceneManager sceneManager(objectManager);
 
-	sceneManager.ChanegeScene(TAB_HOME);//初回起動はホーム
+	sceneManager.ChanegeScene(SCENE::TAB_HOME);//初回起動はホーム
 
 	HEADER_Scene headerScene(objectManager);
 

@@ -27,5 +27,5 @@ public:
 	
 private:
 	SceneData *currentScene;
-	std::array<SceneData *, SCENE_NUM> sceneSave;
+	std::array<SceneData *, (int)SCENE::SCENE_NUM> sceneSave;
 };

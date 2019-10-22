@@ -265,22 +265,22 @@ int ObjectManager::ChangeVarInt(wstring stg, VAR var, int num)
 
 		switch (var)
 		{
-		case X:
+		case VAR::X:
 			object[i].x = num;
 			break;
-		case Y:
+		case VAR::Y:
 			object[i].y = num;
 			break;
-		case SIZE_X:
+		case VAR::SIZE_X:
 			object[i].xSize = num;
 			break;
-		case SIZE_Y:
+		case VAR::SIZE_Y:
 			object[i].ySize = num;
 			break;
-		case WRITING_X:
+		case VAR::WRITING_X:
 			object[i].writingX = num;
 			break;
-		case WRITING_Y:
+		case VAR::WRITING_Y:
 			object[i].writingY = num;
 			break;
 		default:
@@ -301,16 +301,16 @@ int ObjectManager::ChangeVarBool(wstring stg, VAR var, bool flag)
 
 		switch (var)
 		{
-		case EFFECTIVE_FLAG:
+		case VAR::EFFECTIVE_FLAG:
 			object[i].EffectiveFlag = flag;
 			break;
-		case MOUSE_FLAG:
+		case VAR::MOUSE_FLAG:
 			object[i].MouseFlag = flag;
 			break;
-		case ANIMATION_FLAG:
+		case VAR::ANIMATION_FLAG:
 			object[i].AnimationFlag = flag;
 			break;
-		case WRITING_FLAG:
+		case VAR::WRITING_FLAG:
 			object[i].WritingFlag = flag;
 			break;
 		default:
@@ -333,22 +333,22 @@ int ObjectManager::GetVarInt(wstring stg, VAR var)
 
 		switch (var)
 		{
-		case X:
+		case VAR::X:
 			num = object[i].x;
 			break;
-		case Y:
+		case VAR::Y:
 			num = object[i].y;
 			break;
-		case SIZE_X:
+		case VAR::SIZE_X:
 			num = object[i].xSize;
 			break;
-		case SIZE_Y:
+		case VAR::SIZE_Y:
 			num = object[i].ySize;
 			break;
-		case WRITING_X:
+		case VAR::WRITING_X:
 			num = object[i].writingX;
 			break;
-		case WRITING_Y:
+		case VAR::WRITING_Y:
 			num = object[i].writingY;
 			break;
 		default:
@@ -372,19 +372,19 @@ bool ObjectManager::GetVarBool(wstring stg, VAR var)
 
 		switch (var)
 		{
-		case EFFECTIVE_FLAG:
+		case VAR::EFFECTIVE_FLAG:
 			flag = object[i].EffectiveFlag;
 			break;
-		case MOUSE_FLAG:
+		case VAR::MOUSE_FLAG:
 			flag = object[i].MouseFlag;
 			break;
-		case ANIMATION_FLAG:
+		case VAR::ANIMATION_FLAG:
 			flag = object[i].AnimationFlag;
 			break;
-		case WRITING_FLAG:
+		case VAR::WRITING_FLAG:
 			flag = object[i].WritingFlag;
 			break;
-		case ACTIVATION_FLAG:
+		case VAR::ACTIVATION_FLAG:
 			flag = object[i].ActivationFlag;
 			break;
 		default:
@@ -561,7 +561,7 @@ void ObjectManager::Draw()
 
 		switch (object[i].ObjectType) {
 
-		case BUTTON:
+		case OBJECT_TYPE::BUTTON:
 			switch (object[i].RoundnessFlag)
 			{
 			case TRUE:
@@ -604,7 +604,7 @@ void ObjectManager::Draw()
 
 			break;
 
-		case PICTURE:
+		case OBJECT_TYPE::PICTURE:
 
 			if (object[i].WritingFlag) {
 				DrawFormatStringToHandle(object[i].writingX, object[i].writingY, object[i].writingColor, object[i].FontHandle, object[i].writing.c_str());

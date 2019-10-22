@@ -5,18 +5,18 @@
 SceneManager::SceneManager(ObjectManager &objectManager)
 	: currentScene(nullptr)
 {
-	sceneSave[TAB_HOME]		= new TAB_HOME_Scene(objectManager);
-	sceneSave[TAB_APP]		= new TAB_APP_Scene(objectManager);
-	sceneSave[TAB_GAME]		= new TAB_GAME_Scene(objectManager);
-	sceneSave[TAB_MUSIC]	= new TAB_MUSIC_Scene(objectManager);
-	sceneSave[TAB_3DMODEL]	= new TAB_3DMODEL_Scene(objectManager);
-	sceneSave[TAB_VIDEO]	= new TAB_VIDEO_Scene(objectManager);
-	sceneSave[TAB_OTHERS]	= new TAB_OTHERS_Scene(objectManager);
+	sceneSave[(int)SCENE::TAB_HOME]		= new TAB_HOME_Scene(objectManager);
+	sceneSave[(int)SCENE::TAB_APP]		= new TAB_APP_Scene(objectManager);
+	sceneSave[(int)SCENE::TAB_GAME]		= new TAB_GAME_Scene(objectManager);
+	sceneSave[(int)SCENE::TAB_MUSIC]	= new TAB_MUSIC_Scene(objectManager);
+	sceneSave[(int)SCENE::TAB_3DMODEL]	= new TAB_3DMODEL_Scene(objectManager);
+	sceneSave[(int)SCENE::TAB_VIDEO]	= new TAB_VIDEO_Scene(objectManager);
+	sceneSave[(int)SCENE::TAB_OTHERS]	= new TAB_OTHERS_Scene(objectManager);
 }
 
 SceneManager::~SceneManager()
 {
-	for(int i = 0; i < SCENE_NUM; i++)
+	for(int i = 0; i < (int)SCENE::SCENE_NUM; i++)
 	{
 		delete sceneSave[i];
 	}
@@ -26,32 +26,32 @@ int SceneManager::ChanegeScene(SCENE scene)
 {
 	switch(scene)
 	{
-	case TAB_HOME:
-		currentScene = sceneSave[TAB_HOME];
+	case SCENE::TAB_HOME:
+		currentScene = sceneSave[(int)SCENE::TAB_HOME];
 		return TRUE;
 
-	case TAB_APP:
-		currentScene = sceneSave[TAB_APP];
+	case SCENE::TAB_APP:
+		currentScene = sceneSave[(int)SCENE::TAB_APP];
 		return TRUE;
 
-	case TAB_GAME:
-		currentScene = sceneSave[TAB_GAME];
+	case SCENE::TAB_GAME:
+		currentScene = sceneSave[(int)SCENE::TAB_GAME];
 		return TRUE;
 
-	case TAB_MUSIC:
-		currentScene = sceneSave[TAB_MUSIC];
+	case SCENE::TAB_MUSIC:
+		currentScene = sceneSave[(int)SCENE::TAB_MUSIC];
 		return TRUE;
 
-	case TAB_3DMODEL:
-		currentScene = sceneSave[TAB_3DMODEL];
+	case SCENE::TAB_3DMODEL:
+		currentScene = sceneSave[(int)SCENE::TAB_3DMODEL];
 		return TRUE;
 
-	case TAB_VIDEO:
-		currentScene = sceneSave[TAB_VIDEO];
+	case SCENE::TAB_VIDEO:
+		currentScene = sceneSave[(int)SCENE::TAB_VIDEO];
 		return TRUE;
 
-	case TAB_OTHERS:
-		currentScene = sceneSave[TAB_OTHERS];
+	case SCENE::TAB_OTHERS:
+		currentScene = sceneSave[(int)SCENE::TAB_OTHERS];
 		return TRUE;
 
 	default:

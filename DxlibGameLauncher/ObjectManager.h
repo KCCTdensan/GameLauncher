@@ -6,6 +6,7 @@
 #include <string>
 #include <array>
 #include "DxLib.h"
+#include "ObjectEnum.h"
 
 constexpr int OBJECT_MAX = 256;
 constexpr int FONT_HANDLE_MAX = 256;
@@ -25,27 +26,6 @@ constexpr int OBJECT_INPUT = 1;
 
 
 using namespace std;
-
-enum OBJECT_TYPE
-{
-	BUTTON,
-	PICTURE
-};
-
-enum VAR
-{
-	X,
-	Y,
-	SIZE_X,
-	SIZE_Y,
-	EFFECTIVE_FLAG,
-	MOUSE_FLAG,
-	ANIMATION_FLAG,
-	ACTIVATION_FLAG,
-	WRITING_FLAG,
-	WRITING_X,
-	WRITING_Y
-};
 
 class ObjectManager
 {

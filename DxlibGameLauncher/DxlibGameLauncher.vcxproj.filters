@@ -131,5 +131,8 @@
     <ClInclude Include="ExePath.h">
       <Filter>ヘッダー ファイル\ProgramData</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectEnum.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

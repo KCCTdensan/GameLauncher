@@ -1,0 +1,22 @@
+#pragma once
+
+enum class OBJECT_TYPE
+{
+	BUTTON,
+	PICTURE
+};
+
+enum class VAR
+{
+	X,
+	Y,
+	SIZE_X,
+	SIZE_Y,
+	EFFECTIVE_FLAG,
+	MOUSE_FLAG,
+	ANIMATION_FLAG,
+	ACTIVATION_FLAG,
+	WRITING_FLAG,
+	WRITING_X,
+	WRITING_Y
+};

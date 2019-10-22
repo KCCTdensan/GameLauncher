@@ -2,6 +2,7 @@
 
 #include <string>
 #include "DxLib.h"
+#include "ObjectEnum.h"
 
 
 //#define LIST_MAX 64
@@ -23,7 +24,7 @@ struct ObjectData
 
 	}
 
-	int ObjectType;
+	OBJECT_TYPE ObjectType;
 
 	wstring name;
 

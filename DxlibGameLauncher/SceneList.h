@@ -1,6 +1,6 @@
 #pragma once
 
-enum SCENE
+enum class SCENE
 {
 	TAB_HOME,
 	TAB_APP,
