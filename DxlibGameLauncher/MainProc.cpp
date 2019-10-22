@@ -59,6 +59,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	//必要最低限のフォントハンドル作成
 
 	objectManager.HandleFontSet(L"G50", OBJECT_FONT_GOTHIC, 50);//ヘッダーに必要
+	objectManager.HandleFontSet(L"G20", OBJECT_FONT_GOTHIC, 20);//一覧したの文字
 
 	//******************************************************************
 
@@ -93,6 +94,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 			break;
 		}
 	}
+
+	sceneManager.~SceneManager();
+
 	DxLib_End();
 	return 0;
 }

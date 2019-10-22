@@ -25,4 +25,6 @@ public:
 private:
 	ObjectManager &objectManager;
 	SceneData *currentScene;
+	
+	SceneData* sceneSave[SCENE_NUM];
 };

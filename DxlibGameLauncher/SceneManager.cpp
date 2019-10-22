@@ -5,49 +5,61 @@
 SceneManager::SceneManager(ObjectManager &objectManager)
 	: objectManager(objectManager), currentScene(nullptr)
 {
+	sceneSave[TAB_HOME]		= new TAB_HOME_Scene(objectManager);
+	sceneSave[TAB_APP]		= new TAB_APP_Scene(objectManager);
+	sceneSave[TAB_GAME]		= new TAB_GAME_Scene(objectManager);
+	sceneSave[TAB_MUSIC]	= new TAB_MUSIC_Scene(objectManager);
+	sceneSave[TAB_3DMODEL]	= new TAB_3DMODEL_Scene(objectManager);
+	sceneSave[TAB_VIDEO]	= new TAB_VIDEO_Scene(objectManager);
+	sceneSave[TAB_OTHERS]	= new TAB_OTHERS_Scene(objectManager);
+
 	//quitFlag = FALSE;
 }
 
 SceneManager::~SceneManager()
 {
 	delete currentScene;
+	for (int i = 0;i < SCENE_NUM;i++)
+	{
+		delete sceneSave[i];
+	}
 }
 
 int SceneManager::ChanegeScene(SCENE scene)
 {
-	if(currentScene != nullptr)
+	/*if(currentScene != nullptr)
 	{
 		delete currentScene;
-	}
+	}*/
 
 	switch(scene)
 	{
 	case TAB_HOME:
-		currentScene = new TAB_HOME_Scene(objectManager);
+		currentScene = sceneSave[TAB_HOME];
 		return TRUE;
 
 	case TAB_APP:
-		currentScene = new TAB_APP_Scene(objectManager);
+		currentScene = sceneSave[TAB_APP];
 		return TRUE;
 
 	case TAB_GAME:
-		currentScene = new TAB_GAME_Scene(objectManager);
+		currentScene = sceneSave[TAB_GAME];
 		return TRUE;
 
 	case TAB_MUSIC:
-		currentScene = new TAB_MUSIC_Scene(objectManager);
+		currentScene = sceneSave[TAB_MUSIC];
 		return TRUE;
 
 	case TAB_3DMODEL:
-		currentScene = new TAB_3DMODEL_Scene(objectManager);
+		currentScene = sceneSave[TAB_3DMODEL];
 		return TRUE;
 
 	case TAB_VIDEO:
-		currentScene = new TAB_VIDEO_Scene(objectManager);
+		currentScene = sceneSave[TAB_VIDEO];
 		return TRUE;
 
 	case TAB_OTHERS:
-		currentScene = new TAB_OTHERS_Scene(objectManager);
+		currentScene = sceneSave[TAB_OTHERS];
 		return TRUE;
 
 	default:
