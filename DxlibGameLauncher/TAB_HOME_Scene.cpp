@@ -28,7 +28,8 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager)
 		objectManager.Set(name.c_str(), 400, 150, 250, 300, BUTTON);
 		objectManager.ColorSet(name.c_str(), FALSE, NULL, NULL, TRUE, GetColor(255, 255, 255));
 		objectManager.WritingSet(name.c_str(), TRUE, L"TEST");
-		objectManager.WritingFontSetToHandle(name.c_str(), L"G50", GetColor(BLACK, BLACK, BLACK), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
+		objectManager.WritingFontSetToHandle(name.c_str(), L"G50", GetColor(0, 0, 0), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
+
 	}
 
 	//wstring a;

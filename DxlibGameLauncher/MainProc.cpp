@@ -20,11 +20,7 @@ bool Ope::SCENE_CHANGE_FLAG = FALSE;
 SCENE Ope::SCENE_CHANGE_NUM = TAB_HOME;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
-{
-	static ObjectManager objectManager;
-	SceneManager sceneManager(objectManager);
-	ExePath exePath;
-	
+{	
 	HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle();
 
 	SetAlwaysRunFlag(TRUE);
@@ -54,6 +50,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SetMouseDispFlag(TRUE);
 
+	static ObjectManager objectManager;
+	ExePath exePath;
+
 	//******************************************************************
 
 	//必要最低限のフォントハンドル作成
@@ -63,7 +62,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	//******************************************************************
 
-
+	SceneManager sceneManager(objectManager);
 
 	sceneManager.ChanegeScene(TAB_HOME);//初回起動はホーム
 

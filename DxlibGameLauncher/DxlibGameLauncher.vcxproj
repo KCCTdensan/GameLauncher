@@ -123,9 +123,6 @@
     <ClInclude Include="TAB_VIDEO_Scene.hpp" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="DxlibGameLauncher.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

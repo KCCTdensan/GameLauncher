@@ -132,9 +132,4 @@
       <Filter>ヘッダー ファイル\ProgramData</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="DxlibGameLauncher.rc">
-      <Filter>リソース ファイル</Filter>
-    </ResourceCompile>
-  </ItemGroup>
 </Project>
