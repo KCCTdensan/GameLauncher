@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SceneData.hpp"
-#include "InputManager.h"
 
 
 class TAB_HOME_Scene :
