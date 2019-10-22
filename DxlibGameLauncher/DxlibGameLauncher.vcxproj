@@ -91,6 +91,7 @@
     <ClCompile Include="HEADER_Scene.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MainProc.cpp" />
+    <ClCompile Include="MusicManager.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TAB_3DMODEL_Scene.cpp" />
@@ -108,6 +109,8 @@
     <ClInclude Include="FontData.h" />
     <ClInclude Include="HEADER_Scene.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MusicData.h" />
+    <ClInclude Include="MusicManager.h" />
     <ClInclude Include="ObjectData.h" />
     <ClInclude Include="ObjectEnum.h" />
     <ClInclude Include="ObjectManager.h" />

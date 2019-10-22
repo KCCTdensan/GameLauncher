@@ -31,6 +31,12 @@
     <Filter Include="ソース ファイル\ProgramData">
       <UniqueIdentifier>{ce4cfa9f-5923-4bca-ab4f-5f7d727ef0f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Music">
+      <UniqueIdentifier>{8b3a0583-c1b0-4e2c-9ccc-0fc5d6ad8055}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Music">
+      <UniqueIdentifier>{9aba1a32-b0fd-4233-ae4d-0dda964a03d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainProc.cpp">
@@ -71,6 +77,9 @@
     </ClCompile>
     <ClCompile Include="WindowManager.cpp">
       <Filter>ソース ファイル\ProgramData</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicManager.cpp">
+      <Filter>ソース ファイル\Music</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="ObjectEnum.h">
       <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicManager.h">
+      <Filter>ヘッダー ファイル\Music</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicData.h">
+      <Filter>ヘッダー ファイル\Music</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
