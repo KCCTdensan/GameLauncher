@@ -2,7 +2,7 @@
 #include "DxLib.h"
 
 
-SceneManager::SceneManager(ObjectManager &objectManager)
+SceneManager::SceneManager(SCENE firstScene, ObjectManager &objectManager)
 	: currentScene(nullptr)
 {
 	sceneSave[TAB_HOME]		= new TAB_HOME_Scene(objectManager);
@@ -12,6 +12,8 @@ SceneManager::SceneManager(ObjectManager &objectManager)
 	sceneSave[TAB_3DMODEL]	= new TAB_3DMODEL_Scene(objectManager);
 	sceneSave[TAB_VIDEO]	= new TAB_VIDEO_Scene(objectManager);
 	sceneSave[TAB_OTHERS]	= new TAB_OTHERS_Scene(objectManager);
+
+	ChanegeScene(firstScene);
 }
 
 SceneManager::~SceneManager()

@@ -18,7 +18,7 @@ class SceneManager
 public:
 	SceneManager(const SceneManager &) = delete;
 	SceneManager &operator=(const SceneManager &) = delete;
-	SceneManager(ObjectManager &objectManager);
+	SceneManager(SCENE firstScene, ObjectManager &objectManager);
 	~SceneManager();
 
 	int ChanegeScene(SCENE scene);

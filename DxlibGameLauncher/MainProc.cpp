@@ -24,9 +24,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 {
 	Size windowSize = {960,540};
 	input::Keyboard keyboard;
-	input::Mouse mouse(App::BackgroundSize, windowSize);
+	input::Mouse mouse(App::BackgroundSize, App::BackgroundSize);
 	static ObjectManager objectManager;
-	SceneManager sceneManager(objectManager);
+	SceneManager sceneManager(TAB_HOME, objectManager);
 	ExePath exePath;
 	
 	HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle();
@@ -66,10 +66,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	objectManager.HandleFontSet(L"G20", OBJECT_FONT_GOTHIC, 20);//ˆê——‚µ‚½‚Ì•¶š
 
 	//******************************************************************
-
-
-
-	sceneManager.ChanegeScene(TAB_HOME);//‰‰ñ‹N“®‚Íƒz[ƒ€
 
 	HEADER_Scene headerScene(objectManager);
 
