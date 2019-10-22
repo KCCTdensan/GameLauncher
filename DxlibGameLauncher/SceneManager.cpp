@@ -16,7 +16,6 @@ SceneManager::SceneManager(ObjectManager &objectManager)
 
 SceneManager::~SceneManager()
 {
-	currentScene = nullptr;
 	for(int i = 0; i < SCENE_NUM; i++)
 	{
 		delete sceneSave[i];
