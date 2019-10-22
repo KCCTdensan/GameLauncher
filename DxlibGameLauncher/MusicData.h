@@ -2,6 +2,8 @@
 #include "DxLib.h"
 #include <string>
 
+using namespace std;
+
 struct MusicData
 {
 	MusicData()
