@@ -25,21 +25,15 @@
     <Filter Include="ヘッダー ファイル\Object">
       <UniqueIdentifier>{6bcda62c-7ce5-49f0-9167-793e7bceaad3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\input">
-      <UniqueIdentifier>{9ea3e350-4f86-4caf-bab8-1247c8d54218}</UniqueIdentifier>
+    <Filter Include="ヘッダー ファイル\ProgramData">
+      <UniqueIdentifier>{ebcb1102-9937-4074-8d53-72fc4f5ab13a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\input">
-      <UniqueIdentifier>{19998317-9e65-483c-9a62-67880e9c7c5b}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ProgramData">
+      <UniqueIdentifier>{ce4cfa9f-5923-4bca-ab4f-5f7d727ef0f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainProc.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="TAB_HOME_Scene.cpp">
@@ -72,17 +66,14 @@
     <ClCompile Include="HEADER_Scene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>ソース ファイル\ProgramData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OperationData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="AppData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
@@ -110,9 +101,6 @@
     <ClInclude Include="TAB_3DMODEL_Scene.hpp">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="SceneData.hpp">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
@@ -122,17 +110,26 @@
     <ClInclude Include="HEADER_Scene.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="FontData.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="ExePath.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="InputManager.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AppData.h">
+      <Filter>ヘッダー ファイル\ProgramData</Filter>
     </ClInclude>
     <ClInclude Include="SceneList.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowManager.h">
+      <Filter>ヘッダー ファイル\ProgramData</Filter>
+    </ClInclude>
+    <ClInclude Include="OperationData.h">
+      <Filter>ヘッダー ファイル\ProgramData</Filter>
+    </ClInclude>
+    <ClInclude Include="ExePath.h">
+      <Filter>ヘッダー ファイル\ProgramData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

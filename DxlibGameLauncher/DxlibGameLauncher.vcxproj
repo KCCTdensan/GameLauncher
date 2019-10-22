@@ -111,7 +111,6 @@
     <ClInclude Include="ObjectData.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="OperationData.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.hpp" />
     <ClInclude Include="SceneList.h" />
     <ClInclude Include="SceneManager.hpp" />
