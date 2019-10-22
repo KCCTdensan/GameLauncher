@@ -19,9 +19,6 @@
     <Filter Include="ヘッダー ファイル\Scene">
       <UniqueIdentifier>{423073c7-2d85-4e30-9b1b-80f02d450d34}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object">
-      <UniqueIdentifier>{e253330c-1588-478a-9a1f-cd9d0a065a58}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Object">
       <UniqueIdentifier>{6bcda62c-7ce5-49f0-9167-793e7bceaad3}</UniqueIdentifier>
     </Filter>
@@ -30,6 +27,9 @@
     </Filter>
     <Filter Include="ソース ファイル\input">
       <UniqueIdentifier>{19998317-9e65-483c-9a62-67880e9c7c5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object">
+      <UniqueIdentifier>{e253330c-1588-478a-9a1f-cd9d0a065a58}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="HEADER_Scene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="input\mouse.cpp">
+      <Filter>ソース ファイル\input</Filter>
+    </ClCompile>
+    <ClCompile Include="input\keyboard.cpp">
+      <Filter>ソース ファイル\input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +138,18 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneList.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="input\mouse.hpp">
+      <Filter>ヘッダー ファイル\input</Filter>
+    </ClInclude>
+    <ClInclude Include="input\keyboard.hpp">
+      <Filter>ヘッダー ファイル\input</Filter>
+    </ClInclude>
+    <ClInclude Include="position.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="size.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

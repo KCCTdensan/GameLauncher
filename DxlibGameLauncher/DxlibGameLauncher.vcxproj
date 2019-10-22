@@ -90,6 +90,8 @@
   <ItemGroup>
     <ClCompile Include="HEADER_Scene.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="input\keyboard.cpp" />
+    <ClCompile Include="input\mouse.cpp" />
     <ClCompile Include="MainProc.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -108,13 +110,17 @@
     <ClInclude Include="FontData.h" />
     <ClInclude Include="HEADER_Scene.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="input\keyboard.hpp" />
+    <ClInclude Include="input\mouse.hpp" />
     <ClInclude Include="ObjectData.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="OperationData.h" />
+    <ClInclude Include="position.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.hpp" />
     <ClInclude Include="SceneList.h" />
     <ClInclude Include="SceneManager.hpp" />
+    <ClInclude Include="size.hpp" />
     <ClInclude Include="TAB_3DMODEL_Scene.hpp" />
     <ClInclude Include="TAB_APP_Scene.hpp" />
     <ClInclude Include="TAB_GAME_Scene.hpp" />

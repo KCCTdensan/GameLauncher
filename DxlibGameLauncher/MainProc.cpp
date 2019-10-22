@@ -7,6 +7,8 @@
 #include "HEADER_Scene.h"
 #include "InputManager.h"
 #include "ExePath.h"
+#include "input/keyboard.hpp"
+#include "input/mouse.hpp"
 
 
 int Ope::CURRENT_WINDOW_COLOR_BIT = 0;
@@ -34,7 +36,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SetWindowText(L"GameLauncher");
 
-	SetDrawArea(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y);
+	SetDrawArea(0, 0, App::BackgroundSize.width, App::BackgroundSize.height);
 
 	if(DxLib_Init() == -1)
 	{
@@ -47,7 +49,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetCurrentDirectory(exePath.GetPath());//Ç±ÇøÇÁÇ…Ç‡äÆê¨éûÇ…Copy&Paste
 #endif
 
-	SetGraphMode(App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, 32);
+	SetGraphMode(App::BackgroundSize.width, App::BackgroundSize.height, 32);
 
 	//SetWindowSize(App::DEFAULT_WINDOW_SIZE_X, App::DEFAULT_WINDOW_SIZE_Y);
 	SetWindowSize(960,540);
