@@ -16,6 +16,8 @@ public:
 
 private:
 
+	void AllHide();
+
 	ObjectManager* manager;
 };
 

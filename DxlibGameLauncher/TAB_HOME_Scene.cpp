@@ -19,6 +19,8 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager)
 
 	*/
 
+	int a = 0;
+
 	for (int i = 0;i < 1;i++)
 	{
 		wstring name;
@@ -30,7 +32,10 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager)
 		objectManager.WritingSet(name.c_str(), TRUE, L"TEST");
 		objectManager.WritingFontSetToHandle(name.c_str(), L"G50", GetColor(0, 0, 0), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
 
+		a++;
 	}
+
+	Ope::HOME_BUTTON_NUM = a;
 
 	//wstring a;
 

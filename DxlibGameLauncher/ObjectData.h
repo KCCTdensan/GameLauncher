@@ -19,6 +19,7 @@ struct ObjectData
 		EffectiveFlag(TRUE),
 		AnimationTick(0),
 		WritingFlag(FALSE),
+		CanSeeFlag(TRUE),
 		FontHandle(0)
 	{
 
@@ -30,6 +31,7 @@ struct ObjectData
 
 	bool ExistenceFlag;//存在フラグ
 	bool EffectiveFlag;//有効フラグ
+	bool CanSeeFlag;//可視フラグ
 
 	bool ActivationFlag;
 	bool MouseFlag;

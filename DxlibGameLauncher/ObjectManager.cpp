@@ -313,6 +313,12 @@ int ObjectManager::ChangeVarBool(wstring stg, VAR var, bool flag)
 		case VAR::WRITING_FLAG:
 			object[i].WritingFlag = flag;
 			break;
+		case VAR::CAN_SEE_FLAG:
+			object[i].CanSeeFlag = flag;
+			break;
+		case VAR::ACTIVATION_FLAG:
+			object[i].ActivationFlag = flag;
+			break;
 		default:
 			break;
 		}
@@ -386,6 +392,9 @@ bool ObjectManager::GetVarBool(wstring stg, VAR var)
 			break;
 		case VAR::ACTIVATION_FLAG:
 			flag = object[i].ActivationFlag;
+			break;
+		case VAR::CAN_SEE_FLAG:
+			flag = object[i].CanSeeFlag;
 			break;
 		default:
 			break;
@@ -557,7 +566,7 @@ void ObjectManager::Draw()
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
-		if (!object[i].ExistenceFlag) continue;//ŽlŠp•`‰æ or ‘È‰~
+		if (!object[i].ExistenceFlag || !object[i].CanSeeFlag) continue;//ŽlŠp•`‰æ or ‘È‰~
 
 		switch (object[i].ObjectType) {
 

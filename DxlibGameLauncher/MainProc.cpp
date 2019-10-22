@@ -19,6 +19,14 @@ float Ope::WINDOW_SIZE_RATE_TIME = 1.0f;
 bool Ope::SCENE_CHANGE_FLAG = FALSE;
 SCENE Ope::SCENE_CHANGE_NUM = SCENE::TAB_HOME;
 
+int Ope::HOME_BUTTON_NUM = 0;
+int Ope::APP_BUTTON_NUM = 0;
+int Ope::GAME_BUTTON_NUM = 0;
+int Ope::MODEL_BUTTON_NUM = 0;
+int Ope::MUSIC_BUTTON_NUM = 0;
+int Ope::VIDEO_BUTTON_NUM = 0;
+int Ope::OTHERS_BUTTON_NUM = 0;
+
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {	
 	HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle();
