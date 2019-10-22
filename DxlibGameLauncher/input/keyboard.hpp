@@ -18,6 +18,6 @@ namespace input
 
 	public:
 		void update();
-		KeyPressID getPressStatus(int keyNo);
+		KeyPressID getPressStatus(int keyNo)const;
 	};
 }

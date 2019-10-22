@@ -37,7 +37,7 @@ namespace input
 		}
 	}
 
-	KeyPressID Keyboard::getPressStatus(int keyNo)
+	KeyPressID Keyboard::getPressStatus(int keyNo)const
 	{
 		return keyPressStatus[keyNo];
 	}

@@ -29,7 +29,7 @@ namespace input
 	public:
 		Mouse(Size backgroundSize, Size clientSize);
 		void update();
-		Position getCursorPosition();
-		int getMouseButtonInput();
+		Position getCursorPosition()const;
+		int getMouseButtonInput()const;
 	};
 }

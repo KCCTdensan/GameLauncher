@@ -5,7 +5,6 @@
 #include "ObjectManager.h"
 #include "SceneManager.hpp"
 #include "HEADER_Scene.h"
-#include "InputManager.h"
 #include "ExePath.h"
 #include "input/keyboard.hpp"
 #include "input/mouse.hpp"
@@ -78,8 +77,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	{
 		keyboard.update();
 		mouse.update();
-		//Input::Mouse::Update();
-		//Input::KeyBoard::Update();
 
 		objectManager.Update(mouse.getCursorPosition(), mouse.getMouseButtonInput());
 		sceneManager.Update();
@@ -99,11 +96,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		{
 			break;
 		}
-		/*
-		if (Input::KeyBoard::KEY[KEY_INPUT_ESCAPE] == KEYBOARD_PRESS_FIRST) {
-			break;
-		}
-		*/
 	}
 
 	DxLib_End();

@@ -20,12 +20,12 @@ namespace input
 		buttonInput = GetMouseInput();
 	}
 
-	Position Mouse::getCursorPosition()
+	Position Mouse::getCursorPosition()const
 	{
 		return cursorPosition;
 	}
 
-	int Mouse::getMouseButtonInput()
+	int Mouse::getMouseButtonInput()const
 	{
 		return buttonInput;
 	}
