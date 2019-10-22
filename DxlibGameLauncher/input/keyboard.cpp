@@ -36,4 +36,9 @@ namespace input
 			updateKeyPressStatus(i, buffer[i]);
 		}
 	}
+
+	KeyPressID Keyboard::getPressStatus(int keyNo)
+	{
+		return keyPressStatus[keyNo];
+	}
 }

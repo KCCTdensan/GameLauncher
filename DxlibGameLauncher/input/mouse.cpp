@@ -5,13 +5,10 @@
 
 namespace input
 {
-	Mouse::Mouse(HWND mainWindowHandle)
-		: cursorPosition{0, 0}
+	Mouse::Mouse(Size backgroundSize, Size clientSize)
+		: backgroundSize(backgroundSize), clientSize(clientSize), cursorPosition{0, 0}, buttonInput(0)
 	{
-		RECT clientRect;
-		GetClientRect(mainWindowHandle, &clientRect);
-		clientSize.width = clientRect.right - clientRect.left;
-		clientSize.height = clientRect.bottom - clientRect.top;
+
 	}
 
 	void Mouse::update()
@@ -20,7 +17,7 @@ namespace input
 		GetMousePoint(&mousePosition.x, &mousePosition.y);
 		cursorPosition.x = mousePosition.x * App::BackgroundSize.width / clientSize.width;
 		cursorPosition.y = mousePosition.y * App::BackgroundSize.height / clientSize.height;
-		buttonInput = static_cast<MouseInputID>(GetMouseInput());
+		buttonInput = GetMouseInput();
 	}
 
 	Position Mouse::getCursorPosition()
@@ -28,7 +25,7 @@ namespace input
 		return cursorPosition;
 	}
 
-	MouseInputID Mouse::getMouseButtonInput()
+	int Mouse::getMouseButtonInput()
 	{
 		return buttonInput;
 	}

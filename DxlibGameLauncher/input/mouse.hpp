@@ -21,14 +21,15 @@ namespace input
 
 	class Mouse
 	{
-		Size clientSize;
+		const Size backgroundSize;
+		const Size clientSize;
 		Position cursorPosition;
-		MouseInputID buttonInput;
+		int buttonInput;
 
 	public:
-		Mouse(HWND mainWindowHandle);
+		Mouse(Size backgroundSize, Size clientSize);
 		void update();
 		Position getCursorPosition();
-		MouseInputID getMouseButtonInput();
+		int getMouseButtonInput();
 	};
 }

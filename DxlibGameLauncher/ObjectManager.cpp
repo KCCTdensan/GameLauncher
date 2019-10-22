@@ -20,8 +20,8 @@ int ObjectManager::Set(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_T
 
 		object[i].x = x;
 		object[i].y = y;
-		object[i].xSize = sizeX;
-		object[i].ySize = sizeY;
+		object[i].width = sizeX;
+		object[i].height = sizeY;
 
 		object[i].ObjectType = type;
 
@@ -120,24 +120,24 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, in
 		case ARRANGEMENT_X_CENTER:
 			len = static_cast<int>(lstrlen(object[i].writing.c_str()));
 			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
-			object[i].writingX = object[i].x + (object[i].xSize - object[i].WritingWidth) / 2;
+			object[i].writingX = object[i].x + (object[i].width - object[i].WritingWidth) / 2;
 			break;
 		case ARRANGEMENT_X_RIGHT:
 			len = static_cast<int>(lstrlen(object[i].writing.c_str()));
 			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
-			object[i].writingX = object[i].x + object[i].xSize - object[i].WritingWidth - object[i].outsidePixel;
+			object[i].writingX = object[i].x + object[i].width - object[i].WritingWidth - object[i].outsidePixel;
 			break;
 		}
 		switch (object[i].WritingArrengementY)
 		{
 		case ARRANGEMENT_Y_TOP:
-			object[i].writingY = object[i].ySize;
+			object[i].writingY = object[i].height;
 			break;
 		case ARRANGEMENT_Y_CENTER:
-			object[i].writingY = object[i].y + ((object[i].ySize - object[i].writingSize) / 2);
+			object[i].writingY = object[i].y + ((object[i].height - object[i].writingSize) / 2);
 			break;
 		case ARRANGEMENT_Y_BOTTOM:
-			object[i].writingY = object[i].y + object[i].ySize - object[i].writingSize;
+			object[i].writingY = object[i].y + object[i].height - object[i].writingSize;
 			break;
 		}
 
@@ -183,24 +183,24 @@ int ObjectManager::WritingFontSetToHandle(wstring stg, wstring handleName, int C
 		case ARRANGEMENT_X_CENTER:
 			len = static_cast<int>(lstrlen(object[i].writing.c_str()));
 			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
-			object[i].writingX = object[i].x + (object[i].xSize - object[i].WritingWidth) / 2;
+			object[i].writingX = object[i].x + (object[i].width - object[i].WritingWidth) / 2;
 			break;
 		case ARRANGEMENT_X_RIGHT:
 			len = static_cast<int>(lstrlen(object[i].writing.c_str()));
 			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
-			object[i].writingX = object[i].x + object[i].xSize - object[i].WritingWidth - object[i].outsidePixel;
+			object[i].writingX = object[i].x + object[i].width - object[i].WritingWidth - object[i].outsidePixel;
 			break;
 		}
 		switch (object[i].WritingArrengementY)
 		{
 		case ARRANGEMENT_Y_TOP:
-			object[i].writingY = object[i].ySize;
+			object[i].writingY = object[i].height;
 			break;
 		case ARRANGEMENT_Y_CENTER:
-			object[i].writingY = object[i].y + ((object[i].ySize - bufSize) / 2);
+			object[i].writingY = object[i].y + ((object[i].height - bufSize) / 2);
 			break;
 		case ARRANGEMENT_Y_BOTTOM:
-			object[i].writingY = object[i].y + object[i].ySize - bufSize;
+			object[i].writingY = object[i].y + object[i].height - bufSize;
 			break;
 		}
 
@@ -272,10 +272,10 @@ int ObjectManager::ChangeVarInt(wstring stg, VAR var, int num)
 			object[i].y = num;
 			break;
 		case SIZE_X:
-			object[i].xSize = num;
+			object[i].width = num;
 			break;
 		case SIZE_Y:
-			object[i].ySize = num;
+			object[i].height = num;
 			break;
 		case WRITING_X:
 			object[i].writingX = num;
@@ -340,10 +340,10 @@ int ObjectManager::GetVarInt(wstring stg, VAR var)
 			num = object[i].y;
 			break;
 		case SIZE_X:
-			num = object[i].xSize;
+			num = object[i].width;
 			break;
 		case SIZE_Y:
-			num = object[i].ySize;
+			num = object[i].height;
 			break;
 		case WRITING_X:
 			num = object[i].writingX;
@@ -411,8 +411,8 @@ int ObjectManager::Delete(wstring stg)
 
 		object[i].x = 0;
 		object[i].y = 0;
-		object[i].xSize = 1;
-		object[i].ySize = 1;
+		object[i].width = 1;
+		object[i].height = 1;
 
 		if (object[i].fontOwnFlag)
 		{
@@ -436,8 +436,8 @@ int ObjectManager::DeleteAll(void)
 
 		object[i].x = 0;
 		object[i].y = 0;
-		object[i].xSize = 1;
-		object[i].ySize = 1;
+		object[i].width = 1;
+		object[i].height = 1;
 		
 		if (object[i].fontOwnFlag)
 		{
@@ -524,20 +524,17 @@ int ObjectManager::DeleteHandleFontAll(void)
 	return 0;
 }
 
-void ObjectManager::Update()
+void ObjectManager::Update(Position mousePosition, int mouseInput)
 {
 
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
 		if (!object[i].ExistenceFlag && !object[i].EffectiveFlag) continue;
 
-		if (object[i].x <= Input::Mouse::MOUSE_WIN_X &&
-			object[i].x + object[i].xSize >= Input::Mouse::MOUSE_WIN_X &&
-			object[i].y <= Input::Mouse::MOUSE_WIN_Y &&
-			object[i].y + object[i].ySize >= Input::Mouse::MOUSE_WIN_Y)
+		if (object[i].isPositionOnObject(mousePosition))
 		{
 			object[i].MouseFlag = TRUE;
-			if (Input::Mouse::MOUSE_CLICK & MOUSE_INPUT_LEFT)
+			if (mouseInput & MOUSE_INPUT_LEFT)
 			{
 				for (int j = 0;j < OBJECT_MAX;j++) {
 					object[j].ActivationFlag = FALSE;
@@ -566,19 +563,19 @@ void ObjectManager::Draw()
 			{
 			case TRUE:
 				if (object[i].outsideFlag) {
-					DrawRoundRect(object[i].x, object[i].y, object[i].x + object[i].xSize, object[i].y + object[i].ySize, object[i].RoundnessSize, object[i].RoundnessSize, object[i].outsideColor, TRUE);
+					DrawRoundRect(object[i].x, object[i].y, object[i].x + object[i].width, object[i].y + object[i].height, object[i].RoundnessSize, object[i].RoundnessSize, object[i].outsideColor, TRUE);
 				}
 				if (object[i].insideFlag) {
-					DrawRoundRect(object[i].x - object[i].outsidePixel, object[i].y - object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].RoundnessSize, object[i].RoundnessSize, object[i].insideColor, TRUE);
+					DrawRoundRect(object[i].x - object[i].outsidePixel, object[i].y - object[i].outsidePixel, object[i].width + object[i].x - object[i].outsidePixel, object[i].height + object[i].y - object[i].outsidePixel, object[i].RoundnessSize, object[i].RoundnessSize, object[i].insideColor, TRUE);
 				}
 				break;
 			case FALSE:
 				if (object[i].outsideFlag) {
-					DrawBox(object[i].x, object[i].y, object[i].xSize + object[i].x, object[i].ySize + object[i].y, object[i].outsideColor, TRUE);
+					DrawBox(object[i].x, object[i].y, object[i].width + object[i].x, object[i].height + object[i].y, object[i].outsideColor, TRUE);
 				}
 				if (object[i].insideFlag)
 				{
-					DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, object[i].insideColor, TRUE);
+					DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].width + object[i].x - object[i].outsidePixel, object[i].height + object[i].y - object[i].outsidePixel, object[i].insideColor, TRUE);
 				}
 			}
 
@@ -593,11 +590,11 @@ void ObjectManager::Draw()
 
 			if (object[i].MouseFlag && !object[i].ActivationFlag) {
 				SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
-				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
+				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].width + object[i].x - object[i].outsidePixel, object[i].height + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
 			}
 			else if (object[i].ActivationFlag) {
 				SetDrawBlendMode(DX_BLENDMODE_ALPHA, 30);
-				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
+				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].width + object[i].x - object[i].outsidePixel, object[i].height + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
 			}
 
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);

@@ -1,5 +1,7 @@
 #pragma once
 
+#if 0
+
 #define KEYBOARD_PRESS_ZERO 0
 #define KEYBOARD_PRESS_FIRST 1
 #define KEYBOARD_PRESS_MUCH 2
@@ -36,3 +38,5 @@ namespace Input
 		
 	};
 }
+
+#endif

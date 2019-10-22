@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include "OperationData.h"
 
-
+#if 0
 using namespace Input;
 
 int KeyBoard::KEY[256];
@@ -47,3 +47,4 @@ void Mouse::Update()
 	MOUSE_WIN_Y = static_cast<int>(MOUSE_Y * Ope::WINDOW_SIZE_RATE_TIME);
 	MOUSE_CLICK = GetMouseInput();
 }
+#endif

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "position.hpp"
 #include <string>
 #include "DxLib.h"
 
@@ -42,8 +43,8 @@ struct ObjectData
 
 	int x;
 	int y;
-	int xSize;
-	int ySize;
+	int width;
+	int height;
 
 	bool insideFlag;
 	bool outsideFlag;
@@ -73,6 +74,11 @@ struct ObjectData
 
 	int WritingArrengementX;
 	int WritingArrengementY;
+
+	bool isPositionOnObject(Position position)const
+	{
+		return position.x >= x && position.x < x + width && position.y >= y && position.y < y + height;
+	}
 };
 
 #pragma warning(pop)

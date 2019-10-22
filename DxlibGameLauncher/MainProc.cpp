@@ -23,6 +23,9 @@ SCENE Ope::SCENE_CHANGE_NUM = TAB_HOME;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
+	Size windowSize = {960,540};
+	input::Keyboard keyboard;
+	input::Mouse mouse(App::BackgroundSize, windowSize);
 	static ObjectManager objectManager;
 	SceneManager sceneManager(objectManager);
 	ExePath exePath;
@@ -52,7 +55,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetGraphMode(App::BackgroundSize.width, App::BackgroundSize.height, 32);
 
 	//SetWindowSize(App::DEFAULT_WINDOW_SIZE_X, App::DEFAULT_WINDOW_SIZE_Y);
-	SetWindowSize(960,540);
+	SetWindowSize(windowSize.width, windowSize.height);
 
 	SetMouseDispFlag(TRUE);
 
@@ -73,11 +76,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	while(!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
 	{
+		keyboard.update();
+		mouse.update();
+		//Input::Mouse::Update();
+		//Input::KeyBoard::Update();
 
-		Input::Mouse::Update();
-		Input::KeyBoard::Update();
-
-		objectManager.Update();
+		objectManager.Update(mouse.getCursorPosition(), mouse.getMouseButtonInput());
 		sceneManager.Update();
 		headerScene.Update();
 
@@ -91,13 +95,16 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		{
 			sceneManager.ChanegeScene(Ope::SCENE_CHANGE_NUM);
 		}
-
+		if(keyboard.getPressStatus(KEY_INPUT_ESCAPE) == input::KeyPressID::KeyPressOnce)
+		{
+			break;
+		}
+		/*
 		if (Input::KeyBoard::KEY[KEY_INPUT_ESCAPE] == KEYBOARD_PRESS_FIRST) {
 			break;
 		}
+		*/
 	}
-
-	sceneManager.~SceneManager();
 
 	DxLib_End();
 	return 0;

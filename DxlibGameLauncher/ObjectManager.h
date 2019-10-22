@@ -64,15 +64,15 @@ public:
 	int		GetVarInt					(wstring stg, VAR var);
 	bool	GetVarBool					(wstring stg, VAR var);
 	int		Delete						(wstring stg);
-	int		DeleteAll					(void);
+	int		DeleteAll					();
 	
 	int		HandleFontSet				(wstring stg, int font = 0, int size = 15);
 	int		GetHandleFont				(wstring stg);
 	int		DeleteHandleFont			(wstring stg);
-	int		DeleteHandleFontAll			(void);
+	int		DeleteHandleFontAll			();
 
-	void	Update						(void);
-	void	Draw						(void);
+	void	Update						(Position mousePosition, int mouseInput);
+	void	Draw						();
 
 private:
 
