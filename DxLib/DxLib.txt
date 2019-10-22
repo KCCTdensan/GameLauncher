@@ -2,7 +2,7 @@
 //
 //	ＤＸライブラリ　さわり
 //
-//	Ver 3.20f		By 山田　巧
+//	Ver 3.21b		By 山田　巧
 //
 //===============================================================================================
 
@@ -146,6 +146,17 @@
 	　　PMD+VMDファイルの読み込みで物理演算を使用した場合
 
 	　　　Bullet　Copyright (c) 2003-2006 Erwin Coumans.
+
+
+	　　Live2D の機能を使用した場合
+
+	　　　著作権表記の代わりにこちらの Live2D のライセンスに従ってください。
+
+	　　　　　Live2D Open Software 使用許諾契約書
+	　　　　　https://www.live2d.com/eula/live2d-open-software-license-agreement_jp.html
+
+	　　　　　Live2D Proprietary Software 使用許諾契約書
+	　　　　　https://www.live2d.com/eula/live2d-proprietary-software-license-agreement_jp.html
 
 
 	<<ＤＸライブラリのライブラリファイルやソースコードの再配布について>>

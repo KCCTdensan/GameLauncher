@@ -2,7 +2,7 @@
 // 
 // 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒwƒbƒ_ƒtƒ@ƒCƒ‹
 // 
-// 				Ver 3.20f
+// 				Ver 3.21b
 // 
 // -------------------------------------------------------------------------------
 
@@ -12,9 +12,9 @@
 #include "DxCompileConfig.h"
 
 // ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒo[ƒWƒ‡ƒ“
-#define DXLIB_VERSION 0x320f
-#define DXLIB_VERSION_STR_T _T( "3.20f" )
-#define DXLIB_VERSION_STR_W    L"3.20f"
+#define DXLIB_VERSION 0x321b
+#define DXLIB_VERSION_STR_T _T( "3.21b" )
+#define DXLIB_VERSION_STR_W    L"3.21b"
 
 // İ’è -----------------------------------------------------------------------
 
@@ -67,6 +67,7 @@
 #define MAX_VERTEX_BUFFER_NUM						(16384)				// “¯‚É‚Ä‚é’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌÅ‘å”
 #define MAX_INDEX_BUFFER_NUM						(16384)				// “¯‚É‚Ä‚éƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÌÅ‘å”
 #define MAX_FILE_NUM								(32768)				// “¯‚É‚Ä‚éƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚ÌÅ‘å”
+#define MAX_LIVE2D_CUBISM4_MODEL_NUM				(32768)				// “¯‚É‚Ä‚é Live2D Cubism 4 Model ƒnƒ“ƒhƒ‹‚ÌÅ‘å”
 
 #define MAX_JOYPAD_NUM								(16)				// ƒWƒ‡ƒCƒpƒbƒh‚ÌÅ‘å”
 
@@ -212,7 +213,12 @@
 #define DX_BLENDMODE_PMA_INVSRC						(20)			// æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æŒ³‚ÌF‚ğ”½“]‚·‚é
 #define DX_BLENDMODE_PMA_ALPHA_X4					(21)			// æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ìƒ¿ƒuƒŒƒ“ƒh‚Ì•`‰æŒ³‚Ì‹P“x‚ğÅ‘å‚S”{‚É‚Å‚«‚éƒ‚[ƒh
 #define DX_BLENDMODE_PMA_ADD_X4						(22)			// æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì‰ÁZƒuƒŒƒ“ƒh‚Ì•`‰æŒ³‚Ì‹P“x‚ğÅ‘å‚S”{‚É‚Å‚«‚éƒ‚[ƒh
-#define DX_BLENDMODE_NUM							(23)			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì”
+#define DX_BLENDMODE_LIVE2D_ZERO					(23)			// Live2D ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Zero —p
+#define DX_BLENDMODE_LIVE2D_NORMAL					(24)			// Live2D ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Normal —p
+#define DX_BLENDMODE_LIVE2D_ADD						(25)			// Live2D ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Add —p
+#define DX_BLENDMODE_LIVE2D_MULT					(26)			// Live2D ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Mult —p
+#define DX_BLENDMODE_LIVE2D_MASK					(27)			// Live2D ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Mask —p
+#define DX_BLENDMODE_NUM							(28)			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì”
 
 // DrawGraphF “™‚Ì•‚“®¬”“_’l‚ÅÀ•W‚ğw’è‚·‚éŠÖ”‚É‚¨‚¯‚éÀ•Wƒ^ƒCƒv
 #define DX_DRAWFLOATCOORDTYPE_DIRECT3D9				(0)				// Direct3D9ƒ^ƒCƒv( -0.5f ‚Ì•â³‚ğs‚í‚È‚¢‚ÆƒeƒNƒXƒ`ƒƒ‚ÌƒsƒNƒZƒ‹‚ªãY—í‚Éƒ}ƒbƒv‚³‚ê‚È‚¢ƒ^ƒCƒv )
@@ -660,6 +666,14 @@
 #define DX_MOVIESURFACE_NORMAL						(0)
 #define DX_MOVIESURFACE_OVERLAY						(1)
 #define DX_MOVIESURFACE_FULLCOLOR					(2)
+
+// SetUserScreenImage ‚Å“n‚·‰æ–Ê‚ÌƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg
+#define DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5			(0)				// R5G6B5( ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì•`‰æŠÖ”‚àg—p‚Å‚«‚Ü‚·( ƒ\ƒtƒgƒEƒFƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‘Š“– ) )
+#define DX_USER_SCREEN_PIXEL_FORMAT_R5G5B5X1		(1)				// R5G5B5X1( ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì•`‰æŠÖ”‚Íg—p‚Å‚«‚È‚­‚È‚è‚Ü‚· )
+#define DX_USER_SCREEN_PIXEL_FORMAT_X1R5G5B5		(2)				// X1R5G5B5( ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì•`‰æŠÖ”‚Íg—p‚Å‚«‚È‚­‚È‚è‚Ü‚· )
+#define DX_USER_SCREEN_PIXEL_FORMAT_X8B8G8R8		(3)				// X8B8G8R8( ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì•`‰æŠÖ”‚Íg—p‚Å‚«‚È‚­‚È‚è‚Ü‚· )
+#define DX_USER_SCREEN_PIXEL_FORMAT_X8R8G8B8		(4)				// X8R8G8B8( ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì•`‰æŠÖ”‚àg—p‚Å‚«‚Ü‚·( ƒ\ƒtƒgƒEƒFƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‘Š“– ) )
+#define DX_USER_SCREEN_PIXEL_FORMAT_NUM				(5)
 
 // ƒEƒCƒ“ƒhƒE‚Ì‰œs‚«ˆÊ’uİ’èƒ^ƒCƒv
 #define DX_WIN_ZTYPE_NORMAL							(0)				// ’Êíİ’è
@@ -1589,6 +1603,7 @@ typedef struct tagSTREAMDATASHREDTYPE2W
 	size_t					(*Read		)( void *Buffer, size_t BlockSize, size_t DataNum, DWORD_PTR Handle ) ;
 	int						(*Eof		)( DWORD_PTR Handle ) ;
 	int						(*IdleCheck	)( DWORD_PTR Handle ) ;
+	int						(*IsDXA		)( DWORD_PTR Handle ) ;									// –ß‚è’l: -1=ƒGƒ‰[  0=‚c‚wƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹“à‚Ìƒtƒ@ƒCƒ‹‚Å‚Í‚È‚¢  1=‚c‚wƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹“à‚Ìƒtƒ@ƒCƒ‹
 	int						(*ChDir		)( const wchar_t *Path ) ;
 	int						(*GetDir	)( wchar_t *Buffer ) ;
 	int						(*GetDirS	)( wchar_t *Buffer, size_t BufferSize ) ;
@@ -2025,19 +2040,22 @@ extern	int				GetTouchInputUpLog( TOUCHINPUTPOINT *PointData, int GetNum, int Pe
 // DxMemory.cppŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
 
 // ƒƒ‚ƒŠŠm•ÛŒnŠÖ”
-extern	void*		DxAlloc(						size_t AllocSize , const char *File = NULL , int Line = -1 ) ;					// w’è‚ÌƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚·‚é( AllocSize:Šm•Û‚·‚éƒƒ‚ƒŠ‚ÌƒTƒCƒY( ’PˆÊ:byte )  File:DxAlloc‚ğŒÄ‚ñ‚¾ƒ\[ƒXƒtƒ@ƒCƒ‹–¼( ƒfƒoƒbƒO—p )  Line:DxAlloc‚ğŒÄ‚ñ‚¾ƒ\[ƒXƒtƒ@ƒCƒ‹’†‚Ìs”Ô†( ƒfƒoƒbƒO—p )@@–ß‚è’l  NULL:ƒƒ‚ƒŠ‚ÌŠm•Û¸”s   NULLˆÈŠO:Šm•Û‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX )
-extern	void*		DxCalloc(						size_t AllocSize , const char *File = NULL , int Line = -1 ) ;					// w’è‚ÌƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚µ‚ÄA‚O‚Å–„‚ß‚éA‰Šú‰»Œã‚É‚O‚Å–„‚ß‚éˆÈŠO‚Í DxAlloc ‚Æ“®ì‚Í“¯‚¶
-extern	void*		DxRealloc(						void *Memory , size_t AllocSize , const char *File = NULL , int Line = -1 ) ;	// ƒƒ‚ƒŠ‚ÌÄŠm•Û‚ğs‚¤( Memory:ÄŠm•Û‚ğs‚¤ƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX( DxAlloc ‚Ì–ß‚è’l )  AllocSize:V‚µ‚¢Šm•ÛƒTƒCƒY@File‚ÆLine ‚Ìà–¾‚Í DxAlloc ‚Ì’ß‚Ì’Ê‚è @–ß‚è’l NULL:ƒƒ‚ƒŠ‚ÌÄŠm•Û¸”s@NULLˆÈŠO:ÄŠm•Û‚µ‚½V‚µ‚¢ƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX@)
-extern	void		DxFree(							void *Memory ) ;																// ƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é( Memory:‰ğ•ú‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX( DxAlloc ‚Ì–ß‚è’l ) )
-extern	size_t		DxSetAllocSizeTrap(				size_t Size ) ;																	// —ñ‹“‘ÎÛ‚É‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û—e—Ê‚ğƒZƒbƒg‚·‚é
-extern	int			DxSetAllocPrintFlag(			int Flag ) ;																	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“à‚Åƒƒ‚ƒŠŠm•Û‚ªs‚í‚ê‚é‚Éî•ñ‚ğo—Í‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
-extern	size_t		DxGetAllocSize(					void ) ;																		// DxAlloc ‚â DxCalloc ‚ÅŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠƒTƒCƒY‚ğæ“¾‚·‚é
-extern	int			DxGetAllocNum(					void ) ;																		// DxAlloc ‚â DxCalloc ‚ÅŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì”‚ğæ“¾‚·‚é
-extern	void		DxDumpAlloc(					void ) ;																		// DxAlloc ‚â DxCalloc ‚ÅŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚ğ—ñ‹“‚·‚é
-extern	void		DxDrawAlloc(					int x, int y, int Width, int Height ) ;											// DxAlloc ‚â DxCalloc ‚ÅŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ìó‹µ‚ğ•`‰æ‚·‚é
-extern	int			DxErrorCheckAlloc(				void ) ;																		// Šm•Û‚µ‚½ƒƒ‚ƒŠî•ñ‚ª”j‰ó‚³‚ê‚Ä‚¢‚È‚¢‚©’²‚×‚é( -1:”j‰ó‚ ‚è  0:‚È‚µ )
-extern	int			DxSetAllocSizeOutFlag(			int Flag ) ;																	// ƒƒ‚ƒŠ‚ªŠm•ÛA‰ğ•ú‚ªs‚í‚ê‚é“x‚ÉŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì—e—Ê‚ğo—Í‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
-extern	int			DxSetAllocMemoryErrorCheckFlag(	int Flag ) ;																	// ƒƒ‚ƒŠ‚ÌŠm•ÛA‰ğ•ú‚ªs‚í‚ê‚é“x‚ÉŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠŠm•Ûî•ñ‚ª”j‘¹‚µ‚Ä‚¢‚È‚¢‚©’²‚×‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+extern	void*		DxAlloc(						               size_t AllocSize ,                    const char *File = NULL , int Line = -1 ) ;	// w’è‚ÌƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚·‚é( AllocSize:Šm•Û‚·‚éƒƒ‚ƒŠ‚ÌƒTƒCƒY( ’PˆÊ:byte )  File:DxAlloc‚ğŒÄ‚ñ‚¾ƒ\[ƒXƒtƒ@ƒCƒ‹–¼( ƒfƒoƒbƒO—p )  Line:DxAlloc‚ğŒÄ‚ñ‚¾ƒ\[ƒXƒtƒ@ƒCƒ‹’†‚Ìs”Ô†( ƒfƒoƒbƒO—p )@@–ß‚è’l  NULL:ƒƒ‚ƒŠ‚ÌŠm•Û¸”s   NULLˆÈŠO:Šm•Û‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX )
+extern	void*		DxAllocAligned(					               size_t AllocSize , size_t Alignment , const char *File = NULL , int Line = -1 ) ;	// w’è‚ÌƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚·‚é( ƒAƒ‰ƒCƒ“w’è”Å )( AllocSize:Šm•Û‚·‚éƒƒ‚ƒŠ‚ÌƒTƒCƒY( ’PˆÊ:byte )  Alignment:Šm•Û‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒAƒhƒŒƒX’l‚Ì”{”  File:DxAlloc‚ğŒÄ‚ñ‚¾ƒ\[ƒXƒtƒ@ƒCƒ‹–¼( ƒfƒoƒbƒO—p )  Line:DxAlloc‚ğŒÄ‚ñ‚¾ƒ\[ƒXƒtƒ@ƒCƒ‹’†‚Ìs”Ô†( ƒfƒoƒbƒO—p )@@–ß‚è’l  NULL:ƒƒ‚ƒŠ‚ÌŠm•Û¸”s   NULLˆÈŠO:Šm•Û‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX )
+extern	void*		DxCalloc(						               size_t AllocSize ,                    const char *File = NULL , int Line = -1 ) ;	// w’è‚ÌƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚µ‚ÄA‚O‚Å–„‚ß‚éA‰Šú‰»Œã‚É‚O‚Å–„‚ß‚éˆÈŠO‚Í DxAlloc ‚Æ“®ì‚Í“¯‚¶
+extern	void*		DxCallocAligned(				               size_t AllocSize , size_t Alignment , const char *File = NULL , int Line = -1 ) ;	// w’è‚ÌƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚µ‚ÄA‚O‚Å–„‚ß‚éA‰Šú‰»Œã‚É‚O‚Å–„‚ß‚éˆÈŠO‚Í DxAllocAligned ‚Æ“®ì‚Í“¯‚¶
+extern	void*		DxRealloc(						void *Memory , size_t AllocSize ,                    const char *File = NULL , int Line = -1 ) ;	// ƒƒ‚ƒŠ‚ÌÄŠm•Û‚ğs‚¤( Memory:ÄŠm•Û‚ğs‚¤ƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX( DxAlloc ‚Ì–ß‚è’l )  AllocSize:V‚µ‚¢Šm•ÛƒTƒCƒY@File‚ÆLine ‚Ìà–¾‚Í DxAlloc ‚Ì’ß‚Ì’Ê‚è @–ß‚è’l NULL:ƒƒ‚ƒŠ‚ÌÄŠm•Û¸”s@NULLˆÈŠO:ÄŠm•Û‚µ‚½V‚µ‚¢ƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX@)
+extern	void*		DxReallocAligned(				void *Memory , size_t AllocSize , size_t Alignment , const char *File = NULL , int Line = -1 ) ;	// ƒƒ‚ƒŠ‚ÌÄŠm•Û‚ğs‚¤( ƒAƒ‰ƒCƒ“w’è”Å )( Memory:ÄŠm•Û‚ğs‚¤ƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX( DxAlloc ‚Ì–ß‚è’l )  AllocSize:V‚µ‚¢Šm•ÛƒTƒCƒY   Alignment:V‚µ‚­Šm•Û‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒAƒhƒŒƒX’l‚Ì”{”@File‚ÆLine ‚Ìà–¾‚Í DxAlloc ‚Ì’ß‚Ì’Ê‚è @–ß‚è’l NULL:ƒƒ‚ƒŠ‚ÌÄŠm•Û¸”s@NULLˆÈŠO:ÄŠm•Û‚µ‚½V‚µ‚¢ƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX@)
+extern	void		DxFree(							void *Memory ) ;																				// ƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é( Memory:‰ğ•ú‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX( DxAlloc ‚Ì–ß‚è’l ) )
+extern	size_t		DxSetAllocSizeTrap(				size_t Size ) ;																					// —ñ‹“‘ÎÛ‚É‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û—e—Ê‚ğƒZƒbƒg‚·‚é
+extern	int			DxSetAllocPrintFlag(			int Flag ) ;																					// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“à‚Åƒƒ‚ƒŠŠm•Û‚ªs‚í‚ê‚é‚Éî•ñ‚ğo—Í‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+extern	size_t		DxGetAllocSize(					void ) ;																						// DxAlloc ‚â DxCalloc ‚ÅŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠƒTƒCƒY‚ğæ“¾‚·‚é
+extern	int			DxGetAllocNum(					void ) ;																						// DxAlloc ‚â DxCalloc ‚ÅŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì”‚ğæ“¾‚·‚é
+extern	void		DxDumpAlloc(					void ) ;																						// DxAlloc ‚â DxCalloc ‚ÅŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚ğ—ñ‹“‚·‚é
+extern	void		DxDrawAlloc(					int x, int y, int Width, int Height ) ;															// DxAlloc ‚â DxCalloc ‚ÅŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ìó‹µ‚ğ•`‰æ‚·‚é
+extern	int			DxErrorCheckAlloc(				void ) ;																						// Šm•Û‚µ‚½ƒƒ‚ƒŠî•ñ‚ª”j‰ó‚³‚ê‚Ä‚¢‚È‚¢‚©’²‚×‚é( -1:”j‰ó‚ ‚è  0:‚È‚µ )
+extern	int			DxSetAllocSizeOutFlag(			int Flag ) ;																					// ƒƒ‚ƒŠ‚ªŠm•ÛA‰ğ•ú‚ªs‚í‚ê‚é“x‚ÉŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì—e—Ê‚ğo—Í‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+extern	int			DxSetAllocMemoryErrorCheckFlag(	int Flag ) ;																					// ƒƒ‚ƒŠ‚ÌŠm•ÛA‰ğ•ú‚ªs‚í‚ê‚é“x‚ÉŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠŠm•Ûî•ñ‚ª”j‘¹‚µ‚Ä‚¢‚È‚¢‚©’²‚×‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
 
 
 
@@ -2509,6 +2527,8 @@ extern	int			ReCreateGraphFromSoftImage(			int SIHandle, int GrHandle ) ;							
 extern	int			ReCreateGraphFromRectSoftImage(		int SIHandle, int x, int y, int SizeX, int SizeY, int GrHandle ) ;																		// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚çŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é
 extern	int			CreateDivGraphFromSoftImage(		int SIHandle, int AllNum, int XNum, int YNum, int   SizeX, int   SizeY, int *HandleArray ) ;											// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
 extern	int			CreateDivGraphFFromSoftImage(		int SIHandle, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray ) ;											// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( float”Å )
+extern	int			ReCreateDivGraphFromSoftImage(		int SIHandle, int AllNum, int XNum, int YNum, int   SizeX, int   SizeY, const int *HandleArray ) ;										// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+extern	int			ReCreateDivGraphFFromSoftImage(	    int SIHandle, int AllNum, int XNum, int YNum, float SizeX, float SizeY, const int *HandleArray ) ;										// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é( float”Å )
 #endif // DX_NON_SOFTIMAGE
 extern	int			CreateGraphFromBaseImage(			const BASEIMAGE *BaseImage ) ;																											// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
 extern	int			CreateGraphFromRectBaseImage(		const BASEIMAGE *BaseImage, int x, int y, int SizeX, int SizeY ) ;																		// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚Ì—Ìˆæ‚ğg‚Á‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
@@ -2516,6 +2536,8 @@ extern	int			ReCreateGraphFromBaseImage(			const BASEIMAGE *BaseImage,          
 extern	int			ReCreateGraphFromRectBaseImage(		const BASEIMAGE *BaseImage, int x, int y, int SizeX, int SizeY, int GrHandle ) ;														// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚Ì—Ìˆæ‚ğg‚Á‚ÄŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é
 extern	int			CreateDivGraphFromBaseImage(		      BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, int   SizeX, int   SizeY, int *HandleArray ) ;								// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
 extern	int			CreateDivGraphFFromBaseImage(		      BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray ) ;								// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( float”Å )
+extern	int			ReCreateDivGraphFromBaseImage(		      BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, int   SizeX, int   SizeY, const int *HandleArray ) ;						// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+extern	int			ReCreateDivGraphFFromBaseImage(	          BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, float SizeX, float SizeY, const int *HandleArray ) ;						// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é( float”Å )
 extern	int			ReloadGraph(						const TCHAR *FileName,                        int GrHandle, int ReverseFlag = FALSE ) ;																		// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ö‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é
 extern	int			ReloadGraphWithStrLen(				const TCHAR *FileName, size_t FileNameLength, int GrHandle, int ReverseFlag = FALSE ) ;																		// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ö‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é
 extern	int			ReloadDivGraph(						const TCHAR *FileName,                        int AllNum, int XNum, int YNum, int   XSize, int   YSize, const int *HandleArray, int ReverseFlag = FALSE ) ;	// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚½‚¿‚Ö‰æ‘œƒf[ƒ^‚ğ•ªŠ„“]‘—‚·‚é
@@ -2714,7 +2736,7 @@ extern	int			DrawRectModiGraphF(       float x1, float y1, float x2, float y2, f
 extern	int			DrawBlendGraph(           int x, int y, int GrHandle, int TransFlag,                 int BlendGraph, int BorderParam, int BorderRange ) ;									// ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‡¬‚µ‚Ä‰æ‘œ‚ğ“™”{•`‰æ‚·‚é
 extern	int			DrawBlendGraphPos(        int x, int y, int GrHandle, int TransFlag, int bx, int by, int BlendGraph, int BorderParam, int BorderRange ) ;									// ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‡¬‚µ‚Ä‰æ‘œ‚ğ“™”{•`‰æ‚·‚é( ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‹N“_À•W‚ğw’è‚·‚éˆø”•t‚« )
 
-extern	int			DrawCircleGauge(          int CenterX, int CenterY, double Percent, int GrHandle, double StartPercent = 0.0 ) ;																// ‰~ƒOƒ‰ƒt“I‚È•`‰æ‚ğs‚¤( GrHandle ‚Ì‰æ‘œ‚Ìã‰º¶‰E‚Ì’[‚Í“§‰ßF‚É‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚· )
+extern	int			DrawCircleGauge(          int CenterX, int CenterY, double Percent, int GrHandle, double StartPercent = 0.0 , double Scale = 1.0 , int ReverseX = FALSE , int ReverseY = FALSE ) ;										// ‰~ƒOƒ‰ƒt“I‚È•`‰æ‚ğs‚¤( GrHandle ‚Ì‰æ‘œ‚Ìã‰º¶‰E‚Ì’[‚Í“§‰ßF‚É‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚· )
 
 extern	int			DrawGraphToZBuffer(       int X, int Y,                                                                 int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ ) ;														// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì“™”{•`‰æ
 extern	int			DrawTurnGraphToZBuffer(   int x, int y,                                                                 int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ ) ;														// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì¶‰E”½“]•`‰æ
@@ -2769,6 +2791,7 @@ extern	int			GetDrawMode(						void ) ;														// •`‰æƒ‚[ƒh‚ğæ“¾‚·‚é
 extern	int			SetDrawBlendMode(					int BlendMode, int BlendParam ) ;								// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğİ’è‚·‚é
 extern	int			GetDrawBlendMode(					int *BlendMode, int *BlendParam ) ;								// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğæ“¾‚·‚é
 extern	int			SetDrawAlphaTest(					int TestMode, int TestParam ) ;									// •`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğs‚¤( TestMode:ƒeƒXƒgƒ‚[ƒh( DX_CMP_GREATER“™ -1‚ÅƒfƒtƒHƒ‹ƒg“®ì‚É–ß‚· )  TestParam:•`‰æƒAƒ‹ƒtƒ@’l‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l( 0`255 ) )
+extern	int			GetDrawAlphaTest(					int *TestMode, int *TestParam ) ;								// •`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğæ“¾‚·‚é( TestMode:ƒeƒXƒgƒ‚[ƒh( DX_CMP_GREATER“™ -1‚ÅƒfƒtƒHƒ‹ƒg“®ì‚É–ß‚· )  TestParam:•`‰æƒAƒ‹ƒtƒ@’l‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l( 0`255 ) )
 extern	int			SetBlendGraph(						int BlendGraph, int BorderParam, int BorderRange ) ;			// ( SetBlendGraphParam ‚Ì BlendType = DX_BLENDGRAPHTYPE_WIPE ‚Ìˆ—‚ğs‚¤‹ŒŠÖ” )•`‰æˆ—‚É•`‰æ‚·‚é‰æ‘œ‚ÆƒuƒŒƒ“ƒh‚·‚éƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚ğƒZƒbƒg‚·‚é( BlendGraph ‚ğ -1 ‚ÅƒuƒŒƒ“ƒh‹@”\‚ğ–³Œø )
 extern	int			SetBlendGraphParam(					int BlendGraph, int BlendType, ... ) ;							// •`‰æˆ—‚É•`‰æ‚·‚é‰æ‘œ‚ÆƒuƒŒƒ“ƒh‚·‚é‰æ‘œ‚ÌƒuƒŒƒ“ƒhİ’è‚ğs‚¤ABlendGraph ‚ğ -1 ‚É‚·‚ê‚Îİ’è‚ğ‰ğœA‚»‚Ìê‡ BlendType ‚Æ‚»‚ÌŒã‚ë‚Ìƒpƒ‰ƒ[ƒ^‚Í–³‹‚³‚ê‚é
 //		int			SetBlendGraphParam(					int BlendGraph, int BlendType = DX_BLENDGRAPHTYPE_NORMAL, int Ratio = ( 0( ƒuƒŒƒ“ƒh—¦‚O“ )`255( ƒuƒŒƒ“ƒh—¦‚P‚O‚O“ ) ) ) ;
@@ -2868,8 +2891,8 @@ extern	float		GetFogDensity(						void ) ;														// ƒtƒHƒO‚Ì–§“x‚ğæ“¾‚·‚
 // ‰æ–ÊŠÖŒWŠÖ”
 extern	unsigned int	GetPixel(									int x, int y ) ;																// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é
 extern	COLOR_F			GetPixelF(									int x, int y ) ;																// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é( floatŒ^ )
-extern	int				SetBackgroundColor(							int Red,  int  Green, int  Blue ) ;												// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì”wŒiF‚ğİ’è‚·‚é( Red,Green,Blue:‚»‚ê‚¼‚ê ‚O`‚Q‚T‚T )
-extern	int				GetBackgroundColor(							int *Red, int *Green, int *Blue ) ;												// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì”wŒiF‚ğæ“¾‚·‚é( Red,Green,Blue:‚»‚ê‚¼‚ê ‚O`‚Q‚T‚T )
+extern	int				SetBackgroundColor(							int Red,  int  Green, int  Blue, int  Alpha = 0    ) ;							// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì”wŒiF‚ğİ’è‚·‚é( Red,Green,Blue,Alpha:‚»‚ê‚¼‚ê ‚O`‚Q‚T‚T )
+extern	int				GetBackgroundColor(							int *Red, int *Green, int *Blue, int *Alpha = NULL ) ;							// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì”wŒiF‚ğæ“¾‚·‚é( Red,Green,Blue,Alpha:‚»‚ê‚¼‚ê ‚O`‚Q‚T‚T )
 extern	int				GetDrawScreenGraph(							                             int x1, int y1, int x2, int y2,                       int GrHandle, int UseClientFlag = TRUE ) ;	// •`‰ææ‚Ì‰æ–Ê‚©‚çw’è—Ìˆæ‚Ì‰æ‘œî•ñ‚ğƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“]‘—‚·‚é
 extern	int				BltDrawValidGraph(							int TargetDrawValidGrHandle, int x1, int y1, int x2, int y2, int DestX, int DestY, int DestGrHandle ) ;							// SetDrawScreen ‚Å•`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚©‚çw’è—Ìˆæ‚Ì‰æ‘œî•ñ‚ğ•Ê‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“]‘—‚·‚é
 extern	int				ScreenFlip(									void ) ;																		// — ‰æ–Ê‚Æ•\‰æ–Ê‚Ì“à—e‚ğŒğŠ·‚·‚é
@@ -2885,6 +2908,7 @@ extern	int				SetUseSetDrawScreenSettingReset(			int UseFlag ) ;																
 extern	int				GetUseSetDrawScreenSettingReset(			void ) ;																		// SetDrawScreen ‚ğÀs‚µ‚½Û‚ÉƒJƒƒ‰‚â•`‰æ”ÍˆÍ‚Ìİ’è‚ğƒŠƒZƒbƒg‚·‚é‚©‚ğæ“¾‚·‚é
 extern	int				SetDrawZBuffer(								int DrawScreen ) ;																// •`‰ææ‚yƒoƒbƒtƒ@‚ÌƒZƒbƒg( DrawScreen •t‘®‚Ì‚yƒoƒbƒtƒ@‚ğ•`‰ææ‚yƒoƒbƒtƒ@‚É‚·‚éADrawScreen ‚ğ -1 ‚É‚·‚é‚ÆƒfƒtƒHƒ‹ƒg‚Ì•`‰ææ‚yƒoƒbƒtƒ@‚É–ß‚é )
 extern	int				SetGraphMode(								int ScreenSizeX, int ScreenSizeY, int ColorBitDepth, int RefreshRate = 60 ) ;	// ‰æ–Êƒ‚[ƒh‚ğİ’è‚·‚é
+extern	int				SetUserScreenImage(							void *Image, int PixelFormat /* DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 “™ */ ) ;	// ‰æ–Ê‚Ìƒƒ‚ƒŠƒCƒ[ƒW‚ğƒZƒbƒg‚·‚é( DxLib_Init ‚Ì‘O‚ÅŒÄ‚Ô•K—v‚ª‚ ‚é( DxLib_Init ‚Ì‘O‚Éˆê“x‚Å‚àŒÄ‚ñ‚Å‚¢‚ê‚ÎADxLib_Init Œã‚Í Image ‚ÌƒAƒhƒŒƒX‚Ì‚İ‚Ì•ÏX–Ú“I‚ÅŒÄ‚Ô‚±‚Æ‚Í‰Â”\ )APixelFormat ‚É DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 –”‚Í DX_USER_SCREEN_PIXEL_FORMAT_X8R8G8B8 ‚Ì“ñ‚ÂˆÈŠO‚ğw’è‚µ‚½ê‡‚Í‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì•`‰æŠÖ”‚ÍˆêØg—p‚Å‚«‚È‚­‚È‚è‚Ü‚· )
 extern	int				SetFullScreenResolutionMode(				int ResolutionMode /* DX_FSRESOLUTIONMODE_NATIVE “™ */ ) ;						// ƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚ğİ’è‚·‚é
 extern	int				GetFullScreenResolutionMode(				int *ResolutionMode, int *UseResolutionMode ) ;									// ƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚ğæ“¾‚·‚é( UseResolutionMode ‚ÍÀÛ‚Ég—p‚³‚ê‚Ä‚¢‚é‰ğ‘œ“xƒ‚[ƒh( —á‚¦‚Î DX_FSRESOLUTIONMODE_NATIVE ‚ğw’è‚µ‚Ä‚¢‚Ä‚àƒ‚ƒjƒ^‚ªw’è‚Ì‰ğ‘œ“x‚É‘Î‰‚µ‚Ä‚¢‚È‚¢ê‡‚Í UseResolutionMode ‚ª DX_FSRESOLUTIONMODE_DESKTOP ‚â DX_FSRESOLUTIONMODE_MAXIMUM ‚É‚È‚è‚Ü‚· ) )
 extern	int				SetFullScreenScalingMode(					int ScalingMode /* DX_FSSCALINGMODE_NEAREST “™ */ , int FitScaling = FALSE ) ;	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ì‰æ–ÊŠg‘åƒ‚[ƒh‚ğİ’è‚·‚é
@@ -2974,24 +2998,31 @@ extern	int			CreateVertexBuffer(		int VertexNum, int VertexType /* DX_VERTEX_TYP
 extern	int			DeleteVertexBuffer(		int VertexBufHandle ) ;																	// ’¸“_ƒoƒbƒtƒ@‚ğíœ‚·‚é
 extern	int			InitVertexBuffer(		void ) ;																				// ‚·‚×‚Ä‚Ì’¸“_ƒoƒbƒtƒ@‚ğíœ‚·‚é
 extern	int			SetVertexBufferData(	int SetIndex, const void *VertexArray, int VertexNum, int VertexBufHandle ) ;			// ’¸“_ƒoƒbƒtƒ@‚É’¸“_ƒf[ƒ^‚ğ“]‘—‚·‚é
+extern	void *		GetBufferVertexBuffer(	int VertexBufHandle ) ;																	// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+extern	int			UpdateVertexBuffer(		int VertexBufHandle, int UpdateStartIndex, int UpdateVertexNum ) ;						// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’¸“_ƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ“K—p‚·‚é( GetBufferVertexBuffer ‚Åæ“¾‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ”½‰f‚·‚é )
 extern	int			CreateIndexBuffer(		int IndexNum, int IndexType /* DX_INDEX_TYPE_16BIT “™ */  ) ;							// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğì¬‚·‚é( -1:ƒGƒ‰[@0ˆÈãFƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹ )
 extern	int			DeleteIndexBuffer(		int IndexBufHandle ) ;																	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğíœ‚·‚é
 extern	int			InitIndexBuffer(		void ) ;																				// ‚·‚×‚Ä‚ÌƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğíœ‚·‚é
 extern	int			SetIndexBufferData(		int SetIndex, const void *IndexArray, int IndexNum, int IndexBufHandle ) ;				// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÉƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚ğ“]‘—‚·‚é
+extern	void *		GetBufferIndexBuffer(	int IndexBufHandle ) ;																	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+extern	int			UpdateIndexBuffer(		int IndexBufHandle, int UpdateStartIndex, int UpdateIndexNum ) ;						// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ“K—p‚·‚é( GetBufferIndexBuffer ‚Åæ“¾‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ”½‰f‚·‚é )
 extern	int			GetMaxPrimitiveCount(	void ) ;																				// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ª‘Î‰‚µ‚Ä‚¢‚éˆê“x‚É•`‰æ‚Å‚«‚éƒvƒŠƒ~ƒeƒBƒu‚ÌÅ‘å”‚ğæ“¾‚·‚é
 extern	int			GetMaxVertexIndex(		void ) ;																				// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ª‘Î‰‚µ‚Ä‚¢‚éˆê“x‚Ég—p‚·‚é‚±‚Æ‚Ì‚Å‚«‚éÅ‘å’¸“_”‚ğæ“¾‚·‚é
 
 // ƒVƒF[ƒ_[ŠÖŒWŠÖ”
-extern	int			GetValidShaderVersion(		void ) ;												// g—p‚Å‚«‚éƒVƒF[ƒ_[‚Ìƒo[ƒWƒ‡ƒ“‚ğæ“¾‚·‚é( 0=g‚¦‚È‚¢  200=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚QD‚O‚ªg—p‰Â”\  300=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚RD‚O‚ªg—p‰Â”\ )
+extern	int			GetValidShaderVersion(			void ) ;												// g—p‚Å‚«‚éƒVƒF[ƒ_[‚Ìƒo[ƒWƒ‡ƒ“‚ğæ“¾‚·‚é( 0=g‚¦‚È‚¢  200=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚QD‚O‚ªg—p‰Â”\  300=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚RD‚O‚ªg—p‰Â”\ )
 
-extern	int			LoadVertexShader(			const TCHAR *FileName                        ) ;		// ’¸“_ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
-extern	int			LoadVertexShaderWithStrLen(	const TCHAR *FileName, size_t FileNameLength ) ;		// ’¸“_ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
-extern	int			LoadPixelShader(			const TCHAR *FileName                        ) ;		// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
-extern	int			LoadPixelShaderWithStrLen(	const TCHAR *FileName, size_t FileNameLength ) ;		// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
-extern	int			LoadVertexShaderFromMem(	const void *ImageAddress, int ImageSize ) ;				// ƒƒ‚ƒŠ‚É“Ç‚İ‚Ü‚ê‚½’¸“_ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚©‚ç’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
-extern	int			LoadPixelShaderFromMem(		const void *ImageAddress, int ImageSize ) ;				// ƒƒ‚ƒŠ‚É“Ç‚İ‚Ü‚ê‚½ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚©‚çƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
-extern	int			DeleteShader(				int ShaderHandle ) ;									// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚Ìíœ( ’¸“_ƒVƒF[ƒ_[EƒsƒNƒZƒ‹ƒVƒF[ƒ_[‹¤’Ê )
-extern	int			InitShader(					void ) ;												// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğ‘S‚Äíœ‚·‚é( ’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹EƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚Ç‚¿‚ç‚à‚·‚×‚Äíœ )
+extern	int			LoadVertexShader(				const TCHAR *FileName                        ) ;		// ’¸“_ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+extern	int			LoadVertexShaderWithStrLen(		const TCHAR *FileName, size_t FileNameLength ) ;		// ’¸“_ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+extern	int			LoadGeometryShader(				const TCHAR *FileName                        ) ;		// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒWƒIƒƒgƒŠƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+extern	int			LoadGeometryShaderWithStrLen(	const TCHAR *FileName, size_t FileNameLength ) ;		// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒWƒIƒƒgƒŠƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+extern	int			LoadPixelShader(				const TCHAR *FileName                        ) ;		// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+extern	int			LoadPixelShaderWithStrLen(		const TCHAR *FileName, size_t FileNameLength ) ;		// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+extern	int			LoadVertexShaderFromMem(		const void *ImageAddress, int ImageSize ) ;				// ƒƒ‚ƒŠ‚É“Ç‚İ‚Ü‚ê‚½’¸“_ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚©‚ç’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+extern	int			LoadGeometryShaderFromMem(		const void *ImageAddress, int ImageSize ) ;				// ƒƒ‚ƒŠ‚É“Ç‚İ‚Ü‚ê‚½ƒWƒIƒƒgƒŠƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚©‚çƒWƒIƒƒgƒŠƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+extern	int			LoadPixelShaderFromMem(			const void *ImageAddress, int ImageSize ) ;				// ƒƒ‚ƒŠ‚É“Ç‚İ‚Ü‚ê‚½ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚©‚çƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+extern	int			DeleteShader(					int ShaderHandle ) ;									// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚Ìíœ( ’¸“_ƒVƒF[ƒ_[EƒsƒNƒZƒ‹ƒVƒF[ƒ_[‹¤’Ê )
+extern	int			InitShader(						void ) ;												// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğ‘S‚Äíœ‚·‚é( ’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹EƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚Ç‚¿‚ç‚à‚·‚×‚Äíœ )
 
 extern	int			GetConstIndexToShader(                     const TCHAR *ConstantName,                            int ShaderHandle ) ;	// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”Ô†‚ğæ“¾‚·‚é
 extern	int			GetConstIndexToShaderWithStrLen(           const TCHAR *ConstantName, size_t ConstantNameLength, int ShaderHandle ) ;	// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”Ô†‚ğæ“¾‚·‚é
@@ -3038,6 +3069,7 @@ extern	int			ResetPSConstB(        int ConstantIndex, int ParamNum ) ;							// 
 extern	int			SetRenderTargetToShader( int TargetIndex, int DrawScreen, int SurfaceIndex = 0 , int MipLevel = 0 ) ;	// ƒVƒF[ƒ_[‚ğg—p‚µ‚½•`‰æ‚Å‚Ì•`‰ææ‚ğİ’è‚·‚é( DrawScreen ‚É -1 ‚ğ“n‚·‚Æ–³Œø‰» )
 extern	int			SetUseTextureToShader(   int StageIndex, int GraphHandle ) ;						// ƒVƒF[ƒ_[‚ğg—p‚µ‚½•`‰æ‚Åg—p‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğİ’è‚·‚é
 extern	int			SetUseVertexShader(      int ShaderHandle ) ;										// ƒVƒF[ƒ_[‚ğg—p‚µ‚½•`‰æ‚Ég—p‚·‚é’¸“_ƒVƒF[ƒ_[‚ğİ’è‚·‚é( -1‚ğ“n‚·‚Æ‰ğœ )
+extern	int			SetUseGeometryShader(    int ShaderHandle ) ;										// ƒVƒF[ƒ_[‚ğg—p‚µ‚½•`‰æ‚Ég—p‚·‚éƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ğİ’è‚·‚é( -1‚ğ“n‚·‚Æ‰ğœ )
 extern	int			SetUsePixelShader(       int ShaderHandle ) ;										// ƒVƒF[ƒ_[‚ğg—p‚µ‚½•`‰æ‚Ég—p‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğİ’è‚·‚é( -1‚ğ“n‚·‚Æ‰ğœ )
 
 extern	int			CalcPolygonBinormalAndTangentsToShader(        VERTEX3DSHADER *VertexArray, int PolygonNum ) ;														// ƒ|ƒŠƒSƒ“‚Ì’¸“_‚ÌÚü‚Æ]–@ü‚ğ‚t‚uÀ•W‚©‚çŒvZ‚µ‚ÄƒZƒbƒg‚·‚é
@@ -3307,6 +3339,7 @@ extern	int			SetMaskScreenGraphUseChannel(		int UseChannel /* DX_MASKGRAPH_CH_A 
 extern	int			InitMask(							void ) ;																						// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ğ‚·‚×‚Äíœ‚·‚é
 extern	int			MakeMask(							int Width, int Height ) ;																		// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
 extern	int			GetMaskSize(						int *WidthBuf, int *HeightBuf, int MaskHandle ) ;												// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ª‚Âƒ}ƒXƒNƒCƒ[ƒW‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+extern	int			GetMaskBaseImageInfo(				BASEIMAGE *BaseImage, int MaskHandle ) ;														// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ª‚Âƒ}ƒXƒNƒCƒ[ƒW‚ÌBASEIMAGEƒf[ƒ^‚ğæ“¾‚·‚é( ƒtƒH[ƒ}ƒbƒg‚ª•ÏX‚³‚ê‚é‚æ‚¤‚È‘€ì‚ğ‚·‚é‚Æ³í‚É“®ì‚µ‚È‚­‚È‚è‚Ü‚·A‚ ‚ÆAReleaseBaseImage ‚ÍÀs‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñ )
 extern	int			SetDataToMask(						int Width, int Height, const void *MaskData, int MaskHandle ) ;									// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚Éƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚ğ“]‘—‚·‚é
 extern	int			DeleteMask(							int MaskHandle ) ;																				// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
 extern	int			GraphImageBltToMask(				const BASEIMAGE *BaseImage, int ImageX, int ImageY, int MaskHandle ) ;							// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ÉBASEIMAGEƒf[ƒ^‚ğ“]‘—‚·‚é
@@ -3752,6 +3785,8 @@ extern	int			HitCheck_Triangle_Triangle_2D(       VECTOR   Triangle1Pos1, VECTOR
 extern	int			HitCheck_Triangle_TriangleD_2D(      VECTOR_D Triangle1Pos1, VECTOR_D Triangle1Pos2, VECTOR_D Triangle1Pos3, VECTOR_D Triangle2Pos1, VECTOR_D Triangle2Pos2, VECTOR_D Triangle2Pos3 ) ;	// OŠpŒ`‚ÆOŠpŒ`‚Ì“–‚½‚è”»’è( ‚Q‚c”Å )( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
 extern	HITRESULT_LINE   HitCheck_Line_Cube(             VECTOR   LinePos1, VECTOR   LinePos2, VECTOR   CubePos1, VECTOR   CubePos2 );																		// ü‚Æ” ‚Ì“–‚½‚è”»’è
 extern	HITRESULT_LINE_D HitCheck_Line_CubeD(            VECTOR_D LinePos1, VECTOR_D LinePos2, VECTOR_D CubePos1, VECTOR_D CubePos2 );																		// ü‚Æ” ‚Ì“–‚½‚è”»’è
+extern	int			HitCheck_Point_Cone(                 VECTOR   PointPos, VECTOR   ConeTopPos, VECTOR   ConeBottomPos, float  ConeR ) ;																	// “_‚Æ‰~‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+extern	int			HitCheck_Point_ConeD(                VECTOR_D PointPos, VECTOR_D ConeTopPos, VECTOR_D ConeBottomPos, double ConeR ) ;																	// “_‚Æ‰~‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
 extern	int			HitCheck_Line_Sphere(                VECTOR   LinePos1, VECTOR   LinePos2, VECTOR   SphereCenterPos, float  SphereR ) ;																	// ü‚Æ‹…‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
 extern	int			HitCheck_Line_SphereD(               VECTOR_D LinePos1, VECTOR_D LinePos2, VECTOR_D SphereCenterPos, double SphereR ) ;																	// ü‚Æ‹…‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
 extern	int			HitCheck_Sphere_Sphere(              VECTOR   Sphere1CenterPos, float  Sphere1R, VECTOR   Sphere2CenterPos, float  Sphere2R ) ;															// ‹…‚Æ‹…‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
@@ -5129,6 +5164,101 @@ extern	int					MV1RefreshReferenceMesh(	int MHandle, int FrameIndex, int IsTrans
 extern	MV1_REF_POLYGONLIST	MV1GetReferenceMesh(		int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly = FALSE ) ;						// QÆ—pƒƒbƒVƒ…‚ğæ“¾‚·‚é
 
 #endif // DX_NON_MODEL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// DxLive2DCubism4.cpp ŠÖ” ƒvƒƒgƒ^ƒCƒvéŒ¾
+
+#ifndef DX_NON_LIVE2D_CUBISM4
+
+extern	int			Live2D_SetCubism4CoreDLLPath(           const TCHAR *CoreDLLFilePath ) ;								// Live2DCubismCore.dll ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğİ’è‚·‚é
+extern	int			Live2D_SetCubism4CoreDLLPathWithStrLen( const TCHAR *CoreDLLFilePath, size_t CoreDLLFilePathLength ) ;	// Live2DCubismCore.dll ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğİ’è‚·‚é
+extern	int			Live2D_SetCubism3CoreDLLPath(           const TCHAR *CoreDLLFilePath ) ;								// Live2DCubismCore.dll ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğİ’è‚·‚é
+extern	int			Live2D_SetCubism3CoreDLLPathWithStrLen( const TCHAR *CoreDLLFilePath, size_t CoreDLLFilePathLength ) ;	// Live2DCubismCore.dll ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğİ’è‚·‚é
+
+extern	int			Live2D_RenderBegin( void ) ;																			// Live2D ‚Ì•`‰æˆ—‚ğŠJn‚·‚é
+extern	int			Live2D_RenderEnd( void ) ;																				// Live2D ‚Ì•`‰æˆ—‚ğI—¹‚·‚é
+
+extern	int			Live2D_LoadModel(			const TCHAR *FilePath ) ;													// Live2D ‚Ìƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş( 0ˆÈã:Live2Dƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹  ƒ}ƒCƒiƒX’l:ƒGƒ‰[”­¶ )
+extern	int			Live2D_LoadModelWithStrLen(	const TCHAR *FilePath, size_t FilePathLength ) ;							// Live2D ‚Ìƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş( 0ˆÈã:Live2Dƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹  ƒ}ƒCƒiƒX’l:ƒGƒ‰[”­¶ )
+extern	int			Live2D_DeleteModel(			int Live2DModelHandle ) ;													// Live2D ‚Ìƒ‚ƒfƒ‹‚ğíœ‚·‚é
+extern	int			Live2D_InitModel(			void ) ;																	// ‚·‚×‚Ä‚Ì Live2D ‚Ìƒ‚ƒfƒ‹‚ğíœ‚·‚é
+
+extern	int			Live2D_Model_Update(			int Live2DModelHandle, float DeltaTimeSeconds ) ;						// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìó‘Ô‚ğXV‚·‚é
+extern	int			Live2D_Model_SetTranslate(		int Live2DModelHandle, float x, float y ) ;								// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌˆÊ’u‚ğİ’è‚·‚é
+extern	int			Live2D_Model_SetExtendRate(		int Live2DModelHandle, float ExRateX, float ExRateY ) ;					// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌŠg‘å—¦‚ğİ’è‚·‚é
+extern	int			Live2D_Model_SetRotate(			int Live2DModelHandle, float RotAngle ) ;								// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì‰ñ“]‚ğİ’è‚·‚é
+extern	int			Live2D_Model_Draw(				int Live2DModelHandle ) ;												// Live2D ‚Ìƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚é
+
+extern	int			Live2D_Model_StartMotion(				int Live2DModelHandle, const TCHAR *group,						int no ) ;							// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ìƒ‚[ƒVƒ‡ƒ“‚ğÄ¶‚·‚é
+extern	int			Live2D_Model_StartMotionWithStrLen(		int Live2DModelHandle, const TCHAR *group, size_t groupLength,	int no ) ;							// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ìƒ‚[ƒVƒ‡ƒ“‚ğÄ¶‚·‚é
+extern	int			Live2D_Model_IsMotionFinished(			int Live2DModelHandle ) ;																			// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“Ä¶‚ªI—¹‚µ‚Ä‚¢‚é‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:Ä¶‚ªI—¹‚µ‚Ä‚¢‚é  FALSE:Ä¶’† )
+extern	int			Live2D_Model_SetExpression(				int Live2DModelHandle, const TCHAR *expressionID ) ;												// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ì•\îƒ‚[ƒVƒ‡ƒ“‚ğİ’è‚·‚é
+extern	int			Live2D_Model_SetExpressionWithStrLen(	int Live2DModelHandle, const TCHAR *expressionID, size_t expressionIDLength ) ;						// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ì•\îƒ‚[ƒVƒ‡ƒ“‚ğİ’è‚·‚é
+extern	int			Live2D_Model_HitTest(					int Live2DModelHandle, const TCHAR *hitAreaName,							float x, float y ) ;	// w’è‚ÌÀ•W‚ª Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ì“–‚½‚è”»’è‚Ì‹éŒ`”ÍˆÍ“à‚©”»’è‚·‚é( TRUE:‹éŒ`”ÍˆÍ“à  FALSE:‹éŒ`”ÍˆÍŠO )
+extern	int			Live2D_Model_HitTestWithStrLen(			int Live2DModelHandle, const TCHAR *hitAreaName, size_t hitAreaNameLength,	float x, float y ) ;	// w’è‚ÌÀ•W‚ª Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ì“–‚½‚è”»’è‚Ì‹éŒ`”ÍˆÍ“à‚©”»’è‚·‚é( TRUE:‹éŒ`”ÍˆÍ“à  FALSE:‹éŒ`”ÍˆÍŠO )
+
+extern	int			Live2D_Model_GetParameterCount(						int Live2DModelHandle ) ;																// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚Ì”‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetParameterId(						int Live2DModelHandle, int index ) ;													// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ÌID‚ğæ“¾‚·‚é
+extern	float		Live2D_Model_GetParameterValue(						int Live2DModelHandle, const TCHAR *parameterId ) ;										// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+extern	float		Live2D_Model_GetParameterValueWithStrLen(			int Live2DModelHandle, const TCHAR *parameterId, size_t parameterIdLength ) ;			// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+extern	int			Live2D_Model_SetParameterValue(						int Live2DModelHandle, const TCHAR *parameterId,                           float value ) ;	// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+extern	int			Live2D_Model_SetParameterValueWithStrLen(			int Live2DModelHandle, const TCHAR *parameterId, size_t parameterIdLength, float value ) ;	// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+
+extern	int			Live2D_Model_GetHitAreasCount(						int Live2DModelHandle ) ;																// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚½“–‚½‚è”»’è‚Ì”‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetHitAreaName(						int Live2DModelHandle, int index ) ;													// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì“–‚½‚è”»’è‚Éİ’è‚³‚ê‚½–¼‘O‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetPhysicsFileName(					int Live2DModelHandle ) ;																// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì•¨—‰‰Zİ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetPoseFileName(						int Live2DModelHandle ) ;																// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒp[ƒcØ‚è‘Ö‚¦İ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+extern	int			Live2D_Model_GetExpressionCount(					int Live2DModelHandle ) ;																// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì•\îİ’èƒtƒ@ƒCƒ‹‚Ì”‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetExpressionName(					int Live2DModelHandle, int index ) ;													// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì•\îİ’èƒtƒ@ƒCƒ‹‚ğ¯•Ê‚·‚é–¼‘Oi•Ê–¼j‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetExpressionFileName(				int Live2DModelHandle, int index ) ;													// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì•\îİ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+extern	int			Live2D_Model_GetMotionGroupCount(					int Live2DModelHandle ) ;																// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚Ì”‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetMotionGroupName(					int Live2DModelHandle, int index ) ;													// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚Ì–¼‘O‚ğæ“¾‚·‚é
+extern	int			Live2D_Model_GetMotionCount(						int Live2DModelHandle, const TCHAR *groupName ) ;										// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚ÉŠÜ‚Ü‚ê‚éƒ‚[ƒVƒ‡ƒ“‚Ì”‚ğæ“¾‚·‚é
+extern	int			Live2D_Model_GetMotionCountWithStrLen(				int Live2DModelHandle, const TCHAR *groupName, size_t groupNameLength ) ;				// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚ÉŠÜ‚Ü‚ê‚éƒ‚[ƒVƒ‡ƒ“‚Ì”‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetMotionFileName(					int Live2DModelHandle, const TCHAR *groupName,							int index ) ;	// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌƒOƒ‹[ƒv–¼‚ÆƒCƒ“ƒfƒbƒNƒX’l‚©‚çƒ‚[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetMotionFileNameWithStrLen(			int Live2DModelHandle, const TCHAR *groupName, size_t groupNameLength,	int index ) ;	// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌƒOƒ‹[ƒv–¼‚ÆƒCƒ“ƒfƒbƒNƒX’l‚©‚çƒ‚[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetMotionSoundFileName(				int Live2DModelHandle, const TCHAR *groupName,							int index ) ;	// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetMotionSoundFileNameWithStrLen(		int Live2DModelHandle, const TCHAR *groupName, size_t groupNameLength,	int index ) ;	// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+extern	float		Live2D_Model_GetMotionFadeInTimeValue(				int Live2DModelHandle, const TCHAR *groupName,							int index ) ;	// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ŠJn‚ÌƒtƒF[ƒhƒCƒ“ˆ—ŠÔ‚ğæ“¾‚·‚é
+extern	float		Live2D_Model_GetMotionFadeInTimeValueWithStrLen(	int Live2DModelHandle, const TCHAR *groupName, size_t groupNameLength,	int index ) ;	// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ŠJn‚ÌƒtƒF[ƒhƒCƒ“ˆ—ŠÔ‚ğæ“¾‚·‚é
+extern	float		Live2D_Model_GetMotionFadeOutTimeValue(				int Live2DModelHandle, const TCHAR *groupName,							int index ) ;	// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“I—¹‚ÌƒtƒF[ƒhƒAƒEƒgˆ—ŠÔ‚ğæ“¾‚·‚é
+extern	float		Live2D_Model_GetMotionFadeOutTimeValueWithStrLen(	int Live2DModelHandle, const TCHAR *groupName, size_t groupNameLength,	int index ) ;	// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“I—¹‚ÌƒtƒF[ƒhƒAƒEƒgˆ—ŠÔ‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetUserDataFile(						int Live2DModelHandle ) ;																// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ†[ƒUƒf[ƒ^‚Ìƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é
+extern	int			Live2D_Model_GetEyeBlinkParameterCount(				int Live2DModelHandle ) ;																// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì–Úƒpƒ`‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚Ì”‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetEyeBlinkParameterId(				int Live2DModelHandle, int index ) ;													// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì–Úƒpƒ`‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚ÌID‚ğæ“¾‚·‚é
+extern	int			Live2D_Model_GetLipSyncParameterCount(				int Live2DModelHandle ) ;																// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌƒŠƒbƒvƒVƒ“ƒN‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚Ì”‚ğæ“¾‚·‚é
+extern	const TCHAR *Live2D_Model_GetLipSyncParameterId(				int Live2DModelHandle, int index ) ;													// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌƒŠƒbƒvƒVƒ“ƒN‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚ÌID‚ğæ“¾‚·‚é
+
+#endif // DX_NON_LIVE2D_CUBISM4
+
+
+
+
+
+
+
 
 #undef DX_FUNCTION_START
 #define DX_FUNCTION_END

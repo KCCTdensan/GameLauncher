@@ -2,7 +2,7 @@
 // 
 // 		ＤＸライブラリ		Windows専用関数プロトタイプ宣言用ヘッダファイル
 // 
-// 				Ver 3.20f
+// 				Ver 3.21b
 // 
 // -------------------------------------------------------------------------------
 
@@ -301,6 +301,7 @@ extern	int			BltBackScreenToWindow(			HWND Window, int ClientX, int ClientY ) ;	
 extern	int			BltRectBackScreenToWindow(		HWND Window, RECT BackScreenRect, RECT WindowClientRect ) ;						// 裏画面の指定の領域をウインドウのクライアント領域の指定の領域に転送する
 extern	int			SetScreenFlipTargetWindow(		HWND TargetWindow, double ScaleX = 1.0 , double ScaleY = 1.0 ) ;				// ScreenFlip で画像を転送する先のウインドウを設定する( NULL を指定すると設定解除 )
 extern	int			GetDesktopScreenGraph(			int x1, int y1, int x2, int y2, int GrHandle, int DestX = 0 , int DestY = 0 ) ;	// デスクトップ画面から指定領域の画像情報をグラフィックハンドルに転送する
+extern	void *		GetDesktopScreenGraphMemImage(	int x1, int y1, int x2, int y2, int *Width, int *Height, int *Stride ) ;		// デスクトップ画面から指定領域の画像のメモリイメージの先頭アドレスとイメージの幅・高さ・ストライドを取得する( イメージのフォーマットはバイト順で B8G8R8X8 の 32bitカラー )
 
 // その他設定関係関数
 extern	int			SetMultiThreadFlag(								int Flag ) ;									// DirectDraw や Direct3D の協調レベルをマルチスレッド対応にするかどうかをセットする( TRUE:マルチスレッド対応にする  FALSE:マルチスレッド対応にしない( デフォルト ) )

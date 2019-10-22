@@ -2,7 +2,7 @@
 //
 //		ＤＸライブラリ　コンパイルコンフィグヘッダファイル
 //
-//				Ver 3.20f
+//				Ver 3.21b
 //
 // ----------------------------------------------------------------------------
 
@@ -174,6 +174,9 @@
 // コンパイル済みのシェーダーバイナリを使用せず、シェーダーコードの実行時コンパイルを利用する場合は次のコメントを外してください
 //#define DX_NON_SHADERCODE_BINARY
 
+// Live2D Cubism 4 関連の機能を使用しない場合は次のコメントを外してください
+//#define DX_NON_LIVE2D_CUBISM4
+
 #ifndef __APPLE__
 #ifndef __ANDROID__
 	#define WINDOWS_DESKTOP_OS
@@ -204,7 +207,7 @@
 #endif // WINDOWS_DESKTOP_OS
 
 #if defined( __ANDROID__ ) || defined( __APPLE__ )
-#define DX_NON_2DDRAW
+//#define DX_NON_2DDRAW
 #define DX_NON_ACM
 #define DX_NON_DSHOW_MP3
 #define DX_NON_DSHOW_MOVIE
