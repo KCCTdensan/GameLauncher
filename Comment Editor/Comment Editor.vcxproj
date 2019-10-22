@@ -15,7 +15,7 @@
     <ProjectGuid>{E8DC9CF7-50BB-4C46-9D03-312722EF4EA4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>CommentEditor</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">

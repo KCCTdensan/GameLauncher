@@ -42,12 +42,8 @@ Mouse::~Mouse()
 
 void Mouse::Update()
 {
-#pragma warning(push)
-#pragma warning(disable:4244)
-
 	GetMousePoint(&MOUSE_X, &MOUSE_Y);
-	MOUSE_WIN_X = MOUSE_X * Ope::WINDOW_SIZE_RATE_TIME;
-	MOUSE_WIN_Y = MOUSE_Y * Ope::WINDOW_SIZE_RATE_TIME;
+	MOUSE_WIN_X = static_cast<int>(MOUSE_X * Ope::WINDOW_SIZE_RATE_TIME);
+	MOUSE_WIN_Y = static_cast<int>(MOUSE_Y * Ope::WINDOW_SIZE_RATE_TIME);
 	MOUSE_CLICK = GetMouseInput();
-#pragma warning(pop)
 }

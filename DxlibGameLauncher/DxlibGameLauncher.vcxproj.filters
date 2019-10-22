@@ -25,6 +25,9 @@
     <Filter Include="ヘッダー ファイル\Object">
       <UniqueIdentifier>{6bcda62c-7ce5-49f0-9167-793e7bceaad3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Input">
+      <UniqueIdentifier>{9ea3e350-4f86-4caf-bab8-1247c8d54218}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainProc.cpp">

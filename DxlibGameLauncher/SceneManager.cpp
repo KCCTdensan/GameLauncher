@@ -3,7 +3,7 @@
 
 
 SceneManager::SceneManager(ObjectManager &objectManager)
-	: objectManager(objectManager), currentScene(nullptr)
+	: currentScene(nullptr)
 {
 	sceneSave[TAB_HOME]		= new TAB_HOME_Scene(objectManager);
 	sceneSave[TAB_APP]		= new TAB_APP_Scene(objectManager);
@@ -12,14 +12,12 @@ SceneManager::SceneManager(ObjectManager &objectManager)
 	sceneSave[TAB_3DMODEL]	= new TAB_3DMODEL_Scene(objectManager);
 	sceneSave[TAB_VIDEO]	= new TAB_VIDEO_Scene(objectManager);
 	sceneSave[TAB_OTHERS]	= new TAB_OTHERS_Scene(objectManager);
-
-	//quitFlag = FALSE;
 }
 
 SceneManager::~SceneManager()
 {
-	delete currentScene;
-	for (int i = 0;i < SCENE_NUM;i++)
+	currentScene = nullptr;
+	for(int i = 0; i < SCENE_NUM; i++)
 	{
 		delete sceneSave[i];
 	}
@@ -27,11 +25,6 @@ SceneManager::~SceneManager()
 
 int SceneManager::ChanegeScene(SCENE scene)
 {
-	/*if(currentScene != nullptr)
-	{
-		delete currentScene;
-	}*/
-
 	switch(scene)
 	{
 	case TAB_HOME:
