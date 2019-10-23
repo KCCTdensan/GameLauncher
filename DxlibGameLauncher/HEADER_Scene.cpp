@@ -53,8 +53,8 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 	objectManager.WritingSet(L"Launch", TRUE, L"Launch");
 	objectManager.WritingFontSetToHandle(L"Launch", L"G50", GetColor(255,255,255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_CENTER);
 
-
-
+	musicManager.Set(L"Debug", L"C:\\Users\\seiya\\Downloads\\Vacation.mp3");
+	musicManager.Play(L"Debug");
 
 	this->objectManager = &objectManager;
 	this->musicManager = &musicManager;
