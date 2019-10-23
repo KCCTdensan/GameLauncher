@@ -39,7 +39,7 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 
 	objectManager.Set(L"HPicKCCT", 50, 50, 250, 250, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet(L"HPicKCCT", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
-	objectManager.ImageChestSet(L"HPicKCCT", TRUE, L".\\pic\\KCCTicon.png", 0, 0);
+	objectManager.ImageChestSet(L"HPicKCCT", TRUE, L".\\Content\\Pic\\KCCTicon.png", 0, 0);
 	objectManager.ChangeVarBool(L"HPicKCCT", VAR::ANIMATION_FLAG, FALSE);
 
 	objectManager.Set(L"HOSB", 50, 950, 250, 100, OBJECT_TYPE::BUTTON);
@@ -53,7 +53,7 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 	objectManager.WritingSet(L"Launch", TRUE, L"Launch");
 	objectManager.WritingFontSetToHandle(L"Launch", L"G50", GetColor(255,255,255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_CENTER);
 
-	musicManager.Set(L"Debug", L"C:\\Users\\seiya\\Downloads\\Vacation.mp3");
+	musicManager.Set(L"Debug", L".\\Content\\Music\\Vacation.mp3");
 	musicManager.Play(L"Debug");
 
 	this->objectManager = &objectManager;
