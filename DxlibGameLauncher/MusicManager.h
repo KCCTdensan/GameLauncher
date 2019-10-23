@@ -21,7 +21,7 @@ public:
 	int DeleteAll(wstring stg);
 
 	int Play(wstring stg);
-	int RePlay(wstring stg);
+	int Replay(wstring stg);
 	int Stop(wstring stg);
 
 	int ChangeVolume(int num);

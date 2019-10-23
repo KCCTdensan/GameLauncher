@@ -7,13 +7,15 @@ using namespace std;
 struct MusicData
 {
 	MusicData()
-		:handle(0)
+		:handle(0),startPosition(0)
 	{
 	};
 
 	wstring name;
 
 	int handle;
+
+	int startPosition;
 
 };
 

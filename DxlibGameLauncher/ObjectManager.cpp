@@ -539,6 +539,7 @@ void ObjectManager::Update()
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
 		if (!object[i].ExistenceFlag && !object[i].EffectiveFlag) continue;
+		if (!object[i].CanSeeFlag) continue;
 
 		if (object[i].x <= Input::Mouse::MOUSE_WIN_X &&
 			object[i].x + object[i].xSize >= Input::Mouse::MOUSE_WIN_X &&
@@ -599,17 +600,20 @@ void ObjectManager::Draw()
 				DrawFormatStringToHandle(object[i].writingX, object[i].writingY, object[i].writingColor, object[i].FontHandle, object[i].writing.c_str());
 			}
 
+			if (object[i].AnimationFlag) {
 
-			if (object[i].MouseFlag && !object[i].ActivationFlag) {
-				SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
-				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
-			}
-			else if (object[i].ActivationFlag) {
-				SetDrawBlendMode(DX_BLENDMODE_ALPHA, 30);
-				DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
-			}
+				if (object[i].MouseFlag && !object[i].ActivationFlag) {
+					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
+					DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
+				}
+				else if (object[i].ActivationFlag) {
+					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 30);
+					DrawBox(object[i].x + object[i].outsidePixel, object[i].y + object[i].outsidePixel, object[i].xSize + object[i].x - object[i].outsidePixel, object[i].ySize + object[i].y - object[i].outsidePixel, GetColor(0, 0, 0), TRUE);
+				}
 
-			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+			}
 
 			break;
 

@@ -7,7 +7,7 @@
 #include "HEADER_Scene.h"
 #include "InputManager.h"
 #include "ExePath.h"
-
+#include "MusicManager.h"
 
 int Ope::CURRENT_WINDOW_COLOR_BIT = 0;
 int Ope::CURRENT_WINDOW_SIZE_X = 0;
@@ -28,7 +28,7 @@ int Ope::VIDEO_BUTTON_NUM = 0;
 int Ope::OTHERS_BUTTON_NUM = 0;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
-{	
+{
 	HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle();
 
 	SetAlwaysRunFlag(TRUE);
@@ -40,7 +40,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SetDrawArea(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y);
 
-	if(DxLib_Init() == -1)
+	if (DxLib_Init() == -1)
 	{
 		return -1;
 	}
@@ -54,11 +54,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetGraphMode(App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, 32);
 
 	//SetWindowSize(App::DEFAULT_WINDOW_SIZE_X, App::DEFAULT_WINDOW_SIZE_Y);
-	SetWindowSize(960,540);
+	SetWindowSize(960, 540);
 
 	SetMouseDispFlag(TRUE);
 
 	static ObjectManager objectManager;
+	static MusicManager musicManager;
 	ExePath exePath;
 
 	//******************************************************************
@@ -74,9 +75,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	sceneManager.ChanegeScene(SCENE::TAB_HOME);//èââÒãNìÆÇÕÉzÅ[ÉÄ
 
-	HEADER_Scene headerScene(objectManager);
+	HEADER_Scene headerScene(objectManager, musicManager);
 
-	while(!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
+	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
 	{
 
 		Input::Mouse::Update();
@@ -87,7 +88,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		headerScene.Update();
 
 		SetDrawScreen(DX_SCREEN_BACK);
-		
+
 		sceneManager.Draw();
 		headerScene.Draw();
 		objectManager.Draw();

@@ -1,6 +1,6 @@
 #include "HEADER_Scene.h"
 
-HEADER_Scene::HEADER_Scene(ObjectManager& objectManager)
+HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager)
 {
 	objectManager.Set(L"HHSB", 50, 350, 250, 100, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet(L"HHSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
@@ -37,16 +37,33 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager)
 	objectManager.WritingSet(L"HOSB", TRUE, L"Others");
 	objectManager.WritingFontSetToHandle(L"HOSB", L"G50", GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
 
-	objectManager.Set(L"HPicKCCT", 50, 50, 250, 250, OBJECT_TYPE::PICTURE);
+	objectManager.Set(L"HPicKCCT", 50, 50, 250, 250, OBJECT_TYPE::BUTTON);
+	objectManager.ColorSet(L"HPicKCCT", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
 	objectManager.ImageChestSet(L"HPicKCCT", TRUE, L".\\pic\\KCCTicon.png", 0, 0);
+	objectManager.ChangeVarBool(L"HPicKCCT", VAR::ANIMATION_FLAG, FALSE);
 
-	manager = &objectManager;
+	objectManager.Set(L"HOSB", 50, 950, 250, 100, OBJECT_TYPE::BUTTON);
+	objectManager.ColorSet(L"HOSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.WritingSet(L"HOSB", TRUE, L"Others");
+	objectManager.WritingFontSetToHandle(L"HOSB", L"G50", GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
+
+	objectManager.Set(L"Launch", 1450, 880, 420, 150, OBJECT_TYPE::BUTTON);
+	//objectManager.ColorSet(L"Launch", FALSE, NULL, NULL, TRUE, GetColor(63, 72, 204));
+	objectManager.ColorSet(L"Launch", TRUE, GetColor(255,190,0), 3, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.WritingSet(L"Launch", TRUE, L"Launch");
+	objectManager.WritingFontSetToHandle(L"Launch", L"G50", GetColor(255,255,255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_CENTER);
+
+
+
+
+	this->objectManager = &objectManager;
+	this->musicManager = &musicManager;
 
 }
 
 void HEADER_Scene::Update()
 {
-	if (manager->GetVarBool(L"HHSB", VAR::ACTIVATION_FLAG)) {
+	if (objectManager->GetVarBool(L"HPicKCCT", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
 		Ope::SCENE_CHANGE_NUM = SCENE::TAB_HOME;
 
@@ -54,16 +71,33 @@ void HEADER_Scene::Update()
 
 		wstring name;
 
-		for (int i = 0;i < Ope::HOME_BUTTON_NUM;i++)
+		for (int i = 0; i < Ope::HOME_BUTTON_NUM; i++)
 		{
 			name = L"HOME" + to_wstring(i);
 
-			manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
+			objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 		}
 
-		manager->ChangeVarBool(L"HHSB", VAR::ACTIVATION_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"HPicKCCT", VAR::ACTIVATION_FLAG, FALSE);
 	}
-	if (manager->GetVarBool(L"HASB", VAR::ACTIVATION_FLAG)) {
+	if (objectManager->GetVarBool(L"HHSB", VAR::ACTIVATION_FLAG)) {
+		Ope::SCENE_CHANGE_FLAG = TRUE;
+		Ope::SCENE_CHANGE_NUM = SCENE::TAB_HOME;
+
+		AllHide();
+
+		wstring name;
+
+		for (int i = 0; i < Ope::HOME_BUTTON_NUM; i++)
+		{
+			name = L"HOME" + to_wstring(i);
+
+			objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
+		}
+
+		objectManager->ChangeVarBool(L"HHSB", VAR::ACTIVATION_FLAG, FALSE);
+	}
+	if (objectManager->GetVarBool(L"HASB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
 		Ope::SCENE_CHANGE_NUM = SCENE::TAB_APP;
 
@@ -71,16 +105,16 @@ void HEADER_Scene::Update()
 
 		wstring name;
 
-		for (int i = 0;i < Ope::APP_BUTTON_NUM;i++)
+		for (int i = 0; i < Ope::APP_BUTTON_NUM; i++)
 		{
 			name = L"APP" + to_wstring(i);
 
-			manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
+			objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 		}
 
-		manager->ChangeVarBool(L"HASB", VAR::ACTIVATION_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"HASB", VAR::ACTIVATION_FLAG, FALSE);
 	}
-	if (manager->GetVarBool(L"HGSB", VAR::ACTIVATION_FLAG)) {
+	if (objectManager->GetVarBool(L"HGSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
 		Ope::SCENE_CHANGE_NUM = SCENE::TAB_GAME;
 
@@ -88,16 +122,16 @@ void HEADER_Scene::Update()
 
 		wstring name;
 
-		for (int i = 0;i < Ope::GAME_BUTTON_NUM;i++)
+		for (int i = 0; i < Ope::GAME_BUTTON_NUM; i++)
 		{
 			name = L"GAME" + to_wstring(i);
 
-			manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
+			objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 		}
 
-		manager->ChangeVarBool(L"HGSB", VAR::ACTIVATION_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"HGSB", VAR::ACTIVATION_FLAG, FALSE);
 	}
-	if (manager->GetVarBool(L"H3SB", VAR::ACTIVATION_FLAG)) {
+	if (objectManager->GetVarBool(L"H3SB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
 		Ope::SCENE_CHANGE_NUM = SCENE::TAB_3DMODEL;
 
@@ -105,16 +139,16 @@ void HEADER_Scene::Update()
 
 		wstring name;
 
-		for (int i = 0;i < Ope::MODEL_BUTTON_NUM;i++)
+		for (int i = 0; i < Ope::MODEL_BUTTON_NUM; i++)
 		{
 			name = L"MODEL" + to_wstring(i);
 
-			manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
+			objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 		}
 
-		manager->ChangeVarBool(L"H3SB", VAR::ACTIVATION_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"H3SB", VAR::ACTIVATION_FLAG, FALSE);
 	}
-	if (manager->GetVarBool(L"HMSB", VAR::ACTIVATION_FLAG)) {
+	if (objectManager->GetVarBool(L"HMSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
 		Ope::SCENE_CHANGE_NUM = SCENE::TAB_MUSIC;
 
@@ -122,16 +156,16 @@ void HEADER_Scene::Update()
 
 		wstring name;
 
-		for (int i = 0;i < Ope::MUSIC_BUTTON_NUM;i++)
+		for (int i = 0; i < Ope::MUSIC_BUTTON_NUM; i++)
 		{
 			name = L"MUSIC" + to_wstring(i);
 
-			manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
+			objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 		}
 
-		manager->ChangeVarBool(L"HMSB", VAR::ACTIVATION_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"HMSB", VAR::ACTIVATION_FLAG, FALSE);
 	}
-	if (manager->GetVarBool(L"HVSB", VAR::ACTIVATION_FLAG)) {
+	if (objectManager->GetVarBool(L"HVSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
 		Ope::SCENE_CHANGE_NUM = SCENE::TAB_VIDEO;
 
@@ -139,16 +173,16 @@ void HEADER_Scene::Update()
 
 		wstring name;
 
-		for (int i = 0;i < Ope::VIDEO_BUTTON_NUM;i++)
+		for (int i = 0; i < Ope::VIDEO_BUTTON_NUM; i++)
 		{
 			name = L"VIDEO" + to_wstring(i);
 
-			manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
+			objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 		}
 
-		manager->ChangeVarBool(L"HVSB", VAR::ACTIVATION_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"HVSB", VAR::ACTIVATION_FLAG, FALSE);
 	}
-	if (manager->GetVarBool(L"HOSB", VAR::ACTIVATION_FLAG)) {
+	if (objectManager->GetVarBool(L"HOSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
 		Ope::SCENE_CHANGE_NUM = SCENE::TAB_OTHERS;
 
@@ -156,14 +190,14 @@ void HEADER_Scene::Update()
 
 		wstring name;
 
-		for (int i = 0;i < Ope::OTHERS_BUTTON_NUM;i++)
+		for (int i = 0; i < Ope::OTHERS_BUTTON_NUM; i++)
 		{
 			name = L"OTHERS" + to_wstring(i);
 
-			manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
+			objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 		}
 
-		manager->ChangeVarBool(L"HOSB", VAR::ACTIVATION_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"HOSB", VAR::ACTIVATION_FLAG, FALSE);
 	}
 
 	//Ç±Ç±Ç…ÉwÉbÉ_Å[èàóùÇèëÇ≠Å@ÅiÇsÇ`ÇaêÿÇËë÷Ç¶ìôÅjÅ@
@@ -181,47 +215,47 @@ void HEADER_Scene::AllHide()
 {
 	wstring name;
 
-	for (int i = 0;i < Ope::HOME_BUTTON_NUM;i++)
+	for (int i = 0; i < Ope::HOME_BUTTON_NUM; i++)
 	{
 		name = L"HOME" + to_wstring(i);
 
-		manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
-	for (int i = 0;i < Ope::APP_BUTTON_NUM;i++)
+	for (int i = 0; i < Ope::APP_BUTTON_NUM; i++)
 	{
 		name = L"APP" + to_wstring(i);
 
-		manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
-	for (int i = 0;i < Ope::GAME_BUTTON_NUM;i++)
+	for (int i = 0; i < Ope::GAME_BUTTON_NUM; i++)
 	{
 		name = L"GAME" + to_wstring(i);
 
-		manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
-	for (int i = 0;i < Ope::MODEL_BUTTON_NUM;i++)
+	for (int i = 0; i < Ope::MODEL_BUTTON_NUM; i++)
 	{
 		name = L"MODEL" + to_wstring(i);
 
-		manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
-	for (int i = 0;i < Ope::MUSIC_BUTTON_NUM;i++)
+	for (int i = 0; i < Ope::MUSIC_BUTTON_NUM; i++)
 	{
 		name = L"MUSIC" + to_wstring(i);
 
-		manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
-	for (int i = 0;i < Ope::VIDEO_BUTTON_NUM;i++)
+	for (int i = 0; i < Ope::VIDEO_BUTTON_NUM; i++)
 	{
 		name = L"VIDEO" + to_wstring(i);
 
-		manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
-	for (int i = 0;i < Ope::OTHERS_BUTTON_NUM;i++)
+	for (int i = 0; i < Ope::OTHERS_BUTTON_NUM; i++)
 	{
 		name = L"OTHERS" + to_wstring(i);
 
-		manager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
 
 	return;
