@@ -257,6 +257,35 @@ int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int se
 	return 0;
 }
 
+int ObjectManager::ProgressSet(wstring str, bool flag, int frontColor, int backColor, float startRate)
+{
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag || object[i].name != str) continue;
+
+		object[i].progressFlag = flag;
+		object[i].progressRate = startRate;
+		object[i].progressForwardColor = frontColor;
+		object[i].progressBackColor = backColor;
+
+		object[i].progressRange = (float)object[i].xSize * object[i].progressRate;
+	}
+	return 0;
+}
+
+int ObjectManager::ChangeProgress(wstring str, float rate)
+{
+	for (int i = 0; i < OBJECT_MAX; i++)
+	{
+		if (!object[i].ExistenceFlag || object[i].name != str) continue;
+
+		object[i].progressRate = rate;
+
+		object[i].progressRange = (float)object[i].xSize * object[i].progressRate;
+	}
+	return 0;
+}
+
 int ObjectManager::ChangeVarInt(wstring stg, VAR var, int num)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -634,17 +663,16 @@ void ObjectManager::Draw()
 
 			break;
 
+		case OBJECT_TYPE::PROGRESS:
+
+			DrawBox(object[i].x, object[i].y, object[i].xSize + object[i].x, object[i].ySize + object[i].y, object[i].progressBackColor, TRUE);
+			DrawBox(object[i].x, object[i].y, object[i].progressRange + object[i].x, object[i].ySize + object[i].y, object[i].progressForwardColor, TRUE);
+
+			break;
+
 		}
-
-
+		
 	}
-
-	// todo effect
-
-	// todo writing
-
-
-
 
 
 }

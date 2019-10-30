@@ -20,7 +20,8 @@ struct ObjectData
 		AnimationTick(0),
 		WritingFlag(FALSE),
 		CanSeeFlag(TRUE),
-		FontHandle(0)
+		FontHandle(0),
+		progressFlag(FALSE)
 	{
 
 	}
@@ -39,6 +40,8 @@ struct ObjectData
 	int AnimationBlend; // Žg—p‚·‚é‚©‚Í•s–¾
 	bool AnimationFlag = TRUE;
 	int AnimationTick = 50;
+
+	bool progressFlag;
 
 	float progressRate = 0.0f;
 	int progressRange = 0;

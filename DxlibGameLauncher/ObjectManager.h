@@ -39,6 +39,8 @@ public:
 	int		WritingFontSet				(wstring str, int Font = 0, int size = 1, int Color = 0, int arrangementX = 0, int arrangementY = 0);
 	int		WritingFontSetToHandle		(wstring str, wstring handleName, int Color = 0, int arrangementX = 0, int arrangementY = 0);
 	int		ImageChestSet				(wstring str, bool flag, wstring PicPath = NULL, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
+	int		ProgressSet					(wstring str, bool flag, int frontColor, int backColor, float startRate = 0.0f);
+	int		ChangeProgress				(wstring str, float rate);
 	int		ChangeVarInt				(wstring str, VAR var, int num);
 	int		ChangeVarBool				(wstring str, VAR var, bool flag);
 	int		GetVarInt					(wstring str, VAR var);

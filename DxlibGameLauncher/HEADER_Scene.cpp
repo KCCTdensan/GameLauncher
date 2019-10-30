@@ -65,6 +65,10 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 	musicManager.Set(L"Debug", L".\\Content\\Music\\Vacation.mp3");
 	musicManager.Play(L"Debug");
 
+	objectManager.Set(L"MusicProgress", 500, 998, 500, 24, OBJECT_TYPE::PROGRESS);
+	objectManager.ProgressSet(L"MusicProgress", TRUE, GetColor(0, 128, 255), GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
+	objectManager.ChangeProgress(L"MusicProgress", 0.5f);
+
 	this->objectManager = &objectManager;
 	this->musicManager = &musicManager;
 
