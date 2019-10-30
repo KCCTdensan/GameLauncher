@@ -4,6 +4,8 @@
 
 HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager)
 {
+	PlayingNotice = FALSE;
+
 	objectManager.Set(L"HHSB", 50, 350, 250, 100, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet(L"HHSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
 	objectManager.WritingSet(L"HHSB", TRUE, L"Home");
@@ -62,12 +64,12 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 	objectManager.ColorSet(L"MusicStop", FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
 	objectManager.ImageChestSet(L"MusicStop", TRUE, L".\\Content\\Pic\\StopMusic.png", 0, 0);
 
-	musicManager.Set(L"Debug", L".\\Content\\Music\\Vacation.mp3");
+	musicManager.Set(L"Debug", L".\\Content\\Software\\MUSIC\\Vacation.mp3");
 	musicManager.Play(L"Debug");
 
 	objectManager.Set(L"MusicProgress", 500, 998, 500, 24, OBJECT_TYPE::PROGRESS);
-	objectManager.ProgressSet(L"MusicProgress", TRUE, GetColor(0, 128, 255), GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
-	objectManager.ChangeProgress(L"MusicProgress", 0.5f);
+	objectManager.ProgressSet(L"MusicProgress", TRUE, GetColor(0, 128, 255), GetColor(BLACK, BLACK, BLACK));
+	//objectManager.ChangeProgress(L"MusicProgress", 0.5f);
 
 	this->objectManager = &objectManager;
 	this->musicManager = &musicManager;
@@ -234,6 +236,19 @@ void HEADER_Scene::Update()
 
 	}
 
+	float a = musicManager->GetNowPosition();
+	float b = musicManager->GetTotalTime();
+	float c = a / b;
+	objectManager->ChangeProgress(L"MusicProgress", c);
+
+	if (musicManager->GetNowPosition() >= musicManager->GetTotalTime() && musicManager->GetDoingOutput())
+	{
+		musicManager->Stop(PlayingName);
+
+		objectManager->ChangeVarBool(L"MusicStop", VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"MusicPlay", VAR::CAN_SEE_FLAG, TRUE);
+	}
+
 }
 
 void HEADER_Scene::Draw()
@@ -247,7 +262,7 @@ void HEADER_Scene::Draw()
 
 	if (PlayingNotice) {
 
-		DrawRoundRect(400, 950, 1050, 1050, 10, 10, GetColor(BLACK + 20, BLACK + 20, BLACK + 20), TRUE);
+		DrawRoundRect(400, 940, 1050, 1050, 10, 10, GetColor(BLACK + 20, BLACK + 20, BLACK + 20), TRUE);
 		DrawFormatStringToHandle(420, 950, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"Ä¶’†... : %s ", musicManager->GetPlayingName().c_str());
 
 	}

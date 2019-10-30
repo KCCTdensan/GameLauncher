@@ -7,7 +7,7 @@ using namespace std;
 struct MusicData
 {
 	MusicData()
-		:handle(0),startPosition(0)
+		:handle(0),startPosition(0),range(0)
 	{
 	};
 
@@ -16,6 +16,8 @@ struct MusicData
 	int handle;
 
 	int startPosition;
+
+	int range;
 
 };
 

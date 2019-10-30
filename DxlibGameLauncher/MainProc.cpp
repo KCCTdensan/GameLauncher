@@ -36,6 +36,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetWindowSizeChangeEnableFlag(TRUE);//ウインドウ可変変更
 	SetUseDirectInputFlag(TRUE);
 
+	ExePath exePath;
+
 	SetWindowText(L"GameLauncher");
 
 	SetDrawArea(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y);
@@ -60,7 +62,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	static ObjectManager objectManager;
 	static MusicManager musicManager;
-	ExePath exePath;
 
 	//******************************************************************
 

@@ -26,6 +26,9 @@ public:
 
 	bool GetPlaying();
 	wstring GetPlayingName();
+	int GetNowPosition();
+	int GetTotalTime();
+	int GetDoingOutput();
 
 	int ChangeVolume(int num);
 
@@ -34,5 +37,7 @@ private:
 	std::array<MusicData, MUSIC_MAX> music;
 	wstring playingName;
 	bool isPlaying;
+	int playingHandle;
+	bool doingOutput;
 };
 
