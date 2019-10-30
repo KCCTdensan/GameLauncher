@@ -48,10 +48,12 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 	objectManager.WritingFontSetToHandle(L"HOSB", L"G50", GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
 
 	objectManager.Set(L"Launch", 1450, 880, 420, 150, OBJECT_TYPE::BUTTON);
-	//objectManager.ColorSet(L"Launch", FALSE, NULL, NULL, TRUE, GetColor(63, 72, 204));
-	objectManager.ColorSet(L"Launch", TRUE, GetColor(255,190,0), 3, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.ColorSet(L"Launch", TRUE, GetColor(255, 190, 0), 3, TRUE, GetColor(BLACK, BLACK, BLACK));
 	objectManager.WritingSet(L"Launch", TRUE, L"Launch");
-	objectManager.WritingFontSetToHandle(L"Launch", L"G50", GetColor(255,255,255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_CENTER);
+	objectManager.WritingFontSetToHandle(L"Launch", L"G50", GetColor(255, 255, 255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_CENTER);
+
+	objectManager.Set(L"MusicPlay", 420, 990, 50, 50, OBJECT_TYPE::BUTTON);
+	objectManager.ColorSet(L"MusicPlay", FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
 
 	musicManager.Set(L"Debug", L".\\Content\\Music\\Vacation.mp3");
 	musicManager.Play(L"Debug");
@@ -200,7 +202,9 @@ void HEADER_Scene::Update()
 		objectManager->ChangeVarBool(L"HOSB", VAR::ACTIVATION_FLAG, FALSE);
 	}
 
-	//‚±‚±‚Éƒwƒbƒ_[ˆ—‚ð‘‚­@i‚s‚`‚aØ‚è‘Ö‚¦“™j@
+	PlayingNotice = musicManager->GetPlaying();
+	PlayingNotice = TRUE;
+
 }
 
 void HEADER_Scene::Draw()
@@ -208,6 +212,13 @@ void HEADER_Scene::Draw()
 
 	DrawBox(0, 0, 350, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
 	DrawBox(1400, 0, 1920, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
+
+	if (PlayingNotice) {
+
+		DrawRoundRect(400, 950, 1050, 1050, 10, 10, GetColor(BLACK + 20, BLACK + 20, BLACK + 20), TRUE);
+		DrawFormatStringToHandle(420, 950, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"Ä¶’†... : %s ", musicManager->GetPlayingName().c_str());
+
+	}
 
 }
 

@@ -24,10 +24,15 @@ public:
 	int Replay(wstring stg);
 	int Stop(wstring stg);
 
+	bool GetPlaying();
+	wstring GetPlayingName();
+
 	int ChangeVolume(int num);
 
 private:
 
 	std::array<MusicData, MUSIC_MAX> music;
+	wstring playingName;
+	bool isPlaying;
 };
 

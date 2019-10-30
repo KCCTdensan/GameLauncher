@@ -21,5 +21,7 @@ private:
 
 	ObjectManager* objectManager;
 	MusicManager* musicManager;
+
+	bool PlayingNotice;
 };
 

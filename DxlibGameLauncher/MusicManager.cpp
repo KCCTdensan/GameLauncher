@@ -2,6 +2,9 @@
 
 MusicManager::MusicManager()
 {
+	isPlaying = FALSE;
+	playingName = L"";
+
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
 	}
@@ -34,6 +37,8 @@ int MusicManager::Play(wstring stg)
 {
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
+		isPlaying = TRUE;
+		playingName = music[i].name;
 		PlaySoundMem(music[i].handle, DX_PLAYTYPE_BACK, music[i].startPosition);
 		break;
 	}
@@ -45,6 +50,8 @@ int MusicManager::Replay(wstring stg)
 {
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
+		isPlaying = TRUE;
+		playingName = music[i].name;
 		PlaySoundMem(music[i].handle, DX_PLAYTYPE_BACK);
 		break;
 	}
@@ -60,6 +67,17 @@ int MusicManager::Stop(wstring stg)
 		break;
 	}
 	return 0;
+}
+
+bool MusicManager::GetPlaying()
+{
+
+	return isPlaying;
+}
+
+wstring MusicManager::GetPlayingName()
+{
+	return playingName;
 }
 
 int MusicManager::ChangeVolume(int num)

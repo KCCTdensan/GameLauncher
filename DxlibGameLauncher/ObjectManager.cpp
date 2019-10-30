@@ -494,6 +494,7 @@ int ObjectManager::GetHandleFont(wstring stg)
 
 	for (int i = 0;i < FONT_HANDLE_MAX;i++)
 	{
+		if (fontData[i].name != stg) continue;
 		num = fontData[i].handle;
 
 		break;
