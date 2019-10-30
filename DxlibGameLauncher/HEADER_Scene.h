@@ -23,5 +23,6 @@ private:
 	MusicManager* musicManager;
 
 	bool PlayingNotice;
+	wstring PlayingName;
 };
 

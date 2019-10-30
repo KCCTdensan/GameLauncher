@@ -1,5 +1,7 @@
 #include "HEADER_Scene.h"
 
+#include "InputManager.h"
+
 HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager)
 {
 	objectManager.Set(L"HHSB", 50, 350, 250, 100, OBJECT_TYPE::BUTTON);
@@ -54,6 +56,11 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 
 	objectManager.Set(L"MusicPlay", 420, 990, 50, 50, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet(L"MusicPlay", FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
+	objectManager.ImageChestSet(L"MusicPlay", TRUE, L".\\Content\\Pic\\PlayMusic.png", 0, 0);
+
+	objectManager.Set(L"MusicStop", 420, 990, 50, 50, OBJECT_TYPE::BUTTON);
+	objectManager.ColorSet(L"MusicStop", FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
+	objectManager.ImageChestSet(L"MusicStop", TRUE, L".\\Content\\Pic\\StopMusic.png", 0, 0);
 
 	musicManager.Set(L"Debug", L".\\Content\\Music\\Vacation.mp3");
 	musicManager.Play(L"Debug");
@@ -204,6 +211,24 @@ void HEADER_Scene::Update()
 
 	PlayingNotice = musicManager->GetPlaying();
 	PlayingNotice = TRUE;
+	PlayingName = musicManager->GetPlayingName();
+
+	if (objectManager->GetVarBool(L"MusicPlay", VAR::ACTIVATION_FLAG)) {
+
+		musicManager->Play(PlayingName);
+
+		objectManager->ChangeVarBool(L"MusicPlay", VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"MusicStop", VAR::CAN_SEE_FLAG, TRUE);
+
+	}
+	if (objectManager->GetVarBool(L"MusicStop", VAR::ACTIVATION_FLAG)) {
+
+		musicManager->Stop(PlayingName);
+
+		objectManager->ChangeVarBool(L"MusicStop", VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"MusicPlay", VAR::CAN_SEE_FLAG, TRUE);
+
+	}
 
 }
 
@@ -212,6 +237,9 @@ void HEADER_Scene::Draw()
 
 	DrawBox(0, 0, 350, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
 	DrawBox(1400, 0, 1920, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
+
+	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"%d", Input::Mouse::MOUSE_LEFT);
+
 
 	if (PlayingNotice) {
 

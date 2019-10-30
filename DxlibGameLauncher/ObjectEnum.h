@@ -3,7 +3,8 @@
 enum class OBJECT_TYPE
 {
 	BUTTON,
-	PICTURE
+	PICTURE,
+	PROGRESS
 };
 
 enum class VAR

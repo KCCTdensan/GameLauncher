@@ -40,6 +40,12 @@ struct ObjectData
 	bool AnimationFlag = TRUE;
 	int AnimationTick = 50;
 
+	float progressRate = 0.0f;
+	int progressRange = 0;
+
+	int progressBackColor;
+	int progressForwardColor;
+
 	bool RoundnessFlag;
 	int RoundnessSize;
 

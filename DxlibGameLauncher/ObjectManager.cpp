@@ -447,7 +447,7 @@ int ObjectManager::DeleteAll(void)
 		object[i].y = 0;
 		object[i].xSize = 1;
 		object[i].ySize = 1;
-		
+
 		if (object[i].fontOwnFlag)
 		{
 			DeleteFontToHandle(object[i].FontHandle);
@@ -490,7 +490,7 @@ int ObjectManager::HandleFontSet(wstring stg, int font, int size)
 
 int ObjectManager::GetHandleFont(wstring stg)
 {
-	int num;
+	int num = 0;
 
 	for (int i = 0;i < FONT_HANDLE_MAX;i++)
 	{
@@ -539,6 +539,8 @@ void ObjectManager::Update()
 
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
+		latestClick++;
+
 		if (!object[i].ExistenceFlag && !object[i].EffectiveFlag) continue;
 		if (!object[i].CanSeeFlag) continue;
 
@@ -548,13 +550,17 @@ void ObjectManager::Update()
 			object[i].y + object[i].ySize >= Input::Mouse::MOUSE_WIN_Y)
 		{
 			object[i].MouseFlag = TRUE;
-			if (Input::Mouse::MOUSE_CLICK & MOUSE_INPUT_LEFT)
+			//if ((Input::Mouse::MOUSE_CLICK & MOUSE_INPUT_LEFT) != 0)
+			if (Input::Mouse::MOUSE_LEFT == MOUSE_LEFT_PRESS_FIRST)
 			{
+
 				for (int j = 0;j < OBJECT_MAX;j++) {
 					object[j].ActivationFlag = FALSE;
 
 				}
 				object[i].ActivationFlag = TRUE;
+				latestClick = 1;
+
 			}
 		}
 		else {
