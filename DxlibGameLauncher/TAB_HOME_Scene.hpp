@@ -15,8 +15,5 @@ public:
 	void Draw();
 
 private:
-
-	array<Json, 64>jsonGame;
-
 	//ObjectManager* manager;
 };

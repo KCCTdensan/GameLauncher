@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SceneData.hpp"
+#include "JsonFileData.h"
 
 
 class TAB_GAME_Scene :
@@ -11,4 +12,9 @@ public:
 
 	void Update();
 	void Draw();
+
+private:
+
+	array<Json, 64>jsonGame;
+
 };
