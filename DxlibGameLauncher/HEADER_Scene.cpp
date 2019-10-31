@@ -46,11 +46,6 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 	objectManager.ImageChestSet(L"HPicKCCT", TRUE, L".\\Content\\Pic\\KCCTicon.png", 0, 0);
 	objectManager.ChangeVarBool(L"HPicKCCT", VAR::ANIMATION_FLAG, FALSE);
 
-	objectManager.Set(L"HOSB", 50, 950, 250, 100, OBJECT_TYPE::BUTTON);
-	objectManager.ColorSet(L"HOSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
-	objectManager.WritingSet(L"HOSB", TRUE, L"Others");
-	objectManager.WritingFontSetToHandle(L"HOSB", L"G50", GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
-
 	objectManager.Set(L"Launch", 1450, 880, 420, 150, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet(L"Launch", TRUE, GetColor(255, 190, 0), 3, TRUE, GetColor(BLACK, BLACK, BLACK));
 	objectManager.WritingSet(L"Launch", TRUE, L"Launch");
@@ -220,7 +215,13 @@ void HEADER_Scene::Update()
 
 	if (objectManager->GetVarBool(L"MusicPlay", VAR::ACTIVATION_FLAG)) {
 
-		musicManager->Play(PlayingName);
+		if (musicManager->GetNowPosition() >= musicManager->GetTotalTime())
+		{
+			musicManager->Replay(PlayingName);
+		}
+		else {
+			musicManager->Play(PlayingName);
+		}
 
 		objectManager->ChangeVarBool(L"MusicPlay", VAR::CAN_SEE_FLAG, FALSE);
 		objectManager->ChangeVarBool(L"MusicStop", VAR::CAN_SEE_FLAG, TRUE);

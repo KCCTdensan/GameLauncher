@@ -9,5 +9,6 @@ struct Json {
 	wstring path;
 	wstring version;
 	wstring explanation;
+	wstring picPath;
 
 };

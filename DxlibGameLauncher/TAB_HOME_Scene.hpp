@@ -15,5 +15,5 @@ public:
 	void Draw();
 
 private:
-	//ObjectManager* manager;
+	array<Json, 64>jsonHome;
 };
