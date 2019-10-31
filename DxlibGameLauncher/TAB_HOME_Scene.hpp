@@ -2,7 +2,8 @@
 
 #include "SceneData.hpp"
 #include "InputManager.h"
-
+#include "JsonFileData.h"
+#include <array>
 
 class TAB_HOME_Scene :
 	public SceneData
@@ -14,6 +15,8 @@ public:
 	void Draw();
 
 private:
+
+	array<Json, 64>jsonGame;
 
 	//ObjectManager* manager;
 };

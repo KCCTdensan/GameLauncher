@@ -63,6 +63,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	static ObjectManager objectManager;
 	static MusicManager musicManager;
 
+
 	//******************************************************************
 
 	//必要最低限のフォントハンドル作成

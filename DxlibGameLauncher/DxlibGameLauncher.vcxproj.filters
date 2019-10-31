@@ -37,6 +37,12 @@
     <Filter Include="ヘッダー ファイル\Music">
       <UniqueIdentifier>{9aba1a32-b0fd-4233-ae4d-0dda964a03d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Json">
+      <UniqueIdentifier>{fab6844b-fa22-4e30-8d98-076f44efbdec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Json">
+      <UniqueIdentifier>{e511a136-c846-4add-99c8-c60a329b7e20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainProc.cpp">
@@ -80,9 +86,6 @@
     </ClCompile>
     <ClCompile Include="MusicManager.cpp">
       <Filter>ソース ファイル\Music</Filter>
-    </ClCompile>
-    <ClCompile Include="JsonManager.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,8 +155,11 @@
     <ClInclude Include="MusicData.h">
       <Filter>ヘッダー ファイル\Music</Filter>
     </ClInclude>
-    <ClInclude Include="JsonManager.h">
+    <ClInclude Include="picojson.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonFileData.h">
+      <Filter>ヘッダー ファイル\Json</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

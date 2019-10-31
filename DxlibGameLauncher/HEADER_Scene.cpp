@@ -69,7 +69,6 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 
 	objectManager.Set(L"MusicProgress", 500, 998, 500, 24, OBJECT_TYPE::PROGRESS);
 	objectManager.ProgressSet(L"MusicProgress", TRUE, GetColor(0, 128, 255), GetColor(BLACK, BLACK, BLACK));
-	//objectManager.ChangeProgress(L"MusicProgress", 0.5f);
 
 	this->objectManager = &objectManager;
 	this->musicManager = &musicManager;

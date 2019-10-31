@@ -1,47 +1,83 @@
-{
-
-	"APP": [
-	],
-	"GAME": [
-
+{"TAB":
+	[
 		{
-			"NAME": "Minesweeper",
-			"PATH": ".\\Content\\Software\\GAME\\Minesweeper\\Minesweeper.exe",
-			"VERSION": "1.00",
-			"EXPLANATION": "Minesweeperのゲーム"
+			"3DMODEL": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE"
 
-		},
-		{
-			"NAME": "Starbox",
-			"PATH": ".\\Content\\Software\\GAME\\starbox\\starboxlauncherc.exe",
-			"VERSION": "1.60",
-			"EXPLANATION": "ゆっくりとした弾幕げー！"
+				}
+			],
+			"APP": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE"
 
-		},
-		{
-			"NAME": "弾幕YOKE",
-			"PATH": ".\\Content\\Software\\GAME\\弾幕YOKE\\弾幕yoke.exe",
-			"VERSION": "1.0.12",
-			"EXPLANATION": "本気で弾幕を楽しみたい人へ"
+				}
+			],
+			"GAME": [
 
-		},
-		{
-			"NAME": "STG",
-			"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-			"VERSION": "1.6.0",
-			"EXPLANATION": "レーザーが飛び交うシューティング!"
+				{
+					"NAME": "Minesweeper",
+					"PATH": ".\\Content\\Software\\GAME\\Minesweeper\\Minesweeper.exe",
+					"VERSION": "1.00",
+					"EXPLANATION": "Minesweeperのゲーム"
 
+				},
+				{
+					"NAME": "Starbox",
+					"PATH": ".\\Content\\Software\\GAME\\starbox\\starboxlauncherc.exe",
+					"VERSION": "1.60",
+					"EXPLANATION": "ゆっくりとした弾幕げー！"
+
+				},
+				{
+					"NAME": "弾幕YOKE",
+					"PATH": ".\\Content\\Software\\GAME\\弾幕YOKE\\弾幕yoke.exe",
+					"VERSION": "1.0.12",
+					"EXPLANATION": "本気で弾幕を楽しみたい人へ"
+
+				},
+				{
+					"NAME": "S.T.G",
+					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
+					"VERSION": "1.6.0",
+					"EXPLANATION": "レーザーが飛び交うシューティング!"
+
+				}
+
+			],
+			"MUSIC": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE"
+
+				}
+			],
+			"OTHERS": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE"
+
+				}
+			],
+			"VIDEO": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE"
+
+				}
+			]
 		}
-
-	],
-	"3DMODEL": [
-	],
-	"MUSIC": [
-
-	],
-	"VIDEO": [
-	],
-	"OTHERS": [
 	]
-
 }
