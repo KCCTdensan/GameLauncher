@@ -31,10 +31,10 @@ TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager, Json& json)
 					L"1.0.0",
 					L"パネルをひっくり返して手本通りの模様にするゲームです！\n結構難しいので頑張って解いてみてください！",
 					L"NONE" };
-	jsonGame[5] = { L"PUPG",
-					L".\\Content\\Software\\GAME\\PUPG\\PUPG.exe",
+	jsonGame[5] = { L"PUBG",
+					L".\\Content\\Software\\GAME\\PUBG\\PUBG.exe",
 					L"1.0.0",
-					L"P U P G",
+					L"P U B G",
 					L"NONE" };
 	int gameMax = 6;
 
