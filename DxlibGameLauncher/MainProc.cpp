@@ -28,6 +28,10 @@ int Ope::MUSIC_BUTTON_NUM = 0;
 int Ope::VIDEO_BUTTON_NUM = 0;
 int Ope::OTHERS_BUTTON_NUM = 0;
 
+bool Ope::JSON_MUSIC_FLAG = FALSE;
+bool Ope::JSON_VIDEO_FLAG = FALSE;
+bool Ope::JSON_PICTURE_FLAG = FALSE;
+
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
 	HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle();
@@ -72,15 +76,15 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	objectManager.HandleFontSet(L"G50", OBJECT_FONT_GOTHIC, 50);//ヘッダーに必要
 	objectManager.HandleFontSet(L"G30", OBJECT_FONT_GOTHIC, 30);//PlayingNotice必要
-	objectManager.HandleFontSet(L"G20", OBJECT_FONT_GOTHIC, 20);//一覧したの文字 
+	//objectManager.HandleFontSet(L"G20", OBJECT_FONT_GOTHIC, 20);//一覧したの文字 
 
 	//******************************************************************
 
-	SceneManager sceneManager(objectManager,NOW_ACTIVE_JSON);
+	SceneManager sceneManager(objectManager, NOW_ACTIVE_JSON);
 
 	sceneManager.ChanegeScene(SCENE::TAB_HOME);//初回起動はホーム
 
-	HEADER_Scene headerScene(objectManager, musicManager);
+	HEADER_Scene headerScene(objectManager, musicManager, NOW_ACTIVE_JSON);
 
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
 	{

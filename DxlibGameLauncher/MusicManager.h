@@ -18,7 +18,7 @@ public:
 
 	int Set(wstring stg, wstring path);
 	int Delete(wstring stg);
-	int DeleteAll(wstring stg);
+	int DeleteAll();
 
 	int Play(wstring stg);
 	int Replay(wstring stg);

@@ -42,9 +42,25 @@ TAB_3DMODEL_Scene::TAB_3DMODEL_Scene(ObjectManager &objectManager, Json& json)
 
 void TAB_3DMODEL_Scene::Update()
 {
+	for (int i = 0;i < Ope::MODEL_BUTTON_NUM;i++)
+	{
+		wstring name;
+
+		name = L"MODEL" + to_wstring(i);
+
+		if (objectManager.GetVarBool(name.c_str(), VAR::ACTIVATION_FLAG))
+		{
+			json = jsonModel[i];
+			Ope::JSON_MUSIC_FLAG = FALSE;
+			Ope::JSON_VIDEO_FLAG = FALSE;
+			Ope::JSON_PICTURE_FLAG = FALSE;
+		}
+	}
 }
 
 void TAB_3DMODEL_Scene::Draw()
 {
+	DrawBox(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, GetColor(BLACK, BLACK, BLACK), TRUE);
+
 	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont(L"G50"), L"3D Model");
 }

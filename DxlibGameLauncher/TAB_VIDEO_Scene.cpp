@@ -6,7 +6,7 @@ TAB_VIDEO_Scene::TAB_VIDEO_Scene(ObjectManager &objectManager, Json& json)
 	: SceneData(objectManager,json)
 {
 	jsonVideo[0] = { L"NONE",
-					L"",
+					L".\\Content\\Software\\VIDEO\\FNBR_AudioSynBars_041719.mp4",
 					L"",
 					L"",
 					L"NONE" };
@@ -42,9 +42,25 @@ TAB_VIDEO_Scene::TAB_VIDEO_Scene(ObjectManager &objectManager, Json& json)
 
 void TAB_VIDEO_Scene::Update()
 {
+	for (int i = 0;i < Ope::VIDEO_BUTTON_NUM;i++)
+	{
+		wstring name;
+
+		name = L"VIDEO" + to_wstring(i);
+
+		if (objectManager.GetVarBool(name.c_str(), VAR::ACTIVATION_FLAG))
+		{
+			json = jsonVideo[i];
+			Ope::JSON_MUSIC_FLAG = FALSE;
+			Ope::JSON_VIDEO_FLAG = TRUE;
+			Ope::JSON_PICTURE_FLAG = FALSE;
+		}
+	}
 }
 
 void TAB_VIDEO_Scene::Draw()
 {
+	DrawBox(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, GetColor(BLACK, BLACK, BLACK), TRUE);
+
 	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont(L"G50"), L"Video");
 }

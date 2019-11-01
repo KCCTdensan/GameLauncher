@@ -2,8 +2,20 @@
 
 #include "InputManager.h"
 
-HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager)
+HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager, Json& json)
 {
+	defJson = {
+		L"NONE",
+		L"",
+		L"",
+		L"",
+		L"NONE"
+	};
+
+	json = defJson;
+
+	Ope::JSON_MUSIC_FLAG = FALSE;
+
 	PlayingNotice = FALSE;
 
 	objectManager.Set(L"HHSB", 50, 350, 250, 100, OBJECT_TYPE::BUTTON);
@@ -59,15 +71,19 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 	objectManager.ColorSet(L"MusicStop", FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
 	objectManager.ImageChestSet(L"MusicStop", TRUE, L".\\Content\\Pic\\StopMusic.png", 0, 0);
 
-	musicManager.Set(L"Debug", L".\\Content\\Software\\MUSIC\\Vacation.mp3");
-	musicManager.Play(L"Debug");
+	objectManager.Set(L"MusicClear", 1020, 940, 25, 25, OBJECT_TYPE::BUTTON);
+	objectManager.ColorSet(L"MusicClear", FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
+	objectManager.ImageChestSet(L"MusicClear", TRUE, L".\\Content\\Pic\\ClearMusic.png", 0, 0);
+
+	//musicManager.Set(L"Debug", L".\\Content\\Software\\MUSIC\\Vacation.mp3");
+	//musicManager.Play(L"Debug");
 
 	objectManager.Set(L"MusicProgress", 500, 998, 500, 24, OBJECT_TYPE::PROGRESS);
 	objectManager.ProgressSet(L"MusicProgress", TRUE, GetColor(0, 128, 255), GetColor(BLACK, BLACK, BLACK));
 
 	this->objectManager = &objectManager;
 	this->musicManager = &musicManager;
-
+	this->json = &json;
 }
 
 void HEADER_Scene::Update()
@@ -88,6 +104,8 @@ void HEADER_Scene::Update()
 		}
 
 		objectManager->ChangeVarBool(L"HPicKCCT", VAR::ACTIVATION_FLAG, FALSE);
+
+		json = &defJson;
 	}
 	if (objectManager->GetVarBool(L"HHSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
@@ -209,9 +227,72 @@ void HEADER_Scene::Update()
 		objectManager->ChangeVarBool(L"HOSB", VAR::ACTIVATION_FLAG, FALSE);
 	}
 
-	PlayingNotice = musicManager->GetPlaying();
-	PlayingNotice = TRUE;
+	if (objectManager->GetVarBool(L"Launch", VAR::ACTIVATION_FLAG)) {
+
+		if (Ope::JSON_MUSIC_FLAG)
+		{
+			musicManager->Stop(musicManager->GetPlayingName());
+			musicManager->DeleteAll();
+			musicManager->Set(json->name, json->path);
+			musicManager->Replay(json->name);
+		}
+		else if (Ope::JSON_VIDEO_FLAG)
+		{
+			wstring a = L"wmplayer.exe /play \""+ json->path+L"\"";
+			_wsystem(a.c_str());
+
+		}
+		else {
+
+			_wsystem(json->path.c_str());
+
+		}
+		objectManager->ChangeVarBool(L"Launch", VAR::ACTIVATION_FLAG, FALSE);
+
+	}
+
+	if (PlayingNotice = musicManager->GetPlaying()) {
+		PlayingNotice = TRUE;
+	}
+	else {
+		PlayingNotice = FALSE;
+	}
 	PlayingName = musicManager->GetPlayingName();
+
+	if (musicManager->GetDoingOutput())
+	{
+		objectManager->ChangeVarBool(L"MusicPlay", VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"MusicStop", VAR::CAN_SEE_FLAG, TRUE);
+	}
+	else {
+		objectManager->ChangeVarBool(L"MusicPlay", VAR::CAN_SEE_FLAG, TRUE);
+		objectManager->ChangeVarBool(L"MusicStop", VAR::CAN_SEE_FLAG, FALSE);
+	}
+
+	if (!PlayingNotice)
+	{
+		objectManager->ChangeVarBool(L"MusicPlay", VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"MusicStop", VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"MusicClear", VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"MusicProgress", VAR::CAN_SEE_FLAG, FALSE);
+	}
+	else {
+		objectManager->ChangeVarBool(L"MusicClear", VAR::CAN_SEE_FLAG, TRUE);
+		objectManager->ChangeVarBool(L"MusicProgress", VAR::CAN_SEE_FLAG, TRUE);
+	}
+
+	float a = musicManager->GetNowPosition();
+	float b = musicManager->GetTotalTime();
+	float c = a / b;
+	objectManager->ChangeProgress(L"MusicProgress", c);
+
+	/*if (musicManager->GetNowPosition() >= musicManager->GetTotalTime() && musicManager->GetDoingOutput())
+	{
+		musicManager->Stop(PlayingName);
+
+		objectManager->ChangeVarBool(L"MusicStop", VAR::CAN_SEE_FLAG, FALSE);
+		objectManager->ChangeVarBool(L"MusicPlay", VAR::CAN_SEE_FLAG, TRUE);
+	}*/
 
 	if (objectManager->GetVarBool(L"MusicPlay", VAR::ACTIVATION_FLAG)) {
 
@@ -235,20 +316,13 @@ void HEADER_Scene::Update()
 		objectManager->ChangeVarBool(L"MusicPlay", VAR::CAN_SEE_FLAG, TRUE);
 
 	}
+	if (objectManager->GetVarBool(L"MusicClear", VAR::ACTIVATION_FLAG)) {
 
-	float a = musicManager->GetNowPosition();
-	float b = musicManager->GetTotalTime();
-	float c = a / b;
-	objectManager->ChangeProgress(L"MusicProgress", c);
-
-	if (musicManager->GetNowPosition() >= musicManager->GetTotalTime() && musicManager->GetDoingOutput())
-	{
 		musicManager->Stop(PlayingName);
 
-		objectManager->ChangeVarBool(L"MusicStop", VAR::CAN_SEE_FLAG, FALSE);
-		objectManager->ChangeVarBool(L"MusicPlay", VAR::CAN_SEE_FLAG, TRUE);
-	}
+		musicManager->DeleteAll();
 
+	}
 }
 
 void HEADER_Scene::Draw()
@@ -257,7 +331,17 @@ void HEADER_Scene::Draw()
 	DrawBox(0, 0, 350, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
 	DrawBox(1400, 0, 1920, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
 
-	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"%d", Input::Mouse::MOUSE_LEFT);
+	//DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"%d", Input::Mouse::MOUSE_LEFT);
+
+	if (json->name != L"NONE") {
+
+		DrawFormatStringToHandle(1450, 50, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G50"), L"%s", json->name.c_str());//タイトル
+		DrawFormatStringToHandle(1450, 150, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"Version : %s", json->version.c_str());
+		DrawFormatStringToHandle(1450, 300, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"%s", json->explanation.c_str());
+	}
+	else {
+		DrawFormatStringToHandle(1450, 150, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"左の一覧からファイル・ソフトを\n選んでください");
+	}
 
 
 	if (PlayingNotice) {

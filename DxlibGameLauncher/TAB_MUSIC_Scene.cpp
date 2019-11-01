@@ -5,12 +5,12 @@ using namespace App;
 TAB_MUSIC_Scene::TAB_MUSIC_Scene(ObjectManager &objectManager, Json& json)
 	: SceneData(objectManager,json)
 {
-	jsonMusic[0] = { L"NONE",
-					L"",
-					L"",
-					L"",
+	jsonMusic[0] = { L"Vacation",
+					L".\\Content\\Software\\MUSIC\\Vacation.mp3",
+					L"1.00",
+					L"ahaha",
 					L"NONE" };
-	int musicMax = 0;
+	int musicMax = 1;
 
 	int a = 0;
 
@@ -42,9 +42,25 @@ TAB_MUSIC_Scene::TAB_MUSIC_Scene(ObjectManager &objectManager, Json& json)
 
 void TAB_MUSIC_Scene::Update()
 {
+	for (int i = 0;i < Ope::MUSIC_BUTTON_NUM;i++)
+	{
+		wstring name;
+
+		name = L"MUSIC" + to_wstring(i);
+
+		if (objectManager.GetVarBool(name.c_str(), VAR::ACTIVATION_FLAG))
+		{
+			json = jsonMusic[i];
+			Ope::JSON_MUSIC_FLAG = TRUE;
+			Ope::JSON_VIDEO_FLAG = FALSE;
+			Ope::JSON_PICTURE_FLAG = FALSE;
+		}
+	}
 }
 
 void TAB_MUSIC_Scene::Draw()
 {
+	DrawBox(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, GetColor(BLACK, BLACK, BLACK), TRUE);
+
 	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont(L"G50"), L"Music");
 }

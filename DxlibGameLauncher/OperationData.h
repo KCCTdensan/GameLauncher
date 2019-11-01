@@ -19,4 +19,8 @@ namespace Ope
 	extern int MUSIC_BUTTON_NUM;
 	extern int VIDEO_BUTTON_NUM;
 	extern int OTHERS_BUTTON_NUM;
+
+	extern bool JSON_MUSIC_FLAG;
+	extern bool JSON_VIDEO_FLAG;
+	extern bool JSON_PICTURE_FLAG;
 }

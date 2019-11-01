@@ -14,6 +14,9 @@ int MusicManager::Set(wstring stg, wstring path)
 {
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
+		if (music[i].ExistenceFlag != FALSE)continue;
+
+		music[i].ExistenceFlag = TRUE;
 		music[i].name = stg;
 		music[i].handle = LoadSoundMem(path.c_str());
 
@@ -28,8 +31,17 @@ int MusicManager::Delete(wstring stg)
 	return 0;
 }
 
-int MusicManager::DeleteAll(wstring stg)
+int MusicManager::DeleteAll()
 {
+	for (int i = 0;i < MUSIC_MAX;i++)
+	{
+		if (music[i].ExistenceFlag != TRUE)continue;
+
+		isPlaying = FALSE;
+		DeleteSoundMem(music[i].handle);
+		music[i].ExistenceFlag = FALSE;
+	}
+
 	return 0;
 }
 
@@ -37,6 +49,7 @@ int MusicManager::Play(wstring stg)
 {
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
+		if (music[i].name != stg)continue;
 		isPlaying = TRUE;
 		doingOutput = TRUE;
 		playingName = music[i].name;
@@ -52,6 +65,8 @@ int MusicManager::Replay(wstring stg)
 {
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
+		if (music[i].name != stg)continue;
+
 		isPlaying = TRUE;
 		doingOutput = TRUE;
 		playingName = music[i].name;
@@ -66,6 +81,9 @@ int MusicManager::Stop(wstring stg)
 {
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
+		if (music[i].name != stg)continue;
+
+
 		StopSoundMem(music[i].handle);
 		doingOutput = FALSE;
 		music[i].startPosition = GetSoundCurrentTime(music[i].handle);

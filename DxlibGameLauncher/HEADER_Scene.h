@@ -10,7 +10,7 @@ using namespace App;
 class HEADER_Scene
 {
 public:
-	HEADER_Scene(ObjectManager &objectManager, MusicManager &musicManager);
+	HEADER_Scene(ObjectManager &objectManager, MusicManager &musicManager, Json &json);
 
 	void Update();
 	void Draw();
@@ -21,6 +21,9 @@ private:
 
 	ObjectManager* objectManager;
 	MusicManager* musicManager;
+	Json* json;
+
+	Json defJson;
 
 	bool PlayingNotice;
 	wstring PlayingName;

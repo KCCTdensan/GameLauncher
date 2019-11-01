@@ -19,5 +19,7 @@ struct MusicData
 
 	int range;
 
+	bool ExistenceFlag = FALSE;
+
 };
 
