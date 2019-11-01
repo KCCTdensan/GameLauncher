@@ -31,12 +31,12 @@ TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager, Json& json)
 					L"1.0.0",
 					L"パネルをひっくり返して手本通りの模様にするゲームです！\n結構難しいので頑張って解いてみてください！",
 					L"NONE" };
-	jsonGame[4] = { L"PUPG",
+	jsonGame[5] = { L"PUPG",
 					L".\\Content\\Software\\GAME\\PUPG\\PUPG.exe",
 					L"1.0.0",
 					L"P U P G",
 					L"NONE" };
-	int gameMax = 5;
+	int gameMax = 6;
 
 	int a = 0;
 
@@ -90,5 +90,10 @@ void TAB_GAME_Scene::Draw()
 	DrawBox(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, GetColor(BLACK, BLACK, BLACK), TRUE);
 
 	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont(L"G50"), L"Game");
+
+	if (Ope::GAME_BUTTON_NUM == 0)
+	{
+		DrawFormatStringToHandle(410, 150, GetColor(255, 255, 255), objectManager.GetHandleFont(L"G30"), L"NotFound");
+	}
 
 }

@@ -60,7 +60,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SetGraphMode(App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, 32);
 
-	//SetWindowSize(App::DEFAULT_WINDOW_SIZE_X, App::DEFAULT_WINDOW_SIZE_Y);
 	SetWindowSize(960, 540);
 
 	SetMouseDispFlag(TRUE);
@@ -85,6 +84,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	sceneManager.ChanegeScene(SCENE::TAB_HOME);//èââÒãNìÆÇÕÉzÅ[ÉÄ
 
 	HEADER_Scene headerScene(objectManager, musicManager, NOW_ACTIVE_JSON);
+
+	SetWindowSize(App::DEFAULT_WINDOW_SIZE_X * 4 / 5, App::DEFAULT_WINDOW_SIZE_Y * 4 / 5);
+	SetWindowInitPosition(0, 0);
+	//SetWindowPos(GetMainWindowHandle(), HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+
+	SetDrawMode(DX_DRAWMODE_ANISOTROPIC);
 
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen())
 	{

@@ -88,4 +88,9 @@ void TAB_MUSIC_Scene::Draw()
 	DrawBox(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, GetColor(BLACK, BLACK, BLACK), TRUE);
 
 	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont(L"G50"), L"Music");
+
+	if (Ope::MUSIC_BUTTON_NUM == 0)
+	{
+		DrawFormatStringToHandle(410, 150, GetColor(255, 255, 255), objectManager.GetHandleFont(L"G30"), L"NotFound");
+	}
 }
