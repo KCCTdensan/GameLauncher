@@ -105,7 +105,7 @@ void HEADER_Scene::Update()
 
 		objectManager->ChangeVarBool(L"HPicKCCT", VAR::ACTIVATION_FLAG, FALSE);
 
-		json = &defJson;
+		//json = &defJson;
 	}
 	if (objectManager->GetVarBool(L"HHSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
@@ -251,6 +251,14 @@ void HEADER_Scene::Update()
 
 	}
 
+	if (json->name == L"NONE")
+	{
+		objectManager->ChangeVarBool(L"Launch", VAR::CAN_SEE_FLAG, FALSE);
+	}
+	else {
+		objectManager->ChangeVarBool(L"Launch", VAR::CAN_SEE_FLAG, TRUE);
+	}
+
 	if (PlayingNotice = musicManager->GetPlaying()) {
 		PlayingNotice = TRUE;
 	}
@@ -337,7 +345,7 @@ void HEADER_Scene::Draw()
 
 		DrawFormatStringToHandle(1450, 50, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G50"), L"%s", json->name.c_str());//タイトル
 		DrawFormatStringToHandle(1450, 150, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"Version : %s", json->version.c_str());
-		DrawFormatStringToHandle(1450, 300, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"%s", json->explanation.c_str());
+		DrawFormatStringToHandle(1450, 300, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G20"), L"%s", json->explanation.c_str());
 	}
 	else {
 		DrawFormatStringToHandle(1450, 150, GetColor(255, 255, 255), objectManager->GetHandleFont(L"G30"), L"左の一覧からファイル・ソフトを\n選んでください");

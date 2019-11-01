@@ -7,26 +7,36 @@ TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager, Json& json)
 {
 
 	jsonGame[0] = { L"Minesweeper",
-					L".\\Content\\Software\\GAME\\Minesweeper\\Minesweeper.exe",
+					L".\\Content\\Software\\GAME\\Minesweeper\\Mine.bat",
 					L"1.00",
-					L"Minesweeperのゲーム",
-					L"NONE" };
+					L"私が１年生の時に作った作品です。\n2つのモードがあるので楽しんでください！",
+					L".\\Content\\Pic\\MineSweeper.png" };
 	jsonGame[1] = { L"Starbox",
 					L".\\Content\\Software\\GAME\\starbox\\starboxlauncherc.exe",
 					L"1.60",
 					L"ゆっくりとした弾幕げー！",
-					L"NONE" };
+					L".\\Content\\Pic\\starbox.png" };
 	jsonGame[2] = { L"弾幕YOKE",
 					L".\\Content\\Software\\GAME\\弾幕YOKE\\弾幕yoke.exe",
 					L"1.0.12",
-					L"本気で弾幕を楽しみたい人へ",
-					L"NONE" };
+					L"本気で弾幕を楽しみたい人へ\nHSPコンテストにも提出",
+					L".\\Content\\Pic\\iconC.png" };
 	jsonGame[3] = { L"S.T.G",
 					L".\\Content\\Software\\GAME\\STG\\stg.exe",
 					L"1.6.0",
 					L"レーザーが飛び交うシューティング!",
+					L".\\Content\\Pic\\STG.png" };
+	jsonGame[4] = { L"PanalPuzzule",
+					L".\\Content\\Software\\GAME\\PanelPuzzule\\パネルゲーム.exe",
+					L"1.0.0",
+					L"パネルをひっくり返して手本通りの模様にするゲームです！\n結構難しいので頑張って解いてみてください！",
 					L"NONE" };
-	int gameMax = 4;
+	jsonGame[4] = { L"PUPG",
+					L".\\Content\\Software\\GAME\\PUPG\\PUPG.exe",
+					L"1.0.0",
+					L"P U P G",
+					L"NONE" };
+	int gameMax = 5;
 
 	int a = 0;
 

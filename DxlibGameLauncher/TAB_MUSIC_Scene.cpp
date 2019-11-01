@@ -5,12 +5,37 @@ using namespace App;
 TAB_MUSIC_Scene::TAB_MUSIC_Scene(ObjectManager &objectManager, Json& json)
 	: SceneData(objectManager,json)
 {
-	jsonMusic[0] = { L"Vacation",
-					L".\\Content\\Software\\MUSIC\\Vacation.mp3",
+	jsonMusic[0] = { L"Halloween\nparty-nightmare",
+					L".\\Content\\Software\\MUSIC\\01-Towa-_-kumataro-_-P.K.A-Halloween-party-nightmare.mp3",
 					L"1.00",
-					L"ahaha",
-					L"NONE" };
-	int musicMax = 1;
+					L"高専祭音楽CDにも入っています！",
+					L".\\Content\\Pic\\kcctjacketomote.png" };
+	jsonMusic[1] = { L"そこら辺の雑魚戦",
+					L".\\Content\\Software\\MUSIC\\02-Shadow-K-HERO-_そこら辺の雑魚戦_.mp3",
+					L"1.00",
+					L"高専祭音楽CDにも入っています！",
+					L".\\Content\\Pic\\kcctjacketomote.png" };
+	jsonMusic[2] = { L"Big-Wave",
+					L".\\Content\\Software\\MUSIC\\03-kumataro-Big-Wave.mp3",
+					L"1.00",
+					L"高専祭音楽CDにも入っています！",
+					L".\\Content\\Pic\\iconA.png" };
+	jsonMusic[3] = { L"Save-The-Dayz",
+					L".\\Content\\Software\\MUSIC\\04-Towa-Save-The-Dayz.mp3",
+					L"1.00",
+					L"高専祭音楽CDにも入っています！",
+					L".\\Content\\Pic\\kcctjacketomote.png" };
+	jsonMusic[4] = { L"Color",
+					L".\\Content\\Software\\MUSIC\\05-kumataro-Color.mp3",
+					L"1.00",
+					L"高専祭音楽CDにも入っています！",
+					L".\\Content\\Pic\\iconB.png" };
+	jsonMusic[5] = { L"Cosmic World",
+					L".\\Content\\Software\\MUSIC\\Cosmic World.mp3",
+					L"1.00",
+					L"テクノポップみたいな曲です！",
+					L".\\Content\\Pic\\kumataro.png" };
+	int musicMax = 6;
 
 	int a = 0;
 

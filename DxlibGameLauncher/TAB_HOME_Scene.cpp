@@ -26,7 +26,7 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager, Json& json)
 					L"",
 					L"",
 					L"",
-					L"NONE" };
+					L".\\Content\\Pic\\kcctjacketomote.png" };
 	jsonHome[4] = { L"VIDEO",
 					L"",
 					L"",
