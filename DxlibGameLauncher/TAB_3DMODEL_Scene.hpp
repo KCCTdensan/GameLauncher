@@ -10,7 +10,7 @@ class TAB_3DMODEL_Scene :
 	public SceneData
 {
 public:
-	TAB_3DMODEL_Scene(ObjectManager &objectManager);
+	TAB_3DMODEL_Scene(ObjectManager &objectManager, Json& json);
 
 	void Update();
 	void Draw();

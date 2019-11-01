@@ -8,6 +8,7 @@
 #include "InputManager.h"
 #include "ExePath.h"
 #include "MusicManager.h"
+#include "JsonFileData.h"
 
 int Ope::CURRENT_WINDOW_COLOR_BIT = 0;
 int Ope::CURRENT_WINDOW_SIZE_X = 0;
@@ -63,6 +64,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	static ObjectManager objectManager;
 	static MusicManager musicManager;
 
+	Json NOW_ACTIVE_JSON;
 
 	//******************************************************************
 
@@ -74,7 +76,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	//******************************************************************
 
-	SceneManager sceneManager(objectManager);
+	SceneManager sceneManager(objectManager,NOW_ACTIVE_JSON);
 
 	sceneManager.ChanegeScene(SCENE::TAB_HOME);//èââÒãNìÆÇÕÉzÅ[ÉÄ
 

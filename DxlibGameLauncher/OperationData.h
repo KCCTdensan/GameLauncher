@@ -1,6 +1,5 @@
 #pragma once
 #include "SceneList.h"
-
 namespace Ope
 {
 	extern int CURRENT_WINDOW_SIZE_X;

@@ -2,8 +2,8 @@
 #include "AppData.h"
 using namespace App;
 
-TAB_MUSIC_Scene::TAB_MUSIC_Scene(ObjectManager &objectManager)
-	: SceneData(objectManager)
+TAB_MUSIC_Scene::TAB_MUSIC_Scene(ObjectManager &objectManager, Json& json)
+	: SceneData(objectManager,json)
 {
 	jsonMusic[0] = { L"NONE",
 					L"",

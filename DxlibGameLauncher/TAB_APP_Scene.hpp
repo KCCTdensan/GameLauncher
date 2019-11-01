@@ -10,7 +10,7 @@ class TAB_APP_Scene :
 	public SceneData
 {
 public:
-	TAB_APP_Scene(ObjectManager &objectManager);
+	TAB_APP_Scene(ObjectManager &objectManager, Json& json);
 
 	void Update();
 	void Draw();

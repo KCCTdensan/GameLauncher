@@ -8,7 +8,7 @@ class TAB_GAME_Scene :
 	public SceneData
 {
 public:
-	TAB_GAME_Scene(ObjectManager &objectManager);
+	TAB_GAME_Scene(ObjectManager& objectManager, Json& json);
 
 	void Update();
 	void Draw();

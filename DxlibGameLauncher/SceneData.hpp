@@ -1,16 +1,16 @@
 #pragma once
 
 #include "ObjectManager.h"
-
+#include "JsonFileData.h"
 
 class SceneData
 {
 protected:
 	ObjectManager &objectManager;
-
+	Json& json;
 public:
-	SceneData(ObjectManager &objectManager)
-		:objectManager(objectManager)
+	SceneData(ObjectManager &objectManager , Json &json)
+		:objectManager(objectManager),json(json)
 	{
 
 	}

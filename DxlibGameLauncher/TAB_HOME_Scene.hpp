@@ -9,11 +9,12 @@ class TAB_HOME_Scene :
 	public SceneData
 {
 public:
-	TAB_HOME_Scene(ObjectManager &objectManager);
+	TAB_HOME_Scene(ObjectManager &objectManager, Json& json);
 
 	void Update();
 	void Draw();
 
 private:
 	array<Json, 64>jsonHome;
+	void AllHide();
 };

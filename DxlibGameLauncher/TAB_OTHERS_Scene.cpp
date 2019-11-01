@@ -2,8 +2,8 @@
 #include "AppData.h"
 using namespace App;
 
-TAB_OTHERS_Scene::TAB_OTHERS_Scene(ObjectManager &objectManager)
-	: SceneData(objectManager)
+TAB_OTHERS_Scene::TAB_OTHERS_Scene(ObjectManager &objectManager, Json& json)
+	: SceneData(objectManager,json)
 {
 	jsonOthers[0] = { L"NONE",
 					L"",

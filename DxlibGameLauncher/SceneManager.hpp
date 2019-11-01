@@ -18,7 +18,7 @@ class SceneManager
 public:
 	SceneManager(const SceneManager &) = delete;
 	SceneManager &operator=(const SceneManager &) = delete;
-	SceneManager(ObjectManager &objectManager);
+	SceneManager(ObjectManager &objectManager, Json& json);
 	~SceneManager();
 
 	int ChanegeScene(SCENE scene);

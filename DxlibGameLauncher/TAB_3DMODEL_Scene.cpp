@@ -2,8 +2,8 @@
 #include "AppData.h"
 using namespace App;
 
-TAB_3DMODEL_Scene::TAB_3DMODEL_Scene(ObjectManager &objectManager)
-	: SceneData(objectManager)
+TAB_3DMODEL_Scene::TAB_3DMODEL_Scene(ObjectManager &objectManager, Json& json)
+	: SceneData(objectManager,json)
 {
 	jsonModel[0] = { L"NONE",
 					L"",

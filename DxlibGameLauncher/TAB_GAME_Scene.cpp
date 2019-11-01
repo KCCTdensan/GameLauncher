@@ -2,8 +2,8 @@
 #include "AppData.h"
 using namespace App;
 
-TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager)
-	: SceneData(objectManager)
+TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager, Json& json)
+	: SceneData(objectManager,json)
 {
 
 	jsonGame[0] = { L"Minesweeper",

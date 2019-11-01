@@ -2,8 +2,8 @@
 #include "AppData.h"
 using namespace App;
 
-TAB_VIDEO_Scene::TAB_VIDEO_Scene(ObjectManager &objectManager)
-	: SceneData(objectManager)
+TAB_VIDEO_Scene::TAB_VIDEO_Scene(ObjectManager &objectManager, Json& json)
+	: SceneData(objectManager,json)
 {
 	jsonVideo[0] = { L"NONE",
 					L"",
