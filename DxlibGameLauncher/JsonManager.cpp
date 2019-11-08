@@ -1,10 +1,10 @@
 #include "JsonManager.h"
 #include <sstream>
 #include <fstream>
-#include <iostream>
+//#include <iostream>
 #include "picojson.h"
-#include <locale>
-#include <codecvt>
+//#include <locale>
+//#include <codecvt>
 
 #pragma warning(push)
 #pragma warning(disable:4834)
@@ -40,7 +40,7 @@ int JsonManager::Read(wstring path)
 	object& obj = val.get<object>();
 
 	value::array& TAB = obj["TAB"].get<value::array>();
-
+	
 	for (value::array::iterator it = TAB.begin(); it != TAB.end();it++) {
 		//GAME
 		object& tmp = it->get<object>();
@@ -116,9 +116,8 @@ int JsonManager::Read(wstring path)
 
 			othersMax++;
 		}
-
 	}
-
+	
 	return 0;
 }
 

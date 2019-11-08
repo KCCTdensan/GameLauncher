@@ -1,7 +1,7 @@
 #include "TAB_HOME_Scene.hpp"
 #include "AppData.h"
 
-using namespace App;
+using namespace App; // AppData.hのネームスペース排除
 
 TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager, Json& json)
 	: SceneData(objectManager, json)
@@ -41,7 +41,7 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager, Json& json)
 
 	int a = 0;
 
-	for (int i = 0;i < homeMax;i++, a++)
+	for (int i = 0;i < homeMax;i++, a++) // ボタン設定をループ処理で必要分設定
 	{
 		wstring name;
 
