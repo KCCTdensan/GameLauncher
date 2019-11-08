@@ -11,7 +11,7 @@ struct MusicData
 	{
 	};
 
-	wstring name;
+	string name;
 
 	int handle;
 

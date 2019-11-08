@@ -7,7 +7,7 @@ ObjectManager::ObjectManager()
 {
 }
 
-int ObjectManager::Set(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
+int ObjectManager::Set(string stg, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -30,7 +30,7 @@ int ObjectManager::Set(wstring stg, int x, int y, int sizeX, int sizeY, OBJECT_T
 	return 0;
 }
 
-int ObjectManager::ColorSet(wstring stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
+int ObjectManager::ColorSet(string stg, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -51,7 +51,7 @@ int ObjectManager::ColorSet(wstring stg, bool outsideFlag, int outsideColor, int
 	return re_num;
 }
 
-int ObjectManager::RoundnessSet(wstring stg, bool flag, int size)
+int ObjectManager::RoundnessSet(string stg, bool flag, int size)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -66,7 +66,7 @@ int ObjectManager::RoundnessSet(wstring stg, bool flag, int size)
 	return 0;
 }
 
-int ObjectManager::WritingSet(wstring stg, bool flag, wstring data)
+int ObjectManager::WritingSet(string stg, bool flag, string data)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -81,7 +81,7 @@ int ObjectManager::WritingSet(wstring stg, bool flag, wstring data)
 	return 0;
 }
 
-int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, int arrangementX, int arrangementY)
+int ObjectManager::WritingFontSet(string stg, int font, int size, int color, int arrangementX, int arrangementY)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -96,7 +96,7 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, in
 
 		re_num = 0;
 
-		wstring a;
+		string a;
 
 		switch (object[i].writingFont)
 		{
@@ -147,7 +147,7 @@ int ObjectManager::WritingFontSet(wstring stg, int font, int size, int color, in
 	return re_num;
 }
 
-int ObjectManager::WritingFontSetToHandle(wstring stg, wstring handleName, int Color, int arrangementX, int arrangementY)
+int ObjectManager::WritingFontSetToHandle(string stg, string handleName, int Color, int arrangementX, int arrangementY)
 {
 	int re_num = -1;
 	for (int i = 0; i < OBJECT_MAX; i++)
@@ -210,7 +210,7 @@ int ObjectManager::WritingFontSetToHandle(wstring stg, wstring handleName, int C
 	return re_num;
 }
 
-int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int setX, int setY)
+int ObjectManager::ImageChestSet(string stg, bool flag, string PicPath, int setX, int setY)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -257,7 +257,7 @@ int ObjectManager::ImageChestSet(wstring stg, bool flag, wstring PicPath, int se
 	return 0;
 }
 
-int ObjectManager::ProgressSet(wstring str, bool flag, int frontColor, int backColor, float startRate)
+int ObjectManager::ProgressSet(string str, bool flag, int frontColor, int backColor, float startRate)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -273,7 +273,7 @@ int ObjectManager::ProgressSet(wstring str, bool flag, int frontColor, int backC
 	return 0;
 }
 
-int ObjectManager::ChangeProgress(wstring str, float rate)
+int ObjectManager::ChangeProgress(string str, float rate)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -286,7 +286,7 @@ int ObjectManager::ChangeProgress(wstring str, float rate)
 	return 0;
 }
 
-int ObjectManager::ChangeVarInt(wstring stg, VAR var, int num)
+int ObjectManager::ChangeVarInt(string stg, VAR var, int num)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -322,7 +322,7 @@ int ObjectManager::ChangeVarInt(wstring stg, VAR var, int num)
 	return 0;
 }
 
-int ObjectManager::ChangeVarBool(wstring stg, VAR var, bool flag)
+int ObjectManager::ChangeVarBool(string stg, VAR var, bool flag)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -358,7 +358,7 @@ int ObjectManager::ChangeVarBool(wstring stg, VAR var, bool flag)
 	return 0;
 }
 
-int ObjectManager::GetVarInt(wstring stg, VAR var)
+int ObjectManager::GetVarInt(string stg, VAR var)
 {
 	int num = -1;
 
@@ -396,7 +396,7 @@ int ObjectManager::GetVarInt(wstring stg, VAR var)
 	return num;
 }
 
-bool ObjectManager::GetVarBool(wstring stg, VAR var)
+bool ObjectManager::GetVarBool(string stg, VAR var)
 {
 
 	bool flag = FALSE;
@@ -435,7 +435,7 @@ bool ObjectManager::GetVarBool(wstring stg, VAR var)
 	return flag;
 }
 
-int ObjectManager::Delete(wstring stg)
+int ObjectManager::Delete(string stg)
 {
 	for (int i = 0; i < OBJECT_MAX; i++)
 	{
@@ -445,7 +445,7 @@ int ObjectManager::Delete(wstring stg)
 		object[i].ExistenceFlag = FALSE;
 		object[i].EffectiveFlag = FALSE;
 
-		object[i].name = L"";
+		object[i].name = "";
 
 		object[i].x = 0;
 		object[i].y = 0;
@@ -470,7 +470,7 @@ int ObjectManager::DeleteAll(void)
 		object[i].ExistenceFlag = FALSE;
 		object[i].EffectiveFlag = FALSE;
 
-		object[i].name = L"";
+		object[i].name = "";
 
 		object[i].x = 0;
 		object[i].y = 0;
@@ -486,7 +486,7 @@ int ObjectManager::DeleteAll(void)
 	return 0;
 }
 
-int ObjectManager::HandleFontSet(wstring stg, int font, int size)
+int ObjectManager::HandleFontSet(string stg, int font, int size)
 {
 	for (int i = 0;i < FONT_HANDLE_MAX;i++)
 	{
@@ -497,7 +497,7 @@ int ObjectManager::HandleFontSet(wstring stg, int font, int size)
 		fontData[i].name = stg;
 		fontData[i].size = size;
 
-		wstring a;
+		string a;
 
 		switch (font)
 		{
@@ -517,7 +517,7 @@ int ObjectManager::HandleFontSet(wstring stg, int font, int size)
 	return 0;
 }
 
-int ObjectManager::GetHandleFont(wstring stg)
+int ObjectManager::GetHandleFont(string stg)
 {
 	int num = 0;
 
@@ -532,7 +532,7 @@ int ObjectManager::GetHandleFont(wstring stg)
 	return num;
 }
 
-int ObjectManager::DeleteHandleFont(wstring stg)
+int ObjectManager::DeleteHandleFont(string stg)
 {
 	for (int i = 0;i < FONT_HANDLE_MAX;i++)
 	{

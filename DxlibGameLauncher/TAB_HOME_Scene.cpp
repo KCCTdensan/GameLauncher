@@ -3,49 +3,49 @@
 
 using namespace App; // AppData.hのネームスペース排除
 
-TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager, Json& json)
+TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager, Json& json, JsonManager& jsonManager)
 	: SceneData(objectManager, json)
 {
 
-	jsonHome[0] = { L"APP",
-					L"",
-					L"",
-					L"",
-					L".\\Content\\Pic\\AppTabIcon.png" };
-	jsonHome[1] = { L"GAME",
-					L"",
-					L"",
-					L"",
-					L".\\Content\\Pic\\GameTabIcon.png" };
-	jsonHome[2] = { L"3D MODEL",
-					L"",
-					L"",
-					L"",
-					L".\\Content\\Pic\\ModelTabIcon.png" };
-	jsonHome[3] = { L"MUSIC",
-					L"",
-					L"",
-					L"",
-					L".\\Content\\Pic\\kcctjacketomote.png" };
-	jsonHome[4] = { L"VIDEO",
-					L"",
-					L"",
-					L"",
-					L".\\Content\\Pic\\VideoTabIcon.png" };
-	jsonHome[5] = { L"OTHERS",
-					L"",
-					L"",
-					L"",
-					L".\\Content\\Pic\\OthersTabIcon.png" };
+	jsonHome[0] = { "APP",
+					"",
+					"",
+					"",
+					".\\Content\\Pic\\AppTabIcon.png" };
+	jsonHome[1] = { "GAME",
+					"",
+					"",
+					"",
+					".\\Content\\Pic\\GameTabIcon.png" };
+	jsonHome[2] = { "3D MODE",
+					"",
+					"",
+					"",
+					".\\Content\\Pic\\ModelTabIcon.png" };
+	jsonHome[3] = { "MUSIC",
+					"",
+					"",
+					"",
+					".\\Content\\Pic\\kcctjacketomote.png" };
+	jsonHome[4] = { "VIDEO",
+					"",
+					"",
+					"",
+					".\\Content\\Pic\\VideoTabIcon.png" };
+	jsonHome[5] = { "OTHERS",
+					"",
+					"",
+					"",
+					".\\Content\\Pic\\OthersTabIcon.png" };
 	int homeMax = 6;
 
 	int a = 0;
 
 	for (int i = 0;i < homeMax;i++, a++) // ボタン設定をループ処理で必要分設定
 	{
-		wstring name;
+		string name;
 
-		name = L"HOME" + to_wstring(i);
+		name = "HOME" + to_string(i);
 
 		int b = (int)i % 3;
 		int a = (int)i / 3;
@@ -53,15 +53,15 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager, Json& json)
 		objectManager.Set(name.c_str(), 450 + (b * 300), 150 + (a * 350), 250, 300, OBJECT_TYPE::BUTTON);
 		objectManager.ColorSet(name.c_str(), FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
 		objectManager.WritingSet(name.c_str(), TRUE, jsonHome[i].name);
-		objectManager.WritingFontSetToHandle(name.c_str(), L"G30", GetColor(255, 255, 255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
-		if (jsonHome[i].picPath == L"NONE") {
-			objectManager.ImageChestSet(name.c_str(), TRUE, L".\\Content\\Pic\\NoPic.png");
+		objectManager.WritingFontSetToHandle(name.c_str(), "G30", GetColor(255, 255, 255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
+		if (jsonHome[i].picPath == "NONE") {
+			objectManager.ImageChestSet(name.c_str(), TRUE, ".\\Content\\Pic\\NoPic.png");
 		}
 		else {
 			objectManager.ImageChestSet(name.c_str(), TRUE, jsonHome[i].picPath);
 		}
 
-		//objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
+		objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 	}
 
 	Ope::HOME_BUTTON_NUM = a;
@@ -71,9 +71,9 @@ void TAB_HOME_Scene::Update()
 {
 	for (int i = 0;i < Ope::HOME_BUTTON_NUM;i++)
 	{
-		wstring name;
+		string name;
 
-		name = L"HOME" + to_wstring(i);
+		name = "HOME" + to_string(i);
 
 		if (objectManager.GetVarBool(name.c_str(), VAR::ACTIVATION_FLAG))
 		{
@@ -83,11 +83,11 @@ void TAB_HOME_Scene::Update()
 
 				AllHide();
 
-				wstring nameA;
+				string nameA;
 
 				for (int i = 0; i < Ope::APP_BUTTON_NUM; i++)
 				{
-					nameA = L"APP" + to_wstring(i);
+					nameA = "APP" + to_string(i);
 
 					objectManager.ChangeVarBool(nameA.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 				}
@@ -98,11 +98,11 @@ void TAB_HOME_Scene::Update()
 
 				AllHide();
 
-				wstring nameA;
+				string nameA;
 
 				for (int i = 0; i < Ope::GAME_BUTTON_NUM; i++)
 				{
-					nameA = L"GAME" + to_wstring(i);
+					nameA = "GAME" + to_string(i);
 
 					objectManager.ChangeVarBool(nameA.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 				}
@@ -113,11 +113,11 @@ void TAB_HOME_Scene::Update()
 
 				AllHide();
 
-				wstring nameA;
+				string nameA;
 
 				for (int i = 0; i < Ope::MODEL_BUTTON_NUM; i++)
 				{
-					nameA = L"MODEL" + to_wstring(i);
+					nameA = "MODE" + to_string(i);
 
 					objectManager.ChangeVarBool(nameA.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 				}
@@ -128,11 +128,11 @@ void TAB_HOME_Scene::Update()
 
 				AllHide();
 
-				wstring nameA;
+				string nameA;
 
 				for (int i = 0; i < Ope::MUSIC_BUTTON_NUM; i++)
 				{
-					nameA = L"MUSIC" + to_wstring(i);
+					nameA = "MUSIC" + to_string(i);
 
 					objectManager.ChangeVarBool(nameA.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 				}
@@ -143,11 +143,11 @@ void TAB_HOME_Scene::Update()
 
 				AllHide();
 
-				wstring nameA;
+				string nameA;
 
 				for (int i = 0; i < Ope::VIDEO_BUTTON_NUM; i++)
 				{
-					nameA = L"VIDEO" + to_wstring(i);
+					nameA = "VIDEO" + to_string(i);
 
 					objectManager.ChangeVarBool(nameA.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 				}
@@ -158,11 +158,11 @@ void TAB_HOME_Scene::Update()
 
 				AllHide();
 
-				wstring nameA;
+				string nameA;
 
 				for (int i = 0; i < Ope::OTHERS_BUTTON_NUM; i++)
 				{
-					nameA = L"OTHERS" + to_wstring(i);
+					nameA = "OTHERS" + to_string(i);
 
 					objectManager.ChangeVarBool(nameA.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 				}
@@ -176,55 +176,55 @@ void TAB_HOME_Scene::Update()
 void TAB_HOME_Scene::Draw()
 {
 	DrawBox(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, GetColor(BLACK, BLACK, BLACK), TRUE);
-	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont(L"G50"), L"Home");
+	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont("G50"), "Home");
 	
 
-	//DrawFormatString(0, 0, GetColor(255, 255, 255), L"x: %d", Input::Mouse::MOUSE_WIN_X);
+	//DrawFormatString(0, 0, GetColor(255, 255, 255), "x: %d", Input::Mouse::MOUSE_WIN_X);
 }
 
 void TAB_HOME_Scene::AllHide()
 {
-	wstring name;
+	string name;
 
 	for (int i = 0; i < Ope::HOME_BUTTON_NUM; i++)
 	{
-		name = L"HOME" + to_wstring(i);
+		name = "HOME" + to_string(i);
 
 		objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
 	for (int i = 0; i < Ope::APP_BUTTON_NUM; i++)
 	{
-		name = L"APP" + to_wstring(i);
+		name = "APP" + to_string(i);
 
 		objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
 	for (int i = 0; i < Ope::GAME_BUTTON_NUM; i++)
 	{
-		name = L"GAME" + to_wstring(i);
+		name = "GAME" + to_string(i);
 
 		objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
 	for (int i = 0; i < Ope::MODEL_BUTTON_NUM; i++)
 	{
-		name = L"MODEL" + to_wstring(i);
+		name = "MODE" + to_string(i);
 
 		objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
 	for (int i = 0; i < Ope::MUSIC_BUTTON_NUM; i++)
 	{
-		name = L"MUSIC" + to_wstring(i);
+		name = "MUSIC" + to_string(i);
 
 		objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
 	for (int i = 0; i < Ope::VIDEO_BUTTON_NUM; i++)
 	{
-		name = L"VIDEO" + to_wstring(i);
+		name = "VIDEO" + to_string(i);
 
 		objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
 	for (int i = 0; i < Ope::OTHERS_BUTTON_NUM; i++)
 	{
-		name = L"OTHERS" + to_wstring(i);
+		name = "OTHERS" + to_string(i);
 
 		objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}

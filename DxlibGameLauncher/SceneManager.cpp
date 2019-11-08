@@ -2,16 +2,16 @@
 #include "DxLib.h"
 
 
-SceneManager::SceneManager(ObjectManager &objectManager, Json& json)
+SceneManager::SceneManager(ObjectManager &objectManager, Json& json, JsonManager& jsonManager)
 	: currentScene(nullptr)
 {
-	sceneSave[(int)SCENE::TAB_HOME]		= new TAB_HOME_Scene(objectManager,json);
-	sceneSave[(int)SCENE::TAB_APP]		= new TAB_APP_Scene(objectManager, json);
-	sceneSave[(int)SCENE::TAB_GAME]		= new TAB_GAME_Scene(objectManager, json);
-	sceneSave[(int)SCENE::TAB_MUSIC]	= new TAB_MUSIC_Scene(objectManager, json);
-	sceneSave[(int)SCENE::TAB_3DMODEL]	= new TAB_3DMODEL_Scene(objectManager, json);
-	sceneSave[(int)SCENE::TAB_VIDEO]	= new TAB_VIDEO_Scene(objectManager, json);
-	sceneSave[(int)SCENE::TAB_OTHERS]	= new TAB_OTHERS_Scene(objectManager, json);
+	sceneSave[(int)SCENE::TAB_HOME]		= new TAB_HOME_Scene(objectManager,json,jsonManager);
+	sceneSave[(int)SCENE::TAB_APP]		= new TAB_APP_Scene(objectManager, json, jsonManager);
+	sceneSave[(int)SCENE::TAB_GAME]		= new TAB_GAME_Scene(objectManager, json, jsonManager);
+	sceneSave[(int)SCENE::TAB_MUSIC]	= new TAB_MUSIC_Scene(objectManager, json, jsonManager);
+	sceneSave[(int)SCENE::TAB_3DMODEL]	= new TAB_3DMODEL_Scene(objectManager, json, jsonManager);
+	sceneSave[(int)SCENE::TAB_VIDEO]	= new TAB_VIDEO_Scene(objectManager, json, jsonManager);
+	sceneSave[(int)SCENE::TAB_OTHERS]	= new TAB_OTHERS_Scene(objectManager, json, jsonManager);
 }
 
 SceneManager::~SceneManager()

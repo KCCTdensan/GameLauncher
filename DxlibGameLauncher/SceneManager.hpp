@@ -11,6 +11,7 @@
 #include "TAB_VIDEO_Scene.hpp"
 #include "TAB_OTHERS_Scene.hpp"
 #include <array>
+#include "JsonManager.h"
 
 
 class SceneManager
@@ -18,7 +19,7 @@ class SceneManager
 public:
 	SceneManager(const SceneManager &) = delete;
 	SceneManager &operator=(const SceneManager &) = delete;
-	SceneManager(ObjectManager &objectManager, Json& json);
+	SceneManager(ObjectManager &objectManager, Json& json, JsonManager& jsonManager);
 	~SceneManager();
 
 	int ChanegeScene(SCENE scene);

@@ -32,25 +32,25 @@ class ObjectManager
 public:
 	ObjectManager();
 
-	int		Set							(wstring str, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type);
-	int		ColorSet					(wstring str, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //指定しない場合NULL
-	int		RoundnessSet				(wstring str, bool flag, int size = NULL);
-	int		WritingSet					(wstring str, bool flag, wstring data);
-	int		WritingFontSet				(wstring str, int Font = 0, int size = 1, int Color = 0, int arrangementX = 0, int arrangementY = 0);
-	int		WritingFontSetToHandle		(wstring str, wstring handleName, int Color = 0, int arrangementX = 0, int arrangementY = 0);
-	int		ImageChestSet				(wstring str, bool flag, wstring PicPath = NULL, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
-	int		ProgressSet					(wstring str, bool flag, int frontColor, int backColor, float startRate = 0.0f);
-	int		ChangeProgress				(wstring str, float rate);
-	int		ChangeVarInt				(wstring str, VAR var, int num);
-	int		ChangeVarBool				(wstring str, VAR var, bool flag);
-	int		GetVarInt					(wstring str, VAR var);
-	bool	GetVarBool					(wstring str, VAR var);
-	int		Delete						(wstring str);
+	int		Set							(string str, int x, int y, int sizeX, int sizeY, OBJECT_TYPE type);
+	int		ColorSet					(string str, bool outsideFlag, int outsideColor, int outsideSize, bool insideFlag, int insideColor); //指定しない場合NULL
+	int		RoundnessSet				(string str, bool flag, int size = NULL);
+	int		WritingSet					(string str, bool flag, string data);
+	int		WritingFontSet				(string str, int Font = 0, int size = 1, int Color = 0, int arrangementX = 0, int arrangementY = 0);
+	int		WritingFontSetToHandle		(string str, string handleName, int Color = 0, int arrangementX = 0, int arrangementY = 0);
+	int		ImageChestSet				(string str, bool flag, string PicPath = NULL, int setX = 0, int setY = 0); //FLAGの時も可 また，setX Y はオブジェクトのスタート地点を0とする
+	int		ProgressSet					(string str, bool flag, int frontColor, int backColor, float startRate = 0.0f);
+	int		ChangeProgress				(string str, float rate);
+	int		ChangeVarInt				(string str, VAR var, int num);
+	int		ChangeVarBool				(string str, VAR var, bool flag);
+	int		GetVarInt					(string str, VAR var);
+	bool	GetVarBool					(string str, VAR var);
+	int		Delete						(string str);
 	int		DeleteAll					(void);
 	
-	int		HandleFontSet				(wstring str, int font = 0, int size = 15);
-	int		GetHandleFont				(wstring str);
-	int		DeleteHandleFont			(wstring str);
+	int		HandleFontSet				(string str, int font = 0, int size = 15);
+	int		GetHandleFont				(string str);
+	int		DeleteHandleFont			(string str);
 	int		DeleteHandleFontAll			(void);
 
 	void	Update						(void);

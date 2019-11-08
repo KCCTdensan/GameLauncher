@@ -16,7 +16,7 @@ public:
 		:size(15),handle(0)
 	{}
 
-	wstring name;
+	string name;
 
 	bool ActiveFlag = FALSE;
 

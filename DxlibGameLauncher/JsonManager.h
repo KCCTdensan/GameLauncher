@@ -14,7 +14,7 @@ class JsonManager
 public:
 	JsonManager();
 
-	int Read(wstring path);
+	int Read(string path);
 	int	GetDataNum(SCENE scene);
 	int GetData(SCENE scene, Json* jsonData, int num);// num‚Í0ˆÈã
 

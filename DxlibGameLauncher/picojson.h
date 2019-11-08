@@ -473,7 +473,7 @@ inline bool value::contains(const std::string &key) const {
 inline std::string value::to_str() const {
   switch (type_) {
   case null_type:
-    return "null";
+    return "nul";
   case boolean_type:
     return u_.boolean_ ? "true" : "false";
 #ifdef PICOJSON_USE_INT64
@@ -877,7 +877,7 @@ template <typename Context, typename Iter> inline bool _parse(Context &ctx, inpu
     } else {                                                                                                                       \
       return false;                                                                                                                \
     }
-    IS('n', "ull", ctx.set_null());
+    IS('n', "ul", ctx.set_null());
     IS('f', "alse", ctx.set_bool(false));
     IS('t', "rue", ctx.set_bool(true));
 #undef IS

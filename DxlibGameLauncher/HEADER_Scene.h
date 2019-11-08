@@ -4,13 +4,14 @@
 #include "AppData.h"
 #include "OperationData.h"
 #include "MusicManager.h"
+#include "JsonManager.h"
 
 using namespace App;
 
 class HEADER_Scene
 {
 public:
-	HEADER_Scene(ObjectManager &objectManager, MusicManager &musicManager, Json &json);
+	HEADER_Scene(ObjectManager &objectManager, MusicManager &musicManager, Json &json, JsonManager& jsonManager);
 
 	void Update();
 	void Draw();
@@ -26,6 +27,6 @@ private:
 	Json defJson;
 
 	bool PlayingNotice;
-	wstring PlayingName;
+	string PlayingName;
 };
 

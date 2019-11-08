@@ -5,10 +5,10 @@ using namespace std;
 
 struct Json {
 
-	wstring name;
-	wstring path;
-	wstring version;
-	wstring explanation;
-	wstring picPath;
+	string name;
+	string path;
+	string version;
+	string explanation;
+	string picPath;
 
 };

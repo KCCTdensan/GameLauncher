@@ -16,7 +16,7 @@ JsonManager::JsonManager()
 {
 }
 
-int JsonManager::Read(wstring path)
+int JsonManager::Read(string path)
 {
 	stringstream ss;
 	ifstream fs;
@@ -51,71 +51,86 @@ int JsonManager::Read(wstring path)
 		value::array& VIDEO = tmp["OTHERS"].get<value::array>();
 		value::array& OTHERS = tmp["VIDEO"].get<value::array>();
 		int i = 0;
-		for (value::array::iterator it2 = APP.begin(); it2 != APP.end(), i < JSON_MAX; it2++, i++)
+		for (value::array::iterator it2 = APP.begin(); it2 != APP.end(); it2++, i++)
 		{
 			object& name = it2->get<object>();
-			jsonApp[i].name = name["NAME"].get<wstring>();
-			jsonApp[i].path = name["PATH"].get<wstring>();
-			jsonApp[i].version = name["VERSION"].get<wstring>();
-			jsonApp[i].explanation = name["EXPLANATION"].get<wstring>();
+			jsonApp[i].name = name["NAME"].get<string>();
+			jsonApp[i].path = name["PATH"].get<string>();
+			jsonApp[i].version = name["VERSION"].get<string>();
+			jsonApp[i].explanation = name["EXPLANATION"].get<string>();
+			jsonApp[i].picPath = name["PICPATH"].get<string>();
 
 			appMax++;
 		}
+		if (jsonApp[0].name == "NONE") appMax = 0;
 		i = 0;
-		for (value::array::iterator it2 = GAME.begin(); it2 != GAME.end(), i < JSON_MAX; it2++, i++)
+		for (value::array::iterator it2 = GAME.begin(); it2 != GAME.end(); it2++, i++)
 		{
 			object& name = it2->get<object>();
-			jsonGame[i].name = name["NAME"].get<wstring>();
-			jsonGame[i].path = name["PATH"].get<wstring>();
-			jsonGame[i].version = name["VERSION"].get<wstring>();
-			jsonGame[i].explanation = name["EXPLANATION"].get<wstring>();
+			jsonGame[i].name = name["NAME"].get<string>();
+			jsonGame[i].path = name["PATH"].get<string>();
+			jsonGame[i].version = name["VERSION"].get<string>();
+			jsonGame[i].explanation = name["EXPLANATION"].get<string>();
+			jsonGame[i].picPath = name["PICPATH"].get<string>();
+
 
 			gameMax++;
 		}
+		if (jsonGame[0].name == "NONE") gameMax = 0;
 		i = 0;
-		for (value::array::iterator it2 = MODEL.begin(); it2 != MODEL.end(), i < JSON_MAX; it2++, i++)
+		for (value::array::iterator it2 = MODEL.begin(); it2 != MODEL.end(); it2++, i++)
 		{
 			object& name = it2->get<object>();
-			json3DModel[i].name = name["NAME"].get<wstring>();
-			json3DModel[i].path = name["PATH"].get<wstring>();
-			json3DModel[i].version = name["VERSION"].get<wstring>();
-			json3DModel[i].explanation = name["EXPLANATION"].get<wstring>();
+			json3DModel[i].name = name["NAME"].get<string>();
+			json3DModel[i].path = name["PATH"].get<string>();
+			json3DModel[i].version = name["VERSION"].get<string>();
+			json3DModel[i].explanation = name["EXPLANATION"].get<string>();
+			json3DModel[i].picPath = name["PICPATH"].get<string>();
+
 
 			modelMax++;
 		}
+		if (json3DModel[0].name == "NONE") modelMax = 0;
 		i = 0;
-		for (value::array::iterator it2 = MUSIC.begin(); it2 != MUSIC.end(), i < JSON_MAX; it2++, i++)
+		for (value::array::iterator it2 = MUSIC.begin(); it2 != MUSIC.end(); it2++, i++)
 		{
 			object& name = it2->get<object>();
-			jsonMusic[i].name = name["NAME"].get<wstring>();
-			jsonMusic[i].path = name["PATH"].get<wstring>();
-			jsonMusic[i].version = name["VERSION"].get<wstring>();
-			jsonMusic[i].explanation = name["EXPLANATION"].get<wstring>();
+			jsonMusic[i].name = name["NAME"].get<string>();
+			jsonMusic[i].path = name["PATH"].get<string>();
+			jsonMusic[i].version = name["VERSION"].get<string>();
+			jsonMusic[i].explanation = name["EXPLANATION"].get<string>();
+			jsonMusic[i].picPath = name["PICPATH"].get<string>();
+
 
 			musicMax++;
 		}
+		if (jsonMusic[0].name == "NONE") musicMax = 0;
 		i = 0;
-		for (value::array::iterator it2 = VIDEO.begin(); it2 != VIDEO.end(), i < JSON_MAX; it2++, i++)
+		for (value::array::iterator it2 = VIDEO.begin(); it2 != VIDEO.end(); it2++, i++)
 		{
 			object& name = it2->get<object>();
-			jsonVideo[i].name = name["NAME"].get<wstring>();
-			jsonVideo[i].path = name["PATH"].get<wstring>();
-			jsonVideo[i].version = name["VERSION"].get<wstring>();
-			jsonVideo[i].explanation = name["EXPLANATION"].get<wstring>();
+			jsonVideo[i].name = name["NAME"].get<string>();
+			jsonVideo[i].path = name["PATH"].get<string>();
+			jsonVideo[i].version = name["VERSION"].get<string>();
+			jsonVideo[i].explanation = name["EXPLANATION"].get<string>();
+			jsonVideo[i].picPath = name["PICPATH"].get<string>();
 
 			videoMax++;
 		}
+		if (jsonVideo[0].name == "NONE") videoMax = 0;
 		i = 0;
-		for (value::array::iterator it2 = OTHERS.begin(); it2 != OTHERS.end(), i < JSON_MAX; it2++, i++)
+		for (value::array::iterator it2 = OTHERS.begin(); it2 != OTHERS.end(); it2++, i++)
 		{
 			object& name = it2->get<object>();
-			jsonOthers[i].name = name["NAME"].get<wstring>();
-			jsonOthers[i].path = name["PATH"].get<wstring>();
-			jsonOthers[i].version = name["VERSION"].get<wstring>();
-			jsonOthers[i].explanation = name["EXPLANATION"].get<wstring>();
+			jsonOthers[i].name = name["NAME"].get<string>();
+			jsonOthers[i].path = name["PATH"].get<string>();
+			jsonOthers[i].version = name["VERSION"].get<string>();
+			jsonOthers[i].explanation = name["EXPLANATION"].get<string>();
+			jsonOthers[i].picPath = name["PICPATH"].get<string>();
 
 			othersMax++;
 		}
+		if (jsonOthers[0].name == "NONE") othersMax = 0;
 	}
 	
 	return 0;
@@ -156,22 +171,22 @@ int JsonManager::GetData(SCENE scene, Json* jsonData, int num)
 	switch (scene)
 	{
 	case SCENE::TAB_APP:
-		jsonData = &jsonApp[i];
+		*jsonData = jsonApp[i];
 		break;
 	case SCENE::TAB_GAME:
-		jsonData = &jsonGame[i];
+		*jsonData = jsonGame[i];
 		break;
 	case SCENE::TAB_MUSIC:
-		jsonData = &jsonMusic[i];
+		*jsonData = jsonMusic[i];
 		break;
 	case SCENE::TAB_3DMODEL:
-		jsonData = &json3DModel[i];
+		*jsonData = json3DModel[i];
 		break;
 	case SCENE::TAB_VIDEO:
-		jsonData = &jsonVideo[i];
+		*jsonData = jsonVideo[i];
 		break;
 	case SCENE::TAB_OTHERS:
-		jsonData = &jsonOthers[i];
+		*jsonData = jsonOthers[i];
 		break;
 	default:
 		break;

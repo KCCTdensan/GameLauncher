@@ -16,16 +16,16 @@ class MusicManager
 public:
 	MusicManager();
 
-	int Set(wstring stg, wstring path);
-	int Delete(wstring stg);
+	int Set(string stg, string path);
+	int Delete(string stg);
 	int DeleteAll();
 
-	int Play(wstring stg);
-	int Replay(wstring stg);
-	int Stop(wstring stg);
+	int Play(string stg);
+	int Replay(string stg);
+	int Stop(string stg);
 
 	bool GetPlaying();
-	wstring GetPlayingName();
+	string GetPlayingName();
 	int GetNowPosition();
 	int GetTotalTime();
 	int GetDoingOutput();
@@ -35,7 +35,7 @@ public:
 private:
 
 	std::array<MusicData, MUSIC_MAX> music;
-	wstring playingName;
+	string playingName;
 	bool isPlaying;
 	int playingHandle;
 	bool doingOutput;

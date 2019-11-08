@@ -3,14 +3,14 @@
 MusicManager::MusicManager()
 {
 	isPlaying = FALSE;
-	playingName = L"";
+	playingName = "";
 
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
 	}
 }
 
-int MusicManager::Set(wstring stg, wstring path)
+int MusicManager::Set(string stg, string path)
 {
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
@@ -26,7 +26,7 @@ int MusicManager::Set(wstring stg, wstring path)
 	return 0;
 }
 
-int MusicManager::Delete(wstring stg)
+int MusicManager::Delete(string stg)
 {
 	return 0;
 }
@@ -45,7 +45,7 @@ int MusicManager::DeleteAll()
 	return 0;
 }
 
-int MusicManager::Play(wstring stg)
+int MusicManager::Play(string stg)
 {
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
@@ -61,7 +61,7 @@ int MusicManager::Play(wstring stg)
 	return 0;
 }
 
-int MusicManager::Replay(wstring stg)
+int MusicManager::Replay(string stg)
 {
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
@@ -77,7 +77,7 @@ int MusicManager::Replay(wstring stg)
 	return 0;
 }
 
-int MusicManager::Stop(wstring stg)
+int MusicManager::Stop(string stg)
 {
 	for (int i = 0; i < MUSIC_MAX; i++)
 	{
@@ -98,7 +98,7 @@ bool MusicManager::GetPlaying()
 	return isPlaying;
 }
 
-wstring MusicManager::GetPlayingName()
+string MusicManager::GetPlayingName()
 {
 	return playingName;
 }

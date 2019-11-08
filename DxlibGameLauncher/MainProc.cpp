@@ -48,7 +48,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	ExePath exePath; //現在のカレントディレクトリを取得設定するためのクラスの変数宣言 ※修正不可
 
-	SetWindowText(L"GameLauncher"); // アプリのタイトル名の変更
+	SetWindowText("GameLauncher"); // アプリのタイトル名の変更
 
 	SetDrawArea(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y); // 描画領域の設定 かつ その中でも描画できる範囲を設定 これに関してはあまり使わない方がいい (これは表画面ではなく裏画面なのでこの画面で設定したサイズを表画面でリサイズする
 
@@ -73,22 +73,23 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	static Json NOW_ACTIVE_JSON;
 
 	static JsonManager jsonManager;
+	jsonManager.Read(".\\Content\\Json\\data.json");
 
 	//******************************************************************
 
 	//必要最低限のフォントハンドル作成
 
-	objectManager.HandleFontSet(L"G50", OBJECT_FONT_GOTHIC, 50);//ヘッダーに必要
-	objectManager.HandleFontSet(L"G30", OBJECT_FONT_GOTHIC, 30);//PlayingNotice必要
-	objectManager.HandleFontSet(L"G20", OBJECT_FONT_GOTHIC, 20);//一覧したの文字 
+	objectManager.HandleFontSet("G50", OBJECT_FONT_GOTHIC, 50);//ヘッダーに必要
+	objectManager.HandleFontSet("G30", OBJECT_FONT_GOTHIC, 30);//PlayingNotice必要
+	objectManager.HandleFontSet("G20", OBJECT_FONT_GOTHIC, 20);//一覧したの文字 
 
 	//******************************************************************
 
-	SceneManager sceneManager(objectManager, NOW_ACTIVE_JSON); // jsonで選択中のものを取得するものを放り込んでおく かつ，SceneManagerの定義
+	SceneManager sceneManager(objectManager, NOW_ACTIVE_JSON, jsonManager); // jsonで選択中のものを取得するものを放り込んでおく かつ，SceneManagerの定義
 
 	sceneManager.ChanegeScene(SCENE::TAB_HOME);//初回起動はホーム
 
-	HEADER_Scene headerScene(objectManager, musicManager, NOW_ACTIVE_JSON);
+	HEADER_Scene headerScene(objectManager, musicManager, NOW_ACTIVE_JSON, jsonManager);
 
 	SetWindowSize(App::DEFAULT_WINDOW_SIZE_X * 4 / 5, App::DEFAULT_WINDOW_SIZE_Y * 4 / 5); // 初期のウインドウサイズ 1920 * 1080 を想定
 

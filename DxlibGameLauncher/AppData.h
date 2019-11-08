@@ -11,7 +11,7 @@ namespace App
 	constexpr int DEFAULT_WINDOW_SIZE_X = 1920;
 	constexpr int DEFAULT_WINDOW_SIZE_Y = 1080;
 
-	constexpr WCHAR FONT_GOTHIC[] = L"MS PGothic";
+	constexpr CHAR FONT_GOTHIC[] = "MS PGothic";
 
 	constexpr int BLACK = 30;
 }
