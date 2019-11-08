@@ -48,8 +48,8 @@ int JsonManager::Read(string path)
 		value::array& GAME = tmp["GAME"].get<value::array>();
 		value::array& MODEL = tmp["3DMODEL"].get<value::array>();
 		value::array& MUSIC = tmp["MUSIC"].get<value::array>();
-		value::array& VIDEO = tmp["OTHERS"].get<value::array>();
-		value::array& OTHERS = tmp["VIDEO"].get<value::array>();
+		value::array& VIDEO = tmp["VIDEO"].get<value::array>();
+		value::array& OTHERS = tmp["OTHERS"].get<value::array>();
 		int i = 0;
 		for (value::array::iterator it2 = APP.begin(); it2 != APP.end(); it2++, i++)
 		{

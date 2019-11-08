@@ -2,6 +2,8 @@
 
 #include "InputManager.h"
 
+#include <shellapi.h>
+
 HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager, Json& json, JsonManager& jsonManager)
 {
 	defJson = {
@@ -238,8 +240,9 @@ void HEADER_Scene::Update()
 		}
 		else if (Ope::JSON_VIDEO_FLAG)
 		{
-			string a = "wmplayer.exe /play \""+ json->path+"\"";
-			system(a.c_str());
+			string a = "/play \"" + json->path + "\"";
+
+			ShellExecute(NULL, "open", "wmplayer", a.c_str(), NULL, SW_SHOWNORMAL);
 
 		}
 		else {

@@ -131,6 +131,9 @@
     <ClInclude Include="TAB_VIDEO_Scene.hpp" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Json\data.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

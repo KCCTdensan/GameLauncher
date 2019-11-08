@@ -1,92 +1,92 @@
 {
-  "TAB": [
-    {
-      "3DMODEL": [
-        {
-          "NAME": "NONE",
-          "PATH": "NONE",
-          "VERSION": "NONE",
-          "EXPLANATION": "NONE",
-          "PICPATH": "NONE"
+	"TAB": [
+		{
+			"3DMODEL": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE",
+					"PICPATH": "NONE"
 
-        }
-      ],
-      "APP": [
-        {
-          "NAME": "NONE",
-          "PATH": "NONE",
-          "VERSION": "NONE",
-          "EXPLANATION": "NONE",
-          "PICPATH": "NONE"
+				}
+			],
+			"APP": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE",
+					"PICPATH": "NONE"
 
-        }
-      ],
-      "GAME": [
+				}
+			],
+			"GAME": [
 
-        {
-          "NAME": "Minesweeper",
-          "PATH": ".\\Content\\Software\\GAME\\Minesweeper\\Minesweeper.exe",
-          "VERSION": "1.00",
-          "EXPLANATION": "Minesweeperのゲーム",
-          "PICPATH": "NONE"
+				{
+					"NAME": "Minesweeper",
+					"PATH": ".\\Content\\Software\\GAME\\Minesweeper\\Minesweeper.exe",
+					"VERSION": "1.00",
+					"EXPLANATION": "Minesweeperのゲーム",
+					"PICPATH": "NONE"
 
-        },
-        {
-          "NAME": "Starbox",
-          "PATH": ".\\Content\\Software\\GAME\\starbox\\starboxlauncherc.exe",
-          "VERSION": "1.60",
-          "EXPLANATION": "草wwww",
-          "PICPATH": "NONE"
+				},
+				{
+					"NAME": "Starbox",
+					"PATH": ".\\Content\\Software\\GAME\\starbox\\starboxlauncherc.exe",
+					"VERSION": "1.60",
+					"EXPLANATION": "草wwww1234567890",
+					"PICPATH": "NONE"
 
-        },
-        {
-          "NAME": "弾幕YOKE",
-          "PATH": ".\\Content\\Software\\GAME\\弾幕YOKE\\弾幕yoke.exe",
-          "VERSION": "1.0.12",
-          "EXPLANATION": "本気で弾幕を楽しみたい人へ",
-          "PICPATH": "NONE"
+				},
+				{
+					"NAME": "弾幕YOKE",
+					"PATH": ".\\Content\\Software\\GAME\\弾幕YOKE\\弾幕yoke.exe",
+					"VERSION": "1.0.12",
+					"EXPLANATION": "本気で弾幕を楽しみたい人へ",
+					"PICPATH": "NONE"
 
-        },
-        {
-          "NAME": "S.T.G",
-          "PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-          "VERSION": "1.6.0",
-          "EXPLANATION": "レーザーが飛び交うシューティング!",
-          "PICPATH": "NONE"
+				},
+				{
+					"NAME": "S.T.G",
+					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
+					"VERSION": "1.6.0",
+					"EXPLANATION": "レーザーが飛び交うシューティング!",
+					"PICPATH": "NONE"
 
-        }
+				}
 
-      ],
-      "MUSIC": [
-        {
-          "NAME": "NONE",
-          "PATH": "NONE",
-          "VERSION": "NONE",
-          "EXPLANATION": "NONE",
-          "PICPATH": "NONE"
+			],
+			"MUSIC": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE",
+					"PICPATH": "NONE"
 
-        }
-      ],
-      "OTHERS": [
-        {
-          "NAME": "NONE",
-          "PATH": "NONE",
-          "VERSION": "NONE",
-          "EXPLANATION": "NONE",
-          "PICPATH": "NONE"
+				}
+			],
+			"OTHERS": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE",
+					"PICPATH": "NONE"
 
-        }
-      ],
-      "VIDEO": [
-        {
-          "NAME": "NONE",
-          "PATH": "NONE",
-          "VERSION": "NONE",
-          "EXPLANATION": "NONE",
-          "PICPATH": "NONE"
+				}
+			],
+			"VIDEO": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE",
+					"PICPATH": "NONE"
 
-        }
-      ]
-    }
-  ]
+				}
+			]
+		}
+	]
 }
