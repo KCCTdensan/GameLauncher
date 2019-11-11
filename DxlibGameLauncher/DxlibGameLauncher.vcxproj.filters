@@ -44,7 +44,7 @@
       <UniqueIdentifier>{e511a136-c846-4add-99c8-c60a329b7e20}</UniqueIdentifier>
     </Filter>
     <Filter Include="Json">
-      <UniqueIdentifier>{90eda2fe-5460-4eee-a346-0de2871d8b4e}</UniqueIdentifier>
+      <UniqueIdentifier>{2cdb3c27-92fa-409d-b572-e288d552f0cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +91,7 @@
       <Filter>ソース ファイル\Music</Filter>
     </ClCompile>
     <ClCompile Include="JsonManager.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Json</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +168,7 @@
       <Filter>ヘッダー ファイル\Json</Filter>
     </ClInclude>
     <ClInclude Include="JsonManager.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

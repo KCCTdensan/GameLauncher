@@ -2,9 +2,11 @@
 
 #include "InputManager.h"
 
+#include <shellapi.h>
+
 HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager, Json& json, JsonManager& jsonManager)
 {
-	defJson = { // 何も選択されていない時のデータ
+	defJson = {
 		"NONE",
 		"",
 		"",
@@ -239,9 +241,8 @@ void HEADER_Scene::Update()
 		else if (Ope::JSON_VIDEO_FLAG)
 		{
 			string a = "/play \"" + json->path + "\"";
-			//system(a.c_str());
 
-			ShellExecute(NULL, "open", "wmplayer.exe", a.c_str(), NULL, SW_SHOWNORMAL);
+			ShellExecute(NULL, "open", "wmplayer", a.c_str(), NULL, SW_SHOWNORMAL);
 
 		}
 		else {
@@ -340,8 +341,6 @@ void HEADER_Scene::Draw()
 
 	DrawBox(0, 0, 350, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
 	DrawBox(1400, 0, 1920, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
-
-	DrawLine(1400, 50, 1400, 1030, GetColor(255, 255, 255), TRUE);
 
 	//DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), "%d", Input::Mouse::MOUSE_LEFT);
 
