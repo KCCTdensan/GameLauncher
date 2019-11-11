@@ -17,7 +17,7 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager, Json& json, JsonMan
 					"",
 					"",
 					".\\Content\\Pic\\GameTabIcon.png" };
-	jsonHome[2] = { "3D MODE",
+	jsonHome[2] = { "3D MODEL",
 					"",
 					"",
 					"",
