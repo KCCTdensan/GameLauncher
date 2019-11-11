@@ -4,7 +4,7 @@
 
 HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager, Json& json, JsonManager& jsonManager)
 {
-	defJson = {
+	defJson = { // 何も選択されていない時のデータ
 		"NONE",
 		"",
 		"",
