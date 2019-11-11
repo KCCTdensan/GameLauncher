@@ -43,6 +43,9 @@
     <Filter Include="ヘッダー ファイル\Json">
       <UniqueIdentifier>{e511a136-c846-4add-99c8-c60a329b7e20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Json">
+      <UniqueIdentifier>{90eda2fe-5460-4eee-a346-0de2871d8b4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainProc.cpp">
@@ -167,5 +170,10 @@
     <ClInclude Include="JsonManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Json\data.json">
+      <Filter>Json</Filter>
+    </None>
   </ItemGroup>
 </Project>
