@@ -5,13 +5,6 @@ using namespace App;
 TAB_VIDEO_Scene::TAB_VIDEO_Scene(ObjectManager &objectManager, Json& json, JsonManager& jsonManager)
 	: SceneData(objectManager,json)
 {
-	/*jsonVideo[0] = { "NONE",
-					".\\Content\\Software\\VIDEO\\FNBR_AudioSynBars_041719.mp4",
-					"",
-					"",
-					"NONE" };
-	int videoMax = 0;*/
-
 	int videoMax = jsonManager.GetDataNum(SCENE::TAB_VIDEO);
 
 	int a = 0;
