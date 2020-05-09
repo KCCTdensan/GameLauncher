@@ -35,7 +35,7 @@
 					"NAME": "Starbox",
 					"PATH": ".\\Content\\Software\\GAME\\starbox\\starboxlauncherc.exe",
 					"VERSION": "1.60",
-					"EXPLANATION": "草wwww1234567890",
+					"EXPLANATION": "全方位シューティングゲーム",
 					"PICPATH": "NONE"
 
 				},
@@ -51,7 +51,7 @@
 					"NAME": "S.T.G",
 					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
 					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング!",
+					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
 					"PICPATH": "NONE"
 
 				}

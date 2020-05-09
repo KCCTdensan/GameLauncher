@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define JSON_MAX 64 
+#define JSON_MAX 256 
 
 class JsonManager
 {
