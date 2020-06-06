@@ -20,6 +20,8 @@ private:
 
 	array<Json, 64>jsonGame;
 
+	bool canScroll;
+
 	int scrollCurrentPos = 0;
 	int scrollCurrentPosBefore = 0;
 

@@ -160,48 +160,19 @@ int ObjectManager::WritingFontSetToHandle(string stg, string handleName, int Col
 
 		re_num = 0;
 
-		int bufSize = 15;
-
-		for (int j = 0;j < FONT_HANDLE_MAX;j++)
+		for (int j = 0; j < FONT_HANDLE_MAX; j++)
 		{
 			if (!fontData[j].ActiveFlag || fontData[j].name != handleName) continue;
 
 			object[i].fontOwnFlag = FALSE;
 
 			object[i].FontHandle = fontData[j].handle;
-			bufSize = fontData[j].size;
+			object[i].writingSize = fontData[j].size;
 
 		}
 
-		int len;
-
-		switch (object[i].WritingArrengementX)
-		{
-		case ARRANGEMENT_X_LEFT:
-			object[i].writingX = object[i].x + object[i].outsidePixel;
-			break;
-		case ARRANGEMENT_X_CENTER:
-			len = static_cast<int>(lstrlen(object[i].writing.c_str()));
-			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
-			object[i].writingX = object[i].x + (object[i].xSize - object[i].WritingWidth) / 2;
-			break;
-		case ARRANGEMENT_X_RIGHT:
-			len = static_cast<int>(lstrlen(object[i].writing.c_str()));
-			object[i].WritingWidth = GetDrawStringWidthToHandle(object[i].writing.c_str(), len, object[i].FontHandle);
-			object[i].writingX = object[i].x + object[i].xSize - object[i].WritingWidth - object[i].outsidePixel;
-			break;
-		}
-		switch (object[i].WritingArrengementY)
-		{
-		case ARRANGEMENT_Y_TOP:
-			object[i].writingY = object[i].ySize;
-			break;
-		case ARRANGEMENT_Y_CENTER:
-			object[i].writingY = object[i].y + ((object[i].ySize - bufSize) / 2);
-			break;
-		case ARRANGEMENT_Y_BOTTOM:
-			object[i].writingY = object[i].y + object[i].ySize - bufSize;
-			break;
+		if (object[i].WritingFlag) {
+			ArrangementSet(i);
 		}
 
 		break;
@@ -314,6 +285,9 @@ int ObjectManager::ChangeVarInt(string stg, VAR var, int num)
 			break;
 		default:
 			break;
+		}
+		if (object[i].WritingFlag) {
+			ArrangementSet(i);
 		}
 
 		break;
@@ -488,7 +462,7 @@ int ObjectManager::DeleteAll(void)
 
 int ObjectManager::HandleFontSet(string stg, int font, int size)
 {
-	for (int i = 0;i < FONT_HANDLE_MAX;i++)
+	for (int i = 0; i < FONT_HANDLE_MAX; i++)
 	{
 		if (fontData[i].ActiveFlag) continue;
 
@@ -521,7 +495,7 @@ int ObjectManager::GetHandleFont(string stg)
 {
 	int num = 0;
 
-	for (int i = 0;i < FONT_HANDLE_MAX;i++)
+	for (int i = 0; i < FONT_HANDLE_MAX; i++)
 	{
 		if (fontData[i].name != stg) continue;
 		num = fontData[i].handle;
@@ -534,7 +508,7 @@ int ObjectManager::GetHandleFont(string stg)
 
 int ObjectManager::DeleteHandleFont(string stg)
 {
-	for (int i = 0;i < FONT_HANDLE_MAX;i++)
+	for (int i = 0; i < FONT_HANDLE_MAX; i++)
 	{
 		if (fontData[i].ActiveFlag)
 		{
@@ -550,7 +524,7 @@ int ObjectManager::DeleteHandleFont(string stg)
 
 int ObjectManager::DeleteHandleFontAll(void)
 {
-	for (int i = 0;i < FONT_HANDLE_MAX;i++)
+	for (int i = 0; i < FONT_HANDLE_MAX; i++)
 	{
 		if (fontData[i].ActiveFlag)
 		{
@@ -583,7 +557,7 @@ void ObjectManager::Update()
 			if (Input::Mouse::MOUSE_LEFT == MOUSE_LEFT_PRESS_FIRST)
 			{
 
-				for (int j = 0;j < OBJECT_MAX;j++) {
+				for (int j = 0; j < OBJECT_MAX; j++) {
 					object[j].ActivationFlag = FALSE;
 
 				}
@@ -671,9 +645,45 @@ void ObjectManager::Draw()
 			break;
 
 		}
-		
+
 	}
 
 
+}
+
+void ObjectManager::ArrangementSet(int num)
+{
+	int len;
+
+	switch (object[num].WritingArrengementX)
+	{
+	case ARRANGEMENT_X_LEFT:
+		object[num].writingX = object[num].x + object[num].outsidePixel;
+		break;
+	case ARRANGEMENT_X_CENTER:
+		len = static_cast<int>(lstrlen(object[num].writing.c_str()));
+		object[num].WritingWidth = GetDrawStringWidthToHandle(object[num].writing.c_str(), len, object[num].FontHandle);
+		object[num].writingX = object[num].x + (object[num].xSize - object[num].WritingWidth) / 2;
+		break;
+	case ARRANGEMENT_X_RIGHT:
+		len = static_cast<int>(lstrlen(object[num].writing.c_str()));
+		object[num].WritingWidth = GetDrawStringWidthToHandle(object[num].writing.c_str(), len, object[num].FontHandle);
+		object[num].writingX = object[num].x + object[num].xSize - object[num].WritingWidth - object[num].outsidePixel;
+		break;
+	}
+	switch (object[num].WritingArrengementY)
+	{
+	case ARRANGEMENT_Y_TOP:
+		object[num].writingY = object[num].ySize;
+		break;
+	case ARRANGEMENT_Y_CENTER:
+		object[num].writingY = object[num].y + ((object[num].ySize - object[num].writingSize) / 2);
+		break;
+	case ARRANGEMENT_Y_BOTTOM:
+		object[num].writingY = object[num].y + object[num].ySize - object[num].writingSize;
+		break;
+	}
+
+	return;
 }
 

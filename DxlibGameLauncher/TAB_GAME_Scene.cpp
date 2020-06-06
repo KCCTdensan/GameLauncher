@@ -38,6 +38,14 @@ TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager, Json& json, JsonMan
 
 	Ope::GAME_BUTTON_NUM = a;
 
+	if ((Ope::GAME_BUTTON_NUM / 3 * 350) + 300 + 150 <= App::BACKGROUND_SIZE_Y)
+	{
+		canScroll = FALSE;
+	}
+	else {
+		canScroll = TRUE;
+	}
+
 }
 
 void TAB_GAME_Scene::Update()
@@ -57,35 +65,38 @@ void TAB_GAME_Scene::Update()
 		}
 	}
 
-	int tempPos = 0;
-	scrollCurrentPosBefore = scrollCurrentPos;
+	if (canScroll) {
 
-	switch (Input::Scroll::SCHOOL_SIZE)
-	{
-	case -1:
-		tempPos -= App::SCROLL_SIZE;
-		break;
-	case 1:
-		tempPos += App::SCROLL_SIZE;
-		break;
-	default:
-		break;
-	}
-	if (scrollCurrentPos + tempPos < -1 * ((int)(Ope::GAME_BUTTON_NUM / 3) * 350))//下まで行ったかを判定
-	{
-		scrollCurrentPos = -1 * ((Ope::GAME_BUTTON_NUM / 3) * 350);
+		int tempPos = 0;
+		scrollCurrentPosBefore = scrollCurrentPos;
 
-		MoveObj(scrollCurrentPosBefore - scrollCurrentPos);
-	}
-	else if (scrollCurrentPos + tempPos > 0)//上まで行ったかを判定
-	{
-		scrollCurrentPos = 0;
+		switch (Input::Scroll::SCHOOL_SIZE)
+		{
+		case -1:
+			tempPos -= App::SCROLL_SIZE;
+			break;
+		case 1:
+			tempPos += App::SCROLL_SIZE;
+			break;
+		default:
+			break;
+		}
+		if (scrollCurrentPos + tempPos < -1 * ((int)(Ope::GAME_BUTTON_NUM / 3) * 350))//下まで行ったかを判定
+		{
+			scrollCurrentPos = -1 * ((Ope::GAME_BUTTON_NUM / 3) * 350);
 
-		MoveObj(scrollCurrentPosBefore - scrollCurrentPos);
-	}
-	else {
-		scrollCurrentPos += tempPos;
-		MoveObj(tempPos);
+			MoveObj(scrollCurrentPosBefore - scrollCurrentPos);
+		}
+		else if (scrollCurrentPos + tempPos > 0)//上まで行ったかを判定
+		{
+			scrollCurrentPos = 0;
+
+			MoveObj(scrollCurrentPosBefore - scrollCurrentPos);
+		}
+		else {
+			scrollCurrentPos += tempPos;
+			MoveObj(tempPos);
+		}
 	}
 }
 
@@ -93,7 +104,7 @@ void TAB_GAME_Scene::Draw()
 {
 	DrawBox(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, GetColor(BLACK, BLACK, BLACK), TRUE);
 
-	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont("G50"), "Game");
+	DrawFormatStringToHandle(410, 50 + scrollCurrentPos, GetColor(255, 255, 255), objectManager.GetHandleFont("G50"), "Game");
 
 	if (Ope::GAME_BUTTON_NUM == 0)
 	{

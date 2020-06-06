@@ -58,6 +58,8 @@ public:
 
 private:
 
+	void	ArrangementSet				(int num);
+
 	std::array<ObjectData, OBJECT_MAX> object;
 	std::array<FontData, FONT_HANDLE_MAX> fontData;
 
