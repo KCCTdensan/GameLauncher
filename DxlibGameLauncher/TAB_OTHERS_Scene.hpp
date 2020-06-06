@@ -2,9 +2,8 @@
 
 #include "SceneData.hpp"
 #include "JsonFileData.h"
-#include <array>
 #include "JsonManager.h"
-using namespace std;
+#include "InputManager.h"
 
 
 class TAB_OTHERS_Scene :
@@ -16,6 +15,16 @@ public:
 	void Update();
 	void Draw();
 private:
+
+	void MoveObj(int size);
+
 	array<Json, 64>jsonOthers;
+
+	bool canScroll;
+
+	int scrollCurrentPos = 0;
+	int scrollCurrentPosBefore = 0;
+
+	JsonManager* jsonMan;
 
 };

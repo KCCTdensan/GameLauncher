@@ -5,12 +5,8 @@ using namespace App;
 TAB_OTHERS_Scene::TAB_OTHERS_Scene(ObjectManager &objectManager, Json& json, JsonManager& jsonManager)
 	: SceneData(objectManager,json)
 {
-	/*jsonOthers[0] = { "NONE",
-					"",
-					"",
-					"",
-					"NONE" };
-	int othersMax = 0;*/
+
+	jsonMan = &jsonManager;
 
 	int othersMax = jsonManager.GetDataNum(SCENE::TAB_OTHERS);
 
@@ -43,6 +39,14 @@ TAB_OTHERS_Scene::TAB_OTHERS_Scene(ObjectManager &objectManager, Json& json, Jso
 	}
 
 	Ope::OTHERS_BUTTON_NUM = a;
+
+	if ((Ope::OTHERS_BUTTON_NUM / 3 * 350) + 300 + 150 <= App::BACKGROUND_SIZE_Y)
+	{
+		canScroll = FALSE;
+	}
+	else {
+		canScroll = TRUE;
+	}
 }
 
 void TAB_OTHERS_Scene::Update()
@@ -61,16 +65,66 @@ void TAB_OTHERS_Scene::Update()
 			Ope::JSON_PICTURE_FLAG = FALSE;
 		}
 	}
+
+	if (canScroll) {
+
+		int tempPos = 0;
+		scrollCurrentPosBefore = scrollCurrentPos;
+
+		switch (Input::Scroll::SCHOOL_SIZE)
+		{
+		case -1:
+			tempPos -= App::SCROLL_SIZE;
+			break;
+		case 1:
+			tempPos += App::SCROLL_SIZE;
+			break;
+		default:
+			break;
+		}
+		if (scrollCurrentPos + tempPos < -1 * ((int)(Ope::OTHERS_BUTTON_NUM / 3) * 350))//â∫Ç‹Ç≈çsÇ¡ÇΩÇ©ÇîªíË
+		{
+			scrollCurrentPos = -1 * ((Ope::OTHERS_BUTTON_NUM / 3) * 350);
+
+			MoveObj(scrollCurrentPosBefore - scrollCurrentPos);
+		}
+		else if (scrollCurrentPos + tempPos > 0)//è„Ç‹Ç≈çsÇ¡ÇΩÇ©ÇîªíË
+		{
+			scrollCurrentPos = 0;
+
+			MoveObj(scrollCurrentPosBefore - scrollCurrentPos);
+		}
+		else {
+			scrollCurrentPos += tempPos;
+			MoveObj(tempPos);
+		}
+	}
 }
 
 void TAB_OTHERS_Scene::Draw()
 {
 	DrawBox(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, GetColor(BLACK, BLACK, BLACK), TRUE);
 
-	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont("G50"), "Others");
+	DrawFormatStringToHandle(410, 50 + scrollCurrentPos, GetColor(255, 255, 255), objectManager.GetHandleFont("G50"), "Others");
 
 	if (Ope::OTHERS_BUTTON_NUM == 0)
 	{
 		DrawFormatStringToHandle(410, 150, GetColor(255, 255, 255), objectManager.GetHandleFont("G30"), "NotFound");
+	}
+}
+
+void TAB_OTHERS_Scene::MoveObj(int size)
+{
+	int a = 0;
+
+	for (int i = 0; i < jsonMan->GetDataNum(SCENE::TAB_GAME); i++, a++)
+	{
+		string name;
+
+		name = "GAME" + to_string(i);
+
+		int objY = objectManager.GetVarInt(name.c_str(), VAR::Y);
+
+		objectManager.ChangeVarInt(name.c_str(), VAR::Y, objY + size);
 	}
 }

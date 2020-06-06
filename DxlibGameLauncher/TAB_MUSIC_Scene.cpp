@@ -37,6 +37,8 @@ TAB_MUSIC_Scene::TAB_MUSIC_Scene(ObjectManager &objectManager, Json& json, JsonM
 					".\\Content\\Pic\\kumataro.png" };
 	int musicMax = 6;*/
 
+	jsonMan = &jsonManager;
+
 	int musicMax = jsonManager.GetDataNum(SCENE::TAB_MUSIC);
 
 	int a = 0;
@@ -67,6 +69,14 @@ TAB_MUSIC_Scene::TAB_MUSIC_Scene(ObjectManager &objectManager, Json& json, JsonM
 	}
 
 	Ope::MUSIC_BUTTON_NUM = a;
+
+	if ((Ope::MUSIC_BUTTON_NUM / 3 * 350) + 300 + 150 <= App::BACKGROUND_SIZE_Y)
+	{
+		canScroll = FALSE;
+	}
+	else {
+		canScroll = TRUE;
+	}
 }
 
 void TAB_MUSIC_Scene::Update()
@@ -85,16 +95,66 @@ void TAB_MUSIC_Scene::Update()
 			Ope::JSON_PICTURE_FLAG = FALSE;
 		}
 	}
+
+	if (canScroll) {
+
+		int tempPos = 0;
+		scrollCurrentPosBefore = scrollCurrentPos;
+
+		switch (Input::Scroll::SCHOOL_SIZE)
+		{
+		case -1:
+			tempPos -= App::SCROLL_SIZE;
+			break;
+		case 1:
+			tempPos += App::SCROLL_SIZE;
+			break;
+		default:
+			break;
+		}
+		if (scrollCurrentPos + tempPos < -1 * ((int)(Ope::MUSIC_BUTTON_NUM / 3) * 350))//â∫Ç‹Ç≈çsÇ¡ÇΩÇ©ÇîªíË
+		{
+			scrollCurrentPos = -1 * ((Ope::MUSIC_BUTTON_NUM / 3) * 350);
+
+			MoveObj(scrollCurrentPosBefore - scrollCurrentPos);
+		}
+		else if (scrollCurrentPos + tempPos > 0)//è„Ç‹Ç≈çsÇ¡ÇΩÇ©ÇîªíË
+		{
+			scrollCurrentPos = 0;
+
+			MoveObj(scrollCurrentPosBefore - scrollCurrentPos);
+		}
+		else {
+			scrollCurrentPos += tempPos;
+			MoveObj(tempPos);
+		}
+	}
 }
 
 void TAB_MUSIC_Scene::Draw()
 {
 	DrawBox(0, 0, App::BACKGROUND_SIZE_X, App::BACKGROUND_SIZE_Y, GetColor(BLACK, BLACK, BLACK), TRUE);
 
-	DrawFormatStringToHandle(410, 50, GetColor(255, 255, 255), objectManager.GetHandleFont("G50"), "Music");
+	DrawFormatStringToHandle(410, 50 + scrollCurrentPos, GetColor(255, 255, 255), objectManager.GetHandleFont("G50"), "Music");
 
 	if (Ope::MUSIC_BUTTON_NUM == 0)
 	{
 		DrawFormatStringToHandle(410, 150, GetColor(255, 255, 255), objectManager.GetHandleFont("G30"), "NotFound");
+	}
+}
+
+void TAB_MUSIC_Scene::MoveObj(int size)
+{
+	int a = 0;
+
+	for (int i = 0; i < jsonMan->GetDataNum(SCENE::TAB_GAME); i++, a++)
+	{
+		string name;
+
+		name = "GAME" + to_string(i);
+
+		int objY = objectManager.GetVarInt(name.c_str(), VAR::Y);
+
+		objectManager.ChangeVarInt(name.c_str(), VAR::Y, objY + size);
 	}
 }

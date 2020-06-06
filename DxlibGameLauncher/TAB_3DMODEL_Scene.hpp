@@ -4,6 +4,8 @@
 #include "JsonFileData.h"
 #include <array>
 #include "JsonManager.h"
+#include "InputManager.h"
+
 using namespace std;
 
 
@@ -16,6 +18,16 @@ public:
 	void Update();
 	void Draw();
 private:
+
+	void MoveObj(int size);
+
 	array<Json, 64>jsonModel;
+
+	bool canScroll;
+
+	int scrollCurrentPos = 0;
+	int scrollCurrentPosBefore = 0;
+
+	JsonManager* jsonMan;
 
 };

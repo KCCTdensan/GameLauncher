@@ -4,7 +4,7 @@
 #include "JsonFileData.h"
 #include <array>
 #include "JsonManager.h"
-using namespace std;
+#include "InputManager.h"
 
 
 class TAB_APP_Scene :
@@ -16,6 +16,16 @@ public:
 	void Update();
 	void Draw();
 private:
+
+	void MoveObj(int size);
+
 	array<Json, 64>jsonApp;
+
+	bool canScroll;
+
+	int scrollCurrentPos = 0;
+	int scrollCurrentPosBefore = 0;
+
+	JsonManager* jsonMan;
 
 };
