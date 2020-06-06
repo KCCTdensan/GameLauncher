@@ -39,6 +39,18 @@ namespace Input
 		static int MOUSE_LEFT;
 
 		static int MOUSE_CLICK;//MOUSE_INPUT_LEFT MOUSE_INPUT_RIGHT MOUSE_INPUT_MIDDLE MOUSE_INPUT_4 MOUSE_INPUT_5 MOUSE_INPUT_6 MOUSE_INPUT_7 MOUSE_INPUT_8
-		
+
+	};
+
+	class Scroll
+	{
+	public:
+		Scroll();
+		~Scroll();
+
+		static void Update();
+
+		static int SCHOOL_SIZE;
+
 	};
 }

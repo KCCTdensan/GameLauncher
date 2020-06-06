@@ -54,6 +54,30 @@
 					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
 					"PICPATH": "NONE"
 
+				},
+				{
+					"NAME": "S.T.G",
+					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
+					"VERSION": "1.6.0",
+					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
+					"PICPATH": "NONE"
+
+				},
+				{
+					"NAME": "S.T.G",
+					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
+					"VERSION": "1.6.0",
+					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
+					"PICPATH": "NONE"
+
+				},
+				{
+					"NAME": "S.T.G",
+					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
+					"VERSION": "1.6.0",
+					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
+					"PICPATH": "NONE"
+
 				}
 
 			],

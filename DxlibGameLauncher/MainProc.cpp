@@ -104,6 +104,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 		Input::Mouse::Update();
 		Input::KeyBoard::Update();
+		Input::Scroll::Update();
 
 		objectManager.Update();
 		sceneManager.Update();

@@ -14,4 +14,6 @@ namespace App
 	constexpr CHAR FONT_GOTHIC[] = "MS PGothic";
 
 	constexpr int BLACK = 30;
+
+	constexpr int SCROLL_SIZE = 30;
 }

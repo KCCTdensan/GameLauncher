@@ -342,7 +342,7 @@ void HEADER_Scene::Draw()
 	DrawBox(0, 0, 350, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
 	DrawBox(1400, 0, 1920, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
 
-	//DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), "%d", Input::Mouse::MOUSE_LEFT);
+	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), "%d", Input::Scroll::SCHOOL_SIZE);
 
 	if (json->name != "NONE") {
 

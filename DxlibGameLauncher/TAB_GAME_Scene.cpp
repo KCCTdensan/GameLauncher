@@ -3,46 +3,15 @@
 using namespace App;
 
 TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager, Json& json, JsonManager& jsonManager)
-	: SceneData(objectManager,json)
+	: SceneData(objectManager, json)
 {
-
-	/*jsonGame[0] = { "Minesweeper",
-					".\\Content\\Software\\GAME\\Minesweeper\\Mine.bat",
-					"1.00",
-					"私が１年生の時に作った作品です。\n2つのモードがあるので楽しんでください！",
-					".\\Content\\Pic\\MineSweeper.png" };
-	jsonGame[1] = { "Starbox",
-					".\\Content\\Software\\GAME\\starbox\\starboxlauncherc.exe",
-					"1.60",
-					"ゆっくりとした弾幕げー！",
-					".\\Content\\Pic\\starbox.png" };
-	jsonGame[2] = { "弾幕YOKE",
-					".\\Content\\Software\\GAME\\弾幕YOKE\\弾幕yoke.exe",
-					"1.0.12",
-					"本気で弾幕を楽しみたい人へ\nHSPコンテストにも提出",
-					".\\Content\\Pic\\iconC.png" };
-	jsonGame[3] = { "S.T.G",
-					".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"1.6.0",
-					"レーザーが飛び交うシューティング!",
-					".\\Content\\Pic\\STG.png" };
-	jsonGame[4] = { "PanalPuzzule",
-					".\\Content\\Software\\GAME\\PanelPuzzule\\パネルゲーム.exe",
-					"1.0.0",
-					"パネルをひっくり返して手本通りの模様にするゲームです！\n結構難しいので頑張って解いてみてください！",
-					"NONE" };
-	jsonGame[5] = { "PUBG",
-					".\\Content\\Software\\GAME\\PUBG\\PUBG.exe",
-					"1.0.0",
-					"P U B G",
-					"NONE" };
-	int gameMax = 6;*/
+	jsonMan = &jsonManager;
 
 	int gameMax = jsonManager.GetDataNum(SCENE::TAB_GAME);
 
 	int a = 0;
 
-	for (int i = 0;i < gameMax;i++,a++)
+	for (int i = 0; i < gameMax; i++, a++)
 	{
 		string name;
 
@@ -73,7 +42,7 @@ TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager, Json& json, JsonMan
 
 void TAB_GAME_Scene::Update()
 {
-	for (int i = 0;i < Ope::GAME_BUTTON_NUM;i++)
+	for (int i = 0; i < Ope::GAME_BUTTON_NUM; i++)
 	{
 		string name;
 
@@ -86,6 +55,37 @@ void TAB_GAME_Scene::Update()
 			Ope::JSON_VIDEO_FLAG = FALSE;
 			Ope::JSON_PICTURE_FLAG = FALSE;
 		}
+	}
+
+	int tempPos = 0;
+	scrollCurrentPosBefore = scrollCurrentPos;
+
+	switch (Input::Scroll::SCHOOL_SIZE)
+	{
+	case -1:
+		tempPos -= App::SCROLL_SIZE;
+		break;
+	case 1:
+		tempPos += App::SCROLL_SIZE;
+		break;
+	default:
+		break;
+	}
+	if (scrollCurrentPos + tempPos < -1 * ((int)(Ope::GAME_BUTTON_NUM / 3) * 350))//下まで行ったかを判定
+	{
+		scrollCurrentPos = -1 * ((Ope::GAME_BUTTON_NUM / 3) * 350);
+
+		MoveObj(scrollCurrentPosBefore - scrollCurrentPos);
+	}
+	else if (scrollCurrentPos + tempPos > 0)//上まで行ったかを判定
+	{
+		scrollCurrentPos = 0;
+
+		MoveObj(scrollCurrentPosBefore - scrollCurrentPos);
+	}
+	else {
+		scrollCurrentPos += tempPos;
+		MoveObj(tempPos);
 	}
 }
 
@@ -100,4 +100,20 @@ void TAB_GAME_Scene::Draw()
 		DrawFormatStringToHandle(410, 150, GetColor(255, 255, 255), objectManager.GetHandleFont("G30"), "NotFound");
 	}
 
+}
+
+void TAB_GAME_Scene::MoveObj(int size)
+{
+	int a = 0;
+
+	for (int i = 0; i < jsonMan->GetDataNum(SCENE::TAB_GAME); i++, a++)
+	{
+		string name;
+
+		name = "GAME" + to_string(i);
+
+		int objY = objectManager.GetVarInt(name.c_str(), VAR::Y);
+
+		objectManager.ChangeVarInt(name.c_str(), VAR::Y, objY + size);
+	}
 }

@@ -9,6 +9,7 @@ int KeyBoard::KEY[256];
 int Mouse::MOUSE_X = 0, Mouse::MOUSE_Y = 0, Mouse::MOUSE_CLICK = 0;
 int Mouse::MOUSE_WIN_X = 0, Mouse::MOUSE_WIN_Y = 0;
 int Mouse::MOUSE_LEFT = 0;
+int Scroll::SCHOOL_SIZE = 0;
 
 KeyBoard::KeyBoard()
 {
@@ -59,4 +60,18 @@ void Mouse::Update()
 	else {
 		MOUSE_LEFT = MOUSE_LEFT_PRESS_ZERO;
 	}
+}
+
+Scroll::Scroll()
+{
+	SCHOOL_SIZE = 0;
+}
+
+Scroll::~Scroll()
+{
+}
+
+void Scroll::Update()
+{
+	SCHOOL_SIZE = GetMouseWheelRotVol();
 }
