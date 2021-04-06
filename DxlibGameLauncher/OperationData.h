@@ -9,6 +9,8 @@ namespace Ope
 	extern float WINDOW_SIZE_RATE;
 	extern float WINDOW_SIZE_RATE_TIME;
 
+	extern bool WINDOWS_FULLSCREEN;
+
 	extern bool SCENE_CHANGE_FLAG;
 	extern SCENE SCENE_CHANGE_NUM;
 

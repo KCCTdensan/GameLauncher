@@ -119,6 +119,8 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="OperationData.h" />
     <ClInclude Include="picojson.h" />
+    <ClInclude Include="PicPath.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.hpp" />
     <ClInclude Include="SceneList.h" />
     <ClInclude Include="SceneManager.hpp" />
@@ -133,6 +135,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Json\data.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

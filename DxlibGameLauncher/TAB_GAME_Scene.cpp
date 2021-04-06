@@ -1,10 +1,12 @@
 #include "TAB_GAME_Scene.hpp"
 #include "AppData.h"
+#include "PicPath.h"
 using namespace App;
 
 TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager, Json& json, JsonManager& jsonManager)
 	: SceneData(objectManager, json)
 {
+	PicPath picPath;
 	jsonMan = &jsonManager;
 
 	int gameMax = jsonManager.GetDataNum(SCENE::TAB_GAME);
@@ -26,8 +28,10 @@ TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager, Json& json, JsonMan
 		objectManager.ColorSet(name.c_str(), FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
 		objectManager.WritingSet(name.c_str(), TRUE, jsonGame[i].name);
 		objectManager.WritingFontSetToHandle(name.c_str(), "G30", GetColor(255, 255, 255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
+
+		
 		if (jsonGame[i].picPath == "NONE") {
-			objectManager.ImageChestSet(name.c_str(), TRUE, ".\\Content\\Pic\\NoPic.png");
+			objectManager.ImageChestSet(name.c_str(), TRUE, picPath.noPic);
 		}
 		else {
 			objectManager.ImageChestSet(name.c_str(), TRUE, jsonGame[i].picPath);
@@ -44,8 +48,10 @@ TAB_GAME_Scene::TAB_GAME_Scene(ObjectManager& objectManager, Json& json, JsonMan
 	}
 	else {
 		canScroll = TRUE;
+		//objectManager.Set("ScrollProgress", 350, 0, 1100, 10, OBJECT_TYPE::PROGRESS);
+		//objectManager.ProgressSet("ScrollProgress", TRUE, GetColor(255, 190, 0), GetColor(BLACK, BLACK, BLACK));
 	}
-
+	
 }
 
 void TAB_GAME_Scene::Update()
@@ -97,7 +103,12 @@ void TAB_GAME_Scene::Update()
 			scrollCurrentPos += tempPos;
 			MoveObj(tempPos);
 		}
+
+		float rate = -1.0f * (float)scrollCurrentPos / (((float)Ope::GAME_BUTTON_NUM / 3.0f) * 350.0f);
+
+		//objectManager.ChangeProgress("ScrollProgress", rate);
 	}
+
 }
 
 void TAB_GAME_Scene::Draw()

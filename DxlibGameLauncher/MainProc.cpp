@@ -10,6 +10,7 @@
 #include "MusicManager.h"
 #include "JsonFileData.h"
 #include "JsonManager.h"
+#include "WindowManager.h"
 
 /*################ グローバル変数の定義場所 ##################*/
 
@@ -19,6 +20,7 @@ int Ope::CURRENT_WINDOW_SIZE_Y = 0;
 
 float Ope::WINDOW_SIZE_RATE = 1.0f;
 float Ope::WINDOW_SIZE_RATE_TIME = 1.0f;
+bool Ope::WINDOWS_FULLSCREEN = FALSE;
 
 bool Ope::SCENE_CHANGE_FLAG = FALSE;
 SCENE Ope::SCENE_CHANGE_NUM = SCENE::TAB_HOME;
@@ -39,7 +41,7 @@ bool Ope::JSON_PICTURE_FLAG = FALSE;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) // windowsに定義された関数 ※修正不可
 {
-	HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle(); // ウインドウハンドル取得 ※修正不可
+	const HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle(); // ウインドウハンドル取得 ※修正不可
 
 	SetAlwaysRunFlag(TRUE); // 画面がActiveでないときにも実行するか。音楽再生のため基本はTRUE
 	ChangeWindowMode(TRUE); // 画面をウインドウにするか。TRUE:ウインドウ FALSE:全画面（ただし，全画面は描画が遅い。別の描画の仕方でされてしまうため。)
@@ -69,6 +71,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	static ObjectManager objectManager; // ランチャーのメインであるobjectを配置するための共通の変数
 	static MusicManager musicManager; // ヘッダーで管理する音楽の管理変数
+	static WindowManager windowManager; // ウインドウの現在の状態管理
 
 	static Json NOW_ACTIVE_JSON;
 
@@ -93,6 +96,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SetWindowSize(App::DEFAULT_WINDOW_SIZE_X * 4 / 5, App::DEFAULT_WINDOW_SIZE_Y * 4 / 5); // 初期のウインドウサイズ 1920 * 1080 を想定
 
+	SetWindowStyleMode(1); // ボーダレスウインドウ
+
 	SetWindowInitPosition(0, 0); // ウインドウの場所を設定動作確認では機能していない
 
 	SetDrawMode(DX_DRAWMODE_ANISOTROPIC);
@@ -109,6 +114,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		objectManager.Update();
 		sceneManager.Update();
 		headerScene.Update();
+		windowManager.Update(MAIN_WINDOW_HANDLE);
 
 		SetDrawScreen(DX_SCREEN_BACK); // 裏画面描画設定
 
@@ -123,9 +129,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 			sceneManager.ChanegeScene(Ope::SCENE_CHANGE_NUM);
 		}
 
-		//if (Input::KeyBoard::KEY[KEY_INPUT_ESCAPE] == KEYBOARD_PRESS_FIRST) { // Escを押すことで終了する機能 誤爆が多いらしいのでコメントアウト
-			//break;
-		//}
+		if (Input::KeyBoard::KEY[KEY_INPUT_ESCAPE] == KEYBOARD_PRESS_FIRST) { // Escを押すことで終了する機能 誤爆が多いらしいのでコメントアウト
+			break;
+		}
 	}
 
 	DxLib_End(); // Dxlib終了

@@ -1,10 +1,12 @@
 #include "TAB_VIDEO_Scene.hpp"
 #include "AppData.h"
+#include "PicPath.h"
 using namespace App;
 
 TAB_VIDEO_Scene::TAB_VIDEO_Scene(ObjectManager &objectManager, Json& json, JsonManager& jsonManager)
 	: SceneData(objectManager,json)
 {
+	PicPath picPath;
 	int videoMax = jsonManager.GetDataNum(SCENE::TAB_VIDEO);
 
 	int a = 0;
@@ -25,7 +27,7 @@ TAB_VIDEO_Scene::TAB_VIDEO_Scene(ObjectManager &objectManager, Json& json, JsonM
 		objectManager.WritingSet(name.c_str(), TRUE, jsonVideo[i].name);
 		objectManager.WritingFontSetToHandle(name.c_str(), "G30", GetColor(255, 255, 255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
 		if (jsonVideo[i].picPath == "NONE") {
-			objectManager.ImageChestSet(name.c_str(), TRUE, ".\\Content\\Pic\\NoPic.png");
+			objectManager.ImageChestSet(name.c_str(), TRUE, picPath.noPic);
 		}
 		else {
 			objectManager.ImageChestSet(name.c_str(), TRUE, jsonVideo[i].picPath);

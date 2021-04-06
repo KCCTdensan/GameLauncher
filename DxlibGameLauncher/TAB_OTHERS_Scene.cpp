@@ -1,11 +1,12 @@
 #include "TAB_OTHERS_Scene.hpp"
 #include "AppData.h"
+#include "PicPath.h"
 using namespace App;
 
 TAB_OTHERS_Scene::TAB_OTHERS_Scene(ObjectManager &objectManager, Json& json, JsonManager& jsonManager)
 	: SceneData(objectManager,json)
 {
-
+	PicPath picPath;
 	jsonMan = &jsonManager;
 
 	int othersMax = jsonManager.GetDataNum(SCENE::TAB_OTHERS);
@@ -29,7 +30,7 @@ TAB_OTHERS_Scene::TAB_OTHERS_Scene(ObjectManager &objectManager, Json& json, Jso
 		objectManager.WritingSet(name.c_str(), TRUE, jsonOthers[i].name);
 		objectManager.WritingFontSetToHandle(name.c_str(), "G30", GetColor(255, 255, 255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
 		if (jsonOthers[i].picPath == "NONE") {
-			objectManager.ImageChestSet(name.c_str(), TRUE, ".\\Content\\Pic\\NoPic.png");
+			objectManager.ImageChestSet(name.c_str(), TRUE, picPath.noPic);
 		}
 		else {
 			objectManager.ImageChestSet(name.c_str(), TRUE, jsonOthers[i].picPath);

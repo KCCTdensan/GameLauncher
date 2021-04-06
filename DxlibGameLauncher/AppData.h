@@ -15,5 +15,5 @@ namespace App
 
 	constexpr int BLACK = 30;
 
-	constexpr int SCROLL_SIZE = 50;
+	constexpr int SCROLL_SIZE = 90;
 }

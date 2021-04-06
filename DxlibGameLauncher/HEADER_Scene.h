@@ -24,7 +24,13 @@ private:
 	MusicManager* musicManager;
 	Json* json;
 
-	Json defJson;
+	Json defJson = {
+		"NONE",
+		"",
+		"",
+		"",
+		"NONE"
+	};
 
 	bool PlayingNotice;
 	string PlayingName;

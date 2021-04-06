@@ -1,42 +1,44 @@
 #include "TAB_HOME_Scene.hpp"
 #include "AppData.h"
+#include "PicPath.h"
 
 using namespace App; // AppData.hのネームスペース排除
 
 TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager, Json& json, JsonManager& jsonManager)
 	: SceneData(objectManager, json)
 {
+	PicPath picPath;
 
 	jsonHome[0] = { "APP",
 					"",
 					"",
 					"",
-					".\\Content\\Pic\\AppTabIcon.png" };
+					picPath.tabApp };
 	jsonHome[1] = { "GAME",
 					"",
 					"",
 					"",
-					".\\Content\\Pic\\GameTabIcon.png" };
+					picPath.tabGame };
 	jsonHome[2] = { "3D MODEL",
 					"",
 					"",
 					"",
-					".\\Content\\Pic\\ModelTabIcon.png" };
+					picPath.tabModel };
 	jsonHome[3] = { "MUSIC",
 					"",
 					"",
 					"",
-					".\\Content\\Pic\\kcctjacketomote.png" };
+					picPath.tabMusic };
 	jsonHome[4] = { "VIDEO",
 					"",
 					"",
 					"",
-					".\\Content\\Pic\\VideoTabIcon.png" };
+					picPath.tabVideo };
 	jsonHome[5] = { "OTHERS",
 					"",
 					"",
 					"",
-					".\\Content\\Pic\\OthersTabIcon.png" };
+					picPath.tabOthers };
 	int homeMax = 6;
 
 	int a = 0;
@@ -55,7 +57,7 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager, Json& json, JsonMan
 		objectManager.WritingSet(name.c_str(), TRUE, jsonHome[i].name);
 		objectManager.WritingFontSetToHandle(name.c_str(), "G30", GetColor(255, 255, 255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
 		if (jsonHome[i].picPath == "NONE") {
-			objectManager.ImageChestSet(name.c_str(), TRUE, ".\\Content\\Pic\\NoPic.png");
+			objectManager.ImageChestSet(name.c_str(), TRUE, picPath.noPic);
 		}
 		else {
 			objectManager.ImageChestSet(name.c_str(), TRUE, jsonHome[i].picPath);

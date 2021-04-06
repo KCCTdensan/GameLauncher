@@ -1,10 +1,13 @@
 #include "TAB_3DMODEL_Scene.hpp"
 #include "AppData.h"
+#include "PicPath.h"
+
 using namespace App;
 
 TAB_3DMODEL_Scene::TAB_3DMODEL_Scene(ObjectManager &objectManager, Json& json, JsonManager& jsonManager)
 	: SceneData(objectManager,json)
 {
+	PicPath picPath;
 	jsonMan = &jsonManager;
 
 	int modelMax = jsonManager.GetDataNum(SCENE::TAB_3DMODEL);
@@ -27,7 +30,7 @@ TAB_3DMODEL_Scene::TAB_3DMODEL_Scene(ObjectManager &objectManager, Json& json, J
 		objectManager.WritingSet(name.c_str(), TRUE, jsonModel[i].name);
 		objectManager.WritingFontSetToHandle(name.c_str(), "G30", GetColor(255, 255, 255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
 		if (jsonModel[i].picPath == "NONE") {
-			objectManager.ImageChestSet(name.c_str(), TRUE, ".\\Content\\Pic\\NoPic.png");
+			objectManager.ImageChestSet(name.c_str(), TRUE, picPath.noPic);
 		}
 		else {
 			objectManager.ImageChestSet(name.c_str(), TRUE, jsonModel[i].picPath);

@@ -3,17 +3,11 @@
 #include "InputManager.h"
 
 #include <shellapi.h>
+#include "PicPath.h"
 
 HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager, Json& json, JsonManager& jsonManager)
 {
-	defJson = {
-		"NONE",
-		"",
-		"",
-		"",
-		"NONE"
-	};
-
+	PicPath picPath;
 	json = defJson;
 
 	Ope::JSON_MUSIC_FLAG = FALSE;
@@ -57,7 +51,7 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 
 	objectManager.Set("HPicKCCT", 50, 50, 250, 250, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet("HPicKCCT", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
-	objectManager.ImageChestSet("HPicKCCT", TRUE, ".\\Content\\Pic\\KCCTicon.png", 0, 0);
+	objectManager.ImageChestSet("HPicKCCT", TRUE, picPath.appIcon, 0, 0);
 	objectManager.ChangeVarBool("HPicKCCT", VAR::ANIMATION_FLAG, FALSE);
 
 	objectManager.Set("Launch", 1450, 880, 420, 150, OBJECT_TYPE::BUTTON);
@@ -67,18 +61,15 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 
 	objectManager.Set("MusicPlay", 420, 990, 50, 50, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet("MusicPlay", FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
-	objectManager.ImageChestSet("MusicPlay", TRUE, ".\\Content\\Pic\\PlayMusic.png", 0, 0);
+	objectManager.ImageChestSet("MusicPlay", TRUE, picPath.musicPlay, 0, 0);
 
 	objectManager.Set("MusicStop", 420, 990, 50, 50, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet("MusicStop", FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
-	objectManager.ImageChestSet("MusicStop", TRUE, ".\\Content\\Pic\\StopMusic.png", 0, 0);
+	objectManager.ImageChestSet("MusicStop", TRUE, picPath.musicStop, 0, 0);
 
 	objectManager.Set("MusicClear", 1020, 940, 25, 25, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet("MusicClear", FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
-	objectManager.ImageChestSet("MusicClear", TRUE, ".\\Content\\Pic\\ClearMusic.png", 0, 0);
-
-	//musicManager.Set("Debug", ".\\Content\\Software\\MUSIC\\Vacation.mp3");
-	//musicManager.Play("Debug");
+	objectManager.ImageChestSet("MusicClear", TRUE, picPath.musicClear, 0, 0);
 
 	objectManager.Set("MusicProgress", 500, 998, 500, 24, OBJECT_TYPE::PROGRESS);
 	objectManager.ProgressSet("MusicProgress", TRUE, GetColor(0, 128, 255), GetColor(BLACK, BLACK, BLACK));
@@ -107,7 +98,7 @@ void HEADER_Scene::Update()
 
 		objectManager->ChangeVarBool("HPicKCCT", VAR::ACTIVATION_FLAG, FALSE);
 
-		//json = &defJson;
+		*json = defJson;
 	}
 	if (objectManager->GetVarBool("HHSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
@@ -125,6 +116,9 @@ void HEADER_Scene::Update()
 		}
 
 		objectManager->ChangeVarBool("HHSB", VAR::ACTIVATION_FLAG, FALSE);
+
+		*json = defJson;
+		
 	}
 	if (objectManager->GetVarBool("HASB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
@@ -142,6 +136,8 @@ void HEADER_Scene::Update()
 		}
 
 		objectManager->ChangeVarBool("HASB", VAR::ACTIVATION_FLAG, FALSE);
+		*json = defJson;
+
 	}
 	if (objectManager->GetVarBool("HGSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
@@ -159,6 +155,8 @@ void HEADER_Scene::Update()
 		}
 
 		objectManager->ChangeVarBool("HGSB", VAR::ACTIVATION_FLAG, FALSE);
+		*json = defJson;
+
 	}
 	if (objectManager->GetVarBool("H3SB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
@@ -176,6 +174,8 @@ void HEADER_Scene::Update()
 		}
 
 		objectManager->ChangeVarBool("H3SB", VAR::ACTIVATION_FLAG, FALSE);
+		*json = defJson;
+
 	}
 	if (objectManager->GetVarBool("HMSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
@@ -193,6 +193,8 @@ void HEADER_Scene::Update()
 		}
 
 		objectManager->ChangeVarBool("HMSB", VAR::ACTIVATION_FLAG, FALSE);
+		*json = defJson;
+
 	}
 	if (objectManager->GetVarBool("HVSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
@@ -210,6 +212,8 @@ void HEADER_Scene::Update()
 		}
 
 		objectManager->ChangeVarBool("HVSB", VAR::ACTIVATION_FLAG, FALSE);
+		*json = defJson;
+
 	}
 	if (objectManager->GetVarBool("HOSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
@@ -227,6 +231,8 @@ void HEADER_Scene::Update()
 		}
 
 		objectManager->ChangeVarBool("HOSB", VAR::ACTIVATION_FLAG, FALSE);
+		*json = defJson;
+
 	}
 
 	if (objectManager->GetVarBool("Launch", VAR::ACTIVATION_FLAG)) {
@@ -297,14 +303,6 @@ void HEADER_Scene::Update()
 	float c = a / b;
 	objectManager->ChangeProgress("MusicProgress", c);
 
-	/*if (musicManager->GetNowPosition() >= musicManager->GetTotalTime() && musicManager->GetDoingOutput())
-	{
-		musicManager->Stop(PlayingName);
-
-		objectManager->ChangeVarBool("MusicStop", VAR::CAN_SEE_FLAG, FALSE);
-		objectManager->ChangeVarBool("MusicPlay", VAR::CAN_SEE_FLAG, TRUE);
-	}*/
-
 	if (objectManager->GetVarBool("MusicPlay", VAR::ACTIVATION_FLAG)) {
 
 		if (musicManager->GetNowPosition() >= musicManager->GetTotalTime())
@@ -342,16 +340,21 @@ void HEADER_Scene::Draw()
 	DrawBox(0, 0, 350, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
 	DrawBox(1400, 0, 1920, 1080, GetColor(BLACK, BLACK, BLACK), TRUE);
 
-	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), "%d", Input::Scroll::SCHOOL_SIZE);
+	//DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), "%d", Input::Scroll::SCHOOL_SIZE); // DEBUG出力
 
 	if (json->name != "NONE") {
 
 		DrawFormatStringToHandle(1450, 50, GetColor(255, 255, 255), objectManager->GetHandleFont("G50"), "%s", json->name.c_str());//タイトル
 		DrawFormatStringToHandle(1450, 150, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), "Version : %s", json->version.c_str());
 		DrawFormatStringToHandle(1450, 300, GetColor(255, 255, 255), objectManager->GetHandleFont("G20"), "%s", json->explanation.c_str());
+		DrawLine(1400, 0, 1400, 1080, GetColor(255, 190, 0));
+		DrawLine(350, 0, 350, 1080, GetColor(255, 190, 0));
 	}
 	else {
-		DrawFormatStringToHandle(1450, 150, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), "左の一覧からファイル・ソフトを\n選んでください");
+		DrawFormatStringToHandle(1450, 150, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), 
+			"左の一覧からファイル・ソフトを\n選んでください\n\n操作方法\nホイール:スクロール\nF11:フルスクリーン切替\nEsc:終了");
+		DrawLine(1400, 0, 1400, 1080, GetColor(255, 255, 255));
+		DrawLine(350, 0, 350, 1080, GetColor(255, 255, 255));
 	}
 
 

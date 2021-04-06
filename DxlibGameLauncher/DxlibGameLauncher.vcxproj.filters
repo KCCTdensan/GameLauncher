@@ -170,10 +170,26 @@
     <ClInclude Include="picojson.h">
       <Filter>ヘッダー ファイル\Json</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="PicPath.h">
+      <Filter>ヘッダー ファイル\ProgramData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Json\data.json">
       <Filter>Json</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

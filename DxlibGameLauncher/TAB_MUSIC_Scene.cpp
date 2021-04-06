@@ -1,42 +1,12 @@
 #include "TAB_MUSIC_Scene.hpp"
 #include "AppData.h"
+#include "PicPath.h"
 using namespace App;
 
 TAB_MUSIC_Scene::TAB_MUSIC_Scene(ObjectManager &objectManager, Json& json, JsonManager& jsonManager)
 	: SceneData(objectManager,json)
 {
-	/*jsonMusic[0] = { "Halloween\nparty-nightmare",
-					".\\Content\\Software\\MUSIC\\01-Towa-_-kumataro-_-P.K.A-Halloween-party-nightmare.mp3",
-					"1.00",
-					"高専祭音楽CDにも入っています！",
-					".\\Content\\Pic\\kcctjacketomote.png" };
-	jsonMusic[1] = { "そこら辺の雑魚戦",
-					".\\Content\\Software\\MUSIC\\02-Shadow-K-HERO-_そこら辺の雑魚戦_.mp3",
-					"1.00",
-					"高専祭音楽CDにも入っています！",
-					".\\Content\\Pic\\kcctjacketomote.png" };
-	jsonMusic[2] = { "Big-Wave",
-					".\\Content\\Software\\MUSIC\\03-kumataro-Big-Wave.mp3",
-					"1.00",
-					"高専祭音楽CDにも入っています！",
-					".\\Content\\Pic\\iconA.png" };
-	jsonMusic[3] = { "Save-The-Dayz",
-					".\\Content\\Software\\MUSIC\\04-Towa-Save-The-Dayz.mp3",
-					"1.00",
-					"高専祭音楽CDにも入っています！",
-					".\\Content\\Pic\\kcctjacketomote.png" };
-	jsonMusic[4] = { "Color",
-					".\\Content\\Software\\MUSIC\\05-kumataro-Color.mp3",
-					"1.00",
-					"高専祭音楽CDにも入っています！",
-					".\\Content\\Pic\\iconB.png" };
-	jsonMusic[5] = { "Cosmic World",
-					".\\Content\\Software\\MUSIC\\Cosmic World.mp3",
-					"1.00",
-					"テクノポップみたいな曲です！",
-					".\\Content\\Pic\\kumataro.png" };
-	int musicMax = 6;*/
-
+	PicPath picPath;
 	jsonMan = &jsonManager;
 
 	int musicMax = jsonManager.GetDataNum(SCENE::TAB_MUSIC);
@@ -59,7 +29,7 @@ TAB_MUSIC_Scene::TAB_MUSIC_Scene(ObjectManager &objectManager, Json& json, JsonM
 		objectManager.WritingSet(name.c_str(), TRUE, jsonMusic[i].name);
 		objectManager.WritingFontSetToHandle(name.c_str(), "G30", GetColor(255, 255, 255), ARRANGEMENT_X_CENTER, ARRANGEMENT_Y_BOTTOM);
 		if (jsonMusic[i].picPath == "NONE") {
-			objectManager.ImageChestSet(name.c_str(), TRUE, ".\\Content\\Pic\\NoPic.png");
+			objectManager.ImageChestSet(name.c_str(), TRUE, picPath.noPic);
 		}
 		else {
 			objectManager.ImageChestSet(name.c_str(), TRUE, jsonMusic[i].picPath);
