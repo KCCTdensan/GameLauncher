@@ -1,0 +1,107 @@
+{
+	"TAB": [
+		{
+			"3DMODEL": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE",
+					"PICPATH": "NONE"
+
+				}
+			],
+			"APP": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE",
+					"PICPATH": "NONE"
+
+				}
+			],
+			"GAME": [
+
+				{
+					"NAME": "Minesweeper",
+					"PATH": ".\\Content\\Software\\GAME\\Minesweeper\\Minesweeper.exe",
+					"VERSION": "1.00",
+					"EXPLANATION": "Minesweeperのゲーム",
+					"PICPATH": "NONE"
+
+				},
+				{
+					"NAME": "Starbox",
+					"PATH": ".\\Content\\Software\\GAME\\starbox\\starboxlauncherc.exe",
+					"VERSION": "1.60",
+					"EXPLANATION": "全方位シューティングゲーム",
+					"PICPATH": "NONE"
+
+				},
+				{
+					"NAME": "弾幕YOKE",
+					"PATH": ".\\Content\\Software\\GAME\\弾幕YOKE\\弾幕yoke.exe",
+					"VERSION": "1.0.12",
+					"EXPLANATION": "本気で弾幕を\n楽しみたい人へ",
+					"PICPATH": "NONE"
+
+				},
+				{
+					"NAME": "S.T.G",
+					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
+					"VERSION": "1.6.0",
+					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
+					"PICPATH": "NONE"
+
+				},
+				{
+					"NAME": "S.T.G",
+					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
+					"VERSION": "1.6.0",
+					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
+					"PICPATH": "NONE"
+
+				},
+				{
+					"NAME": "S.T.G",
+					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
+					"VERSION": "1.6.0",
+					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
+					"PICPATH": "NONE"
+
+				}
+			],
+			"MUSIC": [
+				{
+					"NAME": "COSMIC WORLD",
+					"PATH": ".\\Content\\Software\\MUSIC\\Cosmic World.mp3",
+					"VERSION": "1.00",
+					"EXPLANATION": "Cosmic World",
+					"PICPATH": "NONE"
+
+				}
+			],
+			"OTHERS": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE",
+					"PICPATH": "NONE"
+
+				}
+			],
+			"VIDEO": [
+				{
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE",
+					"PICPATH": "NONE"
+
+				}
+			]
+		}
+	]
+}
