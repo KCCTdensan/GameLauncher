@@ -54,28 +54,13 @@
     <ClCompile Include="TAB_HOME_Scene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="TAB_APP_Scene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="TAB_GAME_Scene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="TAB_MUSIC_Scene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="TAB_3DMODEL_Scene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="TAB_OTHERS_Scene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="TAB_VIDEO_Scene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="HEADER_Scene.cpp">
@@ -93,6 +78,9 @@
     <ClCompile Include="JsonManager.cpp">
       <Filter>ソース ファイル\Json</Filter>
     </ClCompile>
+    <ClCompile Include="SceneProc.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjectManager.h">
@@ -101,25 +89,10 @@
     <ClInclude Include="ObjectData.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="TAB_APP_Scene.hpp">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="TAB_GAME_Scene.hpp">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="TAB_HOME_Scene.hpp">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="TAB_MUSIC_Scene.hpp">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="TAB_OTHERS_Scene.hpp">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="TAB_VIDEO_Scene.hpp">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="TAB_3DMODEL_Scene.hpp">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneData.hpp">
@@ -175,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="PicPath.h">
       <Filter>ヘッダー ファイル\ProgramData</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneProc.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -95,13 +95,9 @@
     <ClCompile Include="MusicManager.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="TAB_3DMODEL_Scene.cpp" />
-    <ClCompile Include="TAB_APP_Scene.cpp" />
+    <ClCompile Include="SceneProc.cpp" />
     <ClCompile Include="TAB_GAME_Scene.cpp" />
     <ClCompile Include="TAB_HOME_Scene.cpp" />
-    <ClCompile Include="TAB_MUSIC_Scene.cpp" />
-    <ClCompile Include="TAB_OTHERS_Scene.cpp" />
-    <ClCompile Include="TAB_VIDEO_Scene.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -124,13 +120,9 @@
     <ClInclude Include="SceneData.hpp" />
     <ClInclude Include="SceneList.h" />
     <ClInclude Include="SceneManager.hpp" />
-    <ClInclude Include="TAB_3DMODEL_Scene.hpp" />
-    <ClInclude Include="TAB_APP_Scene.hpp" />
+    <ClInclude Include="SceneProc.h" />
     <ClInclude Include="TAB_GAME_Scene.hpp" />
     <ClInclude Include="TAB_HOME_Scene.hpp" />
-    <ClInclude Include="TAB_MUSIC_Scene.hpp" />
-    <ClInclude Include="TAB_OTHERS_Scene.hpp" />
-    <ClInclude Include="TAB_VIDEO_Scene.hpp" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <ItemGroup>
