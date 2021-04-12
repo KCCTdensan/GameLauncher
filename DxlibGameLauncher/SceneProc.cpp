@@ -3,17 +3,20 @@
 #include "PicPath.h"
 #include "InputManager.h"
 using namespace App;
+#pragma warning(push)
+#pragma warning(disable:26495)
 
 SceneProc::SceneProc()
 {
 }
+#pragma warning(pop)
 
 SceneProc::SceneProc(ObjectManager& objectManager, Json& json, JsonManager& jsonManager, SCENE scenes)
 {
 	PicPath picPath;
 	jsonMan = &jsonManager;
 	objMan = &objectManager;
-	SceneNum = &scenes;
+	SceneNum = scenes;
 	curJson = &json;
 
 	objNum = jsonManager.GetDataNum(scenes);
@@ -22,7 +25,7 @@ SceneProc::SceneProc(ObjectManager& objectManager, Json& json, JsonManager& json
 	{
 		string name;
 
-		switch (*SceneNum) {
+		switch (SceneNum) {
 		case SCENE::TAB_APP:
 			name = "APP" + to_string(i); break;
 		case SCENE::TAB_GAME:
@@ -40,7 +43,7 @@ SceneProc::SceneProc(ObjectManager& objectManager, Json& json, JsonManager& json
 		int b = (int)i % 3;
 		int a = (int)i / 3;
 
-		jsonManager.GetData(*SceneNum, &jsonData[i], i); // jsonDataÇscenesÇ…ÇÊÇËä«óùéÊìæ
+		jsonManager.GetData(SceneNum, &jsonData[i], i); // jsonDataÇscenesÇ…ÇÊÇËä«óùéÊìæ
 
 		(*objMan).Set(name.c_str(), 450 + (b * 300), 150 + (a * 350), 250, 300, OBJECT_TYPE::BUTTON);
 		(*objMan).ColorSet(name.c_str(), FALSE, NULL, NULL, TRUE, GetColor(BLACK + 20, BLACK + 20, BLACK + 20));
@@ -58,7 +61,20 @@ SceneProc::SceneProc(ObjectManager& objectManager, Json& json, JsonManager& json
 		(*objMan).ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE); // Home ìÆÇ©Ç∑
 	}
 
-	Ope::GAME_BUTTON_NUM = objNum; // switch
+	switch (SceneNum) {
+	case SCENE::TAB_APP:
+		Ope::APP_BUTTON_NUM = objNum; break;
+	case SCENE::TAB_GAME:
+		Ope::GAME_BUTTON_NUM = objNum; break;
+	case SCENE::TAB_MUSIC:
+		Ope::MUSIC_BUTTON_NUM = objNum; break;
+	case SCENE::TAB_3DMODEL:
+		Ope::MODEL_BUTTON_NUM = objNum; break;
+	case SCENE::TAB_VIDEO:
+		Ope::VIDEO_BUTTON_NUM = objNum; break;
+	case SCENE::TAB_OTHERS:
+		Ope::OTHERS_BUTTON_NUM = objNum; break;
+	}
 
 	if ((objNum / 3 * 350) + 300 + 150 <= App::BACKGROUND_SIZE_Y)
 	{
@@ -75,7 +91,7 @@ void SceneProc::Update()
 	{
 		string name;
 
-		switch (*SceneNum) {
+		switch (SceneNum) {
 		case SCENE::TAB_APP:
 			name = "APP" + to_string(i); break;
 		case SCENE::TAB_GAME:
@@ -98,7 +114,7 @@ void SceneProc::Update()
 			Ope::JSON_PICTURE_FLAG = FALSE;
 			string name;
 
-			switch (*SceneNum) {
+			switch (SceneNum) {
 			case SCENE::TAB_APP:
 				break;
 			case SCENE::TAB_GAME:
@@ -108,7 +124,7 @@ void SceneProc::Update()
 			case SCENE::TAB_3DMODEL:
 				break;
 			case SCENE::TAB_VIDEO:
-				Ope::JSON_VIDEO_FLAG = FALSE; break;
+				Ope::JSON_VIDEO_FLAG = TRUE; break;
 			case SCENE::TAB_OTHERS:
 				break;
 			}
@@ -158,7 +174,9 @@ void SceneProc::Draw()
 
 	string name;
 
-	switch (*SceneNum) {
+	switch (SceneNum) {
+	case SCENE::TAB_HOME:
+		name = "HOME"; break;
 	case SCENE::TAB_APP:
 		name = "APP"; break;
 	case SCENE::TAB_GAME:
@@ -185,11 +203,11 @@ void SceneProc::MoveObj(int size)
 {
 	int a = 0;
 
-	for (int i = 0; i < jsonMan->GetDataNum(*SceneNum); i++, a++)
+	for (int i = 0; i < jsonMan->GetDataNum(SceneNum); i++, a++)
 	{
 		string name;
 
-		switch (*SceneNum) {
+		switch (SceneNum) {
 		case SCENE::TAB_APP:
 			name = "APP" + to_string(i); break;
 		case SCENE::TAB_GAME:

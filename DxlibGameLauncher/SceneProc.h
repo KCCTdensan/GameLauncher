@@ -7,28 +7,29 @@
 class SceneProc
 {
 public:
+	SceneProc();
 	SceneProc(ObjectManager& objectManager, Json& json, JsonManager& jsonManager, SCENE scenes);
 
-	void Update();
-	void Draw();
-private:
+	virtual void Update();
+	virtual void Draw();
+protected:
 
 	void MoveObj(int size);
 
 	array<Json, 64>jsonData;
 
-	Json *curJson;
+	Json *curJson{};
 
-	int objNum;
+	int objNum{};
 
-	bool canScroll;
+	bool canScroll{};
 
 	int scrollCurrentPos = 0;
 	int scrollCurrentPosBefore = 0;
 
-	SCENE *SceneNum;
+	SCENE SceneNum{};
 
-	JsonManager* jsonMan;
-	ObjectManager* objMan;
+	JsonManager* jsonMan{};
+	ObjectManager* objMan{};
 };
     

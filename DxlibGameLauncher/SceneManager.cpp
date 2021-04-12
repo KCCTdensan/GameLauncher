@@ -5,7 +5,7 @@
 SceneManager::SceneManager(ObjectManager &objectManager, Json& json, JsonManager& jsonManager)
 	: currentScene(nullptr)
 {
-	sceneSave[(int)SCENE::TAB_HOME]		= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_HOME);
+	sceneSave[(int)SCENE::TAB_HOME]		= new SceneProcHome(objectManager, json, jsonManager, SCENE::TAB_HOME);
 	sceneSave[(int)SCENE::TAB_APP]		= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_APP);
 	sceneSave[(int)SCENE::TAB_GAME]		= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_GAME);
 	sceneSave[(int)SCENE::TAB_MUSIC]	= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_MUSIC);
