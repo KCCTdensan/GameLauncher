@@ -4,6 +4,10 @@
 #include "InputManager.h"
 using namespace App;
 
+SceneProc::SceneProc()
+{
+}
+
 SceneProc::SceneProc(ObjectManager& objectManager, Json& json, JsonManager& jsonManager, SCENE scenes)
 {
 	PicPath picPath;

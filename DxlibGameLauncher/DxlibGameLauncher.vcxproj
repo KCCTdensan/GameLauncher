@@ -96,6 +96,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneProc.cpp" />
+    <ClCompile Include="SceneProcHome.cpp" />
     <ClCompile Include="TAB_GAME_Scene.cpp" />
     <ClCompile Include="TAB_HOME_Scene.cpp" />
     <ClCompile Include="WindowManager.cpp" />
@@ -121,6 +122,7 @@
     <ClInclude Include="SceneList.h" />
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="SceneProc.h" />
+    <ClInclude Include="SceneProcHome.h" />
     <ClInclude Include="TAB_GAME_Scene.hpp" />
     <ClInclude Include="TAB_HOME_Scene.hpp" />
     <ClInclude Include="WindowManager.h" />
