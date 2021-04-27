@@ -142,6 +142,11 @@ int JsonManager::Read(string path)
 	return 0;
 }
 
+int JsonManager::Write(SCENE scene, Json jsonData)
+{
+	return 0;
+}
+
 int JsonManager::GetDataNum(SCENE scene)
 {
 	int num = -1;
