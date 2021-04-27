@@ -7,7 +7,8 @@
 					"PATH": "NONE",
 					"VERSION": "NONE",
 					"EXPLANATION": "NONE",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "NONE"
 
 				}
 			],
@@ -17,7 +18,8 @@
 					"PATH": "NONE",
 					"VERSION": "NONE",
 					"EXPLANATION": "NONE",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "NONE"
 
 				}
 			],
@@ -28,7 +30,8 @@
 					"PATH": ".\\Content\\Software\\GAME\\Minesweeper\\Minesweeper.exe",
 					"VERSION": "1.00",
 					"EXPLANATION": "Minesweeperのゲーム",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "75063935-610D-4C4C-880E-ECB056B9630F"
 
 				},
 				{
@@ -36,7 +39,8 @@
 					"PATH": ".\\Content\\Software\\GAME\\starbox\\starboxlauncherc.exe",
 					"VERSION": "1.60",
 					"EXPLANATION": "全方位シューティングゲーム",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "A5DD7D16-76DE-4C6F-9F7C-0ED200154021"
 
 				},
 				{
@@ -44,7 +48,8 @@
 					"PATH": ".\\Content\\Software\\GAME\\弾幕YOKE\\弾幕yoke.exe",
 					"VERSION": "1.0.12",
 					"EXPLANATION": "本気で弾幕を\n楽しみたい人へ",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "9FD6992E-0C38-4487-BB99-77BD2E187D72"
 
 				},
 				{
@@ -52,7 +57,8 @@
 					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
 					"VERSION": "1.6.0",
 					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "FAE7E910-0E63-4CBE-8F81-6F387374AB69"
 
 				},
 				{
@@ -60,7 +66,8 @@
 					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
 					"VERSION": "1.6.0",
 					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "898EC5EA-9126-4EF8-927A-F65E4EB891F7"
 
 				},
 				{
@@ -68,114 +75,10 @@
 					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
 					"VERSION": "1.6.0",
 					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
-
-				},
-				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "1ADF6EFD-4846-4A53-97D7-0A3E7E92EDDB"
 
 				}
-
 			],
 			"MUSIC": [
 				{
@@ -183,7 +86,8 @@
 					"PATH": "NONE",
 					"VERSION": "NONE",
 					"EXPLANATION": "NONE",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "NONE"
 
 				}
 			],
@@ -193,7 +97,8 @@
 					"PATH": "NONE",
 					"VERSION": "NONE",
 					"EXPLANATION": "NONE",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "NONE"
 
 				}
 			],
@@ -203,7 +108,8 @@
 					"PATH": "NONE",
 					"VERSION": "NONE",
 					"EXPLANATION": "NONE",
-					"PICPATH": "NONE"
+					"PICPATH": "NONE",
+					"GUID": "NONE"
 
 				}
 			]

@@ -59,6 +59,7 @@ int JsonManager::Read(string path)
 			jsonApp[i].version = name["VERSION"].get<string>();
 			jsonApp[i].explanation = name["EXPLANATION"].get<string>();
 			jsonApp[i].picPath = name["PICPATH"].get<string>();
+			jsonApp[i].guid = name["GUID"].get<string>();
 
 			appMax++;
 		}
@@ -72,6 +73,7 @@ int JsonManager::Read(string path)
 			jsonGame[i].version = name["VERSION"].get<string>();
 			jsonGame[i].explanation = name["EXPLANATION"].get<string>();
 			jsonGame[i].picPath = name["PICPATH"].get<string>();
+			jsonGame[i].guid = name["GUID"].get<string>();
 
 
 			gameMax++;
@@ -86,6 +88,7 @@ int JsonManager::Read(string path)
 			json3DModel[i].version = name["VERSION"].get<string>();
 			json3DModel[i].explanation = name["EXPLANATION"].get<string>();
 			json3DModel[i].picPath = name["PICPATH"].get<string>();
+			json3DModel[i].guid = name["GUID"].get<string>();
 
 
 			modelMax++;
@@ -100,6 +103,7 @@ int JsonManager::Read(string path)
 			jsonMusic[i].version = name["VERSION"].get<string>();
 			jsonMusic[i].explanation = name["EXPLANATION"].get<string>();
 			jsonMusic[i].picPath = name["PICPATH"].get<string>();
+			jsonMusic[i].guid = name["GUID"].get<string>();
 
 
 			musicMax++;
@@ -114,6 +118,7 @@ int JsonManager::Read(string path)
 			jsonVideo[i].version = name["VERSION"].get<string>();
 			jsonVideo[i].explanation = name["EXPLANATION"].get<string>();
 			jsonVideo[i].picPath = name["PICPATH"].get<string>();
+			jsonVideo[i].guid = name["GUID"].get<string>();
 
 			videoMax++;
 		}
@@ -127,6 +132,7 @@ int JsonManager::Read(string path)
 			jsonOthers[i].version = name["VERSION"].get<string>();
 			jsonOthers[i].explanation = name["EXPLANATION"].get<string>();
 			jsonOthers[i].picPath = name["PICPATH"].get<string>();
+			jsonOthers[i].guid = name["GUID"].get<string>();
 
 			othersMax++;
 		}
