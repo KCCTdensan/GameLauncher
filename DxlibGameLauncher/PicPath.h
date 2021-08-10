@@ -8,6 +8,7 @@ using namespace std;
 struct PicPath
 {
 	string appIcon = ".\\Content\\Pic\\BANNER\\KCCTicon.png";
+	string d3buQR = ".\\Content\\Pic\\BANNER\\QR.png";
 
 	string noPic = ".\\Content\\Pic\\SAMPLE\\NoPic.png";
 	string tabApp = ".\\Content\\Pic\\MODE\\APP.png";

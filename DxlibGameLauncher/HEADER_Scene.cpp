@@ -74,6 +74,11 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 	objectManager.Set("MusicProgress", 500, 998, 500, 24, OBJECT_TYPE::PROGRESS);
 	objectManager.ProgressSet("MusicProgress", TRUE, GetColor(0, 128, 255), GetColor(BLACK, BLACK, BLACK));
 
+	objectManager.Set("HQR", 1570, 850, 162, 162, OBJECT_TYPE::BUTTON);
+	objectManager.ColorSet("HQR", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
+	objectManager.ImageChestSet("HQR", TRUE, picPath.d3buQR, 0, 0);
+	objectManager.ChangeVarBool("HQR", VAR::ANIMATION_FLAG, FALSE);
+
 	this->objectManager = &objectManager;
 	this->musicManager = &musicManager;
 	this->json = &json;
@@ -262,9 +267,11 @@ void HEADER_Scene::Update()
 
 	if (json->name == "NONE")
 	{
+		objectManager->ChangeVarBool("HQR", VAR::CAN_SEE_FLAG, TRUE);
 		objectManager->ChangeVarBool("Launch", VAR::CAN_SEE_FLAG, FALSE);
 	}
 	else {
+		objectManager->ChangeVarBool("HQR", VAR::CAN_SEE_FLAG, FALSE);
 		objectManager->ChangeVarBool("Launch", VAR::CAN_SEE_FLAG, TRUE);
 	}
 
@@ -353,6 +360,12 @@ void HEADER_Scene::Draw()
 	else {
 		DrawFormatStringToHandle(1450, 150, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), 
 			"左の一覧からファイル・ソフトを\n選んでください\n\n操作方法\nホイール:スクロール\nF11:フルスクリーン切替\nEsc:終了");
+		DrawFormatStringToHandle(1450, 400, GetColor(255, 190, 0), objectManager->GetHandleFont("G30"),
+			"電子計算機部へようこそ！");
+		DrawFormatStringToHandle(1450, 450, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"),
+			"このソフトは，部員が作成した\n作品を1つのランチャーとして\nまとめたものです");
+		DrawFormatStringToHandle(1550, 800, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"),
+			"↓電算部 HP");
 		DrawLine(1400, 0, 1400, 1080, GetColor(255, 255, 255));
 		DrawLine(350, 0, 350, 1080, GetColor(255, 255, 255));
 	}

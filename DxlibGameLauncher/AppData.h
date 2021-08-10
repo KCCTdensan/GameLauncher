@@ -1,7 +1,9 @@
 #pragma once
 
 #include <wchar.h>
+#include <string.h>
 
+using namespace std;
 
 namespace App
 {
