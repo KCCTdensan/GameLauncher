@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Comment Editor", "Comment E
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DxlibGameLauncher", "DxlibGameLauncher\DxlibGameLauncher.vcxproj", "{52FB1BF6-67D8-48C4-B7AD-532C80EA9554}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DxlibObjectiveGameLauncher", "DxlibObjectiveGameLauncher\DxlibObjectiveGameLauncher.vcxproj", "{C7DF38E5-DC3D-43FB-9557-9C97C74FCA01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,10 @@ Global
 		{52FB1BF6-67D8-48C4-B7AD-532C80EA9554}.Debug|x64.Build.0 = Debug|x64
 		{52FB1BF6-67D8-48C4-B7AD-532C80EA9554}.Release|x64.ActiveCfg = Release|x64
 		{52FB1BF6-67D8-48C4-B7AD-532C80EA9554}.Release|x64.Build.0 = Release|x64
+		{C7DF38E5-DC3D-43FB-9557-9C97C74FCA01}.Debug|x64.ActiveCfg = Debug|x64
+		{C7DF38E5-DC3D-43FB-9557-9C97C74FCA01}.Debug|x64.Build.0 = Debug|x64
+		{C7DF38E5-DC3D-43FB-9557-9C97C74FCA01}.Release|x64.ActiveCfg = Release|x64
+		{C7DF38E5-DC3D-43FB-9557-9C97C74FCA01}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
