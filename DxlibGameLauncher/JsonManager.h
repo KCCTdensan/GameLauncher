@@ -15,6 +15,7 @@ public:
 	JsonManager();
 
 	int Read(string path);
+	int Write(SCENE scene, Json jsonData);
 	int	GetDataNum(SCENE scene);
 	int GetData(SCENE scene, Json* jsonData, int num);// numÇÕ0à»è„
 

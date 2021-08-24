@@ -10,5 +10,6 @@ struct Json {
 	string version;
 	string explanation;
 	string picPath;
+	string guid;
 
 };
