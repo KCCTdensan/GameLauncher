@@ -47,13 +47,9 @@
     <ClInclude Include="MusicData.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="ProgressObject.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="ScrollInput.h" />
     <ClInclude Include="TabScene.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="DxlibObjectiveGameLauncher.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
