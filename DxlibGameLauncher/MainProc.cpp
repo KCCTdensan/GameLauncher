@@ -8,6 +8,7 @@
 #include "InputManager.h"
 #include "ExePath.h"
 #include "MusicManager.h"
+#include "PictureManager.h"
 #include "JsonFileData.h"
 #include "JsonManager.h"
 #include "WindowManager.h"
@@ -36,6 +37,9 @@ int Ope::OTHERS_BUTTON_NUM = 0;
 bool Ope::JSON_MUSIC_FLAG = FALSE;
 bool Ope::JSON_VIDEO_FLAG = FALSE;
 bool Ope::JSON_PICTURE_FLAG = FALSE;
+
+bool Ope::CLICKED_LAUNCH = FALSE;
+bool Ope::SHOWING_PIC = FALSE;
 
 /*############################################################*/
 
@@ -71,6 +75,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	static ObjectManager objectManager; // ランチャーのメインであるobjectを配置するための共通の変数
 	static MusicManager musicManager; // ヘッダーで管理する音楽の管理変数
+	static PictureManager pictureManager;
 	static WindowManager windowManager; // ウインドウの現在の状態管理
 
 	static Json NOW_ACTIVE_JSON;
@@ -92,7 +97,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	sceneManager.ChanegeScene(SCENE::TAB_HOME);//初回起動はホーム
 
-	HEADER_Scene headerScene(objectManager, musicManager, NOW_ACTIVE_JSON, jsonManager);
+	HEADER_Scene headerScene(objectManager, musicManager, NOW_ACTIVE_JSON, jsonManager, pictureManager);
 
 	SetWindowSize(App::DEFAULT_WINDOW_SIZE_X * 4 / 5, App::DEFAULT_WINDOW_SIZE_Y * 4 / 5); // 初期のウインドウサイズ 1920 * 1080 を想定
 
@@ -122,7 +127,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 		sceneManager.Draw();
 		headerScene.Draw();
-		objectManager.Draw();
+		if (!Ope::SHOWING_PIC) objectManager.Draw();
 
 		if (Ope::SCENE_CHANGE_FLAG) // これがTRUEの時シーンが切り替わる
 		{

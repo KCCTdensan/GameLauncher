@@ -46,6 +46,12 @@
     <Filter Include="ヘッダー ファイル\Data">
       <UniqueIdentifier>{e511a136-c846-4add-99c8-c60a329b7e20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Picture">
+      <UniqueIdentifier>{64986085-72ff-4002-99d8-3241ed0a4468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Picture">
+      <UniqueIdentifier>{4304507f-0b5a-4ca6-86cf-24cc36c295aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainProc.cpp">
@@ -83,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="SceneProcHome.cpp">
       <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PictureManager.cpp">
+      <Filter>ソース ファイル\Picture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +166,12 @@
     </ClInclude>
     <ClInclude Include="SceneProcHome.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureManager.h">
+      <Filter>ヘッダー ファイル\Picture</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureData.h">
+      <Filter>ヘッダー ファイル\Picture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

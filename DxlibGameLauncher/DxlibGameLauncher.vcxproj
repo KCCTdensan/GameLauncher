@@ -94,6 +94,7 @@
     <ClCompile Include="MainProc.cpp" />
     <ClCompile Include="MusicManager.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="PictureManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneProc.cpp" />
     <ClCompile Include="SceneProcHome.cpp" />
@@ -117,6 +118,8 @@
     <ClInclude Include="OperationData.h" />
     <ClInclude Include="picojson.h" />
     <ClInclude Include="PicPath.h" />
+    <ClInclude Include="PictureData.h" />
+    <ClInclude Include="PictureManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.hpp" />
     <ClInclude Include="SceneList.h" />

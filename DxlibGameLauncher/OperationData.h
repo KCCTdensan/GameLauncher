@@ -25,4 +25,7 @@ namespace Ope
 	extern bool JSON_MUSIC_FLAG;
 	extern bool JSON_VIDEO_FLAG;
 	extern bool JSON_PICTURE_FLAG;
+
+	extern bool CLICKED_LAUNCH;
+	extern bool SHOWING_PIC;
 }

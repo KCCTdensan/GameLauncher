@@ -5,7 +5,7 @@
 #include <shellapi.h>
 #include "PicPath.h"
 
-HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager, Json& json, JsonManager& jsonManager)
+HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicManager, Json& json, JsonManager& jsonManager, PictureManager& pictureManager)
 {
 	PicPath picPath;
 	json = defJson;
@@ -13,6 +13,7 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 	Ope::JSON_MUSIC_FLAG = FALSE;
 
 	PlayingNotice = FALSE;
+	PlayingPicture = FALSE;
 
 	objectManager.Set("HHSB", 50, 350, 250, 100, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet("HHSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
@@ -81,6 +82,7 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 
 	this->objectManager = &objectManager;
 	this->musicManager = &musicManager;
+	this->pictureManager = &pictureManager;
 	this->json = &json;
 }
 
@@ -123,7 +125,7 @@ void HEADER_Scene::Update()
 		objectManager->ChangeVarBool("HHSB", VAR::ACTIVATION_FLAG, FALSE);
 
 		*json = defJson;
-		
+
 	}
 	if (objectManager->GetVarBool("HASB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
@@ -241,7 +243,6 @@ void HEADER_Scene::Update()
 	}
 
 	if (objectManager->GetVarBool("Launch", VAR::ACTIVATION_FLAG)) {
-
 		if (Ope::JSON_MUSIC_FLAG)
 		{
 			musicManager->Stop(musicManager->GetPlayingName());
@@ -256,11 +257,18 @@ void HEADER_Scene::Update()
 			ShellExecute(NULL, "open", "wmplayer", a.c_str(), NULL, SW_SHOWNORMAL);
 
 		}
+		else if (Ope::JSON_PICTURE_FLAG) {
+			pictureManager->DeleteAll();
+			pictureManager->Set(json->name, json->path);
+			clickCount = 0;
+			PlayingPicture = TRUE;
+		}
 		else {
 
 			system(json->path.c_str());
 
 		}
+		Ope::CLICKED_LAUNCH = TRUE;
 		objectManager->ChangeVarBool("Launch", VAR::ACTIVATION_FLAG, FALSE);
 
 	}
@@ -273,6 +281,16 @@ void HEADER_Scene::Update()
 	else {
 		objectManager->ChangeVarBool("HQR", VAR::CAN_SEE_FLAG, FALSE);
 		objectManager->ChangeVarBool("Launch", VAR::CAN_SEE_FLAG, TRUE);
+	}
+
+	if (PlayingPicture) {
+		if (Input::Mouse::MOUSE_LEFT == MOUSE_LEFT_PRESS_FIRST) {
+			clickCount++;
+			if (clickCount >= 2) {
+				*json = defJson;
+				PlayingPicture = FALSE;
+			}
+		}
 	}
 
 	if (PlayingNotice = musicManager->GetPlaying()) {
@@ -358,7 +376,7 @@ void HEADER_Scene::Draw()
 		DrawLine(350, 0, 350, 1080, GetColor(255, 190, 0));
 	}
 	else {
-		DrawFormatStringToHandle(1450, 150, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), 
+		DrawFormatStringToHandle(1450, 150, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"),
 			"左の一覧からファイル・ソフトを\n選んでください\n\n操作方法\nホイール:スクロール\nF11:フルスクリーン切替\nEsc:終了");
 		DrawFormatStringToHandle(1450, 400, GetColor(255, 190, 0), objectManager->GetHandleFont("G30"),
 			"電子計算機部へようこそ！");
@@ -377,6 +395,14 @@ void HEADER_Scene::Draw()
 		DrawFormatStringToHandle(420, 950, GetColor(255, 255, 255), objectManager->GetHandleFont("G30"), "再生中... : %s ", musicManager->GetPlayingName().c_str());
 
 	}
+
+	if (PlayingPicture) {
+		Ope::SHOWING_PIC = TRUE;
+		int x, y;
+		GetGraphSize(pictureManager->GetHandle(json->name), &x, &y);
+		int a = DrawGraph((App::BACKGROUND_SIZE_X - x) / 2, (App::BACKGROUND_SIZE_Y - y) / 2, pictureManager->GetHandle(json->name), TRUE);
+	}
+	else Ope::SHOWING_PIC = FALSE;
 
 }
 

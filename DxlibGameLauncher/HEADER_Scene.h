@@ -4,6 +4,7 @@
 #include "AppData.h"
 #include "OperationData.h"
 #include "MusicManager.h"
+#include "PictureManager.h"
 #include "JsonManager.h"
 
 using namespace App;
@@ -11,7 +12,7 @@ using namespace App;
 class HEADER_Scene
 {
 public:
-	HEADER_Scene(ObjectManager &objectManager, MusicManager &musicManager, Json &json, JsonManager& jsonManager);
+	HEADER_Scene(ObjectManager &objectManager, MusicManager &musicManager, Json &json, JsonManager& jsonManager, PictureManager& pictureManager);
 
 	void Update();
 	void Draw();
@@ -22,6 +23,7 @@ private:
 
 	ObjectManager* objectManager;
 	MusicManager* musicManager;
+	PictureManager* pictureManager;
 	Json* json;
 
 	Json defJson = {
@@ -34,5 +36,9 @@ private:
 
 	bool PlayingNotice;
 	string PlayingName;
+
+	int clickCount = 0;
+
+	bool PlayingPicture;
 };
 

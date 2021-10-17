@@ -114,6 +114,7 @@ void SceneProc::Update()
 			Ope::JSON_PICTURE_FLAG = FALSE;
 			string name;
 
+
 			switch (SceneNum) {
 			case SCENE::TAB_APP:
 				break;
@@ -126,6 +127,7 @@ void SceneProc::Update()
 			case SCENE::TAB_VIDEO:
 				Ope::JSON_VIDEO_FLAG = TRUE; break;
 			case SCENE::TAB_OTHERS:
+				Ope::JSON_PICTURE_FLAG = TRUE;
 				break;
 			}
 		}
