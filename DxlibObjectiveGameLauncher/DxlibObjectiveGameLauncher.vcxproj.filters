@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="GameLauncher.cpp" />
+    <ClCompile Include="ButtonObject.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgressObject.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectBase.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageData.cpp">
+      <Filter>Media</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageChest.cpp">
+      <Filter>Media</Filter>
+    </ClCompile>
+    <ClCompile Include="MovieData.cpp">
+      <Filter>Media</Filter>
+    </ClCompile>
+    <ClCompile Include="MovieChest.cpp">
+      <Filter>Media</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicChest.cpp">
+      <Filter>Media</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicData.cpp">
+      <Filter>Media</Filter>
+    </ClCompile>
+    <ClCompile Include="FontChest.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="FontData.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="TabScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Header.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonSoftwareData.cpp">
+      <Filter>Json</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ButtonObject.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressObject.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageChest.h">
+      <Filter>Media</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageData.h">
+      <Filter>Media</Filter>
+    </ClInclude>
+    <ClInclude Include="MovieData.h">
+      <Filter>Media</Filter>
+    </ClInclude>
+    <ClInclude Include="MovieChest.h">
+      <Filter>Media</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicChest.h">
+      <Filter>Media</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicData.h">
+      <Filter>Media</Filter>
+    </ClInclude>
+    <ClInclude Include="FontChest.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="FontData.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="TabScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonSoftwareData.h">
+      <Filter>Json</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{b89157d3-31ab-42c3-a63d-868bce785114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Media">
+      <UniqueIdentifier>{d1d7da00-ec25-4c1a-9091-f3a0d5908fa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{ca5bbbc7-eda8-4ea6-9032-6e9becfc79d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{b19d0ed1-135f-4692-b491-2271f132eeda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{0f501da7-2557-4c32-8669-69cb08a5e237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json">
+      <UniqueIdentifier>{0e47f6f3-71f4-4032-b021-fb2ca20b90b6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
