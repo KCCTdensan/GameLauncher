@@ -30,7 +30,7 @@
 					"PATH": ".\\Content\\Software\\GAME\\Minesweeper\\Minesweeper.exe",
 					"VERSION": "1.00",
 					"EXPLANATION": "MinesweeperÇÃÉQÅ[ÉÄ",
-					"PICPATH": "NONE",
+					"PICPATH": ".\\Content\\Pic\\MineSweeper.png",
 					"GUID": "75063935-610D-4C4C-880E-ECB056B9630F"
 
 				},

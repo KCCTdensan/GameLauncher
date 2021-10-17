@@ -88,7 +88,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CSVManager.cpp" />
     <ClCompile Include="HEADER_Scene.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="JsonManager.cpp" />
@@ -104,7 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppData.h" />
-    <ClInclude Include="CSVManager.h" />
     <ClInclude Include="ExePath.h" />
     <ClInclude Include="FontData.h" />
     <ClInclude Include="HEADER_Scene.h" />
