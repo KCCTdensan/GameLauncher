@@ -47,7 +47,7 @@ HEADER_Scene::HEADER_Scene(ObjectManager& objectManager, MusicManager& musicMana
 
 	objectManager.Set("HOSB", 50, 950, 250, 100, OBJECT_TYPE::BUTTON);
 	objectManager.ColorSet("HOSB", FALSE, NULL, NULL, TRUE, GetColor(BLACK, BLACK, BLACK));
-	objectManager.WritingSet("HOSB", TRUE, "Others");
+	objectManager.WritingSet("HOSB", TRUE, "Picture");
 	objectManager.WritingFontSetToHandle("HOSB", "G50", GetColor(255, 255, 255), ARRANGEMENT_X_LEFT, ARRANGEMENT_Y_CENTER);
 
 	objectManager.Set("HPicKCCT", 50, 50, 250, 250, OBJECT_TYPE::BUTTON);
@@ -224,15 +224,15 @@ void HEADER_Scene::Update()
 	}
 	if (objectManager->GetVarBool("HOSB", VAR::ACTIVATION_FLAG)) {
 		Ope::SCENE_CHANGE_FLAG = TRUE;
-		Ope::SCENE_CHANGE_NUM = SCENE::TAB_OTHERS;
+		Ope::SCENE_CHANGE_NUM = SCENE::TAB_PICTURE;
 
 		AllHide();
 
 		string name;
 
-		for (int i = 0; i < Ope::OTHERS_BUTTON_NUM; i++)
+		for (int i = 0; i < Ope::PICTURE_BUTTON_NUM; i++)
 		{
-			name = "OTHERS" + to_string(i);
+			name = "PICTURE" + to_string(i);
 
 			objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 		}
@@ -446,9 +446,9 @@ void HEADER_Scene::AllHide()
 
 		objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
-	for (int i = 0; i < Ope::OTHERS_BUTTON_NUM; i++)
+	for (int i = 0; i < Ope::PICTURE_BUTTON_NUM; i++)
 	{
-		name = "OTHERS" + to_string(i);
+		name = "PICTURE" + to_string(i);
 
 		objectManager->ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}

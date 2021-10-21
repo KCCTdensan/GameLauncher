@@ -32,7 +32,7 @@ int Ope::GAME_BUTTON_NUM = 0;
 int Ope::MODEL_BUTTON_NUM = 0;
 int Ope::MUSIC_BUTTON_NUM = 0;
 int Ope::VIDEO_BUTTON_NUM = 0;
-int Ope::OTHERS_BUTTON_NUM = 0;
+int Ope::PICTURE_BUTTON_NUM = 0;
 
 bool Ope::JSON_MUSIC_FLAG = FALSE;
 bool Ope::JSON_VIDEO_FLAG = FALSE;

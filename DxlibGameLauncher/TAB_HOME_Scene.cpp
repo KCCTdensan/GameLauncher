@@ -34,11 +34,11 @@ TAB_HOME_Scene::TAB_HOME_Scene(ObjectManager& objectManager, Json& json, JsonMan
 					"",
 					"",
 					picPath.tabVideo };
-	jsonHome[5] = { "OTHERS",
+	jsonHome[5] = { "PICTURE",
 					"",
 					"",
 					"",
-					picPath.tabOthers };
+					picPath.tabPicture };
 	int homeMax = 6;
 
 	int a = 0;
@@ -156,15 +156,15 @@ void TAB_HOME_Scene::Update()
 
 			}
 			if (i == 5) {
-				Ope::SCENE_CHANGE_NUM = SCENE::TAB_OTHERS;
+				Ope::SCENE_CHANGE_NUM = SCENE::TAB_PICTURE;
 
 				AllHide();
 
 				string nameA;
 
-				for (int i = 0; i < Ope::OTHERS_BUTTON_NUM; i++)
+				for (int i = 0; i < Ope::PICTURE_BUTTON_NUM; i++)
 				{
-					nameA = "OTHERS" + to_string(i);
+					nameA = "PICTURE" + to_string(i);
 
 					objectManager.ChangeVarBool(nameA.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 				}
@@ -224,9 +224,9 @@ void TAB_HOME_Scene::AllHide()
 
 		objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
-	for (int i = 0; i < Ope::OTHERS_BUTTON_NUM; i++)
+	for (int i = 0; i < Ope::PICTURE_BUTTON_NUM; i++)
 	{
-		name = "OTHERS" + to_string(i);
+		name = "PICTURE" + to_string(i);
 
 		objectManager.ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}

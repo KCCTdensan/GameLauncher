@@ -49,7 +49,7 @@ int JsonManager::Read(string path)
 		value::array& MODEL = tmp["3DMODEL"].get<value::array>();
 		value::array& MUSIC = tmp["MUSIC"].get<value::array>();
 		value::array& VIDEO = tmp["VIDEO"].get<value::array>();
-		value::array& OTHERS = tmp["OTHERS"].get<value::array>();
+		value::array& PICTURE = tmp["PICTURE"].get<value::array>();
 		int i = 0;
 		for (value::array::iterator it2 = APP.begin(); it2 != APP.end(); it2++, i++)
 		{
@@ -124,19 +124,19 @@ int JsonManager::Read(string path)
 		}
 		if (jsonVideo[0].name == "NONE") videoMax = 0;
 		i = 0;
-		for (value::array::iterator it2 = OTHERS.begin(); it2 != OTHERS.end(); it2++, i++)
+		for (value::array::iterator it2 = PICTURE.begin(); it2 != PICTURE.end(); it2++, i++)
 		{
 			object& name = it2->get<object>();
-			jsonOthers[i].name = name["NAME"].get<string>();
-			jsonOthers[i].path = name["PATH"].get<string>();
-			jsonOthers[i].version = name["VERSION"].get<string>();
-			jsonOthers[i].explanation = name["EXPLANATION"].get<string>();
-			jsonOthers[i].picPath = name["PICPATH"].get<string>();
-			jsonOthers[i].guid = name["GUID"].get<string>();
+			jsonPicture[i].name = name["NAME"].get<string>();
+			jsonPicture[i].path = name["PATH"].get<string>();
+			jsonPicture[i].version = name["VERSION"].get<string>();
+			jsonPicture[i].explanation = name["EXPLANATION"].get<string>();
+			jsonPicture[i].picPath = name["PICPATH"].get<string>();
+			jsonPicture[i].guid = name["GUID"].get<string>();
 
-			othersMax++;
+			pictureMax++;
 		}
-		if (jsonOthers[0].name == "NONE") othersMax = 0;
+		if (jsonPicture[0].name == "NONE") pictureMax = 0;
 	}
 	
 	return 0;
@@ -167,8 +167,8 @@ int JsonManager::GetDataNum(SCENE scene)
 	case SCENE::TAB_VIDEO:
 		num = videoMax;
 		break;
-	case SCENE::TAB_OTHERS:
-		num = othersMax;
+	case SCENE::TAB_PICTURE:
+		num = pictureMax;
 		break;
 	default:
 		break;
@@ -196,8 +196,8 @@ int JsonManager::GetData(SCENE scene, Json* jsonData, int num)
 	case SCENE::TAB_VIDEO:
 		*jsonData = jsonVideo[i];
 		break;
-	case SCENE::TAB_OTHERS:
-		*jsonData = jsonOthers[i];
+	case SCENE::TAB_PICTURE:
+		*jsonData = jsonPicture[i];
 		break;
 	default:
 		break;

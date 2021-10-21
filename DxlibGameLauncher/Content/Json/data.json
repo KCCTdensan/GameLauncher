@@ -91,10 +91,10 @@
 
 				}
 			],
-			"OTHERS": [
+			"PICTURE": [
 				{
 					"NAME": "kawaii",
-					"PATH": ".\\Content\\Software\\OTHERS\\sample.png",
+					"PATH": ".\\Content\\Software\\PICTURE\\sample.png",
 					"VERSION": "1.0",
 					"EXPLANATION": "—á",
 					"PICPATH": "NONE",

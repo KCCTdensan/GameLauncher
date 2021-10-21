@@ -16,7 +16,7 @@ struct PicPath
 	string tabModel = ".\\Content\\Pic\\MODE\\MODEL.png";
 	string tabMusic = ".\\Content\\Pic\\MODE\\MUSIC.png";
 	string tabVideo = ".\\Content\\Pic\\MODE\\VIDEO.png";
-	string tabOthers = ".\\Content\\Pic\\MODE\\OTHERS.png";
+	string tabPicture = ".\\Content\\Pic\\MODE\\PICTURE.png";
 
 	string musicPlay = ".\\Content\\Pic\\MUSIC_ICON\\PlayMusic.png";
 	string musicStop = ".\\Content\\Pic\\MUSIC_ICON\\StopMusic.png";

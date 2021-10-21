@@ -20,7 +20,7 @@ namespace Ope
 	extern int MODEL_BUTTON_NUM;
 	extern int MUSIC_BUTTON_NUM;
 	extern int VIDEO_BUTTON_NUM;
-	extern int OTHERS_BUTTON_NUM;
+	extern int PICTURE_BUTTON_NUM;
 
 	extern bool JSON_MUSIC_FLAG;
 	extern bool JSON_VIDEO_FLAG;

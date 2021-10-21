@@ -36,8 +36,8 @@ SceneProc::SceneProc(ObjectManager& objectManager, Json& json, JsonManager& json
 			name = "MDOEL" + to_string(i); break;
 		case SCENE::TAB_VIDEO:
 			name = "VIDEO" + to_string(i); break;
-		case SCENE::TAB_OTHERS:
-			name = "OTHERS" + to_string(i); break;
+		case SCENE::TAB_PICTURE:
+			name = "PICTURE" + to_string(i); break;
 		}
 
 		int b = (int)i % 3;
@@ -72,8 +72,8 @@ SceneProc::SceneProc(ObjectManager& objectManager, Json& json, JsonManager& json
 		Ope::MODEL_BUTTON_NUM = objNum; break;
 	case SCENE::TAB_VIDEO:
 		Ope::VIDEO_BUTTON_NUM = objNum; break;
-	case SCENE::TAB_OTHERS:
-		Ope::OTHERS_BUTTON_NUM = objNum; break;
+	case SCENE::TAB_PICTURE:
+		Ope::PICTURE_BUTTON_NUM = objNum; break;
 	}
 
 	if ((objNum / 3 * 350) + 300 + 150 <= App::BACKGROUND_SIZE_Y)
@@ -102,8 +102,8 @@ void SceneProc::Update()
 			name = "MDOEL" + to_string(i); break;
 		case SCENE::TAB_VIDEO:
 			name = "VIDEO" + to_string(i); break;
-		case SCENE::TAB_OTHERS:
-			name = "OTHERS" + to_string(i); break;
+		case SCENE::TAB_PICTURE:
+			name = "PICTURE" + to_string(i); break;
 		}
 
 		if ((*objMan).GetVarBool(name.c_str(), VAR::ACTIVATION_FLAG))
@@ -126,7 +126,7 @@ void SceneProc::Update()
 				break;
 			case SCENE::TAB_VIDEO:
 				Ope::JSON_VIDEO_FLAG = TRUE; break;
-			case SCENE::TAB_OTHERS:
+			case SCENE::TAB_PICTURE:
 				Ope::JSON_PICTURE_FLAG = TRUE;
 				break;
 			}
@@ -189,8 +189,8 @@ void SceneProc::Draw()
 		name = "MDOEL"; break;
 	case SCENE::TAB_VIDEO:
 		name = "VIDEO"; break;
-	case SCENE::TAB_OTHERS:
-		name = "OTHERS"; break;
+	case SCENE::TAB_PICTURE:
+		name = "PICTURE"; break;
 	}
 
 	DrawFormatStringToHandle(410, 50 + scrollCurrentPos, GetColor(255, 255, 255),(*objMan).GetHandleFont("G50"), name.c_str());
@@ -220,8 +220,8 @@ void SceneProc::MoveObj(int size)
 			name = "MDOEL" + to_string(i); break;
 		case SCENE::TAB_VIDEO:
 			name = "VIDEO" + to_string(i); break;
-		case SCENE::TAB_OTHERS:
-			name = "OTHERS" + to_string(i); break;
+		case SCENE::TAB_PICTURE:
+			name = "PICTURE" + to_string(i); break;
 		}
 
 		int objY = (*objMan).GetVarInt(name.c_str(), VAR::Y);

@@ -26,14 +26,14 @@ private:
 	std::array<Json, JSON_MAX>json3DModel;
 	std::array<Json, JSON_MAX>jsonMusic;
 	std::array<Json, JSON_MAX>jsonVideo;
-	std::array<Json, JSON_MAX>jsonOthers;
+	std::array<Json, JSON_MAX>jsonPicture;
 
 	int appMax = 0;
 	int gameMax = 0;
 	int modelMax = 0;
 	int musicMax = 0;
 	int videoMax = 0;
-	int othersMax = 0;
+	int pictureMax = 0;
 
 };
 

@@ -41,11 +41,11 @@ SceneProcHome::SceneProcHome(ObjectManager& objectManager, Json& json, JsonManag
 					"",
 					"",
 					picPath.tabVideo };
-	jsonData[5] = { "OTHERS",
+	jsonData[5] = { "PICTURE",
 					"",
 					"",
 					"",
-					picPath.tabOthers };
+					picPath.tabPicture };
 	int homeMax = 6;
 
 	for (int i = 0; i < homeMax; i++) // ボタン設定をループ処理で必要分設定
@@ -163,15 +163,15 @@ void SceneProcHome::Update()
 
 			}
 			if (i == 5) {
-				Ope::SCENE_CHANGE_NUM = SCENE::TAB_OTHERS;
+				Ope::SCENE_CHANGE_NUM = SCENE::TAB_PICTURE;
 
 				AllHide();
 
 				string nameA;
 
-				for (int i = 0; i < Ope::OTHERS_BUTTON_NUM; i++)
+				for (int i = 0; i < Ope::PICTURE_BUTTON_NUM; i++)
 				{
-					nameA = "OTHERS" + to_string(i);
+					nameA = "PICTURE" + to_string(i);
 
 					(*objMan).ChangeVarBool(nameA.c_str(), VAR::CAN_SEE_FLAG, TRUE);
 				}
@@ -222,9 +222,9 @@ void SceneProcHome::AllHide()
 
 		(*objMan).ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}
-	for (int i = 0; i < Ope::OTHERS_BUTTON_NUM; i++)
+	for (int i = 0; i < Ope::PICTURE_BUTTON_NUM; i++)
 	{
-		name = "OTHERS" + to_string(i);
+		name = "PICTURE" + to_string(i);
 
 		(*objMan).ChangeVarBool(name.c_str(), VAR::CAN_SEE_FLAG, FALSE);
 	}

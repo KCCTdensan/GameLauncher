@@ -11,7 +11,7 @@ SceneManager::SceneManager(ObjectManager &objectManager, Json& json, JsonManager
 	sceneSave[(int)SCENE::TAB_MUSIC]	= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_MUSIC);
 	sceneSave[(int)SCENE::TAB_3DMODEL]	= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_3DMODEL);
 	sceneSave[(int)SCENE::TAB_VIDEO]	= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_VIDEO);
-	sceneSave[(int)SCENE::TAB_OTHERS]	= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_OTHERS);
+	sceneSave[(int)SCENE::TAB_PICTURE]	= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_PICTURE);
 }
 
 SceneManager::~SceneManager()
@@ -50,8 +50,8 @@ int SceneManager::ChanegeScene(SCENE scene)
 		currentScene = sceneSave[(int)SCENE::TAB_VIDEO];
 		return TRUE;
 
-	case SCENE::TAB_OTHERS:
-		currentScene = sceneSave[(int)SCENE::TAB_OTHERS];
+	case SCENE::TAB_PICTURE:
+		currentScene = sceneSave[(int)SCENE::TAB_PICTURE];
 		return TRUE;
 
 	default:
