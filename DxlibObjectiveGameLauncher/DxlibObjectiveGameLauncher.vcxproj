@@ -33,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ButtonObject.h" />
+    <ClInclude Include="ExePath.h" />
     <ClInclude Include="FontChest.h" />
     <ClInclude Include="FontData.h" />
     <ClInclude Include="Header.h" />

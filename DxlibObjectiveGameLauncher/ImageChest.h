@@ -1,7 +1,6 @@
 #pragma once
 
 #include <DxLib.h>
-#include "OperationData.h"
 #include <unordered_map>
 
 
@@ -20,8 +19,4 @@ public:
 	~ImageChest();
 	int GetImageHandle(ImageHandleNo handleName);
 
-
-	class ImageChest
-	{
-	};
 };

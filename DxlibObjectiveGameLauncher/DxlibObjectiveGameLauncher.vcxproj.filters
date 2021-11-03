@@ -112,6 +112,9 @@
     <ClInclude Include="JsonSoftwareData.h">
       <Filter>Json</Filter>
     </ClInclude>
+    <ClInclude Include="ExePath.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
