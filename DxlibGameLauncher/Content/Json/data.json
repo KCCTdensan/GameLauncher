@@ -27,7 +27,7 @@
 
 				{
 					"NAME": "Minesweeper",
-					"PATH": ".\\Content\\Software\\GAME\\Minesweeper\\Minesweeper.exe",
+					"PATH": ".\\Content\\Software\\GAME\\Minesweeper\\Mine.bat",
 					"VERSION": "1.00",
 					"EXPLANATION": "Minesweeperのゲーム",
 					"PICPATH": ".\\Content\\Pic\\MineSweeper.png",
@@ -39,7 +39,7 @@
 					"PATH": ".\\Content\\Software\\GAME\\starbox\\starboxlauncherc.exe",
 					"VERSION": "1.60",
 					"EXPLANATION": "全方位シューティングゲーム",
-					"PICPATH": "NONE",
+					"PICPATH": ".\\Content\\Pic\\starbox.png",
 					"GUID": "A5DD7D16-76DE-4C6F-9F7C-0ED200154021"
 
 				},
@@ -48,7 +48,7 @@
 					"PATH": ".\\Content\\Software\\GAME\\弾幕YOKE\\弾幕yoke.exe",
 					"VERSION": "1.0.12",
 					"EXPLANATION": "本気で弾幕を\n楽しみたい人へ",
-					"PICPATH": "NONE",
+					"PICPATH": ".\\Content\\Pic\\danyoke.png",
 					"GUID": "9FD6992E-0C38-4487-BB99-77BD2E187D72"
 
 				},
@@ -57,24 +57,24 @@
 					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
 					"VERSION": "1.6.0",
 					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE",
+					"PICPATH": ".\\Content\\Pic\\STG.png",
 					"GUID": "FAE7E910-0E63-4CBE-8F81-6F387374AB69"
 
 				},
 				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
-					"PICPATH": "NONE",
-					"GUID": "898EC5EA-9126-4EF8-927A-F65E4EB891F7"
+					"NAME": "AvoidTheBeam",
+					"PATH": ".\\Content\\Software\\GAME\\AvoidTheBeam\\atb.bat",
+					"VERSION": "1.1",
+					"EXPLANATION": "ビームを避けて\n高得点を狙え\n\nWASDで移動\n\n詳細は\nmoti.d3bu.net",
+					"PICPATH": ".\\Content\\Pic\\atb.png",
+					"GUID": "1ADF6EFD-4846-4A53-97D7-0A3E7E92EDDB"
 
 				},
 				{
-					"NAME": "S.T.G",
-					"PATH": ".\\Content\\Software\\GAME\\STG\\stg.exe",
-					"VERSION": "1.6.0",
-					"EXPLANATION": "レーザーが飛び交うシューティング! \n当たり判定が少々おかしいかも",
+					"NAME": "MCVR",
+					"PATH": ".\\Content\\Software\\GAME\\MCVR\\MCVR.exe",
+					"VERSION": "0.1.0",
+					"EXPLANATION": "Minecraft風のVRゲーム",
 					"PICPATH": "NONE",
 					"GUID": "1ADF6EFD-4846-4A53-97D7-0A3E7E92EDDB"
 
@@ -82,21 +82,30 @@
 			],
 			"MUSIC": [
 				{
-					"NAME": "NONE",
-					"PATH": "NONE",
-					"VERSION": "NONE",
-					"EXPLANATION": "NONE",
-					"PICPATH": "NONE",
+					"NAME": "今、夏、ずっと",
+					"PATH": ".\\Content\\Software\\MUSIC\\imanatsuzutto-honoa.mp3",
+					"VERSION": "1.00",
+					"EXPLANATION": "作詞・作曲・編曲:ほのあ",
+					"PICPATH": ".\\Content\\Pic\\imanatsuzutto-honoa.png",
+					"GUID": "NONE"
+
+				},
+				{
+					"NAME": "高専祭疲れ",
+					"PATH": ".\\Content\\Software\\MUSIC\\tsukare.mp3",
+					"VERSION": "1.00",
+					"EXPLANATION": "作詞・作曲・編曲:iの刺客\n\n高専祭当日にシフトで入った時に，\nMUSICのタブが寂しいなと思ったので\n作りました。\n\n「高専祭当日の\n　　仕事疲れ」\n\n\n歌詞\n「曲を作ってみたよ」\n\n\n\n製作時間:48分",
+					"PICPATH": ".\\Content\\Pic\\tsukare.png",
 					"GUID": "NONE"
 
 				}
 			],
 			"PICTURE": [
 				{
-					"NAME": "kawaii",
-					"PATH": ".\\Content\\Software\\PICTURE\\sample.png",
-					"VERSION": "1.0",
-					"EXPLANATION": "例",
+					"NAME": "NONE",
+					"PATH": "NONE",
+					"VERSION": "NONE",
+					"EXPLANATION": "NONE",
 					"PICPATH": "NONE",
 					"GUID": "NONE"
 
