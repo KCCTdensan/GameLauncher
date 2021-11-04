@@ -25,7 +25,6 @@
     <ClCompile Include="MovieData.cpp" />
     <ClCompile Include="MusicChest.cpp" />
     <ClCompile Include="MusicData.cpp" />
-    <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="ScrollInput.cpp" />

@@ -8,9 +8,6 @@
     <ClCompile Include="ProgressObject.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectBase.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="ImageData.cpp">
       <Filter>Media</Filter>
     </ClCompile>
