@@ -53,6 +53,7 @@
     <ClCompile Include="JsonSoftwareData.cpp">
       <Filter>Json</Filter>
     </ClCompile>
+    <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ButtonObject.h">
@@ -112,6 +113,16 @@
     <ClInclude Include="ExePath.h">
       <Filter>Objects</Filter>
     </ClInclude>
+    <ClInclude Include="ApplicationPreference.h">
+      <Filter>Static</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionVector.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="MouseClickType.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -131,6 +142,12 @@
     </Filter>
     <Filter Include="Json">
       <UniqueIdentifier>{0e47f6f3-71f4-4032-b021-fb2ca20b90b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Static">
+      <UniqueIdentifier>{c62bfbfe-cb39-4cd5-9e37-29c4227ff06f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Struct">
+      <UniqueIdentifier>{c3f6ab56-7af0-46e0-8692-91f16e722d2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

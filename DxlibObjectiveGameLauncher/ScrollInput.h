@@ -1,5 +1,11 @@
 #pragma once
-class ScrollInput
-{
-};
 
+namespace Input {
+	class ScrollInput
+	{
+	public:
+		static void Update();
+
+		static int SCHOOL_SIZE;
+	};
+}

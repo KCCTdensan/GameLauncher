@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include <Windows.h>
 #include "ExePath.h"
+#include "ApplicationPreference.h"
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) // windowsに定義された関数 ※修正不可
 {
@@ -33,6 +34,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetWindowInitPosition(0, 0); // ウインドウの場所を設定動作確認では機能していない
 
 	SetDrawMode(DX_DRAWMODE_ANISOTROPIC);
+
+	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen()) // メインループ この中の条件はないとバグるもの
 	{

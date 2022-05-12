@@ -27,10 +27,12 @@
     <ClCompile Include="MusicData.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
     <ClCompile Include="SceneBase.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollInput.cpp" />
     <ClCompile Include="TabScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ApplicationPreference.h" />
     <ClInclude Include="ButtonObject.h" />
     <ClInclude Include="ExePath.h" />
     <ClInclude Include="FontChest.h" />
@@ -40,14 +42,17 @@
     <ClInclude Include="ImageData.h" />
     <ClInclude Include="JsonSoftwareData.h" />
     <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="MouseClickType.h" />
     <ClInclude Include="MouseInput.h" />
     <ClInclude Include="MovieChest.h" />
     <ClInclude Include="MovieData.h" />
     <ClInclude Include="MusicChest.h" />
     <ClInclude Include="MusicData.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="PositionVector.h" />
     <ClInclude Include="ProgressObject.h" />
     <ClInclude Include="SceneBase.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScrollInput.h" />
     <ClInclude Include="TabScene.h" />
   </ItemGroup>

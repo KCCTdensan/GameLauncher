@@ -1,3 +1,4 @@
+#include "..\DxlibObjectiveGameLauncher\SceneManager.h"
 #include "SceneManager.hpp"
 #include "DxLib.h"
 
@@ -12,6 +13,10 @@ SceneManager::SceneManager(ObjectManager &objectManager, Json& json, JsonManager
 	sceneSave[(int)SCENE::TAB_3DMODEL]	= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_3DMODEL);
 	sceneSave[(int)SCENE::TAB_VIDEO]	= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_VIDEO);
 	sceneSave[(int)SCENE::TAB_PICTURE]	= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_PICTURE);
+}
+
+SceneManager::SceneManager()
+{
 }
 
 SceneManager::~SceneManager()
