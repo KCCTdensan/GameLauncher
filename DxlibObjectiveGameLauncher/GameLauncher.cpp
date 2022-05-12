@@ -40,6 +40,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		break;
 	}
 
-	DxLib_End(); // DxlibèIóπ
+	DxLib_End();
 	return 0;
 }
