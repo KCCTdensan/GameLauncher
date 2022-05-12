@@ -1,5 +1,5 @@
 #include "KeyboardInput.h"
 
-void KeyboardInput::Update()
+void Input::KeyboardInput::Update()
 {
 }

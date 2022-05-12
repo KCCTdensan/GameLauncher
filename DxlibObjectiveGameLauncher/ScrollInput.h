@@ -1,4 +1,5 @@
 #pragma once
+#include "DxLib.h"
 
 namespace Input {
 	class ScrollInput
@@ -6,6 +7,8 @@ namespace Input {
 	public:
 		static void Update();
 
-		static int SCHOOL_SIZE;
+		static int scrollSize;
 	};
 }
+
+int Input::ScrollInput::scrollSize = 0;
