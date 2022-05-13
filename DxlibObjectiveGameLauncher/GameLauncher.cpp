@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include <Windows.h>
+#include <thread>
 #include "ExePath.h"
 #include "ApplicationPreference.h"
 #include "SceneManager.h"

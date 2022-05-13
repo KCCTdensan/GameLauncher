@@ -1,6 +1,7 @@
 #pragma once
 #include "ObjectBase.h"
 #include "DxLib.h"
+#include "MouseInput.h"
 
 class ButtonObject :
 	public ObjectBase
@@ -20,7 +21,7 @@ public:
 
 	// Fî•ñ“o˜^“™
 	bool SetInnerColor(int _innerColor, int _hoveredColor, int _clickedColor, int _selectedColor) { innerColor = _innerColor; hoveredColor = _hoveredColor; clickedColor = _clickedColor; selectedColor = _selectedColor; return true; }
-	bool SetOutlineColor(int _outerColor, int _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
+	bool SetOutlineColor(int _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
 
 	// XV•`‰æ
 	void Update();

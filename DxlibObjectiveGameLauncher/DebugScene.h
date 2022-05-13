@@ -13,5 +13,6 @@ public:
 
 private:
     ButtonObject debugButton;
+    ButtonObject debugButton2;
 };
 

@@ -1,5 +1,10 @@
 #include "MouseInput.h"
 
+PosVec Input::MouseInput::mouse = PosVec();
+PosVec Input::MouseInput::mouseWin = PosVec();
+MouseClickType Input::MouseInput::mouseClickType = MouseClickType();
+int Input::MouseInput::mouseInputs = 0;
+
 void Input::MouseInput::Update()
 {
 	int x, y;
