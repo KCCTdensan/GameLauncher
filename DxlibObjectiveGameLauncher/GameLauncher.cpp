@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "ExePath.h"
 #include "ApplicationPreference.h"
+#include "SceneManager.h"
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) // windowsに定義された関数 ※修正不可
 {
@@ -37,10 +38,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 
+	SceneManager sceneManager;
+
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen()) // メインループ この中の条件はないとバグるもの
 	{
-		WaitKey();
-		break;
+		sceneManager.Update();
+		sceneManager.Draw();
+		if (CheckHitKeyAll()) break;
 	}
 
 	DxLib_End();

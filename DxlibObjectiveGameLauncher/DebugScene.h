@@ -3,9 +3,10 @@
 class DebugScene :
     public SceneBase
 {
+public:
     DebugScene() {}
 
-    void Update();
-    void Draw();
+    virtual void Update();
+    virtual void Draw();
 };
 

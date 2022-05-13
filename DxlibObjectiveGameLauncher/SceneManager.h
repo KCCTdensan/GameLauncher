@@ -8,6 +8,9 @@ public:
 	SceneManager();
 	~SceneManager();
 
+	void Update();
+	void Draw();
+
 protected:
-	
+	SceneBase* currentScene;
 };
