@@ -3,22 +3,41 @@
 #include "DxLib.h"
 
 class ButtonObject :
-    public ObjectBase
+	public ObjectBase
 {
 public:
-    ButtonObject(float _x, float _y, float _sx, float _sy, int _innerColor, int _outerColor, int _hoveredColor, int _clickedColor, int _selectedColor)
-        : ObjectBase(_x, _y, _sx, _sy, _innerColor, _outerColor) {
-        hoveredColor = _hoveredColor;
-        clickedColor = _clickedColor;
-        selectedColor = _selectedColor;
-    }
+	ButtonObject(PosVec _pos, PosVec _size, bool _enabledFill = true, bool _enabledOutline = false)
+		: ObjectBase(_pos, _size), enabled(true), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0) {}
 
-    void Update();
-    void Draw();
+	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
+	bool SetEnabled() { return enabled; }
+
+	// êFóLå¯âªñ≥å¯âª
+	bool SetEnabledFill(bool _enabled) { enabledFill = _enabled; return true; }
+	bool SetEnabledFill() { return enabledFill; }
+	bool SetEnabledOutline(bool _enabled) { enabledOutline = _enabled; return true; }
+	bool SetEnabledOutline() { return enabledOutline; }
+
+	// êFèÓïÒìoò^ìô
+	bool SetInnerColor(int _innerColor, int _hoveredColor, int _clickedColor, int _selectedColor) { innerColor = _innerColor; hoveredColor = _hoveredColor; clickedColor = _clickedColor; selectedColor = _selectedColor; return true; }
+	bool SetOutlineColor(int _outerColor, int _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
+
+	// çXêVï`âÊ
+	void Update();
+	void Draw();
 
 private:
-    int hoveredColor;
-    int clickedColor;
-    int selectedColor;
+	bool enabled;
+
+	int innerColor;
+	int hoveredColor;
+	int clickedColor;
+	int selectedColor;
+
+	int outerColor;
+	int outlineWidth;
+
+	bool enabledFill;
+	bool enabledOutline;
 };
 

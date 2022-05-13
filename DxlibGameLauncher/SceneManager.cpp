@@ -1,4 +1,3 @@
-#include "..\DxlibObjectiveGameLauncher\SceneManager.h"
 #include "SceneManager.hpp"
 #include "DxLib.h"
 

@@ -1,22 +1,17 @@
 #pragma once
+#include "PositionVector.h"
+
 class ObjectBase
 {
 protected:
-	ObjectBase(/* 理想としてはここに放り込んだり */ float _x, float _y, float _sx, float _sy, int _innerColor, int _outerColor) {
-		x = _x;
-		y = _y;
-		sx = _sx;
-		sy = _sy;
-		innerColor = _innerColor;
-		outerColor = _outerColor;
-	};
+	ObjectBase(PosVec _pos, PosVec _size)
+		:pos(_pos), size(_size) {}
 
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 
-	float x, y, sx, sy;
-	int innerColor;
-	int outerColor;
+	PosVec pos;
+	PosVec size;
 
 	// ここに参照渡しされた画面情報などの構造体を入れた方がいいかも？
 };
