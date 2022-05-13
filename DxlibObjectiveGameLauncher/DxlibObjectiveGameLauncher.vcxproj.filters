@@ -35,9 +35,6 @@
     <ClCompile Include="SceneBase.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="TabScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="KeyboardInput.cpp">
       <Filter>Input</Filter>
     </ClCompile>
@@ -56,6 +53,7 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="DebugScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ButtonObject.h">
@@ -94,9 +92,6 @@
     <ClInclude Include="SceneBase.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="TabScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="KeyboardInput.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -130,6 +125,7 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="DebugScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
