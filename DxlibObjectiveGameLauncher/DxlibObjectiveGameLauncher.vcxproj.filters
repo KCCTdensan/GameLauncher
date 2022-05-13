@@ -35,9 +35,6 @@
     <ClCompile Include="SceneBase.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="TabScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="KeyboardInput.cpp">
       <Filter>Input</Filter>
     </ClCompile>
@@ -53,7 +50,12 @@
     <ClCompile Include="JsonSoftwareData.cpp">
       <Filter>Json</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ButtonObject.h">
@@ -92,9 +94,6 @@
     <ClInclude Include="SceneBase.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="TabScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="KeyboardInput.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -119,9 +118,17 @@
     <ClInclude Include="PositionVector.h">
       <Filter>Struct</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="MouseClickType.h">
       <Filter>Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="PressFrameEnum.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +155,9 @@
     </Filter>
     <Filter Include="Struct">
       <UniqueIdentifier>{c3f6ab56-7af0-46e0-8692-91f16e722d2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enum">
+      <UniqueIdentifier>{34754fae-625d-4b1d-ad3e-22f88caa1c21}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

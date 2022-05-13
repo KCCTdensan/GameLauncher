@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ButtonObject.cpp" />
+    <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="FontChest.cpp" />
     <ClCompile Include="FontData.cpp" />
     <ClCompile Include="GameLauncher.cpp" />
@@ -29,11 +30,11 @@
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollInput.cpp" />
-    <ClCompile Include="TabScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationPreference.h" />
     <ClInclude Include="ButtonObject.h" />
+    <ClInclude Include="DebugScene.h" />
     <ClInclude Include="ExePath.h" />
     <ClInclude Include="FontChest.h" />
     <ClInclude Include="FontData.h" />
@@ -50,11 +51,11 @@
     <ClInclude Include="MusicData.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="PositionVector.h" />
+    <ClInclude Include="PressFrameEnum.h" />
     <ClInclude Include="ProgressObject.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScrollInput.h" />
-    <ClInclude Include="TabScene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -67,7 +68,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">

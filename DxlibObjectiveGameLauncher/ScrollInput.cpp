@@ -2,4 +2,5 @@
 
 void Input::ScrollInput::Update()
 {
+	scrollSize = GetMouseWheelRotVol();
 }

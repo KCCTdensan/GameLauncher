@@ -1,4 +1,3 @@
-#include "..\DxlibObjectiveGameLauncher\SceneManager.h"
 #include "SceneManager.hpp"
 #include "DxLib.h"
 
@@ -15,9 +14,6 @@ SceneManager::SceneManager(ObjectManager &objectManager, Json& json, JsonManager
 	sceneSave[(int)SCENE::TAB_PICTURE]	= new SceneProc(objectManager, json, jsonManager, SCENE::TAB_PICTURE);
 }
 
-SceneManager::SceneManager()
-{
-}
 
 SceneManager::~SceneManager()
 {
