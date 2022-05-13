@@ -15,7 +15,7 @@ public:
 	// F—LŒø‰»–³Œø‰»
 	bool SetEnabledFill(bool _enabled) { enabledFill = _enabled; return true; }
 	bool SetEnabledFill() { return enabledFill; }
-	bool SetEnabledOutline(bool _enabled) { enabledOutline = _enabled; return true; }
+	bool SetEnabledOutline(bool _enabled, float _outlineWidth = 1) { enabledOutline = _enabled; outlineWidth = (enabledOutline) ? _outlineWidth : 0; return true; }
 	bool SetEnabledOutline() { return enabledOutline; }
 
 	// Fî•ñ“o˜^“™
@@ -35,7 +35,7 @@ private:
 	int selectedColor;
 
 	int outerColor;
-	int outlineWidth;
+	float outlineWidth;
 
 	bool enabledFill;
 	bool enabledOutline;

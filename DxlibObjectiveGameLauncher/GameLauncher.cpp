@@ -42,7 +42,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen()) // メインループ この中の条件はないとバグるもの
 	{
-		sceneManager.Update();
+		sceneManager.Update(); // ループ内で継続して使用，ヘッダーはそれぞれでインスタンス化してください
 		sceneManager.Draw();
 		if (CheckHitKeyAll()) break;
 	}
