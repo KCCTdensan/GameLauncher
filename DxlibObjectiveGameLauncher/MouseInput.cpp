@@ -9,7 +9,8 @@ void Input::MouseInput::Update()
 {
 	int x, y;
 	GetMousePoint(&x, &y);
-	mouse.x, mouse.y = (float)x, (float)y;
+	mouse.x = (float)x;
+	mouse.y = (float)y;
 
 	mouseWin.x = static_cast<float>(mouse.x /* * WINDOW_SIZE_RATE_TIME */);
 	mouseWin.y = static_cast<float>(mouse.y /* * WINDOW_SIZE_RATE_TIME */);

@@ -2,13 +2,16 @@
 #include "ObjectBase.h"
 #include "DxLib.h"
 #include "MouseInput.h"
+#include <string>
 
 class ButtonObject :
 	public ObjectBase
 {
 public:
 	ButtonObject(PosVec _pos, PosVec _size, bool _enabledFill = true, bool _enabledOutline = false)
-		: ObjectBase(_pos, _size), enabled(true), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0) {}
+		: ObjectBase(_pos, _size), enabled(true), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0),
+		mouseHit(false), currentInnerColor(0)
+	{}
 
 	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
 	bool SetEnabled() { return enabled; }
@@ -28,6 +31,10 @@ public:
 	void Draw();
 
 private:
+
+	void CollideMouse();
+
+private:
 	bool enabled;
 
 	int innerColor;
@@ -40,5 +47,10 @@ private:
 
 	bool enabledFill;
 	bool enabledOutline;
+
+	/******************/
+
+	int currentInnerColor;
+	bool mouseHit;
 };
 

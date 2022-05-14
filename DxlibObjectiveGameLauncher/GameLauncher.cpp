@@ -3,6 +3,7 @@
 #include <thread>
 #include <future>
 #include <chrono>
+#include <string>
 #include <iostream>
 #include "ExePath.h"
 #include "ApplicationPreference.h"
@@ -47,6 +48,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 
+	SetGraphMode((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, 32);
+
 	SceneManager sceneManager;
 
 	std::thread inputUpdate(InputUpdate);
@@ -72,7 +75,12 @@ void ApplicationUpdate(SceneManager* _sceneManager) {
 	{
 		_sceneManager->Update(); // ループ内で継続して使用，ヘッダーはそれぞれでインスタンス化してください
 		_sceneManager->Draw();
-		if (CheckHitKeyAll()) {
+
+		std::string tmp = std::to_string(Input::MouseInput::GetMouse().x);
+		std::string tmp2 = std::to_string(Input::MouseInput::GetMouse().y);
+		DrawString(500, 500, tmp.c_str(), GetColor(255, 255, 255));
+
+		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 			MainThread::SetEnd(true);
 		}
 		OutputDebugString("AppDraw\n");;
