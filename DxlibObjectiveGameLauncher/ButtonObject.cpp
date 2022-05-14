@@ -12,6 +12,14 @@ void ButtonObject::Update()
 		currentInnerColor = innerColor;
 	}
 
+	if (mouseSelected) {
+		currentInnerColor = selectedColor;
+	}
+
+	if (mouseClicked) {
+		currentInnerColor = clickedColor;
+	}
+
 	if (!enabled) return;
 
 }
@@ -38,8 +46,21 @@ void ButtonObject::CollideMouse()
 		pos.y + size.y >= Input::MouseInput::GetMouse().y) {
 
 		mouseHit = true;
+
+		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
+			mouseClicked = true;
+			mouseSelected = true;
+		}
+		else {
+			mouseClicked = false;
+		}
 	}
 	else {
 		mouseHit = false;
+		mouseClicked = false;
+
+		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
+			mouseSelected = false;
+		}
 	}
 }
