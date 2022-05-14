@@ -11,6 +11,10 @@ namespace Input {
 		static void Update();
 		static PosVec GetMouse() { return mouse; }
 		static PosVec GetMouseWindow() { return mouseWin; }
+		static int GetClick(int _button);
+
+	private:
+		static void UpdateClick(int* _value, int _andValue);
 
 	private:
 
