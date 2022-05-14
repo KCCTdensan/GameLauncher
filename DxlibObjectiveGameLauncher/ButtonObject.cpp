@@ -54,6 +54,9 @@ void ButtonObject::CollideMouse()
 
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
 			mouseClicked = true;
+
+			// 重複中の別オブジェ対策
+			if (ObjectOverlapping<ButtonObject>::GetObj() != this) mouseSelected = false;
 		}
 		else {
 			mouseClicked = false;
