@@ -1,10 +1,13 @@
 #include "ButtonObject.h"
 
+void ButtonObject::Collide()
+{
+	CollideMouse();
+}
+
 void ButtonObject::Update()
 {
 	// アニメーション記述をする場合，ここに記述
-	CollideMouse();
-
 	if (mouseHit) {
 		currentInnerColor = hoveredColor;
 	}
@@ -40,6 +43,8 @@ void ButtonObject::Draw()
 
 void ButtonObject::CollideMouse()
 {
+	bool beforeMouseClicked = mouseClicked;
+
 	if (pos.x <= Input::MouseInput::GetMouse().x &&
 		pos.x + size.x >= Input::MouseInput::GetMouse().x &&
 		pos.y <= Input::MouseInput::GetMouse().y &&
@@ -49,11 +54,13 @@ void ButtonObject::CollideMouse()
 
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
 			mouseClicked = true;
-			mouseSelected = true;
 		}
 		else {
 			mouseClicked = false;
 		}
+
+		// オブジェクトの重複判定登録処理
+		ObjectOverlapping<ButtonObject>::UpdateObject(this);
 	}
 	else {
 		mouseHit = false;
@@ -62,5 +69,9 @@ void ButtonObject::CollideMouse()
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
 			mouseSelected = false;
 		}
+	}
+
+	if (beforeMouseClicked && !mouseClicked) {
+		mouseSelected = true;
 	}
 }

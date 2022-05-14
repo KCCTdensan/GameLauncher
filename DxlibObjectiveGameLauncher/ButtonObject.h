@@ -2,6 +2,7 @@
 #include "ObjectBase.h"
 #include "DxLib.h"
 #include "MouseInput.h"
+#include "ObjectOverlapping.h"
 #include "PressFrameEnum.h"
 #include <string>
 
@@ -28,8 +29,12 @@ public:
 	bool SetOutlineColor(int _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
 
 	// 更新描画
+	void Collide();
 	void Update();
 	void Draw();
+
+	// 上にレイヤが重なっていた場合の解除処理
+	bool SetNoMouse() { mouseHit = false; mouseClicked = false; return true; }
 
 private:
 

@@ -32,6 +32,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		return -1; // 初期化失敗の場合は終了 ※基本は問題ない
 	}
 
+	MSG msg;
+
 #if _DEBUG // DEBUGの時の宣言 現時点で特に記述はなし
 	// .vcxprojのディレクトリに放り込む
 #else
@@ -52,11 +54,34 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SceneManager sceneManager;
 
-	std::thread inputUpdate(InputUpdate);
-	std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
+	//std::thread inputUpdate(InputUpdate);
+	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
 
-	inputUpdate.join();
-	applicationUpdate.join();
+	//while (!ProcessMessage() && !ScreenFlip()) {
+	//	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+	//		MainThread::SetEnd(true);
+	//		break;
+	//	}
+	//	std::this_thread::sleep_for(std::chrono::milliseconds(10));
+	//}
+	while (!ScreenFlip() && !ClearDrawScreen() && !MainThread::SetEnd()) // メインループ この中の条件はないとバグるもの
+	{
+		GetMessage(&msg, NULL, 0, 0);
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+		SetDrawScreen(DX_SCREEN_BACK);
+		Input::MouseInput::Update();
+		sceneManager.Update(); // ループ内で継続して使用，ヘッダーはそれぞれでインスタンス化してください
+		sceneManager.Draw();
+
+		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+			MainThread::SetEnd(true);
+			break;
+		}
+	}
+	
+	//inputUpdate.join();
+	//applicationUpdate.join();
 
 	DxLib_End();
 	return 0;
@@ -64,9 +89,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 void InputUpdate() {
 	while (!MainThread::SetEnd()) {
+
 		Input::MouseInput::Update();
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
-		OutputDebugString("Updated\n");
 	}
 }
 
@@ -76,13 +101,8 @@ void ApplicationUpdate(SceneManager* _sceneManager) {
 		_sceneManager->Update(); // ループ内で継続して使用，ヘッダーはそれぞれでインスタンス化してください
 		_sceneManager->Draw();
 
-		std::string tmp = std::to_string(Input::MouseInput::GetMouse().x);
+		/*std::string tmp = std::to_string(Input::MouseInput::GetMouse().x);
 		std::string tmp2 = std::to_string(Input::MouseInput::GetMouse().y);
-		DrawString(500, 500, tmp.c_str(), GetColor(255, 255, 255));
-
-		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-			MainThread::SetEnd(true);
-		}
-		OutputDebugString("AppDraw\n");;
+		DrawString(500, 500, tmp.c_str(), GetColor(255, 255, 255));*/
 	}
 }
