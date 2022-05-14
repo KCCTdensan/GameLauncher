@@ -9,21 +9,52 @@ void Input::MouseInput::Update()
 {
 	int x, y;
 	GetMousePoint(&x, &y);
-	mouse.x, mouse.y = (float)x, (float)y;
+	mouse.x = (float)x;
+	mouse.y = (float)y;
 
 	mouseWin.x = static_cast<float>(mouse.x /* * WINDOW_SIZE_RATE_TIME */);
 	mouseWin.y = static_cast<float>(mouse.y /* * WINDOW_SIZE_RATE_TIME */);
 	mouseInputs = GetMouseInput();
-	if ((mouseInputs & MOUSE_INPUT_LEFT) != 0)
+
+	UpdateClick(&mouseClickType.left, MOUSE_INPUT_LEFT);
+	UpdateClick(&mouseClickType.right, MOUSE_INPUT_RIGHT);
+	UpdateClick(&mouseClickType.middle, MOUSE_INPUT_MIDDLE);
+	UpdateClick(&mouseClickType.mouse4, MOUSE_INPUT_4);
+	UpdateClick(&mouseClickType.mouse5, MOUSE_INPUT_5);
+}
+
+int Input::MouseInput::GetClick(int _button)
+{
+	switch (_button) // MOUSE_INPUT_XX
 	{
-		if (mouseClickType.left >= PressFrame::FIRST) {
-			mouseClickType.left = PressFrame::MUCH;
+	case MOUSE_INPUT_LEFT:
+		return mouseClickType.left;
+	case MOUSE_INPUT_RIGHT:
+		return mouseClickType.right;
+	case MOUSE_INPUT_MIDDLE:
+		return mouseClickType.middle;
+	case MOUSE_INPUT_4:
+		return mouseClickType.mouse4;
+	case MOUSE_INPUT_5:
+		return mouseClickType.mouse5;
+	default:
+		return -1;
+	}
+	return -1;
+}
+
+void Input::MouseInput::UpdateClick(int* _value, int _andValue)
+{
+	if ((mouseInputs & _andValue) != 0)
+	{
+		if (*_value >= PressFrame::FIRST) {
+			*_value = PressFrame::MUCH;
 		}
 		else {
-			mouseClickType.left = PressFrame::FIRST;
+			*_value = PressFrame::FIRST;
 		}
 	}
 	else {
-		mouseClickType.left = PressFrame::ZERO;
+		*_value = PressFrame::ZERO;
 	}
 }

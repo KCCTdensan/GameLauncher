@@ -21,15 +21,18 @@
     <ClCompile Include="ImageData.cpp" />
     <ClCompile Include="JsonSoftwareData.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
+    <ClCompile Include="MainThreadValue.cpp" />
     <ClCompile Include="MouseInput.cpp" />
     <ClCompile Include="MovieChest.cpp" />
     <ClCompile Include="MovieData.cpp" />
     <ClCompile Include="MusicChest.cpp" />
     <ClCompile Include="MusicData.cpp" />
+    <ClCompile Include="ObjectOverlapping.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollInput.cpp" />
+    <ClCompile Include="WindowHolding.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationPreference.h" />
@@ -43,6 +46,7 @@
     <ClInclude Include="ImageData.h" />
     <ClInclude Include="JsonSoftwareData.h" />
     <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="MainThreadValue.h" />
     <ClInclude Include="MouseClickType.h" />
     <ClInclude Include="MouseInput.h" />
     <ClInclude Include="MovieChest.h" />
@@ -50,12 +54,14 @@
     <ClInclude Include="MusicChest.h" />
     <ClInclude Include="MusicData.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="ObjectOverlapping.h" />
     <ClInclude Include="PositionVector.h" />
     <ClInclude Include="PressFrameEnum.h" />
     <ClInclude Include="ProgressObject.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScrollInput.h" />
+    <ClInclude Include="WindowHolding.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

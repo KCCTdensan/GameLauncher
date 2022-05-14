@@ -56,6 +56,13 @@
     <ClCompile Include="DebugScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="MainThreadValue.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectOverlapping.cpp">
+      <Filter>Objects\Overlapping</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowHolding.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ButtonObject.h">
@@ -130,6 +137,13 @@
     <ClInclude Include="DebugScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="MainThreadValue.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectOverlapping.h">
+      <Filter>Objects\Overlapping</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowHolding.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -158,6 +172,15 @@
     </Filter>
     <Filter Include="Enum">
       <UniqueIdentifier>{34754fae-625d-4b1d-ad3e-22f88caa1c21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{2bceac65-f292-4e65-b509-74606581ba7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Overlapping">
+      <UniqueIdentifier>{d209b252-a02e-45bc-b5e4-dedf214244b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{928adc77-b9cd-45d0-8b27-e3091883ed7b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
