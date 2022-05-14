@@ -21,6 +21,7 @@
     <ClCompile Include="ImageData.cpp" />
     <ClCompile Include="JsonSoftwareData.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
+    <ClCompile Include="MainThreadValue.cpp" />
     <ClCompile Include="MouseInput.cpp" />
     <ClCompile Include="MovieChest.cpp" />
     <ClCompile Include="MovieData.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="ImageData.h" />
     <ClInclude Include="JsonSoftwareData.h" />
     <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="MainThreadValue.h" />
     <ClInclude Include="MouseClickType.h" />
     <ClInclude Include="MouseInput.h" />
     <ClInclude Include="MovieChest.h" />

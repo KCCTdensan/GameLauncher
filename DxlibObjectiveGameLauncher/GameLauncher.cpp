@@ -1,9 +1,17 @@
 #include "DxLib.h"
 #include <Windows.h>
 #include <thread>
+#include <future>
+#include <chrono>
+#include <iostream>
 #include "ExePath.h"
 #include "ApplicationPreference.h"
+#include "MouseInput.h"
 #include "SceneManager.h"
+#include "MainThreadValue.h"
+
+void InputUpdate(); // threadA
+void ApplicationUpdate(SceneManager* _sceneManager); // threadB
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) // windowsに定義された関数 ※修正不可
 {
@@ -41,13 +49,32 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SceneManager sceneManager;
 
-	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen()) // メインループ この中の条件はないとバグるもの
-	{
-		sceneManager.Update(); // ループ内で継続して使用，ヘッダーはそれぞれでインスタンス化してください
-		sceneManager.Draw();
-		if (CheckHitKeyAll()) break;
-	}
+	std::thread inputUpdate(InputUpdate);
+	std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
+
+	inputUpdate.join();
+	applicationUpdate.join();
 
 	DxLib_End();
 	return 0;
+}
+
+void InputUpdate() {
+	while (!MainThread::SetEnd()) {
+		Input::MouseInput::Update();
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		OutputDebugString("Updated\n");
+	}
+}
+
+void ApplicationUpdate(SceneManager* _sceneManager) {
+	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen() && !MainThread::SetEnd()) // メインループ この中の条件はないとバグるもの
+	{
+		_sceneManager->Update(); // ループ内で継続して使用，ヘッダーはそれぞれでインスタンス化してください
+		_sceneManager->Draw();
+		if (CheckHitKeyAll()) {
+			MainThread::SetEnd(true);
+		}
+		OutputDebugString("AppDraw\n");;
+	}
 }
