@@ -62,6 +62,7 @@
     <ClCompile Include="ObjectOverlapping.cpp">
       <Filter>Objects\Overlapping</Filter>
     </ClCompile>
+    <ClCompile Include="WindowHolding.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ButtonObject.h">
@@ -142,6 +143,7 @@
     <ClInclude Include="ObjectOverlapping.h">
       <Filter>Objects\Overlapping</Filter>
     </ClInclude>
+    <ClInclude Include="WindowHolding.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -176,6 +178,9 @@
     </Filter>
     <Filter Include="Objects\Overlapping">
       <UniqueIdentifier>{d209b252-a02e-45bc-b5e4-dedf214244b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{928adc77-b9cd-45d0-8b27-e3091883ed7b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

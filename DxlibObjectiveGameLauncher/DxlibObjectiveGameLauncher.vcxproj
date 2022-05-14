@@ -32,6 +32,7 @@
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollInput.cpp" />
+    <ClCompile Include="WindowHolding.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationPreference.h" />
@@ -60,6 +61,7 @@
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScrollInput.h" />
+    <ClInclude Include="WindowHolding.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
