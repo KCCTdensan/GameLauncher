@@ -2,19 +2,18 @@
 #include "SceneBase.h"
 #include "ButtonObject.h"
 #include "SceneManager.h"
-#include "HomeScene.h"
+#include "DebugScene.h"
 
-class DebugScene :
+class HomeScene :
     public SceneBase
 {
 public:
-    DebugScene();
+    HomeScene();
 
     void Update();
     void Draw();
 
-private:
+private :
     ButtonObject debugButton;
-    ButtonObject debugButton2;
 };
 

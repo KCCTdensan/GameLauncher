@@ -18,6 +18,7 @@
     <ClCompile Include="FontData.cpp" />
     <ClCompile Include="GameLauncher.cpp" />
     <ClCompile Include="Header.cpp" />
+    <ClCompile Include="HomeScene.cpp" />
     <ClCompile Include="ImageChest.cpp" />
     <ClCompile Include="ImageData.cpp" />
     <ClCompile Include="JsonSoftwareData.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="MovieData.cpp" />
     <ClCompile Include="MusicChest.cpp" />
     <ClCompile Include="MusicData.cpp" />
+    <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
     <ClCompile Include="SceneBase.cpp" />
@@ -43,6 +45,7 @@
     <ClInclude Include="FontChest.h" />
     <ClInclude Include="FontData.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="HomeScene.h" />
     <ClInclude Include="ImageChest.h" />
     <ClInclude Include="ImageData.h" />
     <ClInclude Include="JsonSoftwareData.h" />

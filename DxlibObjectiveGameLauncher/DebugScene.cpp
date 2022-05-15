@@ -18,6 +18,11 @@ void DebugScene::Update()
 
 	debugButton.Update();
 	debugButton2.Update();
+
+	if (debugButton.GetMouseSelected()) {
+		debugButton.SetMouseOff();
+		SceneManager::ChangeScene("home", new HomeScene());
+	}
 }
 
 void DebugScene::Draw()
