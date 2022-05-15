@@ -32,6 +32,7 @@
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
+    <ClCompile Include="RectangleObject.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollInput.cpp" />
@@ -62,6 +63,7 @@
     <ClInclude Include="PositionVector.h" />
     <ClInclude Include="PressFrameEnum.h" />
     <ClInclude Include="ProgressObject.h" />
+    <ClInclude Include="RectangleObject.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScrollInput.h" />
