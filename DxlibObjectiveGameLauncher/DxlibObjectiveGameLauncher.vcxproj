@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ApplicationPreference.cpp" />
     <ClCompile Include="ButtonObject.cpp" />
     <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="FontChest.cpp" />

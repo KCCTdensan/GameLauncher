@@ -11,12 +11,19 @@
 #include "SceneManager.h"
 #include "MainThreadValue.h"
 #include "WindowHolding.h"
+#include "DebugScene.h"
 
-void InputUpdate(); // threadA
-void ApplicationUpdate(SceneManager* _sceneManager); // threadB
+/*void InputUpdate(); // threadA
+void ApplicationUpdate(SceneManager* _sceneManager); // threadB*/
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) // windowsに定義された関数 ※修正不可
 {
+#if _DEBUG // DEBUGの時の宣言 現時点で特に記述はなし
+	// .vcxprojのディレクトリに放り込む
+#else
+	SetCurrentDirectory(exePath.GetPath());//こちらにも完成時にCopy&Paste
+#endif
+
 	const HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle(); // ウインドウハンドル取得 ※修正不可
 
 	SetMultiThreadFlag(TRUE); // マルチスレッド対応
@@ -39,15 +46,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	}
 
 	MSG msg;
-	//RECT rect;
 
 	PosVec monitorSize((float)GetSystemMetrics(SM_CXSCREEN), (float)GetSystemMetrics(SM_CYSCREEN));
-
-#if _DEBUG // DEBUGの時の宣言 現時点で特に記述はなし
-	// .vcxprojのディレクトリに放り込む
-#else
-	SetCurrentDirectory(exePath.GetPath());//こちらにも完成時にCopy&Paste
-#endif
 
 	SetMouseDispFlag(TRUE); // マウスを表示するか。全画面ではデフォでは表示されないため
 
@@ -60,9 +60,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetWindowSize((int)(monitorSize.x) * 4 / 5, (int)monitorSize.y * 4 / 5);
 	SetWindowMinSize((int)(monitorSize.x) / 4, (int)(monitorSize.y) / 4);
 
-
-
-	SceneManager sceneManager;
+	//SceneManager::AddScene("debug", new DebugScene());
+	SceneManager::ChangeScene("debug", new DebugScene());
 
 	//std::thread inputUpdate(InputUpdate);
 	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
@@ -75,8 +74,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		WindowHolding::Update();
 		SetDrawScreen(DX_SCREEN_BACK);
 		Input::MouseInput::Update();
-		sceneManager.Update(); // ループ内で継続して使用，ヘッダーはそれぞれでインスタンス化してください
-		sceneManager.Draw();
+		SceneManager::Update();
+		SceneManager::Draw();
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 			MainThread::SetEnd(true);
@@ -91,7 +90,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	return 0;
 }
 
-void InputUpdate() {
+/*void InputUpdate() {
 	while (!MainThread::SetEnd()) {
 
 		Input::MouseInput::Update();
@@ -105,8 +104,8 @@ void ApplicationUpdate(SceneManager* _sceneManager) {
 		_sceneManager->Update(); // ループ内で継続して使用，ヘッダーはそれぞれでインスタンス化してください
 		_sceneManager->Draw();
 
-		/*std::string tmp = std::to_string(Input::MouseInput::GetMouse().x);
+		std::string tmp = std::to_string(Input::MouseInput::GetMouse().x);
 		std::string tmp2 = std::to_string(Input::MouseInput::GetMouse().y);
-		DrawString(500, 500, tmp.c_str(), GetColor(255, 255, 255));*/
+		DrawString(500, 500, tmp.c_str(), GetColor(255, 255, 255));
 	}
-}
+}*/
