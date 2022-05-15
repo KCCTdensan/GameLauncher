@@ -1,5 +1,7 @@
 #pragma once
 #include "MouseInput.h"
+#include "ApplicationPreference.h"
+
 class WindowHolding
 {
 public:

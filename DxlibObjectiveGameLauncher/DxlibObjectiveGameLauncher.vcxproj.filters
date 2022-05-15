@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="GameLauncher.cpp" />
-    <ClCompile Include="ButtonObject.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="ProgressObject.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
@@ -53,21 +50,33 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="DebugScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="MainThreadValue.cpp">
       <Filter>Thread</Filter>
     </ClCompile>
     <ClCompile Include="ObjectOverlapping.cpp">
       <Filter>Objects\Overlapping</Filter>
     </ClCompile>
-    <ClCompile Include="WindowHolding.cpp" />
+    <ClCompile Include="ApplicationPreference.cpp">
+      <Filter>Static</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowHolding.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugScene.cpp">
+      <Filter>Scenes\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="HomeScene.cpp">
+      <Filter>Scenes\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectBase.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonObject.cpp">
+      <Filter>Objects\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ButtonObject.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="ProgressObject.h">
       <Filter>Objects</Filter>
     </ClInclude>
@@ -134,16 +143,25 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="DebugScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="MainThreadValue.h">
       <Filter>Thread</Filter>
     </ClInclude>
     <ClInclude Include="ObjectOverlapping.h">
       <Filter>Objects\Overlapping</Filter>
     </ClInclude>
-    <ClInclude Include="WindowHolding.h" />
+    <ClInclude Include="WindowHolding.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugScene.h">
+      <Filter>Scenes\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeScene.h">
+      <Filter>Scenes\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonObject.h">
+      <Filter>Objects\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -181,6 +199,15 @@
     </Filter>
     <Filter Include="Window">
       <UniqueIdentifier>{928adc77-b9cd-45d0-8b27-e3091883ed7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pages">
+      <UniqueIdentifier>{030fe8bd-2338-4a29-8e44-271fb9217f4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Button">
+      <UniqueIdentifier>{fd5772b1-3fdf-4fae-82c5-bd7ed86c9208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Rectangle">
+      <UniqueIdentifier>{0ec7aa0d-ea5b-42a7-862a-3019d0b4336a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

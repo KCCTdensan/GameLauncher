@@ -11,5 +11,3 @@ public:
 private:
 	static PosVec backgroundSize;
 };
-
-PosVec ApplicationPreference::backgroundSize = PosVec(1920, 1080);
