@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationPreference.cpp" />
+    <ClCompile Include="BlankRedirectScene.cpp" />
     <ClCompile Include="ButtonObject.cpp" />
     <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="FontChest.cpp" />
@@ -40,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationPreference.h" />
+    <ClInclude Include="BlankRedirectScene.h" />
     <ClInclude Include="ButtonObject.h" />
     <ClInclude Include="DebugScene.h" />
     <ClInclude Include="ExePath.h" />
@@ -66,6 +68,7 @@
     <ClInclude Include="RectangleObject.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SceneSet.h" />
     <ClInclude Include="ScrollInput.h" />
     <ClInclude Include="WindowHolding.h" />
   </ItemGroup>

@@ -8,6 +8,9 @@ public:
 		return backgroundSize;
 	}
 
+public:
+	inline static constexpr int sceneHistories = 4;
+
 private:
 	static PosVec backgroundSize;
 };

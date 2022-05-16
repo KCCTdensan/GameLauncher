@@ -61,7 +61,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetWindowMinSize((int)(monitorSize.x) / 4, (int)(monitorSize.y) / 4);
 
 	//SceneManager::AddScene("debug", new DebugScene());
-	SceneManager::ChangeScene("debug", new DebugScene());
+	SceneManager::ChangeScene("debug", new DebugScene(), false);
 
 	//std::thread inputUpdate(InputUpdate);
 	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
@@ -76,6 +76,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		Input::MouseInput::Update();
 		SceneManager::Update();
 		SceneManager::Draw();
+
+		// Ç«Ç±Ç©Ç…ÉNÉâÉXÇçÏÇËà⁄Ç∑ debug
+		if (Input::MouseInput::GetClick(MOUSE_INPUT_5) == PressFrame::FIRST)
+			SceneManager::ChangeSceneForward();
+		if (Input::MouseInput::GetClick(MOUSE_INPUT_4) == PressFrame::FIRST)
+			SceneManager::ChangeSceneBackward();
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 			MainThread::SetEnd(true);

@@ -2,6 +2,8 @@
 
 SceneBase* SceneManager::currentScene = nullptr;
 std::map<std::string, SceneBase*> SceneManager::scenes;
+std::array<SceneSet, ApplicationPreference::sceneHistories> SceneManager::sceneHistory{ SceneSet("_blank", new BlankRedirectScene()) ,SceneSet("_blank", new BlankRedirectScene()) ,SceneSet("_blank", new BlankRedirectScene()) ,SceneSet("_blank", new BlankRedirectScene()) };
+int SceneManager::sceneHistoryPosition = 0;
 
 bool SceneManager::AddScene(std::string sceneName, SceneBase* scene)
 {
@@ -18,8 +20,11 @@ bool SceneManager::CheckScene(std::string sceneName)
 
 bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool addSceneToMap)
 {
-	if (scenes.count(sceneName) >= 1)
+	bool changed = false;
+	if (scenes.count(sceneName) >= 1) {
 		currentScene = scenes[sceneName];
+		changed = true;
+	}
 	else {
 		if (addSceneToMap) {
 			AddScene(sceneName, altScene);
@@ -27,8 +32,31 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 		}
 		else {
 			currentScene = altScene;
+			changed = true;
 		}
 	}
+	if (changed) {
+		std::rotate(sceneHistory.begin(), sceneHistory.begin() + ApplicationPreference::sceneHistories - 1, sceneHistory.end());
+		sceneHistory[0] = SceneSet(sceneName, currentScene);
+	}
+	return true;
+}
+
+bool SceneManager::ChangeSceneBackward()
+{
+	sceneHistoryPosition++;
+	if (sceneHistoryPosition >= ApplicationPreference::sceneHistories)
+		sceneHistoryPosition = ApplicationPreference::sceneHistories - 1;
+	currentScene = sceneHistory[sceneHistoryPosition].scene;
+	return true;
+}
+
+bool SceneManager::ChangeSceneForward()
+{
+	sceneHistoryPosition--;
+	if (sceneHistoryPosition < 0)
+		sceneHistoryPosition = 0;
+	currentScene = sceneHistory[sceneHistoryPosition].scene;
 	return true;
 }
 

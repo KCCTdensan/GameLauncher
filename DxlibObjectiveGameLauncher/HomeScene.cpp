@@ -15,7 +15,7 @@ void HomeScene::Update()
 
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
-		SceneManager::ChangeScene("debug", new DebugScene());
+		SceneManager::ChangeScene("debug", new DebugScene(), false);
 	}
 }
 

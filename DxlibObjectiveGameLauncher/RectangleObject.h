@@ -6,7 +6,7 @@ class RectangleObject :
 {
 public:
 	RectangleObject(PosVec _pos, PosVec _size, bool _enabledFill = true, bool _enabledOutline = false)
-		: ObjectBase(_pos, _size), enabled(true), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), outerColor(0), outlineWidth(0) {}
+		: ObjectBase(_pos, _size), enabled(true), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), outerColor(0), outlineWidth(0), currentInnerColor(0) {}
 
 	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
 	bool SetEnabled() { return enabled; }
