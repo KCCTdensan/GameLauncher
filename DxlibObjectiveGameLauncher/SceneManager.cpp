@@ -36,6 +36,7 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 		}
 	}
 	if (changed) {
+		Update();
 		std::rotate(sceneHistory.begin(), sceneHistory.begin() + ApplicationPreference::sceneHistories - 1, sceneHistory.end());
 		sceneHistory[0] = SceneSet(sceneName, currentScene);
 	}
