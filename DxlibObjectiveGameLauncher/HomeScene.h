@@ -3,6 +3,7 @@
 #include "ButtonObject.h"
 #include "SceneManager.h"
 #include "DebugScene.h"
+#include "Header.h"
 
 class HomeScene :
     public SceneBase

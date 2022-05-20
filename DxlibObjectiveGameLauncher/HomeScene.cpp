@@ -11,15 +11,21 @@ void HomeScene::Update()
 {
 	debugButton.Collide();
 
+	Header::Collide();
+
 	debugButton.Update();
+
+	Header::Update();
 
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
-		SceneManager::ChangeScene("debug", new DebugScene());
+		SceneManager::ChangeScene("debug", new DebugScene(), false);
 	}
 }
 
 void HomeScene::Draw()
 {
 	debugButton.Draw();
+
+	Header::Draw();
 }

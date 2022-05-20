@@ -22,6 +22,8 @@ void DebugScene::Update()
 	debugButton.Collide();
 	debugButton2.Collide();
 
+	Header::Collide();
+
 	bg.Update();
 
 	debugButton.Update();
@@ -29,9 +31,11 @@ void DebugScene::Update()
 
 	debugRect.Update();
 
+	Header::Update();
+
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
-		SceneManager::ChangeScene("home", new HomeScene());
+		SceneManager::ChangeScene("home", new HomeScene(), false);
 	}
 }
 
@@ -43,4 +47,6 @@ void DebugScene::Draw()
 	debugButton2.Draw();
 
 	debugRect.Draw();
+
+	Header::Draw();
 }

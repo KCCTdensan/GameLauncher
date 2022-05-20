@@ -75,6 +75,7 @@
       <Filter>Objects\Button</Filter>
     </ClCompile>
     <ClCompile Include="RectangleObject.cpp" />
+    <ClCompile Include="BlankRedirectScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProgressObject.h">
@@ -162,6 +163,10 @@
       <Filter>Objects\Button</Filter>
     </ClInclude>
     <ClInclude Include="RectangleObject.h" />
+    <ClInclude Include="SceneSet.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="BlankRedirectScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
