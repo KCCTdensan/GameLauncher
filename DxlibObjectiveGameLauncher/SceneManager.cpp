@@ -2,8 +2,19 @@
 
 SceneBase* SceneManager::currentScene = nullptr;
 std::map<std::string, SceneBase*> SceneManager::scenes;
-std::array<SceneSet, ApplicationPreference::sceneHistories> SceneManager::sceneHistory{ SceneSet("_blank", new BlankRedirectScene()) ,SceneSet("_blank", new BlankRedirectScene()) ,SceneSet("_blank", new BlankRedirectScene()) ,SceneSet("_blank", new BlankRedirectScene()) };
+std::array<SceneSet, ApplicationPreference::sceneHistories> SceneManager::sceneHistory{};
 int SceneManager::sceneHistoryPosition = 0;
+bool SceneManager::beInitialized = false;
+
+void SceneManager::Initialize()
+{
+	if (beInitialized) return;
+
+	Header::Initialize();
+	sceneHistory.fill(SceneSet("_blank", new BlankRedirectScene()));
+
+	beInitialized = true;
+}
 
 bool SceneManager::AddScene(std::string sceneName, SceneBase* scene)
 {

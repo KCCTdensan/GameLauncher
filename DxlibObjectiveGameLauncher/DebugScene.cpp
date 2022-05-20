@@ -22,12 +22,16 @@ void DebugScene::Update()
 	debugButton.Collide();
 	debugButton2.Collide();
 
+	Header::Collide();
+
 	bg.Update();
 
 	debugButton.Update();
 	debugButton2.Update();
 
 	debugRect.Update();
+
+	Header::Update();
 
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
@@ -43,4 +47,6 @@ void DebugScene::Draw()
 	debugButton2.Draw();
 
 	debugRect.Draw();
+
+	Header::Draw();
 }

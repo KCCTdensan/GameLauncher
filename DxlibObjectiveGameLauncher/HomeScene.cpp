@@ -11,7 +11,11 @@ void HomeScene::Update()
 {
 	debugButton.Collide();
 
+	Header::Collide();
+
 	debugButton.Update();
+
+	Header::Update();
 
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
@@ -22,4 +26,6 @@ void HomeScene::Update()
 void HomeScene::Draw()
 {
 	debugButton.Draw();
+
+	Header::Draw();
 }

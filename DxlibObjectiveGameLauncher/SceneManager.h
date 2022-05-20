@@ -8,6 +8,7 @@
 #include "DebugScene.h"
 #include "ApplicationPreference.h"
 #include "BlankRedirectScene.h"
+#include "Header.h"
 
 class SceneManager {
 public:
@@ -17,10 +18,15 @@ public:
 	static bool ChangeScene(std::string sceneName, SceneBase* altScene, bool addSceneToMap = true);
 	static bool ChangeSceneBackward();
 	static bool ChangeSceneForward();
+	static int GetSceneHistoryPosition() { return sceneHistoryPosition; }
+
+	static void Initialize();
+
 	static void Update();
 	static void Draw();
 
-protected:
+private:
+	static bool beInitialized;
 	static SceneBase* currentScene;
 	static std::map<std::string, SceneBase*> scenes;
 	static std::array<SceneSet, ApplicationPreference::sceneHistories> sceneHistory;

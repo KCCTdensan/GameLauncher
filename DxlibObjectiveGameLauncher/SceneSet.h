@@ -7,4 +7,5 @@ struct SceneSet {
 	SceneBase* scene;
 
 	SceneSet(std::string _sceneName, SceneBase* _scene) : sceneName(_sceneName), scene(_scene) {}
+	SceneSet() : sceneName(""), scene(nullptr) {}
 };

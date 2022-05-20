@@ -15,6 +15,11 @@ public:
 		currentInnerColor(0)
 	{}
 
+	ButtonObject()
+		: ObjectBase(PosVec(), PosVec()), enabled(true), enabledFill(true), enabledOutline(false), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0),
+		currentInnerColor(0)
+	{}
+
 	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
 	bool SetEnabled() { return enabled; }
 

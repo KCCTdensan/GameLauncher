@@ -6,6 +6,8 @@
 #include "HomeScene.h"
 #include "ApplicationPreference.h"
 
+
+
 class DebugScene :
     public SceneBase
 {

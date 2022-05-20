@@ -61,6 +61,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetWindowMinSize((int)(monitorSize.x) / 4, (int)(monitorSize.y) / 4);
 
 	//SceneManager::AddScene("debug", new DebugScene());
+	SceneManager::Initialize();
+
 	SceneManager::ChangeScene("debug", new DebugScene(), false);
 
 	//std::thread inputUpdate(InputUpdate);
