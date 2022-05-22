@@ -18,7 +18,7 @@ void Header::Initialize()
 	if (beInitialized) return;
 
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
-		navLinks.push_back(ButtonObject(PosVec((ApplicationPreference::GetBackgroundSize().x - navWidth) / 2.f + navWidth / ApplicationPreference::headerButtonNum * i, 0.f),
+		navLinks.push_back(ButtonObject(PosVec(ApplicationPreference::GetBackgroundSize().x - (navWidth / ApplicationPreference::headerButtonNum * (ApplicationPreference::headerButtonNum - i)), 0.f),
 			PosVec(navWidth / ApplicationPreference::headerButtonNum, height)));
 		navLinks[i].SetInnerColor(GetColor(255, 255, 225), GetColor(230, 230, 200), GetColor(150, 150, 120), GetColor(200, 200, 170));
 	}
