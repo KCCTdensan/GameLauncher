@@ -14,6 +14,8 @@ DebugScene::DebugScene() :
 	debugButton2.SetInnerColor(GetColor(255, 200, 255), GetColor(130, 130, 130), GetColor(255, 255, 255), GetColor(255, 255, 255));
 	debugButton2.SetOutlineColor(GetColor(240, 150, 50), 5);
 
+	debugButton.RegisterChildren(&debugButton2); // Žq—v‘f
+
 	debugRect.SetInnerColor(GetColor(68, 191, 172));
 }
 
@@ -35,7 +37,8 @@ void DebugScene::Update()
 
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
-		SceneManager::ChangeScene("home", new HomeScene(), false);
+		debugButton.Move(PosVec(10.f, 10.f));
+		//SceneManager::ChangeScene("home", new HomeScene(), false);
 	}
 }
 

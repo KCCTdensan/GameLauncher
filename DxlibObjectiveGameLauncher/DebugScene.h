@@ -2,7 +2,6 @@
 #include "SceneBase.h"
 #include "ButtonObject.h"
 #include "RectangleObject.h"
-#include "SceneManager.h"
 #include "HomeScene.h"
 #include "ApplicationPreference.h"
 

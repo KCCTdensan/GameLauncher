@@ -35,7 +35,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
 	SetUseDirectInputFlag(FALSE); // インプットのオブジェクトでダイレクトインプットを使用するかどうか。基本はTRUEの方が望ましい。
 
-	SetWindowText("GameLauncher"); // アプリのタイトル名の変更
+	SetMainWindowText("GameLauncher"); // アプリのタイトル名の変更
 
 	SetWindowStyleMode(1); // ボーダレスウインドウ
 

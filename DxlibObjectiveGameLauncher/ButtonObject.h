@@ -11,17 +11,14 @@ class ButtonObject :
 {
 public:
 	ButtonObject(PosVec _pos, PosVec _size, bool _enabledFill = true, bool _enabledOutline = false)
-		: ObjectBase(_pos, _size), enabled(true), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0),
+		: ObjectBase(_pos, _size), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0),
 		currentInnerColor(0)
 	{}
 
 	ButtonObject()
-		: ObjectBase(PosVec(), PosVec()), enabled(true), enabledFill(true), enabledOutline(false), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0),
+		: ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0),
 		currentInnerColor(0)
 	{}
-
-	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
-	bool SetEnabled() { return enabled; }
 
 	// êFóLå¯âªñ≥å¯âª
 	bool SetEnabledFill(bool _enabled) { enabledFill = _enabled; return true; }
@@ -43,8 +40,6 @@ private:
 	void CollideMouse();
 
 private:
-	bool enabled;
-
 	int innerColor;
 	int hoveredColor;
 	int clickedColor;

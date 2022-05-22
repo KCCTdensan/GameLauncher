@@ -14,6 +14,7 @@
     <ClCompile Include="ApplicationPreference.cpp" />
     <ClCompile Include="BlankRedirectScene.cpp" />
     <ClCompile Include="ButtonObject.cpp" />
+    <ClCompile Include="CanvasObject.cpp" />
     <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="FontChest.cpp" />
     <ClCompile Include="FontData.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="ApplicationPreference.h" />
     <ClInclude Include="BlankRedirectScene.h" />
     <ClInclude Include="ButtonObject.h" />
+    <ClInclude Include="CanvasObject.h" />
     <ClInclude Include="DebugScene.h" />
     <ClInclude Include="ExePath.h" />
     <ClInclude Include="FontChest.h" />

@@ -6,10 +6,10 @@ class RectangleObject :
 {
 public:
 	RectangleObject(PosVec _pos, PosVec _size, bool _enabledFill = true, bool _enabledOutline = false)
-		: ObjectBase(_pos, _size), enabled(true), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), outerColor(0), outlineWidth(0), currentInnerColor(0) {}
+		: ObjectBase(_pos, _size), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), outerColor(0), outlineWidth(0), currentInnerColor(0) {}
 
-	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
-	bool SetEnabled() { return enabled; }
+	RectangleObject()
+		: ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false), innerColor(0), outerColor(0), outlineWidth(0), currentInnerColor(0) {}
 
 	// F—LŒø‰»–³Œø‰»
 	bool SetEnabledFill(bool _enabled) { enabledFill = _enabled; return true; }
@@ -27,8 +27,6 @@ public:
 	void Draw();
 
 private:
-	bool enabled;
-
 	int innerColor;
 
 	int outerColor;

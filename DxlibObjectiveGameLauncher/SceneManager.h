@@ -9,6 +9,7 @@
 #include "ApplicationPreference.h"
 #include "BlankRedirectScene.h"
 #include "Header.h"
+#include "ObjectOverlapping.h"
 
 class SceneManager {
 public:

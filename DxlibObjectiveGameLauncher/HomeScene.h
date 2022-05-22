@@ -1,7 +1,6 @@
 #pragma once
 #include "SceneBase.h"
 #include "ButtonObject.h"
-#include "SceneManager.h"
 #include "DebugScene.h"
 #include "Header.h"
 

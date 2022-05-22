@@ -84,6 +84,7 @@ bool SceneManager::ChangeSceneForward()
 }
 
 void SceneManager::Update() {
+	ObjectOverlapping<ObjectBase>::Reset();
 	current.scene->Update();
 }
 
