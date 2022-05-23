@@ -43,6 +43,7 @@ void ButtonObject::Draw()
 
 void ButtonObject::CollideMouse()
 {
+
 	bool beforeMouseClicked = mouseClicked;
 	bool goSelecting = false;
 
@@ -53,15 +54,11 @@ void ButtonObject::CollideMouse()
 
 		mouseHit = true;
 
-		if (mouseClicked) {
-			OutputDebugString("a");
-		}
-
 		// オブジェクトの重複判定登録処理
 		ObjectOverlapping<ButtonObject>::UpdateObject(this);
 
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
-			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST)
+			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST /*&& !beCalledNoMouse*/)
 				mouseClicked = true;
 
 			// 重複中の別オブジェ対策
@@ -86,4 +83,6 @@ void ButtonObject::CollideMouse()
 	if (beforeMouseClicked && !mouseClicked && goSelecting) {
 		mouseSelected = true;
 	}
+
+	beCalledNoMouse = false;
 }

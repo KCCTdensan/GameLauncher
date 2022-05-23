@@ -7,7 +7,7 @@ class ObjectBase
 protected:
 	ObjectBase(PosVec _pos, PosVec _size)
 		:pos(_pos), size(_size), enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
-		children{} {}
+		children{}, beCalledNoMouse(false) {}
 
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
@@ -20,6 +20,7 @@ protected:
 	bool mouseHit;
 	bool mouseSelected;
 	bool mouseClicked;
+	bool beCalledNoMouse;
 
 private:
 	std::vector<ObjectBase*> children;
@@ -29,8 +30,8 @@ public:
 	bool SetEnabled() { return enabled; }
 
 	// 上にレイヤが重なっていた場合の解除処理
-	bool SetNoMouse() { mouseHit = false; return true; }
-	bool SetNoMouseWithClick() { mouseHit = false; mouseClicked = false; return true; }
+	bool SetNoMouse() { return true; }
+	bool SetNoMouseWithClick() { mouseHit = false; mouseClicked = false; /*beCalledNoMouse = true;*/ return true; }
 
 	// マウス入力解除(Selectedなどの任意の分岐後に呼び出し等)
 	bool SetMouseOff() { mouseClicked = false; mouseSelected = false; Update(); return true; }

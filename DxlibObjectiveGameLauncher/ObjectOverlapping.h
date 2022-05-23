@@ -5,7 +5,11 @@ template <typename T>
 class ObjectOverlapping
 {
 public:
-	static bool Reset() { objectPrevious = object; object = nullptr; return true; }
+	static bool Reset() { 
+		if (object != nullptr)
+			objectPrevious = object;
+		object = nullptr;
+		return true; }
 	static bool UpdateObject(T* _object); // SetNoMouse() メソッドを持っている必要あり
 	static T* GetObj() { return object; }
 
@@ -20,12 +24,17 @@ template<typename T> T* ObjectOverlapping<T>::objectPrevious = nullptr;
 template<typename T>
 inline bool ObjectOverlapping<T>::UpdateObject(T* _object)
 {
-	if (objectPrevious == nullptr) OutputDebugString("!");
+	if (objectPrevious != nullptr) OutputDebugString("kk");
 	if (object != nullptr && object != _object) {
 		if (objectPrevious != _object)
 			object->SetNoMouseWithClick();
-		else 
-			object->SetNoMouse();
+		else
+			if (object->SetEnabledOutline()) {
+				OutputDebugString("t ");
+			}
+			else {
+				OutputDebugString("f ");
+			}
 	}
 	object = _object;
 
