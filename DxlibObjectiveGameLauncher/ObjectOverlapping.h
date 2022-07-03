@@ -28,12 +28,12 @@ inline bool ObjectOverlapping<T>::UpdateObject(T* _object)
 		if (objectPrevious != _object)
 			object->SetNoMouseWithClick();
 		else
-			if (object->SetEnabledOutline()) {
+			/*if (object->SetEnabledOutline()) {
 				OutputDebugString("t ");
 			}
 			else {
 				OutputDebugString("f ");
-			}
+			}*/
 		object->SetNoMouse();
 	}
 	object = _object;

@@ -37,13 +37,11 @@ void DebugScene::Update()
 	if (debugButton.GetMouseClicked()) {
 		debugButton.SetMouseOff();
 		debugButton.Move(PosVec(10.f, 10.f));
-		//SceneManager::ChangeScene("home", new HomeScene(), false);
 	}
 
 	if (debugButton2.GetMouseClicked()) {
 		debugButton2.SetMouseOff();
 		debugButton2.Move(PosVec(-20.f, -20.f));
-		//SceneManager::ChangeScene("home", new HomeScene(), false);
 	}
 }
 
