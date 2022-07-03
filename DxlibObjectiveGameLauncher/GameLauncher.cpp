@@ -79,6 +79,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		Input::MouseInput::Update();
 		ObjectOverlapping<ObjectBase>::Reset();
 
+		SceneManager::Collide();
 		SceneManager::Update();
 		SceneManager::Draw();
 

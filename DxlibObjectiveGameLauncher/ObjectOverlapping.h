@@ -24,7 +24,6 @@ template<typename T> T* ObjectOverlapping<T>::objectPrevious = nullptr;
 template<typename T>
 inline bool ObjectOverlapping<T>::UpdateObject(T* _object)
 {
-	if (objectPrevious != nullptr) OutputDebugString("kk");
 	if (object != nullptr && object != _object) {
 		if (objectPrevious != _object)
 			object->SetNoMouseWithClick();
@@ -35,6 +34,7 @@ inline bool ObjectOverlapping<T>::UpdateObject(T* _object)
 			else {
 				OutputDebugString("f ");
 			}
+		object->SetNoMouse();
 	}
 	object = _object;
 

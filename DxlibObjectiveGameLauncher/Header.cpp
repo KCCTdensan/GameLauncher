@@ -38,7 +38,7 @@ void Header::Update()
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		navLinks[i].Update();
 
-		if (navLinks[i].GetMouseSelected()) {
+		if (navLinks[i].GetMouseClicked()) {
 			navLinks[i].SetMouseOff();
 			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene);
 		}

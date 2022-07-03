@@ -7,15 +7,14 @@ HomeScene::HomeScene()
 	debugButton.SetEnabledOutline(false);
 }
 
-void HomeScene::Update()
+void HomeScene::Collide()
 {
 	debugButton.Collide();
+}
 
-	Header::Collide();
-
+void HomeScene::Update()
+{
 	debugButton.Update();
-
-	Header::Update();
 
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();

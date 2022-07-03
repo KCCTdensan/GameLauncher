@@ -30,11 +30,11 @@ public:
 	bool SetEnabled() { return enabled; }
 
 	// 上にレイヤが重なっていた場合の解除処理
-	bool SetNoMouse() { return true; }
+	bool SetNoMouse() { mouseHit = false; return true; }
 	bool SetNoMouseWithClick() { mouseHit = false; mouseClicked = false; /*beCalledNoMouse = true;*/ return true; }
 
 	// マウス入力解除(Selectedなどの任意の分岐後に呼び出し等)
-	bool SetMouseOff() { mouseClicked = false; mouseSelected = false; Update(); return true; }
+	bool SetMouseOff() { mouseClicked = false; mouseSelected = false; return true; }
 
 	// マウス判定系取得
 	bool GetMouseHit() { return mouseHit; }

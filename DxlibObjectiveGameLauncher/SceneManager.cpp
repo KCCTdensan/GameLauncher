@@ -83,10 +83,18 @@ bool SceneManager::ChangeSceneForward()
 	return true;
 }
 
+void SceneManager::Collide()
+{
+	current.scene->Collide();
+	Header::Collide();
+}
+
 void SceneManager::Update() {
 	current.scene->Update();
+	Header::Update();
 }
 
 void SceneManager::Draw() {
 	current.scene->Draw();
+	Header::Draw();
 }

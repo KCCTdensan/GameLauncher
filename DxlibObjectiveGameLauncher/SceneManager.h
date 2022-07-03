@@ -23,6 +23,7 @@ public:
 
 	static void Initialize();
 
+	static void Collide();
 	static void Update();
 	static void Draw();
 

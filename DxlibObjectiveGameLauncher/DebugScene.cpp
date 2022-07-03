@@ -2,7 +2,7 @@
 
 DebugScene::DebugScene() :
 	bg(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y)),
-	debugButton(PosVec(), PosVec(100.f, 300.f), true, true),
+	debugButton(PosVec(), PosVec(1200.f, 300.f), true, true),
 	debugButton2(PosVec(50, 200.f), PosVec(75.f, 150.f), true, false),
 	debugRect(PosVec(1100.f,300.f), PosVec(300.f,150.f), true, false)
 {
@@ -19,13 +19,14 @@ DebugScene::DebugScene() :
 	debugRect.SetInnerColor(GetColor(68, 191, 172));
 }
 
-void DebugScene::Update()
+void DebugScene::Collide()
 {
 	debugButton.Collide();
 	debugButton2.Collide();
+}
 
-	Header::Collide();
-
+void DebugScene::Update()
+{
 	bg.Update();
 
 	debugButton.Update();
@@ -33,9 +34,7 @@ void DebugScene::Update()
 
 	debugRect.Update();
 
-	Header::Update();
-
-	if (debugButton.GetMouseSelected()) {
+	if (debugButton.GetMouseClicked()) {
 		debugButton.SetMouseOff();
 		debugButton.Move(PosVec(10.f, 10.f));
 		//SceneManager::ChangeScene("home", new HomeScene(), false);
