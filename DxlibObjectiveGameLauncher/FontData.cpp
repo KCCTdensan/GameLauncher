@@ -15,3 +15,9 @@ int FontData::GetFontHandle(std::string handleName) {
 	else
 		return -1;
 }
+
+bool FontData::DeleteFontHandle(std::string handleName)
+{
+	handles.erase(handleName);
+	return true;
+}

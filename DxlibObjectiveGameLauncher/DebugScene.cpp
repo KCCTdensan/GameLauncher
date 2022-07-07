@@ -4,7 +4,7 @@ DebugScene::DebugScene() :
 	bg(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y)),
 	debugButton(PosVec(), PosVec(1200.f, 300.f), true, true),
 	debugButton2(PosVec(50, 200.f), PosVec(75.f, 150.f), true, false),
-	debugRect(PosVec(1100.f,300.f), PosVec(300.f,150.f), true, false)
+	debugRect(PosVec(1100.f, 300.f), PosVec(300.f, 150.f), true, false)
 {
 	bg.SetInnerColor(GetColor(20, 20, 20));
 
@@ -17,6 +17,16 @@ DebugScene::DebugScene() :
 	debugButton.RegisterChildren(&debugButton2); // 子要素
 
 	debugRect.SetInnerColor(GetColor(68, 191, 172));
+
+	// フォント追加
+	fonts.push_back(FontHandle("smart", "03スマートフォントUI", 100));
+	fonts.push_back(FontHandle("smart64", "03スマートフォントUI", 64, 15));
+}
+
+DebugScene::~DebugScene()
+{
+	//FontData::DeleteFontHandle("smart");
+	//OutputDebugString("\n\nFonthandle deleted\n\n");
 }
 
 void DebugScene::Collide()
@@ -27,6 +37,9 @@ void DebugScene::Collide()
 
 void DebugScene::Update()
 {
+
+	RegFonts();
+
 	bg.Update();
 
 	debugButton.Update();
@@ -54,5 +67,6 @@ void DebugScene::Draw()
 
 	debugRect.Draw();
 
-	Header::Draw();
+	DrawFormatStringFToHandle(500, 600, GetColor(255, 255, 255), FontData::GetFontHandle("smart"), "test");
+	DrawFormatStringFToHandle(1000, 750, GetColor(255, 137, 255), FontData::GetFontHandle("smart64"), "(T_T)");
 }

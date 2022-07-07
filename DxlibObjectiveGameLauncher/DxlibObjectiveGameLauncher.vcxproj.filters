@@ -81,6 +81,7 @@
     <ClCompile Include="HomeScene.cpp">
       <Filter>Scenes\Pages\Home</Filter>
     </ClCompile>
+    <ClCompile Include="ApplicationBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProgressObject.h">
@@ -175,6 +176,10 @@
       <Filter>Scenes\Pages\Home</Filter>
     </ClInclude>
     <ClInclude Include="ExePath.h" />
+    <ClInclude Include="ApplicationBuilder.h" />
+    <ClInclude Include="FontHandleData.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -230,6 +235,9 @@
     </Filter>
     <Filter Include="Scenes\Pages\_blank">
       <UniqueIdentifier>{f5c273e3-003d-4ff0-ba17-fa146bb20f2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{5f3d2d27-5497-4f7d-87f1-111c26751617}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

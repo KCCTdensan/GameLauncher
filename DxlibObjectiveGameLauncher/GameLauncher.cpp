@@ -7,6 +7,7 @@
 #include <iostream>
 #include "ExePath.h"
 #include "ApplicationPreference.h"
+#include "ApplicationBuilder.h"
 #include "MouseInput.h"
 #include "SceneManager.h"
 #include "MainThreadValue.h"
@@ -45,6 +46,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	{
 		return -1; // ‰Šú‰»¸”s‚Ìê‡‚ÍI—¹ ¦Šî–{‚Í–â‘è‚È‚¢
 	}
+
+	ApplicationBuilder applicationBuilder;
 
 	MSG msg;
 

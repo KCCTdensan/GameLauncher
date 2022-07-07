@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ApplicationBuilder.cpp" />
     <ClCompile Include="ApplicationPreference.cpp" />
     <ClCompile Include="BlankRedirectScene.cpp" />
     <ClCompile Include="ButtonObject.cpp" />
@@ -41,6 +42,7 @@
     <ClCompile Include="WindowHolding.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ApplicationBuilder.h" />
     <ClInclude Include="ApplicationPreference.h" />
     <ClInclude Include="BlankRedirectScene.h" />
     <ClInclude Include="ButtonObject.h" />
@@ -49,6 +51,7 @@
     <ClInclude Include="ExePath.h" />
     <ClInclude Include="FontChest.h" />
     <ClInclude Include="FontData.h" />
+    <ClInclude Include="FontHandleData.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="HomeScene.h" />
     <ClInclude Include="ImageChest.h" />

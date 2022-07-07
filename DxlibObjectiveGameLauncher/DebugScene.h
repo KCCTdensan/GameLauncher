@@ -5,11 +5,14 @@
 #include "HomeScene.h"
 #include "ApplicationPreference.h"
 
+#include "FontData.h"
+
 class DebugScene :
     public SceneBase
 {
 public:
     DebugScene();
+    ~DebugScene();
 
     void Collide();
     void Update();

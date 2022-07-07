@@ -26,6 +26,4 @@ void HomeScene::Update()
 void HomeScene::Draw()
 {
 	debugButton.Draw();
-
-	Header::Draw();
 }
