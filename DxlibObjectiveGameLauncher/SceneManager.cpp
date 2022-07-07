@@ -1,17 +1,18 @@
 #include "SceneManager.h"
 
-SceneBase* SceneManager::currentScene = nullptr;
 std::map<std::string, SceneBase*> SceneManager::scenes;
 std::array<SceneSet, ApplicationPreference::sceneHistories> SceneManager::sceneHistory{};
 int SceneManager::sceneHistoryPosition = 0;
 bool SceneManager::beInitialized = false;
+SceneSet SceneManager::blankScene = SceneSet("_blank", new BlankRedirectScene());
+SceneSet SceneManager::current = SceneSet("", nullptr);
 
 void SceneManager::Initialize()
 {
 	if (beInitialized) return;
 
 	Header::Initialize();
-	sceneHistory.fill(SceneSet("_blank", new BlankRedirectScene()));
+	sceneHistory.fill(blankScene);
 
 	beInitialized = true;
 }
@@ -33,7 +34,7 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 {
 	bool changed = false;
 	if (scenes.count(sceneName) >= 1) {
-		currentScene = scenes[sceneName];
+		current = SceneSet(sceneName, scenes[sceneName]);
 		changed = true;
 	}
 	else {
@@ -42,14 +43,15 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 			ChangeScene(sceneName, altScene);
 		}
 		else {
-			currentScene = altScene;
+			current = SceneSet(sceneName, altScene);
 			changed = true;
 		}
 	}
 	if (changed) {
 		Update();
-		std::rotate(sceneHistory.begin(), sceneHistory.begin() + ApplicationPreference::sceneHistories - 1, sceneHistory.end());
-		sceneHistory[0] = SceneSet(sceneName, currentScene);
+		std::rotate(sceneHistory.rbegin(), sceneHistory.rbegin() + 1, sceneHistory.rend());
+		sceneHistory[0] = SceneSet(current.sceneName, current.scene);
+		sceneHistoryPosition = 0;
 	}
 	return true;
 }
@@ -59,23 +61,40 @@ bool SceneManager::ChangeSceneBackward()
 	sceneHistoryPosition++;
 	if (sceneHistoryPosition >= ApplicationPreference::sceneHistories)
 		sceneHistoryPosition = ApplicationPreference::sceneHistories - 1;
-	currentScene = sceneHistory[sceneHistoryPosition].scene;
+	if (sceneHistory[sceneHistoryPosition].sceneName == blankScene.sceneName) {
+		sceneHistoryPosition--;
+		if (sceneHistoryPosition < 0) sceneHistoryPosition = 0;
+		return false;
+	}
+	current = SceneSet(sceneHistory[sceneHistoryPosition].sceneName, sceneHistory[sceneHistoryPosition].scene);
 	return true;
 }
 
 bool SceneManager::ChangeSceneForward()
 {
 	sceneHistoryPosition--;
-	if (sceneHistoryPosition < 0)
-		sceneHistoryPosition = 0;
-	currentScene = sceneHistory[sceneHistoryPosition].scene;
+	if (sceneHistoryPosition < 0) sceneHistoryPosition = 0;
+	if (sceneHistory[sceneHistoryPosition].sceneName == blankScene.sceneName) {
+		sceneHistoryPosition++;
+		if (sceneHistoryPosition >= ApplicationPreference::sceneHistories) sceneHistoryPosition = ApplicationPreference::sceneHistories - 1;
+		return false;
+	}
+	current = SceneSet(sceneHistory[sceneHistoryPosition].sceneName, sceneHistory[sceneHistoryPosition].scene);
 	return true;
 }
 
+void SceneManager::Collide()
+{
+	current.scene->Collide();
+	Header::Collide();
+}
+
 void SceneManager::Update() {
-	currentScene->Update();
+	current.scene->Update();
+	Header::Update();
 }
 
 void SceneManager::Draw() {
-	currentScene->Draw();
+	current.scene->Draw();
+	Header::Draw();
 }

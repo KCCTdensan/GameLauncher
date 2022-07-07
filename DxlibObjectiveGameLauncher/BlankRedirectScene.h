@@ -8,6 +8,7 @@ class BlankRedirectScene :
 public:
     BlankRedirectScene() {}
 
+    void Collide() {}
     void Update();
     void Draw() {}
 };

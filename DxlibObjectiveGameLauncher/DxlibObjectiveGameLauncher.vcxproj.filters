@@ -62,20 +62,26 @@
     <ClCompile Include="WindowHolding.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="DebugScene.cpp">
-      <Filter>Scenes\Pages</Filter>
-    </ClCompile>
-    <ClCompile Include="HomeScene.cpp">
-      <Filter>Scenes\Pages</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectBase.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="ButtonObject.cpp">
       <Filter>Objects\Button</Filter>
     </ClCompile>
-    <ClCompile Include="RectangleObject.cpp" />
-    <ClCompile Include="BlankRedirectScene.cpp" />
+    <ClCompile Include="CanvasObject.cpp" />
+    <ClCompile Include="RectangleObject.cpp">
+      <Filter>Objects\Rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="BlankRedirectScene.cpp">
+      <Filter>Scenes\Pages\_blank</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugScene.cpp">
+      <Filter>Scenes\Pages\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="HomeScene.cpp">
+      <Filter>Scenes\Pages\Home</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProgressObject.h">
@@ -126,9 +132,6 @@
     <ClInclude Include="JsonSoftwareData.h">
       <Filter>Json</Filter>
     </ClInclude>
-    <ClInclude Include="ExePath.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="ApplicationPreference.h">
       <Filter>Static</Filter>
     </ClInclude>
@@ -153,20 +156,30 @@
     <ClInclude Include="WindowHolding.h">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="DebugScene.h">
-      <Filter>Scenes\Pages</Filter>
-    </ClInclude>
-    <ClInclude Include="HomeScene.h">
-      <Filter>Scenes\Pages</Filter>
-    </ClInclude>
     <ClInclude Include="ButtonObject.h">
       <Filter>Objects\Button</Filter>
     </ClInclude>
-    <ClInclude Include="RectangleObject.h" />
     <ClInclude Include="SceneSet.h">
       <Filter>Struct</Filter>
     </ClInclude>
-    <ClInclude Include="BlankRedirectScene.h" />
+    <ClInclude Include="CanvasObject.h" />
+    <ClInclude Include="RectangleObject.h">
+      <Filter>Objects\Rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="BlankRedirectScene.h">
+      <Filter>Scenes\Pages\_blank</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugScene.h">
+      <Filter>Scenes\Pages\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeScene.h">
+      <Filter>Scenes\Pages\Home</Filter>
+    </ClInclude>
+    <ClInclude Include="ExePath.h" />
+    <ClInclude Include="ApplicationBuilder.h" />
+    <ClInclude Include="FontHandleData.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -213,6 +226,18 @@
     </Filter>
     <Filter Include="Objects\Rectangle">
       <UniqueIdentifier>{0ec7aa0d-ea5b-42a7-862a-3019d0b4336a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pages\Home">
+      <UniqueIdentifier>{2afbab6e-4991-4bdd-bcdb-ae4fd632ac1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pages\Debug">
+      <UniqueIdentifier>{0577ac05-f5e2-45a4-b93d-191bd87d99b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pages\_blank">
+      <UniqueIdentifier>{f5c273e3-003d-4ff0-ba17-fa146bb20f2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{5f3d2d27-5497-4f7d-87f1-111c26751617}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

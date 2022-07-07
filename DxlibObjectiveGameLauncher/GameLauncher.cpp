@@ -7,6 +7,7 @@
 #include <iostream>
 #include "ExePath.h"
 #include "ApplicationPreference.h"
+#include "ApplicationBuilder.h"
 #include "MouseInput.h"
 #include "SceneManager.h"
 #include "MainThreadValue.h"
@@ -35,7 +36,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
 	SetUseDirectInputFlag(FALSE); // インプットのオブジェクトでダイレクトインプットを使用するかどうか。基本はTRUEの方が望ましい。
 
-	SetWindowText("GameLauncher"); // アプリのタイトル名の変更
+	SetMainWindowText("GameLauncher"); // アプリのタイトル名の変更
 
 	SetWindowStyleMode(1); // ボーダレスウインドウ
 
@@ -45,6 +46,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	{
 		return -1; // 初期化失敗の場合は終了 ※基本は問題ない
 	}
+
+	ApplicationBuilder applicationBuilder;
 
 	MSG msg;
 
@@ -77,6 +80,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		WindowHolding::Update();
 		SetDrawScreen(DX_SCREEN_BACK);
 		Input::MouseInput::Update();
+		ObjectOverlapping<ObjectBase>::Reset();
+
+		SceneManager::Collide();
 		SceneManager::Update();
 		SceneManager::Draw();
 

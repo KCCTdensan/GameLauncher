@@ -1,9 +1,8 @@
 #pragma once
 #include "SceneBase.h"
 #include "ButtonObject.h"
-#include "SceneManager.h"
 #include "DebugScene.h"
-#include "Header.h"
+#include "SceneManager.h"
 
 class HomeScene :
     public SceneBase
@@ -11,6 +10,7 @@ class HomeScene :
 public:
     HomeScene();
 
+    void Collide();
     void Update();
     void Draw();
 
