@@ -39,6 +39,7 @@
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollInput.cpp" />
+    <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="WindowHolding.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +76,8 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSet.h" />
     <ClInclude Include="ScrollInput.h" />
+    <ClInclude Include="TextAlign.h" />
+    <ClInclude Include="TextObject.h" />
     <ClInclude Include="WindowHolding.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

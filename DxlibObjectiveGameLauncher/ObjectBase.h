@@ -41,6 +41,9 @@ public:
 	bool GetMouseClicked() { return mouseClicked; }
 	bool GetMouseSelected() { return mouseSelected; }
 
+	// 親(自分)のみ移動(絶対値)
+	bool SetPos(PosVec _pos) { pos = _pos; return true; }
+
 	// オブジェクト移動系(子要素含む)
 	bool Move(PosVec _delta);
 

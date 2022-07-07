@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="GameLauncher.cpp" />
-    <ClCompile Include="ProgressObject.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="ImageData.cpp">
       <Filter>Media</Filter>
     </ClCompile>
@@ -62,13 +59,9 @@
     <ClCompile Include="WindowHolding.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectBase.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="ButtonObject.cpp">
       <Filter>Objects\Button</Filter>
     </ClCompile>
-    <ClCompile Include="CanvasObject.cpp" />
     <ClCompile Include="RectangleObject.cpp">
       <Filter>Objects\Rectangle</Filter>
     </ClCompile>
@@ -81,15 +74,23 @@
     <ClCompile Include="HomeScene.cpp">
       <Filter>Scenes\Pages\Home</Filter>
     </ClCompile>
-    <ClCompile Include="ApplicationBuilder.cpp" />
+    <ClCompile Include="ApplicationBuilder.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CanvasObject.cpp">
+      <Filter>Objects\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectBase.cpp">
+      <Filter>Objects\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgressObject.cpp">
+      <Filter>Objects\Progress</Filter>
+    </ClCompile>
+    <ClCompile Include="TextObject.cpp">
+      <Filter>Objects\Text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ProgressObject.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectBase.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="ImageChest.h">
       <Filter>Media</Filter>
     </ClInclude>
@@ -162,7 +163,6 @@
     <ClInclude Include="SceneSet.h">
       <Filter>Struct</Filter>
     </ClInclude>
-    <ClInclude Include="CanvasObject.h" />
     <ClInclude Include="RectangleObject.h">
       <Filter>Objects\Rectangle</Filter>
     </ClInclude>
@@ -176,9 +176,26 @@
       <Filter>Scenes\Pages\Home</Filter>
     </ClInclude>
     <ClInclude Include="ExePath.h" />
-    <ClInclude Include="ApplicationBuilder.h" />
     <ClInclude Include="FontHandleData.h">
       <Filter>Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationBuilder.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="CanvasObject.h">
+      <Filter>Objects\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>Objects\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressObject.h">
+      <Filter>Objects\Progress</Filter>
+    </ClInclude>
+    <ClInclude Include="TextObject.h">
+      <Filter>Objects\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="TextAlign.h">
+      <Filter>Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +255,18 @@
     </Filter>
     <Filter Include="System">
       <UniqueIdentifier>{5f3d2d27-5497-4f7d-87f1-111c26751617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Canvas">
+      <UniqueIdentifier>{6d99426a-2e40-4e56-a95b-ff5df7084f80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Base">
+      <UniqueIdentifier>{3ce65e32-aeda-4259-84c9-422ca34a65c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Progress">
+      <UniqueIdentifier>{a4cd54fa-2bb8-44f7-bb09-d77d32ebb85f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Text">
+      <UniqueIdentifier>{41bef669-2831-4a54-a8c3-eff7ed713963}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
