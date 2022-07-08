@@ -7,7 +7,7 @@ void TextObject::Update()
 void TextObject::Draw()
 {
 	if (enabledBack) {
-		DrawBoxAA(finallyPos.x, finallyPos.y, finallyPos.x + textWidth, finallyPos.y + fontHeight, backColor, true);
+		DrawBoxAA(finallyPos.x - paddingUpperLeft.x, finallyPos.y - paddingUpperLeft.y, finallyPos.x + textWidth + paddingLowerRight.x, finallyPos.y + fontHeight + paddingLowerRight.y, backColor, true);
 		OutputDebugString("aaaa");
 	}
 	DrawFormatStringFToHandle(finallyPos.x, finallyPos.y, innerColor, fontHandle, text.c_str());

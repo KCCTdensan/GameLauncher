@@ -20,6 +20,7 @@ DebugScene::DebugScene() :
 	debugRect.SetInnerColor(GetColor(68, 191, 172));
 
 	textSample1.SetBackColor(GetColor(150, 70, 100));
+	textSample1.SetPadding(10.f, 20.f, 5.f, 30.f);
 
 	// フォント追加
 	fonts.push_back(FontHandle("smart", "03スマートフォントUI", 100));
