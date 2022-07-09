@@ -6,7 +6,7 @@
 #include "HomeScene.h"
 #include "ApplicationPreference.h"
 
-#include "FontData.h"
+#include "FontChest.h"
 
 class DebugScene :
     public SceneBase

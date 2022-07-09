@@ -2,13 +2,13 @@
 
 void TextObject::Update()
 {
+	if (fontAutoSerching) FontSerch();
 }
 
 void TextObject::Draw()
 {
 	if (enabledBack) {
 		DrawBoxAA(finallyPos.x - paddingUpperLeft.x, finallyPos.y - paddingUpperLeft.y, finallyPos.x + textWidth + paddingLowerRight.x, finallyPos.y + fontHeight + paddingLowerRight.y, backColor, true);
-		OutputDebugString("aaaa");
 	}
 	DrawFormatStringFToHandle(finallyPos.x, finallyPos.y, innerColor, fontHandle, text.c_str());
 }
@@ -37,4 +37,10 @@ void TextObject::CalcPos()
 		finallyPos.y = pos.y;
 		break;
 	}
+}
+
+void TextObject::FontSerch()
+{
+	SetFontHandle(FontChest::GetFontHandle(fontHandleName));
+	if (fontHandle > 0) fontAutoSerching = false;
 }

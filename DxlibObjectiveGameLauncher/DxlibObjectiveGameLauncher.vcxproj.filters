@@ -23,9 +23,6 @@
     <ClCompile Include="FontChest.cpp">
       <Filter>Font</Filter>
     </ClCompile>
-    <ClCompile Include="FontData.cpp">
-      <Filter>Font</Filter>
-    </ClCompile>
     <ClCompile Include="SceneBase.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -110,9 +107,6 @@
       <Filter>Media</Filter>
     </ClInclude>
     <ClInclude Include="FontChest.h">
-      <Filter>Font</Filter>
-    </ClInclude>
-    <ClInclude Include="FontData.h">
       <Filter>Font</Filter>
     </ClInclude>
     <ClInclude Include="SceneBase.h">

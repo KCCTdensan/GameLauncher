@@ -3,6 +3,7 @@
 #include "TextAlign.h"
 #include <string>
 #include "DxLib.h"
+#include "FontChest.h"
 
 class TextObject :
 	public ObjectBase
@@ -10,16 +11,26 @@ class TextObject :
 public:
 	// sizeは無視される
 	TextObject(PosVec _pos, PosVec _size, int _fontHandle, std::string _text, int _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
-		: ObjectBase(_pos, _size), fontHandle(_fontHandle), text(_text), innerColor(_innerColor), align(_align),
+		: ObjectBase(_pos, _size), fontHandle(_fontHandle), fontHandleName(), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0),
-		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec())
+		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false)
+	{
+		CalcPos();
+	}
+
+	// sizeは無視される
+	// フォントハンドル自動検索
+	TextObject(PosVec _pos, PosVec _size, std::string _fontHandleName, std::string _text, int _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
+		: ObjectBase(_pos, _size), fontHandle(-1), fontHandleName(_fontHandleName), text(_text), innerColor(_innerColor), align(_align),
+		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0),
+		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(true)
 	{
 		CalcPos();
 	}
 
 	TextObject()
-		: ObjectBase(PosVec(), PosVec()), fontHandle(-1), text(), innerColor(0), align(TextAlign::LEFT), enabledBack(false), backColor(0),
-		finallyPos(PosVec()), textWidth(0), fontHeight(0), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec())
+		: ObjectBase(PosVec(), PosVec()), fontHandle(-1), fontHandleName(), text(), innerColor(0), align(TextAlign::LEFT), enabledBack(false), backColor(0),
+		finallyPos(PosVec()), textWidth(0), fontHeight(0), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false)
 	{}
 
 	// 文字情報登録
@@ -51,8 +62,13 @@ private:
 	// 描画開始位置を計算
 	void CalcPos();
 
+	// ハンドル探し
+	void FontSerch();
+
 private:
 	int fontHandle;
+	std::string fontHandleName;
+	bool fontAutoSerching;
 	std::string text;
 	int textWidth;
 	int fontHeight;

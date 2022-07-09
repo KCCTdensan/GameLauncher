@@ -18,7 +18,6 @@
     <ClCompile Include="CanvasObject.cpp" />
     <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="FontChest.cpp" />
-    <ClCompile Include="FontData.cpp" />
     <ClCompile Include="GameLauncher.cpp" />
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="HomeScene.cpp" />
@@ -51,7 +50,6 @@
     <ClInclude Include="DebugScene.h" />
     <ClInclude Include="ExePath.h" />
     <ClInclude Include="FontChest.h" />
-    <ClInclude Include="FontData.h" />
     <ClInclude Include="FontHandleData.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="HomeScene.h" />

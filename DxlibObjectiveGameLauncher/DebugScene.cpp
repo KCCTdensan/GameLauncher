@@ -5,7 +5,7 @@ DebugScene::DebugScene() :
 	debugButton(PosVec(), PosVec(1200.f, 300.f), true, true),
 	debugButton2(PosVec(50, 200.f), PosVec(75.f, 150.f), true, false),
 	debugRect(PosVec(1100.f, 300.f), PosVec(300.f, 150.f), true, false),
-	textSample1(PosVec(750, 700), PosVec(), FontData::GetFontHandle("mplus1"), "•¶Žš—ñ", GetColor(135, 200, 56), TextAlign::CENTER, true)
+	textSample1(PosVec(750, 700), PosVec(), "mplus1", "•¶Žš—ñ", GetColor(135, 200, 56), TextAlign::CENTER, true)
 {
 	bg.SetInnerColor(GetColor(20, 20, 20));
 
@@ -30,7 +30,7 @@ DebugScene::DebugScene() :
 
 DebugScene::~DebugScene()
 {
-	//FontData::DeleteFontHandle("smart");
+	//FontChest::DeleteFontHandle("smart");
 	//OutputDebugString("\n\nFonthandle deleted\n\n");
 }
 
@@ -44,7 +44,7 @@ void DebugScene::Update()
 {
 
 	RegFonts();
-	if (textSample1.SetFontHandle() < 0) textSample1.SetFontHandle(FontData::GetFontHandle("mplus1"));
+	//if (textSample1.SetFontHandle() < 0) textSample1.SetFontHandle(FontChest::GetFontHandle("mplus1"));
 
 	bg.Update();
 
@@ -77,6 +77,6 @@ void DebugScene::Draw()
 
 	textSample1.Draw();
 
-	DrawFormatStringFToHandle(500, 600, GetColor(255, 255, 255), FontData::GetFontHandle("smart"), "test");
-	DrawFormatStringFToHandle(1000, 750, GetColor(255, 137, 255), FontData::GetFontHandle("smart64"), "(T_T)");
+	DrawFormatStringFToHandle(500, 600, GetColor(255, 255, 255), FontChest::GetFontHandle("smart"), "test");
+	DrawFormatStringFToHandle(1000, 750, GetColor(255, 137, 255), FontChest::GetFontHandle("smart64"), "(T_T)");
 }
