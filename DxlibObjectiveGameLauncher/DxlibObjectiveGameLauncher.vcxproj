@@ -32,6 +32,7 @@
     <ClCompile Include="MusicChest.cpp" />
     <ClCompile Include="MusicData.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
     <ClCompile Include="RectangleObject.cpp" />
@@ -65,6 +66,7 @@
     <ClInclude Include="MusicChest.h" />
     <ClInclude Include="MusicData.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectOverlapping.h" />
     <ClInclude Include="PositionVector.h" />
     <ClInclude Include="PressFrameEnum.h" />

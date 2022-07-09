@@ -23,9 +23,6 @@
     <ClCompile Include="FontChest.cpp">
       <Filter>Font</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBase.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="KeyboardInput.cpp">
       <Filter>Input</Filter>
     </ClCompile>
@@ -34,9 +31,6 @@
     </ClCompile>
     <ClCompile Include="ScrollInput.cpp">
       <Filter>Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Header.cpp">
-      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="JsonSoftwareData.cpp">
       <Filter>Json</Filter>
@@ -57,10 +51,10 @@
       <Filter>Window</Filter>
     </ClCompile>
     <ClCompile Include="ButtonObject.cpp">
-      <Filter>Objects\Button</Filter>
+      <Filter>Objects\Variety\Button</Filter>
     </ClCompile>
     <ClCompile Include="RectangleObject.cpp">
-      <Filter>Objects\Rectangle</Filter>
+      <Filter>Objects\Variety\Rectangle</Filter>
     </ClCompile>
     <ClCompile Include="BlankRedirectScene.cpp">
       <Filter>Scenes\Pages\_blank</Filter>
@@ -75,17 +69,24 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="CanvasObject.cpp">
-      <Filter>Objects\Canvas</Filter>
+      <Filter>Objects\Variety\Canvas</Filter>
     </ClCompile>
     <ClCompile Include="ObjectBase.cpp">
-      <Filter>Objects\Base</Filter>
+      <Filter>Objects\Variety\Base</Filter>
     </ClCompile>
     <ClCompile Include="ProgressObject.cpp">
-      <Filter>Objects\Progress</Filter>
+      <Filter>Objects\Variety\Progress</Filter>
     </ClCompile>
     <ClCompile Include="TextObject.cpp">
-      <Filter>Objects\Text</Filter>
+      <Filter>Objects\Variety\Text</Filter>
     </ClCompile>
+    <ClCompile Include="Header.cpp">
+      <Filter>Scenes\Header</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase.cpp">
+      <Filter>Scenes\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -109,9 +110,6 @@
     <ClInclude Include="FontChest.h">
       <Filter>Font</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBase.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="KeyboardInput.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -120,9 +118,6 @@
     </ClInclude>
     <ClInclude Include="ScrollInput.h">
       <Filter>Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="JsonSoftwareData.h">
       <Filter>Json</Filter>
@@ -152,13 +147,13 @@
       <Filter>Window</Filter>
     </ClInclude>
     <ClInclude Include="ButtonObject.h">
-      <Filter>Objects\Button</Filter>
+      <Filter>Objects\Variety\Button</Filter>
     </ClInclude>
     <ClInclude Include="SceneSet.h">
       <Filter>Struct</Filter>
     </ClInclude>
     <ClInclude Include="RectangleObject.h">
-      <Filter>Objects\Rectangle</Filter>
+      <Filter>Objects\Variety\Rectangle</Filter>
     </ClInclude>
     <ClInclude Include="BlankRedirectScene.h">
       <Filter>Scenes\Pages\_blank</Filter>
@@ -177,20 +172,27 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="CanvasObject.h">
-      <Filter>Objects\Canvas</Filter>
+      <Filter>Objects\Variety\Canvas</Filter>
     </ClInclude>
     <ClInclude Include="ObjectBase.h">
-      <Filter>Objects\Base</Filter>
+      <Filter>Objects\Variety\Base</Filter>
     </ClInclude>
     <ClInclude Include="ProgressObject.h">
-      <Filter>Objects\Progress</Filter>
+      <Filter>Objects\Variety\Progress</Filter>
     </ClInclude>
     <ClInclude Include="TextObject.h">
-      <Filter>Objects\Text</Filter>
+      <Filter>Objects\Variety\Text</Filter>
     </ClInclude>
     <ClInclude Include="TextAlign.h">
       <Filter>Enum</Filter>
     </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Scenes\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase.h">
+      <Filter>Scenes\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -232,12 +234,6 @@
     <Filter Include="Scenes\Pages">
       <UniqueIdentifier>{030fe8bd-2338-4a29-8e44-271fb9217f4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\Button">
-      <UniqueIdentifier>{fd5772b1-3fdf-4fae-82c5-bd7ed86c9208}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Objects\Rectangle">
-      <UniqueIdentifier>{0ec7aa0d-ea5b-42a7-862a-3019d0b4336a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scenes\Pages\Home">
       <UniqueIdentifier>{2afbab6e-4991-4bdd-bcdb-ae4fd632ac1e}</UniqueIdentifier>
     </Filter>
@@ -250,17 +246,35 @@
     <Filter Include="System">
       <UniqueIdentifier>{5f3d2d27-5497-4f7d-87f1-111c26751617}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\Canvas">
-      <UniqueIdentifier>{6d99426a-2e40-4e56-a95b-ff5df7084f80}</UniqueIdentifier>
+    <Filter Include="Scenes\Header">
+      <UniqueIdentifier>{2a1c5b03-bf66-4380-aac6-4e25b1754872}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\Base">
+    <Filter Include="Scenes\Base">
+      <UniqueIdentifier>{31696f90-a1ce-45d6-9837-6741bd99617e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Variety">
+      <UniqueIdentifier>{36078c19-1149-417f-ba7c-068a630faa03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Variety\Base">
       <UniqueIdentifier>{3ce65e32-aeda-4259-84c9-422ca34a65c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\Progress">
+    <Filter Include="Objects\Variety\Button">
+      <UniqueIdentifier>{fd5772b1-3fdf-4fae-82c5-bd7ed86c9208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Variety\Canvas">
+      <UniqueIdentifier>{6d99426a-2e40-4e56-a95b-ff5df7084f80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Variety\Progress">
       <UniqueIdentifier>{a4cd54fa-2bb8-44f7-bb09-d77d32ebb85f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\Text">
+    <Filter Include="Objects\Variety\Rectangle">
+      <UniqueIdentifier>{0ec7aa0d-ea5b-42a7-862a-3019d0b4336a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Variety\Text">
       <UniqueIdentifier>{41bef669-2831-4a54-a8c3-eff7ed713963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Layer">
+      <UniqueIdentifier>{0154de5a-41b9-4613-b40c-6336b21c96f9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
