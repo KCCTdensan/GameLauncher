@@ -12,12 +12,12 @@ class ButtonObject :
 public:
 	ButtonObject(PosVec _pos, PosVec _size, bool _enabledFill = true, bool _enabledOutline = false)
 		: ObjectBase(_pos, _size), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0),
-		currentInnerColor(0)
+		currentInnerColor(0), animationStartColor(0), animationEndColor(0), animationDuraion(0.f), animationCurrentlyRate(0.f)
 	{}
 
 	ButtonObject()
 		: ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0),
-		currentInnerColor(0)
+		currentInnerColor(0), animationStartColor(0), animationEndColor(0), animationDuraion(0.f), animationCurrentlyRate(0.f)
 	{}
 
 	// êFóLå¯âªñ≥å¯âª
@@ -54,5 +54,13 @@ private:
 	/******************/
 
 	int currentInnerColor;
+
+	/******************/
+
+	int animationStartColor;
+	int animationEndColor;
+
+	float animationDuraion;
+	float animationCurrentlyRate;
 };
 
