@@ -38,6 +38,8 @@ void DebugScene::Collide()
 {
 	debugButton.Collide();
 	debugButton2.Collide();
+
+	debugRect.Collide();
 }
 
 void DebugScene::Update()
@@ -55,12 +57,12 @@ void DebugScene::Update()
 
 	textSample1.Update();
 
-	if (debugButton.GetMouseClicked()) {
+	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
 		debugButton.Move(PosVec(10.f, 10.f));
 	}
 
-	if (debugButton2.GetMouseClicked()) {
+	if (debugButton2.GetMouseSelected()) {
 		debugButton2.SetMouseOff();
 		debugButton2.Move(PosVec(-20.f, -20.f));
 	}

@@ -38,7 +38,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SetMainWindowText("GameLauncher"); // アプリのタイトル名の変更
 
-	SetWindowStyleMode(1); // ボーダレスウインドウ
+	SetWindowStyleMode(2); // ボーダレスウインドウ
 
 	SetGraphMode((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, 32);
 
@@ -80,7 +80,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		WindowHolding::Update();
 		SetDrawScreen(DX_SCREEN_BACK);
 		Input::MouseInput::Update();
-		ObjectOverlapping<ObjectBase>::Reset();
 
 		SceneManager::Collide();
 		SceneManager::Update();

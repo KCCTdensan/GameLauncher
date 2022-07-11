@@ -2,6 +2,8 @@
 
 void TextObject::Update()
 {
+	CheckGUID();
+
 	if (fontAutoSerching) FontSerch();
 }
 

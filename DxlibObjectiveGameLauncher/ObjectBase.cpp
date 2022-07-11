@@ -1,5 +1,6 @@
 #include "ObjectBase.h"
 
+
 bool ObjectBase::Move(PosVec _delta)
 {
 	pos = PosVec(pos.x + _delta.x, pos.y + _delta.y);

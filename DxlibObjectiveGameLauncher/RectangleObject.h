@@ -1,6 +1,9 @@
 #pragma once
 #include "ObjectBase.h"
 #include "DxLib.h"
+#include "MouseInput.h"
+#include "ObjectOverlapping.h"
+
 class RectangleObject :
 	public ObjectBase
 {
@@ -22,9 +25,13 @@ public:
 	bool SetOutlineColor(int _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
 
 	// çXêVï`âÊ
-	void Collide() {};
+	void Collide();
 	void Update();
 	void Draw();
+
+private:
+
+	void CollideMouse();
 
 private:
 	int innerColor;

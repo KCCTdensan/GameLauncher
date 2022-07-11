@@ -24,6 +24,7 @@ private:
 	static bool beInitialized;
 	static std::vector<SceneSet> sceneSets;
 	static std::vector<ButtonObject> navLinks;
+	static RectangleObject banner;
 
 	static float height;
 	static float navWidth;

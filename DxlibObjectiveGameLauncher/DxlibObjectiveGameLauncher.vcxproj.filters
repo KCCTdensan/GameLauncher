@@ -87,6 +87,9 @@
       <Filter>Scenes\Base</Filter>
     </ClCompile>
     <ClCompile Include="ObjectLayer.cpp" />
+    <ClCompile Include="UUIDGenerator.cpp">
+      <Filter>UUID</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -164,7 +167,6 @@
     <ClInclude Include="HomeScene.h">
       <Filter>Scenes\Pages\Home</Filter>
     </ClInclude>
-    <ClInclude Include="ExePath.h" />
     <ClInclude Include="FontHandleData.h">
       <Filter>Struct</Filter>
     </ClInclude>
@@ -193,6 +195,12 @@
       <Filter>Scenes\Base</Filter>
     </ClInclude>
     <ClInclude Include="ObjectLayer.h" />
+    <ClInclude Include="UUIDGenerator.h">
+      <Filter>UUID</Filter>
+    </ClInclude>
+    <ClInclude Include="ExePath.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -275,6 +283,9 @@
     </Filter>
     <Filter Include="Objects\Layer">
       <UniqueIdentifier>{0154de5a-41b9-4613-b40c-6336b21c96f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UUID">
+      <UniqueIdentifier>{58c29971-4f7b-4c55-b150-c96c5c2755f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

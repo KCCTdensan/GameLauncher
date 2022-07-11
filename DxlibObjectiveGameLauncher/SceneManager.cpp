@@ -85,6 +85,7 @@ bool SceneManager::ChangeSceneForward()
 
 void SceneManager::Collide()
 {
+	ObjectOverlapping::Reset();
 	current.scene->Collide();
 	Header::Collide();
 }

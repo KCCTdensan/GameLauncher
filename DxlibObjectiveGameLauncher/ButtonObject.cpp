@@ -7,6 +7,8 @@ void ButtonObject::Collide()
 
 void ButtonObject::Update()
 {
+	CheckGUID();
+
 	// アニメーション記述をする場合，ここに記述
 	if (mouseHit) {
 		currentInnerColor = hoveredColor;
@@ -55,7 +57,7 @@ void ButtonObject::CollideMouse()
 		mouseHit = true;
 
 		// オブジェクトの重複判定登録処理
-		ObjectOverlapping<ButtonObject>::UpdateObject(this);
+		ObjectOverlapping::UpdateObject(guid);
 
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
 			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST /*&& !beCalledNoMouse*/)
