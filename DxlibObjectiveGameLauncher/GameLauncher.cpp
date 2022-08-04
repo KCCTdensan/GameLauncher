@@ -19,7 +19,7 @@ void ApplicationUpdate(SceneManager* _sceneManager); // threadB*/
 
 void GradX_RGB(int x1, int y1, int x2, int y2, BYTE r1, BYTE g1, BYTE b1, BYTE r2, BYTE g2, BYTE b2)
 {
-	VERTEX2D Vertex[6];
+	VERTEX2D Vertex[6]{};
 
 	Vertex[0].pos.x = (float)x1;
 	Vertex[0].pos.y = (float)y1;
@@ -144,11 +144,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 		GradX_RGB(10, 200, 630, 280, 255, 128, 0, 0, 255, 128);
 
-		// シーンマネージャに判定させる，値を渡しておく
-		if (Input::MouseInput::GetClick(MOUSE_INPUT_5) == PressFrame::FIRST)
-			SceneManager::ChangeSceneForward();
-		if (Input::MouseInput::GetClick(MOUSE_INPUT_4) == PressFrame::FIRST)
-			SceneManager::ChangeSceneBackward();
+		SceneManager::UpdateForwardBackwardScene(
+			Input::MouseInput::GetClick(MOUSE_INPUT_5), PressFrame::FIRST,
+			Input::MouseInput::GetClick(MOUSE_INPUT_4), PressFrame::FIRST);
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 			MainThread::SetEnd(true);

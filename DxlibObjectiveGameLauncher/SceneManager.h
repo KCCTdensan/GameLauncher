@@ -20,6 +20,7 @@ public:
 	static bool ChangeSceneBackward();
 	static bool ChangeSceneForward();
 	static int GetSceneHistoryPosition() { return sceneHistoryPosition; }
+	static bool UpdateForwardBackwardScene(int forwardButton, int forwardFrame, int backwardButton, int backwardFrame);
 
 	static void Initialize();
 

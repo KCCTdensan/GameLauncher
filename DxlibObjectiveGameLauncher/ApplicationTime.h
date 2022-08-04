@@ -6,6 +6,7 @@ public:
 	static void Initialize();
 	static void Update();
 	static int GetFPS() { return fps; };
+	static float DeltaTime() { return deltaTime; }
 private:
 	static long long nowTime;
 	static long long time;
