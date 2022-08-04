@@ -25,6 +25,7 @@ private:
 	static std::vector<SceneSet> sceneSets;
 	static std::vector<ButtonObject> navLinks;
 	static RectangleObject banner;
+	static std::vector<ButtonObject> systemButtons;
 
 	static float height;
 	static float navWidth;

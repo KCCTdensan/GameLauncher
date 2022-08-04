@@ -88,12 +88,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetMultiThreadFlag(TRUE); // マルチスレッド対応
 	SetAlwaysRunFlag(TRUE); // 画面がActiveでないときにも実行するか。音楽再生のため基本はTRUE
 	ChangeWindowMode(TRUE); // 画面をウインドウにするか。TRUE:ウインドウ FALSE:全画面（ただし，全画面は描画が遅い。別の描画の仕方でされてしまうため。)
-	SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
+	SetWindowSizeChangeEnableFlag(!TRUE);// ウインドウを可変にするかTRUEで可変
 	SetUseDirectInputFlag(FALSE); // インプットのオブジェクトでダイレクトインプットを使用するかどうか。基本はTRUEの方が望ましい。
 
 	SetMainWindowText("GameLauncher"); // アプリのタイトル名の変更
 
-	SetWindowStyleMode(7); // ボーダレスウインドウ
+	SetWindowStyleMode(4); // ボーダレスウインドウ
 
 	SetGraphMode((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, 32);
 
@@ -127,6 +127,45 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	//std::thread inputUpdate(InputUpdate);
 	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
+
+	COLORREF crCaption, crText;
+	int cxFrame = GetSystemMetrics(SM_CXFRAME);
+	int cyFrame = GetSystemMetrics(SM_CYFRAME);
+	int cxButton = GetSystemMetrics(SM_CXSIZE);
+	int cyButton = GetSystemMetrics(SM_CYSIZE);
+	if (true) {
+		crCaption = GetSysColor(COLOR_ACTIVECAPTION);
+		crText = GetSysColor(COLOR_CAPTIONTEXT);
+	}
+	else {
+		crCaption = GetSysColor(COLOR_INACTIVECAPTION);
+		crText = GetSysColor(COLOR_INACTIVECAPTIONTEXT);
+	}
+
+	RECT rcWnd;
+	char sz[128];
+	GetWindowRect(GetMainWindowHandle(), &rcWnd);
+	GetWindowText(GetMainWindowHandle(), sz, sizeof(sz) - 1);
+
+	HDC	hdc = GetWindowDC(GetMainWindowHandle());
+
+	//テキスト描画の例
+	RECT rcFill;
+	rcFill.left = cxFrame + cxButton + 1;
+	rcFill.right = (rcWnd.right - rcWnd.left) - (cxFrame + 3 * (cxButton + 1));
+	rcFill.top = cyFrame;
+	rcFill.bottom = cyFrame + cyButton;
+	SetTextColor(hdc, crText);
+	SetBkColor(hdc, crCaption);
+	HBRUSH hbr = CreateSolidBrush(crCaption);
+	FillRect(hdc, &rcFill, hbr);
+	DeleteObject(hbr);
+	DrawText(hdc, sz, lstrlen(sz), &rcFill,
+		DT_RIGHT | DT_VCENTER | DT_SINGLELINE);
+
+	DeleteDC(hdc);
+
+	ReleaseDC(GetMainWindowHandle(), hdc);
 
 	while (!ScreenFlip() && !ClearDrawScreen() && !MainThread::SetEnd()) // メインループ この中の条件はないとバグるもの
 	{

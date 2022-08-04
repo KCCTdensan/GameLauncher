@@ -7,6 +7,7 @@ std::vector<SceneSet> Header::sceneSets = {
 };
 
 std::vector<ButtonObject> Header::navLinks = {};
+std::vector<ButtonObject> Header::systemButtons = {};
 
 bool Header::beInitialized = false;
 
@@ -27,6 +28,19 @@ void Header::Initialize()
 		navLinks[i].SetInnerColor(GetColor(255, 255, 225), GetColor(230, 230, 200), GetColor(150, 150, 120), GetColor(200, 200, 170));
 	}
 
+	for (int i = 0; i < 3; i++) {
+		systemButtons.push_back(ButtonObject(
+			PosVec(
+				ApplicationPreference::GetBackgroundSize().x - 60.f - 60.f * i,
+				0.f),
+			PosVec(60.f, 40.f), true, true));
+		if (i == 0)
+			systemButtons[i].SetInnerColor(GetColor(30, 30, 30), GetColor(220, 113, 114), GetColor(184, 85, 85), GetColor(184, 85, 85));
+		else
+			systemButtons[i].SetInnerColor(GetColor(30, 30, 30), GetColor(50, 50, 50), GetColor(10, 10, 10), GetColor(30, 30, 30));
+		systemButtons[i].SetOutlineColor(GetColor(255, 255, 255), 1.f);
+	}
+
 	beInitialized = true;
 }
 
@@ -35,6 +49,9 @@ void Header::Collide()
 	banner.Collide();
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		navLinks[i].Collide();
+	}
+	for (int i = 0; i < 3; i++) {
+		systemButtons[i].Collide();
 	}
 }
 
@@ -49,6 +66,9 @@ void Header::Update()
 			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene);
 		}
 	}
+	for (int i = 0; i < 3; i++) {
+		systemButtons[i].Update();
+	}
 }
 
 void Header::Draw()
@@ -57,4 +77,8 @@ void Header::Draw()
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		navLinks[i].Draw();
 	}
+	for (int i = 0; i < 3; i++) {
+		systemButtons[i].Draw();
+	}
+	DrawBoxAA(0, 0, 1920, 1080, GetColor(255, 255, 255), false, 2.); // debug
 }
