@@ -69,6 +69,18 @@ void Header::Update()
 	for (int i = 0; i < 3; i++) {
 		systemButtons[i].Update();
 	}
+	if (systemButtons[0].GetMouseSelected()) {
+		AppClose::Close();
+		systemButtons[0].SetMouseOff();
+	}
+	if (systemButtons[1].GetMouseSelected()) {
+		ShowWindow(GetMainWindowHandle(), SW_MAXIMIZE);
+		systemButtons[1].SetMouseOff();
+	}
+	if (systemButtons[2].GetMouseSelected()) {
+		ShowWindow(GetMainWindowHandle(), SW_MINIMIZE);
+		systemButtons[2].SetMouseOff();
+	}
 }
 
 void Header::Draw()

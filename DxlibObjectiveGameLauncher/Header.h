@@ -4,6 +4,7 @@
 #include "SceneSet.h"
 #include "ButtonObject.h"
 #include "RectangleObject.h"
+#include "AppClose.h"
 #include <array>
 #include <vector>
 /* ƒV[ƒ“ˆÚ“®“o˜^—p */

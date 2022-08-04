@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AppClose.cpp" />
     <ClCompile Include="ApplicationBuilder.cpp" />
     <ClCompile Include="ApplicationPreference.cpp" />
     <ClCompile Include="ApplicationTime.cpp" />
@@ -46,6 +47,7 @@
     <ClCompile Include="WindowHolding.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppClose.h" />
     <ClInclude Include="ApplicationBuilder.h" />
     <ClInclude Include="ApplicationPreference.h" />
     <ClInclude Include="ApplicationTime.h" />

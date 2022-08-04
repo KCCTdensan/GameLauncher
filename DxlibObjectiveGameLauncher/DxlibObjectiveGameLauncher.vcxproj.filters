@@ -94,6 +94,7 @@
     <ClCompile Include="ApplicationTime.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="AppClose.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -212,6 +213,7 @@
     <ClInclude Include="ApplicationTime.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="AppClose.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
