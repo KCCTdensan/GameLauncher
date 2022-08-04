@@ -12,9 +12,17 @@ ApplicationBuilder::ApplicationBuilder()
 	if (AddFontResourceEx(tmp.c_str(), FR_PRIVATE, NULL) <= 0) {
 		MessageBox(NULL, "ƒtƒHƒ“ƒg“ÇžŽ¸”s", "", MB_OK);
 	}
+
+	ApplicationTime::Initialize();
 }
 
 ApplicationBuilder::~ApplicationBuilder()
 {
 	RemoveFontResourceEx(tmp.c_str(), FR_PRIVATE, NULL);
+}
+
+void ApplicationBuilder::Update()
+{
+	ApplicationTime::Update();
+	WindowHolding::Update();
 }

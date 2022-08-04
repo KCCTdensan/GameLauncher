@@ -39,6 +39,9 @@ private:
 
 	void CollideMouse();
 
+	// アニメーション目標
+	void SetAnimationPoint(int _start, int _goal);
+
 private:
 	int innerColor;
 	int hoveredColor;

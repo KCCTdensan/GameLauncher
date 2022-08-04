@@ -5,7 +5,7 @@ POINT WindowHolding::po = POINT();
 
 void WindowHolding::Update()
 {
-	if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST && Input::MouseInput::GetMouse().y <= ApplicationPreference::GetBackgroundSize().y / 12.f) {
+	if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST && Input::MouseInput::GetMouse().y <= ApplicationPreference::GetBackgroundSize().y / 15.f) {
 		GetCursorPos(&po);
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST) {
 			int x, y;

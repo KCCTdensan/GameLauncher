@@ -11,11 +11,66 @@
 #include "MouseInput.h"
 #include "SceneManager.h"
 #include "MainThreadValue.h"
-#include "WindowHolding.h"
 #include "DebugScene.h"
+#include "ApplicationTime.h"
 
 /*void InputUpdate(); // threadA
 void ApplicationUpdate(SceneManager* _sceneManager); // threadB*/
+
+void GradX_RGB(int x1, int y1, int x2, int y2, BYTE r1, BYTE g1, BYTE b1, BYTE r2, BYTE g2, BYTE b2)
+{
+	VERTEX2D Vertex[6];
+
+	Vertex[0].pos.x = (float)x1;
+	Vertex[0].pos.y = (float)y1;
+	Vertex[0].pos.z = 0.0f;
+	Vertex[0].rhw = 1.0f;
+	Vertex[0].dif.r = r1;
+	Vertex[0].dif.g = g1;
+	Vertex[0].dif.b = b1;
+	Vertex[0].dif.a = 255;
+	Vertex[0].u = 0.0f;
+	Vertex[0].v = 0.0f;
+
+	Vertex[1].pos.x = (float)x2;
+	Vertex[1].pos.y = (float)y1;
+	Vertex[1].pos.z = 0.0f;
+	Vertex[1].rhw = 1.0f;
+	Vertex[1].dif.r = r2;
+	Vertex[1].dif.g = g2;
+	Vertex[1].dif.b = b2;
+	Vertex[1].dif.a = 255;
+	Vertex[1].u = 0.0f;
+	Vertex[1].v = 0.0f;
+
+	Vertex[2].pos.x = (float)x1;
+	Vertex[2].pos.y = (float)y2;
+	Vertex[2].pos.z = 0.0f;
+	Vertex[2].rhw = 1.0f;
+	Vertex[2].dif.r = r1;
+	Vertex[2].dif.g = g1;
+	Vertex[2].dif.b = b1;
+	Vertex[2].dif.a = 255;
+	Vertex[2].u = 0.0f;
+	Vertex[2].v = 0.0f;
+
+	Vertex[3].pos.x = (float)x2;
+	Vertex[3].pos.y = (float)y2;
+	Vertex[3].pos.z = 0.0f;
+	Vertex[3].rhw = 1.0f;
+	Vertex[3].dif.r = r2;
+	Vertex[3].dif.g = g2;
+	Vertex[3].dif.b = b2;
+	Vertex[3].dif.a = 255;
+	Vertex[3].u = 0.0f;
+	Vertex[3].v = 0.0f;
+
+	Vertex[4] = Vertex[2];
+
+	Vertex[5] = Vertex[1];
+
+	DrawPolygon2D(Vertex, 2, DX_NONE_GRAPH, FALSE);
+}
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) // windowsに定義された関数 ※修正不可
 {
@@ -38,9 +93,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SetMainWindowText("GameLauncher"); // アプリのタイトル名の変更
 
-	SetWindowStyleMode(2); // ボーダレスウインドウ
+	SetWindowStyleMode(7); // ボーダレスウインドウ
 
 	SetGraphMode((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, 32);
+
+	SetBackgroundColor(20, 20, 20);
 
 	if (DxLib_Init() == -1) // Dxlib初期化 ！この後じゃないと，画像・フォントハンドル操作や描画操作が動かない
 	{
@@ -64,7 +121,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetWindowSize((int)(monitorSize.x) * 4 / 5, (int)monitorSize.y * 4 / 5);
 	SetWindowMinSize((int)(monitorSize.x) / 4, (int)(monitorSize.y) / 4);
 
-	//SceneManager::AddScene("debug", new DebugScene());
 	SceneManager::Initialize();
 
 	SceneManager::ChangeScene("debug", new DebugScene(), false);
@@ -74,18 +130,21 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	while (!ScreenFlip() && !ClearDrawScreen() && !MainThread::SetEnd()) // メインループ この中の条件はないとバグるもの
 	{
+		applicationBuilder.Update(); // システム系更新処理(がまとめられている)
 		GetMessage(&msg, NULL, 0, 0);
 		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-		WindowHolding::Update();
-		SetDrawScreen(DX_SCREEN_BACK);
-		Input::MouseInput::Update();
+		DispatchMessage(&msg); // ウインドウメッセージ処理
+
+		SetDrawScreen(DX_SCREEN_BACK); // 描画初期化
+		Input::MouseInput::Update(); // マウス更新処理
 
 		SceneManager::Collide();
 		SceneManager::Update();
-		SceneManager::Draw();
+		SceneManager::Draw(); // シーン更新処理
 
-		// どこかにクラスを作り移す debug
+		GradX_RGB(10, 200, 630, 280, 255, 128, 0, 0, 255, 128);
+
+		// シーンマネージャに判定させる，値を渡しておく
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_5) == PressFrame::FIRST)
 			SceneManager::ChangeSceneForward();
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_4) == PressFrame::FIRST)
@@ -100,7 +159,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	//inputUpdate.join();
 	//applicationUpdate.join();
 
-	DxLib_End();
+	DxLib_End(); // ライブラリend
 	return 0;
 }
 

@@ -12,17 +12,21 @@ void ButtonObject::Update()
 	// アニメーション記述をする場合，ここに記述
 	if (mouseHit) {
 		currentInnerColor = hoveredColor;
+		SetAnimationPoint(currentInnerColor, hoveredColor);
 	}
 	else {
 		currentInnerColor = innerColor;
+		SetAnimationPoint(currentInnerColor, innerColor);
 	}
 
 	if (mouseSelected) {
 		currentInnerColor = selectedColor;
+		SetAnimationPoint(currentInnerColor, selectedColor);
 	}
 
 	if (mouseClicked) {
 		currentInnerColor = clickedColor;
+		SetAnimationPoint(currentInnerColor, clickedColor);
 	}
 
 	if (!enabled) return;
@@ -87,4 +91,10 @@ void ButtonObject::CollideMouse()
 	}
 
 	beCalledNoMouse = false;
+}
+
+void ButtonObject::SetAnimationPoint(int _start, int _goal)
+{
+	animationStartColor = _start;
+	animationEndColor = _goal;
 }

@@ -90,6 +90,10 @@
     <ClCompile Include="UUIDGenerator.cpp">
       <Filter>UUID</Filter>
     </ClCompile>
+    <ClCompile Include="ComponentBase.cpp" />
+    <ClCompile Include="ApplicationTime.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -199,6 +203,13 @@
       <Filter>UUID</Filter>
     </ClInclude>
     <ClInclude Include="ExePath.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFuncData.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentBase.h" />
+    <ClInclude Include="ApplicationTime.h">
       <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
