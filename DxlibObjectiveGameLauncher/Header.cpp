@@ -70,18 +70,21 @@ void Header::Update()
 		systemButtons[i].Update();
 	}
 	if (systemButtons[0].GetMouseSelected()) {
-		AppClose::Close();
+		WindowHwnd::WindowClose(GetMainWindowHandle());
 		systemButtons[0].SetMouseOff();
 	}
 	if (systemButtons[1].GetMouseSelected()) {
-		if (!WindowHolding::GetWindowMaximized())
-			ShowWindow(GetMainWindowHandle(), SW_MAXIMIZE);
+		if (!WindowHolding::GetWindowMaximized()) {
+			WindowHwnd::WindowMaximize(GetMainWindowHandle());
+		}
 		else
-			ShowWindow(GetMainWindowHandle(), SW_SHOWNORMAL);
+		{
+			WindowHwnd::WindowNormalize(GetMainWindowHandle());
+		}
 		systemButtons[1].SetMouseOff();
 	}
 	if (systemButtons[2].GetMouseSelected()) {
-		ShowWindow(GetMainWindowHandle(), SW_MINIMIZE);
+		WindowHwnd::WindowMinimize(GetMainWindowHandle());
 		systemButtons[2].SetMouseOff();
 	}
 }

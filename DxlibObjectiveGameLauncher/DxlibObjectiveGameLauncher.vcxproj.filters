@@ -95,6 +95,7 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="AppClose.cpp" />
+    <ClCompile Include="WindowHwnd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -217,6 +218,7 @@
     <ClInclude Include="Color255.h">
       <Filter>Struct</Filter>
     </ClInclude>
+    <ClInclude Include="WindowHwnd.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
