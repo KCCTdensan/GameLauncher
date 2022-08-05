@@ -25,7 +25,7 @@ void Header::Initialize()
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		navLinks.push_back(ButtonObject(PosVec(ApplicationPreference::GetBackgroundSize().x - (navWidth / ApplicationPreference::headerButtonNum * (ApplicationPreference::headerButtonNum - i)), ApplicationPreference::GetBackgroundSize().y / 15.f),
 			PosVec(navWidth / ApplicationPreference::headerButtonNum, height)));
-		navLinks[i].SetInnerColor(GetColor(255, 255, 225), GetColor(230, 230, 200), GetColor(150, 150, 120), GetColor(200, 200, 170));
+		navLinks[i].SetInnerColor(Color255(255, 255, 225), Color255(230, 230, 200), Color255(150, 150, 120), Color255(200, 200, 170));
 	}
 
 	for (int i = 0; i < 3; i++) {
@@ -35,10 +35,10 @@ void Header::Initialize()
 				0.f),
 			PosVec(60.f, 40.f), true, true));
 		if (i == 0)
-			systemButtons[i].SetInnerColor(GetColor(30, 30, 30), GetColor(220, 113, 114), GetColor(184, 85, 85), GetColor(184, 85, 85));
+			systemButtons[i].SetInnerColor(Color255(30, 30, 30), Color255(220, 113, 114), Color255(184, 85, 85), Color255(184, 85, 85));
 		else
-			systemButtons[i].SetInnerColor(GetColor(30, 30, 30), GetColor(50, 50, 50), GetColor(10, 10, 10), GetColor(30, 30, 30));
-		systemButtons[i].SetOutlineColor(GetColor(255, 255, 255), 1.f);
+			systemButtons[i].SetInnerColor(Color255(30, 30, 30), Color255(50, 50, 50), Color255(10, 10, 10), Color255(30, 30, 30));
+		systemButtons[i].SetOutlineColor(Color255(255, 255, 255), 1.f);
 	}
 
 	beInitialized = true;

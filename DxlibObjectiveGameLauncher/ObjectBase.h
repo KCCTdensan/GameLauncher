@@ -2,6 +2,7 @@
 #include "PositionVector.h"
 #include "UUIDGenerator.h"
 #include "ObjectOverlapping.h"
+#include "Color255.h"
 #include <vector>
 
 class ObjectBase

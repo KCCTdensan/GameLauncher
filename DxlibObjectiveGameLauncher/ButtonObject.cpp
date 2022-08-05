@@ -38,11 +38,11 @@ void ButtonObject::Draw()
 	if (!enabled) return;
 
 	if (enabledOutline) {
-		int resultOuterColor = outerColor; // debug
+		int resultOuterColor = outerColor.Get(); // debug
 		DrawBoxAA(pos.x, pos.y, pos.x + size.x, pos.y + size.y, resultOuterColor, true, 0);
 	}
 	if (enabledFill) {
-		int resultInnerColor = currentInnerColor;
+		int resultInnerColor = currentInnerColor.Get();
 		DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth, pos.y + size.y - outlineWidth, resultInnerColor, true, 0);
 	}
 }
@@ -93,7 +93,7 @@ void ButtonObject::CollideMouse()
 	beCalledNoMouse = false;
 }
 
-void ButtonObject::SetAnimationPoint(int _start, int _goal)
+void ButtonObject::SetAnimationPoint(Color255 _start, Color255 _goal)
 {
 	animationStartColor = _start;
 	animationEndColor = _goal;

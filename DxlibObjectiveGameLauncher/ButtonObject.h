@@ -27,8 +27,9 @@ public:
 	bool SetEnabledOutline() { return enabledOutline; }
 
 	// 色情報登録等
-	bool SetInnerColor(int _innerColor, int _hoveredColor, int _clickedColor, int _selectedColor) { innerColor = _innerColor; hoveredColor = _hoveredColor; clickedColor = _clickedColor; selectedColor = _selectedColor; return true; }
-	bool SetOutlineColor(int _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
+	bool SetInnerColor(Color255 _innerColor, Color255 _hoveredColor, Color255 _clickedColor, Color255 _selectedColor)
+	{ innerColor = _innerColor; hoveredColor = _hoveredColor; clickedColor = _clickedColor; selectedColor = _selectedColor; return true; }
+	bool SetOutlineColor(Color255 _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
 
 	// 更新描画
 	void Collide();
@@ -40,15 +41,15 @@ private:
 	void CollideMouse();
 
 	// アニメーション目標
-	void SetAnimationPoint(int _start, int _goal);
+	void SetAnimationPoint(Color255 _start, Color255 _goal);
 
 private:
-	int innerColor;
-	int hoveredColor;
-	int clickedColor;
-	int selectedColor;
+	Color255 innerColor;
+	Color255 hoveredColor;
+	Color255 clickedColor;
+	Color255 selectedColor;
 
-	int outerColor;
+	Color255 outerColor;
 	float outlineWidth;
 
 	bool enabledFill;
@@ -56,12 +57,12 @@ private:
 
 	/******************/
 
-	int currentInnerColor;
+	Color255 currentInnerColor;
 
 	/******************/
 
-	int animationStartColor;
-	int animationEndColor;
+	Color255 animationStartColor;
+	Color255 animationEndColor;
 
 	float animationDuraion;
 	float animationCurrentlyRate;

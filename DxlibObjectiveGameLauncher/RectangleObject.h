@@ -21,8 +21,8 @@ public:
 	bool SetEnabledOutline() { return enabledOutline; }
 
 	// Fî•ñ“o˜^“™
-	bool SetInnerColor(int _innerColor) { innerColor = _innerColor; return true; }
-	bool SetOutlineColor(int _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
+	bool SetInnerColor(Color255 _innerColor) { innerColor = _innerColor; return true; }
+	bool SetOutlineColor(Color255 _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
 
 	// XV•`‰æ
 	void Collide();
@@ -34,9 +34,9 @@ private:
 	void CollideMouse();
 
 private:
-	int innerColor;
+	Color255 innerColor;
 
-	int outerColor;
+	Color255 outerColor;
 	float outlineWidth;
 
 	bool enabledFill;
@@ -47,6 +47,6 @@ private:
 
 	/******************/
 
-	int currentInnerColor;
+	Color255 currentInnerColor;
 };
 

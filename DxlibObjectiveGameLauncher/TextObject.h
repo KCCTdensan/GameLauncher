@@ -10,7 +10,7 @@ class TextObject :
 {
 public:
 	// sizeは無視される
-	TextObject(PosVec _pos, PosVec _size, int _fontHandle, std::string _text, int _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
+	TextObject(PosVec _pos, PosVec _size, int _fontHandle, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 		: ObjectBase(_pos, _size), fontHandle(_fontHandle), fontHandleName(), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0),
 		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false)
@@ -20,7 +20,7 @@ public:
 
 	// sizeは無視される
 	// フォントハンドル自動検索
-	TextObject(PosVec _pos, PosVec _size, std::string _fontHandleName, std::string _text, int _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
+	TextObject(PosVec _pos, PosVec _size, std::string _fontHandleName, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 		: ObjectBase(_pos, _size), fontHandle(-1), fontHandleName(_fontHandleName), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0),
 		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(true)
@@ -42,8 +42,8 @@ public:
 	bool SetEnabledBack() { return enabledBack; }
 
 	// 色情報登録等
-	bool SetInnerColor(int _innerColor) { innerColor = _innerColor; return true; }
-	bool SetBackColor(int _backColor) { backColor = _backColor; return true; }
+	bool SetInnerColor(Color255 _innerColor) { innerColor = _innerColor; return true; }
+	bool SetBackColor(Color255 _backColor) { backColor = _backColor; return true; }
 
 	// Padding設定(enabledBackのみ有効)
 	// trueの場合無視
@@ -78,10 +78,10 @@ private:
 
 	PosVec finallyPos;
 
-	int innerColor;
+	Color255 innerColor;
 	TextAlign align;
 
-	int backColor;
+	Color255 backColor;
 
 	bool enabledBack;
 };

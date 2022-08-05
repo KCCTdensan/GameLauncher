@@ -5,21 +5,21 @@ DebugScene::DebugScene() :
 	debugButton(PosVec(), PosVec(1200.f, 300.f), true, true),
 	debugButton2(PosVec(50, 200.f), PosVec(75.f, 150.f), true, false),
 	debugRect(PosVec(1100.f, 300.f), PosVec(300.f, 150.f), true, false),
-	textSample1(PosVec(750, 700), PosVec(), "mplus1", "文字列", GetColor(135, 200, 56), TextAlign::CENTER, true)
+	textSample1(PosVec(750, 700), PosVec(), "mplus1", "文字列", Color255(135, 200, 56), TextAlign::CENTER, true)
 {
-	bg.SetInnerColor(GetColor(20, 20, 20));
+	bg.SetInnerColor(Color255(20, 20, 20));
 
-	debugButton.SetInnerColor(GetColor(255, 255, 255), GetColor(230, 230, 230), GetColor(150, 150, 150), GetColor(200, 200, 200));
-	debugButton.SetOutlineColor(GetColor(132, 220, 75), 5);
+	debugButton.SetInnerColor(Color255(255, 255, 255), Color255(230, 230, 230), Color255(150, 150, 150), Color255(200, 200, 200));
+	debugButton.SetOutlineColor(Color255(132, 220, 75), 5);
 
-	debugButton2.SetInnerColor(GetColor(255, 200, 255), GetColor(235, 180, 235), GetColor(170, 115, 170), GetColor(200, 145, 200));
-	// debugButton2.SetOutlineColor(GetColor(240, 150, 50), 5);
+	debugButton2.SetInnerColor(Color255(255, 200, 255), Color255(235, 180, 235), Color255(170, 115, 170), Color255(200, 145, 200));
+	// debugButton2.SetOutlineColor(Color255(240, 150, 50), 5);
 
 	debugButton.RegisterChildren(&debugButton2); // 子要素
 
-	debugRect.SetInnerColor(GetColor(68, 191, 172));
+	debugRect.SetInnerColor(Color255(68, 191, 172));
 
-	textSample1.SetBackColor(GetColor(150, 70, 100));
+	textSample1.SetBackColor(Color255(150, 70, 100));
 	textSample1.SetPadding(10.f, 20.f, 5.f, 30.f);
 
 	// フォント追加

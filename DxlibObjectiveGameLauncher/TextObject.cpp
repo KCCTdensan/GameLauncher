@@ -10,9 +10,9 @@ void TextObject::Update()
 void TextObject::Draw()
 {
 	if (enabledBack) {
-		DrawBoxAA(finallyPos.x - paddingUpperLeft.x, finallyPos.y - paddingUpperLeft.y, finallyPos.x + textWidth + paddingLowerRight.x, finallyPos.y + fontHeight + paddingLowerRight.y, backColor, true);
+		DrawBoxAA(finallyPos.x - paddingUpperLeft.x, finallyPos.y - paddingUpperLeft.y, finallyPos.x + textWidth + paddingLowerRight.x, finallyPos.y + fontHeight + paddingLowerRight.y, backColor.Get(), true);
 	}
-	DrawFormatStringFToHandle(finallyPos.x, finallyPos.y, innerColor, fontHandle, text.c_str());
+	DrawFormatStringFToHandle(finallyPos.x, finallyPos.y, innerColor.Get(), fontHandle, text.c_str());
 }
 
 void TextObject::CalcPos()
