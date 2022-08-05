@@ -110,7 +110,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	ApplicationBuilder applicationBuilder;
 
-	MSG msg;
+	//MSG msg;
 
 	PosVec monitorSize((float)GetSystemMetrics(SM_CXSCREEN), (float)GetSystemMetrics(SM_CYSCREEN));
 
@@ -174,9 +174,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	while (!ScreenFlip() && !ClearDrawScreen() && !MainThread::SetEnd()) // メインループ この中の条件はないとバグるもの
 	{
 		applicationBuilder.Update(); // システム系更新処理(がまとめられている)
-		GetMessage(&msg, NULL, 0, 0);
-		TranslateMessage(&msg);
-		DispatchMessage(&msg); // ウインドウメッセージ処理
+		//GetMessage(&msg, NULL, 0, 0);
+		//TranslateMessage(&msg);
+		//DispatchMessage(&msg); // ウインドウメッセージ処理
+		ProcessMessage();
 
 		SetDrawScreen(DX_SCREEN_BACK); // 描画初期化
 		Input::MouseInput::Update(); // マウス更新処理

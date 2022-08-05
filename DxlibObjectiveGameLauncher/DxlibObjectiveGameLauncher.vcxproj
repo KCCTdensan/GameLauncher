@@ -28,6 +28,7 @@
     <ClCompile Include="ImageData.cpp" />
     <ClCompile Include="JsonSoftwareData.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
+    <ClCompile Include="LineObject.cpp" />
     <ClCompile Include="MainThreadValue.cpp" />
     <ClCompile Include="MouseInput.cpp" />
     <ClCompile Include="MovieChest.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="ImageData.h" />
     <ClInclude Include="JsonSoftwareData.h" />
     <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="LineObject.h" />
     <ClInclude Include="MainThreadValue.h" />
     <ClInclude Include="MouseClickType.h" />
     <ClInclude Include="MouseInput.h" />
@@ -78,6 +80,7 @@
     <ClInclude Include="ObjectFuncData.h" />
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectOverlapping.h" />
+    <ClInclude Include="OriginalObjects.h" />
     <ClInclude Include="PositionVector.h" />
     <ClInclude Include="PressFrameEnum.h" />
     <ClInclude Include="ProgressObject.h" />

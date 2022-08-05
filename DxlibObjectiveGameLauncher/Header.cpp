@@ -15,6 +15,12 @@ float Header::navWidth = ApplicationPreference::GetBackgroundSize().x - 300;
 float Header::height = ApplicationPreference::GetBackgroundSize().y / 12.f;
 
 RectangleObject Header::banner = RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y / 15.f));
+LineObject Header::headerLine = LineObject(
+	PosVec(0.f, ApplicationPreference::GetBackgroundSize().y / 15.f),
+	PosVec(
+		ApplicationPreference::GetBackgroundSize().x,
+		ApplicationPreference::GetBackgroundSize().y / 15.f)
+);
 
 void Header::Initialize()
 {
@@ -42,6 +48,8 @@ void Header::Initialize()
 		systemButtons[i].SetOutlineColor(Color255(255, 255, 255), 1.f);
 		systemButtons[i].SetAnimation(0.2f);
 	}
+	headerLine.SetEnabledOutline(true);
+	headerLine.SetOutlineColor(Color255(0xFF, 0x77, 0xFE), 2.5f);
 
 	beInitialized = true;
 }
@@ -89,6 +97,7 @@ void Header::Update()
 		WindowHwnd::WindowMinimize(GetMainWindowHandle());
 		systemButtons[2].SetMouseOff();
 	}
+	headerLine.Draw();
 }
 
 void Header::Draw()
@@ -100,5 +109,6 @@ void Header::Draw()
 	for (int i = 0; i < 3; i++) {
 		systemButtons[i].Draw();
 	}
+	headerLine.Draw();
 	DrawBoxAA(0, 0, 1920, 1080, GetColor(255, 255, 255), false, 2.); // debug
 }

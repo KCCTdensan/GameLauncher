@@ -96,6 +96,7 @@
     </ClCompile>
     <ClCompile Include="AppClose.cpp" />
     <ClCompile Include="WindowHwnd.cpp" />
+    <ClCompile Include="LineObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -219,6 +220,10 @@
       <Filter>Struct</Filter>
     </ClInclude>
     <ClInclude Include="WindowHwnd.h" />
+    <ClInclude Include="LineObject.h" />
+    <ClInclude Include="OriginalObjects.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -304,6 +309,9 @@
     </Filter>
     <Filter Include="UUID">
       <UniqueIdentifier>{58c29971-4f7b-4c55-b150-c96c5c2755f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Includes">
+      <UniqueIdentifier>{16655d38-f8e3-49ca-a00a-b878cd294aa1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

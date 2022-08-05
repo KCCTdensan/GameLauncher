@@ -1,11 +1,8 @@
 #pragma once
 #include "SceneBase.h"
-#include "ButtonObject.h"
-#include "RectangleObject.h"
-#include "TextObject.h"
 #include "HomeScene.h"
 #include "ApplicationPreference.h"
-
+#include "OriginalObjects.h"
 #include "FontChest.h"
 
 class DebugScene :
