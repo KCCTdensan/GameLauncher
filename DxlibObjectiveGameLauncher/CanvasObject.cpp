@@ -2,6 +2,8 @@
 
 void CanvasObject::Update()
 {
+	CheckGUID();
+
 }
 
 void CanvasObject::Draw()

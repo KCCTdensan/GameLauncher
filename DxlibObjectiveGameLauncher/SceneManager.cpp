@@ -83,8 +83,20 @@ bool SceneManager::ChangeSceneForward()
 	return true;
 }
 
+bool SceneManager::UpdateForwardBackwardScene(int forwardButton, int forwardFrame, int backwardButton, int backwardFrame)
+{
+	if (forwardButton == forwardFrame) {
+		ChangeSceneForward();
+	}
+	if (backwardButton == backwardFrame) {
+		ChangeSceneBackward();
+	}
+	return false;
+}
+
 void SceneManager::Collide()
 {
+	ObjectOverlapping::Reset();
 	current.scene->Collide();
 	Header::Collide();
 }

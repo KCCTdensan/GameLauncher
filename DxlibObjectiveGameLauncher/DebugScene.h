@@ -2,10 +2,11 @@
 #include "SceneBase.h"
 #include "ButtonObject.h"
 #include "RectangleObject.h"
+#include "TextObject.h"
 #include "HomeScene.h"
 #include "ApplicationPreference.h"
 
-#include "FontData.h"
+#include "FontChest.h"
 
 class DebugScene :
     public SceneBase
@@ -23,5 +24,6 @@ private:
     ButtonObject debugButton;
     ButtonObject debugButton2;
     RectangleObject debugRect;
+    TextObject textSample1;
 };
 

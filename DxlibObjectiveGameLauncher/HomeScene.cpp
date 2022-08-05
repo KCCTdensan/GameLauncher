@@ -4,7 +4,7 @@ HomeScene::HomeScene()
 	: debugButton(PosVec(400, 700)
 		, PosVec(500.f, 300.f))
 {
-	debugButton.SetInnerColor(GetColor(252, 200, 0), GetColor(222, 170, 0), GetColor(172, 120, 0), GetColor(202, 150, 0));
+	debugButton.SetInnerColor(Color255(252, 200, 0), Color255(222, 170, 0), Color255(172, 120, 0), Color255(202, 150, 0));
 	debugButton.SetEnabledOutline(false);
 }
 

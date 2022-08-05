@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -11,14 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AppClose.cpp" />
     <ClCompile Include="ApplicationBuilder.cpp" />
     <ClCompile Include="ApplicationPreference.cpp" />
+    <ClCompile Include="ApplicationTime.cpp" />
     <ClCompile Include="BlankRedirectScene.cpp" />
     <ClCompile Include="ButtonObject.cpp" />
     <ClCompile Include="CanvasObject.cpp" />
+    <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="FontChest.cpp" />
-    <ClCompile Include="FontData.cpp" />
     <ClCompile Include="GameLauncher.cpp" />
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="HomeScene.cpp" />
@@ -33,24 +35,30 @@
     <ClCompile Include="MusicChest.cpp" />
     <ClCompile Include="MusicData.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
     <ClCompile Include="RectangleObject.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollInput.cpp" />
+    <ClCompile Include="TextObject.cpp" />
+    <ClCompile Include="UUIDGenerator.cpp" />
     <ClCompile Include="WindowHolding.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppClose.h" />
     <ClInclude Include="ApplicationBuilder.h" />
     <ClInclude Include="ApplicationPreference.h" />
+    <ClInclude Include="ApplicationTime.h" />
     <ClInclude Include="BlankRedirectScene.h" />
     <ClInclude Include="ButtonObject.h" />
     <ClInclude Include="CanvasObject.h" />
+    <ClInclude Include="Color255.h" />
+    <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="DebugScene.h" />
     <ClInclude Include="ExePath.h" />
     <ClInclude Include="FontChest.h" />
-    <ClInclude Include="FontData.h" />
     <ClInclude Include="FontHandleData.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="HomeScene.h" />
@@ -66,6 +74,8 @@
     <ClInclude Include="MusicChest.h" />
     <ClInclude Include="MusicData.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="ObjectFuncData.h" />
+    <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectOverlapping.h" />
     <ClInclude Include="PositionVector.h" />
     <ClInclude Include="PressFrameEnum.h" />
@@ -75,6 +85,9 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSet.h" />
     <ClInclude Include="ScrollInput.h" />
+    <ClInclude Include="TextAlign.h" />
+    <ClInclude Include="TextObject.h" />
+    <ClInclude Include="UUIDGenerator.h" />
     <ClInclude Include="WindowHolding.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

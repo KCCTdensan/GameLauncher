@@ -61,7 +61,7 @@ private:
 	void	ArrangementSet				(int num);
 
 	std::array<ObjectData, OBJECT_MAX> object;
-	std::array<FontData, FONT_HANDLE_MAX> fontData;
+	std::array<FontChest, FONT_HANDLE_MAX> fontData;
 
 	int latestClick = 0;
 };

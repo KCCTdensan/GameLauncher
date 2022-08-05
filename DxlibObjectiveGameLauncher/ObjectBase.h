@@ -1,5 +1,8 @@
 #pragma once
 #include "PositionVector.h"
+#include "UUIDGenerator.h"
+#include "ObjectOverlapping.h"
+#include "Color255.h"
 #include <vector>
 
 class ObjectBase
@@ -7,10 +10,16 @@ class ObjectBase
 protected:
 	ObjectBase(PosVec _pos, PosVec _size)
 		:pos(_pos), size(_size), enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
-		children{}, beCalledNoMouse(false) {}
+		children{}, beCalledNoMouse(false), guid() 
+	{
+		UUIDGenerator uuidGenerator;
+		guid = uuidGenerator.GetGUID();
+	}
 
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
+
+	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); }
 
 	PosVec pos;
 	PosVec size;
@@ -21,6 +30,8 @@ protected:
 	bool mouseSelected;
 	bool mouseClicked;
 	bool beCalledNoMouse;
+
+	std::string guid;
 
 private:
 	std::vector<ObjectBase*> children;
@@ -40,6 +51,9 @@ public:
 	bool GetMouseHit() { return mouseHit; }
 	bool GetMouseClicked() { return mouseClicked; }
 	bool GetMouseSelected() { return mouseSelected; }
+
+	// 親(自分)のみ移動(絶対値)
+	bool SetPos(PosVec _pos) { pos = _pos; return true; }
 
 	// オブジェクト移動系(子要素含む)
 	bool Move(PosVec _delta);

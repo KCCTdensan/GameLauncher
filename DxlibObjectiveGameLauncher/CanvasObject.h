@@ -17,10 +17,10 @@ public:
     bool SetEnabledOutline() { return enabledOutline; }
 
     // Fî•ñ“o˜^“™
-    bool SetOutlineColor(int _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
+    bool SetOutlineColor(Color255 _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
 
 private:
-    int outerColor;
+    Color255 outerColor;
     float outlineWidth;
 
     bool enabledOutline;

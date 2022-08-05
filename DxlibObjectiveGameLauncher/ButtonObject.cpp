@@ -7,20 +7,26 @@ void ButtonObject::Collide()
 
 void ButtonObject::Update()
 {
+	CheckGUID();
+
 	// アニメーション記述をする場合，ここに記述
 	if (mouseHit) {
-		currentInnerColor = hoveredColor;
+		currentInnerColor = hoveredColor; // アニメーション完成で消す
+		SetAnimationPoint(currentInnerColor, hoveredColor);
 	}
 	else {
 		currentInnerColor = innerColor;
+		SetAnimationPoint(currentInnerColor, innerColor);
 	}
 
 	if (mouseSelected) {
 		currentInnerColor = selectedColor;
+		SetAnimationPoint(currentInnerColor, selectedColor);
 	}
 
 	if (mouseClicked) {
 		currentInnerColor = clickedColor;
+		SetAnimationPoint(currentInnerColor, clickedColor);
 	}
 
 	if (!enabled) return;
@@ -32,11 +38,11 @@ void ButtonObject::Draw()
 	if (!enabled) return;
 
 	if (enabledOutline) {
-		int resultOuterColor = outerColor; // debug
+		int resultOuterColor = outerColor.Get(); // debug
 		DrawBoxAA(pos.x, pos.y, pos.x + size.x, pos.y + size.y, resultOuterColor, true, 0);
 	}
 	if (enabledFill) {
-		int resultInnerColor = currentInnerColor;
+		int resultInnerColor = currentInnerColor.Get();
 		DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth, pos.y + size.y - outlineWidth, resultInnerColor, true, 0);
 	}
 }
@@ -55,7 +61,7 @@ void ButtonObject::CollideMouse()
 		mouseHit = true;
 
 		// オブジェクトの重複判定登録処理
-		ObjectOverlapping<ButtonObject>::UpdateObject(this);
+		ObjectOverlapping::UpdateObject(guid);
 
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
 			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST /*&& !beCalledNoMouse*/)
@@ -85,4 +91,10 @@ void ButtonObject::CollideMouse()
 	}
 
 	beCalledNoMouse = false;
+}
+
+void ButtonObject::SetAnimationPoint(Color255 _start, Color255 _goal)
+{
+	animationStartColor = _start;
+	animationEndColor = _goal;
 }

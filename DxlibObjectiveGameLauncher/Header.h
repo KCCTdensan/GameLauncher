@@ -4,6 +4,8 @@
 #include "SceneSet.h"
 #include "ButtonObject.h"
 #include "RectangleObject.h"
+#include "AppClose.h"
+#include "WindowHolding.h"
 #include <array>
 #include <vector>
 /* ƒV[ƒ“ˆÚ“®“o˜^—p */
@@ -24,6 +26,8 @@ private:
 	static bool beInitialized;
 	static std::vector<SceneSet> sceneSets;
 	static std::vector<ButtonObject> navLinks;
+	static RectangleObject banner;
+	static std::vector<ButtonObject> systemButtons;
 
 	static float height;
 	static float navWidth;
