@@ -20,7 +20,7 @@ void ApplicationTime::Initialize()
 void ApplicationTime::Update()
 {
 	nowTime = GetNowHiPerformanceCount();
-	deltaTime = (float)(nowTime - time);
+	deltaTime = (float)(nowTime - time) / 1000000;
 
 	time = nowTime;
 	fpsCounter++;

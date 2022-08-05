@@ -11,22 +11,35 @@ void ButtonObject::Update()
 
 	// アニメーション記述をする場合，ここに記述
 	if (mouseHit) {
-		currentInnerColor = hoveredColor; // アニメーション完成で消す
 		SetAnimationPoint(currentInnerColor, hoveredColor);
 	}
 	else {
-		currentInnerColor = innerColor;
 		SetAnimationPoint(currentInnerColor, innerColor);
 	}
 
 	if (mouseSelected) {
-		currentInnerColor = selectedColor;
 		SetAnimationPoint(currentInnerColor, selectedColor);
 	}
 
 	if (mouseClicked) {
-		currentInnerColor = clickedColor;
 		SetAnimationPoint(currentInnerColor, clickedColor);
+	}
+
+	if (animationEnabled) {
+
+		animationDuraionRemain -= ApplicationTime::DeltaTime();
+
+		animationElapsedTime += ApplicationTime::DeltaTime();
+		if (animationElapsedTime >= animationDuraion || animationDuraionRemain <= 0.f) {
+			animationElapsedTime = animationDuraion;
+			animationDuraionRemain = animationDuraion;
+		}
+		else {
+			currentInnerColor = Color255(
+				(int)(mRed * animationElapsedTime + animationStartColor.r),
+				(int)(mGreen * animationElapsedTime + animationStartColor.g),
+				(int)(mBlue * animationElapsedTime + animationStartColor.b));
+		}
 	}
 
 	if (!enabled) return;
@@ -95,6 +108,20 @@ void ButtonObject::CollideMouse()
 
 void ButtonObject::SetAnimationPoint(Color255 _start, Color255 _goal)
 {
+	animationElapsedTime = 0.f;
+
 	animationStartColor = _start;
+	if (animationEndColor.r != _goal.r &&
+		animationEndColor.g != _goal.g &&
+		animationEndColor.b != _goal.b) animationDuraionRemain = animationDuraion;
 	animationEndColor = _goal;
+
+	if (animationDuraionRemain <= 0.f || !animationEnabled) {
+		currentInnerColor = animationEndColor;
+		return;
+	}
+
+	mRed = (animationEndColor.r - animationStartColor.r) / animationDuraionRemain;
+	mGreen = (animationEndColor.g - animationStartColor.g) / animationDuraionRemain;
+	mBlue = (animationEndColor.b - animationStartColor.b) / animationDuraionRemain;
 }

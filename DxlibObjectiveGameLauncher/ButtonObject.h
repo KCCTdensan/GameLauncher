@@ -12,12 +12,14 @@ class ButtonObject :
 public:
 	ButtonObject(PosVec _pos, PosVec _size, bool _enabledFill = true, bool _enabledOutline = false)
 		: ObjectBase(_pos, _size), enabledFill(_enabledFill), enabledOutline(_enabledOutline), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0),
-		currentInnerColor(0), animationStartColor(0), animationEndColor(0), animationDuraion(0.f), animationCurrentlyRate(0.f)
+		currentInnerColor(0), animationStartColor(0), animationEndColor(0), animationDuraion(0.f), animationCurrentlyRate(0.f),
+		animationEnabled(false), mRed(0.f), mGreen(0.f), mBlue(0.f), animationElapsedTime(0.f), animationDuraionRemain(0.f)
 	{}
 
 	ButtonObject()
 		: ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false), innerColor(0), selectedColor(0), hoveredColor(0), clickedColor(0), outerColor(0), outlineWidth(0),
-		currentInnerColor(0), animationStartColor(0), animationEndColor(0), animationDuraion(0.f), animationCurrentlyRate(0.f)
+		currentInnerColor(0), animationStartColor(0), animationEndColor(0), animationDuraion(0.f), animationCurrentlyRate(0.f),
+		animationEnabled(false), mRed(0.f), mGreen(0.f), mBlue(0.f), animationElapsedTime(0.f), animationDuraionRemain(0.f)
 	{}
 
 	// 色有効化無効化
@@ -27,9 +29,20 @@ public:
 	bool SetEnabledOutline() { return enabledOutline; }
 
 	// 色情報登録等
-	bool SetInnerColor(Color255 _innerColor, Color255 _hoveredColor, Color255 _clickedColor, Color255 _selectedColor)
-	{ innerColor = _innerColor; hoveredColor = _hoveredColor; clickedColor = _clickedColor; selectedColor = _selectedColor; return true; }
+	bool SetInnerColor(Color255 _innerColor, Color255 _hoveredColor, Color255 _clickedColor, Color255 _selectedColor, bool _defaultFill = true)
+	{
+		innerColor = _innerColor;
+		hoveredColor = _hoveredColor;
+		clickedColor = _clickedColor;
+		selectedColor = _selectedColor;
+		if (_defaultFill) currentInnerColor = innerColor;
+		return true;
+	}
 	bool SetOutlineColor(Color255 _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
+
+	// アニメーション設定
+	bool SetAnimation(float _duration) { animationEnabled = true; animationDuraion = _duration; animationDuraionRemain = _duration; animationElapsedTime = 0.f; return true; }
+	bool SetAnimation() { animationEnabled = false; return true; }
 
 	// 更新描画
 	void Collide();
@@ -61,10 +74,17 @@ private:
 
 	/******************/
 
+	bool animationEnabled;
+
 	Color255 animationStartColor;
 	Color255 animationEndColor;
+	float mRed;
+	float mGreen;
+	float mBlue;
 
 	float animationDuraion;
+	float animationDuraionRemain;
+	float animationElapsedTime;
 	float animationCurrentlyRate;
 };
 
