@@ -214,6 +214,9 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="AppClose.h" />
+    <ClInclude Include="Color255.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
