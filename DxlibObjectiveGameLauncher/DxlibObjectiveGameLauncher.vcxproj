@@ -45,6 +45,7 @@
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="UUIDGenerator.cpp" />
     <ClCompile Include="WindowHolding.cpp" />
+    <ClCompile Include="WindowHwnd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppClose.h" />
@@ -89,6 +90,7 @@
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="UUIDGenerator.h" />
     <ClInclude Include="WindowHolding.h" />
+    <ClInclude Include="WindowHwnd.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -1,6 +1,7 @@
 #pragma once
 #include "MouseInput.h"
 #include "ApplicationPreference.h"
+#include "WindowHwnd.h"
 #include <Windows.h>
 
 class WindowHolding
@@ -14,6 +15,7 @@ private:
 	static PosVec holdingWindowPos;
 
 	static bool windowMaximized;
+	static bool holding;
 
 };
 

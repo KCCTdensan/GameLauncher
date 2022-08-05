@@ -93,7 +93,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	ChangeWindowMode(TRUE); // 画面をウインドウにするか。TRUE:ウインドウ FALSE:全画面（ただし，全画面は描画が遅い。別の描画の仕方でされてしまうため。)
 	SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
 	SetUseDirectInputFlag(FALSE); // インプットのオブジェクトでダイレクトインプットを使用するかどうか。基本はTRUEの方が望ましい。
-
 	SetMainWindowText("Launcher"); // アプリのタイトル名の変更
 
 	SetWindowStyleMode(11); // ボーダレスウインドウ
@@ -101,6 +100,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetGraphMode((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, 32);
 
 	SetBackgroundColor(20, 20, 20);
+
+	//SetUseDirectInputFlag(FALSE);
 
 	if (DxLib_Init() == -1) // Dxlib初期化 ！この後じゃないと，画像・フォントハンドル操作や描画操作が動かない
 	{
@@ -126,7 +127,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SceneManager::Initialize();
 
-	SceneManager::ChangeScene("debug", new DebugScene(), false);
+	SceneManager::ChangeScene("debug", new DebugScene(), false); // 最初に表示するページ
 
 	//std::thread inputUpdate(InputUpdate);
 	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
@@ -184,7 +185,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		SceneManager::Update();
 		SceneManager::Draw(); // シーン更新処理
 
-		GradX_RGB(10, 200, 630, 280, 255, 128, 0, 0, 255, 128);
+		//GradX_RGB(10, 200, 630, 280, 255, 128, 0, 0, 255, 128);
 
 		SceneManager::UpdateForwardBackwardScene(
 			Input::MouseInput::GetClick(MOUSE_INPUT_5), PressFrame::FIRST,

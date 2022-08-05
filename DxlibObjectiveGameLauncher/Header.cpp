@@ -26,6 +26,7 @@ void Header::Initialize()
 		navLinks.push_back(ButtonObject(PosVec(ApplicationPreference::GetBackgroundSize().x - (navWidth / ApplicationPreference::headerButtonNum * (ApplicationPreference::headerButtonNum - i)), ApplicationPreference::GetBackgroundSize().y / 15.f),
 			PosVec(navWidth / ApplicationPreference::headerButtonNum, height)));
 		navLinks[i].SetInnerColor(Color255(255, 255, 225), Color255(230, 230, 200), Color255(150, 150, 120), Color255(200, 200, 170));
+		navLinks[i].SetAnimation(0.2f);
 	}
 
 	for (int i = 0; i < 3; i++) {
@@ -39,6 +40,7 @@ void Header::Initialize()
 		else
 			systemButtons[i].SetInnerColor(Color255(30, 30, 30), Color255(50, 50, 50), Color255(10, 10, 10), Color255(30, 30, 30));
 		systemButtons[i].SetOutlineColor(Color255(255, 255, 255), 1.f);
+		systemButtons[i].SetAnimation(0.2f);
 	}
 
 	beInitialized = true;
@@ -70,18 +72,21 @@ void Header::Update()
 		systemButtons[i].Update();
 	}
 	if (systemButtons[0].GetMouseSelected()) {
-		AppClose::Close();
+		WindowHwnd::WindowClose(GetMainWindowHandle());
 		systemButtons[0].SetMouseOff();
 	}
 	if (systemButtons[1].GetMouseSelected()) {
-		if (!WindowHolding::GetWindowMaximized())
-			ShowWindow(GetMainWindowHandle(), SW_MAXIMIZE);
+		if (!WindowHolding::GetWindowMaximized()) {
+			WindowHwnd::WindowMaximize(GetMainWindowHandle());
+		}
 		else
-			ShowWindow(GetMainWindowHandle(), SW_SHOWNORMAL);
+		{
+			WindowHwnd::WindowNormalize(GetMainWindowHandle());
+		}
 		systemButtons[1].SetMouseOff();
 	}
 	if (systemButtons[2].GetMouseSelected()) {
-		ShowWindow(GetMainWindowHandle(), SW_MINIMIZE);
+		WindowHwnd::WindowMinimize(GetMainWindowHandle());
 		systemButtons[2].SetMouseOff();
 	}
 }

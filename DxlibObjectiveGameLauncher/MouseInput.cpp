@@ -55,6 +55,7 @@ void Input::MouseInput::UpdateClick(int* _value, int _andValue)
 		}
 	}
 	else {
+		if (*_value == PressFrame::MUCH) *_value = PressFrame::RELEASE;
 		*_value = PressFrame::ZERO;
 	}
 }
