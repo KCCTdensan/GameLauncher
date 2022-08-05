@@ -18,6 +18,8 @@
 /*void InputUpdate(); // threadA
 void ApplicationUpdate(SceneManager* _sceneManager); // threadB*/
 
+#define WM_NOTIFYICON (WM_USER + 100)
+
 void GradX_RGB(int x1, int y1, int x2, int y2, BYTE r1, BYTE g1, BYTE b1, BYTE r2, BYTE g2, BYTE b2)
 {
 	VERTEX2D Vertex[6]{};
@@ -92,9 +94,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
 	SetUseDirectInputFlag(FALSE); // インプットのオブジェクトでダイレクトインプットを使用するかどうか。基本はTRUEの方が望ましい。
 
-	SetMainWindowText("GameLauncher"); // アプリのタイトル名の変更
+	SetMainWindowText("Launcher"); // アプリのタイトル名の変更
 
-	SetWindowStyleMode(4); // ボーダレスウインドウ
+	SetWindowStyleMode(11); // ボーダレスウインドウ
 
 	SetGraphMode((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, 32);
 

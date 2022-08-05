@@ -74,7 +74,10 @@ void Header::Update()
 		systemButtons[0].SetMouseOff();
 	}
 	if (systemButtons[1].GetMouseSelected()) {
-		ShowWindow(GetMainWindowHandle(), SW_MAXIMIZE);
+		if (!WindowHolding::GetWindowMaximized())
+			ShowWindow(GetMainWindowHandle(), SW_MAXIMIZE);
+		else
+			ShowWindow(GetMainWindowHandle(), SW_SHOWNORMAL);
 		systemButtons[1].SetMouseOff();
 	}
 	if (systemButtons[2].GetMouseSelected()) {
