@@ -15,6 +15,8 @@ public:
 		enabledFill(_enabledFill), enabledOutline(_enabledOutline),
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
+		innerColorAlpha(255), hoveredInnerColorAlpha(255), clickedInnerColorAlpha(255), selectedInnerColorAlpha(255),
+		outerColorAlpha(255), hoveredOuterColorAlpha(255), clickedOuterColorAlpha(255), selectedOuterColorAlpha(255),
 		outlineWidth(0)
 	{}
 
@@ -22,6 +24,8 @@ public:
 		: ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false),
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
+		innerColorAlpha(255), hoveredInnerColorAlpha(255), clickedInnerColorAlpha(255), selectedInnerColorAlpha(255),
+		outerColorAlpha(255), hoveredOuterColorAlpha(255), clickedOuterColorAlpha(255), selectedOuterColorAlpha(255),
 		outlineWidth(0)
 	{}
 
@@ -69,6 +73,35 @@ public:
 		return true;
 	}
 
+	void SetInnerAlpha(int _alpha)
+	{
+		innerColorAlpha = _alpha;
+		hoveredInnerColorAlpha = _alpha;
+		clickedInnerColorAlpha = _alpha;
+		selectedInnerColorAlpha = _alpha;
+	}
+	void SetInnerAlpha(int _alpha, int _hoveredAlpha, int _clickedAlpha, int selectedAlpha)
+	{
+		innerColorAlpha = _alpha;
+		hoveredInnerColorAlpha = _hoveredAlpha;
+		clickedInnerColorAlpha = _clickedAlpha;
+		selectedInnerColorAlpha = selectedAlpha;
+	}
+	void SetOuterAlpha(int _alpha)
+	{
+		outerColorAlpha = _alpha;
+		hoveredOuterColorAlpha = _alpha;
+		clickedOuterColorAlpha = _alpha;
+		selectedOuterColorAlpha = _alpha;
+	}
+	void SetOuterAlpha(int _alpha, int _hoveredAlpha, int _clickedAlpha, int selectedAlpha)
+	{
+		outerColorAlpha = _alpha;
+		hoveredOuterColorAlpha = _hoveredAlpha;
+		clickedOuterColorAlpha = _clickedAlpha;
+		selectedOuterColorAlpha = selectedAlpha;
+	}
+
 
 	// 更新描画
 	void Collide();
@@ -79,9 +112,16 @@ private:
 
 	void CollideMouse();
 
-	// アニメーション目標
-
 private:
+	int innerColorAlpha;
+	int hoveredInnerColorAlpha;
+	int clickedInnerColorAlpha;
+	int selectedInnerColorAlpha;
+	int outerColorAlpha;
+	int hoveredOuterColorAlpha;
+	int clickedOuterColorAlpha;
+	int selectedOuterColorAlpha;
+
 	Color255 innerColor;
 	Color255 hoveredInnerColor;
 	Color255 clickedInnerColor;
@@ -96,7 +136,6 @@ private:
 	bool enabledFill;
 	bool enabledOutline;
 
-	/******************/
 
 };
 
