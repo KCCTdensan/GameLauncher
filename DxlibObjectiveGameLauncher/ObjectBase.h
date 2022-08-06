@@ -10,10 +10,31 @@ class ObjectBase
 {
 protected:
 	ObjectBase(PosVec _pos, PosVec _size)
-		:pos(_pos), size(_size), enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
+		:pos(_pos), size(_size),
+		enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
 		children{}, beCalledNoMouse(false), guid(),
-		currentInnerColor(0), animationStartColor(0), animationEndColor(0), animationDuraion(0.f), animationCurrentlyRate(0.f),
-		animationEnabled(false), mRed(0.f), mGreen(0.f), mBlue(0.f), animationElapsedTime(0.f), animationDuraionRemain(0.f)
+		currentInnerColor(0),
+		animationStartInnerColor(0),
+		animationEndInnerColor(0),
+		animationInnerDuration(0.f),
+		animationInnerCurrentlyRate(0.f),
+		animationInnerEnabled(false),
+		animationOuterEnabled(false),
+		mInnerRed(0.f),
+		mInnerGreen(0.f),
+		mInnerBlue(0.f),
+		mOuterRed(0.f),
+		mOuterGreen(0.f),
+		mOuterBlue(0.f),
+		animationInnerElapsedTime(0.f),
+		animationInnerDuraionRemain(0.f),
+		currentOuterColor(0),
+		animationStartOuterColor(0),
+		animationEndOuterColor(0),
+		animationOuterDuration(0.f),
+		animationOuterDuraionRemain(0.f),
+		animationOuterElapsedTime(0.f),
+		animationOuterCurrentlyRate(0.f)
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
@@ -24,7 +45,11 @@ protected:
 
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); }
 
-	void SetAnimationPoint(Color255 _start, Color255 _goal);
+	void SetInnerAnimationPoint(Color255 _start, Color255 _goal);
+	void SetOuterAnimationPoint(Color255 _start, Color255 _goal);
+
+	void UpdateInnerColor();
+	void UpdateOuterColor();
 
 	PosVec pos;
 	PosVec size;
@@ -39,19 +64,31 @@ protected:
 	std::string guid;
 
 	Color255 currentInnerColor;
+	Color255 currentOuterColor;
 
-	bool animationEnabled;
+	bool animationInnerEnabled;
+	bool animationOuterEnabled;
 
-	Color255 animationStartColor;
-	Color255 animationEndColor;
-	float mRed;
-	float mGreen;
-	float mBlue;
+	Color255 animationStartInnerColor;
+	Color255 animationEndInnerColor;
+	Color255 animationStartOuterColor;
+	Color255 animationEndOuterColor;
+	float mInnerRed;
+	float mInnerGreen;
+	float mInnerBlue;
+	float mOuterRed;
+	float mOuterGreen;
+	float mOuterBlue;
 
-	float animationDuraion;
-	float animationDuraionRemain;
-	float animationElapsedTime;
-	float animationCurrentlyRate;
+	float animationOuterDuration;
+	float animationOuterDuraionRemain;
+	float animationOuterElapsedTime;
+	float animationOuterCurrentlyRate;
+
+	float animationInnerDuration;
+	float animationInnerDuraionRemain;
+	float animationInnerElapsedTime;
+	float animationInnerCurrentlyRate;
 
 private:
 	std::vector<ObjectBase*> children;
@@ -73,8 +110,11 @@ public:
 	bool GetMouseSelected() { return mouseSelected; }
 
 	// アニメーション設定
-	bool SetAnimation(float _duration) { animationEnabled = true; animationDuraion = _duration; animationDuraionRemain = _duration; animationElapsedTime = 0.f; return true; }
-	bool SetAnimation() { animationEnabled = false; return true; }
+	bool SetInnerAnimation(float _duration) { animationInnerEnabled = true; animationInnerDuration = _duration; animationInnerDuraionRemain = _duration; animationInnerElapsedTime = 0.f; return true; }
+	bool SetInnerAnimation() { animationInnerEnabled = false; return true; }
+
+	bool SetOuterAnimation(float _duration) { animationOuterEnabled = true; animationOuterDuration = _duration; animationOuterDuraionRemain = _duration; animationOuterElapsedTime = 0.f; return true; }
+	bool SetOuterAnimation() { animationOuterEnabled = false; return true; }
 
 	// 親(自分)のみ移動(絶対値)
 	bool SetPos(PosVec _pos) { pos = _pos; return true; }

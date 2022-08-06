@@ -11,36 +11,26 @@ void ButtonObject::Update()
 
 	// アニメーション記述をする場合，ここに記述
 	if (mouseHit) {
-		SetAnimationPoint(currentInnerColor, hoveredColor);
+		SetInnerAnimationPoint(currentInnerColor, hoveredInnerColor);
+		SetOuterAnimationPoint(currentOuterColor, hoveredOuterColor);
 	}
 	else {
-		SetAnimationPoint(currentInnerColor, innerColor);
+		SetInnerAnimationPoint(currentInnerColor, innerColor);
+		SetOuterAnimationPoint(currentOuterColor, outerColor);
 	}
 
 	if (mouseSelected) {
-		SetAnimationPoint(currentInnerColor, selectedColor);
+		SetInnerAnimationPoint(currentInnerColor, selectedInnerColor);
+		SetOuterAnimationPoint(currentOuterColor, selectedOuterColor);
 	}
 
 	if (mouseClicked) {
-		SetAnimationPoint(currentInnerColor, clickedColor);
+		SetInnerAnimationPoint(currentInnerColor, clickedInnerColor);
+		SetOuterAnimationPoint(currentOuterColor, clickedOuterColor);
 	}
 
-	if (animationEnabled) {
-
-		animationDuraionRemain -= ApplicationTime::DeltaTime();
-
-		animationElapsedTime += ApplicationTime::DeltaTime();
-		if (animationElapsedTime >= animationDuraion || animationDuraionRemain <= 0.f) {
-			animationElapsedTime = animationDuraion;
-			animationDuraionRemain = animationDuraion;
-		}
-		else {
-			currentInnerColor = Color255(
-				(int)(mRed * animationElapsedTime + animationStartColor.r),
-				(int)(mGreen * animationElapsedTime + animationStartColor.g),
-				(int)(mBlue * animationElapsedTime + animationStartColor.b));
-		}
-	}
+	UpdateInnerColor();
+	UpdateOuterColor();
 
 	if (!enabled) return;
 
@@ -51,7 +41,7 @@ void ButtonObject::Draw()
 	if (!enabled) return;
 
 	if (enabledOutline) {
-		int resultOuterColor = outerColor.Get(); // debug
+		int resultOuterColor = currentOuterColor.Get(); // debug
 		DrawBoxAA(pos.x, pos.y, pos.x + size.x, pos.y + size.y, resultOuterColor, true, 0);
 	}
 	if (enabledFill) {
