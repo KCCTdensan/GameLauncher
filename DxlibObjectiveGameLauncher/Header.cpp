@@ -30,9 +30,15 @@ void Header::Initialize()
 
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		navLinks.push_back(ButtonObject(PosVec(ApplicationPreference::GetBackgroundSize().x - (navWidth / ApplicationPreference::headerButtonNum * (ApplicationPreference::headerButtonNum - i)), ApplicationPreference::GetBackgroundSize().y / 15.f),
-			PosVec(navWidth / ApplicationPreference::headerButtonNum, height)));
-		navLinks[i].SetInnerColor(Color255(255, 255, 225), Color255(230, 230, 200), Color255(150, 150, 120), Color255(200, 200, 170));
-		navLinks[i].SetInnerAnimation(0.2f);
+			PosVec(navWidth / ApplicationPreference::headerButtonNum, height), true, true));
+		navLinks[i].SetInnerColor(Color255(255, 255, 225, 0), Color255(230, 230, 200), Color255(150, 150, 120), Color255(200, 200, 170));
+		navLinks[i].SetOutlineColor(
+			Color255(0xFF, 0x77, 0xFE, 0),
+			Color255(0xFF, 0x77, 0xFE),
+			Color255(0xFF, 0x77, 0xFE),
+			Color255(0xFF, 0x77, 0xFE), 2.f);
+		navLinks[i].SetInnerAnimation(.2f);
+		navLinks[i].SetOuterAnimation(.2f);
 	}
 
 	for (int i = 0; i < 3; i++) {
@@ -73,7 +79,8 @@ void Header::Update()
 
 		if (navLinks[i].GetMouseSelected()) {
 			navLinks[i].SetMouseOff();
-			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene);
+			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene, false);
+			//SceneManager::ChangeScene(sceneSets[i].sceneName, new DebugScene(), false);
 		}
 	}
 	for (int i = 0; i < 3; i++) {

@@ -28,9 +28,9 @@ struct AnimationColorStatus {
 
 struct AnimationStatus {
 	bool animationEnabled;
-	int start;
-	int end;
-	int current;
+	float start;
+	float end;
+	float current;
 	float m;
 	float duration;
 	float durationRemain;
@@ -39,13 +39,13 @@ struct AnimationStatus {
 
 	AnimationStatus() :
 		animationEnabled(false),
-		current(0),
+		current(0.f),
 		m(0.f),
 		duration(0.f),
 		durationRemain(0.f),
 		elapsedTime(0.f),
 		currentlyRate(0.f),
-		start(0),
-		end(0)
+		start(0.f),
+		end(0.f)
 	{}
 };

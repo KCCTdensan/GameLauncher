@@ -41,7 +41,7 @@ void ObjectBase::UpdateAnimationColor(AnimationColorStatus& type)
 	}
 }
 
-void ObjectBase::SetAnimationPoint(AnimationStatus& type, int _start, int _goal)
+void ObjectBase::SetAnimationPoint(AnimationStatus& type, float _start, float _goal)
 {
 	type.elapsedTime = 0.f;
 
@@ -55,8 +55,6 @@ void ObjectBase::SetAnimationPoint(AnimationStatus& type, int _start, int _goal)
 		return;
 	}
 
-	type.m = (type.end - type.start) / type.durationRemain;
-	type.m = (type.end - type.start) / type.durationRemain;
 	type.m = (type.end - type.start) / type.durationRemain;
 }
 
@@ -72,7 +70,7 @@ void ObjectBase::UpdateAnimation(AnimationStatus& type)
 			//type.durationRemain = type.duration;
 		}
 		else {
-			type.current = (int)(type.m * type.elapsedTime + type.start);
+			type.current = type.m * type.elapsedTime + type.start;
 		}
 	}
 }

@@ -28,7 +28,8 @@ public:
 	// 色有効化無効化
 	bool SetEnabledFill(bool _enabled) { enabledFill = _enabled; return true; }
 	bool SetEnabledFill() { return enabledFill; }
-	bool SetEnabledOutline(bool _enabled, float _outlineWidth = 1) { enabledOutline = _enabled; outlineWidth = (enabledOutline) ? _outlineWidth : 0; return true; }
+	bool SetEnabledOutline(bool _enabled, float _outlineWidth = -1.f) { enabledOutline = _enabled; outlineWidth = _outlineWidth ? _outlineWidth <= 0.f : 0.f; return true; }
+	// 判定用リターン
 	bool SetEnabledOutline() { return enabledOutline; }
 
 	// 色情報登録等
@@ -40,7 +41,7 @@ public:
 		selectedInnerColor = _innerColor;
 		if (_defaultFill) {
 			innerAnimation.current = innerColor;
-			innerAlphaAnimation.current = innerColor.a;
+			innerAlphaAnimation.current = (float)innerColor.a;
 		}
 		return true;
 	}
@@ -52,10 +53,11 @@ public:
 		selectedInnerColor = _selectedColor;
 		if (_defaultFill) {
 			innerAnimation.current = innerColor;
-			innerAlphaAnimation.current = innerColor.a;
+			innerAlphaAnimation.current = (float)innerColor.a;
 		}
 		return true;
 	}
+	// アウトラインを表示する際はtrueになっているかをチェック
 	bool SetOutlineColor(Color255 _outerColor, float _outlineWidth, bool _defaultFill = true) {
 		outerColor = _outerColor;
 		hoveredOuterColor = _outerColor;
@@ -64,10 +66,11 @@ public:
 		outlineWidth = _outlineWidth;
 		if (_defaultFill) {
 			outerAnimation.current = outerColor;
-			outerAlphaAnimation.current = outerColor.a;
+			outerAlphaAnimation.current = (float)outerColor.a;
 		}
 		return true;
 	}
+	// アウトラインを表示する際はtrueになっているかをチェック
 	bool SetOutlineColor(Color255 _outerColor, Color255 _hoveredColor, Color255 _clickedColor, Color255 _selectedColor, float _outlineWidth, bool _defaultFill = true) {
 		outerColor = _outerColor;
 		hoveredOuterColor = _hoveredColor;
@@ -76,7 +79,7 @@ public:
 		outlineWidth = _outlineWidth;
 		if (_defaultFill) {
 			outerAnimation.current = outerColor;
-			outerAlphaAnimation.current = outerColor.a;
+			outerAlphaAnimation.current = (float)outerColor.a;
 		}
 		return true;
 	}
@@ -89,12 +92,6 @@ public:
 private:
 
 	void CollideMouse();
-
-	void SetInnerAlphaAnimationPoint(int _start, int _goal);
-	void SetOuterAlphaAnimationPoint(int _start, int _goal);
-
-	void UpdateInnerAlphaColor();
-	void UpdateOuterAlphaColor();
 
 private:
 	Color255 innerColor;

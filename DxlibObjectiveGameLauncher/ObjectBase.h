@@ -15,7 +15,9 @@ protected:
 		enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
 		children{}, beCalledNoMouse(false), guid(),
 		innerAnimation(AnimationColorStatus()),
-		outerAnimation(AnimationColorStatus())
+		outerAnimation(AnimationColorStatus()),
+		innerAlphaAnimation(AnimationStatus()),
+		outerAlphaAnimation(AnimationStatus())
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
@@ -29,7 +31,7 @@ protected:
 	void SetAnimationColorPoint(AnimationColorStatus& type, Color255 _start, Color255 _goal);
 	void UpdateAnimationColor(AnimationColorStatus& type);
 
-	void SetAnimationPoint(AnimationStatus& type, int _start, int _goal);
+	void SetAnimationPoint(AnimationStatus& type, float _start, float _goal);
 	void UpdateAnimation(AnimationStatus& type);
 
 	PosVec pos;
