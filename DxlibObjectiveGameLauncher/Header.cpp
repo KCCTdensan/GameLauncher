@@ -36,7 +36,7 @@ void Header::Initialize()
 			Color255(0xFF, 0x77, 0xFE, 0),
 			Color255(0xFF, 0x77, 0xFE),
 			Color255(0xFF, 0x77, 0xFE),
-			Color255(0xFF, 0x77, 0xFE), 2.f);
+			Color255(0xFF, 0x77, 0xFE), 4.f);
 		navLinks[i].SetInnerAnimation(.2f);
 		navLinks[i].SetOuterAnimation(.2f);
 	}

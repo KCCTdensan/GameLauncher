@@ -13,28 +13,28 @@ void ButtonObject::Update()
 	if (mouseHit) {
 		SetAnimationColorPoint(innerAnimation, innerAnimation.current, hoveredInnerColor);
 		SetAnimationColorPoint(outerAnimation, outerAnimation.current, hoveredOuterColor);
-		SetAnimationPoint(innerAlphaAnimation, (float)innerAnimation.current.a, (float)hoveredInnerColor.a);
-		SetAnimationPoint(outerAlphaAnimation, (float)outerAnimation.current.a, (float)hoveredOuterColor.a);
+		SetAnimationPoint(innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)hoveredInnerColor.a);
+		SetAnimationPoint(outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)hoveredOuterColor.a);
 	}
 	else {
 		SetAnimationColorPoint(innerAnimation, innerAnimation.current, innerColor);
 		SetAnimationColorPoint(outerAnimation, outerAnimation.current, outerColor);
-		SetAnimationPoint(innerAlphaAnimation, (float)innerAnimation.current.a, (float)innerColor.a);
-		SetAnimationPoint(outerAlphaAnimation, (float)outerAnimation.current.a, (float)outerColor.a);
+		SetAnimationPoint(innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)innerColor.a);
+		SetAnimationPoint(outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)outerColor.a);
 	}
 
 	if (mouseSelected) {
 		SetAnimationColorPoint(innerAnimation, innerAnimation.current, selectedInnerColor);
 		SetAnimationColorPoint(outerAnimation, outerAnimation.current, selectedOuterColor);
-		SetAnimationPoint(innerAlphaAnimation, (float)innerAnimation.current.a, (float)selectedInnerColor.a);
-		SetAnimationPoint(outerAlphaAnimation, (float)outerAnimation.current.a, (float)selectedOuterColor.a);
+		SetAnimationPoint(innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)selectedInnerColor.a);
+		SetAnimationPoint(outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)selectedOuterColor.a);
 	}
 
 	if (mouseClicked) {
 		SetAnimationColorPoint(innerAnimation, innerAnimation.current, clickedInnerColor);
 		SetAnimationColorPoint(outerAnimation, outerAnimation.current, clickedOuterColor);
-		SetAnimationPoint(innerAlphaAnimation, (float)innerAnimation.current.a, (float)clickedInnerColor.a);
-		SetAnimationPoint(outerAlphaAnimation, (float)outerAnimation.current.a, (float)clickedOuterColor.a);
+		SetAnimationPoint(innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)clickedInnerColor.a);
+		SetAnimationPoint(outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)clickedOuterColor.a);
 	}
 
 	UpdateAnimationColor(innerAnimation);

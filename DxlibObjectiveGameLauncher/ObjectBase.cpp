@@ -46,16 +46,19 @@ void ObjectBase::SetAnimationPoint(AnimationStatus& type, float _start, float _g
 	type.elapsedTime = 0.f;
 
 	type.start = _start;
-	if (type.end != _goal)
+	if (type.end != _goal) {
+		//printfDx("\n");
 		type.durationRemain = type.duration;
+	}
 	type.end = _goal;
 
 	if (type.durationRemain <= 0.f || !type.animationEnabled) {
 		type.current = type.end;
 		return;
 	}
-
+	//printfDx("%d - %d / %f\n", (int)type.end, (int)type.start, type.durationRemain);
 	type.m = (type.end - type.start) / type.durationRemain;
+	
 }
 
 void ObjectBase::UpdateAnimation(AnimationStatus& type)
@@ -70,8 +73,8 @@ void ObjectBase::UpdateAnimation(AnimationStatus& type)
 			//type.durationRemain = type.duration;
 		}
 		else {
-			type.current = type.m * type.elapsedTime + type.start;
-			printfDx("%d", (int)type.current);
+			type.current += type.m * type.elapsedTime;
+			//printfDx("%d ", (int)type.current);
 		}
 	}
 }
