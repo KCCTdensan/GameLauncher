@@ -1,82 +1,78 @@
 #include "ObjectBase.h"
 
 
-void ObjectBase::SetInnerAnimationPoint(Color255 _start, Color255 _goal)
+void ObjectBase::SetAnimationColorPoint(AnimationColorStatus& type, Color255 _start, Color255 _goal)
 {
-	animationInnerElapsedTime = 0.f;
+	type.elapsedTime = 0.f;
 
-	animationStartInnerColor = _start;
-	if (animationEndInnerColor.r != _goal.r &&
-		animationEndInnerColor.g != _goal.g &&
-		animationEndInnerColor.b != _goal.b) animationInnerDuraionRemain = animationInnerDuration;
-	animationEndInnerColor = _goal;
+	type.start = _start;
+	if (type.end.r != _goal.r &&
+		type.end.g != _goal.g &&
+		type.end.b != _goal.b) type.durationRemain = type.duration;
+	type.end = _goal;
 
-	if (animationInnerDuraionRemain <= 0.f || !animationInnerEnabled) {
-		currentInnerColor = animationEndInnerColor;
+	if (type.durationRemain <= 0.f || !type.animationEnabled) {
+		type.current = type.end;
 		return;
 	}
 
-	mInnerRed = (animationEndInnerColor.r - animationStartInnerColor.r) / animationInnerDuraionRemain;
-	mInnerGreen = (animationEndInnerColor.g - animationStartInnerColor.g) / animationInnerDuraionRemain;
-	mInnerBlue = (animationEndInnerColor.b - animationStartInnerColor.b) / animationInnerDuraionRemain;
+	type.m[0] = (type.end.r - type.start.r) / type.durationRemain;
+	type.m[1] = (type.end.g - type.start.g) / type.durationRemain;
+	type.m[2] = (type.end.b - type.start.b) / type.durationRemain;
 }
 
-void ObjectBase::SetOuterAnimationPoint(Color255 _start, Color255 _goal)
+void ObjectBase::UpdateAnimationColor(AnimationColorStatus& type)
 {
-	animationOuterElapsedTime = 0.f;
+	if (type.animationEnabled) {
 
-	animationStartOuterColor = _start;
-	if (animationEndOuterColor.r != _goal.r &&
-		animationEndOuterColor.g != _goal.g &&
-		animationEndOuterColor.b != _goal.b) animationOuterDuraionRemain = animationOuterDuration;
-	animationEndOuterColor = _goal;
+		type.durationRemain -= ApplicationTime::DeltaTime();
 
-	if (animationOuterDuraionRemain <= 0.f || !animationOuterEnabled) {
-		currentOuterColor = animationEndOuterColor;
+		type.elapsedTime += ApplicationTime::DeltaTime();
+		if (type.elapsedTime >= type.duration || type.durationRemain <= 0.f) {
+			type.elapsedTime = type.duration;
+			type.durationRemain = type.duration;
+		}
+		else {
+			type.current = Color255(
+				(int)(type.m[0] * type.elapsedTime + type.start.r),
+				(int)(type.m[1] * type.elapsedTime + type.start.g),
+				(int)(type.m[2] * type.elapsedTime + type.start.b));
+		}
+	}
+}
+
+void ObjectBase::SetAnimationPoint(AnimationStatus& type, int _start, int _goal)
+{
+	type.elapsedTime = 0.f;
+
+	type.start = _start;
+	if (type.end != _goal)
+		type.durationRemain = type.duration;
+	type.end = _goal;
+
+	if (type.durationRemain <= 0.f || !type.animationEnabled) {
+		type.current = type.end;
 		return;
 	}
 
-	mOuterRed = (animationEndOuterColor.r - animationStartOuterColor.r) / animationOuterDuraionRemain;
-	mOuterGreen = (animationEndOuterColor.g - animationStartOuterColor.g) / animationOuterDuraionRemain;
-	mOuterBlue = (animationEndOuterColor.b - animationStartOuterColor.b) / animationOuterDuraionRemain;
+	type.m = (type.end - type.start) / type.durationRemain;
+	type.m = (type.end - type.start) / type.durationRemain;
+	type.m = (type.end - type.start) / type.durationRemain;
 }
 
-void ObjectBase::UpdateInnerColor()
+void ObjectBase::UpdateAnimation(AnimationStatus& type)
 {
-	if (animationInnerEnabled) {
+	if (type.animationEnabled) {
 
-		animationInnerDuraionRemain -= ApplicationTime::DeltaTime();
+		type.durationRemain -= ApplicationTime::DeltaTime();
 
-		animationInnerElapsedTime += ApplicationTime::DeltaTime();
-		if (animationInnerElapsedTime >= animationInnerDuration || animationInnerDuraionRemain <= 0.f) {
-			animationInnerElapsedTime = animationInnerDuration;
-			animationInnerDuraionRemain = animationInnerDuration;
+		type.elapsedTime += ApplicationTime::DeltaTime();
+		if (type.elapsedTime >= type.duration || type.durationRemain <= 0.f) {
+			type.elapsedTime = type.duration;
+			//type.durationRemain = type.duration;
 		}
 		else {
-			currentInnerColor = Color255(
-				(int)(mInnerRed * animationInnerElapsedTime + animationStartInnerColor.r),
-				(int)(mInnerGreen * animationInnerElapsedTime + animationStartInnerColor.g),
-				(int)(mInnerBlue * animationInnerElapsedTime + animationStartInnerColor.b));
-		}
-	}
-}
-
-void ObjectBase::UpdateOuterColor()
-{
-	if (animationOuterEnabled) {
-
-		animationOuterDuraionRemain -= ApplicationTime::DeltaTime();
-
-		animationOuterElapsedTime += ApplicationTime::DeltaTime();
-		if (animationOuterElapsedTime >= animationOuterDuration || animationOuterDuraionRemain <= 0.f) {
-			animationOuterElapsedTime = animationOuterDuration;
-			animationOuterDuraionRemain = animationOuterDuration;
-		}
-		else {
-			currentOuterColor = Color255(
-				(int)(mOuterRed * animationOuterElapsedTime + animationStartOuterColor.r),
-				(int)(mOuterGreen * animationOuterElapsedTime + animationStartOuterColor.g),
-				(int)(mOuterBlue * animationOuterElapsedTime + animationStartOuterColor.b));
+			type.current = (int)(type.m * type.elapsedTime + type.start);
 		}
 	}
 }

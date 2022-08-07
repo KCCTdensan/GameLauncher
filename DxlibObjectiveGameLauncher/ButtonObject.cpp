@@ -11,26 +11,36 @@ void ButtonObject::Update()
 
 	// アニメーション記述をする場合，ここに記述
 	if (mouseHit) {
-		SetInnerAnimationPoint(currentInnerColor, hoveredInnerColor);
-		SetOuterAnimationPoint(currentOuterColor, hoveredOuterColor);
+		SetAnimationColorPoint(innerAnimation, innerAnimation.current, hoveredInnerColor);
+		SetAnimationColorPoint(outerAnimation, outerAnimation.current, hoveredOuterColor);
+		SetAnimationPoint(innerAlphaAnimation, innerAnimation.current.a, hoveredInnerColor.a);
+		SetAnimationPoint(outerAlphaAnimation, outerAnimation.current.a, hoveredOuterColor.a);
 	}
 	else {
-		SetInnerAnimationPoint(currentInnerColor, innerColor);
-		SetOuterAnimationPoint(currentOuterColor, outerColor);
+		SetAnimationColorPoint(innerAnimation, innerAnimation.current, innerColor);
+		SetAnimationColorPoint(outerAnimation, outerAnimation.current, outerColor);
+		SetAnimationPoint(innerAlphaAnimation, innerAnimation.current.a, innerColor.a);
+		SetAnimationPoint(outerAlphaAnimation, outerAnimation.current.a, outerColor.a);
 	}
 
 	if (mouseSelected) {
-		SetInnerAnimationPoint(currentInnerColor, selectedInnerColor);
-		SetOuterAnimationPoint(currentOuterColor, selectedOuterColor);
+		SetAnimationColorPoint(innerAnimation, innerAnimation.current, selectedInnerColor);
+		SetAnimationColorPoint(outerAnimation, outerAnimation.current, selectedOuterColor);
+		SetAnimationPoint(innerAlphaAnimation, innerAnimation.current.a, selectedInnerColor.a);
+		SetAnimationPoint(outerAlphaAnimation, outerAnimation.current.a, selectedOuterColor.a);
 	}
 
 	if (mouseClicked) {
-		SetInnerAnimationPoint(currentInnerColor, clickedInnerColor);
-		SetOuterAnimationPoint(currentOuterColor, clickedOuterColor);
+		SetAnimationColorPoint(innerAnimation, innerAnimation.current, clickedInnerColor);
+		SetAnimationColorPoint(outerAnimation, outerAnimation.current, clickedOuterColor);
+		SetAnimationPoint(innerAlphaAnimation, innerAnimation.current.a, clickedInnerColor.a);
+		SetAnimationPoint(outerAlphaAnimation, outerAnimation.current.a, clickedOuterColor.a);
 	}
 
-	UpdateInnerColor();
-	UpdateOuterColor();
+	UpdateAnimationColor(innerAnimation);
+	UpdateAnimationColor(outerAnimation);
+	UpdateAnimation(innerAlphaAnimation);
+	UpdateAnimation(outerAlphaAnimation);
 
 	if (!enabled) return;
 
@@ -41,13 +51,16 @@ void ButtonObject::Draw()
 	if (!enabled) return;
 
 	if (enabledOutline) {
-		int resultOuterColor = currentOuterColor.Get(); // debug
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, outerAlphaAnimation.current);
+		int resultOuterColor = outerAnimation.current.Get(); // debug
 		DrawBoxAA(pos.x, pos.y, pos.x + size.x, pos.y + size.y, resultOuterColor, true, 0);
 	}
 	if (enabledFill) {
-		int resultInnerColor = currentInnerColor.Get();
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, innerAlphaAnimation.current);
+		int resultInnerColor = innerAnimation.current.Get();
 		DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth, pos.y + size.y - outlineWidth, resultInnerColor, true, 0);
 	}
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 }
 
 void ButtonObject::CollideMouse()
@@ -94,4 +107,20 @@ void ButtonObject::CollideMouse()
 	}
 
 	beCalledNoMouse = false;
+}
+
+void ButtonObject::SetInnerAlphaAnimationPoint(int _start, int _goal)
+{
+}
+
+void ButtonObject::SetOuterAlphaAnimationPoint(int _start, int _goal)
+{
+}
+
+void ButtonObject::UpdateInnerAlphaColor()
+{
+}
+
+void ButtonObject::UpdateOuterAlphaColor()
+{
 }

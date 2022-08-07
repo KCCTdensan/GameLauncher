@@ -15,8 +15,6 @@ public:
 		enabledFill(_enabledFill), enabledOutline(_enabledOutline),
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
-		innerColorAlpha(255), hoveredInnerColorAlpha(255), clickedInnerColorAlpha(255), selectedInnerColorAlpha(255),
-		outerColorAlpha(255), hoveredOuterColorAlpha(255), clickedOuterColorAlpha(255), selectedOuterColorAlpha(255),
 		outlineWidth(0)
 	{}
 
@@ -24,8 +22,6 @@ public:
 		: ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false),
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
-		innerColorAlpha(255), hoveredInnerColorAlpha(255), clickedInnerColorAlpha(255), selectedInnerColorAlpha(255),
-		outerColorAlpha(255), hoveredOuterColorAlpha(255), clickedOuterColorAlpha(255), selectedOuterColorAlpha(255),
 		outlineWidth(0)
 	{}
 
@@ -42,7 +38,10 @@ public:
 		hoveredInnerColor = _innerColor;
 		clickedInnerColor = _innerColor;
 		selectedInnerColor = _innerColor;
-		if (_defaultFill) currentInnerColor = innerColor;
+		if (_defaultFill) {
+			innerAnimation.current = innerColor;
+			innerAlphaAnimation.current = innerColor.a;
+		}
 		return true;
 	}
 	bool SetInnerColor(Color255 _innerColor, Color255 _hoveredColor, Color255 _clickedColor, Color255 _selectedColor, bool _defaultFill = true)
@@ -51,7 +50,10 @@ public:
 		hoveredInnerColor = _hoveredColor;
 		clickedInnerColor = _clickedColor;
 		selectedInnerColor = _selectedColor;
-		if (_defaultFill) currentInnerColor = innerColor;
+		if (_defaultFill) {
+			innerAnimation.current = innerColor;
+			innerAlphaAnimation.current = innerColor.a;
+		}
 		return true;
 	}
 	bool SetOutlineColor(Color255 _outerColor, float _outlineWidth, bool _defaultFill = true) {
@@ -60,8 +62,11 @@ public:
 		clickedOuterColor = _outerColor;
 		selectedOuterColor = _outerColor;
 		outlineWidth = _outlineWidth;
-		if (_defaultFill) currentOuterColor = outerColor;
-		return true; 
+		if (_defaultFill) {
+			outerAnimation.current = outerColor;
+			outerAlphaAnimation.current = outerColor.a;
+		}
+		return true;
 	}
 	bool SetOutlineColor(Color255 _outerColor, Color255 _hoveredColor, Color255 _clickedColor, Color255 _selectedColor, float _outlineWidth, bool _defaultFill = true) {
 		outerColor = _outerColor;
@@ -69,39 +74,12 @@ public:
 		clickedOuterColor = _clickedColor;
 		selectedOuterColor = _selectedColor;
 		outlineWidth = _outlineWidth;
-		if (_defaultFill) currentOuterColor = outerColor;
+		if (_defaultFill) {
+			outerAnimation.current = outerColor;
+			outerAlphaAnimation.current = outerColor.a;
+		}
 		return true;
 	}
-
-	void SetInnerAlpha(int _alpha)
-	{
-		innerColorAlpha = _alpha;
-		hoveredInnerColorAlpha = _alpha;
-		clickedInnerColorAlpha = _alpha;
-		selectedInnerColorAlpha = _alpha;
-	}
-	void SetInnerAlpha(int _alpha, int _hoveredAlpha, int _clickedAlpha, int selectedAlpha)
-	{
-		innerColorAlpha = _alpha;
-		hoveredInnerColorAlpha = _hoveredAlpha;
-		clickedInnerColorAlpha = _clickedAlpha;
-		selectedInnerColorAlpha = selectedAlpha;
-	}
-	void SetOuterAlpha(int _alpha)
-	{
-		outerColorAlpha = _alpha;
-		hoveredOuterColorAlpha = _alpha;
-		clickedOuterColorAlpha = _alpha;
-		selectedOuterColorAlpha = _alpha;
-	}
-	void SetOuterAlpha(int _alpha, int _hoveredAlpha, int _clickedAlpha, int selectedAlpha)
-	{
-		outerColorAlpha = _alpha;
-		hoveredOuterColorAlpha = _hoveredAlpha;
-		clickedOuterColorAlpha = _clickedAlpha;
-		selectedOuterColorAlpha = selectedAlpha;
-	}
-
 
 	// çXêVï`âÊ
 	void Collide();
@@ -112,16 +90,13 @@ private:
 
 	void CollideMouse();
 
-private:
-	int innerColorAlpha;
-	int hoveredInnerColorAlpha;
-	int clickedInnerColorAlpha;
-	int selectedInnerColorAlpha;
-	int outerColorAlpha;
-	int hoveredOuterColorAlpha;
-	int clickedOuterColorAlpha;
-	int selectedOuterColorAlpha;
+	void SetInnerAlphaAnimationPoint(int _start, int _goal);
+	void SetOuterAlphaAnimationPoint(int _start, int _goal);
 
+	void UpdateInnerAlphaColor();
+	void UpdateOuterAlphaColor();
+
+private:
 	Color255 innerColor;
 	Color255 hoveredInnerColor;
 	Color255 clickedInnerColor;

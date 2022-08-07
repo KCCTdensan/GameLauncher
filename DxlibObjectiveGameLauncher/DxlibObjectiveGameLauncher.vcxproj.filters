@@ -224,6 +224,9 @@
     <ClInclude Include="OriginalObjects.h">
       <Filter>Includes</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationStatus.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">

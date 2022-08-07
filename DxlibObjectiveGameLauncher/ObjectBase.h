@@ -4,6 +4,7 @@
 #include "ObjectOverlapping.h"
 #include "ApplicationTime.h"
 #include "Color255.h"
+#include "AnimationStatus.h"
 #include <vector>
 
 class ObjectBase
@@ -13,28 +14,8 @@ protected:
 		:pos(_pos), size(_size),
 		enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
 		children{}, beCalledNoMouse(false), guid(),
-		currentInnerColor(0),
-		animationStartInnerColor(0),
-		animationEndInnerColor(0),
-		animationInnerDuration(0.f),
-		animationInnerCurrentlyRate(0.f),
-		animationInnerEnabled(false),
-		animationOuterEnabled(false),
-		mInnerRed(0.f),
-		mInnerGreen(0.f),
-		mInnerBlue(0.f),
-		mOuterRed(0.f),
-		mOuterGreen(0.f),
-		mOuterBlue(0.f),
-		animationInnerElapsedTime(0.f),
-		animationInnerDuraionRemain(0.f),
-		currentOuterColor(0),
-		animationStartOuterColor(0),
-		animationEndOuterColor(0),
-		animationOuterDuration(0.f),
-		animationOuterDuraionRemain(0.f),
-		animationOuterElapsedTime(0.f),
-		animationOuterCurrentlyRate(0.f)
+		innerAnimation(AnimationColorStatus()),
+		outerAnimation(AnimationColorStatus())
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
@@ -45,11 +26,11 @@ protected:
 
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); }
 
-	void SetInnerAnimationPoint(Color255 _start, Color255 _goal);
-	void SetOuterAnimationPoint(Color255 _start, Color255 _goal);
+	void SetAnimationColorPoint(AnimationColorStatus& type, Color255 _start, Color255 _goal);
+	void UpdateAnimationColor(AnimationColorStatus& type);
 
-	void UpdateInnerColor();
-	void UpdateOuterColor();
+	void SetAnimationPoint(AnimationStatus& type, int _start, int _goal);
+	void UpdateAnimation(AnimationStatus& type);
 
 	PosVec pos;
 	PosVec size;
@@ -63,32 +44,10 @@ protected:
 
 	std::string guid;
 
-	Color255 currentInnerColor;
-	Color255 currentOuterColor;
-
-	bool animationInnerEnabled;
-	bool animationOuterEnabled;
-
-	Color255 animationStartInnerColor;
-	Color255 animationEndInnerColor;
-	Color255 animationStartOuterColor;
-	Color255 animationEndOuterColor;
-	float mInnerRed;
-	float mInnerGreen;
-	float mInnerBlue;
-	float mOuterRed;
-	float mOuterGreen;
-	float mOuterBlue;
-
-	float animationOuterDuration;
-	float animationOuterDuraionRemain;
-	float animationOuterElapsedTime;
-	float animationOuterCurrentlyRate;
-
-	float animationInnerDuration;
-	float animationInnerDuraionRemain;
-	float animationInnerElapsedTime;
-	float animationInnerCurrentlyRate;
+	AnimationColorStatus innerAnimation;
+	AnimationColorStatus outerAnimation;
+	AnimationStatus innerAlphaAnimation;
+	AnimationStatus outerAlphaAnimation;
 
 private:
 	std::vector<ObjectBase*> children;
@@ -110,11 +69,38 @@ public:
 	bool GetMouseSelected() { return mouseSelected; }
 
 	// アニメーション設定
-	bool SetInnerAnimation(float _duration) { animationInnerEnabled = true; animationInnerDuration = _duration; animationInnerDuraionRemain = _duration; animationInnerElapsedTime = 0.f; return true; }
-	bool SetInnerAnimation() { animationInnerEnabled = false; return true; }
+	bool SetInnerAnimation(float _duration) {
+		innerAnimation.animationEnabled = true;
+		innerAnimation.duration = _duration;
+		innerAnimation.durationRemain = _duration;
+		innerAnimation.elapsedTime = 0.f;
+		innerAlphaAnimation.animationEnabled = true;
+		innerAlphaAnimation.duration = _duration;
+		innerAlphaAnimation.durationRemain = _duration;
+		innerAlphaAnimation.elapsedTime = 0.f;
+		return true;
+	}
+	bool SetInnerAnimation() {
+		innerAnimation.animationEnabled = false;
+		innerAlphaAnimation.animationEnabled = false;
+		return true; }
 
-	bool SetOuterAnimation(float _duration) { animationOuterEnabled = true; animationOuterDuration = _duration; animationOuterDuraionRemain = _duration; animationOuterElapsedTime = 0.f; return true; }
-	bool SetOuterAnimation() { animationOuterEnabled = false; return true; }
+	bool SetOuterAnimation(float _duration) {
+		outerAnimation.animationEnabled = true;
+		outerAnimation.duration = _duration;
+		outerAnimation.durationRemain = _duration;
+		outerAnimation.elapsedTime = 0.f;
+		outerAlphaAnimation.animationEnabled = true;
+		outerAlphaAnimation.duration = _duration;
+		outerAlphaAnimation.durationRemain = _duration;
+		outerAlphaAnimation.elapsedTime = 0.f;
+		return true;
+	}
+	bool SetOuterAnimation() {
+		outerAnimation.animationEnabled = false;
+		outerAlphaAnimation.animationEnabled = false;
+		return true;
+	}
 
 	// 親(自分)のみ移動(絶対値)
 	bool SetPos(PosVec _pos) { pos = _pos; return true; }
