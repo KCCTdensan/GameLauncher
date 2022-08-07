@@ -71,6 +71,7 @@ void ObjectBase::UpdateAnimation(AnimationStatus& type)
 		}
 		else {
 			type.current = type.m * type.elapsedTime + type.start;
+			printfDx("%d", (int)type.current);
 		}
 	}
 }
