@@ -15,10 +15,10 @@ DebugScene::DebugScene() :
 		Color255(150, 150, 150, 200),
 		Color255(200, 200, 200));*/
 	debugButton.SetInnerColor(
-		Color255(0x69, 0xDD, 0xFF),
+		Color255("#69DDFF"),
 		Color255(0xDB, 0xBA, 0xDD),
-		Color255(0x96, 0xCD, 0xFF),
-		Color255(200, 200, 200));
+		Color255("dbb927"),
+		Color255(200, 200, 200, 50));
 	debugButton.SetOutlineColor(
 		Color255(132, 220, 75, 0),
 		Color255(100, 190, 75, 255),
