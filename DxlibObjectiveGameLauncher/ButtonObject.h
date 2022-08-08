@@ -1,6 +1,5 @@
 #pragma once
 #include "ObjectBase.h"
-#include "DxLib.h"
 #include "MouseInput.h"
 #include "ObjectOverlapping.h"
 #include "PressFrameEnum.h"

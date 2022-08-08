@@ -22,5 +22,7 @@ private:
     ButtonObject debugButton2;
     RectangleObject debugRect;
     TextObject textSample1;
+    InputObject input;
+    InputObject input2;
 };
 

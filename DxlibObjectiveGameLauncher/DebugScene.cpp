@@ -5,7 +5,9 @@ DebugScene::DebugScene() :
 	debugButton(PosVec(), PosVec(1200.f, 300.f), true, true),
 	debugButton2(PosVec(50, 200.f), PosVec(75.f, 150.f), true, true),
 	debugRect(PosVec(1100.f, 300.f), PosVec(300.f, 150.f), true, false),
-	textSample1(PosVec(750, 700), PosVec(), "mplus1", "文字列", Color255(135, 200, 56), TextAlign::CENTER, true)
+	textSample1(PosVec(750, 700), PosVec(), "mplus1", "文字列", Color255(135, 200, 56), TextAlign::CENTER, true),
+	input(PosVec(500,500), PosVec(200,100)),
+	input2(PosVec(900,800), PosVec(200,100))
 {
 	bg.SetInnerColor(Color255(20, 20, 20));
 
@@ -38,6 +40,24 @@ DebugScene::DebugScene() :
 
 	textSample1.SetBackColor(Color255(150, 70, 100));
 	textSample1.SetPadding(10.f, 20.f, 5.f, 30.f);
+	
+	input.SetupText("mplus1", Color255(135, 200, 56), TextAlign::LEFT);
+	input.SetInnerColor(
+		Color255("#69DDFF"),
+		Color255(0xDB, 0xBA, 0xDD),
+		Color255("dbb927"),
+		Color255(200, 200, 200, 50));
+	input.SetInnerAnimation(.2f);
+	input.SetInterruptMode(false);
+
+	input2.SetupText("mplus1", Color255(135, 200, 56), TextAlign::LEFT);
+	input2.SetInnerColor(
+		Color255("#69DDFF"),
+		Color255(0xDB, 0xBA, 0xDD),
+		Color255("dbb927"),
+		Color255(200, 200, 200, 50));
+	input2.SetInnerAnimation(.2f);
+	input2.SetInterruptMode(true);
 
 	// フォント追加
 	fonts.push_back(FontHandle("smart", "03スマートフォントUI", 100));
@@ -57,6 +77,9 @@ void DebugScene::Collide()
 	debugButton2.Collide();
 
 	debugRect.Collide();
+
+	input.Collide();
+	input2.Collide();
 }
 
 void DebugScene::Update()
@@ -73,6 +96,9 @@ void DebugScene::Update()
 	debugRect.Update();
 
 	textSample1.Update();
+
+	input.Update();
+	input2.Update();
 
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
@@ -95,6 +121,9 @@ void DebugScene::Draw()
 	debugRect.Draw();
 
 	textSample1.Draw();
+
+	input.Draw();
+	input2.Draw();
 
 	DrawFormatStringFToHandle(500, 600, GetColor(255, 255, 255), FontChest::GetFontHandle("smart"), "test");
 	DrawFormatStringFToHandle(1000, 750, GetColor(255, 137, 255), FontChest::GetFontHandle("smart64"), "(T_T)");

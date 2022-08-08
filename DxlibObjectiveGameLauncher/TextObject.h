@@ -11,7 +11,7 @@ class TextObject :
 public:
 	// sizeは無視される
 	TextObject(PosVec _pos, PosVec _size, int _fontHandle, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
-		: ObjectBase(_pos, _size), fontHandle(_fontHandle), fontHandleName(), text(_text), innerColor(_innerColor), align(_align),
+		: ObjectBase(_pos, PosVec()), fontHandle(_fontHandle), fontHandleName(), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0),
 		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false)
 	{
@@ -21,7 +21,7 @@ public:
 	// sizeは無視される
 	// フォントハンドル自動検索
 	TextObject(PosVec _pos, PosVec _size, std::string _fontHandleName, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
-		: ObjectBase(_pos, _size), fontHandle(-1), fontHandleName(_fontHandleName), text(_text), innerColor(_innerColor), align(_align),
+		: ObjectBase(_pos, PosVec()), fontHandle(-1), fontHandleName(_fontHandleName), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0),
 		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(true)
 	{
