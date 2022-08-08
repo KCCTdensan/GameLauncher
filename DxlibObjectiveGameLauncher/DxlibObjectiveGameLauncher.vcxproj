@@ -26,6 +26,7 @@
     <ClCompile Include="HomeScene.cpp" />
     <ClCompile Include="ImageChest.cpp" />
     <ClCompile Include="ImageData.cpp" />
+    <ClCompile Include="InputObject.cpp" />
     <ClCompile Include="JsonSoftwareData.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
     <ClCompile Include="LineObject.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="HomeScene.h" />
     <ClInclude Include="ImageChest.h" />
     <ClInclude Include="ImageData.h" />
+    <ClInclude Include="InputObject.h" />
     <ClInclude Include="JsonSoftwareData.h" />
     <ClInclude Include="KeyboardInput.h" />
     <ClInclude Include="LineObject.h" />

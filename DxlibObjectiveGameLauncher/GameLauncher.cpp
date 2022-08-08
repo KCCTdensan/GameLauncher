@@ -196,6 +196,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 			MainThread::SetEnd(true);
 			break;
 		}
+
+		/*std::string buf;
+		char a[40] = "";
+
+		KeyInputString(500, 500, 20, a, true);*/
+
+		// debug
 	}
 
 	//inputUpdate.join();
