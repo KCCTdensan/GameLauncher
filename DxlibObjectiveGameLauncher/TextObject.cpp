@@ -11,13 +11,14 @@ void TextObject::Update()
 	if (maxWidth > 0 && !adjusted) {
 		std::vector<int> index = {};
 		int v = 0;
-		for (std::string::iterator it = text.begin(); it != text.end(); ++it, v++) {
-			TCHAR letter = *it;
-			if (&letter == "\n") {
+		std::wstring wText = ConvertString(text);
+		for (v = 0; v < wText.size(); v++) {
+			std::string letter = ConvertString(wText.substr(v, 1));
+			if (letter == "\n") {
 				sum = 0;
 				continue;
 			}
-			sum += GetDrawStringWidthToHandle(&letter, 1, fontHandle);
+			sum += GetDrawStringWidthToHandle(letter.c_str(), 2, fontHandle);
 
 			if (sum > maxWidth) {
 				sum = 0;
@@ -26,8 +27,9 @@ void TextObject::Update()
 		}
 		std::reverse(index.begin(), index.end());
 		for (auto i : index) {
-			text.insert(i, "\n");
+			wText.insert(i, L"\n");
 		}
+		text = ConvertString(wText);
 		adjusted = true;
 	}
 }
