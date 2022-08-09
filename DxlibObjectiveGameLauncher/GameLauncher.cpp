@@ -194,17 +194,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 			Input::MouseInput::GetClick(MOUSE_INPUT_5), PressFrame::FIRST,
 			Input::MouseInput::GetClick(MOUSE_INPUT_4), PressFrame::FIRST);
 
-		if (/*CheckHitKey(KEY_INPUT_ESCAPE) ||*/ AppClose::GetClosed()) {
+		if (AppClose::GetClosed()) {
 			MainThread::SetEnd(true);
 			break;
 		}
-
-		/*std::string buf;
-		char a[40] = "";
-
-		KeyInputString(500, 500, 20, a, true);*/
-
-		// debug
 	}
 
 	//inputUpdate.join();

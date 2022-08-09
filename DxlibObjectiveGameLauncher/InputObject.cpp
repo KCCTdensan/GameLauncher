@@ -40,7 +40,6 @@ void InputObject::Update()
 			char text[256] = "";
 			GetKeyInputString(text, inputHandle);
 			inputText = text;
-			textObject.SetText(inputText);
 		}
 		else {
 			char text[256] = "";
@@ -51,13 +50,14 @@ void InputObject::Update()
 			textObject.SetText(inputText);
 			SetMouseOff();
 		}
-		textObject.Update();
 	}
 	else {
 		if (GetActiveKeyInput() == inputHandle && turnedOn) {
 			SetActiveKeyInput(-1);
 			SetMouseOff();
 			turnedOn = false;
+			textObject.SetText(inputText);
+			textObject.Update();
 		}
 	}
 
@@ -78,6 +78,8 @@ void InputObject::Update()
 			SetActiveKeyInput(-1);
 			SetMouseOff();
 			turnedOn = false;
+			textObject.SetText(inputText);
+			textObject.Update();
 		}
 	}
 
@@ -87,7 +89,7 @@ void InputObject::Update()
 void InputObject::Draw()
 {
 	if (!enabled) return;
-
+	SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
 	if (enabledOutline) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)outerAlphaAnimation.current);
 		int resultOuterColor = outerAnimation.current.Get(); // debug
@@ -104,7 +106,14 @@ void InputObject::Draw()
 		DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth + 1, pos.y + size.y - outlineWidth + 1, resultInnerColor, true, 0);
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-	textObject.Draw();
+	if (!turnedOn)
+		textObject.Draw();
+	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
+	if (turnedOn) {
+		SetDrawArea(0, 0, (int)(pos.x + size.x + 1), (int)ApplicationPreference::GetBackgroundSize().y);
+		DrawKeyInputString((int)pos.x, (int)pos.y, inputHandle);
+		DrawKeyInputModeString((int)pos.x, (int)(pos.y + size.y));
+	}
 }
 
 void InputObject::CollideMouse()

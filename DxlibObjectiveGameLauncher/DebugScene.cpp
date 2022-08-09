@@ -41,7 +41,7 @@ DebugScene::DebugScene() :
 	textSample1.SetBackColor(Color255(150, 70, 100));
 	textSample1.SetPadding(10.f, 20.f, 5.f, 30.f);
 	
-	input.SetupText("mplus1", Color255(135, 200, 56), TextAlign::LEFT);
+	input.SetupText("smart15", Color255(135, 200, 56), TextAlign::LEFT);
 	input.SetInnerColor(
 		Color255("#69DDFF"),
 		Color255(0xDB, 0xBA, 0xDD),
@@ -50,7 +50,7 @@ DebugScene::DebugScene() :
 	input.SetInnerAnimation(.2f);
 	input.SetInterruptMode(false);
 
-	input2.SetupText("mplus1", Color255(135, 200, 56), TextAlign::LEFT);
+	input2.SetupText("smart15", Color255(135, 200, 56), TextAlign::LEFT);
 	input2.SetInnerColor(
 		Color255("#69DDFF"),
 		Color255(0xDB, 0xBA, 0xDD),
@@ -62,6 +62,7 @@ DebugScene::DebugScene() :
 	// フォント追加
 	fonts.push_back(FontHandle("smart", "03スマートフォントUI", 100));
 	fonts.push_back(FontHandle("smart64", "03スマートフォントUI", 64, 15));
+	fonts.push_back(FontHandle("smart15", "03スマートフォントUI", 20, 15));
 	fonts.push_back(FontHandle("mplus1", "M PLUS 2", 64, 100));
 }
 

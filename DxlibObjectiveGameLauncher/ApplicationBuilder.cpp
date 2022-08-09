@@ -22,6 +22,9 @@ ApplicationBuilder::ApplicationBuilder()
 		Color255("#000000").Get(),
 		Color255("#FFFFFF").Get());*/
 
+	SetKeyInputCursorBrinkFlag(TRUE);
+	SetKeyInputCursorBrinkTime(500);
+
 
 	ApplicationTime::Initialize();
 }

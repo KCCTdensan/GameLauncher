@@ -5,6 +5,7 @@
 #include "ApplicationTime.h"
 #include "Color255.h"
 #include "AnimationStatus.h"
+#include "ApplicationPreference.h"
 #include <vector>
 
 class ObjectBase
