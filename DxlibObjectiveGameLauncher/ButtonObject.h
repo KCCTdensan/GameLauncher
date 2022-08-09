@@ -83,6 +83,30 @@ public:
 		return true;
 	}
 
+	Color255* GetColor(ColorType type) {
+		switch (type)
+		{
+		case ColorType::INNER:
+			return &innerColor;
+		case ColorType::HOVERED:
+			return &hoveredInnerColor;
+		case ColorType::CLICKED:
+			return &clickedInnerColor;
+		case ColorType::SELECTED:
+			return &selectedInnerColor;
+		case ColorType::OUTER_INNER:
+			return &outerColor;
+		case ColorType::OUTER_HOVERED:
+			return &hoveredOuterColor;
+		case ColorType::OUTER_CLICKED:
+			return &clickedOuterColor;
+		case ColorType::OUTER_SELECTED:
+			return &selectedOuterColor;
+		default:
+			return nullptr;
+		}
+	}
+
 	// çXêVï`âÊ
 	void Collide();
 	void Update();

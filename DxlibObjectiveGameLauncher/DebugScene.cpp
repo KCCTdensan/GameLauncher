@@ -107,7 +107,11 @@ void DebugScene::Update()
 	}
 
 	if (debugButton.GetMouseHit()) {
-		input.GetTextObject()->ChangeColorAnimation(input.GetTextObject()->GetColor(ColorType::INNER), new Color255(255, 0, 0), 0.2f);
+		input.GetTextObject()->ChangeColorWithAnimation(input.GetTextObject()->GetColor(ColorType::INNER), new Color255(255, 0, 0), 0.2f);
+	}
+
+	if (debugButton.GetMouseClicked()) {
+		input.GetTextObject()->ChangeColorWithAnimation(input.GetTextObject()->GetColor(ColorType::INNER), new Color255(255, 255, 255), 0.2f);
 	}
 
 	if (debugButton2.GetMouseSelected()) {

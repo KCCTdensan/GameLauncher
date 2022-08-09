@@ -84,14 +84,23 @@ void ObjectBase::UpdatePointerAnimation()
 		*it->color = it->animation.current;
 		if (it->animation.durationRemain <= 0.f) {
 			pAnimation.erase(it);
+			break;
 		}
 	}
 }
 
-void ObjectBase::ChangeColorAnimation(Color255* pColor, Color255* endColor, float duration)
+void ObjectBase::ChangeColorWithAnimation(Color255* pColor, Color255* endColor, float duration)
 {
-	for (auto& item : pAnimation) {
-		if (item.color == pColor) return;
+	for (auto it = pAnimation.begin(); it != pAnimation.end(); it++) {
+		if (it->color == pColor) {
+			if (it->animation.end.r == endColor->r &&
+				it->animation.end.g == endColor->g &&
+				it->animation.end.b == endColor->b) return;
+			else {
+				pAnimation.erase(it);
+				break;
+			}
+		}
 	}
 
 	AnimationColorPointer* p = new AnimationColorPointer(

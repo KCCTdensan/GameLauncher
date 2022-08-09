@@ -79,7 +79,7 @@ public:
 	bool GetMouseClicked() { return mouseClicked; }
 	bool GetMouseSelected() { return mouseSelected; }
 
-	void ChangeColorAnimation(Color255* pColor, Color255* endColor, float duration);
+	void ChangeColorWithAnimation(Color255* pColor, Color255* endColor, float duration);
 
 	// アニメーション設定
 	bool SetInnerAnimation(float _duration) {

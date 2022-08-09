@@ -88,8 +88,6 @@ void InputObject::Update()
 	}
 
 	textObject.Update();
-
-	if (!enabled) return;
 }
 
 void InputObject::Draw()
@@ -124,6 +122,8 @@ void InputObject::Draw()
 
 void InputObject::CollideMouse()
 {
+	if (!enabled) return;
+
 	bool beforeMouseClicked = mouseClicked;
 	bool goSelecting = false;
 

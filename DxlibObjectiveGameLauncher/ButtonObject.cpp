@@ -42,8 +42,7 @@ void ButtonObject::Update()
 	UpdateAnimation(&innerAlphaAnimation);
 	UpdateAnimation(&outerAlphaAnimation);
 
-	if (!enabled) return;
-
+	UpdatePointerAnimation();
 }
 
 void ButtonObject::Draw()
@@ -71,6 +70,7 @@ void ButtonObject::Draw()
 
 void ButtonObject::CollideMouse()
 {
+	if (!enabled) return;
 
 	bool beforeMouseClicked = mouseClicked;
 	bool goSelecting = false;
