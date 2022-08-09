@@ -6,9 +6,8 @@ void TextObject::Update()
 
 	if (fontAutoSerching) FontSerch();
 
-	int sum = 0;
-
 	if (maxWidth > 0 && !adjusted) {
+		int sum = 0;
 		std::vector<int> index = {};
 		int v = 0;
 		std::wstring wText = ConvertString(text);
