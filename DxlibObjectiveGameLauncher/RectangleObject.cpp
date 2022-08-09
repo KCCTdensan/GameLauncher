@@ -3,8 +3,6 @@
 void RectangleObject::Collide()
 {
 	CollideMouse();
-
-	UpdatePointerAnimation();
 }
 
 void RectangleObject::Update()
@@ -12,6 +10,7 @@ void RectangleObject::Update()
 	CheckGUID();
 
 	currentInnerColor = innerColor;
+	UpdatePointerAnimation();
 }
 
 void RectangleObject::Draw()

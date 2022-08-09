@@ -24,5 +24,6 @@ private:
     TextObject textSample1;
     InputObject input;
     InputObject input2;
+    RectangleObject pallet;
 };
 

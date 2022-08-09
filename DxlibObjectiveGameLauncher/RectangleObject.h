@@ -24,6 +24,18 @@ public:
 	bool SetInnerColor(Color255 _innerColor) { innerColor = _innerColor; return true; }
 	bool SetOutlineColor(Color255 _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
 
+	Color255* GetColor(ColorType type) {
+		switch (type)
+		{
+		case ColorType::INNER:
+			return &innerColor;
+		case ColorType::OUTER_INNER:
+			return &outerColor;
+		default:
+			return nullptr;
+		}
+	}
+
 	// çXêVï`âÊ
 	void Collide();
 	void Update();

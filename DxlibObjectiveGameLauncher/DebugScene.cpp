@@ -7,7 +7,8 @@ DebugScene::DebugScene() :
 	debugRect(PosVec(1100.f, 300.f), PosVec(300.f, 150.f), true, false),
 	textSample1(PosVec(750, 700), PosVec(), "mplus1", "文字列", Color255(135, 200, 56), TextAlign::CENTER, true),
 	input(PosVec(500,500), PosVec(200,100)),
-	input2(PosVec(900,800), PosVec(200,100))
+	input2(PosVec(900,800), PosVec(200,100)),
+	pallet(PosVec(1200,300), PosVec(400,400), true, false)
 {
 	bg.SetInnerColor(Color255(20, 20, 20));
 
@@ -59,6 +60,8 @@ DebugScene::DebugScene() :
 	input2.SetInnerAnimation(.2f);
 	input2.SetInterruptMode(true);
 
+	pallet.SetInnerColor(Color255(255, 255, 255));
+
 	// フォント追加
 	fonts.push_back(FontHandle("smart", "03スマートフォントUI", 100));
 	fonts.push_back(FontHandle("smart64", "03スマートフォントUI", 64, 15));
@@ -74,6 +77,8 @@ DebugScene::~DebugScene()
 
 void DebugScene::Collide()
 {
+	bg.Collide();
+
 	debugButton.Collide();
 	debugButton2.Collide();
 
@@ -81,6 +86,8 @@ void DebugScene::Collide()
 
 	input.Collide();
 	input2.Collide();
+
+	pallet.Collide();
 }
 
 void DebugScene::Update()
@@ -101,13 +108,27 @@ void DebugScene::Update()
 	input.Update();
 	input2.Update();
 
+	pallet.Update();
+
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
 		debugButton.Move(PosVec(10.f, 10.f));
 	}
 
+	if (bg.GetMouseHit()) {
+		pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(255, 255, 255), 0.2f);
+	}
+
 	if (debugButton.GetMouseHit()) {
-		input.GetTextObject()->ChangeColorWithAnimation(input.GetTextObject()->GetColor(ColorType::INNER), new Color255(255, 0, 0), 0.2f);
+		pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(255, 0, 0), 0.2f);
+	}
+
+	if (debugButton2.GetMouseHit()) {
+		pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(0, 255, 0), 0.2f);
+	}
+
+	if (debugRect.GetMouseHit()) {
+		pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(0, 0, 255), 0.2f);
 	}
 
 	if (debugButton.GetMouseClicked()) {
@@ -133,6 +154,8 @@ void DebugScene::Draw()
 
 	input.Draw();
 	input2.Draw();
+
+	pallet.Draw();
 
 	DrawFormatStringFToHandle(500, 600, GetColor(255, 255, 255), FontChest::GetFontHandle("smart"), "test");
 	DrawFormatStringFToHandle(1000, 750, GetColor(255, 137, 255), FontChest::GetFontHandle("smart64"), "(T_T)");
