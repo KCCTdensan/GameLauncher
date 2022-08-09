@@ -92,8 +92,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetAlwaysRunFlag(TRUE); // 画面がActiveでないときにも実行するか。音楽再生のため基本はTRUE
 	ChangeWindowMode(TRUE); // 画面をウインドウにするか。TRUE:ウインドウ FALSE:全画面（ただし，全画面は描画が遅い。別の描画の仕方でされてしまうため。)
 	SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
-	SetUseDirectInputFlag(FALSE); // インプットのオブジェクトでダイレクトインプットを使用するかどうか。基本はTRUEの方が望ましい。
+	SetUseDirectInputFlag(TRUE); // インプットのオブジェクトでダイレクトインプットを使用するかどうか。基本はTRUEの方が望ましい。
 	SetMainWindowText("Launcher"); // アプリのタイトル名の変更
+	SetUseIMEFlag(TRUE);
+	SetUseTSFFlag(FALSE);
 
 	SetWindowStyleMode(11); // ボーダレスウインドウ
 
@@ -110,7 +112,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	ApplicationBuilder applicationBuilder;
 
-	MSG msg;
+	//MSG msg;
 
 	PosVec monitorSize((float)GetSystemMetrics(SM_CXSCREEN), (float)GetSystemMetrics(SM_CYSCREEN));
 
@@ -172,11 +174,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	ReleaseDC(GetMainWindowHandle(), hdc);
 
 	while (!ScreenFlip() && !ClearDrawScreen() && !MainThread::SetEnd()) // メインループ この中の条件はないとバグるもの
-	{
+	{		
 		applicationBuilder.Update(); // システム系更新処理(がまとめられている)
-		GetMessage(&msg, NULL, 0, 0);
-		TranslateMessage(&msg);
-		DispatchMessage(&msg); // ウインドウメッセージ処理
+		//GetMessage(&msg, NULL, 0, 0);
+		//TranslateMessage(&msg);
+		//DispatchMessage(&msg); // ウインドウメッセージ処理
+		ProcessMessage();
 
 		SetDrawScreen(DX_SCREEN_BACK); // 描画初期化
 		Input::MouseInput::Update(); // マウス更新処理
@@ -191,7 +194,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 			Input::MouseInput::GetClick(MOUSE_INPUT_5), PressFrame::FIRST,
 			Input::MouseInput::GetClick(MOUSE_INPUT_4), PressFrame::FIRST);
 
-		if (CheckHitKey(KEY_INPUT_ESCAPE) || AppClose::GetClosed()) {
+		if (AppClose::GetClosed()) {
 			MainThread::SetEnd(true);
 			break;
 		}

@@ -11,9 +11,9 @@ class TextObject :
 public:
 	// sizeは無視される
 	TextObject(PosVec _pos, PosVec _size, int _fontHandle, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
-		: ObjectBase(_pos, _size), fontHandle(_fontHandle), fontHandleName(), text(_text), innerColor(_innerColor), align(_align),
-		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0),
-		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false)
+		: ObjectBase(_pos, PosVec()), fontHandle(_fontHandle), fontHandleName(), text(_text), innerColor(_innerColor), align(_align),
+		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0), adjusted(false),
+		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1)
 	{
 		CalcPos();
 	}
@@ -21,20 +21,20 @@ public:
 	// sizeは無視される
 	// フォントハンドル自動検索
 	TextObject(PosVec _pos, PosVec _size, std::string _fontHandleName, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
-		: ObjectBase(_pos, _size), fontHandle(-1), fontHandleName(_fontHandleName), text(_text), innerColor(_innerColor), align(_align),
-		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0),
-		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(true)
+		: ObjectBase(_pos, PosVec()), fontHandle(-1), fontHandleName(_fontHandleName), text(_text), innerColor(_innerColor), align(_align),
+		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0), adjusted(false),
+		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(true), maxWidth(-1)
 	{
 		CalcPos();
 	}
 
 	TextObject()
 		: ObjectBase(PosVec(), PosVec()), fontHandle(-1), fontHandleName(), text(), innerColor(0), align(TextAlign::LEFT), enabledBack(false), backColor(0),
-		finallyPos(PosVec()), textWidth(0), fontHeight(0), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false)
+		finallyPos(PosVec()), textWidth(0), fontHeight(0), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1), adjusted(false)
 	{}
 
 	// 文字情報登録
-	bool SetText(std::string _text) { text = _text; CalcPos(); return true; }
+	bool SetText(std::string _text) { text = _text; CalcPos(); adjusted = false; return true; }
 	bool SetFontHandle(int _fontHandle) { fontHandle = _fontHandle; CalcPos();  return true; }
 	int SetFontHandle() { return fontHandle; }
 
@@ -52,12 +52,45 @@ public:
 	bool SetPadding(float _vertical, float _horizontal) { paddingUpperLeft = PosVec(_horizontal, _vertical); paddingLowerRight = PosVec(_horizontal, _vertical); return true; }
 	bool SetPadding(float _value) { paddingUpperLeft = PosVec(_value, _value); paddingLowerRight = PosVec(_value, _value); return true; }
 
+	bool SetMaxWidth(int _value) {maxWidth = _value >= 1 ? _value : -1;	return true;}
+
+	PosVec GetFinallyPos() { return finallyPos; }
+
+	Color255* GetColor(ColorType type) {
+		switch (type)
+		{
+		case ColorType::INNER:
+			return &innerColor;
+		default:
+			return nullptr;
+		}
+	}
+
 	// 更新描画
 	void Collide() {}
 	void Update();
 	void Draw();
 
 private:
+
+	std::wstring ConvertString(const std::string& input)
+	{
+		size_t i;
+		wchar_t* buffer = new wchar_t[input.size() + 1];
+		mbstowcs_s(&i, buffer, input.size() + 1, input.c_str(), _TRUNCATE);
+		std::wstring result = buffer;
+		delete[] buffer;
+		return result;
+	}
+	std::string ConvertString(const std::wstring& input)
+	{
+		size_t i;
+		char* buffer = new char[input.size() * MB_CUR_MAX + 1];
+		wcstombs_s(&i, buffer, input.size() * MB_CUR_MAX + 1, input.c_str(), _TRUNCATE);
+		std::string result = buffer;
+		delete[] buffer;
+		return result;
+	}
 
 	// 描画開始位置を計算
 	void CalcPos();
@@ -79,10 +112,17 @@ private:
 	PosVec finallyPos;
 
 	Color255 innerColor;
+	//Color255 hoveredColor;
+	//Color255 clickedColor;
+	//Color255 selectedColor;
 	TextAlign align;
 
 	Color255 backColor;
 
 	bool enabledBack;
+
+	int maxWidth;
+
+	bool adjusted;
 };
 

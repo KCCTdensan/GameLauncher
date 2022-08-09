@@ -3,6 +3,8 @@
 void RectangleObject::Collide()
 {
 	CollideMouse();
+
+	UpdatePointerAnimation();
 }
 
 void RectangleObject::Update()

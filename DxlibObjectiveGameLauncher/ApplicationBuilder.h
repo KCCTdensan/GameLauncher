@@ -3,6 +3,9 @@
 #include "ApplicationPreference.h"
 #include "ApplicationTime.h"
 #include "WindowHolding.h"
+#include "Color255.h"
+#include <locale.h>
+
 
 class ApplicationBuilder
 {

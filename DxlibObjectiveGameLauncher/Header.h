@@ -2,8 +2,7 @@
 #include "DxLib.h"
 #include "SceneManager.h"
 #include "SceneSet.h"
-#include "ButtonObject.h"
-#include "RectangleObject.h"
+#include "OriginalObjects.h"
 #include "AppClose.h"
 #include "WindowHolding.h"
 #include "WindowHwnd.h"
@@ -28,6 +27,7 @@ private:
 	static std::vector<SceneSet> sceneSets;
 	static std::vector<ButtonObject> navLinks;
 	static RectangleObject banner;
+	static LineObject headerLine;
 	static std::vector<ButtonObject> systemButtons;
 
 	static float height;

@@ -86,7 +86,6 @@
     <ClCompile Include="SceneBase.cpp">
       <Filter>Scenes\Base</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="UUIDGenerator.cpp">
       <Filter>UUID</Filter>
     </ClCompile>
@@ -94,8 +93,21 @@
     <ClCompile Include="ApplicationTime.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="AppClose.cpp" />
-    <ClCompile Include="WindowHwnd.cpp" />
+    <ClCompile Include="LineObject.cpp">
+      <Filter>Objects\Variety\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowHwnd.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="AppClose.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectLayer.cpp">
+      <Filter>Objects\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="InputObject.cpp">
+      <Filter>Objects\Variety\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -200,7 +212,6 @@
     <ClInclude Include="SceneBase.h">
       <Filter>Scenes\Base</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="UUIDGenerator.h">
       <Filter>UUID</Filter>
     </ClInclude>
@@ -214,11 +225,36 @@
     <ClInclude Include="ApplicationTime.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="AppClose.h" />
     <ClInclude Include="Color255.h">
       <Filter>Struct</Filter>
     </ClInclude>
-    <ClInclude Include="WindowHwnd.h" />
+    <ClInclude Include="OriginalObjects.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStatus.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="LineObject.h">
+      <Filter>Objects\Variety\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowHwnd.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="AppClose.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectLayer.h">
+      <Filter>Objects\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="InputObject.h">
+      <Filter>Objects\Variety\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorTypes.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationPointerData.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -304,6 +340,15 @@
     </Filter>
     <Filter Include="UUID">
       <UniqueIdentifier>{58c29971-4f7b-4c55-b150-c96c5c2755f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Includes">
+      <UniqueIdentifier>{16655d38-f8e3-49ca-a00a-b878cd294aa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Variety\Input">
+      <UniqueIdentifier>{dfcca03c-92d1-4d7c-8a47-9ef5a81ed85f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Variety\Line">
+      <UniqueIdentifier>{af45ec3e-b1c5-40ee-aca7-10b753edc029}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

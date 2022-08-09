@@ -1,11 +1,12 @@
-#include "ButtonObject.h"
+#include "InputObject.h"
 
-void ButtonObject::Collide()
+void InputObject::Collide()
 {
 	CollideMouse();
+	textObject.Collide();
 }
 
-void ButtonObject::Update()
+void InputObject::Update()
 {
 	CheckGUID();
 
@@ -28,6 +29,37 @@ void ButtonObject::Update()
 		SetAnimationColorPoint(&outerAnimation, outerAnimation.current, selectedOuterColor);
 		SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)selectedInnerColor.a);
 		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)selectedOuterColor.a);
+
+		if (!interruptMode) {
+			// アクティブ
+			if (GetActiveKeyInput() != inputHandle && !turnedOn) {
+				SetActiveKeyInput(inputHandle);
+				turnedOn = true;
+			}
+
+			char text[256] = "";
+			GetKeyInputString(text, inputHandle);
+			inputText = text;
+		}
+		else {
+			char text[256] = "";
+			textObject.SetText("");
+			Draw();
+			KeyInputString((int)pos.x, (int)pos.y, 256, text, true);
+			inputText = text;
+			textObject.SetText(inputText);
+			SetMouseOff();
+		}
+	}
+	else {
+		if (GetActiveKeyInput() == inputHandle && turnedOn) {
+			SetActiveKeyInput(-1);
+			SetMouseOff();
+			turnedOn = false;
+			textObject.SetPos(pos);
+			textObject.SetText(inputText);
+			textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z));
+		}
 	}
 
 	if (mouseClicked) {
@@ -43,9 +75,22 @@ void ButtonObject::Update()
 	UpdateAnimation(&outerAlphaAnimation);
 
 	UpdatePointerAnimation();
+
+	if (GetActiveKeyInput() != inputHandle && turnedOn) {
+		if (CheckKeyInput(inputHandle) != 0) {
+			SetActiveKeyInput(-1);
+			SetMouseOff();
+			turnedOn = false;
+			textObject.SetPos(pos);
+			textObject.SetText(inputText);
+			textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z));
+		}
+	}
+
+	textObject.Update();
 }
 
-void ButtonObject::Draw()
+void InputObject::Draw()
 {
 	if (!enabled) return;
 	SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
@@ -65,10 +110,17 @@ void ButtonObject::Draw()
 		DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth + 1, pos.y + size.y - outlineWidth + 1, resultInnerColor, true, 0);
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	if (!turnedOn)
+		textObject.Draw();
 	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
+	if (turnedOn) {
+		SetDrawArea(0, 0, (int)(pos.x + size.x + 1), (int)ApplicationPreference::GetBackgroundSize().y);
+		DrawKeyInputString((int)pos.x, (int)pos.y, inputHandle);
+		DrawKeyInputModeString((int)pos.x, (int)(pos.y + size.y));
+	}
 }
 
-void ButtonObject::CollideMouse()
+void InputObject::CollideMouse()
 {
 	if (!enabled) return;
 

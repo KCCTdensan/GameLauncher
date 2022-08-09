@@ -5,6 +5,34 @@ void TextObject::Update()
 	CheckGUID();
 
 	if (fontAutoSerching) FontSerch();
+
+	if (maxWidth > 0 && !adjusted) {
+		int sum = 0;
+		std::vector<int> index = {};
+		int v = 0;
+		std::wstring wText = ConvertString(text);
+		for (v = 0; v < wText.size(); v++) {
+			std::string letter = ConvertString(wText.substr(v, 1));
+			if (letter == "\n") {
+				sum = 0;
+				continue;
+			}
+			int newWidth = GetDrawStringWidthToHandle(letter.c_str(), 2, fontHandle);
+			sum += newWidth;
+			if (sum > maxWidth) {
+				sum = newWidth;
+				index.push_back(v);
+			}
+		}
+		std::reverse(index.begin(), index.end());
+		for (auto i : index) {
+			wText.insert(i, L"\n");
+		}
+		text = ConvertString(wText);
+		adjusted = true;
+	}
+
+	UpdatePointerAnimation();
 }
 
 void TextObject::Draw()

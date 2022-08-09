@@ -1,11 +1,8 @@
 #pragma once
 #include "SceneBase.h"
-#include "ButtonObject.h"
-#include "RectangleObject.h"
-#include "TextObject.h"
 #include "HomeScene.h"
 #include "ApplicationPreference.h"
-
+#include "OriginalObjects.h"
 #include "FontChest.h"
 
 class DebugScene :
@@ -25,5 +22,7 @@ private:
     ButtonObject debugButton2;
     RectangleObject debugRect;
     TextObject textSample1;
+    InputObject input;
+    InputObject input2;
 };
 

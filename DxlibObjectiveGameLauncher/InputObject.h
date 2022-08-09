@@ -1,28 +1,65 @@
 #pragma once
 #include "ObjectBase.h"
+#include "TextObject.h"
 #include "MouseInput.h"
 #include "ObjectOverlapping.h"
 #include "PressFrameEnum.h"
 #include <string>
 
-class ButtonObject :
+class InputObject :
 	public ObjectBase
 {
 public:
-	ButtonObject(PosVec _pos, PosVec _size, bool _enabledFill = true, bool _enabledOutline = false)
+	// テキスト表示は SetupText() を用いる
+	InputObject(PosVec _pos, PosVec _size, int _maxLength = 512, bool _cancelVaildFlag = true, bool _singleCharOnlyFlag = false, bool _numCharOnlyFlag = false, bool _enabledFill = true, bool _enabledOutline = false)
 		: ObjectBase(_pos, _size),
 		enabledFill(_enabledFill), enabledOutline(_enabledOutline),
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
-		outlineWidth(0)
-	{}
+		outlineWidth(0), textObject(), turnedOn(false), interruptMode(false),
+		maxLength(_maxLength), cancelVaildFlag(_cancelVaildFlag), singleCharOnlyFlag(_singleCharOnlyFlag), numCharOnlyFlag(_numCharOnlyFlag)
+	{
+		inputHandle = MakeKeyInput(maxLength, cancelVaildFlag, singleCharOnlyFlag, numCharOnlyFlag);
+	}
 
-	ButtonObject()
+	InputObject()
 		: ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false),
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
-		outlineWidth(0)
-	{}
+		outlineWidth(0), textObject(), turnedOn(false), interruptMode(false),
+		maxLength(2), cancelVaildFlag(true), singleCharOnlyFlag(false), numCharOnlyFlag(false)
+	{
+		inputHandle = MakeKeyInput(maxLength, cancelVaildFlag, singleCharOnlyFlag, numCharOnlyFlag);
+	}
+
+	~InputObject() {
+		DeleteKeyInput(inputHandle);
+	}
+
+	void SetupText(int _fontHandle, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
+	{
+		textObject = TextObject(pos, size, _fontHandle, inputText, _innerColor, _align, _enabledBack);
+		textObject.SetMaxWidth((int)size.x);
+	}
+	void SetupText(std::string _fontHandleName, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
+	{
+		textObject = TextObject(pos, size, _fontHandleName, inputText, _innerColor, _align, _enabledBack);
+		textObject.SetMaxWidth((int)size.x);
+		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z));
+	}
+
+	void SetInterruptMode(bool _flag) { interruptMode = _flag; }
+	bool SetInterruptMode() { return interruptMode; }
+
+	TextObject* GetTextObject() { return &textObject; }
+
+	/*
+	*
+	* 入力中をselectに
+	*
+	* 入力用にハンドルを追加する
+	*
+	*/
 
 	// 色有効化無効化
 	bool SetEnabledFill(bool _enabled) { enabledFill = _enabled; return true; }
@@ -83,30 +120,6 @@ public:
 		return true;
 	}
 
-	Color255* GetColor(ColorType type) {
-		switch (type)
-		{
-		case ColorType::INNER:
-			return &innerColor;
-		case ColorType::HOVERED:
-			return &hoveredInnerColor;
-		case ColorType::CLICKED:
-			return &clickedInnerColor;
-		case ColorType::SELECTED:
-			return &selectedInnerColor;
-		case ColorType::OUTER_INNER:
-			return &outerColor;
-		case ColorType::OUTER_HOVERED:
-			return &hoveredOuterColor;
-		case ColorType::OUTER_CLICKED:
-			return &clickedOuterColor;
-		case ColorType::OUTER_SELECTED:
-			return &selectedOuterColor;
-		default:
-			return nullptr;
-		}
-	}
-
 	// 更新描画
 	void Collide();
 	void Update();
@@ -117,6 +130,8 @@ private:
 	void CollideMouse();
 
 private:
+	TextObject textObject;
+
 	Color255 innerColor;
 	Color255 hoveredInnerColor;
 	Color255 clickedInnerColor;
@@ -131,6 +146,16 @@ private:
 	bool enabledFill;
 	bool enabledOutline;
 
+	int maxLength;
+	bool cancelVaildFlag;
+	bool singleCharOnlyFlag;
+	bool numCharOnlyFlag;
 
+	bool turnedOn;
+
+	bool interruptMode;
+
+	int inputHandle;
+	std::string inputText;
 };
 

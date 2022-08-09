@@ -15,6 +15,12 @@ float Header::navWidth = ApplicationPreference::GetBackgroundSize().x - 300;
 float Header::height = ApplicationPreference::GetBackgroundSize().y / 12.f;
 
 RectangleObject Header::banner = RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y / 15.f));
+LineObject Header::headerLine = LineObject(
+	PosVec(0.f, ApplicationPreference::GetBackgroundSize().y / 15.f),
+	PosVec(
+		ApplicationPreference::GetBackgroundSize().x,
+		ApplicationPreference::GetBackgroundSize().y / 15.f)
+);
 
 void Header::Initialize()
 {
@@ -24,9 +30,15 @@ void Header::Initialize()
 
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		navLinks.push_back(ButtonObject(PosVec(ApplicationPreference::GetBackgroundSize().x - (navWidth / ApplicationPreference::headerButtonNum * (ApplicationPreference::headerButtonNum - i)), ApplicationPreference::GetBackgroundSize().y / 15.f),
-			PosVec(navWidth / ApplicationPreference::headerButtonNum, height)));
-		navLinks[i].SetInnerColor(Color255(255, 255, 225), Color255(230, 230, 200), Color255(150, 150, 120), Color255(200, 200, 170));
-		navLinks[i].SetAnimation(0.2f);
+			PosVec(navWidth / ApplicationPreference::headerButtonNum, height), true, true));
+		navLinks[i].SetInnerColor(Color255(255, 255, 225, 0), Color255(230, 230, 200), Color255(150, 150, 120), Color255(200, 200, 170));
+		navLinks[i].SetOutlineColor(
+			Color255(0xFF, 0x77, 0xFE, 0),
+			Color255(0xFF, 0x77, 0xFE),
+			Color255(0xFF, 0x77, 0xFE),
+			Color255(0xFF, 0x77, 0xFE), 4.f);
+		navLinks[i].SetInnerAnimation(.2f);
+		navLinks[i].SetOuterAnimation(.2f);
 	}
 
 	for (int i = 0; i < 3; i++) {
@@ -40,8 +52,10 @@ void Header::Initialize()
 		else
 			systemButtons[i].SetInnerColor(Color255(30, 30, 30), Color255(50, 50, 50), Color255(10, 10, 10), Color255(30, 30, 30));
 		systemButtons[i].SetOutlineColor(Color255(255, 255, 255), 1.f);
-		systemButtons[i].SetAnimation(0.2f);
+		systemButtons[i].SetInnerAnimation(0.2f);
 	}
+	headerLine.SetEnabledOutline(true);
+	headerLine.SetOutlineColor(Color255(0xFF, 0x77, 0xFE), 2.5f);
 
 	beInitialized = true;
 }
@@ -65,7 +79,8 @@ void Header::Update()
 
 		if (navLinks[i].GetMouseSelected()) {
 			navLinks[i].SetMouseOff();
-			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene);
+			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene, false);
+			//SceneManager::ChangeScene(sceneSets[i].sceneName, new DebugScene(), false);
 		}
 	}
 	for (int i = 0; i < 3; i++) {
@@ -89,6 +104,7 @@ void Header::Update()
 		WindowHwnd::WindowMinimize(GetMainWindowHandle());
 		systemButtons[2].SetMouseOff();
 	}
+	headerLine.Draw();
 }
 
 void Header::Draw()
@@ -100,5 +116,6 @@ void Header::Draw()
 	for (int i = 0; i < 3; i++) {
 		systemButtons[i].Draw();
 	}
+	headerLine.Draw();
 	DrawBoxAA(0, 0, 1920, 1080, GetColor(255, 255, 255), false, 2.); // debug
 }

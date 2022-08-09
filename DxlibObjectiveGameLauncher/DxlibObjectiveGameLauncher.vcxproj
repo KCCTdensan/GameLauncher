@@ -26,8 +26,10 @@
     <ClCompile Include="HomeScene.cpp" />
     <ClCompile Include="ImageChest.cpp" />
     <ClCompile Include="ImageData.cpp" />
+    <ClCompile Include="InputObject.cpp" />
     <ClCompile Include="JsonSoftwareData.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
+    <ClCompile Include="LineObject.cpp" />
     <ClCompile Include="MainThreadValue.cpp" />
     <ClCompile Include="MouseInput.cpp" />
     <ClCompile Include="MovieChest.cpp" />
@@ -48,6 +50,8 @@
     <ClCompile Include="WindowHwnd.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationPointerData.h" />
+    <ClInclude Include="AnimationStatus.h" />
     <ClInclude Include="AppClose.h" />
     <ClInclude Include="ApplicationBuilder.h" />
     <ClInclude Include="ApplicationPreference.h" />
@@ -56,6 +60,7 @@
     <ClInclude Include="ButtonObject.h" />
     <ClInclude Include="CanvasObject.h" />
     <ClInclude Include="Color255.h" />
+    <ClInclude Include="ColorTypes.h" />
     <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="DebugScene.h" />
     <ClInclude Include="ExePath.h" />
@@ -65,8 +70,10 @@
     <ClInclude Include="HomeScene.h" />
     <ClInclude Include="ImageChest.h" />
     <ClInclude Include="ImageData.h" />
+    <ClInclude Include="InputObject.h" />
     <ClInclude Include="JsonSoftwareData.h" />
     <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="LineObject.h" />
     <ClInclude Include="MainThreadValue.h" />
     <ClInclude Include="MouseClickType.h" />
     <ClInclude Include="MouseInput.h" />
@@ -78,6 +85,7 @@
     <ClInclude Include="ObjectFuncData.h" />
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectOverlapping.h" />
+    <ClInclude Include="OriginalObjects.h" />
     <ClInclude Include="PositionVector.h" />
     <ClInclude Include="PressFrameEnum.h" />
     <ClInclude Include="ProgressObject.h" />

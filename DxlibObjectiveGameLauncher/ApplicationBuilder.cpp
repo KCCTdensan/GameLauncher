@@ -13,6 +13,21 @@ ApplicationBuilder::ApplicationBuilder()
 		MessageBox(NULL, "ÉtÉHÉìÉgì«çûé∏îs", "", MB_OK);
 	}
 
+	/*SetKeyInputStringColor(
+		Color255("#000000").Get(),
+		Color255("#000000").Get(),
+		Color255("#FFFFFF").Get(),
+		Color255("#FFFFFF").Get(),
+		Color255("#FFFFFF").Get(),
+		Color255("#000000").Get(),
+		Color255("#FFFFFF").Get());*/
+
+	SetKeyInputCursorBrinkFlag(TRUE);
+	SetKeyInputCursorBrinkTime(500);
+
+	setlocale(LC_ALL, "Japanese_Japan.932");
+
+
 	ApplicationTime::Initialize();
 }
 
