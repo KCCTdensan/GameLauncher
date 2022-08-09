@@ -8,6 +8,7 @@ public:
 	int g;
 	int b;
 	int a;
+	Color255() : r(0), g(0), b(0), a(255) {}
 	Color255(int _grayScale) // グレースケール(0~255)
 		:r(_grayScale), g(_grayScale), b(_grayScale), a(255) {}
 	Color255(int _grayScale, int _a) // グレースケール(0~255), アルファ(0~255)

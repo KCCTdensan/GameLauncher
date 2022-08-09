@@ -6,6 +6,8 @@
 #include "Color255.h"
 #include "AnimationStatus.h"
 #include "ApplicationPreference.h"
+#include "AnimationPointerData.h"
+#include "ColorTypes.h"
 #include <vector>
 
 class ObjectBase
@@ -29,11 +31,16 @@ protected:
 
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); }
 
-	void SetAnimationColorPoint(AnimationColorStatus& type, Color255 _start, Color255 _goal);
-	void UpdateAnimationColor(AnimationColorStatus& type);
+	void SetAnimationColorPoint(AnimationColorStatus* type, Color255 _start, Color255 _goal);
+	void UpdateAnimationColor(AnimationColorStatus* type);
 
-	void SetAnimationPoint(AnimationStatus& type, float _start, float _goal);
-	void UpdateAnimation(AnimationStatus& type);
+	void SetAnimationPoint(AnimationStatus* type, float _start, float _goal);
+	void UpdateAnimation(AnimationStatus* type);
+	
+	void UpdatePointerAnimation();
+
+	PosVec GetPos() { return pos; }
+	PosVec GetSize() { return size; }
 
 	PosVec pos;
 	PosVec size;
@@ -54,6 +61,7 @@ protected:
 
 private:
 	std::vector<ObjectBase*> children;
+	std::vector<AnimationColorPointer> pAnimation;
 
 public:
 	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
@@ -70,6 +78,8 @@ public:
 	bool GetMouseHit() { return mouseHit; }
 	bool GetMouseClicked() { return mouseClicked; }
 	bool GetMouseSelected() { return mouseSelected; }
+
+	void ChangeColorAnimation(Color255* pColor, Color255* endColor, float duration);
 
 	// アニメーション設定
 	bool SetInnerAnimation(float _duration) {

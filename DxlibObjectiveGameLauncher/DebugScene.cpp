@@ -50,7 +50,7 @@ DebugScene::DebugScene() :
 	input.SetInnerAnimation(.2f);
 	input.SetInterruptMode(false);
 
-	input2.SetupText("smart15", Color255(135, 200, 56), TextAlign::LEFT);
+	input2.SetupText("smart15", Color255(255, 255, 255), TextAlign::CENTER);
 	input2.SetInnerColor(
 		Color255("#69DDFF"),
 		Color255(0xDB, 0xBA, 0xDD),
@@ -104,6 +104,10 @@ void DebugScene::Update()
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
 		debugButton.Move(PosVec(10.f, 10.f));
+	}
+
+	if (debugButton.GetMouseHit()) {
+		input.GetTextObject()->ChangeColorAnimation(input.GetTextObject()->GetColor(ColorType::INNER), new Color255(255, 0, 0), 0.2f);
 	}
 
 	if (debugButton2.GetMouseSelected()) {

@@ -17,10 +17,10 @@ void TextObject::Update()
 				sum = 0;
 				continue;
 			}
-			sum += GetDrawStringWidthToHandle(letter.c_str(), 2, fontHandle);
-
+			int newWidth = GetDrawStringWidthToHandle(letter.c_str(), 2, fontHandle);
+			sum += newWidth;
 			if (sum > maxWidth) {
-				sum = 0;
+				sum = newWidth;
 				index.push_back(v);
 			}
 		}
@@ -31,6 +31,8 @@ void TextObject::Update()
 		text = ConvertString(wText);
 		adjusted = true;
 	}
+
+	UpdatePointerAnimation();
 }
 
 void TextObject::Draw()

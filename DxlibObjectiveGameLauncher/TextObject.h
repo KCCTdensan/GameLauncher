@@ -54,6 +54,18 @@ public:
 
 	bool SetMaxWidth(int _value) {maxWidth = _value >= 1 ? _value : -1;	return true;}
 
+	PosVec GetFinallyPos() { return finallyPos; }
+
+	Color255* GetColor(ColorType type) {
+		switch (type)
+		{
+		case ColorType::INNER:
+			return &innerColor;
+		default:
+			return nullptr;
+		}
+	}
+
 	// çXêVï`âÊ
 	void Collide() {}
 	void Update();
@@ -100,6 +112,9 @@ private:
 	PosVec finallyPos;
 
 	Color255 innerColor;
+	//Color255 hoveredColor;
+	//Color255 clickedColor;
+	//Color255 selectedColor;
 	TextAlign align;
 
 	Color255 backColor;

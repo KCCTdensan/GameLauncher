@@ -249,6 +249,12 @@
     <ClInclude Include="InputObject.h">
       <Filter>Objects\Variety\Input</Filter>
     </ClInclude>
+    <ClInclude Include="ColorTypes.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationPointerData.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">

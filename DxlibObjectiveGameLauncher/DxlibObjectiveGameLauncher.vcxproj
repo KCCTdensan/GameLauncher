@@ -50,6 +50,7 @@
     <ClCompile Include="WindowHwnd.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationPointerData.h" />
     <ClInclude Include="AnimationStatus.h" />
     <ClInclude Include="AppClose.h" />
     <ClInclude Include="ApplicationBuilder.h" />
@@ -59,6 +60,7 @@
     <ClInclude Include="ButtonObject.h" />
     <ClInclude Include="CanvasObject.h" />
     <ClInclude Include="Color255.h" />
+    <ClInclude Include="ColorTypes.h" />
     <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="DebugScene.h" />
     <ClInclude Include="ExePath.h" />

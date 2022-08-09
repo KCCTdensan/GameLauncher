@@ -38,17 +38,20 @@ public:
 
 	void SetupText(int _fontHandle, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 	{
-		textObject = TextObject(pos, size, _fontHandle, inputText, innerColor, _align, _enabledBack);
+		textObject = TextObject(pos, size, _fontHandle, inputText, _innerColor, _align, _enabledBack);
 		textObject.SetMaxWidth((int)size.x);
 	}
 	void SetupText(std::string _fontHandleName, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 	{
-		textObject = TextObject(pos, size, _fontHandleName, inputText, innerColor, _align, _enabledBack);
+		textObject = TextObject(pos, size, _fontHandleName, inputText, _innerColor, _align, _enabledBack);
 		textObject.SetMaxWidth((int)size.x);
+		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z));
 	}
 
 	void SetInterruptMode(bool _flag) { interruptMode = _flag; }
 	bool SetInterruptMode() { return interruptMode; }
+
+	TextObject* GetTextObject() { return &textObject; }
 
 	/*
 	*
