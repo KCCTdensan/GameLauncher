@@ -25,6 +25,8 @@ ApplicationBuilder::ApplicationBuilder()
 	SetKeyInputCursorBrinkFlag(TRUE);
 	SetKeyInputCursorBrinkTime(500);
 
+	setlocale(LC_ALL, "Japanese_Japan.932");
+
 
 	ApplicationTime::Initialize();
 }
