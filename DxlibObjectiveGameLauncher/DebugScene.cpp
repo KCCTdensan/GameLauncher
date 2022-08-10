@@ -10,7 +10,7 @@ DebugScene::DebugScene() :
 	input2(PosVec(900,800), PosVec(200,100)),
 	pallet(PosVec(1200,300), PosVec(400,400), true, false)
 {
-	bg.SetInnerColor(Color255(20, 20, 20));
+	bg.SetInnerColor(Color255("#f4faf9"));
 
 	/*debugButton.SetInnerColor(
 		Color255(255, 255, 255),
@@ -115,48 +115,65 @@ void DebugScene::Update()
 		debugButton.Move(PosVec(10.f, 10.f));
 	}
 
-	if (bg.GetMouseHit()) {
-		pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(255, 255, 255), 0.2f);
-	}
+	//if (bg.GetMouseHit()) {
+	//	pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(255, 255, 255), 0.2f);
+	//	bg.ChangeColorWithAnimation(bg.GetColor(ColorType::INNER), new Color255(20, 20, 20), 1.f);
+	//}
 
-	if (debugButton.GetMouseHit()) {
-		pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(255, 0, 0), 0.2f);
-	}
+	//if (debugButton.GetMouseHit()) {
+	//	pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(255, 0, 0), 0.2f);
+	//	bg.ChangeColorWithAnimation(bg.GetColor(ColorType::INNER), new Color255(128, 0, 0), 10.f);
+	//}
 
-	if (debugButton2.GetMouseHit()) {
-		pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(0, 255, 0), 0.2f);
-	}
-
-	if (debugRect.GetMouseHit()) {
-		pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(0, 0, 255), 0.2f);
-	}
-
-	if (debugButton.GetMouseClicked()) {
-		input.GetTextObject()->ChangeColorWithAnimation(input.GetTextObject()->GetColor(ColorType::INNER), new Color255(255, 255, 255), 0.2f);
-	}
+	//if (debugButton2.GetMouseHit()) {
+	//	pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(0, 255, 0), 0.2f);
+	//	bg.ChangeColorWithAnimation(bg.GetColor(ColorType::INNER), new Color255(0, 128, 0), 10.f);
+	//}
 
 	if (debugButton2.GetMouseSelected()) {
-		debugButton2.SetMouseOff();
-		debugButton2.Move(PosVec(-20.f, -20.f));
+		Header::SetSubtitle("変更されたテキスト");
 	}
+	else if (debugButton2.GetMouseClicked()) {
+		Header::SetSubtitle("変更しそうなテキスト");
+	}
+	else if(debugButton2.GetMouseHit()) {
+		Header::SetSubtitle("変更するかもしれないテキスト");
+	}
+	else {
+		Header::SetSubtitle("変更されていないテキスト");
+	}
+
+	//if (debugRect.GetMouseHit()) {
+	//	pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(0, 0, 255), 0.2f);
+	//	bg.ChangeColorWithAnimation(bg.GetColor(ColorType::INNER), new Color255(0, 0, 128), 10.f);
+	//}
+
+	//if (debugButton.GetMouseClicked()) {
+	//	input.GetTextObject()->ChangeColorWithAnimation(input.GetTextObject()->GetColor(ColorType::INNER), new Color255(255, 255, 255), 0.2f);
+	//}
+
+	//if (debugButton2.GetMouseSelected()) {
+	//	debugButton2.SetMouseOff();
+	//	debugButton2.Move(PosVec(-20.f, -20.f));
+	//}
 }
 
 void DebugScene::Draw()
 {
 	bg.Draw();
 
-	debugButton.Draw();
+	//debugButton.Draw();
 	debugButton2.Draw();
 
-	debugRect.Draw();
+	//debugRect.Draw();
 
-	textSample1.Draw();
+	//textSample1.Draw();
 
-	input.Draw();
-	input2.Draw();
+	//input.Draw();
+	//input2.Draw();
 
-	pallet.Draw();
+	//pallet.Draw();
 
-	DrawFormatStringFToHandle(500, 600, GetColor(255, 255, 255), FontChest::GetFontHandle("smart"), "test");
-	DrawFormatStringFToHandle(1000, 750, GetColor(255, 137, 255), FontChest::GetFontHandle("smart64"), "(T_T)");
+	//DrawFormatStringFToHandle(500, 600, GetColor(255, 255, 255), FontChest::GetFontHandle("smart"), "test");
+	//DrawFormatStringFToHandle(1000, 750, GetColor(255, 137, 255), FontChest::GetFontHandle("smart64"), "(T_T)");
 }

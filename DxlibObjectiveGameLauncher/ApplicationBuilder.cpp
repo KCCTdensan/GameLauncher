@@ -29,6 +29,8 @@ ApplicationBuilder::ApplicationBuilder()
 
 
 	ApplicationTime::Initialize();
+
+	SetWindowLong(GetMainWindowHandle(), GWL_EXSTYLE, WS_EX_TOOLWINDOW);
 }
 
 ApplicationBuilder::~ApplicationBuilder()

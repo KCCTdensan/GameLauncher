@@ -22,6 +22,8 @@ public:
 	static void Update();
 	static void Draw();
 
+	static void SetSubtitle(std::string subtitle);
+
 private:
 	static bool beInitialized;
 	static std::vector<SceneSet> sceneSets;
@@ -29,8 +31,14 @@ private:
 	static RectangleObject banner;
 	static LineObject headerLine;
 	static std::vector<ButtonObject> systemButtons;
+	static TextObject titleLogo;
+	static TextObject subtitleLogo;
 
 	static float height;
 	static float navWidth;
+
+	static void RegFonts();
+
+	static std::vector<FontHandle> fonts;
 };
 

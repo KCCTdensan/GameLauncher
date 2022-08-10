@@ -39,9 +39,6 @@ protected:
 	
 	void UpdatePointerAnimation();
 
-	PosVec GetPos() { return pos; }
-	PosVec GetSize() { return size; }
-
 	PosVec pos;
 	PosVec size;
 
@@ -64,6 +61,9 @@ private:
 	std::vector<AnimationColorPointer> pAnimation;
 
 public:
+	PosVec GetPos() { return pos; }
+	PosVec GetSize() { return size; }
+
 	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
 	bool SetEnabled() { return enabled; }
 

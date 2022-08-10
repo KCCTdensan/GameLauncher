@@ -2,7 +2,7 @@
 
 void WindowHwnd::WindowMaximize(HWND hwnd)
 {
-	SetWindowStyleMode(4);
+	//SetWindowLongPtr(GetMainWindowHandle(), GWL_STYLE, WS_POPUP | WS_VISIBLE);
 	ShowWindow(hwnd, SW_MAXIMIZE);
 }
 
@@ -20,5 +20,6 @@ void WindowHwnd::WindowClose(HWND hwnd)
 void WindowHwnd::WindowNormalize(HWND hwnd)
 {
 	ShowWindow(hwnd, SW_SHOWNORMAL);
-	SetWindowStyleMode(11);
+	SetWindowLongPtr(GetMainWindowHandle(), GWL_STYLE, WS_POPUP | WS_VISIBLE);
+	SetWindowPos(GetMainWindowHandle(), NULL, 0, 0, 0, 0, (SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED));
 }

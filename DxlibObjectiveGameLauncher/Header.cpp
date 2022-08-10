@@ -9,36 +9,41 @@ std::vector<SceneSet> Header::sceneSets = {
 std::vector<ButtonObject> Header::navLinks = {};
 std::vector<ButtonObject> Header::systemButtons = {};
 
+std::vector<FontHandle> Header::fonts = {};
+
 bool Header::beInitialized = false;
 
 float Header::navWidth = ApplicationPreference::GetBackgroundSize().x - 300;
-float Header::height = ApplicationPreference::GetBackgroundSize().y / 12.f;
+float Header::height = ApplicationPreference::headerTabHeight;
 
-RectangleObject Header::banner = RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y / 15.f));
+TextObject Header::titleLogo = TextObject(PosVec(7.f,7.f), PosVec(), "mplus60", "Game Launcher", Color255(), TextAlign::LEFT, false);
+TextObject Header::subtitleLogo = TextObject(PosVec(), PosVec(), "mplus25", "Sample Text", Color255(), TextAlign::LEFT, false);
+
+RectangleObject Header::banner = RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::bannerHeight));
 LineObject Header::headerLine = LineObject(
-	PosVec(0.f, ApplicationPreference::GetBackgroundSize().y / 15.f),
+	PosVec(0.f, ApplicationPreference::bannerHeight),
 	PosVec(
 		ApplicationPreference::GetBackgroundSize().x,
-		ApplicationPreference::GetBackgroundSize().y / 15.f)
+		ApplicationPreference::bannerHeight)
 );
 
 void Header::Initialize()
 {
 	if (beInitialized) return;
 
-	banner.SetInnerColor(GetColor(20, 20, 20));
+	banner.SetInnerColor(Color255("#dafcf5"));
 
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
-		navLinks.push_back(ButtonObject(PosVec(ApplicationPreference::GetBackgroundSize().x - (navWidth / ApplicationPreference::headerButtonNum * (ApplicationPreference::headerButtonNum - i)), ApplicationPreference::GetBackgroundSize().y / 15.f),
+		navLinks.push_back(ButtonObject(PosVec(ApplicationPreference::GetBackgroundSize().x - (navWidth / ApplicationPreference::headerButtonNum * (ApplicationPreference::headerButtonNum - i)), ApplicationPreference::bannerHeight),
 			PosVec(navWidth / ApplicationPreference::headerButtonNum, height), true, true));
-		navLinks[i].SetInnerColor(Color255(255, 255, 225, 0), Color255(230, 230, 200), Color255(150, 150, 120), Color255(200, 200, 170));
+		navLinks[i].SetInnerColor(Color255("#b0f7ea"), Color255("#98d5ca"), Color255("#80b4ab"), Color255("#a4e6da"));
 		navLinks[i].SetOutlineColor(
 			Color255(0xFF, 0x77, 0xFE, 0),
 			Color255(0xFF, 0x77, 0xFE),
 			Color255(0xFF, 0x77, 0xFE),
-			Color255(0xFF, 0x77, 0xFE), 4.f);
+			Color255(0xFF, 0x77, 0xFE), 2.f);
 		navLinks[i].SetInnerAnimation(.2f);
-		navLinks[i].SetOuterAnimation(.2f);
+		navLinks[i].SetOuterAnimation(0);
 	}
 
 	for (int i = 0; i < 3; i++) {
@@ -48,16 +53,23 @@ void Header::Initialize()
 				0.f),
 			PosVec(60.f, 40.f), true, true));
 		if (i == 0)
-			systemButtons[i].SetInnerColor(Color255(30, 30, 30), Color255(220, 113, 114), Color255(184, 85, 85), Color255(184, 85, 85));
+			systemButtons[i].SetInnerColor(Color255("#dafcf5"), Color255("#b0393a"), Color255("#812a2b"), Color255("#bb3c3d"));
 		else
-			systemButtons[i].SetInnerColor(Color255(30, 30, 30), Color255(50, 50, 50), Color255(10, 10, 10), Color255(30, 30, 30));
-		systemButtons[i].SetOutlineColor(Color255(255, 255, 255), 1.f);
+			systemButtons[i].SetInnerColor(Color255("#dafcf5"), Color255("#96aea9"), Color255("#7a8d89"), Color255("#aec9c3"));
+		systemButtons[i].SetOutlineColor(Color255(120), 1.f);
 		systemButtons[i].SetInnerAnimation(0.2f);
 	}
 	headerLine.SetEnabledOutline(true);
 	headerLine.SetOutlineColor(Color255(0xFF, 0x77, 0xFE), 2.5f);
 
+	titleLogo.SetInnerColor(Color255("#88bcb1"));
+	subtitleLogo.SetInnerColor(Color255("#88bcb1"));
+
 	beInitialized = true;
+
+	// フォント追加
+	fonts.push_back(FontHandle("mplus60", "M PLUS 2", 60, 100));
+	fonts.push_back(FontHandle("mplus25", "M PLUS 2", 40, 100));
 }
 
 void Header::Collide()
@@ -73,6 +85,8 @@ void Header::Collide()
 
 void Header::Update()
 {
+	RegFonts();
+
 	banner.Update();
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		navLinks[i].Update();
@@ -104,7 +118,16 @@ void Header::Update()
 		WindowHwnd::WindowMinimize(GetMainWindowHandle());
 		systemButtons[2].SetMouseOff();
 	}
-	headerLine.Draw();
+	if (subtitleLogo.GetPos().x != (int)titleLogo.GetTextWidth() + 40.f) {
+		subtitleLogo.SetPos(PosVec((int)titleLogo.GetTextWidth() + 40.f, 27.f));
+		subtitleLogo.CalcPos();
+	}
+	titleLogo.Update();
+	subtitleLogo.Update();
+
+	std::string titleName = titleLogo.GetText() + " : " + subtitleLogo.GetText();
+
+	SetMainWindowText(titleName.c_str()); // アプリのタイトル名の変更
 }
 
 void Header::Draw()
@@ -117,5 +140,21 @@ void Header::Draw()
 		systemButtons[i].Draw();
 	}
 	headerLine.Draw();
-	DrawBoxAA(0, 0, 1920, 1080, GetColor(255, 255, 255), false, 2.); // debug
+	titleLogo.Draw();
+	subtitleLogo.Draw();
+	//DrawBoxAA(0, 0, 1920, 1080, GetColor(255, 255, 255), false, 2.); // debug
+}
+
+void Header::SetSubtitle(std::string subtitle)
+{
+	if (subtitleLogo.GetText() == subtitle) return;
+	subtitleLogo.SetText(subtitle);
+}
+
+void Header::RegFonts()
+{
+	for (const auto& font : fonts) {
+		if (FontChest::GetFontHandle(font.handleName) < 0)
+			FontChest::CreateFontHandle(font.handleName, font.fontName, font.size, font.thick, font.type);
+	}
 }

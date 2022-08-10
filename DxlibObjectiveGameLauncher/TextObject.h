@@ -54,6 +54,9 @@ public:
 
 	bool SetMaxWidth(int _value) {maxWidth = _value >= 1 ? _value : -1;	return true;}
 
+	std::string GetText() { return text; }
+
+	int GetTextWidth() { return textWidth; }
 	PosVec GetFinallyPos() { return finallyPos; }
 
 	Color255* GetColor(ColorType type) {
@@ -65,6 +68,9 @@ public:
 			return nullptr;
 		}
 	}
+
+	// 描画開始位置を計算
+	void CalcPos();
 
 	// 更新描画
 	void Collide() {}
@@ -91,9 +97,6 @@ private:
 		delete[] buffer;
 		return result;
 	}
-
-	// 描画開始位置を計算
-	void CalcPos();
 
 	// ハンドル探し
 	void FontSerch();
