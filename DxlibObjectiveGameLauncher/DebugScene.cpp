@@ -3,7 +3,7 @@
 DebugScene::DebugScene() :
 	bg(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y)),
 	debugButton(PosVec(), PosVec(1200.f, 300.f), true, true),
-	debugButton2(PosVec(50, 200.f), PosVec(75.f, 150.f), true, true),
+	debugButton2(PosVec(50, 200.f), PosVec(100.f, 100.f), true, true),
 	debugRect(PosVec(1100.f, 300.f), PosVec(300.f, 150.f), true, false),
 	textSample1(PosVec(750, 700), PosVec(), "mplus1", "•¶Žš—ñ", Color255(135, 200, 56), TextAlign::CENTER, true),
 	input(PosVec(500,500), PosVec(200,100)),
@@ -30,10 +30,15 @@ DebugScene::DebugScene() :
 	debugButton.SetInnerAnimation(.3f);
 	debugButton.SetOuterAnimation(.3f);
 	
-	debugButton2.SetInnerColor(Color255(255, 200, 255, 0), Color255(235, 180, 235, 255), Color255(170, 115, 170, 100), Color255(200, 145, 200));
+	debugButton2.SetInnerColor(
+		Color255("#f6f8f8"),
+		Color255("#f0f3f2"),
+		Color255("#d6d8d8"),
+		Color255("#f0f3f2"));
 	debugButton2.SetInnerAnimation(.4f);
-	debugButton2.SetOutlineColor(Color255(255, 150, 50), 5);
+	debugButton2.SetOutlineColor(Color255(50, 50, 50), 1.2f);
 	debugButton2.SetOuterAnimation(.4f);
+	debugButton2.SetRectWithEvent(MouseEventCase::HOVERED, DirectionType::BUTTOM, Color255("#bdced5", 150));
 
 	debugButton.RegisterChildren(&debugButton2); // Žq—v‘f
 

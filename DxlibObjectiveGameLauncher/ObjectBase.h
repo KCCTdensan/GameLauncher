@@ -8,6 +8,8 @@
 #include "ApplicationPreference.h"
 #include "AnimationPointerData.h"
 #include "ColorTypes.h"
+#include "VectorTypes.h"
+#include "MouseEventCase.h"
 #include <vector>
 
 class ObjectBase
@@ -58,11 +60,24 @@ protected:
 
 private:
 	std::vector<ObjectBase*> children;
-	std::vector<AnimationColorPointer> pAnimation;
+	std::vector<AnimationColorPointer> pColorAnimation;
+	std::vector<AnimationPointer> pAnimation;
 
 public:
 	PosVec GetPos() { return pos; }
 	PosVec GetSize() { return size; }
+
+	PosVec* GetVectorPointer(VectorType type) {
+		switch (type)
+		{
+		case VectorType::POS:
+			return &pos;
+		case VectorType::SIZE:
+			return &size;
+		default:
+			return nullptr;
+		}
+	}
 
 	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
 	bool SetEnabled() { return enabled; }
@@ -80,6 +95,7 @@ public:
 	bool GetMouseSelected() { return mouseSelected; }
 
 	void ChangeColorWithAnimation(Color255* pColor, Color255* endColor, float duration);
+	void ChangeValueWithAnimation(float* pValue, float endValue, float duration);
 
 	// アニメーション設定
 	bool SetInnerAnimation(float _duration) {

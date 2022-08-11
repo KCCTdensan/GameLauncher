@@ -37,6 +37,8 @@ void ButtonObject::Update()
 		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)clickedOuterColor.a);
 	}
 
+	EventRectSetVector();
+
 	UpdateAnimationColor(&innerAnimation);
 	UpdateAnimationColor(&outerAnimation);
 	UpdateAnimation(&innerAlphaAnimation);
@@ -49,6 +51,15 @@ void ButtonObject::Draw()
 {
 	if (!enabled) return;
 	SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
+	if (enabledFill) {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)innerAlphaAnimation.current);
+		int resultInnerColor = innerAnimation.current.Get();
+		//DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth + 1, pos.y + size.y - outlineWidth + 1, resultInnerColor, true, 0);
+		DrawBoxAA(pos.x, pos.y, pos.x + size.x + 1, pos.y + size.y + 1, resultInnerColor, true, 0);
+	}
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
+	if (rectMode) eventRect.Draw();
 	if (enabledOutline) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)outerAlphaAnimation.current);
 		int resultOuterColor = outerAnimation.current.Get(); // debug
@@ -56,16 +67,9 @@ void ButtonObject::Draw()
 		float offset = outlineWidth / 2;
 		DrawLineAA(pos.x + offset, pos.y + offset, pos.x + size.x - offset + 1, pos.y + offset, resultOuterColor, outlineWidth);
 		DrawLineAA(pos.x + size.x - offset, pos.y + offset, pos.x + size.x - offset, pos.y + size.y - offset + 1, resultOuterColor, outlineWidth);
-		DrawLineAA(pos.x + size.x - offset + 1, pos.y + size.y - offset, pos.x + offset - 1, pos.y + size.y - offset, resultOuterColor, outlineWidth);
+		DrawLineAA(pos.x + size.x - offset, pos.y + size.y - offset, pos.x + offset - 1, pos.y + size.y - offset, resultOuterColor, outlineWidth);
 		DrawLineAA(pos.x + offset, pos.y + size.y - offset, pos.x + offset, pos.y + offset - 1, resultOuterColor, outlineWidth);
 	}
-	if (enabledFill) {
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)innerAlphaAnimation.current);
-		int resultInnerColor = innerAnimation.current.Get();
-		DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth + 1, pos.y + size.y - outlineWidth + 1, resultInnerColor, true, 0);
-	}
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 }
 
 void ButtonObject::CollideMouse()
@@ -113,4 +117,81 @@ void ButtonObject::CollideMouse()
 	}
 
 	beCalledNoMouse = false;
+}
+
+void ButtonObject::EventRectSetVector()
+{
+	if (rectMode && rectEventEnabled != nullptr) {
+		//clsDx();
+		//printfDx("%.3f, %.3f\n", eventRect.GetVectorPointer(VectorType::POS)->x, eventRect.GetVectorPointer(VectorType::POS)->y);
+		//printfDx("%.3f, %.3f\n", eventRect.GetVectorPointer(VectorType::SIZE)->x, eventRect.GetVectorPointer(VectorType::SIZE)->y);
+		if (*rectEventEnabled) {
+			eventRect.ChangeValueWithAnimation(
+				&(eventRect.GetVectorPointer(VectorType::POS)->x),
+				pos.x,
+				innerAnimation.duration
+			);
+			eventRect.ChangeValueWithAnimation(
+				&(eventRect.GetVectorPointer(VectorType::POS)->y),
+				pos.y,
+				innerAnimation.duration
+			);
+			eventRect.ChangeValueWithAnimation(
+				&(eventRect.GetVectorPointer(VectorType::SIZE)->x),
+				size.x,
+				innerAnimation.duration
+			);
+			eventRect.ChangeValueWithAnimation(
+				&(eventRect.GetVectorPointer(VectorType::SIZE)->y),
+				size.y,
+				innerAnimation.duration
+			);
+		}
+		else {
+			switch (rectDirectionFrom)
+			{
+			case DirectionType::TOP:
+				eventRect.ChangeValueWithAnimation(
+					&(eventRect.GetVectorPointer(VectorType::SIZE)->y),
+					0.f,
+					innerAnimation.duration
+				);
+				break;
+			case DirectionType::BUTTOM:
+				eventRect.ChangeValueWithAnimation(
+					&(eventRect.GetVectorPointer(VectorType::SIZE)->y),
+					0.f,
+					innerAnimation.duration
+				);
+				eventRect.ChangeValueWithAnimation(
+					&(eventRect.GetVectorPointer(VectorType::POS)->y),
+					pos.y + size.y,
+					innerAnimation.duration
+				);
+				break;
+			case DirectionType::LEFT:
+				eventRect.ChangeValueWithAnimation(
+					&(eventRect.GetVectorPointer(VectorType::SIZE)->x),
+					0.f,
+					innerAnimation.duration
+				);
+				break;
+			case DirectionType::RIGHT:
+				eventRect.ChangeValueWithAnimation(
+					&(eventRect.GetVectorPointer(VectorType::SIZE)->x),
+					0.f,
+					innerAnimation.duration
+				);
+				eventRect.ChangeValueWithAnimation(
+					&(eventRect.GetVectorPointer(VectorType::POS)->x),
+					pos.x + size.x,
+					innerAnimation.duration
+				);
+				break;
+			default:
+				break;
+			}
+		}
+		eventRect.Update();
+	}
 }

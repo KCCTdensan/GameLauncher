@@ -255,6 +255,12 @@
     <ClInclude Include="AnimationPointerData.h">
       <Filter>Struct</Filter>
     </ClInclude>
+    <ClInclude Include="VectorTypes.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseEventCase.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">

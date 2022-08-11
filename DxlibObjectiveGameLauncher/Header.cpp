@@ -38,7 +38,7 @@ void Header::Initialize()
 			PosVec(navWidth / ApplicationPreference::headerButtonNum, height), true, true));
 		navLinks[i].SetInnerColor(Color255("#b0f7ea"), Color255("#98d5ca"), Color255("#80b4ab"), Color255("#a4e6da"));
 		navLinks[i].SetOutlineColor(
-			Color255(0xFF, 0x77, 0xFE, 0),
+			Color255(150, 50),
 			Color255(0xFF, 0x77, 0xFE),
 			Color255(0xFF, 0x77, 0xFE),
 			Color255(0xFF, 0x77, 0xFE), 2.f);
@@ -57,7 +57,7 @@ void Header::Initialize()
 		else
 			systemButtons[i].SetInnerColor(Color255("#dafcf5"), Color255("#96aea9"), Color255("#7a8d89"), Color255("#aec9c3"));
 		systemButtons[i].SetOutlineColor(Color255(120), 1.f);
-		systemButtons[i].SetInnerAnimation(0.2f);
+		systemButtons[i].SetInnerAnimation(.2f);
 	}
 	headerLine.SetEnabledOutline(true);
 	headerLine.SetOutlineColor(Color255(0xFF, 0x77, 0xFE), 2.5f);
