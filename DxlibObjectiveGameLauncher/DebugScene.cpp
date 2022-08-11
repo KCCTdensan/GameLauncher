@@ -11,6 +11,7 @@ DebugScene::DebugScene() :
 	pallet(PosVec(1200,300), PosVec(400,400), true, false)
 {
 	bg.SetInnerColor(Color255("#f4faf9"));
+	layer.AddObject(&bg);
 
 	/*debugButton.SetInnerColor(
 		Color255(255, 255, 255),
@@ -29,6 +30,9 @@ DebugScene::DebugScene() :
 		Color255(110, 200, 75), 5);
 	debugButton.SetInnerAnimation(.3f);
 	debugButton.SetOuterAnimation(.3f);
+	//debugButton.SetRectWithEvent(MouseEventCase::HOVERED);
+
+	layer.AddObject(&debugButton);
 	
 	debugButton2.SetInnerColor(
 		Color255("#f6f8f8"),
@@ -40,13 +44,19 @@ DebugScene::DebugScene() :
 	debugButton2.SetOuterAnimation(.4f);
 	debugButton2.SetRectWithEvent(MouseEventCase::HOVERED, DirectionType::BUTTOM, Color255("#bdced5", 150));
 
+	layer.AddObject(&debugButton2);
+
 	debugButton.RegisterChildren(&debugButton2); // 子要素
 
 	debugRect.SetInnerColor(Color255(68, 191, 172));
 
+	layer.AddObject(&debugRect);
+
 	textSample1.SetBackColor(Color255(150, 70, 100));
 	textSample1.SetPadding(10.f, 20.f, 5.f, 30.f);
 	
+	layer.AddObject(&textSample1);
+
 	input.SetupText("smart15", Color255(135, 200, 56), TextAlign::LEFT);
 	input.SetInnerColor(
 		Color255("#69DDFF"),
@@ -55,6 +65,8 @@ DebugScene::DebugScene() :
 		Color255(200, 200, 200, 50));
 	input.SetInnerAnimation(.2f);
 	input.SetInterruptMode(false);
+
+	layer.AddObject(&input);
 
 	input2.SetupText("smart15", Color255(255, 255, 255), TextAlign::CENTER);
 	input2.SetInnerColor(
@@ -65,7 +77,11 @@ DebugScene::DebugScene() :
 	input2.SetInnerAnimation(.2f);
 	input2.SetInterruptMode(true);
 
+	layer.AddObject(&input2);
+
 	pallet.SetInnerColor(Color255(255, 255, 255));
+
+	layer.AddObject(&pallet);
 
 	// フォント追加
 	fonts.push_back(FontHandle("smart", "03スマートフォントUI", 100));
@@ -76,44 +92,22 @@ DebugScene::DebugScene() :
 
 DebugScene::~DebugScene()
 {
-	//FontChest::DeleteFontHandle("smart");
-	//OutputDebugString("\n\nFonthandle deleted\n\n");
+	for (const auto& font : fonts) {
+		FontChest::DeleteFontHandle(font.handleName);
+	}
 }
 
 void DebugScene::Collide()
 {
-	bg.Collide();
-
-	debugButton.Collide();
-	debugButton2.Collide();
-
-	debugRect.Collide();
-
-	input.Collide();
-	input2.Collide();
-
-	pallet.Collide();
+	layer.Collide();
 }
 
 void DebugScene::Update()
 {
 
 	RegFonts();
-	//if (textSample1.SetFontHandle() < 0) textSample1.SetFontHandle(FontChest::GetFontHandle("mplus1"));
 
-	bg.Update();
-
-	debugButton.Update();
-	debugButton2.Update();
-
-	debugRect.Update();
-
-	textSample1.Update();
-
-	input.Update();
-	input2.Update();
-
-	pallet.Update();
+	layer.Update();
 
 	/*if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
@@ -165,20 +159,5 @@ void DebugScene::Update()
 
 void DebugScene::Draw()
 {
-	bg.Draw();
-
-	//debugButton.Draw();
-	debugButton2.Draw();
-
-	debugRect.Draw();
-
-	textSample1.Draw();
-
-	input.Draw();
-	//input2.Draw();
-
-	//pallet.Draw();
-
-	//DrawFormatStringFToHandle(500, 600, GetColor(255, 255, 255), FontChest::GetFontHandle("smart"), "test");
-	//DrawFormatStringFToHandle(1000, 750, GetColor(255, 137, 255), FontChest::GetFontHandle("smart64"), "(T_T)");
+	layer.Draw();
 }

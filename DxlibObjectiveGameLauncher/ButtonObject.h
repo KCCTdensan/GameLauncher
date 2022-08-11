@@ -111,7 +111,7 @@ public:
 	}
 
 	// 特定のイベントにおけるボックスアニメーション重複描画(アルファ値変更推奨)
-	void SetRectWithEvent(MouseEventCase _rectEventCase, DirectionType _rectDirectionFrom, Color255 innerColor) {
+	void SetRectWithEvent(MouseEventCase _rectEventCase, DirectionType _rectDirectionFrom = DirectionType::BUTTOM, Color255 innerColor = Color255(220, 150)) {
 		rectMode = true;
 		PosVec p = pos;
 		PosVec s = size;

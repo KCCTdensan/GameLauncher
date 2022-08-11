@@ -5,4 +5,5 @@ enum class MouseEventCase {
 	CLICKED,
 	SELECTED,
 	SCROLLED,
+	NONE
 };

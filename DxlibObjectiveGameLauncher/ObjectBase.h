@@ -28,9 +28,6 @@ protected:
 		guid = uuidGenerator.GetGUID();
 	}
 
-	virtual void Update() = 0;
-	virtual void Draw() = 0;
-
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); }
 
 	void SetAnimationColorPoint(AnimationColorStatus* type, Color255 _start, Color255 _goal);
@@ -64,6 +61,10 @@ private:
 	std::vector<AnimationPointer> pAnimation;
 
 public:
+	virtual void Update() = 0;
+	virtual void Draw() = 0;
+	virtual void Collide() = 0;
+
 	PosVec GetPos() { return pos; }
 	PosVec GetSize() { return size; }
 

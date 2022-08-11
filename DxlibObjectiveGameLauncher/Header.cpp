@@ -57,7 +57,6 @@ void Header::Initialize()
 		else
 			systemButtons[i].SetInnerColor(Color255("#dafcf5"), Color255("#96aea9"), Color255("#7a8d89"), Color255("#aec9c3"));
 		systemButtons[i].SetOutlineColor(Color255(120), 1.f);
-		systemButtons[i].SetInnerAnimation(.2f);
 	}
 	headerLine.SetEnabledOutline(true);
 	headerLine.SetOutlineColor(Color255(0xFF, 0x77, 0xFE), 2.5f);

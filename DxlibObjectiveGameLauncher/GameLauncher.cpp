@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include <Windows.h>
+#include <WinUser.h>
 #include <thread>
 #include <future>
 #include <chrono>
@@ -36,8 +37,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 		GetWindowRect(hwnd, &rec);
 		int mousex = LOWORD(lp);
 		int mousey = HIWORD(lp);
-		/*int mousey = lp >> 16;
-		 = (lp << 16) >> 16;*/
 		if (mousex < rec.left)
 			return HTNOWHERE;
 		if (mousex >= rec.right)

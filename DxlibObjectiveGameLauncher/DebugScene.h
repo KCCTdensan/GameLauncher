@@ -4,6 +4,7 @@
 #include "ApplicationPreference.h"
 #include "OriginalObjects.h"
 #include "FontChest.h"
+#include "ObjectLayer.h"
 
 class DebugScene :
     public SceneBase

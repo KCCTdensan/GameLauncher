@@ -1,7 +1,12 @@
 #pragma once
 #include "ObjectBase.h"
+#include "MouseEventCase.h"
+#include <vector>
 
-struct ObjectFunc {
+struct ObjectFunc
+{
 	ObjectBase* object;
-	auto 
+
+	ObjectFunc(ObjectBase* _object)
+		: object(_object) {}
 };
