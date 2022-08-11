@@ -115,10 +115,10 @@ void DebugScene::Update()
 
 	pallet.Update();
 
-	if (debugButton.GetMouseSelected()) {
+	/*if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
 		debugButton.Move(PosVec(10.f, 10.f));
-	}
+	}*/
 
 	//if (bg.GetMouseHit()) {
 	//	pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(255, 255, 255), 0.2f);
@@ -170,11 +170,11 @@ void DebugScene::Draw()
 	//debugButton.Draw();
 	debugButton2.Draw();
 
-	//debugRect.Draw();
+	debugRect.Draw();
 
-	//textSample1.Draw();
+	textSample1.Draw();
 
-	//input.Draw();
+	input.Draw();
 	//input2.Draw();
 
 	//pallet.Draw();

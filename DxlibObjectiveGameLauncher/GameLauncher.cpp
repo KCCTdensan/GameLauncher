@@ -14,11 +14,61 @@
 #include "DebugScene.h"
 #include "ApplicationTime.h"
 #include "AppClose.h"
+#include "MouseInput.h"
 
 /*void InputUpdate(); // threadA
 void ApplicationUpdate(SceneManager* _sceneManager); // threadB*/
 
 #define WM_NOTIFYICON (WM_USER + 100)
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
+	switch (msg) {
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		return 0;
+	/*case WM_LBUTTONDOWN:
+		if (Input::MouseInput::GetMouse().y <= 5.f) {
+			SendMessage(hwnd, WM_NCLBUTTONDOWN, HTSIZE, 0);
+		}
+		return 0;*/
+	case WM_NCHITTEST:
+		RECT rec;
+		GetWindowRect(hwnd, &rec);
+		int mousex = LOWORD(lp);
+		int mousey = HIWORD(lp);
+		/*int mousey = lp >> 16;
+		 = (lp << 16) >> 16;*/
+		if (mousex < rec.left)
+			return HTNOWHERE;
+		if (mousex >= rec.right)
+			return HTNOWHERE;
+		if (mousey < rec.top)
+			return HTNOWHERE;
+		if (mousey >= rec.bottom)
+			return HTNOWHERE;
+
+		int xblock = (mousex - rec.left) * 16 / (rec.right - rec.left);
+		int yblock = (mousey - rec.top) * 9 / (rec.bottom - rec.top);
+		if (xblock == 0 && yblock == 0) 
+			return HTTOPLEFT;
+		if (xblock == 0 && yblock == 15)
+			return HTBOTTOMLEFT;
+		if (xblock == 15 && yblock == 0)
+			return HTTOPRIGHT;
+		if (xblock == 15 && yblock == 8) 
+			return HTBOTTOMRIGHT;
+		if (xblock == 0)
+			return HTLEFT;
+		if (xblock == 15)
+			return HTRIGHT;
+		if (yblock == 0)
+			return HTTOP;
+		if (yblock == 8)
+			return HTBOTTOM;
+		return HTCLIENT;
+	}
+	return 0;
+}
 
 void GradX_RGB(int x1, int y1, int x2, int y2, BYTE r1, BYTE g1, BYTE b1, BYTE r2, BYTE g2, BYTE b2)
 {
@@ -88,10 +138,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	const HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle(); // ウインドウハンドル取得 ※修正不可
 
-	SetMultiThreadFlag(TRUE); // マルチスレッド対応
+	//SetMultiThreadFlag(TRUE); // マルチスレッド対応
 	SetAlwaysRunFlag(TRUE); // 画面がActiveでないときにも実行するか。音楽再生のため基本はTRUE
 	ChangeWindowMode(TRUE); // 画面をウインドウにするか。TRUE:ウインドウ FALSE:全画面（ただし，全画面は描画が遅い。別の描画の仕方でされてしまうため。)
-	SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
+	//SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
 	SetUseDirectInputFlag(TRUE); // インプットのオブジェクトでダイレクトインプットを使用するかどうか。基本はTRUEの方が望ましい。
 	SetMainWindowText("Launcher"); // アプリのタイトル名の変更
 	SetUseIMEFlag(TRUE);
@@ -114,6 +164,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	ApplicationBuilder applicationBuilder;
 
 	//MSG msg;
+	SetHookWinProc(WndProc);
 
 	PosVec monitorSize((float)GetSystemMetrics(SM_CXSCREEN), (float)GetSystemMetrics(SM_CYSCREEN));
 
