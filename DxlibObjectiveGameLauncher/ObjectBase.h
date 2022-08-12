@@ -22,7 +22,8 @@ protected:
 		innerAnimation(AnimationColorStatus()),
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
-		outerAlphaAnimation(AnimationStatus())
+		outerAlphaAnimation(AnimationStatus()),
+		parent(nullptr)
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
@@ -58,6 +59,7 @@ protected:
 	int canvasId;
 	bool canvasOwner;
 	std::vector<ObjectBase*> children;
+	ObjectBase* parent;
 
 private:
 	std::vector<AnimationColorPointer> pColorAnimation;
@@ -101,6 +103,8 @@ public:
 	void ChangeColorWithAnimation(Color255* pColor, Color255* endColor, float duration);
 	void ChangeValueWithAnimation(float* pValue, float endValue, float duration);
 
+	void SetCanvasId(int id);
+
 	// アニメーション設定
 	bool SetInnerAnimation(float _duration) {
 		innerAnimation.animationEnabled = true;
@@ -143,6 +147,8 @@ public:
 
 	// 子要素登録
 	virtual bool RegisterChildren(ObjectBase* _object) { children.push_back(_object); return true; }
+	// 自分のポインタを放り込むように(キャンバス用)
+	virtual bool RegisterParent(ObjectBase* _object) { parent = _object; return true; }
 
 	// ここに参照渡しされた画面情報などの構造体を入れた方がいいかも？
 };

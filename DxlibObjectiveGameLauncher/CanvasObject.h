@@ -1,5 +1,6 @@
 #pragma once
 #include "ObjectBase.h"
+#include "MouseInput.h"
 class CanvasObject :
 	public ObjectBase
 {
@@ -89,6 +90,10 @@ public:
 	}
 
 	bool RegisterChildren(ObjectBase* _object) override;
+
+private:
+
+	void CollideMouse();
 
 private:
 	Color255 innerColor;

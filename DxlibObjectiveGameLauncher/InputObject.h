@@ -44,6 +44,7 @@ public:
 	void SetupText(std::string _fontHandleName, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 	{
 		textObject = TextObject(pos, size, _fontHandleName, inputText, _innerColor, _align, _enabledBack);
+		RegisterChildren(&textObject);
 		textObject.SetMaxWidth((int)size.x);
 		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z));
 	}

@@ -29,6 +29,12 @@ void RectangleObject::Update()
 void RectangleObject::Draw()
 {
 	if (!enabled) return;
+	if (canvasId != -1) {
+		SetDrawScreen(canvasId);
+	}
+	else {
+		SetDrawScreen(DX_SCREEN_BACK);
+	}
 	SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
 	if (enabledFill) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)innerAlphaAnimation.current);
@@ -47,6 +53,7 @@ void RectangleObject::Draw()
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
+	SetDrawScreen(DX_SCREEN_BACK);
 }
 
 void RectangleObject::CollideMouse()
@@ -54,10 +61,13 @@ void RectangleObject::CollideMouse()
 	bool beforeMouseClicked = mouseClicked;
 	bool goSelecting = false;
 
+	bool pFlag = true;
+	if (parent != nullptr) pFlag = parent->GetMouseHit();
+
 	if (pos.x <= Input::MouseInput::GetMouse().x &&
 		pos.x + size.x >= Input::MouseInput::GetMouse().x &&
 		pos.y <= Input::MouseInput::GetMouse().y &&
-		pos.y + size.y >= Input::MouseInput::GetMouse().y) {
+		pos.y + size.y >= Input::MouseInput::GetMouse().y && pFlag) {
 
 		mouseHit = true;
 

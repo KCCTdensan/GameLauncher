@@ -2,6 +2,7 @@
 
 void CanvasObject::Collide()
 {
+	CollideMouse();
 }
 
 void CanvasObject::Update()
@@ -57,21 +58,41 @@ void CanvasObject::Draw()
 	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	//SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 
-	canvasDrawingId = DerivationGraph(maskUpperLeft.x, maskUpperLeft.y, size.x, size.y, canvasId);
+	// canvasDrawingId = DerivationGraphF(maskUpperLeft.x, maskUpperLeft.y, size.x, size.y, canvasId);
 	SetDrawScreen(DX_SCREEN_BACK);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-	DrawModiGraphF(
-		pos.x, pos.y,
-		pos.x + size.x, pos.y,
-		pos.x + size.x, pos.y + size.y,
-		pos.x, pos.y + size.y,
+	DrawRectGraph(pos.x, pos.y, pos.x, pos.y, size.x, size.y, canvasId, true, false);
+	/*DrawModiGraphF(
+		0.f, 0.f,
+		0.f + size.x, 0.f,
+		0.f + size.x, 0.f + size.y,
+		0.f, 0.f + size.y,
 		canvasDrawingId, true);
-
+	DeleteGraph(canvasDrawingId);*/
 }
 
 bool CanvasObject::RegisterChildren(ObjectBase* _object)
 {
 	ObjectBase::RegisterChildren(_object);
+	_object->SetCanvasId(canvasId);
+	_object->RegisterParent(this);
 	// ƒLƒƒƒ“ƒoƒX’Ç‰Á
 	return true;
+}
+
+void CanvasObject::CollideMouse()
+{
+	if (!enabled) return;
+
+	if (pos.x <= Input::MouseInput::GetMouse().x &&
+		pos.x + size.x >= Input::MouseInput::GetMouse().x &&
+		pos.y <= Input::MouseInput::GetMouse().y &&
+		pos.y + size.y >= Input::MouseInput::GetMouse().y) {
+
+		mouseHit = true;
+	}
+	else {
+		mouseHit = false;
+	}
+
 }

@@ -9,7 +9,7 @@ class SceneBase
 {
 public:
 	SceneBase()
-		: fonts(), layer() {};
+		: fonts(), layer(), canvases() {};
 	~SceneBase();
 
 	virtual void Collide() = 0;
@@ -22,5 +22,6 @@ protected:
 	std::vector<FontHandle> fonts;
 
 	ObjectLayer layer;
+	ObjectLayer canvases;
 };
 

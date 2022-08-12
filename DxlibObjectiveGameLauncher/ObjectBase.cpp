@@ -149,6 +149,16 @@ void ObjectBase::ChangeValueWithAnimation(float* pValue, float endValue, float d
 	pAnimation.push_back(*p);
 }
 
+void ObjectBase::SetCanvasId(int id)
+{
+	canvasId = id;
+
+	// 子要素にも適用
+	for (int i = 0; i < children.size(); i++) {
+		children[i]->SetCanvasId(id);
+	}
+}
+
 bool ObjectBase::Move(PosVec _delta)
 {
 	pos = PosVec(pos.x + _delta.x, pos.y + _delta.y);

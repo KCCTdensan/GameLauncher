@@ -74,7 +74,16 @@ DebugScene::DebugScene() :
 	layer.AddObject(&input);
 	layer.AddObject(&input2);
 	layer.AddObject(&pallet);
-	layer.AddObject(&canvas);
+
+	canvas.RegisterChildren(&debugButton);
+	canvas.RegisterChildren(&debugButton2);
+	canvas.RegisterChildren(&debugRect);
+	canvas.RegisterChildren(&textSample1);
+	canvas.RegisterChildren(&input);
+	canvas.RegisterChildren(&input2);
+	canvas.RegisterChildren(&pallet);
+
+	canvases.AddObject(&canvas);
 
 	// フォント追加
 	fonts.push_back(FontHandle("smart", "03スマートフォントUI", 100));
@@ -92,6 +101,7 @@ DebugScene::~DebugScene()
 
 void DebugScene::Collide()
 {
+	canvases.Collide();
 	layer.Collide();
 }
 
@@ -101,6 +111,7 @@ void DebugScene::Update()
 	RegFonts();
 
 	layer.Update();
+	canvases.Update();
 
 	/*if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
@@ -153,4 +164,5 @@ void DebugScene::Update()
 void DebugScene::Draw()
 {
 	layer.Draw();
+	canvases.Draw();
 }

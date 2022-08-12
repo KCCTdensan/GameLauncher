@@ -135,6 +135,7 @@ public:
 			break;
 		}
 		eventRect = RectangleObject(p, s);
+		RegisterChildren(&eventRect);
 		eventRect.SetInnerColor(innerColor);
 		rectDirectionFrom = _rectDirectionFrom;
 		switch (_rectEventCase)

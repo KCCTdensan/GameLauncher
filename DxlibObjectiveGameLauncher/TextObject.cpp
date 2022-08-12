@@ -37,10 +37,18 @@ void TextObject::Update()
 
 void TextObject::Draw()
 {
+	if (!enabled) return;
+	if (canvasId != -1) {
+		SetDrawScreen(canvasId);
+	}
+	else {
+		SetDrawScreen(DX_SCREEN_BACK);
+	}
 	if (enabledBack) {
 		DrawBoxAA(finallyPos.x - paddingUpperLeft.x, finallyPos.y - paddingUpperLeft.y, finallyPos.x + textWidth + paddingLowerRight.x, finallyPos.y + fontHeight + paddingLowerRight.y, backColor.Get(), true);
 	}
 	DrawFormatStringFToHandle(finallyPos.x, finallyPos.y, innerColor.Get(), fontHandle, text.c_str());
+	SetDrawScreen(DX_SCREEN_BACK);
 }
 
 void TextObject::CalcPos()
