@@ -18,7 +18,7 @@ protected:
 	ObjectBase(PosVec _pos, PosVec _size)
 		:pos(_pos), size(_size),
 		enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
-		children{}, beCalledNoMouse(false), guid(),
+		children{}, beCalledNoMouse(false), guid(), canvasOwner(false), canvasId(-1),
 		innerAnimation(AnimationColorStatus()),
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
@@ -55,8 +55,11 @@ protected:
 	AnimationStatus innerAlphaAnimation;
 	AnimationStatus outerAlphaAnimation;
 
-private:
+	int canvasId;
+	bool canvasOwner;
 	std::vector<ObjectBase*> children;
+
+private:
 	std::vector<AnimationColorPointer> pColorAnimation;
 	std::vector<AnimationPointer> pAnimation;
 
@@ -139,7 +142,7 @@ public:
 	bool Move(PosVec _delta);
 
 	// q—v‘f“o˜^
-	bool RegisterChildren(ObjectBase* _object) { children.push_back(_object); return true; }
+	virtual bool RegisterChildren(ObjectBase* _object) { children.push_back(_object); return true; }
 
 	// ‚±‚±‚ÉQÆ“n‚µ‚³‚ê‚½‰æ–Êî•ñ‚È‚Ç‚Ì\‘¢‘Ì‚ğ“ü‚ê‚½•û‚ª‚¢‚¢‚©‚àH
 };

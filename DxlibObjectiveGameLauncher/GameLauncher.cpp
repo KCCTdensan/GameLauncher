@@ -140,7 +140,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	//SetMultiThreadFlag(TRUE); // マルチスレッド対応
 	SetAlwaysRunFlag(TRUE); // 画面がActiveでないときにも実行するか。音楽再生のため基本はTRUE
 	ChangeWindowMode(TRUE); // 画面をウインドウにするか。TRUE:ウインドウ FALSE:全画面（ただし，全画面は描画が遅い。別の描画の仕方でされてしまうため。)
-	//SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
+	SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
 	SetUseDirectInputFlag(TRUE); // インプットのオブジェクトでダイレクトインプットを使用するかどうか。基本はTRUEの方が望ましい。
 	SetMainWindowText("Launcher"); // アプリのタイトル名の変更
 	SetUseIMEFlag(TRUE);
@@ -192,7 +192,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	while (!ScreenFlip() && !ClearDrawScreen() && !MainThread::SetEnd()) // メインループ この中の条件はないとバグるもの
 	{	
 		applicationBuilder.Update(); // システム系更新処理(がまとめられている)
-		//GetMessage(&msg, NULL, 0, 0);
+		//GetMessage(&msg, NULL, 0, 0); // 3,4 最小値最大値
 		//TranslateMessage(&msg);
 		//DispatchMessage(&msg); // ウインドウメッセージ処理
 		ProcessMessage();

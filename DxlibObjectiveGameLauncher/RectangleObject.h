@@ -53,9 +53,9 @@ public:
 	}
 
 	// XV•`‰æ
-	void Collide();
-	void Update();
-	void Draw();
+	void Collide() override;
+	void Update() override;
+	void Draw() override;
 
 private:
 

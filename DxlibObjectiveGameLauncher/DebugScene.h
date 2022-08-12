@@ -18,6 +18,7 @@ public:
     void Draw();
 
 private:
+    CanvasObject canvas;
     RectangleObject bg;
     ButtonObject debugButton;
     ButtonObject debugButton2;

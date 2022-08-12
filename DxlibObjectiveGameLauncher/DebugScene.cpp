@@ -8,16 +8,12 @@ DebugScene::DebugScene() :
 	textSample1(PosVec(750, 700), PosVec(), "mplus1", "文字列", Color255(135, 200, 56), TextAlign::CENTER, true),
 	input(PosVec(500,500), PosVec(200,100)),
 	input2(PosVec(900,800), PosVec(200,100)),
-	pallet(PosVec(1200,300), PosVec(400,400), true, false)
+	pallet(PosVec(1200,300), PosVec(400,400), true, false),
+	canvas(PosVec(150,150), PosVec(500,500))
 {
 	bg.SetInnerColor(Color255("#f4faf9"));
 	layer.AddObject(&bg);
 
-	/*debugButton.SetInnerColor(
-		Color255(255, 255, 255),
-		Color255(230, 230, 230),
-		Color255(150, 150, 150, 200),
-		Color255(200, 200, 200));*/
 	debugButton.SetInnerColor(
 		Color255("#69DDFF"),
 		Color255(0xDB, 0xBA, 0xDD),
@@ -30,9 +26,6 @@ DebugScene::DebugScene() :
 		Color255(110, 200, 75), 5);
 	debugButton.SetInnerAnimation(.3f);
 	debugButton.SetOuterAnimation(.3f);
-	//debugButton.SetRectWithEvent(MouseEventCase::HOVERED);
-
-	layer.AddObject(&debugButton);
 	
 	debugButton2.SetInnerColor(
 		Color255("#f6f8f8"),
@@ -44,19 +37,13 @@ DebugScene::DebugScene() :
 	debugButton2.SetOuterAnimation(.4f);
 	debugButton2.SetRectWithEvent(MouseEventCase::HOVERED, DirectionType::BUTTOM, Color255("#bdced5", 150));
 
-	layer.AddObject(&debugButton2);
-
 	debugButton.RegisterChildren(&debugButton2); // 子要素
 
 	debugRect.SetInnerColor(Color255(68, 191, 172));
-
-	layer.AddObject(&debugRect);
-
+		
 	textSample1.SetBackColor(Color255(150, 70, 100));
 	textSample1.SetPadding(10.f, 20.f, 5.f, 30.f);
 	
-	layer.AddObject(&textSample1);
-
 	input.SetupText("smart15", Color255(135, 200, 56), TextAlign::LEFT);
 	input.SetInnerColor(
 		Color255("#69DDFF"),
@@ -65,8 +52,6 @@ DebugScene::DebugScene() :
 		Color255(200, 200, 200, 50));
 	input.SetInnerAnimation(.2f);
 	input.SetInterruptMode(false);
-
-	layer.AddObject(&input);
 
 	input2.SetupText("smart15", Color255(255, 255, 255), TextAlign::CENTER);
 	input2.SetInnerColor(
@@ -77,11 +62,19 @@ DebugScene::DebugScene() :
 	input2.SetInnerAnimation(.2f);
 	input2.SetInterruptMode(true);
 
-	layer.AddObject(&input2);
-
 	pallet.SetInnerColor(Color255(255, 255, 255));
 
+	canvas.SetInnerColor(Color255(200,250,250));
+	canvas.SetArea(PosVec(1000, 1000));
+
+	layer.AddObject(&debugButton);
+	layer.AddObject(&debugButton2);
+	layer.AddObject(&debugRect);
+	layer.AddObject(&textSample1);
+	layer.AddObject(&input);
+	layer.AddObject(&input2);
 	layer.AddObject(&pallet);
+	layer.AddObject(&canvas);
 
 	// フォント追加
 	fonts.push_back(FontHandle("smart", "03スマートフォントUI", 100));

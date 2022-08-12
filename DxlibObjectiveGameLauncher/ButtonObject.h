@@ -155,9 +155,9 @@ public:
 	void SetRectWithEvent() { rectMode = false; eventRect = RectangleObject(); }
 
 	// XV•`‰æ
-	void Collide();
-	void Update();
-	void Draw();
+	void Collide() override;
+	void Update() override;
+	void Draw() override;
 
 private:
 

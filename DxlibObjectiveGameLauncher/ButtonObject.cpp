@@ -57,8 +57,6 @@ void ButtonObject::Draw()
 		//DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth + 1, pos.y + size.y - outlineWidth + 1, resultInnerColor, true, 0);
 		DrawBoxAA(pos.x, pos.y, pos.x + size.x + 1, pos.y + size.y + 1, resultInnerColor, true, 0);
 	}
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 	if (rectMode) eventRect.Draw();
 	if (enabledOutline) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)outerAlphaAnimation.current);
@@ -70,6 +68,8 @@ void ButtonObject::Draw()
 		DrawLineAA(pos.x + size.x - offset, pos.y + size.y - offset, pos.x + offset - 1, pos.y + size.y - offset, resultOuterColor, outlineWidth);
 		DrawLineAA(pos.x + offset, pos.y + size.y - offset, pos.x + offset, pos.y + offset - 1, resultOuterColor, outlineWidth);
 	}
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 }
 
 void ButtonObject::CollideMouse()
