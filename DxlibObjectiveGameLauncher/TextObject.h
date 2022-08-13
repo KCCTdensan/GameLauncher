@@ -69,13 +69,15 @@ public:
 		}
 	}
 
+	bool Move(PosVec _delta, bool _involvedParent = true) override;
+
 	// 描画開始位置を計算
 	void CalcPos();
 
 	// 更新描画
-	void Collide() {}
-	void Update();
-	void Draw();
+	void Collide() override {}
+	void Update() override;
+	void Draw() override;
 
 private:
 

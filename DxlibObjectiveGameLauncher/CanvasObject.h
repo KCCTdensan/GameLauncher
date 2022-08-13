@@ -9,9 +9,10 @@ class CanvasObject :
 {
 public:
 	// 領域外は描画されない(子オブジェクトとして登録必要)
-	CanvasObject(PosVec _pos, PosVec _size = PosVec()) :
+	CanvasObject(PosVec _pos, PosVec _size, bool _scrollVertical = true, bool _scrollAutoHiding = true) :
 		ObjectBase(_pos, _size), enabledFill(true), enabledOutline(false), outerColor(0), outlineWidth(0),
-		enabledScrollX(false), enabledScrollY(false), scrollAmount(20.f), scrollBarWidth(15.f), canvasDrawingId(-1), scrollButtonSize(20.f)
+		enabledScrollX(false), enabledScrollY(false), scrollPercentage(20.f), scrollBarWidth(15.f), canvasDrawingId(-1), scrollButtonSize(20.f),
+		scrollVertical(_scrollVertical), scrollAutoHiding(_scrollAutoHiding)
 	{
 		canvasId = MakeScreen((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, true);
 		canvasOwner = true;
@@ -28,8 +29,8 @@ public:
 	}
 
 	CanvasObject() :
-		ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false), outerColor(0), outlineWidth(0),
-		enabledScrollX(false), enabledScrollY(false), scrollAmount(20.f), scrollBarWidth(15.f), canvasDrawingId(-1), scrollButtonSize(20.f) {}
+		ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false), outerColor(0), outlineWidth(0), scrollVertical(true), scrollAutoHiding(false),
+		enabledScrollX(false), enabledScrollY(false), scrollPercentage(20.f), scrollBarWidth(15.f), canvasDrawingId(-1), scrollButtonSize(20.f) {}
 
 	// 更新描画
 	void Collide() override;
@@ -77,8 +78,9 @@ public:
 	}
 
 	// 面積指定
-	void SetArea(PosVec area) {
+	void SetArea(PosVec area, float _scrollPercentage = 0.15f) {
 		scrollDistance = area;
+		scrollPercentage = _scrollPercentage;
 		if (scrollDistance.x > size.x) {
 			enabledScrollX = true;
 		}
@@ -118,7 +120,7 @@ private:
 
 	bool enabledScrollX;
 	bool enabledScrollY;
-	float scrollAmount;
+	float scrollPercentage;
 	PosVec maskUpperLeft; // sizeを足した値がLowerRight
 	PosVec scrollDistance;
 	PosVec scrollValue; // each 0~1;
@@ -128,6 +130,8 @@ private:
 
 	std::array<ButtonObject, 4> scrollButton;
 	float scrollButtonSize;
-	
+
+	bool scrollVertical;
+	bool scrollAutoHiding;
 };
 

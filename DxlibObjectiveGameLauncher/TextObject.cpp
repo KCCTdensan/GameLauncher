@@ -51,6 +51,14 @@ void TextObject::Draw()
 	SetDrawScreen(DX_SCREEN_BACK);
 }
 
+bool TextObject::Move(PosVec _delta, bool _involvedParent)
+{
+	ObjectBase::Move(_delta, _involvedParent);
+	CalcPos();
+
+	return true;
+}
+
 void TextObject::CalcPos()
 {
 	GetFontStateToHandle(NULL, &fontHeight, NULL, fontHandle);
