@@ -1,6 +1,9 @@
 #pragma once
 #include "ObjectBase.h"
 #include "MouseInput.h"
+#include "ButtonObject.h"
+#include <array>
+
 class CanvasObject :
 	public ObjectBase
 {
@@ -8,15 +11,25 @@ public:
 	// 領域外は描画されない(子オブジェクトとして登録必要)
 	CanvasObject(PosVec _pos, PosVec _size = PosVec()) :
 		ObjectBase(_pos, _size), enabledFill(true), enabledOutline(false), outerColor(0), outlineWidth(0),
-		enabledScrollX(false), enabledScrollY(false), scrollAmount(20.f), scrollBarWidth(15.f), canvasDrawingId(-1)
+		enabledScrollX(false), enabledScrollY(false), scrollAmount(20.f), scrollBarWidth(15.f), canvasDrawingId(-1), scrollButtonSize(20.f)
 	{
 		canvasId = MakeScreen((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, true);
 		canvasOwner = true;
+		scrollButton[(int)DirectionType::LEFT] = ButtonObject(PosVec(pos.x, pos.y + _size.y - 20.f), PosVec(20.f, 20.f), true, true);
+		scrollButton[(int)DirectionType::RIGHT] = ButtonObject(PosVec(pos.x + _size.x - 40.f, pos.y + _size.y - 20.f), PosVec(20.f, 20.f), true, true);
+		scrollButton[(int)DirectionType::TOP] = ButtonObject(PosVec(pos.x + _size.x - 20.f, pos.y), PosVec(20.f, 20.f), true, true);
+		scrollButton[(int)DirectionType::BOTTOM] = ButtonObject(PosVec(pos.x + _size.x - 20.f, pos.y + _size.y - 20.f), PosVec(20.f, 20.f), true, true);
+		for (auto& item : scrollButton) {
+			ObjectBase::RegisterChildren(&item);
+			item.SetInnerColor(Color255(255, 200), Color255(100, 200), Color255(190, 200), Color255(200, 200));
+			item.SetOutlineColor(Color255(100, 200), .5f);
+			item.SetEnforcedCollision(true);
+		}
 	}
 
 	CanvasObject() :
 		ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false), outerColor(0), outlineWidth(0),
-		enabledScrollX(false), enabledScrollY(false), scrollAmount(20.f), scrollBarWidth(15.f), canvasDrawingId(-1) {}
+		enabledScrollX(false), enabledScrollY(false), scrollAmount(20.f), scrollBarWidth(15.f), canvasDrawingId(-1), scrollButtonSize(20.f) {}
 
 	// 更新描画
 	void Collide() override;
@@ -107,10 +120,14 @@ private:
 	bool enabledScrollY;
 	float scrollAmount;
 	PosVec maskUpperLeft; // sizeを足した値がLowerRight
-	PosVec scrollDistance; 
+	PosVec scrollDistance;
 	PosVec scrollValue; // each 0~1;
 	float scrollBarWidth;
 
 	int canvasDrawingId;
+
+	std::array<ButtonObject, 4> scrollButton;
+	float scrollButtonSize;
+	
 };
 

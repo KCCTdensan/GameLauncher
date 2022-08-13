@@ -3,6 +3,10 @@
 void CanvasObject::Collide()
 {
 	CollideMouse();
+
+	for (auto& item : scrollButton) {
+		item.Collide();
+	}
 }
 
 void CanvasObject::Update()
@@ -17,6 +21,62 @@ void CanvasObject::Update()
 	UpdateAnimationColor(&outerAnimation);
 	UpdateAnimation(&innerAlphaAnimation);
 	UpdateAnimation(&outerAlphaAnimation);
+	
+	for (auto& item : scrollButton) {
+		item.Update();
+	}
+
+	float distance = 0.3f;
+
+	if (scrollButton[(int)DirectionType::LEFT].GetMouseSelected()) {
+		distance *= -1.f;
+		if (scrollValue.x + distance < 0.001f) {
+			distance = -scrollValue.x;
+		}
+		scrollValue.x += distance;
+		Move(PosVec(distance * (scrollDistance.x - size.x), 0.f), false);
+		for (auto& item : scrollButton) {
+			item.Move(PosVec(-distance * (scrollDistance.x - size.x), 0.f));
+		}
+		scrollButton[(int)DirectionType::LEFT].SetMouseOff();
+	}
+
+	if (scrollButton[(int)DirectionType::RIGHT].GetMouseSelected()) {
+		if (scrollValue.x + distance > 1.001f) {
+			distance = 1.f - scrollValue.x;
+		}
+		scrollValue.x += distance;
+		Move(PosVec(distance * (scrollDistance.x - size.x), 0.f), false);
+		for (auto& item : scrollButton) {
+			item.Move(PosVec(-distance * (scrollDistance.x - size.x), 0.f));
+		}
+		scrollButton[(int)DirectionType::RIGHT].SetMouseOff();
+	}
+
+	if (scrollButton[(int)DirectionType::TOP].GetMouseSelected()) {
+		distance *= -1.f;
+		if (scrollValue.y + distance < 0.001f) {
+			distance = -scrollValue.y;
+		}
+		scrollValue.y += distance;
+		Move(PosVec(0.f, distance * (scrollDistance.y - size.y)), false);
+		for (auto& item : scrollButton) {
+			item.Move(PosVec(0.f, -distance * (scrollDistance.y - size.y), 0.f));
+		}
+		scrollButton[(int)DirectionType::TOP].SetMouseOff();
+	}
+
+	if (scrollButton[(int)DirectionType::BOTTOM].GetMouseSelected()) {
+		if (scrollValue.y + distance > 1.001f) {
+			distance = 1.f - scrollValue.y;
+		}
+		scrollValue.y += distance;
+		Move(PosVec(0.f, distance * (scrollDistance.y - size.y)), false);
+		for (auto& item : scrollButton) {
+			item.Move(PosVec(0.f, -distance * (scrollDistance.y - size.y), 0.f));
+		}
+		scrollButton[(int)DirectionType::BOTTOM].SetMouseOff();
+	}
 
 	UpdatePointerAnimation();
 	if (scrollValue.x > 1.f) scrollValue.x = 1.f;
@@ -61,7 +121,12 @@ void CanvasObject::Draw()
 	// canvasDrawingId = DerivationGraphF(maskUpperLeft.x, maskUpperLeft.y, size.x, size.y, canvasId);
 	SetDrawScreen(DX_SCREEN_BACK);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-	DrawRectGraph(pos.x, pos.y, pos.x, pos.y, size.x, size.y, canvasId, true, false);
+	DrawRectGraphF(pos.x, pos.y, (int)pos.x, (int)pos.y, (int)size.x, (int)size.y, canvasId, true, false);
+
+	for (auto& item : scrollButton) {
+		item.Draw();
+	}
+	
 	/*DrawModiGraphF(
 		0.f, 0.f,
 		0.f + size.x, 0.f,

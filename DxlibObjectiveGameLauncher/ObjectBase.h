@@ -23,7 +23,7 @@ protected:
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
 		outerAlphaAnimation(AnimationStatus()),
-		parent(nullptr)
+		parent(nullptr), enforcedCollision(false)
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
@@ -60,6 +60,8 @@ protected:
 	bool canvasOwner;
 	std::vector<ObjectBase*> children;
 	ObjectBase* parent;
+
+	bool enforcedCollision;
 
 private:
 	std::vector<AnimationColorPointer> pColorAnimation;
@@ -105,6 +107,8 @@ public:
 
 	void SetCanvasId(int id);
 
+	void SetEnforcedCollision(bool _enforcedCollision) { enforcedCollision = _enforcedCollision; }
+
 	// アニメーション設定
 	bool SetInnerAnimation(float _duration) {
 		innerAnimation.animationEnabled = true;
@@ -143,7 +147,7 @@ public:
 	bool SetPos(PosVec _pos) { pos = _pos; return true; }
 
 	// オブジェクト移動系(子要素含む)
-	bool Move(PosVec _delta);
+	bool Move(PosVec _delta, bool _involvedParent = true);
 
 	// 子要素登録
 	virtual bool RegisterChildren(ObjectBase* _object) { children.push_back(_object); return true; }

@@ -146,7 +146,7 @@ void InputObject::CollideMouse()
 		mouseHit = true;
 
 		// オブジェクトの重複判定登録処理
-		ObjectOverlapping::UpdateObject(guid);
+		ObjectOverlapping::UpdateObject(guid, enforcedCollision);
 
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
 			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST /*&& !beCalledNoMouse*/)

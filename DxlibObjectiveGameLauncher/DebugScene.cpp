@@ -35,7 +35,7 @@ DebugScene::DebugScene() :
 	debugButton2.SetInnerAnimation(.4f);
 	debugButton2.SetOutlineColor(Color255(50, 50, 50), 1.2f);
 	debugButton2.SetOuterAnimation(.4f);
-	debugButton2.SetRectWithEvent(MouseEventCase::HOVERED, DirectionType::BUTTOM, Color255("#bdced5", 150));
+	debugButton2.SetRectWithEvent(MouseEventCase::HOVERED, DirectionType::BOTTOM, Color255("#bdced5", 150));
 
 	debugButton.RegisterChildren(&debugButton2); // Žq—v‘f
 

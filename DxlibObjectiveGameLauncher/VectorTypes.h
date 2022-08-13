@@ -7,7 +7,7 @@ enum class VectorType {
 
 enum class DirectionType {
 	TOP,
-	BUTTOM,
+	BOTTOM,
 	LEFT,
 	RIGHT
 };

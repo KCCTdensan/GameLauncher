@@ -16,7 +16,7 @@ public:
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
 		outlineWidth(0),
-		rectMode(false), rectDirectionFrom(DirectionType::BUTTOM), rectEventEnabled(nullptr), rectEventCase(MouseEventCase::HOVERED)
+		rectMode(false), rectDirectionFrom(DirectionType::BOTTOM), rectEventEnabled(nullptr), rectEventCase(MouseEventCase::HOVERED)
 	{}
 
 	ButtonObject()
@@ -24,7 +24,7 @@ public:
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
 		outlineWidth(0),
-		rectMode(false), rectDirectionFrom(DirectionType::BUTTOM), rectEventEnabled(nullptr), rectEventCase(MouseEventCase::HOVERED)
+		rectMode(false), rectDirectionFrom(DirectionType::BOTTOM), rectEventEnabled(nullptr), rectEventCase(MouseEventCase::HOVERED)
 	{}
 
 	// 色有効化無効化
@@ -111,7 +111,7 @@ public:
 	}
 
 	// 特定のイベントにおけるボックスアニメーション重複描画(アルファ値変更推奨)
-	void SetRectWithEvent(MouseEventCase _rectEventCase, DirectionType _rectDirectionFrom = DirectionType::BUTTOM, Color255 innerColor = Color255(220, 150)) {
+	void SetRectWithEvent(MouseEventCase _rectEventCase, DirectionType _rectDirectionFrom = DirectionType::BOTTOM, Color255 innerColor = Color255(220, 150)) {
 		rectMode = true;
 		PosVec p = pos;
 		PosVec s = size;
@@ -120,7 +120,7 @@ public:
 		case DirectionType::TOP:
 			s.y = 0.f;
 			break;
-		case DirectionType::BUTTOM:
+		case DirectionType::BOTTOM:
 			s.y = 0.f;
 			p.y = pos.y + size.y;
 			break;

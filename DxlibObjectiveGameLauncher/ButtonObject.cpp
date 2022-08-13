@@ -104,14 +104,11 @@ void ButtonObject::CollideMouse()
 		mouseHit = true;
 
 		// オブジェクトの重複判定登録処理
-		ObjectOverlapping::UpdateObject(guid);
+		ObjectOverlapping::UpdateObject(guid, enforcedCollision);
 
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
 			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST /*&& !beCalledNoMouse*/)
 				mouseClicked = true;
-
-			// 重複中の別オブジェ対策
-			//if (ObjectOverlapping<ButtonObject>::GetObj() != this) mouseSelected = false;
 		}
 		else {
 			mouseClicked = false;
@@ -174,7 +171,7 @@ void ButtonObject::EventRectSetVector()
 					innerAnimation.duration
 				);
 				break;
-			case DirectionType::BUTTOM:
+			case DirectionType::BOTTOM:
 				eventRect.ChangeValueWithAnimation(
 					&(eventRect.GetVectorPointer(VectorType::SIZE)->y),
 					0.f,
