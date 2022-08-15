@@ -162,7 +162,7 @@ public:
 
 private:
 
-	void CollideMouse();
+	void CollideMouse() override;
 	void EventRectSetVector();
 
 private:

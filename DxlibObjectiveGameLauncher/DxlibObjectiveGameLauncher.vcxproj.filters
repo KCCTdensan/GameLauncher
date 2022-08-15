@@ -89,7 +89,6 @@
     <ClCompile Include="UUIDGenerator.cpp">
       <Filter>UUID</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="ApplicationTime.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -107,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="InputObject.cpp">
       <Filter>Objects\Variety\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentBase.cpp">
+      <Filter>Component\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -221,7 +223,6 @@
     <ClInclude Include="ObjectFuncData.h">
       <Filter>Struct</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="ApplicationTime.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -260,6 +261,9 @@
     </ClInclude>
     <ClInclude Include="MouseEventCase.h">
       <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentBase.h">
+      <Filter>Component\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +359,12 @@
     </Filter>
     <Filter Include="Objects\Variety\Line">
       <UniqueIdentifier>{af45ec3e-b1c5-40ee-aca7-10b753edc029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{5858768e-b38a-4e9f-9623-2a420d9150e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Base">
+      <UniqueIdentifier>{3214b190-e5f6-47c9-927d-586c9ef48d30}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

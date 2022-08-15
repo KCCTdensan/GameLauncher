@@ -64,6 +64,10 @@ protected:
 	bool enforcedCollision;
 
 private:
+
+	virtual void CollideMouse() = 0;
+
+private:
 	std::vector<AnimationColorPointer> pColorAnimation;
 	std::vector<AnimationPointer> pAnimation;
 

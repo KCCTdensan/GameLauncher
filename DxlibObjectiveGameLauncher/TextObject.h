@@ -104,6 +104,10 @@ private:
 	void FontSerch();
 
 private:
+
+	void CollideMouse() override {}
+
+private:
 	int fontHandle;
 	std::string fontHandleName;
 	bool fontAutoSerching;

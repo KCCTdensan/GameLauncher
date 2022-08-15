@@ -59,7 +59,7 @@ public:
 
 private:
 
-	void CollideMouse();
+	void CollideMouse() override;
 
 private:
 	Color255 innerColor;
@@ -69,11 +69,6 @@ private:
 
 	bool enabledFill;
 	bool enabledOutline;
-
-	// アニメーション追加の場合，メンバ，メソッド追加
-	// グラデーションの場合も同様
-
-	/******************/
 
 	Color255 currentInnerColor;
 };

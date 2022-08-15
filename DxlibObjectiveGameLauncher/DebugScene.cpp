@@ -53,14 +53,14 @@ DebugScene::DebugScene() :
 	input.SetInnerAnimation(.2f);
 	input.SetInterruptMode(false);
 
-	input2.SetupText("smart15", Color255(255, 255, 255), TextAlign::CENTER);
+	input2.SetupText("smart15", Color255(255, 255, 255), TextAlign::LEFT);
 	input2.SetInnerColor(
 		Color255("#69DDFF"),
 		Color255(0xDB, 0xBA, 0xDD),
 		Color255("dbb927"),
 		Color255(200, 200, 200, 50));
 	input2.SetInnerAnimation(.2f);
-	input2.SetInterruptMode(true);
+	input2.SetInterruptMode(false);
 
 	pallet.SetInnerColor(Color255(255, 255, 255));
 
@@ -80,7 +80,7 @@ DebugScene::DebugScene() :
 	canvas.RegisterChildren(&debugRect);
 	canvas.RegisterChildren(&textSample1);
 	canvas.RegisterChildren(&input);
-	canvas.RegisterChildren(&input2);
+	//canvas.RegisterChildren(&input2);
 	canvas.RegisterChildren(&pallet);
 
 	canvases.AddObject(&canvas);

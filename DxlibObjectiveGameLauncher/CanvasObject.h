@@ -108,7 +108,7 @@ public:
 
 private:
 
-	void CollideMouse();
+	void CollideMouse() override;
 
 private:
 	Color255 innerColor;

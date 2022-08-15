@@ -21,6 +21,10 @@ public:
 	void Draw() override;
 
 private:
+
+	void CollideMouse() override {}
+
+private:
 	Color255 outerColor;
 	float outlineWidth;
 
