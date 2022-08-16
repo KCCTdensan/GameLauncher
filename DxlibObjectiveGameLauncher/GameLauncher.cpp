@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include <Windows.h>
+#include <WinUser.h>
 #include <thread>
 #include <future>
 #include <chrono>
@@ -14,11 +15,59 @@
 #include "DebugScene.h"
 #include "ApplicationTime.h"
 #include "AppClose.h"
+#include "MouseInput.h"
 
 /*void InputUpdate(); // threadA
 void ApplicationUpdate(SceneManager* _sceneManager); // threadB*/
 
 #define WM_NOTIFYICON (WM_USER + 100)
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
+	switch (msg) {
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		return 0;
+	/*case WM_LBUTTONDOWN:
+		if (Input::MouseInput::GetMouse().y <= 5.f) {
+			SendMessage(hwnd, WM_NCLBUTTONDOWN, HTSIZE, 0);
+		}
+		return 0;*/
+	case WM_NCHITTEST:
+		RECT rec;
+		GetWindowRect(hwnd, &rec);
+		int mousex = LOWORD(lp);
+		int mousey = HIWORD(lp);
+		if (mousex < rec.left)
+			return HTNOWHERE;
+		if (mousex >= rec.right)
+			return HTNOWHERE;
+		if (mousey < rec.top)
+			return HTNOWHERE;
+		if (mousey >= rec.bottom)
+			return HTNOWHERE;
+
+		int xblock = (mousex - rec.left) * 16 / (rec.right - rec.left);
+		int yblock = (mousey - rec.top) * 9 / (rec.bottom - rec.top);
+		if (xblock == 0 && yblock == 0) 
+			return HTTOPLEFT;
+		if (xblock == 0 && yblock == 15)
+			return HTBOTTOMLEFT;
+		if (xblock == 15 && yblock == 0)
+			return HTTOPRIGHT;
+		if (xblock == 15 && yblock == 8) 
+			return HTBOTTOMRIGHT;
+		if (xblock == 0)
+			return HTLEFT;
+		if (xblock == 15)
+			return HTRIGHT;
+		if (yblock == 0)
+			return HTTOP;
+		if (yblock == 8)
+			return HTBOTTOM;
+		return HTCLIENT;
+	}
+	return 0;
+}
 
 void GradX_RGB(int x1, int y1, int x2, int y2, BYTE r1, BYTE g1, BYTE b1, BYTE r2, BYTE g2, BYTE b2)
 {
@@ -88,7 +137,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	const HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle(); // ウインドウハンドル取得 ※修正不可
 
-	SetMultiThreadFlag(TRUE); // マルチスレッド対応
+	//SetMultiThreadFlag(TRUE); // マルチスレッド対応
 	SetAlwaysRunFlag(TRUE); // 画面がActiveでないときにも実行するか。音楽再生のため基本はTRUE
 	ChangeWindowMode(TRUE); // 画面をウインドウにするか。TRUE:ウインドウ FALSE:全画面（ただし，全画面は描画が遅い。別の描画の仕方でされてしまうため。)
 	SetWindowSizeChangeEnableFlag(TRUE);// ウインドウを可変にするかTRUEで可変
@@ -97,11 +146,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetUseIMEFlag(TRUE);
 	SetUseTSFFlag(FALSE);
 
-	SetWindowStyleMode(11); // ボーダレスウインドウ
+	//SetWindowStyleMode(11); // ボーダレスウインドウ
 
 	SetGraphMode((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, 32);
 
-	SetBackgroundColor(20, 20, 20);
+	Color255 bgColor("#dafcf5");
+	SetBackgroundColor(bgColor.r, bgColor.g, bgColor.b);
 
 	//SetUseDirectInputFlag(FALSE);
 
@@ -113,12 +163,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	ApplicationBuilder applicationBuilder;
 
 	//MSG msg;
+	SetHookWinProc(WndProc);
 
 	PosVec monitorSize((float)GetSystemMetrics(SM_CXSCREEN), (float)GetSystemMetrics(SM_CYSCREEN));
 
 	SetMouseDispFlag(TRUE); // マウスを表示するか。全画面ではデフォでは表示されないため
 
-	SetWindowInitPosition(0, 0); // ウインドウの場所を設定動作確認では機能していない
+	//SetWindowInitPosition(0, 0); // ウインドウの場所を設定動作確認では機能していない
 
 	SetDrawMode(DX_DRAWMODE_ANISOTROPIC);
 
@@ -129,54 +180,19 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SceneManager::Initialize();
 
-	SceneManager::ChangeScene("debug", new DebugScene(), false); // 最初に表示するページ
+	SceneManager::ChangeScene("debug", new DebugScene()); // 最初に表示するページ
 
 	//std::thread inputUpdate(InputUpdate);
 	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
 
-	COLORREF crCaption, crText;
-	int cxFrame = GetSystemMetrics(SM_CXFRAME);
-	int cyFrame = GetSystemMetrics(SM_CYFRAME);
-	int cxButton = GetSystemMetrics(SM_CXSIZE);
-	int cyButton = GetSystemMetrics(SM_CYSIZE);
-	if (true) {
-		crCaption = GetSysColor(COLOR_ACTIVECAPTION);
-		crText = GetSysColor(COLOR_CAPTIONTEXT);
-	}
-	else {
-		crCaption = GetSysColor(COLOR_INACTIVECAPTION);
-		crText = GetSysColor(COLOR_INACTIVECAPTIONTEXT);
-	}
+	SetWindowLongPtr(GetMainWindowHandle(), GWL_EXSTYLE, WS_EX_TRANSPARENT);
+	WindowHwnd::WindowNormalize(GetMainWindowHandle());
 
-	RECT rcWnd;
-	char sz[128];
-	GetWindowRect(GetMainWindowHandle(), &rcWnd);
-	GetWindowText(GetMainWindowHandle(), sz, sizeof(sz) - 1);
-
-	HDC	hdc = GetWindowDC(GetMainWindowHandle());
-
-	//テキスト描画の例
-	RECT rcFill;
-	rcFill.left = cxFrame + cxButton + 1;
-	rcFill.right = (rcWnd.right - rcWnd.left) - (cxFrame + 3 * (cxButton + 1));
-	rcFill.top = cyFrame;
-	rcFill.bottom = cyFrame + cyButton;
-	SetTextColor(hdc, crText);
-	SetBkColor(hdc, crCaption);
-	HBRUSH hbr = CreateSolidBrush(crCaption);
-	FillRect(hdc, &rcFill, hbr);
-	DeleteObject(hbr);
-	DrawText(hdc, sz, lstrlen(sz), &rcFill,
-		DT_RIGHT | DT_VCENTER | DT_SINGLELINE);
-
-	DeleteDC(hdc);
-
-	ReleaseDC(GetMainWindowHandle(), hdc);
 
 	while (!ScreenFlip() && !ClearDrawScreen() && !MainThread::SetEnd()) // メインループ この中の条件はないとバグるもの
-	{		
+	{	
 		applicationBuilder.Update(); // システム系更新処理(がまとめられている)
-		//GetMessage(&msg, NULL, 0, 0);
+		//GetMessage(&msg, NULL, 0, 0); // 3,4 最小値最大値
 		//TranslateMessage(&msg);
 		//DispatchMessage(&msg); // ウインドウメッセージ処理
 		ProcessMessage();

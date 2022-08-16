@@ -15,6 +15,9 @@ public:
 
 	inline static const std::string clientAssets = "assets\\client";
 
+	inline static const float bannerHeight = 75.f;
+	inline static const float headerTabHeight = 50.f;
+
 private:
 	static PosVec backgroundSize;
 };

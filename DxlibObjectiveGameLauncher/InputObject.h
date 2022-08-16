@@ -39,27 +39,23 @@ public:
 	void SetupText(int _fontHandle, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 	{
 		textObject = TextObject(pos, size, _fontHandle, inputText, _innerColor, _align, _enabledBack);
+		RegisterChildren(&textObject);
 		textObject.SetMaxWidth((int)size.x);
+		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
 	}
 	void SetupText(std::string _fontHandleName, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 	{
 		textObject = TextObject(pos, size, _fontHandleName, inputText, _innerColor, _align, _enabledBack);
+		RegisterChildren(&textObject);
 		textObject.SetMaxWidth((int)size.x);
-		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z));
+		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
 	}
 
+	// IMEの入力専用の状態にするか，falseで通常描画に記述可能
 	void SetInterruptMode(bool _flag) { interruptMode = _flag; }
 	bool SetInterruptMode() { return interruptMode; }
 
 	TextObject* GetTextObject() { return &textObject; }
-
-	/*
-	*
-	* 入力中をselectに
-	*
-	* 入力用にハンドルを追加する
-	*
-	*/
 
 	// 色有効化無効化
 	bool SetEnabledFill(bool _enabled) { enabledFill = _enabled; return true; }
@@ -121,13 +117,13 @@ public:
 	}
 
 	// 更新描画
-	void Collide();
-	void Update();
-	void Draw();
+	void Collide() override;
+	void Update() override;
+	void Draw() override;
 
 private:
 
-	void CollideMouse();
+	void CollideMouse() override;
 
 private:
 	TextObject textObject;

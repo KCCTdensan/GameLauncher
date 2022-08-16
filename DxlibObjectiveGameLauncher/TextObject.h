@@ -54,6 +54,9 @@ public:
 
 	bool SetMaxWidth(int _value) {maxWidth = _value >= 1 ? _value : -1;	return true;}
 
+	std::string GetText() { return text; }
+
+	int GetTextWidth() { return textWidth; }
 	PosVec GetFinallyPos() { return finallyPos; }
 
 	Color255* GetColor(ColorType type) {
@@ -66,10 +69,15 @@ public:
 		}
 	}
 
+	bool Move(PosVec _delta, bool _involvedParent = true) override;
+
+	// 描画開始位置を計算
+	void CalcPos();
+
 	// 更新描画
-	void Collide() {}
-	void Update();
-	void Draw();
+	void Collide() override {}
+	void Update() override;
+	void Draw() override;
 
 private:
 
@@ -92,11 +100,12 @@ private:
 		return result;
 	}
 
-	// 描画開始位置を計算
-	void CalcPos();
-
 	// ハンドル探し
 	void FontSerch();
+
+private:
+
+	void CollideMouse() override {}
 
 private:
 	int fontHandle;

@@ -9,7 +9,7 @@ void WindowHolding::Update()
 {
 	if (IsZoomed(GetMainWindowHandle()) == 0) windowMaximized = false;
 	else windowMaximized = true;
-	if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST && Input::MouseInput::GetMouse().y <= ApplicationPreference::GetBackgroundSize().y / 15.f) {
+	if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST && Input::MouseInput::GetMouse().y <= ApplicationPreference::bannerHeight) {
 		GetCursorPos(&po); // モニター上のポインタの位置
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST) {
 			int x, y;
@@ -24,10 +24,10 @@ void WindowHolding::Update()
 			if (x != po.x - (int)holdingWindowPos.x || y != po.y - (int)holdingWindowPos.y) {
 				windowMaximized = false;
 				WindowHwnd::WindowNormalize(GetMainWindowHandle());
-				int x, y;
 				GetWindowPosition(&x, &y); // クライアント位置を取得
-				holdingWindowPos.x = (float)po.x - (float)x;
-				holdingWindowPos.y = (float)po.y - (float)y + (int)(GetSystemMetrics(SM_CYCAPTION) * 1.2f);
+				SetWindowPosition(x, 0);
+				holdingWindowPos.x = /*(float)po.x - */(float)x;
+				holdingWindowPos.y = /*(float)po.y - */(float)y /*- (int)(GetSystemMetrics(SM_CYCAPTION) * 1.2f)*/;
 			}
 		} else if (holding) SetWindowPosition(po.x - (int)holdingWindowPos.x, po.y - (int)holdingWindowPos.y);
 	}
@@ -35,6 +35,11 @@ void WindowHolding::Update()
 		GetCursorPos(&po);
 		if (po.y <= 5) {
 			WindowHwnd::WindowMaximize(GetMainWindowHandle());
+		}
+		int x, y;
+		GetWindowPosition(&x, &y); // クライアント位置を取得
+		if (y <= 0) {
+			SetWindowPosition(x, 0);
 		}
 		holding = false;
 	}

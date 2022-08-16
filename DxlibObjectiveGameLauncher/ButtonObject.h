@@ -3,6 +3,7 @@
 #include "MouseInput.h"
 #include "ObjectOverlapping.h"
 #include "PressFrameEnum.h"
+#include "RectangleObject.h"
 #include <string>
 
 class ButtonObject :
@@ -14,14 +15,16 @@ public:
 		enabledFill(_enabledFill), enabledOutline(_enabledOutline),
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
-		outlineWidth(0)
+		outlineWidth(0),
+		rectMode(false), rectDirectionFrom(DirectionType::BOTTOM), rectEventEnabled(nullptr), rectEventCase(MouseEventCase::HOVERED)
 	{}
 
 	ButtonObject()
 		: ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false),
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
-		outlineWidth(0)
+		outlineWidth(0),
+		rectMode(false), rectDirectionFrom(DirectionType::BOTTOM), rectEventEnabled(nullptr), rectEventCase(MouseEventCase::HOVERED)
 	{}
 
 	// 色有効化無効化
@@ -107,14 +110,60 @@ public:
 		}
 	}
 
+	// 特定のイベントにおけるボックスアニメーション重複描画(アルファ値変更推奨)
+	void SetRectWithEvent(MouseEventCase _rectEventCase, DirectionType _rectDirectionFrom = DirectionType::BOTTOM, Color255 innerColor = Color255(220, 150)) {
+		rectMode = true;
+		PosVec p = pos;
+		PosVec s = size;
+		switch (rectDirectionFrom)
+		{
+		case DirectionType::TOP:
+			s.y = 0.f;
+			break;
+		case DirectionType::BOTTOM:
+			s.y = 0.f;
+			p.y = pos.y + size.y;
+			break;
+		case DirectionType::LEFT:
+			s.x = 0.f;
+			break;
+		case DirectionType::RIGHT:
+			s.x = 0.f;
+			p.x = pos.x + size.x;
+			break;
+		default:
+			break;
+		}
+		eventRect = RectangleObject(p, s);
+		RegisterChildren(&eventRect);
+		eventRect.SetInnerColor(innerColor);
+		rectDirectionFrom = _rectDirectionFrom;
+		switch (_rectEventCase)
+		{
+		case MouseEventCase::HOVERED:
+			rectEventEnabled = &mouseHit;
+			break;
+		case MouseEventCase::CLICKED:
+			rectEventEnabled = &mouseClicked;
+			break;
+		case MouseEventCase::SELECTED:
+			rectEventEnabled = &mouseSelected;
+			break;
+		default:
+			rectEventEnabled = nullptr;
+		}
+	}
+	void SetRectWithEvent() { rectMode = false; eventRect = RectangleObject(); }
+
 	// 更新描画
-	void Collide();
-	void Update();
-	void Draw();
+	void Collide() override;
+	void Update() override;
+	void Draw() override;
 
 private:
 
-	void CollideMouse();
+	void CollideMouse() override;
+	void EventRectSetVector();
 
 private:
 	Color255 innerColor;
@@ -131,6 +180,11 @@ private:
 	bool enabledFill;
 	bool enabledOutline;
 
+	bool rectMode;
+	MouseEventCase rectEventCase;
+	bool* rectEventEnabled; // mouseHovered等
+	DirectionType rectDirectionFrom;
+	RectangleObject eventRect;
 
 };
 

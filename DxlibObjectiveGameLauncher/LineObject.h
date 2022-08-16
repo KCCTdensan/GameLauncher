@@ -16,9 +16,13 @@ public:
 	bool SetOutlineColor(Color255 _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
 
 	// XV•`‰æ
-	void Collide();
-	void Update();
-	void Draw();
+	void Collide() override;
+	void Update() override;
+	void Draw() override;
+
+private:
+
+	void CollideMouse() override {}
 
 private:
 	Color255 outerColor;

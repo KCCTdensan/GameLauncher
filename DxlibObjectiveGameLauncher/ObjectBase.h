@@ -8,6 +8,9 @@
 #include "ApplicationPreference.h"
 #include "AnimationPointerData.h"
 #include "ColorTypes.h"
+#include "VectorTypes.h"
+#include "MouseEventCase.h"
+#include "MouseInput.h"
 #include <vector>
 
 class ObjectBase
@@ -16,18 +19,16 @@ protected:
 	ObjectBase(PosVec _pos, PosVec _size)
 		:pos(_pos), size(_size),
 		enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
-		children{}, beCalledNoMouse(false), guid(),
+		children{}, beCalledNoMouse(false), guid(), canvasOwner(false), canvasId(-1),
 		innerAnimation(AnimationColorStatus()),
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
-		outerAlphaAnimation(AnimationStatus())
+		outerAlphaAnimation(AnimationStatus()),
+		parent(nullptr), enforcedCollision(false)
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
 	}
-
-	virtual void Update() = 0;
-	virtual void Draw() = 0;
 
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); }
 
@@ -39,8 +40,7 @@ protected:
 	
 	void UpdatePointerAnimation();
 
-	PosVec GetPos() { return pos; }
-	PosVec GetSize() { return size; }
+	void CollideMouseAsBox();
 
 	PosVec pos;
 	PosVec size;
@@ -59,11 +59,41 @@ protected:
 	AnimationStatus innerAlphaAnimation;
 	AnimationStatus outerAlphaAnimation;
 
-private:
+	int canvasId;
+	bool canvasOwner;
 	std::vector<ObjectBase*> children;
-	std::vector<AnimationColorPointer> pAnimation;
+	ObjectBase* parent;
+
+	bool enforcedCollision;
+
+private:
+
+	virtual void CollideMouse() = 0;
+
+private:
+	std::vector<AnimationColorPointer> pColorAnimation;
+	std::vector<AnimationPointer> pAnimation;
 
 public:
+	virtual void Update() = 0;
+	virtual void Draw() = 0;
+	virtual void Collide() = 0;
+
+	PosVec GetPos() { return pos; }
+	PosVec GetSize() { return size; }
+
+	PosVec* GetVectorPointer(VectorType type) {
+		switch (type)
+		{
+		case VectorType::POS:
+			return &pos;
+		case VectorType::SIZE:
+			return &size;
+		default:
+			return nullptr;
+		}
+	}
+
 	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
 	bool SetEnabled() { return enabled; }
 
@@ -80,6 +110,11 @@ public:
 	bool GetMouseSelected() { return mouseSelected; }
 
 	void ChangeColorWithAnimation(Color255* pColor, Color255* endColor, float duration);
+	void ChangeValueWithAnimation(float* pValue, float endValue, float duration);
+
+	void SetCanvasId(int id);
+
+	void SetEnforcedCollision(bool _enforcedCollision) { enforcedCollision = _enforcedCollision; }
 
 	// アニメーション設定
 	bool SetInnerAnimation(float _duration) {
@@ -118,11 +153,15 @@ public:
 	// 親(自分)のみ移動(絶対値)
 	bool SetPos(PosVec _pos) { pos = _pos; return true; }
 
+	bool SetSize(PosVec _size) { size = _size; return true; }
+
 	// オブジェクト移動系(子要素含む)
-	bool Move(PosVec _delta);
+	virtual bool Move(PosVec _delta, bool _involvedParent = true);
 
 	// 子要素登録
-	bool RegisterChildren(ObjectBase* _object) { children.push_back(_object); return true; }
+	virtual bool RegisterChildren(ObjectBase* _object) { children.push_back(_object); return true; }
+	// 自分のポインタを放り込むように(キャンバス用)
+	virtual bool RegisterParent(ObjectBase* _object) { parent = _object; return true; }
 
 	// ここに参照渡しされた画面情報などの構造体を入れた方がいいかも？
 };

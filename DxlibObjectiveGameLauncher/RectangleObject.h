@@ -21,17 +21,45 @@ public:
 	bool SetEnabledOutline() { return enabledOutline; }
 
 	// 色情報登録等
-	bool SetInnerColor(Color255 _innerColor) { innerColor = _innerColor; return true; }
-	bool SetOutlineColor(Color255 _outerColor, float _outlineWidth) { outerColor = _outerColor; outlineWidth = _outlineWidth; return true; }
+	bool SetInnerColor(Color255 _innerColor, bool _defaultFill = true)
+	{
+		innerColor = _innerColor;
+		if (_defaultFill) {
+			innerAnimation.current = innerColor;
+			innerAlphaAnimation.current = (float)innerColor.a;
+		}
+		return true;
+	}
+	// アウトラインを表示する際はtrueになっているかをチェック
+	bool SetOutlineColor(Color255 _outerColor, float _outlineWidth, bool _defaultFill = true) {
+		outerColor = _outerColor;
+		if (_defaultFill) {
+			outerAnimation.current = outerColor;
+			outerAlphaAnimation.current = (float)outerColor.a;
+		}
+		return true;
+	}
+
+	Color255* GetColor(ColorType type) {
+		switch (type)
+		{
+		case ColorType::INNER:
+			return &innerColor;
+		case ColorType::OUTER_INNER:
+			return &outerColor;
+		default:
+			return nullptr;
+		}
+	}
 
 	// 更新描画
-	void Collide();
-	void Update();
-	void Draw();
+	void Collide() override;
+	void Update() override;
+	void Draw() override;
 
 private:
 
-	void CollideMouse();
+	void CollideMouse() override;
 
 private:
 	Color255 innerColor;
@@ -41,11 +69,6 @@ private:
 
 	bool enabledFill;
 	bool enabledOutline;
-
-	// アニメーション追加の場合，メンバ，メソッド追加
-	// グラデーションの場合も同様
-
-	/******************/
 
 	Color255 currentInnerColor;
 };

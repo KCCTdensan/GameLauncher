@@ -1,5 +1,6 @@
 #pragma once
 #include "ObjectBase.h"
+#include "ObjectFuncData.h"
 #include <vector>
 class ObjectLayer
 {
@@ -22,5 +23,5 @@ public:
 	void Draw();
 
 private:
-	std::vector<ObjectBase*> layer;
+	std::vector<ObjectFunc> layer;
 };

@@ -11,3 +11,14 @@ struct AnimationColorPointer {
 	AnimationColorPointer(AnimationColorStatus _status, Color255* _color)
 		:animation(_status), color(_color) {}
 };
+
+struct AnimationPointer {
+	AnimationStatus animation;
+	float* value;
+
+	AnimationPointer()
+		: animation(), value(nullptr) {}
+
+	AnimationPointer(AnimationStatus _status, float* _value)
+		:animation(_status), value(_value) {}
+};

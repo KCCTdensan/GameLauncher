@@ -76,6 +76,7 @@
     <ClInclude Include="LineObject.h" />
     <ClInclude Include="MainThreadValue.h" />
     <ClInclude Include="MouseClickType.h" />
+    <ClInclude Include="MouseEventCase.h" />
     <ClInclude Include="MouseInput.h" />
     <ClInclude Include="MovieChest.h" />
     <ClInclude Include="MovieData.h" />
@@ -97,6 +98,7 @@
     <ClInclude Include="TextAlign.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="UUIDGenerator.h" />
+    <ClInclude Include="VectorTypes.h" />
     <ClInclude Include="WindowHolding.h" />
     <ClInclude Include="WindowHwnd.h" />
   </ItemGroup>

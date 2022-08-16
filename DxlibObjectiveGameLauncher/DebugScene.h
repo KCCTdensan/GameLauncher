@@ -4,6 +4,7 @@
 #include "ApplicationPreference.h"
 #include "OriginalObjects.h"
 #include "FontChest.h"
+#include "ObjectLayer.h"
 
 class DebugScene :
     public SceneBase
@@ -17,6 +18,7 @@ public:
     void Draw();
 
 private:
+    CanvasObject canvas;
     RectangleObject bg;
     ButtonObject debugButton;
     ButtonObject debugButton2;
@@ -24,5 +26,7 @@ private:
     TextObject textSample1;
     InputObject input;
     InputObject input2;
+    RectangleObject pallet;
+    ProgressObject progress;
 };
 

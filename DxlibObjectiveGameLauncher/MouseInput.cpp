@@ -4,6 +4,7 @@ PosVec Input::MouseInput::mouse = PosVec();
 PosVec Input::MouseInput::mouseWin = PosVec();
 MouseClickType Input::MouseInput::mouseClickType = MouseClickType();
 int Input::MouseInput::mouseInputs = 0;
+float Input::MouseInput::wheelRot = 0;
 
 void Input::MouseInput::Update()
 {
@@ -21,6 +22,8 @@ void Input::MouseInput::Update()
 	UpdateClick(&mouseClickType.middle, MOUSE_INPUT_MIDDLE);
 	UpdateClick(&mouseClickType.mouse4, MOUSE_INPUT_4);
 	UpdateClick(&mouseClickType.mouse5, MOUSE_INPUT_5);
+
+	wheelRot = GetMouseWheelRotVolF();
 }
 
 int Input::MouseInput::GetClick(int _button)
