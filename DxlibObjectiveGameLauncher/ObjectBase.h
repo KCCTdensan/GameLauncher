@@ -24,8 +24,8 @@ protected:
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
 		outerAlphaAnimation(AnimationStatus()),
-		parent(nullptr), enforcedCollision(false),
-		expandedMode(false)
+		parent(nullptr), enforcedCollision(1),
+		expandedNum(false)
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
@@ -53,7 +53,7 @@ protected:
 	bool mouseClicked;
 	bool beCalledNoMouse;
 
-	bool expandedMode;
+	bool expandedNum;
 
 	std::string guid;
 
@@ -67,7 +67,7 @@ protected:
 	std::vector<ObjectBase*> children;
 	ObjectBase* parent;
 
-	bool enforcedCollision;
+	int enforcedCollision;
 
 private:
 
@@ -117,7 +117,7 @@ public:
 
 	void SetCanvasId(int id);
 
-	void SetEnforcedCollision(bool _enforcedCollision) { enforcedCollision = _enforcedCollision; }
+	void SetEnforcedCollision(int _enforcedCollision = 1) { enforcedCollision = _enforcedCollision; }
 
 	// アニメーション設定
 	bool SetInnerAnimation(float _duration) {

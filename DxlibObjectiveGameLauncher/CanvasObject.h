@@ -25,7 +25,7 @@ public:
 			ObjectBase::RegisterChildren(&item);
 			item.SetInnerColor(Color255(255, 200), Color255(100, 200), Color255(190, 200), Color255(200, 200));
 			item.SetOutlineColor(Color255(100, 200), .5f);
-			item.SetEnforcedCollision(true);
+			item.SetEnforcedCollision(9);
 		}
 		// c
 		scrollBar[0] = ProgressObject(PosVec(pos.x + size.x - scrollBarWidth, pos.y + scrollBarWidth), PosVec(scrollBarWidth, size.y - scrollBarWidth * 2.f), true, 0.f);
@@ -36,7 +36,7 @@ public:
 			item.SetInnerColor(Color255(255, 30), Color255(230, 200), Color255(230, 200), Color255(230, 200));
 			item.GetSlider()->SetInnerColor(Color255(200, 200));
 			item.SetInnerAnimation(.1f);
-			item.SetEnforcedCollision(true);
+			item.SetEnforcedCollision(10);
 			// —áŠO‘Îô
 			item.SetupSlider();
 		}

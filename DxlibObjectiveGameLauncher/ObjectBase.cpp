@@ -110,7 +110,7 @@ void ObjectBase::CollideMouseAsBox()
 
 	PosVec offset = PosVec();
 	bool clickExpanded = Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST ? true : false;
-	if (clickExpanded && expandedMode && mouseClicked) {
+	if (clickExpanded && expandedNum && mouseClicked) {
 		offset.x = ApplicationPreference::GetBackgroundSize().x / 6.f;
 		offset.y = ApplicationPreference::GetBackgroundSize().y / 6.f;
 	}
@@ -123,13 +123,8 @@ void ObjectBase::CollideMouseAsBox()
 		mouseHit = true;
 
 		// オブジェクトの重複判定登録処理
-		
-		if (expandedMode && mouseClicked) {
-			ObjectOverlapping::UpdateObject(guid, true);
-		}
-		else {
-			ObjectOverlapping::UpdateObject(guid, enforcedCollision);
-		}
+
+		ObjectOverlapping::UpdateObject(guid, enforcedCollision);
 
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
 			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST)
@@ -138,7 +133,7 @@ void ObjectBase::CollideMouseAsBox()
 		else {
 			if (pos.x <= Input::MouseInput::GetMouse().x &&
 				pos.x + size.x >= Input::MouseInput::GetMouse().x &&
-				pos.y  <= Input::MouseInput::GetMouse().y &&
+				pos.y <= Input::MouseInput::GetMouse().y &&
 				pos.y + size.y >= Input::MouseInput::GetMouse().y && pFlag) {
 				mouseClicked = false;
 				goSelecting = true;

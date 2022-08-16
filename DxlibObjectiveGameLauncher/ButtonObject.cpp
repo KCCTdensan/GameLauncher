@@ -87,51 +87,7 @@ void ButtonObject::Draw()
 }
 
 void ButtonObject::CollideMouse()
-{
-	if (!enabled) return;
-
-	bool beforeMouseClicked = mouseClicked;
-	bool goSelecting = false;
-
-	bool pFlag = true;
-	if (parent != nullptr) pFlag = parent->GetMouseHit();
-
-	if (pos.x <= Input::MouseInput::GetMouse().x &&
-		pos.x + size.x >= Input::MouseInput::GetMouse().x &&
-		pos.y <= Input::MouseInput::GetMouse().y &&
-		pos.y + size.y >= Input::MouseInput::GetMouse().y && pFlag) {
-
-		mouseHit = true;
-
-		// オブジェクトの重複判定登録処理
-		ObjectOverlapping::UpdateObject(guid, enforcedCollision);
-
-		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
-			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST /*&& !beCalledNoMouse*/)
-				mouseClicked = true;
-		}
-		else {
-			mouseClicked = false;
-			goSelecting = true;
-		}
-	}
-	else {
-		mouseHit = false;
-
-		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST && !mouseClicked) {
-			mouseSelected = false;
-		}
-	}
-
-	if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::ZERO)
-		mouseClicked = false;
-
-	if (beforeMouseClicked && !mouseClicked && goSelecting) {
-		mouseSelected = true;
-	}
-
-	beCalledNoMouse = false;
-}
+{}
 
 void ButtonObject::EventRectSetVector()
 {
