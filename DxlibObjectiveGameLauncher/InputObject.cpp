@@ -2,7 +2,7 @@
 
 void InputObject::Collide()
 {
-	CollideMouse();
+	CollideMouseAsBox();
 	textObject.Collide();
 }
 

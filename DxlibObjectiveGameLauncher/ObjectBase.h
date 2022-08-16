@@ -10,6 +10,7 @@
 #include "ColorTypes.h"
 #include "VectorTypes.h"
 #include "MouseEventCase.h"
+#include "MouseInput.h"
 #include <vector>
 
 class ObjectBase
@@ -38,6 +39,8 @@ protected:
 	void UpdateAnimation(AnimationStatus* type);
 	
 	void UpdatePointerAnimation();
+
+	void CollideMouseAsBox();
 
 	PosVec pos;
 	PosVec size;
@@ -149,6 +152,8 @@ public:
 
 	// 親(自分)のみ移動(絶対値)
 	bool SetPos(PosVec _pos) { pos = _pos; return true; }
+
+	bool SetSize(PosVec _size) { size = _size; return true; }
 
 	// オブジェクト移動系(子要素含む)
 	virtual bool Move(PosVec _delta, bool _involvedParent = true);

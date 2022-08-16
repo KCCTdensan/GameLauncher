@@ -2,11 +2,11 @@
 
 void LineObject::Collide()
 {
-	UpdatePointerAnimation();
 }
 
 void LineObject::Update()
 {
+	UpdatePointerAnimation();
 }
 
 void LineObject::Draw()

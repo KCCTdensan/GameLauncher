@@ -2,7 +2,7 @@
 
 void ButtonObject::Collide()
 {
-	CollideMouse();
+	CollideMouseAsBox();
 }
 
 void ButtonObject::Update()

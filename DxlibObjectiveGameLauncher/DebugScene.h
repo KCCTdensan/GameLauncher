@@ -27,5 +27,6 @@ private:
     InputObject input;
     InputObject input2;
     RectangleObject pallet;
+    ProgressObject progress;
 };
 

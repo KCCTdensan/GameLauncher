@@ -2,7 +2,7 @@
 
 void RectangleObject::Collide()
 {
-	CollideMouse();
+	CollideMouseAsBox();
 }
 
 void RectangleObject::Update()

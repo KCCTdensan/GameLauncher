@@ -3,13 +3,14 @@
 DebugScene::DebugScene() :
 	bg(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y)),
 	debugButton(PosVec(), PosVec(1200.f, 300.f), true, true),
-	debugButton2(PosVec(50, 200.f), PosVec(100.f, 100.f), true, true),
+	debugButton2(PosVec(150, 220.f), PosVec(100.f, 100.f), true, true),
 	debugRect(PosVec(1100.f, 300.f), PosVec(300.f, 150.f), true, false),
 	textSample1(PosVec(750, 700), PosVec(), "mplus1", "•¶Žš—ñ", Color255(135, 200, 56), TextAlign::CENTER, true),
-	input(PosVec(500,500), PosVec(200,100)),
-	input2(PosVec(900,800), PosVec(200,100)),
-	pallet(PosVec(1200,300), PosVec(400,400), true, false),
-	canvas(PosVec(150,150), PosVec(500,500))
+	input(PosVec(500, 500), PosVec(200, 100)),
+	input2(PosVec(900, 800), PosVec(200, 100)),
+	pallet(PosVec(1200, 300), PosVec(400, 400), true, false),
+	canvas(PosVec(150, 150), PosVec(500, 500)),
+	progress(PosVec(1200, 700), PosVec(50, 300), true, 0.13f)
 {
 	bg.SetInnerColor(Color255("#f4faf9"));
 	layer.AddObject(&bg);
@@ -64,6 +65,8 @@ DebugScene::DebugScene() :
 
 	pallet.SetInnerColor(Color255(255, 255, 255));
 
+	progress.SetInnerColor(Color255(200, 200, 200));
+
 	canvas.SetInnerColor(Color255(200,250,250));
 	canvas.SetArea(PosVec(1000, 1000));
 
@@ -74,9 +77,10 @@ DebugScene::DebugScene() :
 	layer.AddObject(&input);
 	layer.AddObject(&input2);
 	layer.AddObject(&pallet);
+	layer.AddObject(&progress);
 
 	canvas.RegisterChildren(&debugButton);
-	canvas.RegisterChildren(&debugButton2);
+	//canvas.RegisterChildren(&debugButton2);
 	canvas.RegisterChildren(&debugRect);
 	canvas.RegisterChildren(&textSample1);
 	canvas.RegisterChildren(&input);
