@@ -24,7 +24,8 @@ protected:
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
 		outerAlphaAnimation(AnimationStatus()),
-		parent(nullptr), enforcedCollision(false)
+		parent(nullptr), enforcedCollision(false),
+		expandedMode(false)
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
@@ -51,6 +52,8 @@ protected:
 	bool mouseSelected;
 	bool mouseClicked;
 	bool beCalledNoMouse;
+
+	bool expandedMode;
 
 	std::string guid;
 

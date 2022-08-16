@@ -18,6 +18,7 @@ public:
             slider = ButtonObject(PosVec(pos.x, pos.y), PosVec(size.x, size.y * initialValue), true, false);
         else
             slider = ButtonObject(PosVec(pos.x, pos.y), PosVec(size.x * initialValue, size.y), true, false);
+        expandedMode = true;
     }
 
     ProgressObject()

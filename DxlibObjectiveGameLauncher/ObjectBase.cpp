@@ -108,23 +108,41 @@ void ObjectBase::CollideMouseAsBox()
 	bool pFlag = true;
 	if (parent != nullptr) pFlag = parent->GetMouseHit();
 
-	if (pos.x <= Input::MouseInput::GetMouse().x &&
-		pos.x + size.x >= Input::MouseInput::GetMouse().x &&
-		pos.y <= Input::MouseInput::GetMouse().y &&
-		pos.y + size.y >= Input::MouseInput::GetMouse().y && pFlag) {
+	PosVec offset = PosVec();
+	bool clickExpanded = Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST ? true : false;
+	if (clickExpanded && expandedMode && mouseClicked) {
+		offset.x = ApplicationPreference::GetBackgroundSize().x / 6.f;
+		offset.y = ApplicationPreference::GetBackgroundSize().y / 6.f;
+	}
+
+	if (pos.x - offset.x <= Input::MouseInput::GetMouse().x &&
+		pos.x + size.x + offset.x >= Input::MouseInput::GetMouse().x &&
+		pos.y - offset.y <= Input::MouseInput::GetMouse().y &&
+		pos.y + size.y + offset.y >= Input::MouseInput::GetMouse().y && pFlag) {
 
 		mouseHit = true;
 
 		// オブジェクトの重複判定登録処理
-		ObjectOverlapping::UpdateObject(guid, enforcedCollision);
+		
+		if (expandedMode && mouseClicked) {
+			ObjectOverlapping::UpdateObject(guid, true);
+		}
+		else {
+			ObjectOverlapping::UpdateObject(guid, enforcedCollision);
+		}
 
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
-			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST /*&& !beCalledNoMouse*/)
+			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST)
 				mouseClicked = true;
 		}
 		else {
-			mouseClicked = false;
-			goSelecting = true;
+			if (pos.x <= Input::MouseInput::GetMouse().x &&
+				pos.x + size.x >= Input::MouseInput::GetMouse().x &&
+				pos.y  <= Input::MouseInput::GetMouse().y &&
+				pos.y + size.y >= Input::MouseInput::GetMouse().y && pFlag) {
+				mouseClicked = false;
+				goSelecting = true;
+			}
 		}
 	}
 	else {
