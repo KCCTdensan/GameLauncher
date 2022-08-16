@@ -100,6 +100,10 @@ public:
 		}
 		else if (scrollDistance.x <= size.x) {
 			enabledScrollX = false;
+			scrollDistance.x = size.x;
+			scrollBar[1].SetEnabled(false);
+			scrollButton[(int)DirectionType::LEFT].SetEnabled(false);
+			scrollButton[(int)DirectionType::RIGHT].SetEnabled(false);
 		}
 		scrollValue.x = 0.f;
 		maskUpperLeft.x = (scrollDistance.x - size.x) * scrollValue.x;
@@ -108,6 +112,10 @@ public:
 		}
 		else if (scrollDistance.y <= size.y) {
 			enabledScrollY = false;
+			scrollDistance.y = size.y;
+			scrollBar[0].SetEnabled(false);
+			scrollButton[(int)DirectionType::TOP].SetEnabled(false);
+			scrollButton[(int)DirectionType::BOTTOM].SetEnabled(false);
 		}
 		scrollValue.y = 0.f;
 		maskUpperLeft.y = (scrollDistance.y - size.y) * scrollValue.y;

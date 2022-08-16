@@ -68,7 +68,7 @@ DebugScene::DebugScene() :
 	progress.SetInnerColor(Color255(200, 200, 200));
 
 	canvas.SetInnerColor(Color255(200,250,250));
-	canvas.SetArea(PosVec(1000, 1000));
+	canvas.SetArea(PosVec(400, 800));
 
 	layer.AddObject(&debugButton);
 	layer.AddObject(&debugButton2);

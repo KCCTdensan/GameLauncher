@@ -69,6 +69,13 @@ void InputObject::Update()
 		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)clickedOuterColor.a);
 	}
 
+	if (!enabled) {
+		SetAnimationColorPoint(&innerAnimation, innerAnimation.current, disabledInnerColor);
+		SetAnimationColorPoint(&outerAnimation, outerAnimation.current, disabledOuterColor);
+		SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)disabledInnerColor.a);
+		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)disabledOuterColor.a);
+	}
+
 	UpdateAnimationColor(&innerAnimation);
 	UpdateAnimationColor(&outerAnimation);
 	UpdateAnimation(&innerAlphaAnimation);

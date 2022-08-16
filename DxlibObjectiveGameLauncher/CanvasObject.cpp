@@ -29,7 +29,7 @@ void CanvasObject::Update()
 		item.Update();
 	}
 	clsDx();
-	if (scrollValue.y != scrollBar[0].GetValue()) {
+	if (scrollValue.y != scrollBar[0].GetValue() && enabled) {
 		float distance = scrollBar[0].GetValue() - scrollValue.y;
 		if (scrollValue.y + distance > 1.001f) {
 			distance = 1.f - scrollValue.y;
@@ -48,7 +48,7 @@ void CanvasObject::Update()
 		scrollValue.y = scrollBar[0].GetValue();
 	}
 
-	if (scrollValue.x != scrollBar[1].GetValue()) {
+	if (scrollValue.x != scrollBar[1].GetValue() && enabled) {
 		float distance = scrollBar[1].GetValue() - scrollValue.x;
 		if (scrollValue.x + distance > 1.001f) {
 			distance = 1.f - scrollValue.x;
@@ -75,7 +75,7 @@ void CanvasObject::Update()
 
 	float distance = scrollPercentage;
 
-	if (scrollButton[(int)DirectionType::LEFT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() > 0.f)) {
+	if (scrollButton[(int)DirectionType::LEFT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled) {
 		distance *= -1.f;
 		if (scrollValue.x + distance < 0.001f) {
 			distance = -scrollValue.x;
@@ -92,7 +92,7 @@ void CanvasObject::Update()
 		scrollBar[1].SetValue(scrollValue.x);
 	}
 
-	if (scrollButton[(int)DirectionType::RIGHT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() < 0.f)) {
+	if (scrollButton[(int)DirectionType::RIGHT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled) {
 		if (scrollValue.x + distance > 1.001f) {
 			distance = 1.f - scrollValue.x;
 		}
@@ -108,7 +108,7 @@ void CanvasObject::Update()
 		scrollBar[1].SetValue(scrollValue.x);
 	}
 
-	if (scrollButton[(int)DirectionType::TOP].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() > 0.f)) {
+	if (scrollButton[(int)DirectionType::TOP].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled) {
 		distance *= -1.f;
 		if (scrollValue.y + distance < 0.001f) {
 			distance = -scrollValue.y;
@@ -125,7 +125,7 @@ void CanvasObject::Update()
 		scrollBar[0].SetValue(scrollValue.y);
 	}
 
-	if (scrollButton[(int)DirectionType::BOTTOM].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() < 0.f)) {
+	if (scrollButton[(int)DirectionType::BOTTOM].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled) {
 		if (scrollValue.y + distance > 1.001f) {
 			distance = 1.f - scrollValue.y;
 		}
@@ -161,7 +161,6 @@ void CanvasObject::Update()
 
 void CanvasObject::Draw()
 {
-	if (!enabled) return;
 	//SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
 	//if (enabledFill) {
 	//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)innerAlphaAnimation.current);

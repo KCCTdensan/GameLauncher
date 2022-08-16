@@ -42,7 +42,14 @@ void ProgressObject::Update()
 		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)clickedOuterColor.a);
 	}
 
-	if (mouseClicked) {
+	if (!enabled) {
+		SetAnimationColorPoint(&innerAnimation, innerAnimation.current, disabledInnerColor);
+		SetAnimationColorPoint(&outerAnimation, outerAnimation.current, disabledOuterColor);
+		SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)disabledInnerColor.a);
+		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)disabledOuterColor.a);
+	}
+
+	if (mouseClicked && enabled) {
 		PosVec mousePos = Input::MouseInput::GetMouse();
 		float newRate;
 		if (verticalMode) {
@@ -78,7 +85,6 @@ void ProgressObject::Update()
 
 void ProgressObject::Draw()
 {
-	if (!enabled) return;
 	if (canvasId != -1) {
 		SetDrawScreen(canvasId);
 	}
