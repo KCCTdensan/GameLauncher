@@ -100,6 +100,9 @@ public:
 		}
 	}
 
+	bool GetCanvasOwner() { return canvasOwner; }
+	int GetCanvasId() { return canvasId; }
+
 	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
 	bool SetEnabled() { return enabled; }
 

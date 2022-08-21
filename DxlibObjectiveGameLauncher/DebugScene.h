@@ -19,6 +19,7 @@ public:
 
 private:
     CanvasObject canvas;
+    CanvasObject canvas2;
     RectangleObject bg;
     ButtonObject debugButton;
     ButtonObject debugButton2;

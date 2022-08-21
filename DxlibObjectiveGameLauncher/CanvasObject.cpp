@@ -24,7 +24,7 @@ void CanvasObject::Update()
 	UpdateAnimationColor(&outerAnimation);
 	UpdateAnimation(&innerAlphaAnimation);
 	UpdateAnimation(&outerAlphaAnimation);
-	
+
 	for (auto& item : scrollBar) {
 		item.Update();
 	}
@@ -82,6 +82,10 @@ void CanvasObject::Update()
 		}
 		scrollValue.x += distance;
 		Move(PosVec(-distance * (scrollDistance.x - size.x), 0.f), false);
+		if (parent != nullptr) {
+			if (parent->GetCanvasOwner())
+				parent->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
+		}
 		for (auto& item : scrollButton) {
 			item.Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
@@ -98,6 +102,10 @@ void CanvasObject::Update()
 		}
 		scrollValue.x += distance;
 		Move(PosVec(-distance * (scrollDistance.x - size.x), 0.f), false);
+		if (parent != nullptr) {
+			if (parent->GetCanvasOwner())
+				parent->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
+		}
 		for (auto& item : scrollButton) {
 			item.Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
@@ -115,6 +123,10 @@ void CanvasObject::Update()
 		}
 		scrollValue.y += distance;
 		Move(PosVec(0.f, -distance * (scrollDistance.y - size.y)), false);
+		if (parent != nullptr) {
+			if (parent->GetCanvasOwner())
+				parent->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
+		}
 		for (auto& item : scrollButton) {
 			item.Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
@@ -131,6 +143,10 @@ void CanvasObject::Update()
 		}
 		scrollValue.y += distance;
 		Move(PosVec(0.f, -distance * (scrollDistance.y - size.y)), false);
+		if (parent != nullptr) {
+			if (parent->GetCanvasOwner())
+				parent->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
+		}
 		for (auto& item : scrollButton) {
 			item.Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
@@ -181,7 +197,15 @@ void CanvasObject::Draw()
 	//SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 
 	// canvasDrawingId = DerivationGraphF(maskUpperLeft.x, maskUpperLeft.y, size.x, size.y, canvasId);
-	SetDrawScreen(DX_SCREEN_BACK);
+	if (parent != nullptr) {
+		if (parent->GetCanvasOwner())
+			SetDrawScreen(parent->GetCanvasId());
+		else
+			SetDrawScreen(DX_SCREEN_BACK);
+	}
+	else {
+		SetDrawScreen(DX_SCREEN_BACK);
+	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	DrawRectGraphF(pos.x, pos.y, (int)pos.x, (int)pos.y, (int)size.x, (int)size.y, canvasId, true, false);
 
@@ -192,7 +216,9 @@ void CanvasObject::Draw()
 	for (auto& item : scrollBar) {
 		item.Draw();
 	}
-	
+
+	SetDrawScreen(DX_SCREEN_BACK);
+
 	/*DrawModiGraphF(
 		0.f, 0.f,
 		0.f + size.x, 0.f,

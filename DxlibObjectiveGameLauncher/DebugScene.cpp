@@ -10,6 +10,7 @@ DebugScene::DebugScene() :
 	input2(PosVec(900, 800), PosVec(200, 100)),
 	pallet(PosVec(1200, 300), PosVec(400, 400), true, false),
 	canvas(PosVec(150, 150), PosVec(500, 500)),
+	canvas2(PosVec(200, 170), PosVec(150, 200)),
 	progress(PosVec(1200, 700), PosVec(50, 300), true, 0.13f)
 {
 	bg.SetInnerColor(Color255("#f4faf9"));
@@ -67,8 +68,11 @@ DebugScene::DebugScene() :
 
 	progress.SetInnerColor(Color255(200, 200, 200));
 
-	canvas.SetInnerColor(Color255(200,250,250));
+	canvas.SetInnerColor(Color255(200,250,250, 0));
 	canvas.SetArea(PosVec(500, 10000), 50.f /10000.f);
+
+	//canvas2.SetInnerColor(Color255(200, 250, 250));
+	canvas2.SetArea(PosVec(500, 10000), 50.f / 10000.f);
 
 	layer.AddObject(&debugButton);
 	layer.AddObject(&debugButton2);
@@ -79,14 +83,16 @@ DebugScene::DebugScene() :
 	layer.AddObject(&pallet);
 	layer.AddObject(&progress);
 
-	canvas.RegisterChildren(&debugButton);
+	canvas2.RegisterChildren(&debugButton);
 	//canvas.RegisterChildren(&debugButton2);
 	canvas.RegisterChildren(&debugRect);
 	canvas.RegisterChildren(&textSample1);
 	canvas.RegisterChildren(&input);
 	//canvas.RegisterChildren(&input2);
 	canvas.RegisterChildren(&pallet);
+	canvas.RegisterChildren(&canvas2);
 
+	canvases.AddObject(&canvas2);
 	canvases.AddObject(&canvas);
 
 	// ƒtƒHƒ“ƒg’Ç‰Á
