@@ -1,6 +1,11 @@
 #include "ObjectBase.h"
 
 
+ObjectBase::~ObjectBase()
+{
+	delete parent;
+}
+
 void ObjectBase::SetAnimationColorPoint(AnimationColorStatus* type, Color255 _start, Color255 _goal)
 {
 	type->elapsedTime = 0.f;
@@ -158,6 +163,18 @@ void ObjectBase::CollideMouseAsBox()
 	beCalledNoMouse = false;
 }
 
+PosVec ObjectBase::GetLocalPos()
+{
+	if (parent != nullptr) {
+		PosVec result;
+		result.x = pos.x - parent->GetPos().x;
+		result.y = pos.y - parent->GetPos().y;
+		result.z = pos.z - parent->GetPos().z;
+		return result;
+	}
+	return pos;
+}
+
 void ObjectBase::ChangeColorWithAnimation(Color255* pColor, Color255* endColor, float duration)
 {
 	for (auto it = pColorAnimation.begin(); it != pColorAnimation.end(); it++) {
@@ -215,6 +232,18 @@ void ObjectBase::SetCanvasId(int id)
 	// 子要素にも適用
 	for (int i = 0; i < children.size(); i++) {
 		children[i]->SetCanvasId(id);
+	}
+}
+
+void ObjectBase::SetLocalPos(PosVec _localPos)
+{
+	if (parent != nullptr) {
+		pos.x = parent->GetPos().x + _localPos.x;
+		pos.y = parent->GetPos().y + _localPos.y;
+		pos.z = parent->GetPos().z + _localPos.z;
+	}
+	else {
+		pos = _localPos;
 	}
 }
 

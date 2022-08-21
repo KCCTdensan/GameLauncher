@@ -31,6 +31,8 @@ protected:
 		guid = uuidGenerator.GetGUID();
 	}
 
+	~ObjectBase();
+
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); }
 
 	void SetAnimationColorPoint(AnimationColorStatus* type, Color255 _start, Color255 _goal);
@@ -83,6 +85,7 @@ public:
 	virtual void Collide() = 0;
 
 	PosVec GetPos() { return pos; }
+	PosVec GetLocalPos();
 	PosVec GetSize() { return size; }
 
 	PosVec* GetVectorPointer(VectorType type) {
@@ -155,6 +158,7 @@ public:
 
 	// êe(é©ï™)ÇÃÇ›à⁄ìÆ(ê‚ëŒíl)
 	bool SetPos(PosVec _pos) { pos = _pos; return true; }
+	void SetLocalPos(PosVec _localPos);
 
 	bool SetSize(PosVec _size) { size = _size; return true; }
 

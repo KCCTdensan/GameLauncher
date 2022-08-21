@@ -153,7 +153,7 @@ void CanvasObject::Update()
 	SetDrawScreen(canvasId);
 	ClearDrawScreen();
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)innerAlphaAnimation.current);
-	DrawBoxAA(0.f, 0.f, scrollDistance.x, scrollDistance.y, innerAnimation.current.Get(), true, 0.f);
+	DrawBoxAA(pos.x, pos.y, scrollDistance.x, scrollDistance.y, innerAnimation.current.Get(), true, 0.f);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	SetDrawScreen(DX_SCREEN_BACK);
 

@@ -19,6 +19,10 @@ public:
 protected:
 	void RegFonts();
 
+	// ポップアップウインドウを作る 引数にキャンバスを放り込む(キャンバスを親設定しておくと登録しない限り描画されない)
+	void CreatePopUpWindow(ObjectBase* canvas);
+	void DeletePopUpWindow(ObjectBase* canvas);
+
 	std::vector<FontHandle> fonts;
 
 	ObjectLayer layer;

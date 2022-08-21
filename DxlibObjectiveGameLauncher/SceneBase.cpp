@@ -14,3 +14,13 @@ void SceneBase::RegFonts()
 			FontChest::CreateFontHandle(font.handleName, font.fontName, font.size, font.thick, font.type);
 	}
 }
+
+void SceneBase::CreatePopUpWindow(ObjectBase* canvas)
+{
+	layer.AddObject(canvas);
+}
+
+void SceneBase::DeletePopUpWindow(ObjectBase* canvas)
+{
+	layer.DeleteObject(canvas);
+}
