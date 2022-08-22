@@ -170,7 +170,7 @@ public:
 
 	// 子要素登録
 	virtual bool RegisterChildren(ObjectBase* _object);
-	// 自分のポインタを放り込むように(キャンバス用)(描画先決定用)
+	// 自分のポインタを放り込むように(キャンバス用)(描画先決定用) ※childrenの関数を呼ぶため予めRegisterChildrenが必要
 	virtual bool RegisterParent(ObjectBase* _object);
 
 	// ここに参照渡しされた画面情報などの構造体を入れた方がいいかも？
