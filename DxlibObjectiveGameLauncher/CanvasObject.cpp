@@ -75,7 +75,7 @@ void CanvasObject::Update()
 
 	float distance = scrollPercentage;
 
-	if (scrollButton[(int)DirectionType::LEFT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled) {
+	if (scrollButton[(int)DirectionType::LEFT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		distance *= -1.f;
 		if (scrollValue.x + distance < 0.001f) {
 			distance = -scrollValue.x;
@@ -94,9 +94,12 @@ void CanvasObject::Update()
 		}
 		scrollButton[(int)DirectionType::LEFT].SetMouseOff();
 		scrollBar[1].SetValue(scrollValue.x);
+
+		if (scrollValue.x <= 0.f) scrollButton[(int)DirectionType::LEFT].SetEnabled(false);
+		scrollButton[(int)DirectionType::RIGHT].SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::RIGHT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled) {
+	if (scrollButton[(int)DirectionType::RIGHT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		if (scrollValue.x + distance > 1.001f) {
 			distance = 1.f - scrollValue.x;
 		}
@@ -114,9 +117,12 @@ void CanvasObject::Update()
 		}
 		scrollButton[(int)DirectionType::RIGHT].SetMouseOff();
 		scrollBar[1].SetValue(scrollValue.x);
+
+		if (scrollValue.x >= 0.9999f) scrollButton[(int)DirectionType::RIGHT].SetEnabled(false);
+		scrollButton[(int)DirectionType::LEFT].SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::TOP].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled) {
+	if (scrollButton[(int)DirectionType::TOP].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		distance *= -1.f;
 		if (scrollValue.y + distance < 0.001f) {
 			distance = -scrollValue.y;
@@ -135,9 +141,12 @@ void CanvasObject::Update()
 		}
 		scrollButton[(int)DirectionType::TOP].SetMouseOff();
 		scrollBar[0].SetValue(scrollValue.y);
+
+		if (scrollValue.y <= 0.f) scrollButton[(int)DirectionType::TOP].SetEnabled(false);
+		scrollButton[(int)DirectionType::BOTTOM].SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::BOTTOM].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled) {
+	if (scrollButton[(int)DirectionType::BOTTOM].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		if (scrollValue.y + distance > 1.001f) {
 			distance = 1.f - scrollValue.y;
 		}
@@ -155,6 +164,9 @@ void CanvasObject::Update()
 		}
 		scrollButton[(int)DirectionType::BOTTOM].SetMouseOff();
 		scrollBar[0].SetValue(scrollValue.y);
+
+		if (scrollValue.y >= 0.9999f) scrollButton[(int)DirectionType::BOTTOM].SetEnabled(false);
+		scrollButton[(int)DirectionType::TOP].SetEnabled(true);
 	}
 
 	UpdatePointerAnimation();
@@ -237,6 +249,13 @@ bool CanvasObject::RegisterChildren(ObjectBase* _object)
 	return true;
 }
 
+bool CanvasObject::RegisterCanvas(ObjectBase* _object)
+{
+	ObjectBase::RegisterChildren(_object);
+	_object->RegisterParent(this);
+	return false;
+}
+
 void CanvasObject::CollideMouse()
 {
 	if (!enabled) return;
@@ -247,6 +266,7 @@ void CanvasObject::CollideMouse()
 		pos.y + size.y >= Input::MouseInput::GetMouse().y) {
 
 		mouseHit = true;
+		ObjectOverlapping::UpdateObjectForCanvas(guid);
 	}
 	else {
 		mouseHit = false;

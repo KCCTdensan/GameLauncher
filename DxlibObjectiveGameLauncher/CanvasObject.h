@@ -127,6 +127,7 @@ public:
 	}
 
 	bool RegisterChildren(ObjectBase* _object) override;
+	bool RegisterCanvas(ObjectBase* _object);
 
 private:
 

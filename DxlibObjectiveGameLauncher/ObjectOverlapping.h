@@ -13,6 +13,7 @@ public:
 	static bool UpdateObject(std::string _guid, int enforcemented = 1); // SetNoMouse() メソッドを持っている必要あり
 	static bool UpdateObjectForCanvas(std::string _guid, int enforcemented = 1); // SetNoMouse() メソッドを持っている必要あり
 	static std::string GetGUID() { return guid; }
+	static std::string GetGUIDForCanvas() { return guidCanvas; }
 
 private:
 	static int enforcementedNum;

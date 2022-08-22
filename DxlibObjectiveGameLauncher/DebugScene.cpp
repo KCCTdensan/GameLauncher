@@ -68,10 +68,10 @@ DebugScene::DebugScene() :
 
 	progress.SetInnerColor(Color255(200, 200, 200));
 
-	canvas.SetInnerColor(Color255(200,250,250, 0));
+	canvas.SetInnerColor(Color255(150,250,250, 255));
 	canvas.SetArea(PosVec(500, 10000), 50.f /10000.f);
 
-	//canvas2.SetInnerColor(Color255(200, 250, 250));
+	canvas2.SetInnerColor(Color255(200, 250, 250));
 	canvas2.SetArea(PosVec(500, 10000), 50.f / 10000.f);
 
 	layer.AddObject(&debugButton);
@@ -90,10 +90,10 @@ DebugScene::DebugScene() :
 	canvas.RegisterChildren(&input);
 	//canvas.RegisterChildren(&input2);
 	canvas.RegisterChildren(&pallet);
-	canvas.RegisterChildren(&canvas2);
+	//canvas.RegisterChildren(&canvas2);
 
-	canvases.AddObject(&canvas2);
 	canvases.AddObject(&canvas);
+	canvases.AddObject(&canvas2);
 
 	// フォント追加
 	fonts.push_back(FontHandle("smart", "03スマートフォントUI", 100));
