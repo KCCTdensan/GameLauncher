@@ -28,7 +28,7 @@ void CanvasObject::Update()
 	for (auto& item : scrollBar) {
 		item.Update();
 	}
-	clsDx();
+
 	if (scrollValue.y != scrollBar[0].GetValue() && enabled) {
 		float distance = scrollBar[0].GetValue() - scrollValue.y;
 		if (scrollValue.y + distance > 1.001f) {
@@ -66,8 +66,6 @@ void CanvasObject::Update()
 		}
 		scrollValue.x = scrollBar[1].GetValue();
 	}
-
-	printfDx("%f\n%f\n", scrollValue.x, scrollValue.y);
 
 	for (auto& item : scrollButton) {
 		item.Update();
@@ -181,7 +179,7 @@ void CanvasObject::Update()
 	SetDrawScreen(canvasId);
 	ClearDrawScreen();
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)innerAlphaAnimation.current);
-	DrawBoxAA(pos.x, pos.y, scrollDistance.x, scrollDistance.y, innerAnimation.current.Get(), true, 0.f);
+	DrawBoxAA(pos.x, pos.y, pos.x + scrollDistance.x, pos.y + scrollDistance.y, innerAnimation.current.Get(), true, 0.f);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	SetDrawScreen(DX_SCREEN_BACK);
 
@@ -251,8 +249,8 @@ bool CanvasObject::RegisterChildren(ObjectBase* _object)
 
 bool CanvasObject::RegisterCanvas(ObjectBase* _object)
 {
-	ObjectBase::RegisterChildren(_object);
 	_object->RegisterParent(this);
+	ObjectBase::RegisterChildren(_object);
 	return false;
 }
 

@@ -169,9 +169,9 @@ public:
 	virtual bool Move(PosVec _delta, bool _involvedParent = true);
 
 	// 子要素登録
-	virtual bool RegisterChildren(ObjectBase* _object) { children.push_back(_object); return true; }
-	// 自分のポインタを放り込むように(キャンバス用)
-	virtual bool RegisterParent(ObjectBase* _object) { parent = _object; return true; }
+	virtual bool RegisterChildren(ObjectBase* _object);
+	// 自分のポインタを放り込むように(キャンバス用)(描画先決定用)
+	virtual bool RegisterParent(ObjectBase* _object);
 
 	// ここに参照渡しされた画面情報などの構造体を入れた方がいいかも？
 };

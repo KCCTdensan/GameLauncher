@@ -69,7 +69,7 @@ DebugScene::DebugScene() :
 	progress.SetInnerColor(Color255(200, 200, 200));
 
 	canvas.SetInnerColor(Color255(150,250,250, 255));
-	canvas.SetArea(PosVec(500, 10000), 50.f /10000.f);
+	canvas.SetArea(PosVec(200, 10000), 50.f /10000.f);
 
 	canvas2.SetInnerColor(Color255(200, 250, 250));
 	canvas2.SetArea(PosVec(500, 10000), 50.f / 10000.f);

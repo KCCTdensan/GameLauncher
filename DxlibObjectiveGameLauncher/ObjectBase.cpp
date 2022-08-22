@@ -258,3 +258,18 @@ bool ObjectBase::Move(PosVec _delta, bool _involvedParent)
 	}
 	return true;
 }
+
+bool ObjectBase::RegisterChildren(ObjectBase* _object)
+{
+	children.push_back(_object);
+	return true;
+}
+
+bool ObjectBase::RegisterParent(ObjectBase* _object)
+{
+	parent = _object;
+	for (int i = 0; i < children.size(); i++) {
+		children[i]->RegisterParent(_object);
+	}
+	return true;
+}
