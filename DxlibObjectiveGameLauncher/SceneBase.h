@@ -4,6 +4,7 @@
 #include "FontChest.h"
 #include "ObjectLayer.h"
 #include "FontHandleData.h"
+#include "PopupWindow.h"
 
 class SceneBase
 {
@@ -27,5 +28,9 @@ protected:
 
 	ObjectLayer layer;
 	ObjectLayer canvases;
+
+	// ポップアップセットを作る(構造体で)
+
+	PopupWindow popup;
 };
 

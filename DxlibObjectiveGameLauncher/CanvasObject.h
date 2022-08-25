@@ -46,6 +46,12 @@ public:
 		ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false), outerColor(0), outlineWidth(0), scrollVertical(true), scrollAutoHiding(false),
 		enabledScrollX(false), enabledScrollY(false), scrollPercentage(20.f), scrollBarWidth(20.f), canvasDrawingId(-1), scrollButtonSize(20.f) {}
 
+
+	~CanvasObject() 
+	{
+		DeleteGraph(canvasId);
+	}
+
 	// çXêVï`âÊ
 	void Collide() override;
 	void Update() override;

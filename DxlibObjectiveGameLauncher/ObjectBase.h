@@ -31,6 +31,21 @@ protected:
 		guid = uuidGenerator.GetGUID();
 	}
 
+	ObjectBase()
+		:pos(PosVec()), size(PosVec()),
+		enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
+		children{}, beCalledNoMouse(false), guid(), canvasOwner(false), canvasId(-1),
+		innerAnimation(AnimationColorStatus()),
+		outerAnimation(AnimationColorStatus()),
+		innerAlphaAnimation(AnimationStatus()),
+		outerAlphaAnimation(AnimationStatus()),
+		parent(nullptr), enforcedCollision(1),
+		expandedNum(false) 
+	{
+		UUIDGenerator uuidGenerator;
+		guid = uuidGenerator.GetGUID();
+	}
+
 	~ObjectBase();
 
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); }

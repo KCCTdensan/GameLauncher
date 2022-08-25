@@ -193,19 +193,7 @@ void CanvasObject::Draw()
 	//	int resultInnerColor = innerAnimation.current.Get();
 	//	DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth, pos.y + size.y - outlineWidth, resultInnerColor, true, 0);
 	//}
-	//if (enabledOutline) {
-	//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)outerAlphaAnimation.current);
-	//	int resultOuterColor = outerAnimation.current.Get(); // debug
-	//	//DrawBoxAA(pos.x, pos.y, pos.x + size.x, pos.y + size.y, resultOuterColor, true, 0);
-	//	float offset = outlineWidth / 2;
-	//	DrawLineAA(pos.x + offset, pos.y + offset, pos.x + size.x - offset + 1, pos.y + offset, resultOuterColor, outlineWidth);
-	//	DrawLineAA(pos.x + size.x - offset, pos.y + offset, pos.x + size.x - offset, pos.y + size.y - offset + 1, resultOuterColor, outlineWidth);
-	//	DrawLineAA(pos.x + size.x - offset, pos.y + size.y - offset, pos.x + offset - 1, pos.y + size.y - offset, resultOuterColor, outlineWidth);
-	//	DrawLineAA(pos.x + offset, pos.y + size.y - offset, pos.x + offset, pos.y + offset - 1, resultOuterColor, outlineWidth);
-	//}
-	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-	//SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
-
+	
 	// canvasDrawingId = DerivationGraphF(maskUpperLeft.x, maskUpperLeft.y, size.x, size.y, canvasId);
 	if (parent != nullptr) {
 		if (parent->GetCanvasOwner())
@@ -226,6 +214,19 @@ void CanvasObject::Draw()
 	for (auto& item : scrollBar) {
 		item.Draw();
 	}
+
+	if (enabledOutline) {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)outerAlphaAnimation.current);
+		int resultOuterColor = outerAnimation.current.Get(); // debug
+		//DrawBoxAA(pos.x, pos.y, pos.x + size.x, pos.y + size.y, resultOuterColor, true, 0);
+		float offset = outlineWidth / 2;
+		DrawLineAA(pos.x + offset, pos.y + offset, pos.x + size.x - offset + 1, pos.y + offset, resultOuterColor, outlineWidth);
+		DrawLineAA(pos.x + size.x - offset, pos.y + offset, pos.x + size.x - offset, pos.y + size.y - offset + 1, resultOuterColor, outlineWidth);
+		DrawLineAA(pos.x + size.x - offset, pos.y + size.y - offset, pos.x + offset - 1, pos.y + size.y - offset, resultOuterColor, outlineWidth);
+		DrawLineAA(pos.x + offset, pos.y + size.y - offset, pos.x + offset, pos.y + offset - 1, resultOuterColor, outlineWidth);
+	}
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 
 	SetDrawScreen(DX_SCREEN_BACK);
 

@@ -1,10 +1,6 @@
 #include "Header.h"
 
-std::vector<SceneSet> Header::sceneSets = {
-	SceneSet("debug", new DebugScene()),
-	SceneSet("home", new HomeScene()),
-	SceneSet("debug", new DebugScene())
-};
+std::vector<SceneSet> Header::sceneSets = {};
 
 std::vector<ButtonObject> Header::navLinks = {};
 std::vector<ButtonObject> Header::systemButtons = {};
@@ -30,6 +26,12 @@ LineObject Header::headerLine = LineObject(
 void Header::Initialize()
 {
 	if (beInitialized) return;
+
+	sceneSets = {
+	SceneSet("debug", new DebugScene()),
+	SceneSet("home", new HomeScene()),
+	SceneSet("home", new HomeScene())
+	};
 
 	banner.SetInnerColor(Color255("#dafcf5"));
 

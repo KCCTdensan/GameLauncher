@@ -29,5 +29,9 @@ private:
     InputObject input2;
     RectangleObject pallet;
     ProgressObject progress;
+
+    CanvasObject can;
+
+    ButtonObject cofb;
 };
 
