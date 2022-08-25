@@ -3,14 +3,37 @@
 void CanvasObject::Collide()
 {
 	CollideMouse();
+	if (scrollDistance.x > size.x)
+		scrollBar[1].Collide();
+	else if (!scrollAutoHiding)
+		scrollBar[1].Collide();
 
-	for (auto& item : scrollBar) {
-		item.Collide();
+	if (scrollDistance.y > size.y)
+		scrollBar[0].Collide();
+	else if (!scrollAutoHiding)
+		scrollBar[0].Collide();
+
+	if (scrollDistance.x > size.x) {
+		scrollButton[(int)DirectionType::LEFT].Collide();
+		scrollButton[(int)DirectionType::RIGHT].Collide();
+	}
+	else if (!scrollAutoHiding) {
+		scrollButton[(int)DirectionType::LEFT].Collide();
+		scrollButton[(int)DirectionType::RIGHT].Collide();
 	}
 
-	for (auto& item : scrollButton) {
-		item.Collide();
+	if (scrollDistance.y > size.y) {
+		scrollButton[(int)DirectionType::TOP].Collide();
+		scrollButton[(int)DirectionType::BOTTOM].Collide();
 	}
+	else if (!scrollAutoHiding) {
+		scrollButton[(int)DirectionType::TOP].Collide();
+		scrollButton[(int)DirectionType::BOTTOM].Collide();
+	}
+
+	/*for (auto& item : scrollButton) {
+		item.Collide();
+	}*/
 }
 
 void CanvasObject::Update()
@@ -187,14 +210,6 @@ void CanvasObject::Update()
 
 void CanvasObject::Draw()
 {
-	//SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
-	//if (enabledFill) {
-	//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)innerAlphaAnimation.current);
-	//	int resultInnerColor = innerAnimation.current.Get();
-	//	DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth, pos.y + size.y - outlineWidth, resultInnerColor, true, 0);
-	//}
-	
-	// canvasDrawingId = DerivationGraphF(maskUpperLeft.x, maskUpperLeft.y, size.x, size.y, canvasId);
 	if (parent != nullptr) {
 		if (parent->GetCanvasOwner())
 			SetDrawScreen(parent->GetCanvasId());
@@ -207,18 +222,37 @@ void CanvasObject::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	DrawRectGraphF(pos.x, pos.y, (int)pos.x, (int)pos.y, (int)size.x, (int)size.y, canvasId, true, false);
 
-	for (auto& item : scrollButton) {
-		item.Draw();
+	if (scrollDistance.x > size.x)
+		scrollBar[1].Draw();
+	else if (!scrollAutoHiding)
+		scrollBar[1].Draw();
+
+	if (scrollDistance.y > size.y)
+		scrollBar[0].Draw();
+	else if (!scrollAutoHiding)
+		scrollBar[0].Draw();
+
+	if (scrollDistance.x > size.x) {
+		scrollButton[(int)DirectionType::LEFT].Draw();
+		scrollButton[(int)DirectionType::RIGHT].Draw();
+	}
+	else if (!scrollAutoHiding) {
+		scrollButton[(int)DirectionType::LEFT].Draw();
+		scrollButton[(int)DirectionType::RIGHT].Draw();
 	}
 
-	for (auto& item : scrollBar) {
-		item.Draw();
+	if (scrollDistance.y > size.y) {
+		scrollButton[(int)DirectionType::TOP].Draw();
+		scrollButton[(int)DirectionType::BOTTOM].Draw();
+	}
+	else if (!scrollAutoHiding) {
+		scrollButton[(int)DirectionType::TOP].Draw();
+		scrollButton[(int)DirectionType::BOTTOM].Draw();
 	}
 
 	if (enabledOutline) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)outerAlphaAnimation.current);
 		int resultOuterColor = outerAnimation.current.Get(); // debug
-		//DrawBoxAA(pos.x, pos.y, pos.x + size.x, pos.y + size.y, resultOuterColor, true, 0);
 		float offset = outlineWidth / 2;
 		DrawLineAA(pos.x + offset, pos.y + offset, pos.x + size.x - offset + 1, pos.y + offset, resultOuterColor, outlineWidth);
 		DrawLineAA(pos.x + size.x - offset, pos.y + offset, pos.x + size.x - offset, pos.y + size.y - offset + 1, resultOuterColor, outlineWidth);
@@ -229,14 +263,6 @@ void CanvasObject::Draw()
 	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 
 	SetDrawScreen(DX_SCREEN_BACK);
-
-	/*DrawModiGraphF(
-		0.f, 0.f,
-		0.f + size.x, 0.f,
-		0.f + size.x, 0.f + size.y,
-		0.f, 0.f + size.y,
-		canvasDrawingId, true);
-	DeleteGraph(canvasDrawingId);*/
 }
 
 bool CanvasObject::RegisterChildren(ObjectBase* _object)
