@@ -81,8 +81,6 @@ DebugScene::DebugScene() :
 
 	can.SetArea(PosVec(700, 700));
 
-	popup.Setup(nullptr, nullptr); // baseÇÃç\ë¢ëÃÇ©ÇÁï˙ÇËçûÇﬁÇÊÇ§Ç…Ç∑ÇÈ
-
 	layer.AddObject(&debugButton);
 	layer.AddObject(&debugButton2);
 	layer.AddObject(&debugRect);
@@ -130,9 +128,11 @@ void DebugScene::Collide()
 {
 	canvases.Collide();
 	can.Collide();
-	popup.CollideCanvas();
+
+	//pop.Setup(&music);
+
 	layer.Collide();
-	popup.CollideLayer();
+
 }
 
 void DebugScene::Update()
@@ -141,10 +141,11 @@ void DebugScene::Update()
 	RegFonts();
 
 	layer.Update();
-	popup.UpdateLayer();
+
+	//pop.Setup(&music);
+
 	canvases.Update();
 	can.Update();
-	popup.UpdateCanvas();
 
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
@@ -196,8 +197,9 @@ void DebugScene::Update()
 void DebugScene::Draw()
 {
 	layer.Draw();
-	popup.DrawLayer();
+
+	//pop.Setup(&music);
+
 	canvases.Draw();
 	can.Draw();
-	popup.DrawCanvas();
 }

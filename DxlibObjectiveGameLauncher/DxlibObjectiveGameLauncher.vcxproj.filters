@@ -110,7 +110,6 @@
     <ClCompile Include="ComponentBase.cpp">
       <Filter>Component\Base</Filter>
     </ClCompile>
-    <ClCompile Include="PopupWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -266,7 +265,6 @@
     <ClInclude Include="ComponentBase.h">
       <Filter>Component\Base</Filter>
     </ClInclude>
-    <ClInclude Include="PopupWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">

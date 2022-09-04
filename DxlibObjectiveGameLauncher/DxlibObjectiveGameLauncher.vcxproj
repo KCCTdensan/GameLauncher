@@ -39,7 +39,6 @@
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
-    <ClCompile Include="PopupWindow.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
     <ClCompile Include="RectangleObject.cpp" />
     <ClCompile Include="SceneBase.cpp" />
@@ -88,7 +87,6 @@
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectOverlapping.h" />
     <ClInclude Include="OriginalObjects.h" />
-    <ClInclude Include="PopupWindow.h" />
     <ClInclude Include="PositionVector.h" />
     <ClInclude Include="PressFrameEnum.h" />
     <ClInclude Include="ProgressObject.h" />

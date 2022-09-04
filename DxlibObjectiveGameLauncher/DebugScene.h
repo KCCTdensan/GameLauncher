@@ -33,5 +33,6 @@ private:
     CanvasObject can;
 
     ButtonObject cofb;
+
 };
 
