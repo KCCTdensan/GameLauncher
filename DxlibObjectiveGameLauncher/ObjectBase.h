@@ -24,11 +24,29 @@ protected:
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
 		outerAlphaAnimation(AnimationStatus()),
-		parent(nullptr), enforcedCollision(false)
+		parent(nullptr), enforcedCollision(1),
+		expandedNum(false)
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
 	}
+
+	ObjectBase()
+		:pos(PosVec()), size(PosVec()),
+		enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
+		children{}, beCalledNoMouse(false), guid(), canvasOwner(false), canvasId(-1),
+		innerAnimation(AnimationColorStatus()),
+		outerAnimation(AnimationColorStatus()),
+		innerAlphaAnimation(AnimationStatus()),
+		outerAlphaAnimation(AnimationStatus()),
+		parent(nullptr), enforcedCollision(1),
+		expandedNum(false) 
+	{
+		UUIDGenerator uuidGenerator;
+		guid = uuidGenerator.GetGUID();
+	}
+
+	~ObjectBase();
 
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); }
 
@@ -52,6 +70,8 @@ protected:
 	bool mouseClicked;
 	bool beCalledNoMouse;
 
+	bool expandedNum;
+
 	std::string guid;
 
 	AnimationColorStatus innerAnimation;
@@ -64,7 +84,7 @@ protected:
 	std::vector<ObjectBase*> children;
 	ObjectBase* parent;
 
-	bool enforcedCollision;
+	int enforcedCollision;
 
 private:
 
@@ -80,6 +100,7 @@ public:
 	virtual void Collide() = 0;
 
 	PosVec GetPos() { return pos; }
+	PosVec GetLocalPos();
 	PosVec GetSize() { return size; }
 
 	PosVec* GetVectorPointer(VectorType type) {
@@ -93,6 +114,9 @@ public:
 			return nullptr;
 		}
 	}
+
+	bool GetCanvasOwner() { return canvasOwner; }
+	int GetCanvasId() { return canvasId; }
 
 	bool SetEnabled(bool _enabled) { enabled = _enabled; return true; }
 	bool SetEnabled() { return enabled; }
@@ -114,7 +138,7 @@ public:
 
 	void SetCanvasId(int id);
 
-	void SetEnforcedCollision(bool _enforcedCollision) { enforcedCollision = _enforcedCollision; }
+	void SetEnforcedCollision(int _enforcedCollision = 1) { enforcedCollision = _enforcedCollision; }
 
 	// アニメーション設定
 	bool SetInnerAnimation(float _duration) {
@@ -152,6 +176,7 @@ public:
 
 	// 親(自分)のみ移動(絶対値)
 	bool SetPos(PosVec _pos) { pos = _pos; return true; }
+	void SetLocalPos(PosVec _localPos);
 
 	bool SetSize(PosVec _size) { size = _size; return true; }
 
@@ -159,9 +184,9 @@ public:
 	virtual bool Move(PosVec _delta, bool _involvedParent = true);
 
 	// 子要素登録
-	virtual bool RegisterChildren(ObjectBase* _object) { children.push_back(_object); return true; }
-	// 自分のポインタを放り込むように(キャンバス用)
-	virtual bool RegisterParent(ObjectBase* _object) { parent = _object; return true; }
+	virtual bool RegisterChildren(ObjectBase* _object);
+	// 自分のポインタを放り込むように(キャンバス用)(描画先決定用) ※childrenの関数を呼ぶため予めRegisterChildrenが必要
+	virtual bool RegisterParent(ObjectBase* _object);
 
 	// ここに参照渡しされた画面情報などの構造体を入れた方がいいかも？
 };

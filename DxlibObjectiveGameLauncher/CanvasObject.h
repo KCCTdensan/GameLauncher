@@ -25,7 +25,7 @@ public:
 			ObjectBase::RegisterChildren(&item);
 			item.SetInnerColor(Color255(255, 200), Color255(100, 200), Color255(190, 200), Color255(200, 200));
 			item.SetOutlineColor(Color255(100, 200), .5f);
-			item.SetEnforcedCollision(true);
+			item.SetEnforcedCollision(9);
 		}
 		// èc
 		scrollBar[0] = ProgressObject(PosVec(pos.x + size.x - scrollBarWidth, pos.y + scrollBarWidth), PosVec(scrollBarWidth, size.y - scrollBarWidth * 2.f), true, 0.f);
@@ -36,7 +36,7 @@ public:
 			item.SetInnerColor(Color255(255, 30), Color255(230, 200), Color255(230, 200), Color255(230, 200));
 			item.GetSlider()->SetInnerColor(Color255(200, 200));
 			item.SetInnerAnimation(.1f);
-			item.SetEnforcedCollision(true);
+			item.SetEnforcedCollision(10);
 			// ó·äOëŒçÙ
 			item.SetupSlider();
 		}
@@ -45,6 +45,12 @@ public:
 	CanvasObject() :
 		ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false), outerColor(0), outlineWidth(0), scrollVertical(true), scrollAutoHiding(false),
 		enabledScrollX(false), enabledScrollY(false), scrollPercentage(20.f), scrollBarWidth(20.f), canvasDrawingId(-1), scrollButtonSize(20.f) {}
+
+
+	~CanvasObject() 
+	{
+		DeleteGraph(canvasId);
+	}
 
 	// çXêVï`âÊ
 	void Collide() override;
@@ -100,6 +106,10 @@ public:
 		}
 		else if (scrollDistance.x <= size.x) {
 			enabledScrollX = false;
+			scrollDistance.x = size.x;
+			scrollBar[1].SetEnabled(false);
+			scrollButton[(int)DirectionType::LEFT].SetEnabled(false);
+			scrollButton[(int)DirectionType::RIGHT].SetEnabled(false);
 		}
 		scrollValue.x = 0.f;
 		maskUpperLeft.x = (scrollDistance.x - size.x) * scrollValue.x;
@@ -108,6 +118,10 @@ public:
 		}
 		else if (scrollDistance.y <= size.y) {
 			enabledScrollY = false;
+			scrollDistance.y = size.y;
+			scrollBar[0].SetEnabled(false);
+			scrollButton[(int)DirectionType::TOP].SetEnabled(false);
+			scrollButton[(int)DirectionType::BOTTOM].SetEnabled(false);
 		}
 		scrollValue.y = 0.f;
 		maskUpperLeft.y = (scrollDistance.y - size.y) * scrollValue.y;
@@ -119,6 +133,7 @@ public:
 	}
 
 	bool RegisterChildren(ObjectBase* _object) override;
+	bool RegisterCanvas(ObjectBase* _object);
 
 private:
 

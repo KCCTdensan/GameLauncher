@@ -1,6 +1,11 @@
 #include "ObjectBase.h"
 
 
+ObjectBase::~ObjectBase()
+{
+	delete parent;
+}
+
 void ObjectBase::SetAnimationColorPoint(AnimationColorStatus* type, Color255 _start, Color255 _goal)
 {
 	type->elapsedTime = 0.f;
@@ -108,23 +113,36 @@ void ObjectBase::CollideMouseAsBox()
 	bool pFlag = true;
 	if (parent != nullptr) pFlag = parent->GetMouseHit();
 
-	if (pos.x <= Input::MouseInput::GetMouse().x &&
-		pos.x + size.x >= Input::MouseInput::GetMouse().x &&
-		pos.y <= Input::MouseInput::GetMouse().y &&
-		pos.y + size.y >= Input::MouseInput::GetMouse().y && pFlag) {
+	PosVec offset = PosVec();
+	bool clickExpanded = Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST ? true : false;
+	if (clickExpanded && expandedNum && mouseClicked) {
+		offset.x = ApplicationPreference::GetBackgroundSize().x / 6.f;
+		offset.y = ApplicationPreference::GetBackgroundSize().y / 6.f;
+	}
+
+	if (pos.x - offset.x <= Input::MouseInput::GetMouse().x &&
+		pos.x + size.x + offset.x >= Input::MouseInput::GetMouse().x &&
+		pos.y - offset.y <= Input::MouseInput::GetMouse().y &&
+		pos.y + size.y + offset.y >= Input::MouseInput::GetMouse().y && pFlag) {
 
 		mouseHit = true;
 
 		// オブジェクトの重複判定登録処理
+
 		ObjectOverlapping::UpdateObject(guid, enforcedCollision);
 
 		if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) >= PressFrame::FIRST) {
-			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST /*&& !beCalledNoMouse*/)
+			if (Input::MouseInput::GetClick(MOUSE_INPUT_LEFT) == PressFrame::FIRST)
 				mouseClicked = true;
 		}
 		else {
-			mouseClicked = false;
-			goSelecting = true;
+			if (pos.x <= Input::MouseInput::GetMouse().x &&
+				pos.x + size.x >= Input::MouseInput::GetMouse().x &&
+				pos.y <= Input::MouseInput::GetMouse().y &&
+				pos.y + size.y >= Input::MouseInput::GetMouse().y && pFlag) {
+				mouseClicked = false;
+				goSelecting = true;
+			}
 		}
 	}
 	else {
@@ -143,6 +161,18 @@ void ObjectBase::CollideMouseAsBox()
 	}
 
 	beCalledNoMouse = false;
+}
+
+PosVec ObjectBase::GetLocalPos()
+{
+	if (parent != nullptr) {
+		PosVec result;
+		result.x = pos.x - parent->GetPos().x;
+		result.y = pos.y - parent->GetPos().y;
+		result.z = pos.z - parent->GetPos().z;
+		return result;
+	}
+	return pos;
 }
 
 void ObjectBase::ChangeColorWithAnimation(Color255* pColor, Color255* endColor, float duration)
@@ -205,6 +235,18 @@ void ObjectBase::SetCanvasId(int id)
 	}
 }
 
+void ObjectBase::SetLocalPos(PosVec _localPos)
+{
+	if (parent != nullptr) {
+		pos.x = parent->GetPos().x + _localPos.x;
+		pos.y = parent->GetPos().y + _localPos.y;
+		pos.z = parent->GetPos().z + _localPos.z;
+	}
+	else {
+		pos = _localPos;
+	}
+}
+
 bool ObjectBase::Move(PosVec _delta, bool _involvedParent)
 {
 	if (_involvedParent)
@@ -213,6 +255,21 @@ bool ObjectBase::Move(PosVec _delta, bool _involvedParent)
 	// 子要素にも適用
 	for (int i = 0; i < children.size(); i++) {
 		children[i]->Move(_delta);
+	}
+	return true;
+}
+
+bool ObjectBase::RegisterChildren(ObjectBase* _object)
+{
+	children.push_back(_object);
+	return true;
+}
+
+bool ObjectBase::RegisterParent(ObjectBase* _object)
+{
+	parent = _object;
+	for (int i = 0; i < children.size(); i++) {
+		children[i]->RegisterParent(_object);
 	}
 	return true;
 }

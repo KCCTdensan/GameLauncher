@@ -36,6 +36,7 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 	if (scenes.count(sceneName) >= 1) {
 		current = SceneSet(sceneName, scenes[sceneName]);
 		changed = true;
+		//delete altScene;
 	}
 	else {
 		if (addSceneToMap) {
@@ -48,6 +49,7 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 		}
 	}
 	if (changed) {
+		//Collide();
 		Update();
 		std::rotate(sceneHistory.rbegin(), sceneHistory.rbegin() + 1, sceneHistory.rend());
 		sceneHistory[0] = SceneSet(current.sceneName, current.scene);

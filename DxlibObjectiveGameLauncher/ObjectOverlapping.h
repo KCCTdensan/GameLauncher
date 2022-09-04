@@ -5,16 +5,18 @@ class ObjectOverlapping
 {
 public:
 	static bool Reset() {
-		enforcemented = false;
-		guidPrevious = guid;
+		enforcementedNum = 0;
 		guid = "";
+		guidCanvas = "";
 		return true;
 	}
-	static bool UpdateObject(std::string _guid, bool enforcement = false); // SetNoMouse() メソッドを持っている必要あり
+	static bool UpdateObject(std::string _guid, int enforcemented = 1); // SetNoMouse() メソッドを持っている必要あり
+	static bool UpdateObjectForCanvas(std::string _guid, int enforcemented = 1); // SetNoMouse() メソッドを持っている必要あり
 	static std::string GetGUID() { return guid; }
+	static std::string GetGUIDForCanvas() { return guidCanvas; }
 
 private:
-	static bool enforcemented;
+	static int enforcementedNum;
 	static std::string guid;
-	static std::string guidPrevious;
+	static std::string guidCanvas;
 };

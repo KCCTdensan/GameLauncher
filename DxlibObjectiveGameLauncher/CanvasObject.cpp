@@ -3,14 +3,37 @@
 void CanvasObject::Collide()
 {
 	CollideMouse();
+	if (scrollDistance.x > size.x)
+		scrollBar[1].Collide();
+	else if (!scrollAutoHiding)
+		scrollBar[1].Collide();
 
-	for (auto& item : scrollButton) {
-		item.Collide();
+	if (scrollDistance.y > size.y)
+		scrollBar[0].Collide();
+	else if (!scrollAutoHiding)
+		scrollBar[0].Collide();
+
+	if (scrollDistance.x > size.x) {
+		scrollButton[(int)DirectionType::LEFT].Collide();
+		scrollButton[(int)DirectionType::RIGHT].Collide();
+	}
+	else if (!scrollAutoHiding) {
+		scrollButton[(int)DirectionType::LEFT].Collide();
+		scrollButton[(int)DirectionType::RIGHT].Collide();
 	}
 
-	for (auto& item : scrollBar) {
-		item.Collide();
+	if (scrollDistance.y > size.y) {
+		scrollButton[(int)DirectionType::TOP].Collide();
+		scrollButton[(int)DirectionType::BOTTOM].Collide();
 	}
+	else if (!scrollAutoHiding) {
+		scrollButton[(int)DirectionType::TOP].Collide();
+		scrollButton[(int)DirectionType::BOTTOM].Collide();
+	}
+
+	/*for (auto& item : scrollButton) {
+		item.Collide();
+	}*/
 }
 
 void CanvasObject::Update()
@@ -24,12 +47,12 @@ void CanvasObject::Update()
 	UpdateAnimationColor(&outerAnimation);
 	UpdateAnimation(&innerAlphaAnimation);
 	UpdateAnimation(&outerAlphaAnimation);
-	
+
 	for (auto& item : scrollBar) {
 		item.Update();
 	}
-	clsDx();
-	if (scrollValue.y != scrollBar[0].GetValue()) {
+
+	if (scrollValue.y != scrollBar[0].GetValue() && enabled) {
 		float distance = scrollBar[0].GetValue() - scrollValue.y;
 		if (scrollValue.y + distance > 1.001f) {
 			distance = 1.f - scrollValue.y;
@@ -48,7 +71,7 @@ void CanvasObject::Update()
 		scrollValue.y = scrollBar[0].GetValue();
 	}
 
-	if (scrollValue.x != scrollBar[1].GetValue()) {
+	if (scrollValue.x != scrollBar[1].GetValue() && enabled) {
 		float distance = scrollBar[1].GetValue() - scrollValue.x;
 		if (scrollValue.x + distance > 1.001f) {
 			distance = 1.f - scrollValue.x;
@@ -67,21 +90,23 @@ void CanvasObject::Update()
 		scrollValue.x = scrollBar[1].GetValue();
 	}
 
-	printfDx("%f\n%f\n", scrollValue.x, scrollValue.y);
-
 	for (auto& item : scrollButton) {
 		item.Update();
 	}
 
 	float distance = scrollPercentage;
 
-	if (scrollButton[(int)DirectionType::LEFT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() > 0.f)) {
+	if (scrollButton[(int)DirectionType::LEFT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		distance *= -1.f;
 		if (scrollValue.x + distance < 0.001f) {
 			distance = -scrollValue.x;
 		}
 		scrollValue.x += distance;
 		Move(PosVec(-distance * (scrollDistance.x - size.x), 0.f), false);
+		if (parent != nullptr) {
+			if (parent->GetCanvasOwner())
+				parent->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
+		}
 		for (auto& item : scrollButton) {
 			item.Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
@@ -90,14 +115,21 @@ void CanvasObject::Update()
 		}
 		scrollButton[(int)DirectionType::LEFT].SetMouseOff();
 		scrollBar[1].SetValue(scrollValue.x);
+
+		if (scrollValue.x <= 0.f) scrollButton[(int)DirectionType::LEFT].SetEnabled(false);
+		scrollButton[(int)DirectionType::RIGHT].SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::RIGHT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() < 0.f)) {
+	if (scrollButton[(int)DirectionType::RIGHT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		if (scrollValue.x + distance > 1.001f) {
 			distance = 1.f - scrollValue.x;
 		}
 		scrollValue.x += distance;
 		Move(PosVec(-distance * (scrollDistance.x - size.x), 0.f), false);
+		if (parent != nullptr) {
+			if (parent->GetCanvasOwner())
+				parent->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
+		}
 		for (auto& item : scrollButton) {
 			item.Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
@@ -106,15 +138,22 @@ void CanvasObject::Update()
 		}
 		scrollButton[(int)DirectionType::RIGHT].SetMouseOff();
 		scrollBar[1].SetValue(scrollValue.x);
+
+		if (scrollValue.x >= 0.9999f) scrollButton[(int)DirectionType::RIGHT].SetEnabled(false);
+		scrollButton[(int)DirectionType::LEFT].SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::TOP].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() > 0.f)) {
+	if (scrollButton[(int)DirectionType::TOP].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		distance *= -1.f;
 		if (scrollValue.y + distance < 0.001f) {
 			distance = -scrollValue.y;
 		}
 		scrollValue.y += distance;
 		Move(PosVec(0.f, -distance * (scrollDistance.y - size.y)), false);
+		if (parent != nullptr) {
+			if (parent->GetCanvasOwner())
+				parent->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
+		}
 		for (auto& item : scrollButton) {
 			item.Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
@@ -123,14 +162,21 @@ void CanvasObject::Update()
 		}
 		scrollButton[(int)DirectionType::TOP].SetMouseOff();
 		scrollBar[0].SetValue(scrollValue.y);
+
+		if (scrollValue.y <= 0.f) scrollButton[(int)DirectionType::TOP].SetEnabled(false);
+		scrollButton[(int)DirectionType::BOTTOM].SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::BOTTOM].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() < 0.f)) {
+	if (scrollButton[(int)DirectionType::BOTTOM].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		if (scrollValue.y + distance > 1.001f) {
 			distance = 1.f - scrollValue.y;
 		}
 		scrollValue.y += distance;
 		Move(PosVec(0.f, -distance * (scrollDistance.y - size.y)), false);
+		if (parent != nullptr) {
+			if (parent->GetCanvasOwner())
+				parent->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
+		}
 		for (auto& item : scrollButton) {
 			item.Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
@@ -139,6 +185,9 @@ void CanvasObject::Update()
 		}
 		scrollButton[(int)DirectionType::BOTTOM].SetMouseOff();
 		scrollBar[0].SetValue(scrollValue.y);
+
+		if (scrollValue.y >= 0.9999f) scrollButton[(int)DirectionType::BOTTOM].SetEnabled(false);
+		scrollButton[(int)DirectionType::TOP].SetEnabled(true);
 	}
 
 	UpdatePointerAnimation();
@@ -153,7 +202,7 @@ void CanvasObject::Update()
 	SetDrawScreen(canvasId);
 	ClearDrawScreen();
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)innerAlphaAnimation.current);
-	DrawBoxAA(0.f, 0.f, scrollDistance.x, scrollDistance.y, innerAnimation.current.Get(), true, 0.f);
+	DrawBoxAA(pos.x, pos.y, pos.x + scrollDistance.x, pos.y + scrollDistance.y, innerAnimation.current.Get(), true, 0.f);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	SetDrawScreen(DX_SCREEN_BACK);
 
@@ -161,46 +210,59 @@ void CanvasObject::Update()
 
 void CanvasObject::Draw()
 {
-	if (!enabled) return;
-	//SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
-	//if (enabledFill) {
-	//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)innerAlphaAnimation.current);
-	//	int resultInnerColor = innerAnimation.current.Get();
-	//	DrawBoxAA(pos.x + outlineWidth, pos.y + outlineWidth, pos.x + size.x - outlineWidth, pos.y + size.y - outlineWidth, resultInnerColor, true, 0);
-	//}
-	//if (enabledOutline) {
-	//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)outerAlphaAnimation.current);
-	//	int resultOuterColor = outerAnimation.current.Get(); // debug
-	//	//DrawBoxAA(pos.x, pos.y, pos.x + size.x, pos.y + size.y, resultOuterColor, true, 0);
-	//	float offset = outlineWidth / 2;
-	//	DrawLineAA(pos.x + offset, pos.y + offset, pos.x + size.x - offset + 1, pos.y + offset, resultOuterColor, outlineWidth);
-	//	DrawLineAA(pos.x + size.x - offset, pos.y + offset, pos.x + size.x - offset, pos.y + size.y - offset + 1, resultOuterColor, outlineWidth);
-	//	DrawLineAA(pos.x + size.x - offset, pos.y + size.y - offset, pos.x + offset - 1, pos.y + size.y - offset, resultOuterColor, outlineWidth);
-	//	DrawLineAA(pos.x + offset, pos.y + size.y - offset, pos.x + offset, pos.y + offset - 1, resultOuterColor, outlineWidth);
-	//}
-	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-	//SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
-
-	// canvasDrawingId = DerivationGraphF(maskUpperLeft.x, maskUpperLeft.y, size.x, size.y, canvasId);
-	SetDrawScreen(DX_SCREEN_BACK);
+	if (parent != nullptr) {
+		if (parent->GetCanvasOwner())
+			SetDrawScreen(parent->GetCanvasId());
+		else
+			SetDrawScreen(DX_SCREEN_BACK);
+	}
+	else {
+		SetDrawScreen(DX_SCREEN_BACK);
+	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	DrawRectGraphF(pos.x, pos.y, (int)pos.x, (int)pos.y, (int)size.x, (int)size.y, canvasId, true, false);
 
-	for (auto& item : scrollButton) {
-		item.Draw();
+	if (scrollDistance.x > size.x)
+		scrollBar[1].Draw();
+	else if (!scrollAutoHiding)
+		scrollBar[1].Draw();
+
+	if (scrollDistance.y > size.y)
+		scrollBar[0].Draw();
+	else if (!scrollAutoHiding)
+		scrollBar[0].Draw();
+
+	if (scrollDistance.x > size.x) {
+		scrollButton[(int)DirectionType::LEFT].Draw();
+		scrollButton[(int)DirectionType::RIGHT].Draw();
+	}
+	else if (!scrollAutoHiding) {
+		scrollButton[(int)DirectionType::LEFT].Draw();
+		scrollButton[(int)DirectionType::RIGHT].Draw();
 	}
 
-	for (auto& item : scrollBar) {
-		item.Draw();
+	if (scrollDistance.y > size.y) {
+		scrollButton[(int)DirectionType::TOP].Draw();
+		scrollButton[(int)DirectionType::BOTTOM].Draw();
 	}
-	
-	/*DrawModiGraphF(
-		0.f, 0.f,
-		0.f + size.x, 0.f,
-		0.f + size.x, 0.f + size.y,
-		0.f, 0.f + size.y,
-		canvasDrawingId, true);
-	DeleteGraph(canvasDrawingId);*/
+	else if (!scrollAutoHiding) {
+		scrollButton[(int)DirectionType::TOP].Draw();
+		scrollButton[(int)DirectionType::BOTTOM].Draw();
+	}
+
+	if (enabledOutline) {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)outerAlphaAnimation.current);
+		int resultOuterColor = outerAnimation.current.Get(); // debug
+		float offset = outlineWidth / 2;
+		DrawLineAA(pos.x + offset, pos.y + offset, pos.x + size.x - offset + 1, pos.y + offset, resultOuterColor, outlineWidth);
+		DrawLineAA(pos.x + size.x - offset, pos.y + offset, pos.x + size.x - offset, pos.y + size.y - offset + 1, resultOuterColor, outlineWidth);
+		DrawLineAA(pos.x + size.x - offset, pos.y + size.y - offset, pos.x + offset - 1, pos.y + size.y - offset, resultOuterColor, outlineWidth);
+		DrawLineAA(pos.x + offset, pos.y + size.y - offset, pos.x + offset, pos.y + offset - 1, resultOuterColor, outlineWidth);
+	}
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
+
+	SetDrawScreen(DX_SCREEN_BACK);
 }
 
 bool CanvasObject::RegisterChildren(ObjectBase* _object)
@@ -210,6 +272,13 @@ bool CanvasObject::RegisterChildren(ObjectBase* _object)
 	_object->RegisterParent(this);
 	// ƒLƒƒƒ“ƒoƒX’Ç‰Á
 	return true;
+}
+
+bool CanvasObject::RegisterCanvas(ObjectBase* _object)
+{
+	_object->RegisterParent(this);
+	ObjectBase::RegisterChildren(_object);
+	return false;
 }
 
 void CanvasObject::CollideMouse()
@@ -222,6 +291,7 @@ void CanvasObject::CollideMouse()
 		pos.y + size.y >= Input::MouseInput::GetMouse().y) {
 
 		mouseHit = true;
+		ObjectOverlapping::UpdateObjectForCanvas(guid);
 	}
 	else {
 		mouseHit = false;

@@ -75,6 +75,7 @@ public:
 			innerAnimation.current = innerColor;
 			innerAlphaAnimation.current = (float)innerColor.a;
 		}
+		disabledInnerColor = Color255(innerColor.r, innerColor.g, innerColor.b, (int)(innerColor.a / 5));
 		return true;
 	}
 	bool SetInnerColor(Color255 _innerColor, Color255 _hoveredColor, Color255 _clickedColor, Color255 _selectedColor, bool _defaultFill = true)
@@ -87,6 +88,7 @@ public:
 			innerAnimation.current = innerColor;
 			innerAlphaAnimation.current = (float)innerColor.a;
 		}
+		disabledInnerColor = Color255(innerColor.r, innerColor.g, innerColor.b, (int)(innerColor.a / 5));
 		return true;
 	}
 	// アウトラインを表示する際はtrueになっているかをチェック
@@ -100,6 +102,7 @@ public:
 			outerAnimation.current = outerColor;
 			outerAlphaAnimation.current = (float)outerColor.a;
 		}
+		disabledOuterColor = Color255(outerColor.r, outerColor.g, outerColor.b, (int)(outerColor.a / 5));
 		return true;
 	}
 	// アウトラインを表示する際はtrueになっているかをチェック
@@ -113,6 +116,7 @@ public:
 			outerAnimation.current = outerColor;
 			outerAlphaAnimation.current = (float)outerColor.a;
 		}
+		disabledOuterColor = Color255(outerColor.r, outerColor.g, outerColor.b, (int)(outerColor.a / 5));
 		return true;
 	}
 
@@ -136,6 +140,9 @@ private:
 	Color255 hoveredOuterColor;
 	Color255 clickedOuterColor;
 	Color255 selectedOuterColor;
+
+	Color255 disabledInnerColor;
+	Color255 disabledOuterColor;
 
 	float outlineWidth;
 

@@ -19,6 +19,7 @@ public:
 
 private:
     CanvasObject canvas;
+    CanvasObject canvas2;
     RectangleObject bg;
     ButtonObject debugButton;
     ButtonObject debugButton2;
@@ -28,5 +29,10 @@ private:
     InputObject input2;
     RectangleObject pallet;
     ProgressObject progress;
+
+    CanvasObject can;
+
+    ButtonObject cofb;
+
 };
 
