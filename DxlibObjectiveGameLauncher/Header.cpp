@@ -1,29 +1,7 @@
 #include "Header.h"
 
-std::vector<SceneSet> Header::sceneSets = {};
-
-std::vector<ButtonObject> Header::navLinks = {};
-std::vector<ButtonObject> Header::systemButtons = {};
-
-std::vector<FontHandle> Header::fonts = {};
-
-bool Header::beInitialized = false;
-
-float Header::navWidth = ApplicationPreference::GetBackgroundSize().x - 300;
-float Header::height = ApplicationPreference::headerTabHeight;
-
-TextObject Header::titleLogo = TextObject(PosVec(7.f,7.f), PosVec(), "mplus60", "Game Launcher", Color255(), TextAlign::LEFT, false);
-TextObject Header::subtitleLogo = TextObject(PosVec(), PosVec(), "mplus25", "Sample Text", Color255(), TextAlign::LEFT, false);
-
-RectangleObject Header::banner = RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::bannerHeight));
-LineObject Header::headerLine = LineObject(
-	PosVec(0.f, ApplicationPreference::bannerHeight),
-	PosVec(
-		ApplicationPreference::GetBackgroundSize().x,
-		ApplicationPreference::bannerHeight)
-);
-
-void Header::Initialize()
+Header::Header()
+	: beInitialized(false), navWidth(ApplicationPreference::GetBackgroundSize().x - 300), height(ApplicationPreference::headerTabHeight)
 {
 	if (beInitialized) return;
 
@@ -33,6 +11,7 @@ void Header::Initialize()
 	SceneSet("home", new HomeScene())
 	};
 
+	banner = RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::bannerHeight));
 	banner.SetInnerColor(Color255("#dafcf5"));
 
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
@@ -60,8 +39,18 @@ void Header::Initialize()
 			systemButtons[i].SetInnerColor(Color255("#dafcf5"), Color255("#96aea9"), Color255("#7a8d89"), Color255("#aec9c3"));
 		systemButtons[i].SetOutlineColor(Color255(120), 1.f);
 	}
+
+	headerLine = LineObject(
+		PosVec(0.f, ApplicationPreference::bannerHeight),
+		PosVec(
+			ApplicationPreference::GetBackgroundSize().x,
+			ApplicationPreference::bannerHeight)
+	);
 	headerLine.SetEnabledOutline(true);
 	headerLine.SetOutlineColor(Color255(0xFF, 0x77, 0xFE), 2.5f);
+
+	titleLogo = TextObject(PosVec(7.f, 7.f), PosVec(), "mplus60", "Game Launcher", Color255(), TextAlign::LEFT, false);
+	subtitleLogo = TextObject(PosVec(), PosVec(), "mplus25", "Sample Text", Color255(), TextAlign::LEFT, false);
 
 	titleLogo.SetInnerColor(Color255("#88bcb1"));
 	subtitleLogo.SetInnerColor(Color255("#88bcb1"));

@@ -6,6 +6,7 @@
 #include "AppClose.h"
 #include "WindowHolding.h"
 #include "WindowHwnd.h"
+#include "Header.h"
 #include <array>
 #include <vector>
 /* ÉVÅ[Éìà⁄ìÆìoò^óp */
@@ -13,32 +14,33 @@
 #include "HomeScene.h"
 
 class Header
+	: public SceneBase
 {
 public:
 
-	static void Initialize();
+	Header();
 
-	static void Collide();
-	static void Update();
-	static void Draw();
+	void Collide();
+	void Update();
+	void Draw();
 
-	static void SetSubtitle(std::string subtitle);
+	void SetSubtitle(std::string subtitle);
 
 private:
-	static bool beInitialized;
-	static std::vector<SceneSet> sceneSets;
-	static std::vector<ButtonObject> navLinks;
-	static RectangleObject banner;
-	static LineObject headerLine;
-	static std::vector<ButtonObject> systemButtons;
-	static TextObject titleLogo;
-	static TextObject subtitleLogo;
+	bool beInitialized;
+	std::vector<SceneSet> sceneSets;
+	std::vector<ButtonObject> navLinks;
+	RectangleObject banner;
+	LineObject headerLine;
+	std::vector<ButtonObject> systemButtons;
+	TextObject titleLogo;
+	TextObject subtitleLogo;
 
-	static float height;
-	static float navWidth;
+	float height;
+	float navWidth;
 
-	static void RegFonts();
+	void RegFonts();
 
-	static std::vector<FontHandle> fonts;
+	std::vector<FontHandle> fonts;
 };
 

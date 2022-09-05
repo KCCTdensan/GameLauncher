@@ -7,11 +7,13 @@ bool SceneManager::beInitialized = false;
 SceneSet SceneManager::blankScene = SceneSet("_blank", new BlankRedirectScene());
 SceneSet SceneManager::current = SceneSet("", nullptr);
 
+SceneBase* SceneManager::header = new Header();
+
 void SceneManager::Initialize()
 {
 	if (beInitialized) return;
 
-	Header::Initialize();
+	//header->Initialize();
 	sceneHistory.fill(blankScene);
 
 	beInitialized = true;
@@ -100,15 +102,15 @@ void SceneManager::Collide()
 {
 	ObjectOverlapping::Reset();
 	current.scene->Collide();
-	Header::Collide();
+	header->Collide();
 }
 
 void SceneManager::Update() {
 	current.scene->Update();
-	Header::Update();
+	header->Update();
 }
 
 void SceneManager::Draw() {
 	current.scene->Draw();
-	Header::Draw();
+	header->Draw();
 }

@@ -35,4 +35,5 @@ private:
 	static std::array<SceneSet, ApplicationPreference::sceneHistories> sceneHistory;
 	static int sceneHistoryPosition;
 	static SceneSet blankScene;
+	static SceneBase* header;
 };

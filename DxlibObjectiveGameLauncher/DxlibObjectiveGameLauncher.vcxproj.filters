@@ -265,6 +265,7 @@
     <ClInclude Include="ComponentBase.h">
       <Filter>Component\Base</Filter>
     </ClInclude>
+    <ClInclude Include="SharingScenes.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
