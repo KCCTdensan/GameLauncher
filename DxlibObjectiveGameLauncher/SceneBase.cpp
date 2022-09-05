@@ -1,4 +1,5 @@
 #include "SceneBase.h"
+#include "SharingScenes.h"
 
 SceneBase::~SceneBase()
 {

@@ -11,6 +11,7 @@ class DebugScene :
 {
 public:
     DebugScene();
+    DebugScene(SharingScenes* _sharingScenes);
     ~DebugScene();
 
     void Collide();

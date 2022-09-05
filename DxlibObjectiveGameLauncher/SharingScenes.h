@@ -1,11 +1,13 @@
 #pragma once
-#include "SceneBase.h"
+//#include "SceneBase.h"
+
+class Header;
 
 struct SharingScenes
 {
-	SceneBase* header;
+	Header* header;
 
-	SharingScenes(SceneBase* _header)
+	SharingScenes(Header* _header)
 		: header(_header) {}
 
 	SharingScenes()

@@ -1,4 +1,5 @@
 #include "DebugScene.h"
+#include "Header.h"
 
 DebugScene::DebugScene() :
 	bg(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y)),
@@ -13,6 +14,22 @@ DebugScene::DebugScene() :
 	canvas2(PosVec(200, 170), PosVec(150, 200)),
 	progress(PosVec(1200, 700), PosVec(50, 300), true, 0.13f),
 	can(PosVec(1000,700), PosVec(150,150))
+{}
+
+DebugScene::DebugScene(SharingScenes* _sharingScenes) :
+	SceneBase(_sharingScenes),
+	bg(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y)),
+	debugButton(PosVec(), PosVec(1200.f, 300.f), true, true),
+	debugButton2(PosVec(150, 220.f), PosVec(100.f, 100.f), true, true),
+	debugRect(PosVec(1100.f, 300.f), PosVec(300.f, 150.f), true, false),
+	textSample1(PosVec(750, 700), PosVec(), "mplus1", "文字列", Color255(135, 200, 56), TextAlign::CENTER, true),
+	input(PosVec(500, 500), PosVec(200, 100)),
+	input2(PosVec(900, 800), PosVec(200, 100)),
+	pallet(PosVec(1200, 300), PosVec(400, 400), true, false),
+	canvas(PosVec(150, 150), PosVec(500, 500)),
+	canvas2(PosVec(200, 170), PosVec(150, 200)),
+	progress(PosVec(1200, 700), PosVec(50, 300), true, 0.13f),
+	can(PosVec(1000, 700), PosVec(150, 150))
 {
 	bg.SetInnerColor(Color255("#f4faf9"));
 	layer.AddObject(&bg);
@@ -29,7 +46,7 @@ DebugScene::DebugScene() :
 		Color255(110, 200, 75), 5);
 	debugButton.SetInnerAnimation(.3f);
 	debugButton.SetOuterAnimation(.3f);
-	
+
 	debugButton2.SetInnerColor(
 		Color255("#f6f8f8"),
 		Color255("#f0f3f2"),
@@ -43,10 +60,10 @@ DebugScene::DebugScene() :
 	debugButton.RegisterChildren(&debugButton2); // 子要素
 
 	debugRect.SetInnerColor(Color255(68, 191, 172));
-		
+
 	textSample1.SetBackColor(Color255(150, 70, 100));
 	textSample1.SetPadding(10.f, 20.f, 5.f, 30.f);
-	
+
 	input.SetupText("smart15", Color255(135, 200, 56), TextAlign::LEFT);
 	input.SetInnerColor(
 		Color255("#69DDFF"),
@@ -71,8 +88,8 @@ DebugScene::DebugScene() :
 	progress.SetEnabledOutline(true, .2f);
 	progress.SetOutlineColor(Color255(230, 50, 50), .2f);
 
-	canvas.SetInnerColor(Color255(150,250,250, 255));
-	canvas.SetArea(PosVec(200, 10000), 50.f /10000.f);
+	canvas.SetInnerColor(Color255(150, 250, 250, 255));
+	canvas.SetArea(PosVec(200, 10000), 50.f / 10000.f);
 
 	canvas2.SetInnerColor(Color255(200, 250, 250));
 	canvas2.SetOutlineColor(Color255(0, 0, 0), .5f);
@@ -166,18 +183,18 @@ void DebugScene::Update()
 	//	bg.ChangeColorWithAnimation(bg.GetColor(ColorType::INNER), new Color255(0, 128, 0), 10.f);
 	//}
 
-	/*if (debugButton2.GetMouseSelected()) {
-		Header::SetSubtitle("変更されたテキスト");
+	if (debugButton2.GetMouseSelected()) {
+		sharingScenes->header->SetSubtitle("変更されたテキスト");
 	}
 	else if (debugButton2.GetMouseClicked()) {
-		Header::SetSubtitle("変更しそうなテキスト");
+		sharingScenes->header->SetSubtitle("変更しそうなテキスト");
 	}
 	else if(debugButton2.GetMouseHit()) {
-		Header::SetSubtitle("変更するかもしれないテキスト");
+		sharingScenes->header->SetSubtitle("変更するかもしれないテキスト");
 	}
 	else {
-		Header::SetSubtitle("変更されていないテキスト");
-	}*/
+		sharingScenes->header->SetSubtitle("変更されていないテキスト");
+	}
 
 	//if (debugRect.GetMouseHit()) {
 	//	pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(0, 0, 255), 0.2f);

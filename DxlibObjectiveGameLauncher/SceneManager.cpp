@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include "Header.h"
 
 std::map<std::string, SceneBase*> SceneManager::scenes;
 std::array<SceneSet, ApplicationPreference::sceneHistories> SceneManager::sceneHistory{};
@@ -6,12 +7,15 @@ int SceneManager::sceneHistoryPosition = 0;
 bool SceneManager::beInitialized = false;
 SceneSet SceneManager::blankScene = SceneSet("_blank", new BlankRedirectScene());
 SceneSet SceneManager::current = SceneSet("", nullptr);
-
-SceneBase* SceneManager::header = new Header();
+Header* SceneManager::header = new Header();
+SharingScenes SceneManager::sharingScenes;
 
 void SceneManager::Initialize()
 {
 	if (beInitialized) return;
+	
+	header = new Header();
+	sharingScenes.header = header;
 
 	//header->Initialize();
 	sceneHistory.fill(blankScene);

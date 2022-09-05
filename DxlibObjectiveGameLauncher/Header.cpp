@@ -5,10 +5,12 @@ Header::Header()
 {
 	if (beInitialized) return;
 
+	SharingScenes ss(this);
+
 	sceneSets = {
-	SceneSet("debug", new DebugScene()),
-	SceneSet("home", new HomeScene()),
-	SceneSet("home", new HomeScene())
+	SceneSet("debug", new DebugScene(SceneManager::GetSharingScenes())),
+	SceneSet("home", new HomeScene(SceneManager::GetSharingScenes())),
+	SceneSet("home", new HomeScene(SceneManager::GetSharingScenes()))
 	};
 
 	banner = RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::bannerHeight));

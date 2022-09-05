@@ -9,6 +9,7 @@ class HomeScene :
 {
 public:
     HomeScene();
+    HomeScene(SharingScenes* _sharingScenes);
 
     void Collide();
     void Update();
