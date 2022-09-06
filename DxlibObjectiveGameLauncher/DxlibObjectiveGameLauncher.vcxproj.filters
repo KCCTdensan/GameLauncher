@@ -110,6 +110,14 @@
     <ClCompile Include="ComponentBase.cpp">
       <Filter>Component\Base</Filter>
     </ClCompile>
+    <ClCompile Include="PopupScene.cpp" />
+    <ClCompile Include="MusicCanvas.cpp" />
+    <ClCompile Include="CanvasTemplate.cpp">
+      <Filter>Canvases\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PopupWindow.cpp">
+      <Filter>Canvases</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -266,6 +274,14 @@
       <Filter>Component\Base</Filter>
     </ClInclude>
     <ClInclude Include="SharingScenes.h" />
+    <ClInclude Include="PopupScene.h" />
+    <ClInclude Include="MusicCanvas.h" />
+    <ClInclude Include="CanvasTemplate.h">
+      <Filter>Canvases\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PopupWindow.h">
+      <Filter>Canvases</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -366,6 +382,12 @@
     </Filter>
     <Filter Include="Component\Base">
       <UniqueIdentifier>{3214b190-e5f6-47c9-927d-586c9ef48d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Canvases">
+      <UniqueIdentifier>{bf1ac7ca-4798-483a-90e1-d41b1e8c4a95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Canvases\Base">
+      <UniqueIdentifier>{b5fc0fd6-9f4a-438f-8818-fdfedeeb75ae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

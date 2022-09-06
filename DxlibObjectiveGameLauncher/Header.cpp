@@ -142,11 +142,3 @@ void Header::SetSubtitle(std::string subtitle)
 	if (subtitleLogo.GetText() == subtitle) return;
 	subtitleLogo.SetText(subtitle);
 }
-
-void Header::RegFonts()
-{
-	for (const auto& font : fonts) {
-		if (FontChest::GetFontHandle(font.handleName) < 0)
-			FontChest::CreateFontHandle(font.handleName, font.fontName, font.size, font.thick, font.type);
-	}
-}

@@ -39,8 +39,5 @@ private:
 	float height;
 	float navWidth;
 
-	void RegFonts();
-
-	std::vector<FontHandle> fonts;
 };
 
