@@ -16,7 +16,7 @@ public:
 
     virtual void UpdateAction() = 0;
 
-private:
+protected:
     ObjectLayer canvases;
     ObjectLayer layer;
 };

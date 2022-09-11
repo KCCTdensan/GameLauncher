@@ -78,6 +78,7 @@
     <ClInclude Include="InputObject.h" />
     <ClInclude Include="JsonSoftwareData.h" />
     <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="lib\picojson.h" />
     <ClInclude Include="LineObject.h" />
     <ClInclude Include="MainThreadValue.h" />
     <ClInclude Include="MouseClickType.h" />

@@ -29,7 +29,8 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	canvas(PosVec(150, 150), PosVec(500, 500)),
 	canvas2(PosVec(200, 170), PosVec(150, 200)),
 	progress(PosVec(1200, 700), PosVec(50, 300), true, 0.13f),
-	can(PosVec(1000, 700), PosVec(150, 150))
+	can(PosVec(1000, 700), PosVec(150, 150)),
+	works()
 {
 	bg.SetInnerColor(Color255("#f4faf9"));
 	layer.AddObject(&bg);
@@ -88,6 +89,36 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	progress.SetEnabledOutline(true, .2f);
 	progress.SetOutlineColor(Color255(230, 50, 50), .2f);
 
+
+	std::stringstream ss;
+	std::ifstream fs;
+	fs.open("data.json", std::ios::binary);
+
+	if (!fs.is_open()) {
+		return;
+	}
+
+	/********** JSON 読込テスト ***********/
+
+	ss << fs.rdbuf();
+	fs.close();
+
+	picojson::value val;
+	ss >> val;
+	std::string err = picojson::get_last_error();
+	if (!err.empty()) {
+		std::cerr << err << std::endl;
+		return;
+	}
+
+	picojson::object& obj = val.get<picojson::object>();
+
+	auto& jPlayer = obj["Player"].get<picojson::object>();
+	std::string name = jPlayer["Name"].get<std::string>();
+	printfDx(name.c_str());
+
+	/********** JSON 読込テスト ***********/
+
 	canvas.SetInnerColor(Color255(150, 250, 250, 255));
 	canvas.SetArea(PosVec(200, 10000), 50.f / 10000.f);
 
@@ -108,24 +139,13 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	layer.AddObject(&progress);
 
 	canvas2.RegisterChildren(&debugButton);
-	//canvas.RegisterChildren(&debugButton2);
 	canvas.RegisterChildren(&debugRect);
 	canvas.RegisterChildren(&textSample1);
 	canvas.RegisterChildren(&input);
-	//canvas.RegisterChildren(&input2);
 	canvas.RegisterChildren(&pallet);
-	//canvas.RegisterChildren(&canvas2);
 
 	canvases.AddObject(&canvas);
 	canvases.AddObject(&canvas2);
-
-	//popup.Setup();
-	////popup.canvas = CanvasObject(PosVec(1000, 700), PosVec(150, 150));
-	//popup.GetCanvas()->SetInnerColor(Color255(255, 180, 255, 100));
-	//popup.GetCanvas()->SetArea(PosVec(1721, 781));
-	//RectangleObject* rect = new RectangleObject(PosVec(100, 200), PosVec(1720, 780));
-	//rect->SetInnerColor(Color255(255, 255, 255, 100));
-	//popup.AddObject(rect);
 
 	// フォント追加
 	fonts.push_back(FontHandle("smart", "03スマートフォントUI", 100));

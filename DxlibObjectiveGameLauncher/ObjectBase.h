@@ -46,8 +46,6 @@ protected:
 		guid = uuidGenerator.GetGUID();
 	}
 
-	~ObjectBase();
-
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); }
 
 	void SetAnimationColorPoint(AnimationColorStatus* type, Color255 _start, Color255 _goal);

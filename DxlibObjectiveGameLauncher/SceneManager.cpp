@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include "Header.h"
+#include "PopupScene.h"
 
 std::map<std::string, SceneBase*> SceneManager::scenes;
 std::array<SceneSet, ApplicationPreference::sceneHistories> SceneManager::sceneHistory{};
@@ -8,6 +9,7 @@ bool SceneManager::beInitialized = false;
 SceneSet SceneManager::blankScene = SceneSet("_blank", new BlankRedirectScene());
 SceneSet SceneManager::current = SceneSet("", nullptr);
 Header* SceneManager::header = new Header();
+PopupScene* SceneManager::popupScene = new PopupScene();
 SharingScenes SceneManager::sharingScenes;
 
 void SceneManager::Initialize()
@@ -15,7 +17,9 @@ void SceneManager::Initialize()
 	if (beInitialized) return;
 	
 	header = new Header();
+	popupScene = new PopupScene();
 	sharingScenes.header = header;
+	sharingScenes.popupScene = popupScene;
 
 	//header->Initialize();
 	sceneHistory.fill(blankScene);
@@ -107,14 +111,17 @@ void SceneManager::Collide()
 	ObjectOverlapping::Reset();
 	current.scene->Collide();
 	header->Collide();
+	popupScene->Collide();
 }
 
 void SceneManager::Update() {
 	current.scene->Update();
 	header->Update();
+	popupScene->Update();
 }
 
 void SceneManager::Draw() {
 	current.scene->Draw();
 	header->Draw();
+	popupScene->Draw();
 }

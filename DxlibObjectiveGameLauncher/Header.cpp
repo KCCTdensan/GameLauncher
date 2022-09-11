@@ -5,8 +5,6 @@ Header::Header()
 {
 	if (beInitialized) return;
 
-	SharingScenes ss(this);
-
 	sceneSets = {
 	SceneSet("debug", new DebugScene(SceneManager::GetSharingScenes())),
 	SceneSet("home", new HomeScene(SceneManager::GetSharingScenes())),

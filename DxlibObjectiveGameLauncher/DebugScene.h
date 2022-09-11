@@ -5,6 +5,13 @@
 #include "OriginalObjects.h"
 #include "FontChest.h"
 #include "ObjectLayer.h"
+#include "lib/picojson.h"
+#include <vector>
+#include <fstream>
+#include <cassert>
+#include <iostream> // std::cout
+#include <sstream>
+#include <string>
 
 class DebugScene :
     public SceneBase
@@ -34,6 +41,8 @@ private:
     CanvasObject can;
 
     ButtonObject cofb;
+
+    std::vector<ButtonObject> works;
 
 };
 

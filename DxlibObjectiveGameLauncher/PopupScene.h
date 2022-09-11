@@ -1,6 +1,7 @@
 #pragma once
 #include "SceneBase.h"
 #include "PopupWindow.h"
+#include "MusicCanvas.h"
 #include <vector>
 
 class PopupScene :
@@ -17,5 +18,8 @@ public:
 
 private:
     std::vector<PopupWindow> popups;
+
+    MusicCanvas musicCanvas;
+    PopupWindow popupWindow;
 };
 

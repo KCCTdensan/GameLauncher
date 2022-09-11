@@ -12,6 +12,7 @@
 #include "SharingScenes.h"
 
 class Header;
+class PopupScene;
 
 class SceneManager {
 public:
@@ -42,5 +43,6 @@ private:
 	static int sceneHistoryPosition;
 	static SceneSet blankScene;
 	static Header* header;
+	static PopupScene* popupScene;
 	static SharingScenes sharingScenes;
 };

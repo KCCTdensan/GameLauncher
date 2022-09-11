@@ -1,11 +1,5 @@
 #include "ObjectBase.h"
 
-
-ObjectBase::~ObjectBase()
-{
-	delete parent;
-}
-
 void ObjectBase::SetAnimationColorPoint(AnimationColorStatus* type, Color255 _start, Color255 _goal)
 {
 	type->elapsedTime = 0.f;
@@ -261,7 +255,8 @@ bool ObjectBase::Move(PosVec _delta, bool _involvedParent)
 
 bool ObjectBase::RegisterChildren(ObjectBase* _object)
 {
-	children.push_back(_object);
+	//children.push_back(_object);
+	children.insert(children.end(), _object);
 	return true;
 }
 

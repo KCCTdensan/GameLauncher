@@ -282,6 +282,9 @@
     <ClInclude Include="PopupWindow.h">
       <Filter>Canvases</Filter>
     </ClInclude>
+    <ClInclude Include="lib\picojson.h">
+      <Filter>lib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -388,6 +391,9 @@
     </Filter>
     <Filter Include="Canvases\Base">
       <UniqueIdentifier>{b5fc0fd6-9f4a-438f-8818-fdfedeeb75ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{ead72e65-26be-4578-8af8-554c44e45af8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
