@@ -1,5 +1,20 @@
 {
-  "Player": {
-    "Name": "Densan"
-  }
+  "Lists": [
+    {
+      "Category": "Game",
+      "GUID": "0e0a1a04-58ae-4e85-b55d-d0e59eb66f18",
+      "TitleName": "Av0id",
+      "Author": "is",
+      "Description": "",
+      "FilePath": ".\\Works\\0e0a1a04-58ae-4e85-b55d-d0e59eb66f18\\Av0id.exe"
+    },
+    {
+      "Category": "VR",
+      "GUID": "9ad4302c-a04c-4e60-afa2-9639912992b6",
+      "TitleName": "MShe_VR",
+      "Author": "de",
+      "Description": "",
+      "FilePath": ".\\Works\\9ad4302c-a04c-4e60-afa2-9639912992b6\\MShe_VR.exe"
+    }
+  ]
 }

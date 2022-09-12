@@ -89,6 +89,7 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	progress.SetEnabledOutline(true, .2f);
 	progress.SetOutlineColor(Color255(230, 50, 50), .2f);
 
+	/********** JSON 読込テスト ***********/
 
 	std::stringstream ss;
 	std::ifstream fs;
@@ -97,8 +98,6 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	if (!fs.is_open()) {
 		return;
 	}
-
-	/********** JSON 読込テスト ***********/
 
 	ss << fs.rdbuf();
 	fs.close();
@@ -113,9 +112,19 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 
 	picojson::object& obj = val.get<picojson::object>();
 
-	auto& jPlayer = obj["Player"].get<picojson::object>();
-	std::string name = jPlayer["Name"].get<std::string>();
-	printfDx(name.c_str());
+	picojson::array& lists = obj["Lists"].get<picojson::array>();
+	for (auto& list : lists) {
+		picojson::object& o = list.get<picojson::object>();
+		std::string s = o["TitleName"].get<std::string>() + " : " + o["Category"].get<std::string>();
+		printfDx(s.c_str());
+		printfDx("\n");
+	}
+
+	printfDx("\n\n");
+
+	/*UUIDGenerator uuid;
+	std::string u = uuid.GetGUID() + "\n";
+	OutputDebugString(u.c_str());*/
 
 	/********** JSON 読込テスト ***********/
 
