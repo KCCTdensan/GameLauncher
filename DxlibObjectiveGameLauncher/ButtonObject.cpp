@@ -87,6 +87,20 @@ void ButtonObject::Draw()
 		DrawLineAA(pos.x + offset, pos.y + size.y - offset, pos.x + offset, pos.y + offset - 1, resultOuterColor, outlineWidth);
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+
+	if (imageHandle != -1) {
+		PosVec originalImageSize;
+		GetGraphSizeF(imageHandle, &originalImageSize.x, &originalImageSize.y);
+		SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
+		DrawRotaGraph3F(
+			pos.x + imageOffset.x,
+			pos.y + imageOffset.y,
+			imageCenter.x, imageCenter.y,
+			(double)(imageSize.x / originalImageSize.x),
+			(double)(imageSize.y / originalImageSize.y),
+			imageAngle, imageHandle, true, imageTurnFlagX, imageTurnFlagY);
+	}
+
 	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -98,9 +112,6 @@ void ButtonObject::CollideMouse()
 void ButtonObject::EventRectSetVector()
 {
 	if (rectMode && rectEventEnabled != nullptr) {
-		//clsDx();
-		//printfDx("%.3f, %.3f\n", eventRect.GetVectorPointer(VectorType::POS)->x, eventRect.GetVectorPointer(VectorType::POS)->y);
-		//printfDx("%.3f, %.3f\n", eventRect.GetVectorPointer(VectorType::SIZE)->x, eventRect.GetVectorPointer(VectorType::SIZE)->y);
 		if (*rectEventEnabled) {
 			eventRect.ChangeValueWithAnimation(
 				&(eventRect.GetVectorPointer(VectorType::POS)->x),

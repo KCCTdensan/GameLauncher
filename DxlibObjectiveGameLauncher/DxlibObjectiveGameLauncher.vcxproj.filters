@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="GameLauncher.cpp" />
-    <ClCompile Include="ImageData.cpp">
-      <Filter>Media</Filter>
-    </ClCompile>
     <ClCompile Include="ImageChest.cpp">
       <Filter>Media</Filter>
     </ClCompile>
@@ -121,9 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
-      <Filter>Media</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageData.h">
       <Filter>Media</Filter>
     </ClInclude>
     <ClInclude Include="MovieData.h">

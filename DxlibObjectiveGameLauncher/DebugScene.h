@@ -5,6 +5,7 @@
 #include "OriginalObjects.h"
 #include "FontChest.h"
 #include "ObjectLayer.h"
+#include "ImageChest.h"
 #include "lib/picojson.h"
 #include <vector>
 #include <fstream>
@@ -12,6 +13,7 @@
 #include <iostream> // std::cout
 #include <sstream>
 #include <string>
+#include <numbers>
 
 class DebugScene :
     public SceneBase

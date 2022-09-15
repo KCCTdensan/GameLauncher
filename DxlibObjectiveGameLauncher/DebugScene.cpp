@@ -26,7 +26,7 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	input(PosVec(500, 500), PosVec(200, 100)),
 	input2(PosVec(900, 800), PosVec(200, 100)),
 	pallet(PosVec(1200, 300), PosVec(400, 400), true, false),
-	canvas(PosVec(150, 150), PosVec(500, 500)),
+	canvas(PosVec(150, 150), PosVec(1200, 500)),
 	canvas2(PosVec(200, 170), PosVec(150, 200)),
 	progress(PosVec(1200, 700), PosVec(50, 300), true, 0.13f),
 	can(PosVec(1000, 700), PosVec(150, 150)),
@@ -113,12 +113,41 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	picojson::object& obj = val.get<picojson::object>();
 
 	picojson::array& lists = obj["Lists"].get<picojson::array>();
+	int i = 0;
 	for (auto& list : lists) {
 		picojson::object& o = list.get<picojson::object>();
 		std::string s = o["TitleName"].get<std::string>() + " : " + o["Category"].get<std::string>();
 		printfDx(s.c_str());
 		printfDx("\n");
+		ButtonObject button(PosVec(900.f + 120.f * (float)i, 500.f), PosVec(100,100));
+		button.SetInnerColor(Color255(255, 100, 100), Color255(255, 200, 100), Color255(120, 200, 70), Color255(255, 60, 150));
+		button.SetInnerAnimation(.3f);
+		std::string thumbnailName = "Thumb:" + o["GUID"].get<std::string>();
+		std::string thumbnailPath = o["Directory"].get<std::string>() + o["Thumbnail"].get<std::string>();
+		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
+		int handle = ImageChest::GetImageHandle(thumbnailName);
+		button.SetImageHandle(handle);
+		button.SetImageOffsrt(PosVec(25, 25));
+		if (i == 0) button.SetImageSize(PosVec(50, 50));
+		else {
+			button.SetImageOffsrt(PosVec());
+			button.SetImageSize(PosVec(100, 100));
+			button.SetImageTurnFlag(true, true);
+			button.SetImageAngle(std::numbers::pi_v<double> / 10);
+		}
+		works.push_back(button);
+		i++;
 	}
+
+	for (auto& item : works) {
+		layer.AddObject(&item);
+		canvas.RegisterChildren(&item);
+	}
+
+	int size = (int)works.size();
+	char buf[80];
+	sprintf_s(buf, "%d\n", size);
+	OutputDebugString(buf); // å¬êîèoóÕ
 
 	printfDx("\n\n");
 
@@ -179,6 +208,10 @@ void DebugScene::Collide()
 
 	layer.Collide();
 
+	for (auto& item : works) {
+		item.Collide();
+	}
+
 }
 
 void DebugScene::Update()
@@ -195,6 +228,10 @@ void DebugScene::Update()
 
 	if (debugButton.GetMouseSelected()) {
 		debugButton.SetMouseOff();
+	}
+
+	for (auto& item : works) {
+		item.Update();
 	}
 
 	//if (bg.GetMouseHit()) {
@@ -248,4 +285,9 @@ void DebugScene::Draw()
 
 	canvases.Draw();
 	can.Draw();
+
+	for (auto& item : works) {
+		//DrawBoxAA(item.GetPos().x, item.GetPos().y, item.GetPos().x + item.GetSize().x, item.GetPos().y + item.GetSize().y, GetColor(100, 200, 50), true);
+		item.Draw();
+	}
 }

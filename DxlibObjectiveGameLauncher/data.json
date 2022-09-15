@@ -6,7 +6,9 @@
       "TitleName": "Av0id",
       "Author": "is",
       "Description": "",
-      "FilePath": ".\\Works\\0e0a1a04-58ae-4e85-b55d-d0e59eb66f18\\Av0id.exe"
+      "Directory": ".\\works\\0e0a1a04-58ae-4e85-b55d-d0e59eb66f18\\",
+      "FilePath": ".\\Av0id.exe",
+      "Thumbnail": "thumb.png"
     },
     {
       "Category": "VR",
@@ -14,7 +16,9 @@
       "TitleName": "MShe_VR",
       "Author": "de",
       "Description": "",
-      "FilePath": ".\\Works\\9ad4302c-a04c-4e60-afa2-9639912992b6\\MShe_VR.exe"
+      "Directory": ".\\works\\9ad4302c-a04c-4e60-afa2-9639912992b6\\",
+      "FilePath": ".\\MShe_VR.exe",
+      "Thumbnail": "thumb.png"
     }
   ]
 }
