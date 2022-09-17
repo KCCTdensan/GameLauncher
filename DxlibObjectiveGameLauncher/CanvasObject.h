@@ -15,6 +15,7 @@ public:
 		enabledScrollX(false), enabledScrollY(false), scrollPercentage(0.f), scrollBarWidth(_scrollObjectWidth), canvasDrawingId(-1), scrollButtonSize(20.f),
 		scrollVertical(_scrollVertical), scrollAutoHiding(_scrollAutoHiding)
 	{
+		children.reserve(6);
 		canvasId = MakeScreen((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, true);
 		canvasOwner = true;
 		scrollButton[(int)DirectionType::LEFT] = ButtonObject(PosVec(pos.x, pos.y + _size.y - scrollBarWidth), PosVec(scrollBarWidth, scrollBarWidth), true, true);

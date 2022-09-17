@@ -3,11 +3,13 @@
 void ButtonObject::Collide()
 {
 	CollideMouseAsBox();
+	textObject.Collide();
 }
 
 void ButtonObject::Update()
 {
 	CheckGUID();
+	UpdateEnforcedMouseCollision();
 
 	// アニメーション記述をする場合，ここに記述
 	if (mouseHit) {
@@ -15,12 +17,14 @@ void ButtonObject::Update()
 		SetAnimationColorPoint(&outerAnimation, outerAnimation.current, hoveredOuterColor);
 		SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)hoveredInnerColor.a);
 		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)hoveredOuterColor.a);
+		SetAnimationPoint(&imageAlphaAnimation, (float)imageAlphaAnimation.current, (float)hoveredImageColor.a);
 	}
 	else {
 		SetAnimationColorPoint(&innerAnimation, innerAnimation.current, innerColor);
 		SetAnimationColorPoint(&outerAnimation, outerAnimation.current, outerColor);
 		SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)innerColor.a);
 		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)outerColor.a);
+		SetAnimationPoint(&imageAlphaAnimation, (float)imageAlphaAnimation.current, (float)defaultImageColor.a);
 	}
 
 	if (mouseSelected) {
@@ -28,6 +32,7 @@ void ButtonObject::Update()
 		SetAnimationColorPoint(&outerAnimation, outerAnimation.current, selectedOuterColor);
 		SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)selectedInnerColor.a);
 		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)selectedOuterColor.a);
+		SetAnimationPoint(&imageAlphaAnimation, (float)imageAlphaAnimation.current, (float)selectedImageColor.a);
 	}
 
 	if (mouseClicked) {
@@ -35,6 +40,7 @@ void ButtonObject::Update()
 		SetAnimationColorPoint(&outerAnimation, outerAnimation.current, clickedOuterColor);
 		SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)clickedInnerColor.a);
 		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)clickedOuterColor.a);
+		SetAnimationPoint(&imageAlphaAnimation, (float)imageAlphaAnimation.current, (float)clickedImageColor.a);
 	}
 
 	if (!enabled) {
@@ -42,14 +48,17 @@ void ButtonObject::Update()
 		SetAnimationColorPoint(&outerAnimation, outerAnimation.current, disabledOuterColor);
 		SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)disabledInnerColor.a);
 		SetAnimationPoint(&outerAlphaAnimation, (float)outerAlphaAnimation.current, (float)disabledOuterColor.a);
+		SetAnimationPoint(&imageAlphaAnimation, (float)imageAlphaAnimation.current, (float)disabledImageColor.a);
 	}
 
 	EventRectSetVector();
+	textObject.Update();
 
 	UpdateAnimationColor(&innerAnimation);
 	UpdateAnimationColor(&outerAnimation);
 	UpdateAnimation(&innerAlphaAnimation);
 	UpdateAnimation(&outerAlphaAnimation);
+	UpdateAnimation(&imageAlphaAnimation); // 画像alpha値
 
 	UpdatePointerAnimation();
 }
@@ -87,6 +96,23 @@ void ButtonObject::Draw()
 		DrawLineAA(pos.x + offset, pos.y + size.y - offset, pos.x + offset, pos.y + offset - 1, resultOuterColor, outlineWidth);
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+
+	if (imageHandle != -1) {
+		PosVec originalImageSize;
+		GetGraphSizeF(imageHandle, &originalImageSize.x, &originalImageSize.y);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)imageAlphaAnimation.current);
+		SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
+		DrawRotaGraph3F(
+			pos.x + imageOffset.x,
+			pos.y + imageOffset.y,
+			imageCenter.x, imageCenter.y,
+			(double)(imageSize.x / originalImageSize.x),
+			(double)(imageSize.y / originalImageSize.y),
+			imageAngle, imageHandle, true, imageTurnFlagX, imageTurnFlagY);
+	}
+
+	textObject.Draw();
+
 	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -98,9 +124,6 @@ void ButtonObject::CollideMouse()
 void ButtonObject::EventRectSetVector()
 {
 	if (rectMode && rectEventEnabled != nullptr) {
-		//clsDx();
-		//printfDx("%.3f, %.3f\n", eventRect.GetVectorPointer(VectorType::POS)->x, eventRect.GetVectorPointer(VectorType::POS)->y);
-		//printfDx("%.3f, %.3f\n", eventRect.GetVectorPointer(VectorType::SIZE)->x, eventRect.GetVectorPointer(VectorType::SIZE)->y);
 		if (*rectEventEnabled) {
 			eventRect.ChangeValueWithAnimation(
 				&(eventRect.GetVectorPointer(VectorType::POS)->x),

@@ -5,12 +5,15 @@
 #include "ObjectLayer.h"
 #include "FontHandleData.h"
 
+struct SharingScenes;
 
 class SceneBase
 {
 public:
+	SceneBase(SharingScenes* _sharingScenes)
+		: fonts(), layer(), canvases(), sharingScenes(_sharingScenes) {};
 	SceneBase()
-		: fonts(), layer(), canvases() {};
+		: fonts(), layer(), canvases(), sharingScenes(nullptr) {};
 	~SceneBase();
 
 	virtual void Collide() = 0;
@@ -33,5 +36,7 @@ protected:
 
 	ObjectLayer pCanvases;
 	ObjectLayer pLayer;
+
+	SharingScenes* sharingScenes;
 };
 

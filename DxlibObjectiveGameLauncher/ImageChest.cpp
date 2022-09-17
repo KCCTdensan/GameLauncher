@@ -1,31 +1,43 @@
 #include "ImageChest.h"
 
+std::map<std::string, int> ImageChest::handles;
 
-namespace
+bool ImageChest::CreateImageHandle(std::string handleName, std::string filePath)
 {
-	const static TCHAR *ImagePath[] = {
-		TEXT("")//add image file path
-	};
+	int handle = LoadGraph(filePath.c_str());
+	if (handle == -1) return false;
+	handles.emplace(handleName, handle);
+	return true;
 }
 
-ImageChest::ImageChest()
+int ImageChest::GetImageHandle(std::string handleName)
 {
-	for(int i = 0; i < NumImageHandle; ++i)
-	{
-		chest[i] = LoadGraph(ImagePath[i]);
+	auto itr = handles.find(handleName);
+	if (itr != handles.end())
+		return itr->second; // map‚Ìvalue’l‚Ísecond‚ÉŠi”[
+	else
+		return -1;
+}
+
+PosVec ImageChest::GetImageSize(std::string handleName)
+{
+	PosVec ans;
+	auto itr = handles.find(handleName);
+	if (itr != handles.end()) {
+		GetGraphSizeF(itr->second, &ans.x, &ans.y);
+		return ans;
 	}
+	else
+		return ans;
 }
 
-ImageChest::~ImageChest()
+bool ImageChest::DeleteImageHandle(std::string handleName)
 {
-	for(int i = 0; i < NumImageHandle; ++i)
-	{
-		DeleteGraph(chest[i]);
-		chest[i] = 0;
-	}
+	handles.erase(handleName);
+	return true;
 }
 
-int ImageChest::GetImageHandle(ImageHandleNo handleName)
+bool ImageChest::ResizeImage(std::string handleName, PosVec newSize)
 {
-	return chest[handleName];
+	return false;
 }

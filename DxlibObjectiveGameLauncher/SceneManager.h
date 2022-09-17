@@ -8,8 +8,11 @@
 #include "DebugScene.h"
 #include "ApplicationPreference.h"
 #include "BlankRedirectScene.h"
-#include "Header.h"
 #include "ObjectOverlapping.h"
+#include "SharingScenes.h"
+
+class Header;
+class PopupScene;
 
 class SceneManager {
 public:
@@ -21,6 +24,10 @@ public:
 	static bool ChangeSceneForward();
 	static int GetSceneHistoryPosition() { return sceneHistoryPosition; }
 	static bool UpdateForwardBackwardScene(int forwardButton, int forwardFrame, int backwardButton, int backwardFrame);
+
+	static SharingScenes* GetSharingScenes() {
+		return &sharingScenes;
+	}
 
 	static void Initialize();
 
@@ -35,4 +42,7 @@ private:
 	static std::array<SceneSet, ApplicationPreference::sceneHistories> sceneHistory;
 	static int sceneHistoryPosition;
 	static SceneSet blankScene;
+	static Header* header;
+	static PopupScene* popupScene;
+	static SharingScenes sharingScenes;
 };

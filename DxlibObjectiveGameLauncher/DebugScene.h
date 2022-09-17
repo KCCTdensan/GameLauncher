@@ -5,12 +5,22 @@
 #include "OriginalObjects.h"
 #include "FontChest.h"
 #include "ObjectLayer.h"
+#include "ImageChest.h"
+#include "lib/picojson.h"
+#include <vector>
+#include <fstream>
+#include <cassert>
+#include <iostream> // std::cout
+#include <sstream>
+#include <string>
+#include <numbers>
 
 class DebugScene :
     public SceneBase
 {
 public:
     DebugScene();
+    DebugScene(SharingScenes* _sharingScenes);
     ~DebugScene();
 
     void Collide();
@@ -33,6 +43,8 @@ private:
     CanvasObject can;
 
     ButtonObject cofb;
+
+    std::vector<ButtonObject> works;
 
 };
 

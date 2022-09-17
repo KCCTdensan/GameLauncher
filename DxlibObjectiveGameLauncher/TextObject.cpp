@@ -3,8 +3,12 @@
 void TextObject::Update()
 {
 	CheckGUID();
+	UpdateEnforcedMouseCollision();
 
 	if (fontAutoSerching) FontSerch();
+
+	SetAnimationColorPoint(&innerAnimation, innerAnimation.current, innerColor);
+	SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)innerColor.a);
 
 	if (maxWidth > 0 && !adjusted) {
 		int sum = 0;
@@ -31,7 +35,8 @@ void TextObject::Update()
 		text = ConvertString(wText);
 		adjusted = true;
 	}
-
+	UpdateAnimationColor(&innerAnimation);
+	UpdateAnimation(&innerAlphaAnimation);
 	UpdatePointerAnimation();
 }
 
@@ -47,7 +52,9 @@ void TextObject::Draw()
 	if (enabledBack) {
 		DrawBoxAA(finallyPos.x - paddingUpperLeft.x, finallyPos.y - paddingUpperLeft.y, finallyPos.x + textWidth + paddingLowerRight.x, finallyPos.y + fontHeight + paddingLowerRight.y, backColor.Get(), true);
 	}
-	DrawFormatStringFToHandle(finallyPos.x, finallyPos.y, innerColor.Get(), fontHandle, text.c_str());
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)innerAlphaAnimation.current);
+	DrawFormatStringFToHandle(finallyPos.x, finallyPos.y, innerAnimation.current.Get(), fontHandle, text.c_str());
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	SetDrawScreen(DX_SCREEN_BACK);
 }
 
