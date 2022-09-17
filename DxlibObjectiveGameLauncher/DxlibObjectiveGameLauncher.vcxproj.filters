@@ -115,6 +115,7 @@
     <ClCompile Include="PopupWindow.cpp">
       <Filter>Canvases</Filter>
     </ClCompile>
+    <ClCompile Include="ColorPreset.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -279,6 +280,7 @@
     <ClInclude Include="lib\picojson.h">
       <Filter>lib</Filter>
     </ClInclude>
+    <ClInclude Include="ColorPreset.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">

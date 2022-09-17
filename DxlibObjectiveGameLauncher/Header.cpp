@@ -12,17 +12,17 @@ Header::Header()
 	};
 
 	banner = RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::bannerHeight));
-	banner.SetInnerColor(Color255("#dafcf5"));
+	banner.SetInnerColor(ColorPreset::headerBanner);
 
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		navLinks.push_back(ButtonObject(PosVec(ApplicationPreference::GetBackgroundSize().x - (navWidth / ApplicationPreference::headerButtonNum * (ApplicationPreference::headerButtonNum - i)), ApplicationPreference::bannerHeight),
 			PosVec(navWidth / ApplicationPreference::headerButtonNum, height), true, true));
-		navLinks[i].SetInnerColor(Color255("#b0f7ea"), Color255("#98d5ca"), Color255("#80b4ab"), Color255("#a4e6da"));
+		navLinks[i].SetInnerColor(ColorPreset::navLinksInner, ColorPreset::navLinksHovered, ColorPreset::navLinksClicked, ColorPreset::navLinksSelected);
 		navLinks[i].SetOutlineColor(
-			Color255(150, 50),
-			Color255(0xFF, 0x77, 0xFE),
-			Color255(0xFF, 0x77, 0xFE),
-			Color255(0xFF, 0x77, 0xFE), 2.f);
+			ColorPreset::navLinksOuter,
+			ColorPreset::navLinksOuterMouse,
+			ColorPreset::navLinksOuterMouse,
+			ColorPreset::navLinksOuterMouse, 2.f);
 		navLinks[i].SetInnerAnimation(.2f);
 		navLinks[i].SetOuterAnimation(0);
 	}
@@ -34,9 +34,9 @@ Header::Header()
 				0.f),
 			PosVec(60.f, 40.f), true, true));
 		if (i == 0)
-			systemButtons[i].SetInnerColor(Color255("#dafcf5"), Color255("#b0393a"), Color255("#812a2b"), Color255("#bb3c3d"));
+			systemButtons[i].SetInnerColor(ColorPreset::systemButtonInner, ColorPreset::systemButtonHovered, ColorPreset::systemButtonClicked, ColorPreset::systemButtonSelected);
 		else
-			systemButtons[i].SetInnerColor(Color255("#dafcf5"), Color255("#96aea9"), Color255("#7a8d89"), Color255("#aec9c3"));
+			systemButtons[i].SetInnerColor(ColorPreset::systemButtonInner, ColorPreset::systemButtonHoveredOnClose, ColorPreset::systemButtonClickedOnClose, ColorPreset::systemButtonSelectedOnClose);
 		systemButtons[i].SetOutlineColor(Color255(120), 1.f);
 	}
 
@@ -52,8 +52,8 @@ Header::Header()
 	titleLogo = TextObject(PosVec(7.f, 7.f), PosVec(), "mplus60", "Game Launcher", Color255(), TextAlign::LEFT, false);
 	subtitleLogo = TextObject(PosVec(), PosVec(), "mplus25", "Sample Text", Color255(), TextAlign::LEFT, false);
 
-	titleLogo.SetInnerColor(Color255("#88bcb1"));
-	subtitleLogo.SetInnerColor(Color255("#88bcb1"));
+	titleLogo.SetInnerColor(ColorPreset::titleLogo);
+	subtitleLogo.SetInnerColor(ColorPreset::titleLogo);
 
 	beInitialized = true;
 

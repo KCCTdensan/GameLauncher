@@ -19,6 +19,7 @@
     <ClCompile Include="ButtonObject.cpp" />
     <ClCompile Include="CanvasObject.cpp" />
     <ClCompile Include="CanvasTemplate.cpp" />
+    <ClCompile Include="ColorPreset.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="FontChest.cpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="CanvasObject.h" />
     <ClInclude Include="CanvasTemplate.h" />
     <ClInclude Include="Color255.h" />
+    <ClInclude Include="ColorPreset.h" />
     <ClInclude Include="ColorTypes.h" />
     <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="DebugScene.h" />
