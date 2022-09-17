@@ -4,6 +4,7 @@
 #include "ObjectOverlapping.h"
 #include "PressFrameEnum.h"
 #include "RectangleObject.h"
+#include "TextObject.h"
 #include <string>
 
 class ButtonObject :
@@ -159,6 +160,23 @@ public:
 	}
 	void SetRectWithEvent() { rectMode = false; eventRect = RectangleObject(); }
 
+	void SetupText(int _fontHandle, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
+	{
+		textObject = TextObject(pos, size, _fontHandle, _text, _innerColor, _align, _enabledBack);
+		RegisterChildren(&textObject);
+		textObject.SetMaxWidth((int)size.x);
+		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
+	}
+	void SetupText(std::string _fontHandleName, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
+	{
+		textObject = TextObject(pos, size, _fontHandleName, _text, _innerColor, _align, _enabledBack);
+		RegisterChildren(&textObject);
+		textObject.SetMaxWidth((int)size.x);
+		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
+	}
+
+	TextObject* GetTextObject() { return &textObject; }
+
 	// 更新描画
 	void Collide() override;
 	void Update() override;
@@ -192,6 +210,7 @@ private:
 	bool* rectEventEnabled; // mouseHovered等
 	DirectionType rectDirectionFrom;
 	RectangleObject eventRect;
+	TextObject textObject;
 
 };
 

@@ -8,6 +8,7 @@ void RectangleObject::Collide()
 void RectangleObject::Update()
 {
 	CheckGUID();
+	UpdateEnforcedMouseCollision();
 
 	currentInnerColor = innerColor;
 	UpdatePointerAnimation();

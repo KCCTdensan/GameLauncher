@@ -9,6 +9,7 @@ void InputObject::Collide()
 void InputObject::Update()
 {
 	CheckGUID();
+	UpdateEnforcedMouseCollision();
 
 	// アニメーション記述をする場合，ここに記述
 	if (mouseHit) {

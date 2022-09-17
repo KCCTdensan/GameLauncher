@@ -31,7 +31,7 @@ protected:
 		innerAlphaAnimation(AnimationStatus()),
 		outerAlphaAnimation(AnimationStatus()),
 		parent(nullptr), enforcedCollision(1),
-		expandedNum(false), imageHandle(-1)
+		expandedNum(false), imageHandle(-1), enforcedHovered(false), enforcedClicked(false), enforcedSelected(false)
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
@@ -46,13 +46,14 @@ protected:
 		innerAlphaAnimation(AnimationStatus()),
 		outerAlphaAnimation(AnimationStatus()),
 		parent(nullptr), enforcedCollision(1),
-		expandedNum(false), imageHandle(-1)
+		expandedNum(false), imageHandle(-1), enforcedHovered(false), enforcedClicked(false), enforcedSelected(false)
 	{
 		UUIDGenerator uuidGenerator;
 		guid = uuidGenerator.GetGUID();
 	}
 
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); } // オブジェクト重なり判定において一番上ではなかった場合選択を解除する(推奨呼び出し)
+	void UpdateEnforcedMouseCollision();
 
 	void SetAnimationColorPoint(AnimationColorStatus* type, Color255 _start, Color255 _goal); // アニメーションカラー初期設定
 	void UpdateAnimationColor(AnimationColorStatus* type); // SetAnimationColorPoint()で設定された値の更新処理(推奨呼び出し)
@@ -98,6 +99,15 @@ protected:
 	bool imageTurnFlagY; // Y方向に反転するか
 	PosVec imageCenter; // 回転の中心
 
+	AnimationStatus imageAlphaAnimation;
+
+	Color255 defaultImageColor;
+	Color255 hoveredImageColor;
+	Color255 clickedImageColor;
+	Color255 selectedImageColor;
+
+	Color255 disabledImageColor;
+
 private:
 
 	virtual void CollideMouse() = 0; // マウス判定処理
@@ -105,6 +115,11 @@ private:
 private:
 	std::vector<AnimationColorPointer> pColorAnimation;
 	std::vector<AnimationPointer> pAnimation;
+	std::vector<AnimationPointerInt> pAnimationInt;
+
+	bool enforcedHovered;
+	bool enforcedClicked;
+	bool enforcedSelected;
 
 public:
 	virtual void Update() = 0;
@@ -145,8 +160,13 @@ public:
 	bool GetMouseClicked() { return mouseClicked; }
 	bool GetMouseSelected() { return mouseSelected; }
 
+	void SetMouseHit(bool flag) { enforcedHovered = flag; }
+	void SetMouseClicked(bool flag) { enforcedClicked = flag; }
+	void SetMouseSelected(bool flag) { enforcedSelected = flag; }
+
 	void ChangeColorWithAnimation(Color255* pColor, Color255* endColor, float duration);
 	void ChangeValueWithAnimation(float* pValue, float endValue, float duration);
+	void ChangeValueWithAnimation(int* pValue, int endValue, float duration);
 
 	void SetCanvasId(int id);
 
@@ -170,6 +190,10 @@ public:
 		innerAlphaAnimation.duration = _duration;
 		innerAlphaAnimation.durationRemain = _duration;
 		innerAlphaAnimation.elapsedTime = 0.f;
+		imageAlphaAnimation.animationEnabled = true;
+		imageAlphaAnimation.duration = _duration;
+		imageAlphaAnimation.durationRemain = _duration;
+		imageAlphaAnimation.elapsedTime = 0.f;
 		return true;
 	}
 	bool SetInnerAnimation() {
@@ -191,6 +215,32 @@ public:
 	bool SetOuterAnimation() {
 		outerAnimation.animationEnabled = false;
 		outerAlphaAnimation.animationEnabled = false;
+		return true;
+	}
+
+	// alpha値のみ適用される
+	bool SetImageAlpha(Color255 _alpha) {
+		defaultImageColor = _alpha;
+		hoveredImageColor = _alpha;
+		clickedImageColor = _alpha;
+		selectedImageColor = _alpha;
+		imageAlphaAnimation.current = (float)defaultImageColor.a;
+
+		disabledImageColor = Color255(0, _alpha.a);
+
+		return true;
+	}
+
+	// alpha値のみ適用される
+	bool SetImageAlpha(Color255 _alpha, Color255 _hoveredColor, Color255 _clickedColor, Color255 _selectedColor) {
+		defaultImageColor = _alpha;
+		hoveredImageColor = _hoveredColor;
+		clickedImageColor = _clickedColor;
+		selectedImageColor = _selectedColor;
+		imageAlphaAnimation.current = (float)defaultImageColor.a;
+
+		disabledImageColor = Color255(0, _alpha.a);
+
 		return true;
 	}
 

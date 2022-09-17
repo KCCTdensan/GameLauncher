@@ -122,12 +122,14 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 		ButtonObject button(PosVec(900.f + 120.f * (float)i, 500.f), PosVec(100,100));
 		button.SetInnerColor(Color255(255, 100, 100), Color255(255, 200, 100), Color255(120, 200, 70), Color255(255, 60, 150));
 		button.SetInnerAnimation(.3f);
+		button.SetImageAlpha(Color255(0, 255), Color255(0, 25), Color255(0, 200), Color255(0, 50));
 		std::string thumbnailName = "Thumb:" + o["GUID"].get<std::string>();
 		std::string thumbnailPath = o["Directory"].get<std::string>() + o["Thumbnail"].get<std::string>();
 		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
 		int handle = ImageChest::GetImageHandle(thumbnailName);
 		button.SetImageHandle(handle);
 		button.SetImageOffsrt(PosVec(25, 25));
+		//button.SetupText("smart15", o["TitleName"].get<std::string>(), Color255(250, 250, 250, 255), TextAlign::LEFT);
 		if (i == 0) button.SetImageSize(PosVec(50, 50));
 		else {
 			button.SetImageOffsrt(PosVec());
@@ -270,6 +272,15 @@ void DebugScene::Update()
 	//if (debugButton.GetMouseClicked()) {
 	//	input.GetTextObject()->ChangeColorWithAnimation(input.GetTextObject()->GetColor(ColorType::INNER), new Color255(255, 255, 255), 0.2f);
 	//}
+
+	for (auto& item : works) {
+		if ((item.GetMouseHit() && !item.GetMouseClicked())|| item.GetMouseSelected()) {
+			item.GetTextObject()->ChangeValueWithAnimation(&item.GetTextObject()->GetColor(ColorType::INNER)->a, 255, 1.f);
+		}
+		else {
+			item.GetTextObject()->ChangeValueWithAnimation(&item.GetTextObject()->GetColor(ColorType::INNER)->a, 0, 1.f);
+		}
+	}
 
 	//if (debugButton2.GetMouseSelected()) {
 	//	debugButton2.SetMouseOff();

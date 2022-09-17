@@ -1,5 +1,21 @@
 #include "ObjectBase.h"
 
+void ObjectBase::UpdateEnforcedMouseCollision()
+{
+	if (enforcedHovered) {
+		enforcedHovered = false;
+		mouseHit = true;
+	}
+	if (enforcedClicked) {
+		enforcedClicked = false;
+		mouseClicked = true;
+	}
+	if (enforcedSelected) {
+		enforcedClicked = false;
+		mouseSelected = true;
+	}
+}
+
 void ObjectBase::SetAnimationColorPoint(AnimationColorStatus* type, Color255 _start, Color255 _goal)
 {
 	type->elapsedTime = 0.f;
@@ -86,14 +102,15 @@ void ObjectBase::UpdatePointerAnimation()
 	for (auto it = pColorAnimation.begin(); it != pColorAnimation.end(); it++) {
 		UpdateAnimationColor(&(it->animation));
 		*(it->color) = it->animation.current;
-		//if (it->animation.durationRemain <= 0.f) {
-		//	pColorAnimation.erase(it);
-		//	break;
-		//}
 	}
 	for (auto it = pAnimation.begin(); it != pAnimation.end(); it++) {
 		UpdateAnimation(&(it->animation));
 		*(it->value) = it->animation.current;
+		//printfDx("%.3f elapsed:%.3f\n", it->animation.m, it->animation.elapsedTime);
+	}
+	for (auto it = pAnimationInt.begin(); it != pAnimationInt.end(); it++) {
+		UpdateAnimation(&(it->animation));
+		*(it->value) = (int)it->animation.current;
 		//printfDx("%.3f elapsed:%.3f\n", it->animation.m, it->animation.elapsedTime);
 	}
 }
@@ -217,6 +234,30 @@ void ObjectBase::ChangeValueWithAnimation(float* pValue, float endValue, float d
 	p->animation.elapsedTime = 0.f;
 	SetAnimationPoint(&(p->animation), *pValue, endValue);
 	pAnimation.push_back(*p);
+}
+
+void ObjectBase::ChangeValueWithAnimation(int* pValue, int endValue, float duration)
+{
+	for (auto it = pAnimationInt.begin(); it != pAnimationInt.end(); it++) {
+		if (it->value == pValue) {
+			if ((int)(it->animation.end) == (int)endValue) return;
+			else {
+				pAnimationInt.erase(it);
+				break;
+			}
+		}
+	}
+
+	AnimationPointerInt* p = new AnimationPointerInt(
+		AnimationStatus(),
+		pValue
+	);
+	p->animation.animationEnabled = true;
+	p->animation.duration = duration;
+	p->animation.durationRemain = duration;
+	p->animation.elapsedTime = 0.f;
+	SetAnimationPoint(&(p->animation), *pValue, endValue);
+	pAnimationInt.push_back(*p);
 }
 
 void ObjectBase::SetCanvasId(int id)

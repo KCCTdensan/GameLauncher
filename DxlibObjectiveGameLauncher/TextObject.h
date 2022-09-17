@@ -42,7 +42,15 @@ public:
 	bool SetEnabledBack() { return enabledBack; }
 
 	// Fî•ñ“o˜^“™
-	bool SetInnerColor(Color255 _innerColor) { innerColor = _innerColor; return true; }
+	bool SetInnerColor(Color255 _innerColor, bool _defaultFill = true)
+	{
+		innerColor = _innerColor;
+		if (_defaultFill) {
+			innerAnimation.current = innerColor;
+			innerAlphaAnimation.current = (float)innerColor.a;
+		}
+		return true;
+	}
 	bool SetBackColor(Color255 _backColor) { backColor = _backColor; return true; }
 
 	// Paddingİ’è(enabledBack‚Ì‚İ—LŒø)

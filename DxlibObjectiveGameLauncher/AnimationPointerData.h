@@ -22,3 +22,14 @@ struct AnimationPointer {
 	AnimationPointer(AnimationStatus _status, float* _value)
 		:animation(_status), value(_value) {}
 };
+
+struct AnimationPointerInt {
+	AnimationStatus animation;
+	int* value;
+
+	AnimationPointerInt()
+		: animation(), value(nullptr) {}
+
+	AnimationPointerInt(AnimationStatus _status, int* _value)
+		:animation(_status), value(_value) {}
+};
