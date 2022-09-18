@@ -8,7 +8,7 @@ int SceneManager::sceneHistoryPosition = 0;
 bool SceneManager::beInitialized = false;
 SceneSet SceneManager::blankScene = SceneSet("_blank", new BlankRedirectScene());
 SceneSet SceneManager::current = SceneSet("", nullptr);
-Header* SceneManager::header = new Header();
+Header* SceneManager::header = nullptr;
 PopupScene* SceneManager::popupScene = new PopupScene();
 SharingScenes SceneManager::sharingScenes;
 
@@ -46,12 +46,12 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 	if (scenes.count(sceneName) >= 1) {
 		current = SceneSet(sceneName, scenes[sceneName]);
 		changed = true;
-		//delete altScene;
+		//delete (altScene); (altScene) = NULL;
 	}
 	else {
 		if (addSceneToMap) {
 			AddScene(sceneName, altScene);
-			ChangeScene(sceneName, altScene);
+			ChangeScene(sceneName, nullptr);
 		}
 		else {
 			current = SceneSet(sceneName, altScene);

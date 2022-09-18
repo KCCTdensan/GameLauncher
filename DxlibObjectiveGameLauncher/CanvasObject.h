@@ -11,7 +11,7 @@ class CanvasObject :
 public:
 	// 領域外は描画されない(子オブジェクトとして登録必要)
 	CanvasObject(PosVec _pos, PosVec _size, bool _scrollVertical = true, bool _scrollAutoHiding = true, float _scrollObjectWidth = 20.f) :
-		ObjectBase(_pos, _size), enabledFill(true), enabledOutline(false), outerColor(0), outlineWidth(0),
+		ObjectBase(_pos, _size), enabledFill(true), enabledOutline(false), outerColor(0), outlineWidth(0), innerColor(Color255(0,0)),
 		enabledScrollX(false), enabledScrollY(false), scrollPercentage(0.f), scrollBarWidth(_scrollObjectWidth), canvasDrawingId(-1), scrollButtonSize(20.f),
 		scrollVertical(_scrollVertical), scrollAutoHiding(_scrollAutoHiding)
 	{

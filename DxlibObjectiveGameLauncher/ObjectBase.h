@@ -172,7 +172,7 @@ public:
 
 	void SetImageHandle(int handle = -1) { imageHandle = handle; }
 
-	void SetImageOffsrt(PosVec offset) { imageOffset = offset; }
+	void SetImageOffset(PosVec offset) { imageOffset = offset; }
 	void SetImageSize(PosVec size) { imageSize = size; }
 	void SetImageAngle(double angle) { imageAngle = angle; }
 	void SetImageTurnFlag(bool turnX = false, bool turnY = false) { imageTurnFlagX = turnX; imageTurnFlagY = turnY; }

@@ -112,6 +112,9 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 
 	picojson::object& obj = val.get<picojson::object>();
 	picojson::array& lists = obj["Lists"].get<picojson::array>();
+
+	/******** JSON ì«çûèIóπ *********/
+
 	works.resize(lists.size(), ButtonObject());
 
 	int i = 0;
@@ -127,7 +130,7 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
 		int handle = ImageChest::GetImageHandle(thumbnailName);
 		works[i].SetImageHandle(handle);
-		works[i].SetImageOffsrt(PosVec(10, works[i].GetSize().y - 100.f * 1.25f));
+		works[i].SetImageOffset(PosVec(10, works[i].GetSize().y - 100.f * 1.25f));
 		works[i].SetupText("smart30", o["TitleName"].get<std::string>(), Color255(250, 250, 250, 255), TextAlign::LEFT);
 		works[i].SetImageSize(PosVec(100, 100));
 		works[i].SetImageTurnFlag(false, false);
@@ -148,9 +151,9 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	sprintf_s(buf, "%d\n", size);
 	OutputDebugString(buf); // å¬êîèoóÕ
 
-	/*UUIDGenerator uuid;
+	UUIDGenerator uuid;
 	std::string u = uuid.GetGUID() + "\n";
-	OutputDebugString(u.c_str());*/
+	OutputDebugString(u.c_str());
 
 	canvas.SetInnerColor(Color255(150, 250, 250, 255));
 	canvas.SetArea(PosVec(200, 10000), 50.f / 10000.f);

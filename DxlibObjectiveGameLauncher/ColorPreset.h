@@ -24,5 +24,16 @@ public:
 	static Color255 navLinksOuterMouse;
 
 	static Color255 titleLogo;
+
+	// メインシーン
+	static Color255 bgColor;
+
+	// タイル
+	static Color255 tileInner;
+	static Color255 tileHovered;
+	static Color255 tileClicked;
+	static Color255 tileSelected;
+	static Color255 tileOuter;
+	static Color255 tileOuterMouse;
 };
 

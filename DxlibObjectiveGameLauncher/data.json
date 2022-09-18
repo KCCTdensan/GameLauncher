@@ -19,6 +19,46 @@
       "Directory": ".\\works\\9ad4302c-a04c-4e60-afa2-9639912992b6\\",
       "FilePath": ".\\MShe_VR.exe",
       "Thumbnail": "thumb.png"
+    },
+    {
+      "Category": "App",
+      "GUID": "0e162b1b-bd58-4066-9f85-0ce7527d0d52",
+      "TitleName": "StrBox",
+      "Author": "de",
+      "Description": "",
+      "Directory": ".\\works\\0e162b1b-bd58-4066-9f85-0ce7527d0d52\\",
+      "FilePath": ".\\MShe_VR.exe",
+      "Thumbnail": "thumb.png"
+    },
+    {
+      "Category": "Game",
+      "GUID": "a31f5fcb-d2a8-41e5-84dc-c7b5d48d3f5f",
+      "TitleName": "3.14159265377777777",
+      "Author": "de",
+      "Description": "",
+      "Directory": ".\\works\\a31f5fcb-d2a8-41e5-84dc-c7b5d48d3f5f\\",
+      "FilePath": ".\\MShe_VR.exe",
+      "Thumbnail": "thumb.png"
+    },
+    {
+      "Category": "Music",
+      "GUID": "ec548c74-b1ad-4992-8255-490cada26499",
+      "TitleName": "‚¶‚á‚ñ‚¯‚ñƒ^ƒCƒ€",
+      "Author": "de",
+      "Description": "",
+      "Directory": ".\\works\\ec548c74-b1ad-4992-8255-490cada26499\\",
+      "FilePath": ".\\MShe_VR.exe",
+      "Thumbnail": "thumb.png"
+    },
+    {
+      "Category": "Movie",
+      "GUID": "efc35f90-4796-4ae8-b0d5-6f0de1de7be5",
+      "TitleName": "I've Just Finished My Homework.",
+      "Author": "de",
+      "Description": "",
+      "Directory": ".\\works\\efc35f90-4796-4ae8-b0d5-6f0de1de7be5\\",
+      "FilePath": ".\\MShe_VR.exe",
+      "Thumbnail": "thumb.png"
     }
   ]
 }

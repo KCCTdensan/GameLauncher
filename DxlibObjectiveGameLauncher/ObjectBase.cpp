@@ -256,7 +256,7 @@ void ObjectBase::ChangeValueWithAnimation(int* pValue, int endValue, float durat
 	p->animation.duration = duration;
 	p->animation.durationRemain = duration;
 	p->animation.elapsedTime = 0.f;
-	SetAnimationPoint(&(p->animation), *pValue, endValue);
+	SetAnimationPoint(&(p->animation), (float)*pValue, (float)endValue);
 	pAnimationInt.push_back(*p);
 }
 
