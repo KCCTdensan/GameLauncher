@@ -30,7 +30,7 @@ protected:
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
 		outerAlphaAnimation(AnimationStatus()),
-		parent(nullptr), enforcedCollision(1),
+		parent(nullptr), enforcedCollision(1), imageAngle(0),
 		expandedNum(false), imageHandle(-1), enforcedHovered(false), enforcedClicked(false), enforcedSelected(false)
 	{
 		UUIDGenerator uuidGenerator;
@@ -45,7 +45,7 @@ protected:
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
 		outerAlphaAnimation(AnimationStatus()),
-		parent(nullptr), enforcedCollision(1),
+		parent(nullptr), enforcedCollision(1), imageAngle(0),
 		expandedNum(false), imageHandle(-1), enforcedHovered(false), enforcedClicked(false), enforcedSelected(false)
 	{
 		UUIDGenerator uuidGenerator;
@@ -64,6 +64,9 @@ protected:
 	void UpdatePointerAnimation(); // pColorAnimation, pAnimationに追加された(座標系等々)のパラメータの更新処理(推奨呼び出し)
 
 	void CollideMouseAsBox(); // 当たり判定が矩形の場合はこれを用いることを推奨する
+
+	// アルファ，エリア設定含む
+	void DrawImage();
 
 	PosVec pos; // 左上座標
 	PosVec size; // 大きさ

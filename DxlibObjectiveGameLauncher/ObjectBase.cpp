@@ -174,6 +174,23 @@ void ObjectBase::CollideMouseAsBox()
 	beCalledNoMouse = false;
 }
 
+void ObjectBase::DrawImage()
+{
+	if (imageHandle != -1) {
+		PosVec originalImageSize;
+		GetGraphSizeF(imageHandle, &originalImageSize.x, &originalImageSize.y);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)imageAlphaAnimation.current);
+		SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
+		DrawRotaGraph3F(
+			pos.x + imageOffset.x,
+			pos.y + imageOffset.y,
+			imageCenter.x, imageCenter.y,
+			(double)(imageSize.x / originalImageSize.x),
+			(double)(imageSize.y / originalImageSize.y),
+			imageAngle, imageHandle, true, imageTurnFlagX, imageTurnFlagY);
+	}
+}
+
 PosVec ObjectBase::GetLocalPos()
 {
 	if (parent != nullptr) {

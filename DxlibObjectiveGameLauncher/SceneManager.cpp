@@ -59,11 +59,11 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 		}
 	}
 	if (changed) {
-		//Collide();
 		Update();
 		std::rotate(sceneHistory.rbegin(), sceneHistory.rbegin() + 1, sceneHistory.rend());
 		sceneHistory[0] = SceneSet(current.sceneName, current.scene);
 		sceneHistoryPosition = 0;
+		header->SetSubtitle(current.sceneName);
 	}
 	return true;
 }
@@ -79,6 +79,7 @@ bool SceneManager::ChangeSceneBackward()
 		return false;
 	}
 	current = SceneSet(sceneHistory[sceneHistoryPosition].sceneName, sceneHistory[sceneHistoryPosition].scene);
+	header->SetSubtitle(current.sceneName);
 	return true;
 }
 
@@ -92,6 +93,7 @@ bool SceneManager::ChangeSceneForward()
 		return false;
 	}
 	current = SceneSet(sceneHistory[sceneHistoryPosition].sceneName, sceneHistory[sceneHistoryPosition].scene);
+	header->SetSubtitle(current.sceneName);
 	return true;
 }
 

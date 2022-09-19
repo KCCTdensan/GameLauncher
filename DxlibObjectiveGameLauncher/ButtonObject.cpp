@@ -80,19 +80,7 @@ void ButtonObject::Draw()
 	}
 	if (rectMode) eventRect.Draw();
 
-	if (imageHandle != -1) {
-		PosVec originalImageSize;
-		GetGraphSizeF(imageHandle, &originalImageSize.x, &originalImageSize.y);
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)imageAlphaAnimation.current);
-		SetDrawArea((int)pos.x, (int)pos.y, (int)(pos.x + size.x + 1), (int)(pos.y + size.y + 1));
-		DrawRotaGraph3F(
-			pos.x + imageOffset.x,
-			pos.y + imageOffset.y,
-			imageCenter.x, imageCenter.y,
-			(double)(imageSize.x / originalImageSize.x),
-			(double)(imageSize.y / originalImageSize.y),
-			imageAngle, imageHandle, true, imageTurnFlagX, imageTurnFlagY);
-	}
+	DrawImage();
 
 	textObject.Draw();
 
@@ -105,7 +93,6 @@ void ButtonObject::Draw()
 	if (enabledOutline) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)outerAlphaAnimation.current);
 		int resultOuterColor = outerAnimation.current.Get(); // debug
-		//DrawBoxAA(pos.x, pos.y, pos.x + size.x, pos.y + size.y, resultOuterColor, true, 0);
 		float offset = outlineWidth / 2;
 		DrawLineAA(pos.x + offset, pos.y + offset, pos.x + size.x - offset + 1, pos.y + offset, resultOuterColor, outlineWidth);
 		DrawLineAA(pos.x + size.x - offset, pos.y + offset, pos.x + size.x - offset, pos.y + size.y - offset + 1, resultOuterColor, outlineWidth);

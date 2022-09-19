@@ -180,7 +180,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SceneManager::Initialize();
 
-	SceneManager::ChangeScene("debug", new DebugScene(SceneManager::GetSharingScenes())); // 最初に表示するページ
+	SceneManager::ChangeScene("Debug", new DebugScene(SceneManager::GetSharingScenes())); // 最初に表示するページ
 
 	//std::thread inputUpdate(InputUpdate);
 	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);

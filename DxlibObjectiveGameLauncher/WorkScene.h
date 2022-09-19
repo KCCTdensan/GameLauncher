@@ -25,6 +25,14 @@ private:
     CanvasObject canvas;
     RectangleObject bg;
 
+    picojson::object obj;
+
+    /* 紹介用オブジェクト */
+    ImageObject thumbnail;
+
+
+    /* 紹介用オブジェクト */
+
     std::string guid;
 };
 

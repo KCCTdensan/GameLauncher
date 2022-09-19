@@ -123,6 +123,9 @@
       <Filter>Static</Filter>
     </ClCompile>
     <ClCompile Include="WorkScene.cpp" />
+    <ClCompile Include="ImageObject.cpp">
+      <Filter>Objects\Variety\Image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -297,6 +300,9 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="WorkScene.h" />
+    <ClInclude Include="ImageObject.h">
+      <Filter>Objects\Variety\Image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -409,6 +415,9 @@
     </Filter>
     <Filter Include="Scenes\Popup">
       <UniqueIdentifier>{d66c7b86-1104-4392-9441-730f2d955ceb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Variety\Image">
+      <UniqueIdentifier>{f30e15ac-5899-4f6e-8039-deaaa2ddc8bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

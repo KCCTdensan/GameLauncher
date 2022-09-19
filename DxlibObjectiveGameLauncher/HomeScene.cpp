@@ -51,8 +51,8 @@ HomeScene::HomeScene(SharingScenes* _sharingScenes)
 			ColorPreset::tileSelected);
 		works[i].SetOutlineColor(
 			ColorPreset::tileOuter,
-			ColorPreset::tileOuter,
-			ColorPreset::tileOuter,
+			ColorPreset::tileOuterMouse,
+			ColorPreset::tileOuterMouse,
 			ColorPreset::tileOuterMouse, 6.f);
 		works[i].SetInnerAnimation(.15f);
 		works[i].SetOuterAnimation(.15f);

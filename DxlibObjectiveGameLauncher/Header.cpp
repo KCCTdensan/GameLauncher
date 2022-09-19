@@ -6,9 +6,9 @@ Header::Header()
 	if (beInitialized) return;
 	int i = 0;
 	sceneSets = {
-	SceneSet("debug", new DebugScene(SceneManager::GetSharingScenes())),
-	SceneSet("home", new HomeScene(SceneManager::GetSharingScenes())),
-	SceneSet("home", new HomeScene(SceneManager::GetSharingScenes()))
+	SceneSet("Debug", new DebugScene(SceneManager::GetSharingScenes())),
+	SceneSet("Home", new HomeScene(SceneManager::GetSharingScenes())),
+	SceneSet("Home", new HomeScene(SceneManager::GetSharingScenes()))
 	};
 
 	banner = RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::bannerHeight));
