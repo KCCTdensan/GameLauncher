@@ -20,5 +20,11 @@ public:
     void Collide();
     void Update();
     void Draw();
+
+private:
+    CanvasObject canvas;
+    RectangleObject bg;
+
+    std::string guid;
 };
 

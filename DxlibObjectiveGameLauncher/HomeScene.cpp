@@ -58,6 +58,7 @@ HomeScene::HomeScene(SharingScenes* _sharingScenes)
 		works[i].SetOuterAnimation(.15f);
 		works[i].SetImageAlpha(Color255(0, 220), Color255(0, 25), Color255(0, 255), Color255(0, 255));
 		std::string thumbnailName = "Thumb:" + o["GUID"].get<std::string>();
+		works[i].SetTag(o["GUID"].get<std::string>());
 		std::string thumbnailPath = o["Directory"].get<std::string>() + o["Thumbnail"].get<std::string>();
 		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
 		int handle = ImageChest::GetImageHandle(thumbnailName);
@@ -115,6 +116,12 @@ void HomeScene::Update()
 		}
 		else {
 			item.GetTextObject()->ChangeValueWithAnimation(&item.GetTextObject()->GetColor(ColorType::INNER)->a, 75, 1.f);
+		}
+
+		if (item.GetMouseSelected()) {
+			item.SetMouseOff();
+			std::string id = item.GetTag();
+			SceneManager::ChangeScene(item.GetTag(), new WorkScene(sharingScenes, item.GetTag()));
 		}
 	}
 

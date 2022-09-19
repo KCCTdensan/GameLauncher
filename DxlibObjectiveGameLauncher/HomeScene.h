@@ -10,6 +10,8 @@
 #include <sstream>
 #include <numbers>
 
+#include "WorkScene.h"
+
 class HomeScene :
     public SceneBase
 {

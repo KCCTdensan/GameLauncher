@@ -27,12 +27,13 @@ Header::Header()
 		navLinks[i].SetOuterAnimation(0);
 	}
 
-	navLinks[0].SetupText("mplus25", "Debug", ColorPreset::titleLogo);
+	/*navLinks[0].SetupText("mplus25", "Debug", ColorPreset::titleLogo);
 	navLinks[1].SetupText("mplus25", "Home", ColorPreset::titleLogo);
-	navLinks[2].SetupText("mplus25", "Home", ColorPreset::titleLogo);
+	navLinks[2].SetupText("mplus25", "Home", ColorPreset::titleLogo);*/
 
-	for (auto& item : navLinks) {
-		item.GetTextObject()->Move(PosVec(7.f, 7.f));
+	for (i = 0; i < ApplicationPreference::headerButtonNum; i++) {
+		navLinks[i].SetupText("mplus25", sceneSets[i].sceneName, ColorPreset::titleLogo);
+		navLinks[i].GetTextObject()->Move(PosVec(7.f, 7.f));
 	}
 
 	arrowButtons.resize(2, ButtonObject(PosVec(), PosVec(), true, true));
@@ -50,6 +51,11 @@ Header::Header()
 		item.SetOuterAnimation(0);
 		i++;
 	}
+	arrowButtons[0].SetupText("mplus25", "©", ColorPreset::titleLogo);
+	arrowButtons[1].SetupText("mplus25", "¨", ColorPreset::titleLogo);
+
+	for (auto& item : arrowButtons)
+		item.GetTextObject()->Move(PosVec(15.f, 7.f));
 
 	for (i = 0; i < 3; i++) {
 		systemButtons.push_back(ButtonObject(
@@ -140,6 +146,14 @@ void Header::Update()
 	if (subtitleLogo.GetPos().x != (int)titleLogo.GetTextWidth() + 40.f) {
 		subtitleLogo.SetPos(PosVec((int)titleLogo.GetTextWidth() + 40.f, 27.f));
 		subtitleLogo.CalcPos();
+	}
+	if (arrowButtons[0].GetMouseSelected()) {
+		arrowButtons[0].SetMouseOff();
+		SceneManager::ChangeSceneBackward();
+	}
+	if (arrowButtons[1].GetMouseSelected()) {
+		arrowButtons[1].SetMouseOff();
+		SceneManager::ChangeSceneForward();
 	}
 
 	std::string titleName = titleLogo.GetText() + " : " + subtitleLogo.GetText();

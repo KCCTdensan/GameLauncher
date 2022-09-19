@@ -108,6 +108,8 @@ protected:
 
 	Color255 disabledImageColor;
 
+	std::string tag;
+
 private:
 
 	virtual void CollideMouse() = 0; // マウス判定処理
@@ -257,5 +259,8 @@ public:
 	virtual bool RegisterChildren(ObjectBase* _object);
 	// 自分のポインタを放り込むように(キャンバス用)(描画先決定用) ※childrenの関数を呼ぶため予めRegisterChildrenが必要
 	virtual bool RegisterParent(ObjectBase* _object);
+
+	void SetTag(std::string _tag) { tag = _tag; }
+	std::string GetTag() { return tag; }
 };
 
