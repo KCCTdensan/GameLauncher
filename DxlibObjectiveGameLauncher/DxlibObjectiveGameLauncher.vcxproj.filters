@@ -107,15 +107,22 @@
     <ClCompile Include="ComponentBase.cpp">
       <Filter>Component\Base</Filter>
     </ClCompile>
-    <ClCompile Include="PopupScene.cpp" />
-    <ClCompile Include="MusicCanvas.cpp" />
     <ClCompile Include="CanvasTemplate.cpp">
       <Filter>Canvases\Base</Filter>
     </ClCompile>
     <ClCompile Include="PopupWindow.cpp">
       <Filter>Canvases</Filter>
     </ClCompile>
-    <ClCompile Include="ColorPreset.cpp" />
+    <ClCompile Include="MusicCanvas.cpp">
+      <Filter>Scenes\Popup</Filter>
+    </ClCompile>
+    <ClCompile Include="PopupScene.cpp">
+      <Filter>Scenes\Popup</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorPreset.cpp">
+      <Filter>Static</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -268,9 +275,6 @@
     <ClInclude Include="ComponentBase.h">
       <Filter>Component\Base</Filter>
     </ClInclude>
-    <ClInclude Include="SharingScenes.h" />
-    <ClInclude Include="PopupScene.h" />
-    <ClInclude Include="MusicCanvas.h" />
     <ClInclude Include="CanvasTemplate.h">
       <Filter>Canvases\Base</Filter>
     </ClInclude>
@@ -280,7 +284,19 @@
     <ClInclude Include="lib\picojson.h">
       <Filter>lib</Filter>
     </ClInclude>
-    <ClInclude Include="ColorPreset.h" />
+    <ClInclude Include="MusicCanvas.h">
+      <Filter>Scenes\Popup</Filter>
+    </ClInclude>
+    <ClInclude Include="PopupScene.h">
+      <Filter>Scenes\Popup</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorPreset.h">
+      <Filter>Static</Filter>
+    </ClInclude>
+    <ClInclude Include="SharingScenes.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -390,6 +406,9 @@
     </Filter>
     <Filter Include="lib">
       <UniqueIdentifier>{ead72e65-26be-4578-8af8-554c44e45af8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Popup">
+      <UniqueIdentifier>{d66c7b86-1104-4392-9441-730f2d955ceb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

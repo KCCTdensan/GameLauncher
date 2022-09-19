@@ -62,12 +62,14 @@ HomeScene::HomeScene(SharingScenes* _sharingScenes)
 		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
 		int handle = ImageChest::GetImageHandle(thumbnailName);
 		PosVec imgSize = ImageChest::GetImageSize(thumbnailName);
-		float imgSizeRate = tileSize.x / imgSize.x;
+		float imgSizeRate;
 		works[i].SetImageHandle(handle);
 		if (imgSize.x >= imgSize.y) {
+			imgSizeRate = tileSize.x / imgSize.x;
 			works[i].SetImageOffset(PosVec(tileSize.x / 10.f, works[i].GetSize().y - imgSize.y * imgSizeRate * 1.2f));
 		}
 		else {
+			imgSizeRate = tileSize.x / imgSize.x;
 			works[i].SetImageOffset(PosVec(tileSize.x / 10.f, works[i].GetSize().y - imgSize.y * imgSizeRate));
 		}
 		works[i].SetupText("smart80", o["TitleName"].get<std::string>(), ColorPreset::titleLogo, TextAlign::LEFT);

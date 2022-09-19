@@ -33,6 +33,7 @@ private:
 	RectangleObject banner;
 	LineObject headerLine;
 	std::vector<ButtonObject> systemButtons;
+	std::vector<ButtonObject> arrowButtons;
 	TextObject titleLogo;
 	TextObject subtitleLogo;
 

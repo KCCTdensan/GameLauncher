@@ -4,7 +4,7 @@ Header::Header()
 	: beInitialized(false), navWidth(ApplicationPreference::GetBackgroundSize().x - 300), height(ApplicationPreference::headerTabHeight)
 {
 	if (beInitialized) return;
-
+	int i = 0;
 	sceneSets = {
 	SceneSet("debug", new DebugScene(SceneManager::GetSharingScenes())),
 	SceneSet("home", new HomeScene(SceneManager::GetSharingScenes())),
@@ -14,7 +14,7 @@ Header::Header()
 	banner = RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::bannerHeight));
 	banner.SetInnerColor(ColorPreset::headerBanner);
 
-	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
+	for (i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		navLinks.push_back(ButtonObject(PosVec(ApplicationPreference::GetBackgroundSize().x - (navWidth / ApplicationPreference::headerButtonNum * (ApplicationPreference::headerButtonNum - i)), ApplicationPreference::bannerHeight),
 			PosVec(navWidth / ApplicationPreference::headerButtonNum, height), true, true));
 		navLinks[i].SetInnerColor(ColorPreset::navLinksInner, ColorPreset::navLinksHovered, ColorPreset::navLinksClicked, ColorPreset::navLinksSelected);
@@ -27,7 +27,31 @@ Header::Header()
 		navLinks[i].SetOuterAnimation(0);
 	}
 
-	for (int i = 0; i < 3; i++) {
+	navLinks[0].SetupText("mplus25", "Debug", ColorPreset::titleLogo);
+	navLinks[1].SetupText("mplus25", "Home", ColorPreset::titleLogo);
+	navLinks[2].SetupText("mplus25", "Home", ColorPreset::titleLogo);
+
+	for (auto& item : navLinks) {
+		item.GetTextObject()->Move(PosVec(7.f, 7.f));
+	}
+
+	arrowButtons.resize(2, ButtonObject(PosVec(), PosVec(), true, true));
+	i = 0;
+	for (auto& item : arrowButtons) {
+		item.SetPos(PosVec((ApplicationPreference::GetBackgroundSize().x - navWidth) / 4.f + (float)i * ((ApplicationPreference::GetBackgroundSize().x - navWidth) / 4.f), ApplicationPreference::bannerHeight));
+		item.SetSize(PosVec((ApplicationPreference::GetBackgroundSize().x - navWidth) / 4.f, ApplicationPreference::headerTabHeight));
+		item.SetInnerColor(ColorPreset::navLinksInner, ColorPreset::navLinksHovered, ColorPreset::navLinksClicked, ColorPreset::navLinksSelected);
+		item.SetOutlineColor(
+			ColorPreset::navLinksOuter,
+			ColorPreset::navLinksOuterMouse,
+			ColorPreset::navLinksOuterMouse,
+			ColorPreset::navLinksOuterMouse, 2.f);
+		item.SetInnerAnimation(.2f);
+		item.SetOuterAnimation(0);
+		i++;
+	}
+
+	for (i = 0; i < 3; i++) {
 		systemButtons.push_back(ButtonObject(
 			PosVec(
 				ApplicationPreference::GetBackgroundSize().x - 60.f - 60.f * i,
@@ -57,6 +81,20 @@ Header::Header()
 
 	beInitialized = true;
 
+	layer.AddObject(&banner);
+	layer.AddObject(&titleLogo);
+	layer.AddObject(&subtitleLogo);
+	for (auto& item : systemButtons) {
+		layer.AddObject(&item);
+	}
+	for (auto& item : navLinks) {
+		layer.AddObject(&item);
+	}
+	for (auto& item : arrowButtons) {
+		layer.AddObject(&item);
+	}
+	layer.AddObject(&headerLine);
+
 	// ƒtƒHƒ“ƒg’Ç‰Á
 	fonts.push_back(FontHandle("mplus60", "M PLUS 2", 60, 100));
 	fonts.push_back(FontHandle("mplus25", "M PLUS 2", 40, 100));
@@ -64,31 +102,22 @@ Header::Header()
 
 void Header::Collide()
 {
-	banner.Collide();
-	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
-		navLinks[i].Collide();
-	}
-	for (int i = 0; i < 3; i++) {
-		systemButtons[i].Collide();
-	}
+	layer.Collide();
 }
 
 void Header::Update()
 {
 	RegFonts();
 
+	layer.Update();
+
 	banner.Update();
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
-		navLinks[i].Update();
-
 		if (navLinks[i].GetMouseSelected()) {
 			navLinks[i].SetMouseOff();
-			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene, false);
+			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene);
 			//SceneManager::ChangeScene(sceneSets[i].sceneName, new DebugScene(), false);
 		}
-	}
-	for (int i = 0; i < 3; i++) {
-		systemButtons[i].Update();
 	}
 	if (systemButtons[0].GetMouseSelected()) {
 		WindowHwnd::WindowClose(GetMainWindowHandle());
@@ -112,8 +141,6 @@ void Header::Update()
 		subtitleLogo.SetPos(PosVec((int)titleLogo.GetTextWidth() + 40.f, 27.f));
 		subtitleLogo.CalcPos();
 	}
-	titleLogo.Update();
-	subtitleLogo.Update();
 
 	std::string titleName = titleLogo.GetText() + " : " + subtitleLogo.GetText();
 
@@ -122,17 +149,7 @@ void Header::Update()
 
 void Header::Draw()
 {
-	banner.Draw();
-	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
-		navLinks[i].Draw();
-	}
-	for (int i = 0; i < 3; i++) {
-		systemButtons[i].Draw();
-	}
-	headerLine.Draw();
-	titleLogo.Draw();
-	subtitleLogo.Draw();
-	//DrawBoxAA(0, 0, 1920, 1080, GetColor(255, 255, 255), false, 2.); // debug
+	layer.Draw();
 }
 
 void Header::SetSubtitle(std::string subtitle)

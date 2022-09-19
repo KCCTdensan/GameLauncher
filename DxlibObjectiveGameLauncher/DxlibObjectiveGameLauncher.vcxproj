@@ -52,6 +52,7 @@
     <ClCompile Include="UUIDGenerator.cpp" />
     <ClCompile Include="WindowHolding.cpp" />
     <ClCompile Include="WindowHwnd.cpp" />
+    <ClCompile Include="WorkScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationPointerData.h" />
@@ -111,6 +112,7 @@
     <ClInclude Include="VectorTypes.h" />
     <ClInclude Include="WindowHolding.h" />
     <ClInclude Include="WindowHwnd.h" />
+    <ClInclude Include="WorkScene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
