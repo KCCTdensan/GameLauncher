@@ -128,6 +128,8 @@ public:
 		maskUpperLeft.y = (scrollDistance.y - size.y) * scrollValue.y;
 	}
 
+	PosVec GetArea() { return scrollDistance; }
+
 	void SetScrollValue(PosVec _value) {
 		scrollValue.x = _value.x;
 		scrollValue.y = _value.y;

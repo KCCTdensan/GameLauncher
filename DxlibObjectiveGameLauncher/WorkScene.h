@@ -29,7 +29,9 @@ private:
 
     /* 紹介用オブジェクト */
     ImageObject thumbnail;
-
+    TextObject title;
+    TextObject description;
+    CanvasObject* descriptionCanvas;
 
     /* 紹介用オブジェクト */
 

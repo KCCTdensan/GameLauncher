@@ -35,5 +35,8 @@ public:
 	static Color255 tileSelected;
 	static Color255 tileOuter;
 	static Color255 tileOuterMouse;
+
+	// ’Êí•¶š
+	static Color255 textBlack;
 };
 

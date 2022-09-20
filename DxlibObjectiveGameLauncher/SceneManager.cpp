@@ -9,7 +9,7 @@ bool SceneManager::beInitialized = false;
 SceneSet SceneManager::blankScene = SceneSet("_blank", new BlankRedirectScene());
 SceneSet SceneManager::current = SceneSet("", nullptr);
 Header* SceneManager::header = nullptr;
-PopupScene* SceneManager::popupScene = new PopupScene();
+PopupScene* SceneManager::popupScene = nullptr;
 SharingScenes SceneManager::sharingScenes;
 
 void SceneManager::Initialize()

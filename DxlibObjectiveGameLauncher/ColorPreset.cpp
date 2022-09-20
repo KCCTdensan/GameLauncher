@@ -28,3 +28,5 @@ Color255 ColorPreset::tileClicked("#C1F2E7");
 Color255 ColorPreset::tileSelected = navLinksInner;
 Color255 ColorPreset::tileOuter = navLinksOuter;
 Color255 ColorPreset::tileOuterMouse = navLinksOuterMouse;
+
+Color255 ColorPreset::textBlack(20,20,20);

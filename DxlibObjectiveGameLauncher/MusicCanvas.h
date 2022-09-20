@@ -12,7 +12,7 @@ public:
 
 private:
 
-    CanvasObject canvas;
-    ButtonObject button;
+    CanvasObject* canvas;
+    ButtonObject* button;
 };
 
