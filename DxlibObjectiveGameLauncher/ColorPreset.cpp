@@ -21,6 +21,8 @@ Color255 ColorPreset::navLinksOuterMouse(0xFF, 0x77, 0xFE);
 Color255 ColorPreset::titleLogo("#88bcb1");
 
 Color255 ColorPreset::bgColor("#f4faf9");
+Color255 ColorPreset::transparent(0, 0);
+Color255 ColorPreset::backGray(150, 200);
 
 Color255 ColorPreset::tileInner = headerBanner;
 Color255 ColorPreset::tileHovered("#CCF9F0");
@@ -29,4 +31,5 @@ Color255 ColorPreset::tileSelected = navLinksInner;
 Color255 ColorPreset::tileOuter = navLinksOuter;
 Color255 ColorPreset::tileOuterMouse = navLinksOuterMouse;
 
-Color255 ColorPreset::textBlack(20,20,20);
+Color255 ColorPreset::textBlack(20, 20, 20);
+Color255 ColorPreset::textGray(120);

@@ -18,6 +18,8 @@ public:
 	inline static const float bannerHeight = 75.f;
 	inline static const float headerTabHeight = 50.f;
 	inline static const float startScenePos = bannerHeight + headerTabHeight;
+	
+	inline static const float returnTextIndent = 1.15f;
 
 private:
 	static PosVec backgroundSize;

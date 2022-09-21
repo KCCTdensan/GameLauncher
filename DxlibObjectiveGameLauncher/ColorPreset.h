@@ -27,6 +27,8 @@ public:
 
 	// メインシーン
 	static Color255 bgColor;
+	static Color255 transparent;
+	static Color255 backGray;
 
 	// タイル
 	static Color255 tileInner;
@@ -38,5 +40,6 @@ public:
 
 	// 通常文字
 	static Color255 textBlack;
+	static Color255 textGray;
 };
 

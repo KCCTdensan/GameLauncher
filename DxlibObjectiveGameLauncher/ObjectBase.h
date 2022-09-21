@@ -142,6 +142,10 @@ public:
 			return &pos;
 		case VectorType::SIZE:
 			return &size;
+		case VectorType::IMAGE_OFFSET:
+			return &imageOffset;
+		case VectorType::IMAGE_SIZE:
+			return &imageSize;
 		default:
 			return nullptr;
 		}
@@ -176,6 +180,7 @@ public:
 	void SetCanvasId(int id);
 
 	void SetImageHandle(int handle = -1) { imageHandle = handle; }
+	int GetImageHandle() { return imageHandle; }
 
 	void SetImageOffset(PosVec offset) { imageOffset = offset; }
 	void SetImageSize(PosVec size) { imageSize = size; }

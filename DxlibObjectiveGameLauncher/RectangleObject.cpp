@@ -29,6 +29,7 @@ void RectangleObject::Update()
 
 void RectangleObject::Draw()
 {
+
 	if (canvasId != -1) {
 		SetDrawScreen(canvasId);
 	}

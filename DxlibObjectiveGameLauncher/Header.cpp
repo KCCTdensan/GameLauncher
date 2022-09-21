@@ -23,7 +23,7 @@ Header::Header()
 			ColorPreset::navLinksOuterMouse,
 			ColorPreset::navLinksOuterMouse,
 			ColorPreset::navLinksOuterMouse, 2.f);
-		navLinks[i].SetInnerAnimation(.2f);
+		navLinks[i].SetInnerAnimation(.1f);
 		navLinks[i].SetOuterAnimation(0);
 	}
 
@@ -47,7 +47,7 @@ Header::Header()
 			ColorPreset::navLinksOuterMouse,
 			ColorPreset::navLinksOuterMouse,
 			ColorPreset::navLinksOuterMouse, 2.f);
-		item.SetInnerAnimation(.2f);
+		item.SetInnerAnimation(.1f);
 		item.SetOuterAnimation(0);
 		i++;
 	}
