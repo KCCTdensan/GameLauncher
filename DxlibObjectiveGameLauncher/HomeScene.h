@@ -24,8 +24,8 @@ public:
     void Draw();
 
 private :
-    CanvasObject canvas;
-    RectangleObject bg;
-    std::vector<ButtonObject> works;
+    CanvasObject* canvas;
+    RectangleObject* bg;
+    std::vector<ButtonObject*> works;
 };
 

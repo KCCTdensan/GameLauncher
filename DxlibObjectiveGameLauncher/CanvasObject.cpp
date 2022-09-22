@@ -4,31 +4,31 @@ void CanvasObject::Collide()
 {
 	CollideMouse();
 	if (scrollDistance.x > size.x)
-		scrollBar[1].Collide();
+		scrollBar[1]->Collide();
 	else if (!scrollAutoHiding)
-		scrollBar[1].Collide();
+		scrollBar[1]->Collide();
 
 	if (scrollDistance.y > size.y)
-		scrollBar[0].Collide();
+		scrollBar[0]->Collide();
 	else if (!scrollAutoHiding)
-		scrollBar[0].Collide();
+		scrollBar[0]->Collide();
 
 	if (scrollDistance.x > size.x) {
-		scrollButton[(int)DirectionType::LEFT].Collide();
-		scrollButton[(int)DirectionType::RIGHT].Collide();
+		scrollButton[(int)DirectionType::LEFT]->Collide();
+		scrollButton[(int)DirectionType::RIGHT]->Collide();
 	}
 	else if (!scrollAutoHiding) {
-		scrollButton[(int)DirectionType::LEFT].Collide();
-		scrollButton[(int)DirectionType::RIGHT].Collide();
+		scrollButton[(int)DirectionType::LEFT]->Collide();
+		scrollButton[(int)DirectionType::RIGHT]->Collide();
 	}
 
 	if (scrollDistance.y > size.y) {
-		scrollButton[(int)DirectionType::TOP].Collide();
-		scrollButton[(int)DirectionType::BOTTOM].Collide();
+		scrollButton[(int)DirectionType::TOP]->Collide();
+		scrollButton[(int)DirectionType::BOTTOM]->Collide();
 	}
 	else if (!scrollAutoHiding) {
-		scrollButton[(int)DirectionType::TOP].Collide();
-		scrollButton[(int)DirectionType::BOTTOM].Collide();
+		scrollButton[(int)DirectionType::TOP]->Collide();
+		scrollButton[(int)DirectionType::BOTTOM]->Collide();
 	}
 
 	/*for (auto& item : scrollButton) {
@@ -49,11 +49,11 @@ void CanvasObject::Update()
 	UpdateAnimation(&outerAlphaAnimation);
 
 	for (auto& item : scrollBar) {
-		item.Update();
+		item->Update();
 	}
 
-	if (scrollValue.y != scrollBar[0].GetValue() && enabled) {
-		float distance = scrollBar[0].GetValue() - scrollValue.y;
+	if (scrollValue.y != scrollBar[0]->GetValue() && enabled) {
+		float distance = scrollBar[0]->GetValue() - scrollValue.y;
 		if (scrollValue.y + distance > 1.001f) {
 			distance = 1.f - scrollValue.y;
 		}
@@ -63,16 +63,16 @@ void CanvasObject::Update()
 		scrollValue.y += distance;
 		Move(PosVec(0.f, -distance * (scrollDistance.y - size.y)), false);
 		for (auto& item : scrollButton) {
-			item.Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
+			item->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
 		for (auto& item : scrollBar) {
-			item.Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
+			item->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
-		scrollValue.y = scrollBar[0].GetValue();
+		scrollValue.y = scrollBar[0]->GetValue();
 	}
 
-	if (scrollValue.x != scrollBar[1].GetValue() && enabled) {
-		float distance = scrollBar[1].GetValue() - scrollValue.x;
+	if (scrollValue.x != scrollBar[1]->GetValue() && enabled) {
+		float distance = scrollBar[1]->GetValue() - scrollValue.x;
 		if (scrollValue.x + distance > 1.001f) {
 			distance = 1.f - scrollValue.x;
 		}
@@ -82,21 +82,21 @@ void CanvasObject::Update()
 		scrollValue.x += distance;
 		Move(PosVec(-distance * (scrollDistance.x - size.x), 0.f), false);
 		for (auto& item : scrollButton) {
-			item.Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
+			item->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
 		for (auto& item : scrollBar) {
-			item.Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
+			item->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
-		scrollValue.x = scrollBar[1].GetValue();
+		scrollValue.x = scrollBar[1]->GetValue();
 	}
 
 	for (auto& item : scrollButton) {
-		item.Update();
+		item->Update();
 	}
 
 	float distance = scrollPercentage;
 
-	if (scrollButton[(int)DirectionType::LEFT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
+	if (scrollButton[(int)DirectionType::LEFT]->GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		distance *= -1.f;
 		if (scrollValue.x + distance < 0.001f) {
 			distance = -scrollValue.x;
@@ -108,19 +108,19 @@ void CanvasObject::Update()
 				parent->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
 		for (auto& item : scrollButton) {
-			item.Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
+			item->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
 		for (auto& item : scrollBar) {
-			item.Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
+			item->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
-		scrollButton[(int)DirectionType::LEFT].SetMouseOff();
-		scrollBar[1].SetValue(scrollValue.x);
+		scrollButton[(int)DirectionType::LEFT]->SetMouseOff();
+		scrollBar[1]->SetValue(scrollValue.x);
 
-		if (scrollValue.x <= 0.f) scrollButton[(int)DirectionType::LEFT].SetEnabled(false);
-		scrollButton[(int)DirectionType::RIGHT].SetEnabled(true);
+		if (scrollValue.x <= 0.f) scrollButton[(int)DirectionType::LEFT]->SetEnabled(false);
+		scrollButton[(int)DirectionType::RIGHT]->SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::RIGHT].GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
+	if (scrollButton[(int)DirectionType::RIGHT]->GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		if (scrollValue.x + distance > 1.001f) {
 			distance = 1.f - scrollValue.x;
 		}
@@ -131,19 +131,19 @@ void CanvasObject::Update()
 				parent->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
 		for (auto& item : scrollButton) {
-			item.Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
+			item->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
 		for (auto& item : scrollBar) {
-			item.Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
+			item->Move(PosVec(distance * (scrollDistance.x - size.x), 0.f));
 		}
-		scrollButton[(int)DirectionType::RIGHT].SetMouseOff();
-		scrollBar[1].SetValue(scrollValue.x);
+		scrollButton[(int)DirectionType::RIGHT]->SetMouseOff();
+		scrollBar[1]->SetValue(scrollValue.x);
 
-		if (scrollValue.x >= 0.9999f) scrollButton[(int)DirectionType::RIGHT].SetEnabled(false);
-		scrollButton[(int)DirectionType::LEFT].SetEnabled(true);
+		if (scrollValue.x >= 0.9999f) scrollButton[(int)DirectionType::RIGHT]->SetEnabled(false);
+		scrollButton[(int)DirectionType::LEFT]->SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::TOP].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
+	if (scrollButton[(int)DirectionType::TOP]->GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		distance *= -1.f;
 		if (scrollValue.y + distance < 0.001f) {
 			distance = -scrollValue.y;
@@ -155,19 +155,19 @@ void CanvasObject::Update()
 				parent->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
 		for (auto& item : scrollButton) {
-			item.Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
+			item->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
 		for (auto& item : scrollBar) {
-			item.Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
+			item->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
-		scrollButton[(int)DirectionType::TOP].SetMouseOff();
-		scrollBar[0].SetValue(scrollValue.y);
+		scrollButton[(int)DirectionType::TOP]->SetMouseOff();
+		scrollBar[0]->SetValue(scrollValue.y);
 
-		if (scrollValue.y <= 0.f) scrollButton[(int)DirectionType::TOP].SetEnabled(false);
-		scrollButton[(int)DirectionType::BOTTOM].SetEnabled(true);
+		if (scrollValue.y <= 0.f) scrollButton[(int)DirectionType::TOP]->SetEnabled(false);
+		scrollButton[(int)DirectionType::BOTTOM]->SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::BOTTOM].GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
+	if (scrollButton[(int)DirectionType::BOTTOM]->GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
 		if (scrollValue.y + distance > 1.001f) {
 			distance = 1.f - scrollValue.y;
 		}
@@ -178,16 +178,16 @@ void CanvasObject::Update()
 				parent->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
 		for (auto& item : scrollButton) {
-			item.Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
+			item->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
 		for (auto& item : scrollBar) {
-			item.Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
+			item->Move(PosVec(0.f, distance * (scrollDistance.y - size.y), 0.f));
 		}
-		scrollButton[(int)DirectionType::BOTTOM].SetMouseOff();
-		scrollBar[0].SetValue(scrollValue.y);
+		scrollButton[(int)DirectionType::BOTTOM]->SetMouseOff();
+		scrollBar[0]->SetValue(scrollValue.y);
 
-		if (scrollValue.y >= 0.9999f) scrollButton[(int)DirectionType::BOTTOM].SetEnabled(false);
-		scrollButton[(int)DirectionType::TOP].SetEnabled(true);
+		if (scrollValue.y >= 0.9999f) scrollButton[(int)DirectionType::BOTTOM]->SetEnabled(false);
+		scrollButton[(int)DirectionType::TOP]->SetEnabled(true);
 	}
 
 	UpdatePointerAnimation();
@@ -223,31 +223,31 @@ void CanvasObject::Draw()
 	DrawRectGraphF(pos.x, pos.y, (int)pos.x, (int)pos.y, (int)size.x, (int)size.y, canvasId, true, false);
 
 	if (scrollDistance.x > size.x)
-		scrollBar[1].Draw();
+		scrollBar[1]->Draw();
 	else if (!scrollAutoHiding)
-		scrollBar[1].Draw();
+		scrollBar[1]->Draw();
 
 	if (scrollDistance.y > size.y)
-		scrollBar[0].Draw();
+		scrollBar[0]->Draw();
 	else if (!scrollAutoHiding)
-		scrollBar[0].Draw();
+		scrollBar[0]->Draw();
 
 	if (scrollDistance.x > size.x) {
-		scrollButton[(int)DirectionType::LEFT].Draw();
-		scrollButton[(int)DirectionType::RIGHT].Draw();
+		scrollButton[(int)DirectionType::LEFT]->Draw();
+		scrollButton[(int)DirectionType::RIGHT]->Draw();
 	}
 	else if (!scrollAutoHiding) {
-		scrollButton[(int)DirectionType::LEFT].Draw();
-		scrollButton[(int)DirectionType::RIGHT].Draw();
+		scrollButton[(int)DirectionType::LEFT]->Draw();
+		scrollButton[(int)DirectionType::RIGHT]->Draw();
 	}
 
 	if (scrollDistance.y > size.y) {
-		scrollButton[(int)DirectionType::TOP].Draw();
-		scrollButton[(int)DirectionType::BOTTOM].Draw();
+		scrollButton[(int)DirectionType::TOP]->Draw();
+		scrollButton[(int)DirectionType::BOTTOM]->Draw();
 	}
 	else if (!scrollAutoHiding) {
-		scrollButton[(int)DirectionType::TOP].Draw();
-		scrollButton[(int)DirectionType::BOTTOM].Draw();
+		scrollButton[(int)DirectionType::TOP]->Draw();
+		scrollButton[(int)DirectionType::BOTTOM]->Draw();
 	}
 
 	if (enabledOutline) {

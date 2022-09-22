@@ -188,7 +188,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 				maxThumbnailLongLength - 100.f), true);
 		// ‚‚³Žæ“¾
 		float textHeight = (float)description->GetTextHeight() * ApplicationPreference::returnTextIndent;
-		descriptionCanvas->SetArea(PosVec(0, textHeight), (float)description->GetFontHeight() / textHeight);
+		descriptionCanvas->SetArea(PosVec(0, textHeight), (float)description->GetFontHeight() * 2.f / textHeight);
 
 		descriptionCanvas->SetInnerColor(ColorPreset::transparent);
 		descriptionCanvas->RegisterChildren(description);
@@ -266,7 +266,7 @@ void WorkScene::Update()
 	if (descriptionCanvas != nullptr && description != nullptr)
 		if ((int)descriptionCanvas->GetArea().y < (int)((float)description->GetTextHeight() * ApplicationPreference::returnTextIndent)) {
 			float textHeight = (float)description->GetTextHeight() * ApplicationPreference::returnTextIndent;
-			descriptionCanvas->SetArea(PosVec(0, textHeight), (float)description->GetFontHeight() / textHeight);
+			descriptionCanvas->SetArea(PosVec(0, textHeight), (float)description->GetFontHeight() * 2.f / textHeight);
 		}
 
 	if (launch != nullptr) {
@@ -283,6 +283,8 @@ void WorkScene::Update()
 		if (launch->GetMouseSelected()) {
 			// ‰Ÿ‰ºŽž‚Ìˆ—‚ð‚±‚±‚É
 			launch->SetMouseOff();
+			std::string exePath = this->obj["Directory"].get<std::string>() + this->obj["FilePath"].get<std::string>();
+			ShellExecute(NULL, "open", exePath.c_str(), NULL, NULL, 0);
 		}
 
 	if (thumbnail != nullptr)
