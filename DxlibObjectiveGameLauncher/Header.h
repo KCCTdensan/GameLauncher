@@ -29,13 +29,13 @@ public:
 private:
 	bool beInitialized;
 	std::vector<SceneSet> sceneSets;
-	std::vector<ButtonObject> navLinks;
-	RectangleObject banner;
-	LineObject headerLine;
-	std::vector<ButtonObject> systemButtons;
-	std::vector<ButtonObject> arrowButtons;
-	TextObject titleLogo;
-	TextObject subtitleLogo;
+	std::vector<ButtonObject*> navLinks;
+	RectangleObject* banner;
+	LineObject* headerLine;
+	std::vector<ButtonObject*> systemButtons;
+	std::vector<ButtonObject*> arrowButtons;
+	TextObject* titleLogo;
+	TextObject* subtitleLogo;
 
 	float height;
 	float navWidth;
