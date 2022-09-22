@@ -41,5 +41,7 @@ public:
 	// í èÌï∂éö
 	static Color255 textBlack;
 	static Color255 textGray;
+	static Color255 textObject;
+	static Color255 textObjectWhite;
 };
 

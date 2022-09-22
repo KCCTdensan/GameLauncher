@@ -23,8 +23,8 @@ public:
     void Draw();
 
 private:
-    CanvasObject canvas;
-    RectangleObject bg;
+    CanvasObject* canvas;
+    RectangleObject* bg;
 
     picojson::object obj;
 
@@ -35,13 +35,16 @@ private:
     TextObject* author;
     TextObject* guidText;
     TextObject* description;
+    TextObject* photoGalleryText;
     CanvasObject* descriptionCanvas;
     CanvasObject* thumbnailCanvas;
     std::vector<LineObject*> descriptionLines;
+    std::vector<ImageObject*> images;
+    CanvasObject* imagesCanvas;
 
     ButtonObject* launch;
 
-    RectangleObject* thumbnailBackGround;
+    RectangleObject* imageBackGround;
 
     /* 紹介用オブジェクト */
 
@@ -49,7 +52,14 @@ private:
 
     // buffer
     PosVec thumbnailPos;
+    std::vector<PosVec> imagesPos;
     PosVec thumbnailSize;
+    std::vector<PosVec> imagesSize;
+
+    ImageObject* isBigImage;
+    CanvasObject* isBigCanvas;
+    PosVec* isBigPos;
+    PosVec* isBigSize;
 
     const float maxImageLongLengthOnBig = 800.f;
     const float zoomFrame = .5f;
