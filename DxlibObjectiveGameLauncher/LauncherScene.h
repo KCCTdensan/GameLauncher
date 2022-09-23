@@ -17,7 +17,7 @@ class LauncherScene :
 {
 public:
     LauncherScene();
-    LauncherScene(SharingScenes* _sharingScenes, std::string workGuid);
+    LauncherScene(SharingScenes* _sharingScenes);
 
     void Collide();
     void Update();
@@ -48,8 +48,6 @@ private:
     RectangleObject* imageBackGround;
 
     /* 紹介用オブジェクト */
-
-    std::string guid;
 
     // buffer
     PosVec thumbnailPos;

@@ -4,6 +4,8 @@
 #include "SceneManager.h"
 // îCà”ì«çû
 
+#include "LauncherScene.h"
+
 class WelcomeScene :
     public SceneBase
 {

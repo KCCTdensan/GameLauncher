@@ -1,11 +1,15 @@
 #include "WelcomeScene.h"
 
 WelcomeScene::WelcomeScene()
+	: bg(nullptr), canvas(nullptr), icon(nullptr), whatis(nullptr), organization(nullptr), gotoHome(nullptr), openURL(nullptr),
+	qrcode(nullptr), imagesCanvas(nullptr), imageBackGround(nullptr)
 {
 }
 
 WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
-	: SceneBase(_sharingScenes)
+	: SceneBase(_sharingScenes),
+	bg(nullptr), canvas(nullptr), icon(nullptr), whatis(nullptr), organization(nullptr), gotoHome(nullptr), openURL(nullptr),
+	qrcode(nullptr), imagesCanvas(nullptr), imageBackGround(nullptr)
 {
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
 	bg->SetInnerColor(ColorPreset::bgColor); // 非キャンバス追加オブジェクト(常に同じ背景)
@@ -58,9 +62,12 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	std::string iconPath = welcome["icon"].get<picojson::object>()["src"].get<std::string>();
 	std::string qrName = "QR:" + welcome["qrcode"].get<picojson::object>()["src"].get <std::string>();
 	std::string qrPath = welcome["qrcode"].get<picojson::object>()["src"].get<std::string>();
+	std::string homeName = "HOME:" + welcome["openURL"].get<picojson::object>()["src"].get <std::string>();
+	std::string homePath = welcome["openURL"].get<picojson::object>()["src"].get<std::string>();
 
 	ImageChest::CreateImageHandle(iconName, iconPath);
 	ImageChest::CreateImageHandle(qrName, qrPath);
+	ImageChest::CreateImageHandle(homeName, homePath);
 
 	float maxThumbnailLongLength = 400.f; // 最大幅 どちらかの幅が500になる
 	PosVec imageSize = ImageChest::GetImageSize(iconName);
@@ -154,7 +161,10 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse, 3.f);
 	openURL->SetInnerAnimation(.2f);
 	openURL->SetOuterAnimation(.2f);
-	openURL->SetupText("mplus100", "HP", Color255("0DE0B9"));
+	//openURL->SetupText("mplus100", "HP", Color255("0DE0B9"));
+	openURL->SetImageHandle(ImageChest::GetImageHandle(homeName));
+	openURL->SetImageSize(PosVec(maxThumbnailLongLength, maxThumbnailLongLength));
+	openURL->SetImageTurnFlag(false, false);
 
 	qrcode = new ImageObject(
 		PosVec(
@@ -200,6 +210,13 @@ void WelcomeScene::Update()
 			gotoHome->SetMouseOff();
 			SceneManager::ChangeScene("Home", new HomeScene(sharingScenes));
 		}
+
+	if (whatis != nullptr)
+		if (whatis->GetMouseSelected()) {
+			whatis->SetMouseOff();
+			SceneManager::ChangeScene("WhatIs", new LauncherScene(sharingScenes));
+		}
+
 
 	layer.Update();
 	canvases.Update();
