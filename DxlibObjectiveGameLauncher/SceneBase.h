@@ -4,6 +4,7 @@
 #include "FontChest.h"
 #include "ObjectLayer.h"
 #include "FontHandleData.h"
+#include "ColorPreset.h"
 
 struct SharingScenes;
 

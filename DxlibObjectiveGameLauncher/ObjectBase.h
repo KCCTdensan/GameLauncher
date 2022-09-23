@@ -30,7 +30,7 @@ protected:
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
 		outerAlphaAnimation(AnimationStatus()),
-		parent(nullptr), enforcedCollision(1),
+		parent(nullptr), enforcedCollision(1), imageAngle(0),
 		expandedNum(false), imageHandle(-1), enforcedHovered(false), enforcedClicked(false), enforcedSelected(false)
 	{
 		UUIDGenerator uuidGenerator;
@@ -45,7 +45,7 @@ protected:
 		outerAnimation(AnimationColorStatus()),
 		innerAlphaAnimation(AnimationStatus()),
 		outerAlphaAnimation(AnimationStatus()),
-		parent(nullptr), enforcedCollision(1),
+		parent(nullptr), enforcedCollision(1), imageAngle(0),
 		expandedNum(false), imageHandle(-1), enforcedHovered(false), enforcedClicked(false), enforcedSelected(false)
 	{
 		UUIDGenerator uuidGenerator;
@@ -64,6 +64,9 @@ protected:
 	void UpdatePointerAnimation(); // pColorAnimation, pAnimationに追加された(座標系等々)のパラメータの更新処理(推奨呼び出し)
 
 	void CollideMouseAsBox(); // 当たり判定が矩形の場合はこれを用いることを推奨する
+
+	// アルファ，エリア設定含む
+	void DrawImage();
 
 	PosVec pos; // 左上座標
 	PosVec size; // 大きさ
@@ -108,6 +111,8 @@ protected:
 
 	Color255 disabledImageColor;
 
+	std::string tag;
+
 private:
 
 	virtual void CollideMouse() = 0; // マウス判定処理
@@ -137,6 +142,10 @@ public:
 			return &pos;
 		case VectorType::SIZE:
 			return &size;
+		case VectorType::IMAGE_OFFSET:
+			return &imageOffset;
+		case VectorType::IMAGE_SIZE:
+			return &imageSize;
 		default:
 			return nullptr;
 		}
@@ -171,8 +180,9 @@ public:
 	void SetCanvasId(int id);
 
 	void SetImageHandle(int handle = -1) { imageHandle = handle; }
+	int GetImageHandle() { return imageHandle; }
 
-	void SetImageOffsrt(PosVec offset) { imageOffset = offset; }
+	void SetImageOffset(PosVec offset) { imageOffset = offset; }
 	void SetImageSize(PosVec size) { imageSize = size; }
 	void SetImageAngle(double angle) { imageAngle = angle; }
 	void SetImageTurnFlag(bool turnX = false, bool turnY = false) { imageTurnFlagX = turnX; imageTurnFlagY = turnY; }
@@ -257,5 +267,8 @@ public:
 	virtual bool RegisterChildren(ObjectBase* _object);
 	// 自分のポインタを放り込むように(キャンバス用)(描画先決定用) ※childrenの関数を呼ぶため予めRegisterChildrenが必要
 	virtual bool RegisterParent(ObjectBase* _object);
+
+	void SetTag(std::string _tag) { tag = _tag; }
+	std::string GetTag() { return tag; }
 };
 

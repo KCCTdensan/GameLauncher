@@ -13,7 +13,7 @@ public:
 	TextObject(PosVec _pos, PosVec _size, int _fontHandle, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 		: ObjectBase(_pos, PosVec()), fontHandle(_fontHandle), fontHandleName(), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0), adjusted(false),
-		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1)
+		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1), returnNum(0)
 	{
 		CalcPos();
 	}
@@ -23,14 +23,14 @@ public:
 	TextObject(PosVec _pos, PosVec _size, std::string _fontHandleName, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 		: ObjectBase(_pos, PosVec()), fontHandle(-1), fontHandleName(_fontHandleName), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0), adjusted(false),
-		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(true), maxWidth(-1)
+		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(true), maxWidth(-1), returnNum(0)
 	{
 		CalcPos();
 	}
 
 	TextObject()
 		: ObjectBase(PosVec(), PosVec()), fontHandle(-1), fontHandleName(), text(), innerColor(0), align(TextAlign::LEFT), enabledBack(false), backColor(0),
-		finallyPos(PosVec()), textWidth(0), fontHeight(0), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1), adjusted(false)
+		finallyPos(PosVec()), textWidth(0), fontHeight(0), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1), adjusted(false), returnNum(0)
 	{}
 
 	// ï∂éöèÓïÒìoò^
@@ -66,6 +66,9 @@ public:
 
 	int GetTextWidth() { return textWidth; }
 	PosVec GetFinallyPos() { return finallyPos; }
+
+	int GetTextHeight() { return ((returnNum + 1) * GetFontSizeToHandle(fontHandle)); }
+	int GetFontHeight() { return GetFontSizeToHandle(fontHandle); }
 
 	Color255* GetColor(ColorType type) {
 		switch (type)
@@ -123,15 +126,15 @@ private:
 	int textWidth;
 	int fontHeight;
 
+	int returnNum;
+
 	PosVec paddingUpperLeft;
 	PosVec paddingLowerRight;
 
 	PosVec finallyPos;
 
 	Color255 innerColor;
-	//Color255 hoveredColor;
-	//Color255 clickedColor;
-	//Color255 selectedColor;
+
 	TextAlign align;
 
 	Color255 backColor;

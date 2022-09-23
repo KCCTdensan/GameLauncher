@@ -5,20 +5,89 @@
       "GUID": "0e0a1a04-58ae-4e85-b55d-d0e59eb66f18",
       "TitleName": "Av0id",
       "Author": "is",
-      "Description": "",
+      "Description": "テスト文字列です。\nテスト文字列です。テスト文字列です。\nテスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。",
       "Directory": ".\\works\\0e0a1a04-58ae-4e85-b55d-d0e59eb66f18\\",
-      "FilePath": ".\\Av0id.exe",
-      "Thumbnail": "thumb.png"
+      "FilePath": "AvoidTheBeam.exe",
+      "Thumbnail": "thumb.png",
+      "Images" : [
+        {"FilePath": "1.png"},
+        {"FilePath": "2.png"},
+        {"FilePath": "3.png"},
+        {"FilePath": "3.png"},
+        {"FilePath": "3.png"}
+      ]
     },
     {
       "Category": "VR",
       "GUID": "9ad4302c-a04c-4e60-afa2-9639912992b6",
       "TitleName": "MShe_VR",
       "Author": "de",
-      "Description": "",
+      "Description": "テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。",
       "Directory": ".\\works\\9ad4302c-a04c-4e60-afa2-9639912992b6\\",
-      "FilePath": ".\\MShe_VR.exe",
-      "Thumbnail": "thumb.png"
+      "FilePath": "MShe_VR.exe",
+      "Thumbnail": "thumb.png",
+      "Images" : [
+      ]
+    },
+    {
+      "Category": "App",
+      "GUID": "0e162b1b-bd58-4066-9f85-0ce7527d0d52",
+      "TitleName": "StrBox",
+      "Author": "de",
+      "Description": "テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。",
+      "Directory": ".\\works\\0e162b1b-bd58-4066-9f85-0ce7527d0d52\\",
+      "FilePath": "MShe_VR.exe",
+      "Thumbnail": "thumb.png",
+      "Images" : [
+      ]
+    },
+    {
+      "Category": "Game",
+      "GUID": "a31f5fcb-d2a8-41e5-84dc-c7b5d48d3f5f",
+      "TitleName": "3.14159265377777777",
+      "Author": "de",
+      "Description": "テスト文字列です。",
+      "Directory": ".\\works\\a31f5fcb-d2a8-41e5-84dc-c7b5d48d3f5f\\",
+      "FilePath": "MShe_VR.exe",
+      "Thumbnail": "thumb.png",
+      "Images" : [
+      ]
+    },
+    {
+      "Category": "Music",
+      "GUID": "ec548c74-b1ad-4992-8255-490cada26499",
+      "TitleName": "じゃんけんタイム",
+      "Author": "de",
+      "Description": "テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。",
+      "Directory": ".\\works\\ec548c74-b1ad-4992-8255-490cada26499\\",
+      "FilePath": "MShe_VR.exe",
+      "Thumbnail": "thumb.png",
+      "Images" : [
+      ]
+    },
+    {
+      "Category": "Movie",
+      "GUID": "efc35f90-4796-4ae8-b0d5-6f0de1de7be5",
+      "TitleName": "I've Just Finished My Homework.",
+      "Author": "de",
+      "Description": "テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。",
+      "Directory": ".\\works\\efc35f90-4796-4ae8-b0d5-6f0de1de7be5\\",
+      "FilePath": "MShe_VR.exe",
+      "Thumbnail": "thumb.png",
+      "Images" : [
+      ]
+    },
+    {
+      "Category": "Movie",
+      "GUID": "efc33f90-4796-4ae8-b0d5-6f0de1de7be5",
+      "TitleName": "何でもいいよ",
+      "Author": "de",
+      "Description": "テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。",
+      "Directory": ".\\works\\efc33f90-4796-4ae8-b0d5-6f0de1de7be5\\",
+      "FilePath": "MShe_VR.exe",
+      "Thumbnail": "thumb.png",
+      "Images" : [
+      ]
     }
   ]
 }

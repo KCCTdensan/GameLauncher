@@ -2,15 +2,10 @@
 
 PopupScene::PopupScene()
 {
-	musicCanvas = MusicCanvas();
-	popupWindow.Setup(&musicCanvas);
+	musicCanvas = new MusicCanvas();
+	popupWindow.Setup(musicCanvas);
 
-	/*popups.push_back(popupWindow);*/
-}
-
-PopupScene::PopupScene(SharingScenes* _sharingScenes)
-	: SceneBase(_sharingScenes)
-{
+	//popups.push_back(popupWindow);
 }
 
 void PopupScene::Collide()

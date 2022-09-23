@@ -9,7 +9,6 @@ class PopupScene :
 {
 public:
     PopupScene();
-    PopupScene(SharingScenes* _sharingScenes);
     ~PopupScene() {}
 
     void Collide() override;
@@ -19,7 +18,7 @@ public:
 private:
     std::vector<PopupWindow> popups;
 
-    MusicCanvas musicCanvas;
+    MusicCanvas* musicCanvas;
     PopupWindow popupWindow;
 };
 

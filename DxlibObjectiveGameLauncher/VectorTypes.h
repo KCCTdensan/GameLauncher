@@ -2,7 +2,9 @@
 
 enum class VectorType {
 	POS,
-	SIZE
+	SIZE,
+	IMAGE_OFFSET,
+	IMAGE_SIZE
 };
 
 enum class DirectionType {

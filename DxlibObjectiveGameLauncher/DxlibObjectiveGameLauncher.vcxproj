@@ -19,6 +19,7 @@
     <ClCompile Include="ButtonObject.cpp" />
     <ClCompile Include="CanvasObject.cpp" />
     <ClCompile Include="CanvasTemplate.cpp" />
+    <ClCompile Include="ColorPreset.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="FontChest.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="HomeScene.cpp" />
     <ClCompile Include="ImageChest.cpp" />
+    <ClCompile Include="ImageObject.cpp" />
     <ClCompile Include="InputObject.cpp" />
     <ClCompile Include="JsonSoftwareData.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
@@ -51,6 +53,7 @@
     <ClCompile Include="UUIDGenerator.cpp" />
     <ClCompile Include="WindowHolding.cpp" />
     <ClCompile Include="WindowHwnd.cpp" />
+    <ClCompile Include="WorkScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationPointerData.h" />
@@ -64,6 +67,7 @@
     <ClInclude Include="CanvasObject.h" />
     <ClInclude Include="CanvasTemplate.h" />
     <ClInclude Include="Color255.h" />
+    <ClInclude Include="ColorPreset.h" />
     <ClInclude Include="ColorTypes.h" />
     <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="DebugScene.h" />
@@ -73,6 +77,7 @@
     <ClInclude Include="Header.h" />
     <ClInclude Include="HomeScene.h" />
     <ClInclude Include="ImageChest.h" />
+    <ClInclude Include="ImageObject.h" />
     <ClInclude Include="InputObject.h" />
     <ClInclude Include="JsonSoftwareData.h" />
     <ClInclude Include="KeyboardInput.h" />
@@ -109,6 +114,7 @@
     <ClInclude Include="VectorTypes.h" />
     <ClInclude Include="WindowHolding.h" />
     <ClInclude Include="WindowHwnd.h" />
+    <ClInclude Include="WorkScene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -168,6 +174,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>../DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <StackReserveSize>100000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -185,6 +192,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>../DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <StackReserveSize>100000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

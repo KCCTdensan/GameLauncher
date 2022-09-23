@@ -1,8 +1,16 @@
 #pragma once
 #include "SceneBase.h"
 #include "OriginalObjects.h"
-#include "DebugScene.h"
 #include "SceneManager.h"
+// îCà”ì«çû
+#include "lib/picojson.h"
+#include <fstream>
+#include <cassert>
+#include <iostream> // std::cout
+#include <sstream>
+#include <numbers>
+
+#include "WorkScene.h"
 
 class HomeScene :
     public SceneBase
@@ -16,6 +24,8 @@ public:
     void Draw();
 
 private :
-    ButtonObject debugButton;
+    CanvasObject* canvas;
+    RectangleObject* bg;
+    std::vector<ButtonObject*> works;
 };
 

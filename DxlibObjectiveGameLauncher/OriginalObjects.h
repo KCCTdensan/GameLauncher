@@ -6,3 +6,4 @@
 #include "LineObject.h"
 #include "ProgressObject.h"
 #include "InputObject.h"
+#include "ImageObject.h"

@@ -20,10 +20,34 @@ void ObjectLayer::DeleteObject(ObjectBase* _object)
 
 void ObjectLayer::SetTopLayer(ObjectBase* _object, int _shift)
 {
+	int i = 0;
+	for (auto& item : layer) {
+		if (item.object == _object) break;
+		i++;
+	}
+	if (i == (int)layer.size()) return;
+
+	for (int k = i; k < (int)layer.size() - 1; k++) {
+		std::iter_swap(layer.begin() + k, layer.begin() + k + 1);
+	}
+	//std::iter_swap(--layer.end(), layer.begin() + i);
+	//layer[layer.size() - 1] = _object;
 }
 
 void ObjectLayer::SetButtomLayer(ObjectBase* _object, int _shift)
 {
+	int i = 0;
+	for (auto& item : layer) {
+		if (item.object == _object) break;
+		i++;
+	}
+	if (i == (int)layer.size()) return;
+
+	for (int k = i; k > 0; k--) {
+		std::iter_swap(layer.begin() + k, layer.begin() + k - 1);
+	}
+
+	//std::iter_swap(layer.begin(), layer.begin() + i);
 }
 
 void ObjectLayer::MoveLayer(ObjectBase* _object, int _distance)
