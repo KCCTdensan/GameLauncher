@@ -15,7 +15,7 @@ HomeScene::HomeScene(SharingScenes* _sharingScenes)
 
 	std::stringstream ss;
 	std::ifstream fs;
-	fs.open("data.json", std::ios::binary);
+	fs.open(ApplicationPreference::worksJson, std::ios::binary);
 
 	if (!fs.is_open()) {
 		return;

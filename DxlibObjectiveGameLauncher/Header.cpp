@@ -7,9 +7,9 @@ Header::Header()
 	if (beInitialized) return;
 	int i = 0;
 	sceneSets = {
-	SceneSet("Debug", new DebugScene(SceneManager::GetSharingScenes())),
+	SceneSet("Welcome", new WelcomeScene(SceneManager::GetSharingScenes())),
 	SceneSet("Home", new HomeScene(SceneManager::GetSharingScenes())),
-	SceneSet("Home", new HomeScene(SceneManager::GetSharingScenes()))
+	SceneSet("Debug", new DebugScene(SceneManager::GetSharingScenes()))
 	};
 
 	banner = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::bannerHeight));
@@ -81,7 +81,7 @@ Header::Header()
 	headerLine->SetEnabledOutline(true);
 	headerLine->SetOutlineColor(Color255(0xFF, 0x77, 0xFE), 2.5f);
 
-	titleLogo = new TextObject(PosVec(7.f, 7.f), PosVec(), "mplus60", "Game Launcher", Color255(), TextAlign::LEFT, false);
+	titleLogo = new TextObject(PosVec(7.f, 7.f), PosVec(), "smart60", "Game Launcher", Color255(), TextAlign::LEFT, false);
 	subtitleLogo = new TextObject(PosVec(), PosVec(), "mplus25", "Sample Text", Color255(), TextAlign::LEFT, false);
 
 	titleLogo->SetInnerColor(ColorPreset::titleLogo);
@@ -105,6 +105,7 @@ Header::Header()
 
 	// フォント追加
 	fonts.push_back(FontHandle("mplus60", "M PLUS 2", 60, 100));
+	fonts.push_back(FontHandle("smart60", "03スマートフォントUI", 60, 15));
 	fonts.push_back(FontHandle("mplus25", "M PLUS 2", 40, 100));
 }
 

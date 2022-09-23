@@ -18,13 +18,13 @@
       ]
     },
     {
-      "Category": "VR",
+      "Category": "PICTURE",
       "GUID": "9ad4302c-a04c-4e60-afa2-9639912992b6",
       "TitleName": "MShe_VR",
       "Author": "de",
       "Description": "テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。テスト文字列です。",
       "Directory": ".\\works\\9ad4302c-a04c-4e60-afa2-9639912992b6\\",
-      "FilePath": "MShe_VR.exe",
+      "FilePath": "image.png",
       "Thumbnail": "thumb.png",
       "Images" : [
       ]

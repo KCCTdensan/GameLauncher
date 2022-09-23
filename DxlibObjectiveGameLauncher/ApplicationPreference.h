@@ -14,6 +14,8 @@ public:
 	inline static constexpr int headerButtonNum = 3;
 
 	inline static const std::string clientAssets = "assets\\client";
+	inline static const std::string worksJson = ".\\assets\\json\\works.json";
+	inline static const std::string setJson = ".\\assets\\json\\sets.json";
 
 	inline static const float bannerHeight = 75.f;
 	inline static const float headerTabHeight = 50.f;

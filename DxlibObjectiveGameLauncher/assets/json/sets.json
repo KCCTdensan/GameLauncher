@@ -1,0 +1,16 @@
+{
+  "Welcome": {
+    "icon": {
+      "src": ".\\assets\\client\\welcome\\icon.png"
+    },
+    "organization": {
+      "text": "電子計算機部とは？"
+    },
+    "openURL": {
+      "url": "https://d3bu.net/"
+    },
+    "qrcode":  {
+      "src": ".\\assets\\client\\welcome\\qr.png"
+    }
+  }
+}
