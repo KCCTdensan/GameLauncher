@@ -283,8 +283,16 @@ void WorkScene::Update()
 		if (launch->GetMouseSelected()) {
 			// 押下時の処理をここに
 			launch->SetMouseOff();
-			std::string exePath = this->obj["Directory"].get<std::string>() + this->obj["FilePath"].get<std::string>();
-			ShellExecute(NULL, "open", exePath.c_str(), NULL, NULL, 0);
+			char cwd[512];
+			// ディレクトリ取得
+			int returnId;
+			(void)_getcwd(cwd, 512);
+			// ファイル直下まで移動
+			returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
+			// 実行
+			ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
+			// 元のディレクトリに戻す
+			returnId = _chdir(cwd);
 		}
 
 	if (thumbnail != nullptr)

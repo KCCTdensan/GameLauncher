@@ -10,6 +10,7 @@
 #include <sstream>
 #include <numbers>
 #include <vector>
+#include <direct.h>
 
 class WorkScene :
     public SceneBase
