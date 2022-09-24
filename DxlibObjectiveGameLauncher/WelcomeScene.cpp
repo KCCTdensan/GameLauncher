@@ -64,10 +64,19 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	std::string qrPath = welcome["qrcode"].get<picojson::object>()["src"].get<std::string>();
 	std::string homeName = "HOME:" + welcome["openURL"].get<picojson::object>()["src"].get <std::string>();
 	std::string homePath = welcome["openURL"].get<picojson::object>()["src"].get<std::string>();
+	std::string whatName = "WHAT:" + welcome["whatis"].get<picojson::object>()["src"].get <std::string>();
+	std::string whatPath = welcome["whatis"].get<picojson::object>()["src"].get<std::string>();
+	std::string orgName = "ORG:" + welcome["organization"].get<picojson::object>()["src"].get <std::string>();
+	std::string orgPath = welcome["organization"].get<picojson::object>()["src"].get<std::string>();
+	std::string gotoName = "GOTO:" + welcome["goto-home"].get<picojson::object>()["src"].get <std::string>();
+	std::string gotoPath = welcome["goto-home"].get<picojson::object>()["src"].get<std::string>();
 
 	ImageChest::CreateImageHandle(iconName, iconPath);
 	ImageChest::CreateImageHandle(qrName, qrPath);
 	ImageChest::CreateImageHandle(homeName, homePath);
+	ImageChest::CreateImageHandle(orgName, orgPath);
+	ImageChest::CreateImageHandle(gotoName, gotoPath);
+	ImageChest::CreateImageHandle(whatName, whatPath);
 
 	float maxThumbnailLongLength = 400.f; // Å‘å• ‚Ç‚¿‚ç‚©‚Ì•‚ª500‚É‚È‚é
 	PosVec imageSize = ImageChest::GetImageSize(iconName);
@@ -106,11 +115,16 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse, 3.f);
 	whatis->SetInnerAnimation(.2f);
 	whatis->SetOuterAnimation(.2f);
-	whatis->SetupText("mplus180", "What\nIs?", Color255("0DE0B9"));
+	whatis->SetupText("mplus100",
+		welcome["whatis"].get<picojson::object>()["text"].get<std::string>(),
+		Color255(250, 30));
+	whatis->SetImageHandle(ImageChest::GetImageHandle(whatName));
+	whatis->SetImageSize(PosVec(maxThumbnailLongLength, maxThumbnailLongLength));
+	whatis->SetImageTurnFlag(false, false);
 
 	organization = new ButtonObject(
 		PosVec(125.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 50.f),
-		PosVec(800, maxThumbnailLongLength), true, true);
+		PosVec(maxThumbnailLongLength * 2.f, maxThumbnailLongLength), true, true);
 	organization->SetInnerColor(
 		ColorPreset::tileInner,
 		ColorPreset::tileHovered,
@@ -125,7 +139,10 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	organization->SetOuterAnimation(.2f);
 	organization->SetupText("mplus100",
 		welcome["organization"].get<picojson::object>()["text"].get<std::string>(),
-		Color255("0DE0B9"));
+		Color255(250,30));
+	organization->SetImageHandle(ImageChest::GetImageHandle(orgName));
+	organization->SetImageSize(PosVec(maxThumbnailLongLength * 2.f, maxThumbnailLongLength));
+	organization->SetImageTurnFlag(false, false);
 
 	gotoHome = new ButtonObject(
 		PosVec(
@@ -144,7 +161,12 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse, 3.f);
 	gotoHome->SetInnerAnimation(.2f);
 	gotoHome->SetOuterAnimation(.2f);
-	gotoHome->SetupText("mplus100", "GoTo Home", Color255("0DE0B9"));
+	gotoHome->SetupText("mplus100",
+		welcome["goto-home"].get<picojson::object>()["text"].get<std::string>(),
+		Color255(250, 30));
+	gotoHome->SetImageHandle(ImageChest::GetImageHandle(gotoName));
+	gotoHome->SetImageSize(PosVec(maxThumbnailLongLength * 2.f, maxThumbnailLongLength));
+	gotoHome->SetImageTurnFlag(false, false);
 
 	openURL = new ButtonObject(
 		PosVec(1000.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 50.f),
@@ -185,7 +207,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	layer.AddObject(openURL);
 	layer.AddObject(qrcode);
 
-	fonts.push_back(FontHandle("mplus180", "M PLUS 2", 180, 100));
+	//fonts.push_back(FontHandle("mplus180", "M PLUS 2", 180, 100));
 	fonts.push_back(FontHandle("mplus100", "M PLUS 2", 100, 100));
 }
 

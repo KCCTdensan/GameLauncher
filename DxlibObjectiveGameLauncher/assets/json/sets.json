@@ -3,12 +3,21 @@
     "icon": {
       "src": ".\\assets\\client\\welcome\\icon.png"
     },
+    "whatis": {
+      "text": "",
+      "src": ".\\assets\\client\\welcome\\whatis.png"
+    },
     "organization": {
-      "text": "電子計算機部とは？"
+      "text": "OPEN",
+      "src": ".\\assets\\client\\welcome\\kcct.png"
     },
     "openURL": {
       "url": "https://d3bu.net/",
       "src": ".\\assets\\client\\welcome\\home-link.png"
+    },
+    "goto-home": {
+      "text": "OPEN",
+      "src": ".\\assets\\client\\welcome\\works.png"
     },
     "qrcode":  {
       "src": ".\\assets\\client\\welcome\\qr.png"
