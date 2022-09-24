@@ -43,6 +43,7 @@
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
+    <ClCompile Include="PlayListObject.cpp" />
     <ClCompile Include="PopupScene.cpp" />
     <ClCompile Include="PopupWindow.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
@@ -100,6 +101,8 @@
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectOverlapping.h" />
     <ClInclude Include="OriginalObjects.h" />
+    <ClInclude Include="PlayData.h" />
+    <ClInclude Include="PlayListObject.h" />
     <ClInclude Include="PopupScene.h" />
     <ClInclude Include="PopupWindow.h" />
     <ClInclude Include="PositionVector.h" />

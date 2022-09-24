@@ -132,6 +132,7 @@
       <Filter>Scenes\Pages\Welcome</Filter>
     </ClCompile>
     <ClCompile Include="LauncherScene.cpp" />
+    <ClCompile Include="PlayListObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -315,6 +316,10 @@
       <Filter>Scenes\Pages\Welcome</Filter>
     </ClInclude>
     <ClInclude Include="LauncherScene.h" />
+    <ClInclude Include="PlayListObject.h" />
+    <ClInclude Include="PlayData.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
