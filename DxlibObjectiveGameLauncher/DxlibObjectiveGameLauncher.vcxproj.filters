@@ -133,6 +133,7 @@
     </ClCompile>
     <ClCompile Include="LauncherScene.cpp" />
     <ClCompile Include="PlayListObject.cpp" />
+    <ClCompile Include="MusicPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -319,6 +320,10 @@
     <ClInclude Include="PlayListObject.h" />
     <ClInclude Include="PlayData.h">
       <Filter>Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicPlayer.h" />
+    <ClInclude Include="PlayState.h">
+      <Filter>Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

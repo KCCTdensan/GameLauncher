@@ -40,6 +40,7 @@
     <ClCompile Include="MusicCanvas.cpp" />
     <ClCompile Include="MusicChest.cpp" />
     <ClCompile Include="MusicData.cpp" />
+    <ClCompile Include="MusicPlayer.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
@@ -96,6 +97,7 @@
     <ClInclude Include="MusicCanvas.h" />
     <ClInclude Include="MusicChest.h" />
     <ClInclude Include="MusicData.h" />
+    <ClInclude Include="MusicPlayer.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="ObjectFuncData.h" />
     <ClInclude Include="ObjectLayer.h" />
@@ -103,6 +105,7 @@
     <ClInclude Include="OriginalObjects.h" />
     <ClInclude Include="PlayData.h" />
     <ClInclude Include="PlayListObject.h" />
+    <ClInclude Include="PlayState.h" />
     <ClInclude Include="PopupScene.h" />
     <ClInclude Include="PopupWindow.h" />
     <ClInclude Include="PositionVector.h" />
