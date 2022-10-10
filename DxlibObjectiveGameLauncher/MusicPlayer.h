@@ -3,11 +3,12 @@
 #include <vector>
 #include "PlayData.h"
 #include "PlayState.h"
+#include <random>
 
 class MusicPlayer
 {
 public:
-	static void PlayInList(PlayState playState, int index);
+	static void PlayInList(PlayState playState, int index, bool playAtStart = false);
 	static void StopInList();
 
 	static PlayData GetPlayingData();
@@ -16,7 +17,12 @@ public:
 	static void AddToList(PlayData playData);
 	static void RemoveFromList(int index);
 
+	static void Update();
+
 private:
+	static PlayState playState;
+	static bool playing;
+
 	static std::vector<PlayData> playlists;
 
 	static int playingIndex;

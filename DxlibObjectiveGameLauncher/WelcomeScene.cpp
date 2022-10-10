@@ -200,6 +200,16 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	qrcode->SetImageSize(PosVec(maxThumbnailLongLength, maxThumbnailLongLength));
 	qrcode->SetImageTurnFlag(false, false);
 
+	// test
+	input = new InputObject(
+		PosVec(0, ApplicationPreference::startScenePos), PosVec(200, 50));
+	input->SetupText("mplus25");
+	input->SetInnerColor(Color255(50, 50, 50));
+
+	rect = new RectangleObject(
+		PosVec(200, ApplicationPreference::startScenePos), PosVec(200, 50));
+	rect->SetInnerColor(Color255(255, 255, 255));
+
 	layer.AddObject(icon);
 	layer.AddObject(whatis);
 	layer.AddObject(organization);
@@ -207,8 +217,12 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	layer.AddObject(openURL);
 	layer.AddObject(qrcode);
 
+	layer.AddObject(input);
+	layer.AddObject(rect);
+
 	//fonts.push_back(FontHandle("mplus180", "M PLUS 2", 180, 100));
 	fonts.push_back(FontHandle("mplus100", "M PLUS 2", 100, 100));
+	fonts.push_back(FontHandle("mplus25", "M PLUS 2", 25, 100));
 }
 
 void WelcomeScene::Collide()
@@ -238,6 +252,9 @@ void WelcomeScene::Update()
 			whatis->SetMouseOff();
 			SceneManager::ChangeScene("WhatIs", new LauncherScene(sharingScenes));
 		}
+
+	if (input != nullptr && rect != nullptr)
+		rect->SetInnerColor(Color255(input->GetString()));
 
 
 	layer.Update();

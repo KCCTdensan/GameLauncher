@@ -33,7 +33,7 @@ Header::Header()
 	navLinks[2].SetupText("mplus25", "Home", ColorPreset::titleLogo);*/
 
 	for (i = 0; i < ApplicationPreference::headerButtonNum; i++) {
-		navLinks[i]->SetupText("mplus25", sceneSets[i].sceneName, ColorPreset::titleLogo);
+		navLinks[i]->SetupText("mplus40", sceneSets[i].sceneName, ColorPreset::titleLogo);
 		navLinks[i]->GetTextObject()->Move(PosVec(7.f, 7.f));
 	}
 
@@ -53,8 +53,8 @@ Header::Header()
 		item->SetOuterAnimation(0);
 		i++;
 	}
-	arrowButtons[0]->SetupText("mplus25", "←", ColorPreset::titleLogo);
-	arrowButtons[1]->SetupText("mplus25", "→", ColorPreset::titleLogo);
+	arrowButtons[0]->SetupText("mplus40", "←", ColorPreset::titleLogo);
+	arrowButtons[1]->SetupText("mplus40", "→", ColorPreset::titleLogo);
 
 	for (auto& item : arrowButtons)
 		item->GetTextObject()->Move(PosVec(15.f, 7.f));
@@ -82,7 +82,7 @@ Header::Header()
 	headerLine->SetOutlineColor(Color255(0xFF, 0x77, 0xFE), 2.5f);
 
 	titleLogo = new TextObject(PosVec(7.f, 7.f), PosVec(), "smart60", "Game Launcher", Color255(), TextAlign::LEFT, false);
-	subtitleLogo = new TextObject(PosVec(), PosVec(), "mplus25", "Sample Text", Color255(), TextAlign::LEFT, false);
+	subtitleLogo = new TextObject(PosVec(), PosVec(), "mplus40", "Sample Text", Color255(), TextAlign::LEFT, false);
 
 	titleLogo->SetInnerColor(ColorPreset::titleLogo);
 	subtitleLogo->SetInnerColor(ColorPreset::titleLogo);
@@ -106,7 +106,7 @@ Header::Header()
 	// フォント追加
 	fonts.push_back(FontHandle("mplus60", "M PLUS 2", 60, 100));
 	fonts.push_back(FontHandle("smart60", "03スマートフォントUI", 60, 15));
-	fonts.push_back(FontHandle("mplus25", "M PLUS 2", 40, 100));
+	fonts.push_back(FontHandle("mplus40", "M PLUS 2", 40, 100));
 }
 
 void Header::Collide()

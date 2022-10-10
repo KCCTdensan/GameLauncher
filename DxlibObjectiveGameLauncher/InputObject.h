@@ -120,6 +120,8 @@ public:
 		return true;
 	}
 
+	std::string GetString() { return inputText;	}
+
 	// XV•`‰æ
 	void Collide() override;
 	void Update() override;

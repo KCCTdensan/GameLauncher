@@ -1,6 +1,7 @@
 #pragma once
 #include "DxLib.h"
 #include <string>
+#include <stdexcept>
 
 struct Color255 {
 public:
@@ -22,7 +23,17 @@ public:
 	{
 		std::string formalCode = code;
 		formalCode = SplitSharp(formalCode);
-		int value = std::stoi(formalCode, nullptr, 16);
+		int value = 0;
+		try {
+			value = std::stoi(formalCode, nullptr, 16);
+		}
+		catch (std::invalid_argument e) {
+			value = 0;
+		}
+		catch (std::out_of_range e) {
+			value = 0;
+		}
+
 		r = value / (256 * 256);
 		g = (value / 256) % 256;
 		b = value % 256;
@@ -32,7 +43,17 @@ public:
 	{
 		std::string formalCode = code;
 		formalCode = SplitSharp(formalCode);
-		int value = std::stoi(formalCode, nullptr, 16);
+		int value = 0;
+		try {
+			value = std::stoi(formalCode, nullptr, 16);
+		}
+		catch (std::invalid_argument e) {
+			value = 0;
+		}
+		catch (std::out_of_range e) {
+			value = 0;
+		}
+
 		r = value / (256 * 256);
 		g = (value / 256) % 256;
 		b = value % 256;

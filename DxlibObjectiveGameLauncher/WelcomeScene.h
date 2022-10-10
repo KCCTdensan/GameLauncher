@@ -28,6 +28,9 @@ private:
     ButtonObject* openURL;
     ImageObject* qrcode;
 
+    InputObject* input;
+    RectangleObject* rect;
+
     CanvasObject* imagesCanvas;
     RectangleObject* imageBackGround;
 
