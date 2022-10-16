@@ -208,12 +208,12 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 			PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 200.f),
 			PosVec(maxThumbnailLongLength, 150.f), true, true);
 		launch->SetInnerColor(
-			Color255("#F7D322"),
-			Color255("#D8B91E"),
-			Color255("#D1B31D"),
-			Color255("#F2CF21"));
+			ColorPreset::yellowButtonInner,
+			ColorPreset::yellowButtonHovered,
+			ColorPreset::yellowButtonClicked,
+			ColorPreset::yellowButtonSelected);
 		launch->SetInnerAnimation(.1f);
-		launch->SetOutlineColor(Color255("#EDB142"), 3.f);
+		launch->SetOutlineColor(ColorPreset::yellowButtonOuter, 3.f);
 		launch->SetupText("smart80", "Start", ColorPreset::textObject, TextAlign::LEFT);
 		launch->GetTextObject()->Move(PosVec(
 			(maxThumbnailLongLength - launch->GetTextObject()->GetTextWidth()) / 2.f,

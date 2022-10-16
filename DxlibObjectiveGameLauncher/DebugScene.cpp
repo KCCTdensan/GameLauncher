@@ -155,6 +155,13 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	std::string u = uuid.GetGUID() + "\n";
 	OutputDebugString(u.c_str());
 
+	MusicChest::CreateMusicHandle("a", ".\\works\\tsukare.mp3");
+	PlayData playData;
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "a";
+	playData.title = "a";
+	MusicPlayer::AddToList(playData);
+
 	canvas.SetInnerColor(Color255(150, 250, 250, 255));
 	canvas.SetArea(PosVec(200, 10000), 50.f / 10000.f);
 
@@ -225,10 +232,6 @@ void DebugScene::Update()
 	canvases.Update();
 	can.Update();
 
-	if (debugButton.GetMouseSelected()) {
-		debugButton.SetMouseOff();
-	}
-
 	for (auto& item : works) {
 		item.Update();
 	}
@@ -260,6 +263,17 @@ void DebugScene::Update()
 	else {
 		sharingScenes->header->SetSubtitle("変更されていないテキスト");
 	}
+
+	if (debugButton.GetMouseSelected()) {
+		debugButton.SetMouseOff();
+		MusicPlayer::PlayInList(PlayState::SIMPLE, 0, true);
+	}
+
+	if (debugButton2.GetMouseSelected()) {
+		debugButton2.SetMouseOff();
+		SceneManager::ChangeScene("Music Player", new PlayerScene(sharingScenes));
+	}
+	
 
 	//if (debugRect.GetMouseHit()) {
 	//	pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(0, 0, 255), 0.2f);

@@ -7,6 +7,7 @@
 #include "ObjectLayer.h"
 #include "ImageChest.h"
 #include "lib/picojson.h"
+#include "MusicPlayer.h"
 #include <vector>
 #include <fstream>
 #include <cassert>
@@ -14,6 +15,8 @@
 #include <sstream>
 #include <string>
 #include <numbers>
+
+#include "PlayerScene.h"
 
 class DebugScene :
     public SceneBase

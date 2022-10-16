@@ -134,6 +134,7 @@
     <ClCompile Include="LauncherScene.cpp" />
     <ClCompile Include="PlayListObject.cpp" />
     <ClCompile Include="MusicPlayer.cpp" />
+    <ClCompile Include="PlayerScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -325,6 +326,7 @@
     <ClInclude Include="PlayState.h">
       <Filter>Enum</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">

@@ -44,6 +44,7 @@
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
+    <ClCompile Include="PlayerScene.cpp" />
     <ClCompile Include="PlayListObject.cpp" />
     <ClCompile Include="PopupScene.cpp" />
     <ClCompile Include="PopupWindow.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="ObjectOverlapping.h" />
     <ClInclude Include="OriginalObjects.h" />
     <ClInclude Include="PlayData.h" />
+    <ClInclude Include="PlayerScene.h" />
     <ClInclude Include="PlayListObject.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="PopupScene.h" />
