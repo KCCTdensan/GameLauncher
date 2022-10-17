@@ -5,7 +5,7 @@ PlayerScene::PlayerScene()
 }
 
 PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
-	: SceneBase(_sharingScenes),
+	: SceneBase(_sharingScenes), nowPlaying(nullptr),
 	songTitle(nullptr), songAuthor(nullptr), songHandleName(nullptr)
 {
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
@@ -35,9 +35,29 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	playBar = new ProgressObject(
 		PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 100.f),
 		PosVec(ApplicationPreference::GetBackgroundSize().x - 100.f, 50.f), false);
+	playBar->SetupSlider();
 	playBar->GetSlider()->SetInnerColor(Color255());
+	playBar->GetSlider()->SetInnerColor(
+		Color255(30, 30, 230));
 	playBar->SetInnerColor(Color255(200, 200, 200));
 	playBar->SetOutlineColor(Color255(0, 0, 0), 1.f);
+
+	loopButton = new ButtonObject(
+		PosVec(
+			(ApplicationPreference::GetBackgroundSize().x - 100.f) / 2.f,
+			ApplicationPreference::GetBackgroundSize().y - 150.f),
+		PosVec(100.f, 100.f), true, true);
+	loopButton->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	loopButton->SetOutlineColor(
+		ColorPreset::tileOuter,
+		ColorPreset::tileOuterMouse,
+		ColorPreset::tileOuterMouse,
+		ColorPreset::tileOuterMouse, 2.f);
+
 
 	layer.AddObject(bg);
 
@@ -45,6 +65,7 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	layer.AddObject(songAuthor);
 	layer.AddObject(songHandleName);
 	layer.AddObject(startButton);
+	layer.AddObject(loopButton);
 	layer.AddObject(playBar);
 
 	// ƒtƒHƒ“ƒg’Ç‰Á
@@ -68,6 +89,25 @@ void PlayerScene::Update()
 
 	layer.Update();
 	canvases.Update();
+
+	if (startButton != nullptr)
+		if (startButton->GetMouseSelected()) {
+			startButton->SetMouseOff();
+			MusicPlayer::PlayInList(PlayState::SIMPLE, 0, true);
+		}
+
+	if (songTitle != nullptr)
+		songTitle->SetText(MusicPlayer::GetPlayingData().title);
+	if (songAuthor != nullptr)
+		songAuthor->SetText(MusicPlayer::GetPlayingData().author);
+	if (songHandleName != nullptr) {
+		std::string handleString = MusicPlayer::GetPlayingData().handle < 0 ? std::to_string(MusicPlayer::GetPlayingData().handle) : "Null";
+		songHandleName->SetText(handleString);
+	}
+
+	if (playBar->GetMouseClicked())
+		MusicPlayer::SetPlayingRate(playBar->GetValue());
+	playBar->SetValue(MusicPlayer::GetPlayingRate());
 }
 
 void PlayerScene::Draw()

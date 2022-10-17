@@ -14,6 +14,10 @@ public:
 	static PlayData GetPlayingData();
 	static float GetPlayingRate();
 
+	static void SetPlayingState(PlayState playState);
+
+	static void SetPlayingRate(float value);
+
 	static void AddToList(PlayData playData);
 	static void RemoveFromList(int index);
 

@@ -2,6 +2,7 @@
 #include "SceneBase.h"
 #include "OriginalObjects.h"
 #include "SceneManager.h"
+#include "MusicPlayer.h"
 
 class PlayerScene :
     public SceneBase
@@ -19,10 +20,13 @@ private:
 
     RectangleObject* bg;
 
+    PlayData* nowPlaying;
+
     TextObject* songTitle;
     TextObject* songAuthor;
     TextObject* songHandleName; // ƒnƒ“ƒhƒ‹”Ô†•\¦
     ButtonObject* startButton; // ‰Ÿ‚·‚²‚Æ‚É‰æ‘œØ‚è‘Ö‚¦
     ProgressObject* playBar;
+    ButtonObject* loopButton; // 
 };
 

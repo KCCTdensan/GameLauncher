@@ -23,12 +23,22 @@ void MusicPlayer::StopInList()
 
 PlayData MusicPlayer::GetPlayingData()
 {
-    return PlayData();
+    return playing ? playlists[playingIndex] : PlayData("[çƒê∂ÇµÇƒÇ¢Ç‹ÇπÇÒ]", "[System]");
 }
 
 float MusicPlayer::GetPlayingRate()
 {
-    return 0.0f;
+    return (float)GetSoundCurrentTime(playlists[playingIndex].handle) / (float)GetSoundTotalTime(playlists[playingIndex].handle);
+}
+
+void MusicPlayer::SetPlayingState(PlayState playState)
+{
+    MusicPlayer::playState = playState;
+}
+
+void MusicPlayer::SetPlayingRate(float value)
+{
+    SetSoundCurrentTime((long long)((float)GetSoundTotalTime(playlists[playingIndex].handle) * value), playlists[playingIndex].handle);
 }
 
 void MusicPlayer::AddToList(PlayData playData)
