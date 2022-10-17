@@ -58,6 +58,25 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		ColorPreset::tileOuterMouse,
 		ColorPreset::tileOuterMouse, 2.f);
 
+	playListObject = new PlayListObject(
+		PosVec(
+			ApplicationPreference::GetBackgroundSize().x - 700.f,
+			ApplicationPreference::startScenePos + 50.f),
+		PosVec(600.f, 750.f));
+	playListObject->SetInnerColor(ColorPreset::tileInner);
+	playListObject->SetListHeight(100.f);
+	playListObject->SetOutlineColor(ColorPreset::tileOuter, 2.f);
+	playListObject->GetButtonListSample(&ButtonObject(PosVec(), PosVec(), true, true));
+	playListObject->GetButtonListSample()->SetInnerColor(
+		ColorPreset::navLinksInner,
+		ColorPreset::navLinksHovered,
+		ColorPreset::navLinksClicked,
+		ColorPreset::navLinksSelected);
+	playListObject->GetButtonListSample()->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 2.f);
 
 	layer.AddObject(bg);
 
@@ -67,6 +86,7 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	layer.AddObject(startButton);
 	layer.AddObject(loopButton);
 	layer.AddObject(playBar);
+	layer.AddObject(playListObject);
 
 	// フォント追加
 	fonts.push_back(FontHandle("smart40", "03スマートフォントUI", 40, 15));
@@ -108,6 +128,8 @@ void PlayerScene::Update()
 	if (playBar->GetMouseClicked())
 		MusicPlayer::SetPlayingRate(playBar->GetValue());
 	playBar->SetValue(MusicPlayer::GetPlayingRate());
+
+	playListObject->SetList(MusicPlayer::GetPlayList());
 }
 
 void PlayerScene::Draw()

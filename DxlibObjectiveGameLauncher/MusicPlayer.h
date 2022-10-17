@@ -12,6 +12,7 @@ public:
 	static void StopInList();
 
 	static PlayData GetPlayingData();
+	static PlayData GetPlayNextData(int offset = 1);
 	static float GetPlayingRate();
 
 	static void SetPlayingState(PlayState playState);
@@ -20,6 +21,8 @@ public:
 
 	static void AddToList(PlayData playData);
 	static void RemoveFromList(int index);
+
+	static std::vector<PlayData> GetPlayList() { return playlists; }
 
 	static void Update();
 

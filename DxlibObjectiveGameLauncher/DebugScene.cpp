@@ -155,7 +155,7 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	std::string u = uuid.GetGUID() + "\n";
 	OutputDebugString(u.c_str());
 
-	MusicChest::CreateMusicHandle("a", ".\\works\\tsukare.mp3");
+	MusicChest::CreateMusicHandle("a", ".\\works\\tukareta.mp3");
 	PlayData playData;
 	playData.handle = MusicChest::GetMusicHandle("a");
 	playData.author = "a";

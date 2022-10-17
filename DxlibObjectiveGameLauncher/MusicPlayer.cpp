@@ -7,6 +7,7 @@ PlayState MusicPlayer::playState = PlayState::SIMPLE;
 
 void MusicPlayer::PlayInList(PlayState playState, int index, bool playAtStart)
 {
+    if (playing) return;
     MusicPlayer::playState = playState;
     if (playlists.size() <= index)
         index = (int)playlists.size() - 1;
@@ -24,6 +25,11 @@ void MusicPlayer::StopInList()
 PlayData MusicPlayer::GetPlayingData()
 {
     return playing ? playlists[playingIndex] : PlayData("[Ä¶‚µ‚Ä‚¢‚Ü‚¹‚ñ]", "[System]");
+}
+
+PlayData MusicPlayer::GetPlayNextData(int offset)
+{
+    return playingIndex + offset < (int)playlists.size() ? playlists[playingIndex + offset] : PlayData("[ƒf[ƒ^‚È‚µ]", "[System]");
 }
 
 float MusicPlayer::GetPlayingRate()

@@ -28,5 +28,7 @@ private:
     ButtonObject* startButton; // ‰Ÿ‚·‚²‚Æ‚É‰æ‘œØ‚è‘Ö‚¦
     ProgressObject* playBar;
     ButtonObject* loopButton; // 
+
+    PlayListObject* playListObject;
 };
 
