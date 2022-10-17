@@ -38,7 +38,7 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	playBar->SetupSlider();
 	playBar->GetSlider()->SetInnerColor(Color255());
 	playBar->GetSlider()->SetInnerColor(
-		Color255(30, 30, 230));
+		Color255("#73D4C7"));
 	playBar->SetInnerColor(Color255(200, 200, 200));
 	playBar->SetOutlineColor(Color255(0, 0, 0), 1.f);
 

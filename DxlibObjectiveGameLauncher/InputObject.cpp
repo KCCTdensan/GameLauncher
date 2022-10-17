@@ -38,15 +38,25 @@ void InputObject::Update()
 				turnedOn = true;
 			}
 
-			char text[256] = "";
-			GetKeyInputString(text, inputHandle);
+			char text[inputStringMax] = "";
+			try {
+				GetKeyInputString(text, inputHandle);
+			}
+			catch (std::exception e) {
+				// printfDx("Exception\n");
+			}
 			inputText = text;
 		}
 		else {
-			char text[256] = "";
+			char text[inputStringMax] = "";
 			textObject.SetText("");
 			Draw();
-			KeyInputString((int)pos.x, (int)pos.y, 256, text, true);
+			try {
+				KeyInputString((int)pos.x, (int)pos.y, inputStringMax, text, true);
+			}
+			catch (std::exception e) {
+				// printfDx("Exception\n");
+			}
 			inputText = text;
 			textObject.SetText(inputText);
 			SetMouseOff();
