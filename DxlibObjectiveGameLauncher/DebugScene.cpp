@@ -159,7 +159,23 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	PlayData playData;
 	playData.handle = MusicChest::GetMusicHandle("a");
 	playData.author = "a";
-	playData.title = "a";
+	playData.title = "f";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "b";
+	playData.title = "g";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "c";
+	playData.title = "h";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "d";
+	playData.title = "i";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "e";
+	playData.title = "j";
 	MusicPlayer::AddToList(playData);
 
 	canvas.SetInnerColor(Color255(150, 250, 250, 255));

@@ -113,7 +113,7 @@ void PlayerScene::Update()
 	if (startButton != nullptr)
 		if (startButton->GetMouseSelected()) {
 			startButton->SetMouseOff();
-			MusicPlayer::PlayInList(PlayState::SIMPLE, 0, true);
+			MusicPlayer::PlayInList(PlayState::ALL_LOOP, 0, true);
 		}
 
 	if (songTitle != nullptr)
