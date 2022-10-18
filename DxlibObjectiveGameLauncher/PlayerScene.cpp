@@ -10,7 +10,7 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 {
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
 	bg->SetInnerColor(ColorPreset::bgColor); // 非キャンバス追加オブジェクト(常に同じ背景)
-	
+
 	songTitle = new TextObject(
 		PosVec(50.f, ApplicationPreference::startScenePos + 50.f), PosVec(),
 		"smart40", "テスト文字列", ColorPreset::textBlack);
@@ -22,8 +22,10 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		"smart20", "123456", ColorPreset::textBlack);
 
 	startButton = new ButtonObject(
-		PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 150.f),
-		PosVec(100.f, 100.f), true, true);
+		PosVec(
+			(ApplicationPreference::GetBackgroundSize().x - 100.f) / 2.f,
+			ApplicationPreference::GetBackgroundSize().y - 200.f),
+		PosVec(75.f, 75.f), true, true);
 	startButton->SetInnerColor(
 		ColorPreset::yellowButtonInner,
 		ColorPreset::yellowButtonHovered,
@@ -44,9 +46,9 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 
 	loopButton = new ButtonObject(
 		PosVec(
-			(ApplicationPreference::GetBackgroundSize().x - 100.f) / 2.f,
-			ApplicationPreference::GetBackgroundSize().y - 150.f),
-		PosVec(100.f, 100.f), true, true);
+			(ApplicationPreference::GetBackgroundSize().x - 100.f) / 2.f - 100.f,
+			ApplicationPreference::GetBackgroundSize().y - 200.f),
+		PosVec(75.f, 75.f), true, true);
 	loopButton->SetInnerColor(
 		ColorPreset::tileInner,
 		ColorPreset::tileHovered,
@@ -89,6 +91,7 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	layer.AddObject(playListObject);
 
 	// フォント追加
+	fonts.push_back(FontHandle("mplus40", "M PLUS 2", 40, 100));
 	fonts.push_back(FontHandle("smart40", "03スマートフォントUI", 40, 15));
 	fonts.push_back(FontHandle("smart20", "03スマートフォントUI", 20, 15));
 }
@@ -113,8 +116,23 @@ void PlayerScene::Update()
 	if (startButton != nullptr)
 		if (startButton->GetMouseSelected()) {
 			startButton->SetMouseOff();
-			MusicPlayer::PlayInList(PlayState::ALL_LOOP, 0, true);
+			if (!MusicPlayer::GetPlaying())
+				MusicPlayer::PlayInList(playStateRotater.GetNowState(), MusicPlayer::GetPlayingIndex(), false);
+			else
+				MusicPlayer::StopInList();
 		}
+
+	if (loopButton != nullptr)
+		if (loopButton->GetMouseSelected()) {
+			loopButton->SetMouseOff();
+			playStateRotater.Rotate();
+			MusicPlayer::SetPlayingState(playStateRotater.GetNowState());
+		}
+
+	if (playListObject->GetSelectingIndex() >= 0) {
+		playListObject->SetMouseOffIndex();
+		MusicPlayer::PlayInList(playStateRotater.GetNowState(), playListObject->GetSelectingIndex(), true);
+	}
 
 	if (songTitle != nullptr)
 		songTitle->SetText(MusicPlayer::GetPlayingData().title);
@@ -129,7 +147,7 @@ void PlayerScene::Update()
 		MusicPlayer::SetPlayingRate(playBar->GetValue());
 	playBar->SetValue(MusicPlayer::GetPlayingRate());
 
-	playListObject->SetList(MusicPlayer::GetPlayList());
+	playListObject->SetList(MusicPlayer::GetPlayList(), "mplus40", PosVec(5.f, 5.f));
 }
 
 void PlayerScene::Draw()

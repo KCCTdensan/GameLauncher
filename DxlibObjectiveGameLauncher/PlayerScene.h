@@ -3,6 +3,7 @@
 #include "OriginalObjects.h"
 #include "SceneManager.h"
 #include "MusicPlayer.h"
+#include "PlayStateRotater.h"
 
 class PlayerScene :
     public SceneBase
@@ -30,5 +31,7 @@ private:
     ButtonObject* loopButton; // 
 
     PlayListObject* playListObject;
+
+    PlayStateRotater playStateRotater;
 };
 

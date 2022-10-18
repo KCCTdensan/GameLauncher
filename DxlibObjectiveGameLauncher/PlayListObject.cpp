@@ -14,6 +14,20 @@ void PlayListObject::Update()
 	CheckGUID();
 	UpdateEnforcedMouseCollision();
 
+	mouseHoveringIndex = -1;
+	mouseClickingIndex = -1;
+	mouseSelectingIndex = -1;
+	int i = 0;
+	for (auto& item : buttons) {
+		if (item->GetMouseHit())
+			mouseHoveringIndex = i;
+		if (item->GetMouseClicked())
+			mouseClickingIndex = i;
+		if (item->GetMouseSelected())
+			mouseSelectingIndex = i;
+		i++;
+	}
+
 	SetAnimationColorPoint(&innerAnimation, innerAnimation.current, innerColor);
 	SetAnimationColorPoint(&outerAnimation, outerAnimation.current, outerColor);
 	SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)innerColor.a);
@@ -83,7 +97,7 @@ void PlayListObject::Draw()
 	SetDrawScreen(DX_SCREEN_BACK);
 }
 
-bool PlayListObject::SetList(std::vector<PlayData> playLists)
+bool PlayListObject::SetList(std::vector<PlayData> playLists, std::string fontName, PosVec textOffset)
 {
 	if (listSample == nullptr) listSample = new ButtonObject();
 	if (this->lists.size() == playLists.size()) return false;
@@ -102,9 +116,18 @@ bool PlayListObject::SetList(std::vector<PlayData> playLists)
 			*listSample->GetColor(ColorType::OUTER_HOVERED),
 			*listSample->GetColor(ColorType::OUTER_CLICKED),
 			*listSample->GetColor(ColorType::OUTER_SELECTED), 2.f);
+		button->SetupText(fontName, item.title + "\n" + item.author, Color255(0, 0, 0, 150));
+		button->GetTextObject()->Move(textOffset);
 		buttons.push_back(button);
 		i++;
 	}
 
 	return true;
+}
+
+void PlayListObject::SetMouseOffIndex()
+{
+	for (auto& item : buttons) {
+		item->SetMouseOff();
+	}
 }

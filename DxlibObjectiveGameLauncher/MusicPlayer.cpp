@@ -7,10 +7,13 @@ PlayState MusicPlayer::playState = PlayState::SIMPLE;
 
 void MusicPlayer::PlayInList(PlayState playState, int index, bool playAtStart)
 {
-    if (playing) return;
+    if (playing) {
+        StopSoundMem(playlists[playingIndex].handle);
+    }
     MusicPlayer::playState = playState;
-    if (playlists.size() <= index)
-        index = (int)playlists.size() - 1;
+    playingIndex = index;
+    if (playlists.size() <= playingIndex)
+        playingIndex = (int)playlists.size() - 1;
 
     PlaySoundMem(playlists[playingIndex].handle, DX_PLAYTYPE_BACK, playAtStart);
     playing = true;

@@ -53,7 +53,13 @@ public:
 
     bool SetListHeight(float _height) { listHeight = _height; return false; }
 
-    bool SetList(std::vector<PlayData> playLists);
+    bool SetList(std::vector<PlayData> playLists, std::string fontName, PosVec textOffset = PosVec());
+
+    int GetHittingIndex() { return mouseHoveringIndex; }
+    int GetClickingIndex() { return mouseClickingIndex; }
+    int GetSelectingIndex() { return mouseSelectingIndex; }
+
+    void SetMouseOffIndex();
 
     // çXêVï`âÊ
     void Collide() override;
@@ -81,6 +87,10 @@ private:
     bool listEnabledOutline;
 
     float listHeight;
+
+    int mouseHoveringIndex;
+    int mouseClickingIndex;
+    int mouseSelectingIndex;
 
     ButtonObject* listSample;
 
