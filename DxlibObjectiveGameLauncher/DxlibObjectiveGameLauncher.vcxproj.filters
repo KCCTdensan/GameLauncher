@@ -122,10 +122,20 @@
     <ClCompile Include="ColorPreset.cpp">
       <Filter>Static</Filter>
     </ClCompile>
-    <ClCompile Include="WorkScene.cpp" />
     <ClCompile Include="ImageObject.cpp">
       <Filter>Objects\Variety\Image</Filter>
     </ClCompile>
+    <ClCompile Include="WorkScene.cpp">
+      <Filter>Scenes\Pages\Work</Filter>
+    </ClCompile>
+    <ClCompile Include="WelcomeScene.cpp">
+      <Filter>Scenes\Pages\Welcome</Filter>
+    </ClCompile>
+    <ClCompile Include="LauncherScene.cpp" />
+    <ClCompile Include="PlayListObject.cpp" />
+    <ClCompile Include="MusicPlayer.cpp" />
+    <ClCompile Include="PlayerScene.cpp" />
+    <ClCompile Include="PlayStateRotater.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -299,10 +309,26 @@
     <ClInclude Include="SharingScenes.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="WorkScene.h" />
     <ClInclude Include="ImageObject.h">
       <Filter>Objects\Variety\Image</Filter>
     </ClInclude>
+    <ClInclude Include="WorkScene.h">
+      <Filter>Scenes\Pages\Work</Filter>
+    </ClInclude>
+    <ClInclude Include="WelcomeScene.h">
+      <Filter>Scenes\Pages\Welcome</Filter>
+    </ClInclude>
+    <ClInclude Include="LauncherScene.h" />
+    <ClInclude Include="PlayListObject.h" />
+    <ClInclude Include="PlayData.h">
+      <Filter>Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicPlayer.h" />
+    <ClInclude Include="PlayState.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerScene.h" />
+    <ClInclude Include="PlayStateRotater.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -418,6 +444,12 @@
     </Filter>
     <Filter Include="Objects\Variety\Image">
       <UniqueIdentifier>{f30e15ac-5899-4f6e-8039-deaaa2ddc8bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pages\Work">
+      <UniqueIdentifier>{b897437c-2f24-4790-8652-a701b6a686ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pages\Welcome">
+      <UniqueIdentifier>{759a8c0b-10e0-4b1d-82b6-feeb75885dad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

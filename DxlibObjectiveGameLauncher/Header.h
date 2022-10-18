@@ -12,6 +12,7 @@
 /* ƒV[ƒ“ˆÚ“®“o˜^—p */
 #include "DebugScene.h"
 #include "HomeScene.h"
+#include "WelcomeScene.h"
 
 class Header
 	: public SceneBase

@@ -1,0 +1,41 @@
+{
+  "Welcome": {
+    "icon": {
+      "src": ".\\assets\\client\\welcome\\icon.png"
+    },
+    "whatis": {
+      "text": "",
+      "src": ".\\assets\\client\\welcome\\whatis.png"
+    },
+    "organization": {
+      "text": "OPEN",
+      "src": ".\\assets\\client\\welcome\\kcct.png"
+    },
+    "openURL": {
+      "url": "https://d3bu.net/",
+      "src": ".\\assets\\client\\welcome\\home-link.png"
+    },
+    "goto-home": {
+      "text": "OPEN",
+      "src": ".\\assets\\client\\welcome\\works.png"
+    },
+    "qrcode":  {
+      "src": ".\\assets\\client\\welcome\\qr.png"
+    }
+  },
+  "Launcher": {
+    "Category": "This APP!",
+    "GUID": "1d435cee-d030-4502-9449-f9735d17cf4c",
+    "TitleName": "ゲームランチャーとは",
+    "Author": "isirmt",
+    "Description": "操作方法はマウスによって制御可のうです！\n\nこのSoftは，C++のDxlibを主に用いたSoftwareとなっております！\nConceptとしてはページの生成を簡単にしつつ，Animationをつける。という目的でこのVersionに至りました！\n\n以下のStart ButtonでSource Codeを是非ご覧ください!\n\nちなみに，さっきからちょくちょく英語になっているのは何故かjsonが読み込めなくなってしまうからだよ（どうして）\n\n生成できるObject\n\n・Button\n・Image\n・Input\n・Line\n・Progress\n・Rectangle\n・Text\n・Canvas etc...\n\n特徴\n・レイヤー管理\n・オブジェクト重複判定\n・設計可のうなAnimation etc...",
+    "Directory": ".\\assets\\client\\launcher\\",
+    "FilePath": "https://github.com/KCCTdensan/GameLauncher",
+    "Thumbnail": "icon.png",
+    "Images" : [
+      {"FilePath": "qr.png"},
+      {"FilePath": "2.png"},
+      {"FilePath": "3.png"}
+    ]
+  }
+}

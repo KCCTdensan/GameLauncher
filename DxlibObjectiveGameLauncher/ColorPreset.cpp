@@ -35,3 +35,9 @@ Color255 ColorPreset::textBlack(20, 20, 20);
 Color255 ColorPreset::textGray(120);
 Color255 ColorPreset::textObject(0, 200);
 Color255 ColorPreset::textObjectWhite(255, 200);
+
+Color255 ColorPreset::yellowButtonInner("#F7D322");
+Color255 ColorPreset::yellowButtonHovered("#D8B91E");
+Color255 ColorPreset::yellowButtonClicked("#D1B31D");
+Color255 ColorPreset::yellowButtonSelected("#F2CF21");
+Color255 ColorPreset::yellowButtonOuter("#EDB142");

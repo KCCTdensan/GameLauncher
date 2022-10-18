@@ -31,6 +31,7 @@
     <ClCompile Include="InputObject.cpp" />
     <ClCompile Include="JsonSoftwareData.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
+    <ClCompile Include="LauncherScene.cpp" />
     <ClCompile Include="LineObject.cpp" />
     <ClCompile Include="MainThreadValue.cpp" />
     <ClCompile Include="MouseInput.cpp" />
@@ -39,9 +40,13 @@
     <ClCompile Include="MusicCanvas.cpp" />
     <ClCompile Include="MusicChest.cpp" />
     <ClCompile Include="MusicData.cpp" />
+    <ClCompile Include="MusicPlayer.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
+    <ClCompile Include="PlayerScene.cpp" />
+    <ClCompile Include="PlayListObject.cpp" />
+    <ClCompile Include="PlayStateRotater.cpp" />
     <ClCompile Include="PopupScene.cpp" />
     <ClCompile Include="PopupWindow.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
@@ -51,6 +56,7 @@
     <ClCompile Include="ScrollInput.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="UUIDGenerator.cpp" />
+    <ClCompile Include="WelcomeScene.cpp" />
     <ClCompile Include="WindowHolding.cpp" />
     <ClCompile Include="WindowHwnd.cpp" />
     <ClCompile Include="WorkScene.cpp" />
@@ -81,6 +87,7 @@
     <ClInclude Include="InputObject.h" />
     <ClInclude Include="JsonSoftwareData.h" />
     <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="LauncherScene.h" />
     <ClInclude Include="lib\picojson.h" />
     <ClInclude Include="LineObject.h" />
     <ClInclude Include="MainThreadValue.h" />
@@ -92,11 +99,17 @@
     <ClInclude Include="MusicCanvas.h" />
     <ClInclude Include="MusicChest.h" />
     <ClInclude Include="MusicData.h" />
+    <ClInclude Include="MusicPlayer.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="ObjectFuncData.h" />
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectOverlapping.h" />
     <ClInclude Include="OriginalObjects.h" />
+    <ClInclude Include="PlayData.h" />
+    <ClInclude Include="PlayerScene.h" />
+    <ClInclude Include="PlayListObject.h" />
+    <ClInclude Include="PlayState.h" />
+    <ClInclude Include="PlayStateRotater.h" />
     <ClInclude Include="PopupScene.h" />
     <ClInclude Include="PopupWindow.h" />
     <ClInclude Include="PositionVector.h" />
@@ -112,6 +125,7 @@
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="UUIDGenerator.h" />
     <ClInclude Include="VectorTypes.h" />
+    <ClInclude Include="WelcomeScene.h" />
     <ClInclude Include="WindowHolding.h" />
     <ClInclude Include="WindowHwnd.h" />
     <ClInclude Include="WorkScene.h" />

@@ -7,3 +7,4 @@
 #include "ProgressObject.h"
 #include "InputObject.h"
 #include "ImageObject.h"
+#include "PlayListObject.h"

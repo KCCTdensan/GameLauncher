@@ -43,5 +43,12 @@ public:
 	static Color255 textGray;
 	static Color255 textObject;
 	static Color255 textObjectWhite;
+
+	// â©êFÉ{É^Éì
+	static Color255 yellowButtonInner;
+	static Color255 yellowButtonHovered;
+	static Color255 yellowButtonClicked;
+	static Color255 yellowButtonSelected;
+	static Color255 yellowButtonOuter;
 };
 

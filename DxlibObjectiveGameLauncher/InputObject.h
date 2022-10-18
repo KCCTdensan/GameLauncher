@@ -5,6 +5,7 @@
 #include "ObjectOverlapping.h"
 #include "PressFrameEnum.h"
 #include <string>
+#include <exception>
 
 class InputObject :
 	public ObjectBase
@@ -120,6 +121,8 @@ public:
 		return true;
 	}
 
+	std::string GetString() { return inputText;	}
+
 	// XV•`‰æ
 	void Collide() override;
 	void Update() override;
@@ -160,5 +163,7 @@ private:
 
 	int inputHandle;
 	std::string inputText;
+
+	static const int inputStringMax = 8192;
 };
 

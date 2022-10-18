@@ -93,7 +93,7 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 
 	std::stringstream ss;
 	std::ifstream fs;
-	fs.open("data.json", std::ios::binary);
+	fs.open(ApplicationPreference::worksJson, std::ios::binary);
 
 	if (!fs.is_open()) {
 		return;
@@ -154,6 +154,29 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	UUIDGenerator uuid;
 	std::string u = uuid.GetGUID() + "\n";
 	OutputDebugString(u.c_str());
+
+	MusicChest::CreateMusicHandle("a", ".\\works\\30_seconds__.mp3");
+	PlayData playData;
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "aaa";
+	playData.title = "音楽1";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "bbb";
+	playData.title = "ミュージック2";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "ccc";
+	playData.title = "音楽SAN";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "ddd";
+	playData.title = "MusicFour";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "eee";
+	playData.title = "おんがく5";
+	MusicPlayer::AddToList(playData);
 
 	canvas.SetInnerColor(Color255(150, 250, 250, 255));
 	canvas.SetArea(PosVec(200, 10000), 50.f / 10000.f);
@@ -225,10 +248,6 @@ void DebugScene::Update()
 	canvases.Update();
 	can.Update();
 
-	if (debugButton.GetMouseSelected()) {
-		debugButton.SetMouseOff();
-	}
-
 	for (auto& item : works) {
 		item.Update();
 	}
@@ -260,6 +279,17 @@ void DebugScene::Update()
 	else {
 		sharingScenes->header->SetSubtitle("変更されていないテキスト");
 	}
+
+	if (debugButton.GetMouseSelected()) {
+		debugButton.SetMouseOff();
+		MusicPlayer::PlayInList(PlayState::SIMPLE, 0, true);
+	}
+
+	if (debugButton2.GetMouseSelected()) {
+		debugButton2.SetMouseOff();
+		SceneManager::ChangeScene("Music Player", new PlayerScene(sharingScenes));
+	}
+	
 
 	//if (debugRect.GetMouseHit()) {
 	//	pallet.ChangeColorWithAnimation(pallet.GetColor(ColorType::INNER), new Color255(0, 0, 255), 0.2f);
