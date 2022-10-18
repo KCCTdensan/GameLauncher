@@ -49,7 +49,7 @@ public:
     }
 
     ButtonObject* GetButtonListSample() { return listSample; }
-    ButtonObject* SetButtonListSample(ButtonObject* sample) { listSample = sample; }
+    void SetButtonListSample(ButtonObject* sample) { listSample = sample; }
 
     bool SetListHeight(float _height) { listHeight = _height; return false; }
 
