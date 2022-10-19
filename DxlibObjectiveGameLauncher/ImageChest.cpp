@@ -33,6 +33,7 @@ PosVec ImageChest::GetImageSize(std::string handleName)
 
 bool ImageChest::DeleteImageHandle(std::string handleName)
 {
+	DeleteGraph(GetImageHandle(handleName));
 	handles.erase(handleName);
 	return true;
 }

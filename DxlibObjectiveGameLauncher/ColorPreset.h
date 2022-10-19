@@ -50,5 +50,12 @@ public:
 	static Color255 yellowButtonClicked;
 	static Color255 yellowButtonSelected;
 	static Color255 yellowButtonOuter;
+
+	// インプットデフォルト
+	static Color255 inputInner;
+	static Color255 inputHovered;
+	static Color255 inputClicked;
+	static Color255 inputSelected;
+	static Color255 inputOuter;
 };
 

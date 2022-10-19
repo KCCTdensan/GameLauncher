@@ -62,10 +62,11 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		//printfDx("%s\n", lists[i].get<picojson::object>()["GUID"].get<std::string>().c_str());
 		this->obj = lists[i].get<picojson::object>(); // 保存
 
-		std::string thumbnailName = "Thumb:" + this->obj["GUID"].get<std::string>();
+		std::string thumbnailName = "[work]Thumb:" + this->obj["GUID"].get<std::string>();
 		std::string thumbnailPath = this->obj["Directory"].get<std::string>() + this->obj["Thumbnail"].get<std::string>();
 
 		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
+		handleNames.push_back(thumbnailName);
 		float maxThumbnailLongLength = 500.f; // 最大幅 どちらかの幅が500になる
 		PosVec imageSize = ImageChest::GetImageSize(thumbnailName);
 		float imageSizeRate = 0.f;
@@ -111,6 +112,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 			std::string imagePath = this->obj["Directory"].get<std::string>() + item.get<picojson::object>()["FilePath"].get<std::string>();
 
 			ImageChest::CreateImageHandle(imageName, imagePath);
+			handleNames.push_back(imageName);
 			PosVec imageSize = ImageChest::GetImageSize(imageName);
 			float imageSizeRate = 0.f;
 			if (imageSize.x >= imageSize.y) {
@@ -247,6 +249,27 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 	fonts.push_back(FontHandle("smart50", "03スマートフォントUI", 50, 15));
 	fonts.push_back(FontHandle("smart30", "03スマートフォントUI", 30, 15));
 	fonts.push_back(FontHandle("smart25", "03スマートフォントUI", 25, 15));
+}
+
+WorkScene::~WorkScene()
+{
+	for (const auto& font : fonts) {
+		FontChest::DeleteFontHandle(font.handleName);
+	}
+
+	for (auto& item : handleNames) {
+		ImageChest::DeleteImageHandle(item);
+	}
+
+	delete 
+		canvas, bg, thumbnail, category, title, author, guidText, description,
+		photoGalleryText, descriptionCanvas, thumbnailCanvas, imagesCanvas, launch, imageBackGround,
+		isBigImage, isBigCanvas, isBigPos, isBigSize;
+
+	for (auto& item : descriptionLines)
+		delete item;
+	for (auto& item : images)
+		delete item;
 }
 
 void WorkScene::Collide()

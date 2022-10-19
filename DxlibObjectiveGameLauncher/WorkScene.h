@@ -18,6 +18,7 @@ class WorkScene :
 public:
     WorkScene();
     WorkScene(SharingScenes* _sharingScenes, std::string workGuid);
+    ~WorkScene();
 
     void Collide();
     void Update();
@@ -61,6 +62,8 @@ private:
     CanvasObject* isBigCanvas;
     PosVec* isBigPos;
     PosVec* isBigSize;
+
+    std::vector<std::string> handleNames;
 
     const float maxImageLongLengthOnBig = 800.f;
     const float zoomFrame = .5f;

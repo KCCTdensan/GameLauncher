@@ -18,6 +18,7 @@
 #include "MouseInput.h"
 #include "MusicPlayer.h"
 #include "PlayerScene.h"
+#include "WorkRegisterScene.h"
 
 /*void InputUpdate(); // threadA
 void ApplicationUpdate(SceneManager* _sceneManager); // threadB*/
@@ -182,7 +183,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SceneManager::Initialize();
 
-	SceneManager::ChangeScene("Music Player", new PlayerScene(SceneManager::GetSharingScenes())); // 最初に表示するページ
+	//SceneManager::ChangeScene("Music Player", new PlayerScene(SceneManager::GetSharingScenes())); // 最初に表示するページ
+	SceneManager::ChangeScene("Work Register", new WorkRegisterScene(SceneManager::GetSharingScenes())); // 最初に表示するページ
 
 	//std::thread inputUpdate(InputUpdate);
 	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);

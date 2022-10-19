@@ -123,7 +123,7 @@ void HomeScene::Update()
 		if (item->GetMouseSelected()) {
 			item->SetMouseOff();
 			std::string id = item->GetTag();
-			SceneManager::ChangeScene(item->GetTag(), new WorkScene(sharingScenes, item->GetTag()));
+			SceneManager::ChangeScene(item->GetTag(), new WorkScene(sharingScenes, item->GetTag()), false);
 		}
 	}
 

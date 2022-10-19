@@ -124,7 +124,7 @@ void Header::Update()
 	for (int i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		if (navLinks[i]->GetMouseSelected()) {
 			navLinks[i]->SetMouseOff();
-			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene);
+			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene, false, false);
 			//SceneManager::ChangeScene(sceneSets[i].sceneName, new DebugScene(), false);
 		}
 	}

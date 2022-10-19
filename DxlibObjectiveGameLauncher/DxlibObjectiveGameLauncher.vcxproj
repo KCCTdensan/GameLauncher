@@ -59,6 +59,7 @@
     <ClCompile Include="WelcomeScene.cpp" />
     <ClCompile Include="WindowHolding.cpp" />
     <ClCompile Include="WindowHwnd.cpp" />
+    <ClCompile Include="WorkRegisterScene.cpp" />
     <ClCompile Include="WorkScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +129,7 @@
     <ClInclude Include="WelcomeScene.h" />
     <ClInclude Include="WindowHolding.h" />
     <ClInclude Include="WindowHwnd.h" />
+    <ClInclude Include="WorkRegisterScene.h" />
     <ClInclude Include="WorkScene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

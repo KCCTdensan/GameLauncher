@@ -143,11 +143,14 @@ void PlayerScene::Update()
 		songHandleName->SetText(handleString);
 	}
 
-	if (playBar->GetMouseClicked())
-		MusicPlayer::SetPlayingRate(playBar->GetValue());
-	playBar->SetValue(MusicPlayer::GetPlayingRate());
+	if (playBar != nullptr) {
+		if (playBar->GetMouseClicked())
+			MusicPlayer::SetPlayingRate(playBar->GetValue());
+		playBar->SetValue(MusicPlayer::GetPlayingRate());
+	}
 
-	playListObject->SetList(MusicPlayer::GetPlayList(), "mplus40", PosVec(5.f, 5.f));
+	if (playListObject != nullptr)
+		playListObject->SetList(MusicPlayer::GetPlayList(), "mplus40", PosVec(5.f, 5.f));
 }
 
 void PlayerScene::Draw()

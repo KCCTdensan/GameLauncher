@@ -136,6 +136,7 @@
     <ClCompile Include="MusicPlayer.cpp" />
     <ClCompile Include="PlayerScene.cpp" />
     <ClCompile Include="PlayStateRotater.cpp" />
+    <ClCompile Include="WorkRegisterScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -329,6 +330,7 @@
     </ClInclude>
     <ClInclude Include="PlayerScene.h" />
     <ClInclude Include="PlayStateRotater.h" />
+    <ClInclude Include="WorkRegisterScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
