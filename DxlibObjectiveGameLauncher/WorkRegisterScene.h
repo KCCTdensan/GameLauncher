@@ -14,6 +14,8 @@
 #include <direct.h>
 #include <sys/stat.h>
 #include "UUIDGenerator.h"
+#include <Windows.h>
+#include <tchar.h>
 
 class WorkRegisterScene :
     public SceneBase
@@ -33,6 +35,8 @@ private:
     picojson::object obj;
 
     std::string guid;
+    std::string thumbnailPath;
+    std::string imagesPath;
 
     // Categoryボタン未実装
     TextObject* titlename;
@@ -44,7 +48,12 @@ private:
     InputObject* iWorkAuthor;
     InputObject* iWorkDescription;
 
-    TextObject* iguid;
+    TextObject* lguid;
+    TextObject* lThumbPath;
+    TextObject* lImagesPath;
+    TextObject* dguid;
+    TextObject* dThumbPath;
+    TextObject* dImagesPath;
 
     ButtonObject* openDirectoryButtton; // Open in
     ButtonObject* setThumbnailButtton; // ダイアログを開く

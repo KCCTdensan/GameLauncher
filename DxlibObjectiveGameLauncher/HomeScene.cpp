@@ -11,6 +11,8 @@ HomeScene::HomeScene(SharingScenes* _sharingScenes)
 {
 	canvas = new CanvasObject(PosVec(0.f, ApplicationPreference::startScenePos), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y - ApplicationPreference::startScenePos), false);
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
+
+	
 	/********** JSON ì«çû ***********/
 
 	std::stringstream ss;

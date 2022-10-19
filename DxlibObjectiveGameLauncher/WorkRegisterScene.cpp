@@ -3,7 +3,7 @@
 WorkRegisterScene::WorkRegisterScene()
 	:iWorkName(nullptr), iWorkAuthor(nullptr), iWorkDescription(nullptr),
 	openDirectoryButtton(nullptr), setThumbnailButtton(nullptr), setImagesButtton(nullptr),
-	iguid(nullptr), bg(nullptr)
+	lguid(nullptr), bg(nullptr)
 {
 	// 記入の必要性なし
 }
@@ -12,7 +12,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	: SceneBase(_sharingScenes),
 	iWorkName(nullptr), iWorkAuthor(nullptr), iWorkDescription(nullptr),
 	openDirectoryButtton(nullptr), setThumbnailButtton(nullptr), setImagesButtton(nullptr),
-	iguid(nullptr), bg(nullptr), guid()
+	lguid(nullptr), bg(nullptr), guid()
 {
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
 	bg->SetInnerColor(ColorPreset::bgColor); // 非キャンバス追加オブジェクト(常に同じ背景)
@@ -21,10 +21,13 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	PosVec startFormPos(400.f, ApplicationPreference::startScenePos + 150.f);
 	PosVec startButtonPos(1300.f, startFormPos.y);
 	PosVec startLabelPos(380.f, startFormPos.y + 25.f);
+	PosVec startDispPos(380.f, startFormPos.y + 600.f);
 	PosVec defaultFormSize(800, 80);
 	PosVec defaultButtonSize(400, 80);
+	PosVec defaultDispSize(400, 40);
 	PosVec defaultFormGap(0, 30);
 	PosVec defaultButtonGap(0, 30);
+	PosVec defaultDispGap(15, 15);
 
 	titlename = new TextObject(
 		PosVec(startLabelPos.x, startLabelPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
@@ -48,6 +51,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	iWorkName->SetOutlineColor(
 		ColorPreset::inputOuter,
 		2.f);
+	iWorkName->SetInnerAnimation(.2f);
 	formIndex++;
 
 	lWorkAuthor = new TextObject(
@@ -67,6 +71,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	iWorkAuthor->SetOutlineColor(
 		ColorPreset::inputOuter,
 		2.f);
+	iWorkAuthor->SetInnerAnimation(.2f);
 	formIndex++;
 
 	lWorkDescription = new TextObject(
@@ -86,6 +91,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	iWorkDescription->SetOutlineColor(
 		ColorPreset::inputOuter,
 		2.f);
+	iWorkDescription->SetInnerAnimation(.2f);
 	// formIndex++;
 
 	formIndex = 0;
@@ -102,6 +108,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	openDirectoryButtton->SetOutlineColor(
 		ColorPreset::yellowButtonOuter,
 		2.f);
+	openDirectoryButtton->SetInnerAnimation(.2f);
 	formIndex += 2;
 
 	setThumbnailButtton = new ButtonObject(
@@ -116,6 +123,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	setThumbnailButtton->SetOutlineColor(
 		ColorPreset::yellowButtonOuter,
 		2.f);
+	setThumbnailButtton->SetInnerAnimation(.2f);
 	formIndex++;
 
 	setImagesButtton = new ButtonObject(
@@ -130,6 +138,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	setImagesButtton->SetOutlineColor(
 		ColorPreset::yellowButtonOuter,
 		2.f);
+	setImagesButtton->SetInnerAnimation(.2f);
 	formIndex += 2;
 
 	makeJsonDataButton = new ButtonObject(
@@ -144,6 +153,36 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	makeJsonDataButton->SetOutlineColor(
 		ColorPreset::yellowButtonOuter,
 		2.f);
+	makeJsonDataButton->SetInnerAnimation(.2f);
+	formIndex++;
+
+	formIndex = 0;
+
+	lguid = new TextObject(
+		PosVec(startDispPos.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		defaultFormSize, "smart30", "登録GUID: ", ColorPreset::textBlack, TextAlign::RIGHT);
+	dguid = new TextObject(
+		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		defaultFormSize, "smart30", "未登録", ColorPreset::textBlack, TextAlign::LEFT);
+	dguid->SetMaxWidth(defaultDispSize.x);
+	formIndex++;
+
+	lThumbPath = new TextObject(
+		PosVec(startDispPos.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		defaultFormSize, "smart30", "登録サムネイル: ", ColorPreset::textBlack, TextAlign::RIGHT);
+	dThumbPath = new TextObject(
+		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		defaultFormSize, "smart10", "文字列", ColorPreset::textBlack, TextAlign::LEFT);
+	dThumbPath->SetMaxWidth(defaultDispSize.x);
+	formIndex++;
+
+	lImagesPath = new TextObject(
+		PosVec(startDispPos.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		defaultFormSize, "smart30", "登録紹介画像: ", ColorPreset::textBlack, TextAlign::RIGHT);
+	dImagesPath = new TextObject(
+		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		defaultFormSize, "smart10", "文字列", ColorPreset::textBlack, TextAlign::LEFT);
+	dImagesPath->SetMaxWidth(defaultDispSize.x);
 	formIndex++;
 
 	layer.AddObject(bg);
@@ -158,8 +197,15 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	layer.AddObject(setThumbnailButtton);
 	layer.AddObject(setImagesButtton);
 	layer.AddObject(makeJsonDataButton);
+	layer.AddObject(lguid);
+	layer.AddObject(dguid);
+	layer.AddObject(lThumbPath);
+	layer.AddObject(dThumbPath);
+	layer.AddObject(lImagesPath);
+	layer.AddObject(dImagesPath);
 
 	// フォント追加
+	fonts.push_back(FontHandle("smart10", "03スマートフォントUI", 20, 15));
 	fonts.push_back(FontHandle("smart30", "03スマートフォントUI", 30, 15));
 	fonts.push_back(FontHandle("smart50", "03スマートフォントUI", 50, 15));
 }
@@ -208,6 +254,7 @@ void WorkRegisterScene::Update()
 
 	if (openDirectoryButtton != nullptr) {
 		if (openDirectoryButtton->GetMouseSelected()) {
+
 			openDirectoryButtton->SetMouseOff();
 			std::string folderName = ".\\works\\" + guid + "\\";
 			if (guid == "") {
@@ -225,6 +272,72 @@ void WorkRegisterScene::Update()
 			ShellExecute(GetMainWindowHandle(), "open", folderName.c_str(), NULL, NULL, SW_SHOWNORMAL);
 		}
 	}
+
+	if (setThumbnailButtton != nullptr)
+		if (setThumbnailButtton->GetMouseSelected()) {
+			setThumbnailButtton->SetMouseOff();
+			char sxFile[MAX_PATH * 256];
+			std::string folderName = ".\\works\\" + guid + "\\";
+
+			OPENFILENAME o;
+			sxFile[0] = _T('\0');
+			ZeroMemory(&o, sizeof(o));
+			o.lStructSize = sizeof(o);
+			o.hwndOwner = GetMainWindowHandle();
+			o.lpstrInitialDir = folderName.c_str();
+			o.lpstrFile = sxFile;
+			o.nMaxFile = sizeof(sxFile) / sizeof(char);
+			o.lpstrFilter = _TEXT("全てのファイル(*.*)\0*.*\0");
+			//o.lpstrDefExt = _TEXT("TXT");
+			o.lpstrTitle = _TEXT("該当ファイルを選択");
+			o.nFilterIndex = 1;
+			int returnCode = GetOpenFileName(&o);
+
+			thumbnailPath = sxFile;
+		}
+
+	if (setImagesButtton != nullptr)
+		if (setImagesButtton->GetMouseSelected()) {
+			setImagesButtton->SetMouseOff();
+			char sxFile[MAX_PATH * 256];
+			std::string folderName = ".\\works\\" + guid + "\\";
+
+			OPENFILENAME o;
+			sxFile[0] = _T('\0');
+			ZeroMemory(&o, sizeof(o));
+			o.lStructSize = sizeof(o);
+			o.hwndOwner = GetMainWindowHandle();
+			o.lpstrInitialDir = folderName.c_str();
+			o.lpstrFile = sxFile;
+			o.nMaxFile = sizeof(sxFile) / sizeof(char);
+			o.lpstrFilter = _TEXT("全てのファイル(*.*)\0*.*\0");
+			//o.lpstrDefExt = _TEXT("TXT");
+			o.lpstrTitle = _TEXT("該当ファイルを選択");
+			o.nFilterIndex = 1;
+			//o.Flags = OFN_ALLOWMULTISELECT | OFN_EXPLORER;
+			int returnCode = GetOpenFileName(&o);
+			std::string newFileName = sxFile;
+			newFileName += "\n";
+
+			char cwd[512];
+			// ディレクトリ取得
+			int returnId;
+			(void)_getcwd(cwd, 512);
+
+			imagesPath += newFileName;
+		}
+
+	if (dguid != nullptr)
+		if (dguid->GetText() != guid)
+			dguid->SetText(guid);
+
+	if (dThumbPath != nullptr)
+		if (dThumbPath->GetText() != thumbnailPath)
+			dThumbPath->SetText(thumbnailPath);
+
+	if (dImagesPath != nullptr)
+		if (dImagesPath->GetText() != imagesPath)
+			dImagesPath->SetText(imagesPath);
 }
 
 void WorkRegisterScene::Draw()

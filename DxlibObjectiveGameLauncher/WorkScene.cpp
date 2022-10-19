@@ -23,6 +23,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 	bg->SetInnerColor(ColorPreset::bgColor); // 非キャンバス追加オブジェクト(常に同じ背景)
 	layer.AddObject(bg);
 
+
 	/********** JSON 読込 ***********/
 
 	std::stringstream ss;

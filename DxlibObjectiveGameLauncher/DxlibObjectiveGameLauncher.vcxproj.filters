@@ -131,12 +131,16 @@
     <ClCompile Include="WelcomeScene.cpp">
       <Filter>Scenes\Pages\Welcome</Filter>
     </ClCompile>
-    <ClCompile Include="LauncherScene.cpp" />
     <ClCompile Include="PlayListObject.cpp" />
     <ClCompile Include="MusicPlayer.cpp" />
     <ClCompile Include="PlayerScene.cpp" />
     <ClCompile Include="PlayStateRotater.cpp" />
-    <ClCompile Include="WorkRegisterScene.cpp" />
+    <ClCompile Include="LauncherScene.cpp">
+      <Filter>Scenes\Pages\Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkRegisterScene.cpp">
+      <Filter>Scenes\Pages\WorkRegister</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -319,7 +323,6 @@
     <ClInclude Include="WelcomeScene.h">
       <Filter>Scenes\Pages\Welcome</Filter>
     </ClInclude>
-    <ClInclude Include="LauncherScene.h" />
     <ClInclude Include="PlayListObject.h" />
     <ClInclude Include="PlayData.h">
       <Filter>Struct</Filter>
@@ -330,7 +333,12 @@
     </ClInclude>
     <ClInclude Include="PlayerScene.h" />
     <ClInclude Include="PlayStateRotater.h" />
-    <ClInclude Include="WorkRegisterScene.h" />
+    <ClInclude Include="LauncherScene.h">
+      <Filter>Scenes\Pages\Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkRegisterScene.h">
+      <Filter>Scenes\Pages\WorkRegister</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -452,6 +460,12 @@
     </Filter>
     <Filter Include="Scenes\Pages\Welcome">
       <UniqueIdentifier>{759a8c0b-10e0-4b1d-82b6-feeb75885dad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pages\WorkRegister">
+      <UniqueIdentifier>{73b5dfef-c51a-4185-bd2b-38e4376f8ffa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pages\Launcher">
+      <UniqueIdentifier>{d8f061a2-edc3-40cc-97fc-b4b180aafbff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
