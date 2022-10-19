@@ -12,6 +12,8 @@
 #include <numbers>
 #include <vector>
 #include <direct.h>
+#include <sys/stat.h>
+#include "UUIDGenerator.h"
 
 class WorkRegisterScene :
     public SceneBase
@@ -29,6 +31,8 @@ private:
     RectangleObject* bg;
 
     picojson::object obj;
+
+    std::string guid;
 
     // Categoryƒ{ƒ^ƒ“–¢ŽÀ‘•
     TextObject* titlename;

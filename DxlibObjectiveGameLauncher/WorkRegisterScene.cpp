@@ -12,7 +12,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	: SceneBase(_sharingScenes),
 	iWorkName(nullptr), iWorkAuthor(nullptr), iWorkDescription(nullptr),
 	openDirectoryButtton(nullptr), setThumbnailButtton(nullptr), setImagesButtton(nullptr),
-	iguid(nullptr), bg(nullptr)
+	iguid(nullptr), bg(nullptr), guid()
 {
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
 	bg->SetInnerColor(ColorPreset::bgColor); // 非キャンバス追加オブジェクト(常に同じ背景)
@@ -204,6 +204,26 @@ void WorkRegisterScene::Update()
 			(makeJsonDataButton->GetSize().x - makeJsonDataButton->GetTextObject()->GetTextWidth()) / 2.f,
 			(makeJsonDataButton->GetSize().y - makeJsonDataButton->GetTextObject()->GetTextHeight()) / 2.f));
 
+	}
+
+	if (openDirectoryButtton != nullptr) {
+		if (openDirectoryButtton->GetMouseSelected()) {
+			openDirectoryButtton->SetMouseOff();
+			std::string folderName = ".\\works\\" + guid + "\\";
+			if (guid == "") {
+				UUIDGenerator uuidGenerator;
+				guid = uuidGenerator.GetGUID();
+				printfDx("%s", guid.c_str());
+				folderName = ".\\works\\" + guid + "\\";
+				(void)_mkdir(".\\works");
+				(void)_mkdir(folderName.c_str());
+				std::ofstream fs;
+				std::string filename = folderName + "ここに実行ファイル等を追加";
+				fs.open(filename, std::ios::out);
+				fs.close();
+			}
+			ShellExecute(GetMainWindowHandle(), "open", folderName.c_str(), NULL, NULL, SW_SHOWNORMAL);
+		}
 	}
 }
 
