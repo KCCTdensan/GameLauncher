@@ -155,29 +155,6 @@ DebugScene::DebugScene(SharingScenes* _sharingScenes) :
 	std::string u = uuid.GetGUID() + "\n";
 	OutputDebugString(u.c_str());
 
-	MusicChest::CreateMusicHandle("a", ".\\works\\30_seconds__.mp3");
-	PlayData playData;
-	playData.handle = MusicChest::GetMusicHandle("a");
-	playData.author = "aaa";
-	playData.title = "音楽1";
-	MusicPlayer::AddToList(playData);
-	playData.handle = MusicChest::GetMusicHandle("a");
-	playData.author = "bbb";
-	playData.title = "ミュージック2";
-	MusicPlayer::AddToList(playData);
-	playData.handle = MusicChest::GetMusicHandle("a");
-	playData.author = "ccc";
-	playData.title = "音楽SAN";
-	MusicPlayer::AddToList(playData);
-	playData.handle = MusicChest::GetMusicHandle("a");
-	playData.author = "ddd";
-	playData.title = "MusicFour";
-	MusicPlayer::AddToList(playData);
-	playData.handle = MusicChest::GetMusicHandle("a");
-	playData.author = "eee";
-	playData.title = "おんがく5";
-	MusicPlayer::AddToList(playData);
-
 	canvas.SetInnerColor(Color255(150, 250, 250, 255));
 	canvas.SetArea(PosVec(200, 10000), 50.f / 10000.f);
 

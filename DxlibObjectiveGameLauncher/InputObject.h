@@ -52,7 +52,7 @@ public:
 		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z)); // ï∂éöÇÃç\ë¢Ç…ëŒÇµÇƒà íuí≤êÆ
 	}
 
-	void RemakehHandle() {
+	void RemakeHandle() {
 		DeleteKeyInput(inputHandle);
 		inputHandle = MakeKeyInput(maxLength, cancelVaildFlag, singleCharOnlyFlag, numCharOnlyFlag);
 		textObject.SetText("");

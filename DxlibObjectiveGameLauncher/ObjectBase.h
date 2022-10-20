@@ -265,6 +265,7 @@ public:
 
 	// 子要素登録
 	virtual bool RegisterChildren(ObjectBase* _object);
+	virtual bool DeleteAllChildren() { children.clear(); return true; }
 	// 自分のポインタを放り込むように(キャンバス用)(描画先決定用) ※childrenの関数を呼ぶため予めRegisterChildrenが必要
 	virtual bool RegisterParent(ObjectBase* _object);
 

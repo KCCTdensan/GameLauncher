@@ -139,6 +139,7 @@ public:
 
 	bool RegisterChildren(ObjectBase* _object) override;
 	bool RegisterCanvas(ObjectBase* _object);
+	bool DeleteAllChildren() override;
 
 private:
 

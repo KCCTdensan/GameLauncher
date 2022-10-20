@@ -314,6 +314,9 @@ bool ObjectBase::Move(PosVec _delta, bool _involvedParent)
 bool ObjectBase::RegisterChildren(ObjectBase* _object)
 {
 	//children.push_back(_object);
+	for (auto& item : children) {
+		if (item == _object) return false;
+	}
 	children.insert(children.end(), _object);
 	return true;
 }

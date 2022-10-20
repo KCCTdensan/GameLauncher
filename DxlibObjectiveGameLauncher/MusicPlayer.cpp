@@ -58,7 +58,16 @@ void MusicPlayer::SetPlayingRate(float value)
 
 void MusicPlayer::AddToList(PlayData playData)
 {
+    for (auto& item : playlists) {
+        if (item.handle == playData.handle) return;
+    }
     playlists.push_back(playData);
+}
+
+void MusicPlayer::DeleteFromList(int index)
+{
+    if (index >= playlists.size()) return;
+    playlists.erase(playlists.begin() + index);
 }
 
 void MusicPlayer::RemoveFromList(int index)
@@ -82,6 +91,8 @@ void MusicPlayer::Update()
         {
         case PlayState::SIMPLE:
             playing = false;
+            DeleteSoundMem(playlists[playingIndex].handle);
+            DeleteFromList(playingIndex);
             break;
         case PlayState::ONE_LOOP:
             PlaySoundMem(playlists[playingIndex].handle, DX_PLAYTYPE_BACK, true);

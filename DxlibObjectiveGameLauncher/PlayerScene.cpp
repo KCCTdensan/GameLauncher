@@ -2,13 +2,13 @@
 
 PlayerScene::PlayerScene()
 	: bg(nullptr), loopButton(nullptr), nowPlaying(nullptr), playBar(nullptr), playListObject(nullptr),
-	songTitle(nullptr), songAuthor(nullptr), songHandleName(nullptr), startButton(nullptr)
+	songTitle(nullptr), songAuthor(nullptr), songHandleName(nullptr), startButton(nullptr), canvas(nullptr)
 {
 }
 
 PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	: SceneBase(_sharingScenes), nowPlaying(nullptr),
-	songTitle(nullptr), songAuthor(nullptr), songHandleName(nullptr)
+	songTitle(nullptr), songAuthor(nullptr), songHandleName(nullptr), canvas(nullptr)
 {
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
 	bg->SetInnerColor(ColorPreset::bgColor); // 非キャンバス追加オブジェクト(常に同じ背景)
@@ -68,7 +68,7 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 			ApplicationPreference::startScenePos + 50.f),
 		PosVec(600.f, 750.f));
 	playListObject->SetInnerColor(ColorPreset::tileInner);
-	playListObject->SetListHeight(100.f);
+	playListObject->SetListHeight(150.f);
 	playListObject->SetOutlineColor(ColorPreset::tileOuter, 2.f);
 	playListObject->SetButtonListSample(new ButtonObject(PosVec(), PosVec(), true, true));
 	playListObject->GetButtonListSample()->SetInnerColor(
@@ -82,6 +82,48 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse,
 		ColorPreset::navLinksOuterMouse, 2.f);
 
+	canvas = new CanvasObject(
+		PosVec(
+			ApplicationPreference::GetBackgroundSize().x - 700.f,
+			ApplicationPreference::startScenePos + 50.f),
+		PosVec(600.f, 750.f), true, true);
+	canvas->SetInnerColor(ColorPreset::tileInner);
+	canvas->SetOutlineColor(ColorPreset::tileOuter, 2.f);
+
+	canvas->RegisterChildren(playListObject);
+
+	ideleteList = new InputObject(
+		PosVec(
+			ApplicationPreference::GetBackgroundSize().x - 800.f,
+			ApplicationPreference::startScenePos + 50.f),
+		PosVec(60, 20));
+	ideleteList->SetupText(
+		"smart20", ColorPreset::textBlack);
+	ideleteList->SetInnerColor(
+		ColorPreset::inputInner,
+		ColorPreset::inputHovered,
+		ColorPreset::inputClicked,
+		ColorPreset::inputSelected);
+	ideleteList->SetOutlineColor(
+		ColorPreset::inputOuter,
+		2.f);
+	ideleteList->SetInnerAnimation(.2f);
+
+	bdeleteList = new ButtonObject(
+		PosVec(
+			ApplicationPreference::GetBackgroundSize().x - 730.f,
+			ApplicationPreference::startScenePos + 50.f),
+		PosVec(20, 20), true, true);
+	bdeleteList->SetInnerColor(
+		ColorPreset::yellowButtonInner,
+		ColorPreset::yellowButtonHovered,
+		ColorPreset::yellowButtonClicked,
+		ColorPreset::yellowButtonSelected);
+	bdeleteList->SetOutlineColor(
+		ColorPreset::yellowButtonOuter,
+		2.f);
+	bdeleteList->SetInnerAnimation(.2f);
+
 	layer.AddObject(bg);
 
 	layer.AddObject(songTitle);
@@ -91,6 +133,10 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	layer.AddObject(loopButton);
 	layer.AddObject(playBar);
 	layer.AddObject(playListObject);
+	layer.AddObject(ideleteList);
+	layer.AddObject(bdeleteList);
+
+	canvases.AddObject(canvas);
 
 	// フォント追加
 	fonts.push_back(FontHandle("mplus40", "M PLUS 2", 40, 100));
@@ -151,8 +197,27 @@ void PlayerScene::Update()
 		playBar->SetValue(MusicPlayer::GetPlayingRate());
 	}
 
-	if (playListObject != nullptr)
-		playListObject->SetList(MusicPlayer::GetPlayList(), "mplus40", PosVec(5.f, 5.f));
+	if (playListObject != nullptr) {
+		if (playListObject->SetList(MusicPlayer::GetPlayList(), "mplus40", PosVec(5.f, 5.f))) {
+			canvas->DeleteAllChildren();
+			canvas->RegisterChildren(playListObject);
+			for (auto& item : playListObject->GetButtons()) {
+				canvas->RegisterChildren(item);
+			}
+			if (playListObject->GetButtons().size() > 0)
+				canvas->SetArea(PosVec(
+					playListObject->GetButtons()[0]->GetSize().x,
+					playListObject->GetButtons()[0]->GetSize().y * playListObject->GetButtons().size()),
+					1.f / playListObject->GetButtons().size());
+		}
+	}
+
+	if (bdeleteList != nullptr)
+		if (bdeleteList->GetMouseSelected()) {
+			bdeleteList->SetMouseOff();
+			MusicPlayer::DeleteFromList(std::atoi(ideleteList->GetString().c_str()));
+			ideleteList->RemakeHandle();
+		}
 }
 
 void PlayerScene::Draw()

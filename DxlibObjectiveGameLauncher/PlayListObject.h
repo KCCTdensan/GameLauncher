@@ -66,6 +66,8 @@ public:
 
     void SetMouseOffIndex();
 
+    std::vector<ButtonObject*> GetButtons() { return buttons; }
+
     // XV•`‰æ
     void Collide() override;
     void Update() override;

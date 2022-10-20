@@ -506,10 +506,10 @@ void WorkRegisterScene::Update()
 			imagesPath = "";
 			imagePathVector.clear();
 
-			iWorkName->RemakehHandle();
-			iWorkAuthor->RemakehHandle();
-			iWorkCategory->RemakehHandle();
-			iWorkDescription->RemakehHandle();
+			iWorkName->RemakeHandle();
+			iWorkAuthor->RemakeHandle();
+			iWorkCategory->RemakeHandle();
+			iWorkDescription->RemakeHandle();
 
 		}
 	}

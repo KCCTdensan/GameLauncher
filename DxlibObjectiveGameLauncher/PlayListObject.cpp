@@ -102,6 +102,11 @@ bool PlayListObject::SetList(std::vector<PlayData> playLists, std::string fontNa
 	if (listSample == nullptr) listSample = new ButtonObject();
 	if (this->lists.size() == playLists.size()) return false;
 	lists = playLists;
+	for (auto& item : buttons) {
+		delete item;
+	}
+	buttons.clear();
+	children.clear();
 	int i = 0;
 	for (auto& item : lists) {
 		ButtonObject* button = new ButtonObject(
@@ -116,11 +121,14 @@ bool PlayListObject::SetList(std::vector<PlayData> playLists, std::string fontNa
 			*listSample->GetColor(ColorType::OUTER_HOVERED),
 			*listSample->GetColor(ColorType::OUTER_CLICKED),
 			*listSample->GetColor(ColorType::OUTER_SELECTED), 2.f);
-		button->SetupText(fontName, item.title + "\n" + item.author, Color255(0, 0, 0, 150));
+		button->SetupText(fontName, std::to_string(i) + ": " + item.title + "\n" + item.author, Color255(0, 0, 0, 150));
 		button->GetTextObject()->Move(textOffset);
 		buttons.push_back(button);
+		RegisterChildren(button);
 		i++;
 	}
+
+	SetSize(PosVec(size.x, listSample->GetSize().y * buttons.size()));
 
 	return true;
 }

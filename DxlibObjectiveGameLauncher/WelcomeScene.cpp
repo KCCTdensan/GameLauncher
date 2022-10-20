@@ -30,6 +30,34 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 
 	canvas->RegisterChildren(imageBackGround);
 
+	MusicChest::CreateMusicHandle("a", ".\\works\\30_seconds__.mp3");
+	MusicChest::CreateMusicHandle("b", ".\\works\\30_seconds__.mp3");
+	MusicChest::CreateMusicHandle("c", ".\\works\\30_seconds__.mp3");
+	MusicChest::CreateMusicHandle("d", ".\\works\\30_seconds__.mp3");
+	MusicChest::CreateMusicHandle("e", ".\\works\\30_seconds__.mp3");
+	MusicChest::CreateMusicHandle("f", ".\\works\\30_seconds__.mp3");
+	PlayData playData;
+	playData.handle = MusicChest::GetMusicHandle("a");
+	playData.author = "aaa";
+	playData.title = "音楽1";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("b");
+	playData.author = "bbb";
+	playData.title = "ミュージック2";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("c");
+	playData.author = "ccc";
+	playData.title = "音楽SAN";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("d");
+	playData.author = "ddd";
+	playData.title = "MusicFour";
+	MusicPlayer::AddToList(playData);
+	playData.handle = MusicChest::GetMusicHandle("e");
+	playData.author = "eee";
+	playData.title = "おんがく5";
+	MusicPlayer::AddToList(playData);
+
 	/********** JSON 読込 ***********/
 
 	std::stringstream ss;
