@@ -313,6 +313,29 @@ void WorkRegisterScene::Update()
 
 	}
 
+	if (guid == "") {
+		iWorkName->SetEnabled(false);
+		iWorkAuthor->SetEnabled(false);
+		iWorkCategory->SetEnabled(false);
+		iWorkDescription->SetEnabled(false);
+
+		setWorkerButtton->SetEnabled(false);
+		setThumbnailButtton->SetEnabled(false);
+		setImagesButtton->SetEnabled(false);
+		makeJsonDataButton->SetEnabled(false);
+	}
+	else {
+		iWorkName->SetEnabled(true);
+		iWorkAuthor->SetEnabled(true);
+		iWorkCategory->SetEnabled(true);
+		iWorkDescription->SetEnabled(true);
+
+		setWorkerButtton->SetEnabled(true);
+		setThumbnailButtton->SetEnabled(true);
+		setImagesButtton->SetEnabled(true);
+		makeJsonDataButton->SetEnabled(true);
+	}
+
 	if (openDirectoryButtton != nullptr) {
 		if (openDirectoryButtton->GetMouseSelected()) {
 
@@ -322,7 +345,6 @@ void WorkRegisterScene::Update()
 			if (guid == "") {
 				UUIDGenerator uuidGenerator;
 				guid = uuidGenerator.GetGUID();
-				printfDx("%s", guid.c_str());
 				folderName = ".\\works\\" + guid + "\\";
 				ExePath exePath;
 				(void)_chdir(exePath.GetPath());
@@ -476,6 +498,19 @@ void WorkRegisterScene::Update()
 			ofs.close();
 
 			/******** JSON “ÇžI—¹ *********/
+
+			guid = "";
+			path = "";
+			workerPath = "";
+			thumbnailPath = "";
+			imagesPath = "";
+			imagePathVector.clear();
+
+			iWorkName->RemakehHandle();
+			iWorkAuthor->RemakehHandle();
+			iWorkCategory->RemakehHandle();
+			iWorkDescription->RemakehHandle();
+
 		}
 	}
 

@@ -52,6 +52,12 @@ public:
 		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
 	}
 
+	void RemakehHandle() {
+		DeleteKeyInput(inputHandle);
+		inputHandle = MakeKeyInput(maxLength, cancelVaildFlag, singleCharOnlyFlag, numCharOnlyFlag);
+		textObject.SetText("");
+	}
+
 	// IMEの入力専用の状態にするか，falseで通常描画に記述可能
 	void SetInterruptMode(bool _flag) { interruptMode = _flag; }
 	bool SetInterruptMode() { return interruptMode; }
