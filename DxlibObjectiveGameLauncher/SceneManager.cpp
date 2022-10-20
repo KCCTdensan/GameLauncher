@@ -45,8 +45,8 @@ bool SceneManager::CheckScene(std::string sceneName)
 bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool addSceneToMap, bool deleteNotAddedScene)
 {
 	bool changed = false;
-	if (!isAddingMap && SceneManager::deleteNotAddedScene)
-		delete(current.scene);
+	//if (!isAddingMap && SceneManager::deleteNotAddedScene)
+	//	delete(current.scene);
 	isAddingMap = addSceneToMap;
 	SceneManager::deleteNotAddedScene = deleteNotAddedScene;
 	if (scenes.count(sceneName) >= 1) {

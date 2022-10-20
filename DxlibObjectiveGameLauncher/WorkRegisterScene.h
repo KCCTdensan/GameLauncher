@@ -36,27 +36,35 @@ private:
     picojson::object obj;
 
     std::string guid;
+    std::string path;
+    std::string workerPath;
     std::string thumbnailPath;
     std::string imagesPath;
+    std::vector<std::string> imagePathVector;
 
     // Categoryボタン未実装
     TextObject* titlename;
 
     TextObject* lWorkName;
     TextObject* lWorkAuthor;
+    TextObject* lWorkCategory;
     TextObject* lWorkDescription;
     InputObject* iWorkName;
+    InputObject* iWorkCategory;
     InputObject* iWorkAuthor;
     InputObject* iWorkDescription;
 
     TextObject* lguid;
+    TextObject* lWorkPath;
     TextObject* lThumbPath;
     TextObject* lImagesPath;
     TextObject* dguid;
+    TextObject* dWorkPath;
     TextObject* dThumbPath;
     TextObject* dImagesPath;
 
     ButtonObject* openDirectoryButtton; // Open in
+    ButtonObject* setWorkerButtton; // ダイアログを開く
     ButtonObject* setThumbnailButtton; // ダイアログを開く
     ButtonObject* setImagesButtton; // ダイアログを開く
     ButtonObject* makeJsonDataButton; // picojson

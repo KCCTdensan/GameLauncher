@@ -210,7 +210,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>../DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <StackReserveSize>100000000</StackReserveSize>
+      <StackReserveSize>1000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -12,10 +12,15 @@ public:
     PlayListObject(PosVec _pos, PosVec _size)
         : ObjectBase(_pos, _size), listSample(nullptr),
         listInnerColor(0), listOuterColor(0), listDisabledInnerColor(0), listDisabledOuterColor(0),
-        listEnabledFill(true), listEnabledOutline(true), listOutlineWidth(false), listHeight(50.f)
+        listEnabledFill(true), listEnabledOutline(true), listOutlineWidth(false), listHeight(50.f),
+        mouseClickingIndex(-1), mouseHoveringIndex(-1), mouseSelectingIndex(-1) 
     {}
 
     PlayListObject()
+        : listSample(nullptr),
+        listInnerColor(0), listOuterColor(0), listDisabledInnerColor(0), listDisabledOuterColor(0),
+        listEnabledFill(true), listEnabledOutline(true), listOutlineWidth(false), listHeight(50.f),
+        mouseClickingIndex(-1), mouseHoveringIndex(-1), mouseSelectingIndex(-1)
     {}
 
     // êFóLå¯âªñ≥å¯âª

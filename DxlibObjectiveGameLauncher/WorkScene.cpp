@@ -64,7 +64,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		this->obj = lists[i].get<picojson::object>(); // 保存
 
 		std::string thumbnailName = "[work]Thumb:" + this->obj["GUID"].get<std::string>();
-		std::string thumbnailPath = this->obj["Directory"].get<std::string>() + this->obj["Thumbnail"].get<std::string>();
+		std::string thumbnailPath = /*this->obj["Directory"].get<std::string>() + */this->obj["Thumbnail"].get<std::string>();
 
 		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
 		handleNames.push_back(thumbnailName);
@@ -110,7 +110,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		for (auto& item : this->obj["Images"].get<picojson::array>()) {
 			// printfDx("%s\n", item.get<picojson::object>()["FilePath"].get<std::string>().c_str());
 			std::string imageName = "Image" + std::to_string(i) + ":" + this->obj["GUID"].get<std::string>();
-			std::string imagePath = this->obj["Directory"].get<std::string>() + item.get<picojson::object>()["FilePath"].get<std::string>();
+			std::string imagePath = /*this->obj["Directory"].get<std::string>() + */item.get<picojson::object>()["FilePath"].get<std::string>();
 
 			ImageChest::CreateImageHandle(imageName, imagePath);
 			handleNames.push_back(imageName);
@@ -313,6 +313,15 @@ void WorkScene::Update()
 			(void)_getcwd(cwd, 512);
 			// ファイル直下まで移動
 			returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
+			
+			StringConvert stringConvert;
+
+			std::wstring fullpath = stringConvert.ConvertString(this->obj["FilePath"].get<std::string>());
+			int path_i = (int)fullpath.find_last_of(L"\\");
+			std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
+
+			(void)_chdir(stringConvert.ConvertString(pathname).c_str());
+
 			// 実行
 			ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
 			// 元のディレクトリに戻す

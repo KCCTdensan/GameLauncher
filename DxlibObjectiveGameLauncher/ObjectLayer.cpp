@@ -18,6 +18,11 @@ void ObjectLayer::DeleteObject(ObjectBase* _object)
 	}
 }
 
+void ObjectLayer::Clear()
+{
+	layer.clear();
+}
+
 void ObjectLayer::SetTopLayer(ObjectBase* _object, int _shift)
 {
 	int i = 0;

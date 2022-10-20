@@ -11,6 +11,7 @@
 #include <numbers>
 #include <vector>
 #include <direct.h>
+#include "StringConvert.h"
 
 class WorkScene :
     public SceneBase
