@@ -33,9 +33,6 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	MusicChest::CreateMusicHandle("a", ".\\works\\30_seconds__.mp3");
 	MusicChest::CreateMusicHandle("b", ".\\works\\30_seconds__.mp3");
 	MusicChest::CreateMusicHandle("c", ".\\works\\30_seconds__.mp3");
-	MusicChest::CreateMusicHandle("d", ".\\works\\30_seconds__.mp3");
-	MusicChest::CreateMusicHandle("e", ".\\works\\30_seconds__.mp3");
-	MusicChest::CreateMusicHandle("f", ".\\works\\30_seconds__.mp3");
 	PlayData playData;
 	playData.handle = MusicChest::GetMusicHandle("a");
 	playData.author = "aaa";
@@ -48,14 +45,6 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	playData.handle = MusicChest::GetMusicHandle("c");
 	playData.author = "ccc";
 	playData.title = "âπäySAN";
-	MusicPlayer::AddToList(playData);
-	playData.handle = MusicChest::GetMusicHandle("d");
-	playData.author = "ddd";
-	playData.title = "MusicFour";
-	MusicPlayer::AddToList(playData);
-	playData.handle = MusicChest::GetMusicHandle("e");
-	playData.author = "eee";
-	playData.title = "Ç®ÇÒÇ™Ç≠5";
 	MusicPlayer::AddToList(playData);
 
 	/********** JSON ì«çû ***********/

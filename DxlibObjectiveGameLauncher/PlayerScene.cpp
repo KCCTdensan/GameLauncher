@@ -68,7 +68,7 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 			ApplicationPreference::startScenePos + 50.f),
 		PosVec(600.f, 750.f));
 	playListObject->SetInnerColor(ColorPreset::tileInner);
-	playListObject->SetListHeight(150.f);
+	playListObject->SetListHeight(100.f);
 	playListObject->SetOutlineColor(ColorPreset::tileOuter, 2.f);
 	playListObject->SetButtonListSample(new ButtonObject(PosVec(), PosVec(), true, true));
 	playListObject->GetButtonListSample()->SetInnerColor(
