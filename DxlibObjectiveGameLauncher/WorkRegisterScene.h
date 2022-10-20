@@ -16,6 +16,7 @@
 #include "UUIDGenerator.h"
 #include <Windows.h>
 #include <tchar.h>
+#include "StringConvert.h"
 
 class WorkRegisterScene :
     public SceneBase

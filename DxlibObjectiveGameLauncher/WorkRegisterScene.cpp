@@ -1,4 +1,5 @@
 #include "WorkRegisterScene.h"
+#include "ExePath.h"
 
 WorkRegisterScene::WorkRegisterScene()
 	:iWorkName(nullptr), iWorkAuthor(nullptr), iWorkDescription(nullptr),
@@ -316,8 +317,30 @@ void WorkRegisterScene::Update()
 			o.nFilterIndex = 1;
 			//o.Flags = OFN_ALLOWMULTISELECT | OFN_EXPLORER;
 			int returnCode = GetOpenFileName(&o);
+
+			StringConvert stringConvert;
+
 			std::string newFileName = sxFile;
-			newFileName += "\n";
+			std::wstring wnewFileName = stringConvert.ConvertString(newFileName);
+
+			ExePath exePath;
+
+			std::string shortableString = exePath.GetPath();
+			std::wstring wshortableString = stringConvert.ConvertString(shortableString);
+
+			const unsigned int pos = wnewFileName.find(wshortableString);
+			const int len = wshortableString.length();
+
+			if (pos == std::string::npos || wshortableString.empty()) {
+				wnewFileName = L"";
+			}
+			else {
+				wnewFileName = wnewFileName.replace(pos, len, L".\\");
+			}
+
+			wnewFileName += L"\n";
+
+			newFileName = stringConvert.ConvertString(wnewFileName);
 
 			char cwd[512];
 			// ディレクトリ取得

@@ -22,6 +22,7 @@
     <ClCompile Include="ColorPreset.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="DebugScene.cpp" />
+    <ClCompile Include="ExePath.cpp" />
     <ClCompile Include="FontChest.cpp" />
     <ClCompile Include="GameLauncher.cpp" />
     <ClCompile Include="Header.cpp" />
@@ -122,6 +123,7 @@
     <ClInclude Include="SceneSet.h" />
     <ClInclude Include="ScrollInput.h" />
     <ClInclude Include="SharingScenes.h" />
+    <ClInclude Include="StringConvert.h" />
     <ClInclude Include="TextAlign.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="UUIDGenerator.h" />

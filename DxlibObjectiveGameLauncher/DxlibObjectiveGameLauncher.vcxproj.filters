@@ -141,6 +141,9 @@
     <ClCompile Include="WorkRegisterScene.cpp">
       <Filter>Scenes\Pages\WorkRegister</Filter>
     </ClCompile>
+    <ClCompile Include="ExePath.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -338,6 +341,9 @@
     </ClInclude>
     <ClInclude Include="WorkRegisterScene.h">
       <Filter>Scenes\Pages\WorkRegister</Filter>
+    </ClInclude>
+    <ClInclude Include="StringConvert.h">
+      <Filter>Static</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
