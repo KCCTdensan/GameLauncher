@@ -3,8 +3,11 @@
 #include "OriginalObjects.h"
 #include "SceneManager.h"
 // îCà”ì«çû
-
+#include "PlayerScene.h"
 #include "LauncherScene.h"
+#include "ExePath.h"
+#include "WorkRegisterScene.h"
+#include "ImageChest.h"
 
 class WelcomeScene :
     public SceneBase
@@ -27,9 +30,8 @@ private:
     ButtonObject* gotoHome;
     ButtonObject* openURL;
     ImageObject* qrcode;
-
-    InputObject* input;
-    RectangleObject* rect;
+    ButtonObject* jumpToMusic;
+    ButtonObject* jumpToWorkMan;
 
     CanvasObject* imagesCanvas;
     RectangleObject* imageBackGround;

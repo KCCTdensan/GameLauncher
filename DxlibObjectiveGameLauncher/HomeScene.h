@@ -11,6 +11,7 @@
 #include <numbers>
 #include "ExePath.h"
 #include "WorkScene.h"
+#include "ImageChest.h"
 
 class HomeScene :
     public SceneBase

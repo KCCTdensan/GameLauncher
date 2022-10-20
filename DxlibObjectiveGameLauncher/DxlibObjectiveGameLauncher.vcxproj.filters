@@ -131,10 +131,6 @@
     <ClCompile Include="WelcomeScene.cpp">
       <Filter>Scenes\Pages\Welcome</Filter>
     </ClCompile>
-    <ClCompile Include="PlayListObject.cpp" />
-    <ClCompile Include="MusicPlayer.cpp" />
-    <ClCompile Include="PlayerScene.cpp" />
-    <ClCompile Include="PlayStateRotater.cpp" />
     <ClCompile Include="LauncherScene.cpp">
       <Filter>Scenes\Pages\Launcher</Filter>
     </ClCompile>
@@ -143,6 +139,18 @@
     </ClCompile>
     <ClCompile Include="ExePath.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicPlayer.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerScene.cpp">
+      <Filter>Scenes\Pages\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayListObject.cpp">
+      <Filter>Objects\Variety\PlayList</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayStateRotater.cpp">
+      <Filter>Media</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,16 +334,12 @@
     <ClInclude Include="WelcomeScene.h">
       <Filter>Scenes\Pages\Welcome</Filter>
     </ClInclude>
-    <ClInclude Include="PlayListObject.h" />
     <ClInclude Include="PlayData.h">
       <Filter>Struct</Filter>
     </ClInclude>
-    <ClInclude Include="MusicPlayer.h" />
     <ClInclude Include="PlayState.h">
       <Filter>Enum</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerScene.h" />
-    <ClInclude Include="PlayStateRotater.h" />
     <ClInclude Include="LauncherScene.h">
       <Filter>Scenes\Pages\Launcher</Filter>
     </ClInclude>
@@ -344,6 +348,18 @@
     </ClInclude>
     <ClInclude Include="StringConvert.h">
       <Filter>Static</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicPlayer.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerScene.h">
+      <Filter>Scenes\Pages\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayListObject.h">
+      <Filter>Objects\Variety\PlayList</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayStateRotater.h">
+      <Filter>Media</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -472,6 +488,12 @@
     </Filter>
     <Filter Include="Scenes\Pages\Launcher">
       <UniqueIdentifier>{d8f061a2-edc3-40cc-97fc-b4b180aafbff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pages\Player">
+      <UniqueIdentifier>{c51475f7-d1af-4204-a49d-259452eaaab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Variety\PlayList">
+      <UniqueIdentifier>{bd56b3f6-ab89-4479-b7f8-844f27ba1bb6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

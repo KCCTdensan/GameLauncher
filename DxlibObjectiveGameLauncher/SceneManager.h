@@ -5,7 +5,6 @@
 #include <algorithm>
 #include "SceneBase.h"
 #include "SceneSet.h"
-#include "DebugScene.h"
 #include "ApplicationPreference.h"
 #include "BlankRedirectScene.h"
 #include "ObjectOverlapping.h"

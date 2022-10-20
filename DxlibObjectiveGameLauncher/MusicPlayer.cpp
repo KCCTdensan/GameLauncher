@@ -7,6 +7,7 @@ PlayState MusicPlayer::playState = PlayState::SIMPLE;
 
 void MusicPlayer::PlayInList(PlayState playState, int index, bool playAtStart)
 {
+    if (playlists.size() == 0) return;
     if (playing) {
         StopSoundMem(playlists[playingIndex].handle);
     }
@@ -21,22 +22,26 @@ void MusicPlayer::PlayInList(PlayState playState, int index, bool playAtStart)
 
 void MusicPlayer::StopInList()
 {
+    if (playlists.size() == 0) return;
     StopSoundMem(playlists[playingIndex].handle);
     playing = false;
 }
 
 PlayData MusicPlayer::GetPlayingData()
 {
+    if (playlists.size() == 0) return PlayData("[再生していません]", "[System]");
     return playing ? playlists[playingIndex] : PlayData("[再生していません]", "[System]");
 }
 
 PlayData MusicPlayer::GetPlayNextData(int offset)
 {
+    if (playlists.size() == 0) return PlayData("[データなし]", "[System]");
     return playingIndex + offset < (int)playlists.size() ? playlists[playingIndex + offset] : PlayData("[データなし]", "[System]");
 }
 
 float MusicPlayer::GetPlayingRate()
 {
+    if (playlists.size() == 0) return 0.f;
     return (float)GetSoundCurrentTime(playlists[playingIndex].handle) / (float)GetSoundTotalTime(playlists[playingIndex].handle);
 }
 
@@ -47,6 +52,7 @@ void MusicPlayer::SetPlayingState(PlayState playState)
 
 void MusicPlayer::SetPlayingRate(float value)
 {
+    if (playlists.size() == 0) return;
     SetSoundCurrentTime((long long)((float)GetSoundTotalTime(playlists[playingIndex].handle) * value), playlists[playingIndex].handle);
 }
 
@@ -66,6 +72,7 @@ void MusicPlayer::RemoveFromList(int index)
 
 void MusicPlayer::Update()
 {
+    if (playlists.size() == 0) return;
     if (!playing) return;
 
     if (!CheckSoundMem(playlists[playingIndex].handle)) {

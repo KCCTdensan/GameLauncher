@@ -1,6 +1,8 @@
 #include "PlayerScene.h"
 
 PlayerScene::PlayerScene()
+	: bg(nullptr), loopButton(nullptr), nowPlaying(nullptr), playBar(nullptr), playListObject(nullptr),
+	songTitle(nullptr), songAuthor(nullptr), songHandleName(nullptr), startButton(nullptr)
 {
 }
 

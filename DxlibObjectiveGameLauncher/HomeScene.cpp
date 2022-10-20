@@ -33,7 +33,7 @@ void HomeScene::Update()
 			item->GetTextObject()->ChangeValueWithAnimation(&item->GetTextObject()->GetColor(ColorType::INNER)->a, 255, 1.f);
 		}
 		else {
-			item->GetTextObject()->ChangeValueWithAnimation(&item->GetTextObject()->GetColor(ColorType::INNER)->a, 75, 1.f);
+			item->GetTextObject()->ChangeValueWithAnimation(&item->GetTextObject()->GetColor(ColorType::INNER)->a, 175, 1.f);
 		}
 
 		if (item->GetMouseSelected()) {

@@ -9,7 +9,7 @@ Header::Header()
 	sceneSets = {
 	SceneSet("Welcome", new WelcomeScene(SceneManager::GetSharingScenes())),
 	SceneSet("Home", new HomeScene(SceneManager::GetSharingScenes())),
-	SceneSet("Debug", new DebugScene(SceneManager::GetSharingScenes()))
+	SceneSet("Music Player", new PlayerScene(SceneManager::GetSharingScenes()))
 	};
 
 	banner = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::bannerHeight));
@@ -125,7 +125,6 @@ void Header::Update()
 		if (navLinks[i]->GetMouseSelected()) {
 			navLinks[i]->SetMouseOff();
 			SceneManager::ChangeScene(sceneSets[i].sceneName, sceneSets[i].scene, false, false);
-			//SceneManager::ChangeScene(sceneSets[i].sceneName, new DebugScene(), false);
 		}
 	}
 	if (systemButtons[0]->GetMouseSelected()) {

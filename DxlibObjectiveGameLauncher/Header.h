@@ -10,7 +10,7 @@
 #include <array>
 #include <vector>
 /* ƒV[ƒ“ˆÚ“®“o˜^—p */
-#include "DebugScene.h"
+#include "PlayerScene.h"
 #include "HomeScene.h"
 #include "WelcomeScene.h"
 
