@@ -66,6 +66,24 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		std::string thumbnailName = "[work]Thumb:" + this->obj["GUID"].get<std::string>();
 		std::string thumbnailPath = /*this->obj["Directory"].get<std::string>() + */this->obj["Thumbnail"].get<std::string>();
 
+		ExePath exePath;
+		(void)_chdir(exePath.GetPath());
+
+		char cwd[512];
+		// ディレクトリ取得
+		int returnId;
+		(void)_getcwd(cwd, 512);
+		// ファイル直下まで移動
+		returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
+
+		StringConvert stringConvert;
+
+		std::wstring fullpath = stringConvert.ConvertString(this->obj["Thumbnail"].get<std::string>());
+		int path_i = (int)fullpath.find_last_of(L"\\");
+		std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
+
+		(void)_chdir(stringConvert.ConvertString(pathname).c_str());
+
 		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
 		handleNames.push_back(thumbnailName);
 		float maxThumbnailLongLength = 500.f; // 最大幅 どちらかの幅が500になる
@@ -108,6 +126,23 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		float maxImageLongLength = 300.f; // 最大幅 どちらかの幅が300になる
 
 		for (auto& item : this->obj["Images"].get<picojson::array>()) {
+			(void)_chdir(exePath.GetPath());
+
+			char cwd[512];
+			// ディレクトリ取得
+			int returnId;
+			(void)_getcwd(cwd, 512);
+			// ファイル直下まで移動
+			returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
+
+			StringConvert stringConvert;
+
+			std::wstring fullpath = stringConvert.ConvertString(item.get<picojson::object>()["FilePath"].get<std::string>());
+			int path_i = (int)fullpath.find_last_of(L"\\");
+			std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
+
+			(void)_chdir(stringConvert.ConvertString(pathname).c_str());
+
 			// printfDx("%s\n", item.get<picojson::object>()["FilePath"].get<std::string>().c_str());
 			std::string imageName = "Image" + std::to_string(i) + ":" + this->obj["GUID"].get<std::string>();
 			std::string imagePath = /*this->obj["Directory"].get<std::string>() + */item.get<picojson::object>()["FilePath"].get<std::string>();
@@ -135,6 +170,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 			images[i]->SetOutlineColor(ColorPreset::tileOuterMouse, 3.f);
 
 			i++;
+			(void)_chdir(exePath.GetPath());
 			if (i == 3) break; // 3枚までしか考慮しない
 		}
 
@@ -222,6 +258,8 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 			(maxThumbnailLongLength - launch->GetTextObject()->GetTextWidth()) / 2.f,
 			(150.f - launch->GetTextObject()->GetTextHeight()) / 2.f));
 
+		(void)_chdir(exePath.GetPath());
+
 		layer.AddObject(imageBackGround);
 		layer.AddObject(thumbnail);
 
@@ -305,6 +343,9 @@ void WorkScene::Update()
 
 	if (launch != nullptr)
 		if (launch->GetMouseSelected()) {
+			ExePath exePath;
+			(void)_chdir(exePath.GetPath());
+
 			// 押下時の処理をここに
 			launch->SetMouseOff();
 			char cwd[512];
@@ -326,6 +367,8 @@ void WorkScene::Update()
 			ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
 			// 元のディレクトリに戻す
 			returnId = _chdir(cwd);
+
+			(void)_chdir(exePath.GetPath());
 		}
 
 	if (thumbnail != nullptr)

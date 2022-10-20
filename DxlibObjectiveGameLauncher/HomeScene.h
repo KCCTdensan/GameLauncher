@@ -9,7 +9,7 @@
 #include <iostream> // std::cout
 #include <sstream>
 #include <numbers>
-
+#include "ExePath.h"
 #include "WorkScene.h"
 
 class HomeScene :

@@ -12,6 +12,7 @@
 #include <vector>
 #include <direct.h>
 #include "StringConvert.h"
+#include "ExePath.h"
 
 class WorkScene :
     public SceneBase
