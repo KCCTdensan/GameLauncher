@@ -281,6 +281,19 @@ bool CanvasObject::RegisterCanvas(ObjectBase* _object)
 	return false;
 }
 
+bool CanvasObject::DeleteAllChildren()
+{
+	ObjectBase::DeleteAllChildren();
+	for (auto& item : scrollButton) {
+		ObjectBase::RegisterChildren(item);
+	}
+	for (auto& item : scrollBar) {
+		ObjectBase::RegisterChildren(item);
+	}
+
+	return false;
+}
+
 void CanvasObject::CollideMouse()
 {
 	if (!enabled) return;

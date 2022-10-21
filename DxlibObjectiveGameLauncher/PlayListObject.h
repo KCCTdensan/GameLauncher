@@ -12,10 +12,15 @@ public:
     PlayListObject(PosVec _pos, PosVec _size)
         : ObjectBase(_pos, _size), listSample(nullptr),
         listInnerColor(0), listOuterColor(0), listDisabledInnerColor(0), listDisabledOuterColor(0),
-        listEnabledFill(true), listEnabledOutline(true), listOutlineWidth(false), listHeight(50.f)
+        listEnabledFill(true), listEnabledOutline(true), listOutlineWidth(false), listHeight(50.f),
+        mouseClickingIndex(-1), mouseHoveringIndex(-1), mouseSelectingIndex(-1) 
     {}
 
     PlayListObject()
+        : listSample(nullptr),
+        listInnerColor(0), listOuterColor(0), listDisabledInnerColor(0), listDisabledOuterColor(0),
+        listEnabledFill(true), listEnabledOutline(true), listOutlineWidth(false), listHeight(50.f),
+        mouseClickingIndex(-1), mouseHoveringIndex(-1), mouseSelectingIndex(-1)
     {}
 
     // 色有効化無効化
@@ -60,6 +65,8 @@ public:
     int GetSelectingIndex() { return mouseSelectingIndex; }
 
     void SetMouseOffIndex();
+
+    std::vector<ButtonObject*> GetButtons() { return buttons; }
 
     // 更新描画
     void Collide() override;

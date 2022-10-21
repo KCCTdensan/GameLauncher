@@ -110,7 +110,6 @@ void InputObject::Update()
 
 void InputObject::Draw()
 {
-	if (!enabled) return;
 	if (canvasId != -1) {
 		SetDrawScreen(canvasId);
 	}

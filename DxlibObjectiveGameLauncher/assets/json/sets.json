@@ -21,6 +21,13 @@
     },
     "qrcode":  {
       "src": ".\\assets\\client\\welcome\\qr.png"
+    },
+    "music-player":  {
+      "text": "PLAYER",
+      "src": ".\\assets\\client\\welcome\\music-scene.png"
+    },
+    "work":  {
+      "text": "MODIFY\nWORK"
     }
   },
   "Launcher": {

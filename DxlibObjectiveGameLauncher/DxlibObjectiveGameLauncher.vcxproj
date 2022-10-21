@@ -22,6 +22,7 @@
     <ClCompile Include="ColorPreset.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="DebugScene.cpp" />
+    <ClCompile Include="ExePath.cpp" />
     <ClCompile Include="FontChest.cpp" />
     <ClCompile Include="GameLauncher.cpp" />
     <ClCompile Include="Header.cpp" />
@@ -59,6 +60,7 @@
     <ClCompile Include="WelcomeScene.cpp" />
     <ClCompile Include="WindowHolding.cpp" />
     <ClCompile Include="WindowHwnd.cpp" />
+    <ClCompile Include="WorkRegisterScene.cpp" />
     <ClCompile Include="WorkScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +123,7 @@
     <ClInclude Include="SceneSet.h" />
     <ClInclude Include="ScrollInput.h" />
     <ClInclude Include="SharingScenes.h" />
+    <ClInclude Include="StringConvert.h" />
     <ClInclude Include="TextAlign.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="UUIDGenerator.h" />
@@ -128,6 +131,7 @@
     <ClInclude Include="WelcomeScene.h" />
     <ClInclude Include="WindowHolding.h" />
     <ClInclude Include="WindowHwnd.h" />
+    <ClInclude Include="WorkRegisterScene.h" />
     <ClInclude Include="WorkScene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -206,7 +210,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>../DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <StackReserveSize>100000000</StackReserveSize>
+      <StackReserveSize>1000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

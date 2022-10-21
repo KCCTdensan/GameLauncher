@@ -19,6 +19,8 @@ public:
 
 private:
 
+    CanvasObject* canvas;
+
     RectangleObject* bg;
 
     PlayData* nowPlaying;
@@ -31,6 +33,8 @@ private:
     ButtonObject* loopButton; // 
 
     PlayListObject* playListObject;
+    InputObject* ideleteList;
+    ButtonObject* bdeleteList;
 
     PlayStateRotater playStateRotater;
 };

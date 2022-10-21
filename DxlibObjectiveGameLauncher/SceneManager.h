@@ -5,7 +5,6 @@
 #include <algorithm>
 #include "SceneBase.h"
 #include "SceneSet.h"
-#include "DebugScene.h"
 #include "ApplicationPreference.h"
 #include "BlankRedirectScene.h"
 #include "ObjectOverlapping.h"
@@ -19,7 +18,7 @@ public:
 
 	static bool AddScene(std::string sceneName, SceneBase* scene);
 	static bool CheckScene(std::string sceneName);
-	static bool ChangeScene(std::string sceneName, SceneBase* altScene, bool addSceneToMap = true);
+	static bool ChangeScene(std::string sceneName, SceneBase* altScene, bool addSceneToMap = true, bool deleteNotAddedScene = true);
 	static bool ChangeSceneBackward();
 	static bool ChangeSceneForward();
 	static int GetSceneHistoryPosition() { return sceneHistoryPosition; }
@@ -37,6 +36,8 @@ public:
 
 private:
 	static bool beInitialized;
+	static bool isAddingMap;
+	static bool deleteNotAddedScene;
 	static SceneSet current;
 	static std::map<std::string, SceneBase*> scenes;
 	static std::array<SceneSet, ApplicationPreference::sceneHistories> sceneHistory;

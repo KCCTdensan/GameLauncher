@@ -42,6 +42,7 @@ public:
 		textObject = TextObject(pos, size, _fontHandle, inputText, _innerColor, _align, _enabledBack);
 		RegisterChildren(&textObject);
 		textObject.SetMaxWidth((int)size.x);
+		textObject.SetForcedArea(pos, PosVec(pos.x + size.x, pos.y + size.y));
 		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
 	}
 	void SetupText(std::string _fontHandleName, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
@@ -49,7 +50,15 @@ public:
 		textObject = TextObject(pos, size, _fontHandleName, inputText, _innerColor, _align, _enabledBack);
 		RegisterChildren(&textObject);
 		textObject.SetMaxWidth((int)size.x);
+		textObject.SetForcedArea(pos, PosVec(pos.x + size.x, pos.y + size.y));
 		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
+	}
+
+	void RemakeHandle() {
+		DeleteKeyInput(inputHandle);
+		inputHandle = MakeKeyInput(maxLength, cancelVaildFlag, singleCharOnlyFlag, numCharOnlyFlag);
+		textObject.SetText("");
+		inputText = "";
 	}
 
 	// IMEの入力専用の状態にするか，falseで通常描画に記述可能
@@ -122,6 +131,11 @@ public:
 	}
 
 	std::string GetString() { return inputText;	}
+	void SetString(std::string text) {
+		SetKeyInputString(text.c_str(), inputHandle);
+		textObject.SetText(text);
+		inputText = text;
+	}
 
 	// 更新描画
 	void Collide() override;

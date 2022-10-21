@@ -9,8 +9,9 @@
 #include <iostream> // std::cout
 #include <sstream>
 #include <numbers>
-
+#include "ExePath.h"
 #include "WorkScene.h"
+#include "ImageChest.h"
 
 class HomeScene :
     public SceneBase
@@ -24,6 +25,9 @@ public:
     void Draw();
 
 private :
+
+    void SetupWorks();
+
     CanvasObject* canvas;
     RectangleObject* bg;
     std::vector<ButtonObject*> works;

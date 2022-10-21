@@ -2,15 +2,20 @@
 
 WelcomeScene::WelcomeScene()
 	: bg(nullptr), canvas(nullptr), icon(nullptr), whatis(nullptr), organization(nullptr), gotoHome(nullptr), openURL(nullptr),
-	qrcode(nullptr), imagesCanvas(nullptr), imageBackGround(nullptr)
+	qrcode(nullptr), imagesCanvas(nullptr), imageBackGround(nullptr),
+	jumpToMusic(nullptr), jumpToWorkMan(nullptr)
 {
 }
 
 WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	: SceneBase(_sharingScenes),
 	bg(nullptr), canvas(nullptr), icon(nullptr), whatis(nullptr), organization(nullptr), gotoHome(nullptr), openURL(nullptr),
-	qrcode(nullptr), imagesCanvas(nullptr), imageBackGround(nullptr)
+	qrcode(nullptr), imagesCanvas(nullptr), imageBackGround(nullptr),
+	jumpToMusic(nullptr), jumpToWorkMan(nullptr)
 {
+	ExePath exePath;
+	(void)_chdir(exePath.GetPath());
+
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
 	bg->SetInnerColor(ColorPreset::bgColor); // 非キャンバス追加オブジェクト(常に同じ背景)
 	layer.AddObject(bg);
@@ -21,7 +26,6 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	imageBackGround->SetEnabled(false);
 
 	canvas = new CanvasObject(PosVec(0.f, ApplicationPreference::startScenePos), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y - ApplicationPreference::startScenePos), true);
-	canvas->SetArea(PosVec());
 	canvas->SetInnerColor(ColorPreset::transparent);
 
 	canvas->RegisterChildren(imageBackGround);
@@ -70,6 +74,8 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	std::string orgPath = welcome["organization"].get<picojson::object>()["src"].get<std::string>();
 	std::string gotoName = "GOTO:" + welcome["goto-home"].get<picojson::object>()["src"].get <std::string>();
 	std::string gotoPath = welcome["goto-home"].get<picojson::object>()["src"].get<std::string>();
+	std::string musicName = "GOTO:" + welcome["music-player"].get<picojson::object>()["src"].get <std::string>();
+	std::string musicPath = welcome["music-player"].get<picojson::object>()["src"].get<std::string>();
 
 	ImageChest::CreateImageHandle(iconName, iconPath);
 	ImageChest::CreateImageHandle(qrName, qrPath);
@@ -77,22 +83,28 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	ImageChest::CreateImageHandle(orgName, orgPath);
 	ImageChest::CreateImageHandle(gotoName, gotoPath);
 	ImageChest::CreateImageHandle(whatName, whatPath);
+	ImageChest::CreateImageHandle(musicName, musicPath);
 
-	float maxThumbnailLongLength = 400.f; // 最大幅 どちらかの幅が500になる
+	const PosVec tileStartPos(175.f, ApplicationPreference::startScenePos + 50.f);
+	const PosVec tileSize(400.f, 400.f);
+	const PosVec tileGap(0.f, 0.f);
+	const PosVec tileMass(tileSize.x + tileGap.x, tileSize.y + tileGap.y);
+
+	float maxThumbnailLongLength = tileSize.x; // 最大幅 どちらかの幅が500になる
 	PosVec imageSize = ImageChest::GetImageSize(iconName);
 	float imageSizeRate = 0.f;
 	if (imageSize.x >= imageSize.y) {
-		imageSizeRate = maxThumbnailLongLength / imageSize.x;
+		imageSizeRate = tileSize.x / imageSize.x;
 	}
 	else {
-		imageSizeRate = maxThumbnailLongLength / imageSize.y;
+		imageSizeRate = tileSize.y / imageSize.y;
 	}
 
 	iconPos = PosVec(
-		50.f + (imageSize.x >= imageSize.y ? 0.f : (maxThumbnailLongLength - imageSize.x * imageSizeRate) / 2.f),
-		ApplicationPreference::startScenePos + 50.f + (imageSize.x >= imageSize.y ? (maxThumbnailLongLength - imageSize.y * imageSizeRate) / 2.f : 0.f));
+		tileStartPos.x + (imageSize.x >= imageSize.y ? 0.f : (tileSize.x - imageSize.x * imageSizeRate) / 2.f),
+		tileStartPos.y + (imageSize.x >= imageSize.y ? (tileSize.y - imageSize.y * imageSizeRate) / 2.f : 0.f));
 
-	iconSize = PosVec(imageSize.x * imageSizeRate, imageSize.y * imageSizeRate);
+	iconSize = PosVec(imageSize.x * tileSize.x, imageSize.y * tileSize.y);
 
 	icon = new ImageObject(
 		iconPos, iconSize,
@@ -101,8 +113,8 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	icon->SetImageTurnFlag(false, false);
 
 	whatis = new ButtonObject(PosVec(
-		50.f, ApplicationPreference::startScenePos + 100.f + maxThumbnailLongLength),
-		PosVec(maxThumbnailLongLength, maxThumbnailLongLength), true, true);
+		tileStartPos.x + tileMass.x * 0.f, tileStartPos.y + tileMass.y * 1.f),
+		PosVec(tileSize.x, tileSize.y), true, true);
 	whatis->SetInnerColor(
 		ColorPreset::tileInner,
 		ColorPreset::tileHovered,
@@ -123,8 +135,12 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	whatis->SetImageTurnFlag(false, false);
 
 	organization = new ButtonObject(
-		PosVec(125.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 50.f),
-		PosVec(maxThumbnailLongLength * 2.f, maxThumbnailLongLength), true, true);
+		PosVec(
+			tileStartPos.x + tileMass.x * 1.f,
+			tileStartPos.y + tileMass.y * 0.f),
+		PosVec(
+			tileSize.x * 2.f,
+			tileSize.y), true, true);
 	organization->SetInnerColor(
 		ColorPreset::tileInner,
 		ColorPreset::tileHovered,
@@ -146,9 +162,11 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 
 	gotoHome = new ButtonObject(
 		PosVec(
-			125.f + maxThumbnailLongLength,
-			ApplicationPreference::startScenePos + 100.f + maxThumbnailLongLength),
-		PosVec(800.f, maxThumbnailLongLength), true, true);
+			tileStartPos.x + tileMass.x * 1.f,
+			tileStartPos.y + tileMass.y * 1.f),
+		PosVec(
+			tileSize.x * 2.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
 	gotoHome->SetInnerColor(
 		ColorPreset::tileInner,
 		ColorPreset::tileHovered,
@@ -169,8 +187,12 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	gotoHome->SetImageTurnFlag(false, false);
 
 	openURL = new ButtonObject(
-		PosVec(1000.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 50.f),
-		PosVec(maxThumbnailLongLength, maxThumbnailLongLength), true, true);
+		PosVec(
+			tileStartPos.x + tileMass.x * 3.f,
+			tileStartPos.y + tileMass.y * 0.f),
+		PosVec(
+			tileSize.x + tileGap.x * 0.f,
+			tileSize.y + tileGap.y * 0.f), true, true);
 	openURL->SetInnerColor(
 		ColorPreset::tileInner,
 		ColorPreset::tileHovered,
@@ -183,16 +205,17 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse, 3.f);
 	openURL->SetInnerAnimation(.2f);
 	openURL->SetOuterAnimation(.2f);
-	//openURL->SetupText("mplus100", "HP", Color255("0DE0B9"));
 	openURL->SetImageHandle(ImageChest::GetImageHandle(homeName));
 	openURL->SetImageSize(PosVec(maxThumbnailLongLength, maxThumbnailLongLength));
 	openURL->SetImageTurnFlag(false, false);
 
 	qrcode = new ImageObject(
 		PosVec(
-			1000.f + maxThumbnailLongLength,
-			ApplicationPreference::startScenePos + 100.f + maxThumbnailLongLength),
-		PosVec(maxThumbnailLongLength, maxThumbnailLongLength), ImageChest::GetImageHandle(qrName), true, true);
+			tileStartPos.x + tileMass.x * 3.f,
+			tileStartPos.y + tileMass.y * 1.f),
+		PosVec(
+			maxThumbnailLongLength,
+			maxThumbnailLongLength), ImageChest::GetImageHandle(qrName), true, true);
 	qrcode->SetInnerColor(
 		ColorPreset::tileInner);
 	qrcode->SetOutlineColor(
@@ -200,15 +223,63 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	qrcode->SetImageSize(PosVec(maxThumbnailLongLength, maxThumbnailLongLength));
 	qrcode->SetImageTurnFlag(false, false);
 
-	// test
-	input = new InputObject(
-		PosVec(0, ApplicationPreference::startScenePos), PosVec(200, 50));
-	input->SetupText("mplus25");
-	input->SetInnerColor(Color255(50, 50, 50));
+	jumpToMusic = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 0.f,
+			tileStartPos.y + tileMass.y * 2.f),
+		PosVec(
+			tileSize.x * 1.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpToMusic->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	jumpToMusic->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpToMusic->SetupText("mplus100",
+		welcome["music-player"].get<picojson::object>()["text"].get<std::string>(),
+		Color255(250, 30));
+	jumpToMusic->SetInnerAnimation(.2f);
+	jumpToMusic->SetOuterAnimation(.2f);
+	jumpToMusic->SetImageHandle(ImageChest::GetImageHandle(musicName));
+	jumpToMusic->SetImageSize(PosVec(maxThumbnailLongLength, maxThumbnailLongLength));
+	jumpToMusic->SetImageTurnFlag(false, false);
 
-	rect = new RectangleObject(
-		PosVec(200, ApplicationPreference::startScenePos), PosVec(200, 50));
-	rect->SetInnerColor(Color255(255, 255, 255));
+	jumpToWorkMan = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 3.f,
+			tileStartPos.y + tileMass.y * 3.f),
+		PosVec(
+			tileSize.x * 1.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpToWorkMan->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	jumpToWorkMan->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpToWorkMan->SetupText("mplus100",
+		welcome["work"].get<picojson::object>()["text"].get<std::string>(),
+		Color255(50, 30));
+	jumpToWorkMan->SetInnerAnimation(.2f);
+	jumpToWorkMan->SetOuterAnimation(.2f);
+
+	canvas->RegisterChildren(icon);
+	canvas->RegisterChildren(whatis);
+	canvas->RegisterChildren(organization);
+	canvas->RegisterChildren(gotoHome);
+	canvas->RegisterChildren(openURL);
+	canvas->RegisterChildren(qrcode);
+	canvas->RegisterChildren(jumpToMusic);
+	canvas->RegisterChildren(jumpToWorkMan);
 
 	layer.AddObject(icon);
 	layer.AddObject(whatis);
@@ -216,9 +287,17 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	layer.AddObject(gotoHome);
 	layer.AddObject(openURL);
 	layer.AddObject(qrcode);
+	layer.AddObject(jumpToMusic);
+	layer.AddObject(jumpToWorkMan);
 
-	layer.AddObject(input);
-	layer.AddObject(rect);
+	int tileNumY = 3;
+
+	canvas->SetArea(PosVec(
+		ApplicationPreference::GetBackgroundSize().x,
+		ApplicationPreference::startScenePos + tileSize.y * (float)tileNumY),
+		tileSize.y / ((float)tileNumY * tileSize.y) / 2.f
+		);
+	canvases.AddObject(canvas);
 
 	//fonts.push_back(FontHandle("mplus180", "M PLUS 2", 180, 100));
 	fonts.push_back(FontHandle("mplus100", "M PLUS 2", 100, 100));
@@ -253,9 +332,17 @@ void WelcomeScene::Update()
 			SceneManager::ChangeScene("WhatIs", new LauncherScene(sharingScenes));
 		}
 
-	if (input != nullptr && rect != nullptr)
-		rect->SetInnerColor(Color255(input->GetString()));
+	if (jumpToMusic != nullptr)
+		if (jumpToMusic->GetMouseSelected()) {
+			jumpToMusic->SetMouseOff();
+			SceneManager::ChangeScene("Music Player", new PlayerScene(sharingScenes));
+		}
 
+	if (jumpToWorkMan != nullptr)
+		if (jumpToWorkMan->GetMouseSelected()) {
+			jumpToWorkMan->SetMouseOff();
+			SceneManager::ChangeScene("Work Register", new WorkRegisterScene(sharingScenes));
+		}
 
 	layer.Update();
 	canvases.Update();

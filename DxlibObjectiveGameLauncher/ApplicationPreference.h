@@ -17,6 +17,8 @@ public:
 	inline static const std::string worksJson = ".\\assets\\json\\works.json";
 	inline static const std::string setJson = ".\\assets\\json\\sets.json";
 
+	inline static const std::string musicCategoryName = "MUSIC";
+
 	inline static constexpr float bannerHeight = 75.f;
 	inline static constexpr float headerTabHeight = 50.f;
 	inline static constexpr float startScenePos = bannerHeight + headerTabHeight;

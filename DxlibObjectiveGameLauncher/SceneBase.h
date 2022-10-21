@@ -15,7 +15,7 @@ public:
 		: fonts(), layer(), canvases(), sharingScenes(_sharingScenes) {};
 	SceneBase()
 		: fonts(), layer(), canvases(), sharingScenes(nullptr) {};
-	~SceneBase();
+	virtual ~SceneBase();
 
 	virtual void Collide() = 0;
 	virtual void Update() = 0;

@@ -11,6 +11,8 @@ public:
 	void AddObject(ObjectBase* _object);
 	void DeleteObject(ObjectBase* _object);
 
+	void Clear();
+
 	void SetTopLayer(ObjectBase* _object,int _shift = 0);
 	void SetButtomLayer(ObjectBase* _object,int _shift = 0);
 

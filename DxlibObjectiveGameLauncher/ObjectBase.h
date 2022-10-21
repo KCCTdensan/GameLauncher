@@ -52,6 +52,8 @@ protected:
 		guid = uuidGenerator.GetGUID();
 	}
 
+	virtual ~ObjectBase();
+
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); } // オブジェクト重なり判定において一番上ではなかった場合選択を解除する(推奨呼び出し)
 	void UpdateEnforcedMouseCollision();
 
@@ -265,6 +267,7 @@ public:
 
 	// 子要素登録
 	virtual bool RegisterChildren(ObjectBase* _object);
+	virtual bool DeleteAllChildren() { children.clear(); return true; }
 	// 自分のポインタを放り込むように(キャンバス用)(描画先決定用) ※childrenの関数を呼ぶため予めRegisterChildrenが必要
 	virtual bool RegisterParent(ObjectBase* _object);
 

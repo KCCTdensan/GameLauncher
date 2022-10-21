@@ -6,6 +6,8 @@ std::map<std::string, SceneBase*> SceneManager::scenes;
 std::array<SceneSet, ApplicationPreference::sceneHistories> SceneManager::sceneHistory{};
 int SceneManager::sceneHistoryPosition = 0;
 bool SceneManager::beInitialized = false;
+bool SceneManager::isAddingMap = false;
+bool SceneManager::deleteNotAddedScene = false;
 SceneSet SceneManager::blankScene = SceneSet("_blank", new BlankRedirectScene());
 SceneSet SceneManager::current = SceneSet("", nullptr);
 Header* SceneManager::header = nullptr;
@@ -40,18 +42,26 @@ bool SceneManager::CheckScene(std::string sceneName)
 	return false;
 }
 
-bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool addSceneToMap)
+bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool addSceneToMap, bool deleteNotAddedScene)
 {
 	bool changed = false;
+	//if (!isAddingMap && SceneManager::deleteNotAddedScene)
+	//	delete(current.scene);
+	isAddingMap = addSceneToMap;
+	SceneManager::deleteNotAddedScene = deleteNotAddedScene;
 	if (scenes.count(sceneName) >= 1) {
+		//if (current.sceneName == sceneName)
+		//	deleteNotAddedScene = false;
 		current = SceneSet(sceneName, scenes[sceneName]);
 		changed = true;
+		if (deleteNotAddedScene)
+			delete(altScene);
 		//delete (altScene); (altScene) = NULL;
 	}
 	else {
 		if (addSceneToMap) {
 			AddScene(sceneName, altScene);
-			ChangeScene(sceneName, nullptr);
+			ChangeScene(sceneName, nullptr, true, false);
 		}
 		else {
 			current = SceneSet(sceneName, altScene);
@@ -64,6 +74,11 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 		sceneHistory[0] = SceneSet(current.sceneName, current.scene);
 		sceneHistoryPosition = 0;
 		header->SetSubtitle(current.sceneName);
+
+		if (scenes.size() > 4) {
+			delete(scenes.begin()->second);
+			scenes.erase(scenes.begin());
+		}
 	}
 	return true;
 }

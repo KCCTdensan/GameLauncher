@@ -41,3 +41,9 @@ Color255 ColorPreset::yellowButtonHovered("#D8B91E");
 Color255 ColorPreset::yellowButtonClicked("#D1B31D");
 Color255 ColorPreset::yellowButtonSelected("#F2CF21");
 Color255 ColorPreset::yellowButtonOuter("#EDB142");
+
+Color255 ColorPreset::inputInner("#E8F4FF");
+Color255 ColorPreset::inputHovered("#E3EFF9");
+Color255 ColorPreset::inputClicked("#C9D4DD");
+Color255 ColorPreset::inputSelected("#032747");
+Color255 ColorPreset::inputOuter("#032747");
