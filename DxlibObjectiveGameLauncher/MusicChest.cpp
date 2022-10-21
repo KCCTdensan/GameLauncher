@@ -6,6 +6,7 @@ bool MusicChest::CreateMusicHandle(std::string handleName, std::string filePath)
 {
 	int handle = LoadSoundMem(filePath.c_str());
 	if (handle == -1) return false;
+	handles.erase(handleName);
 	handles.emplace(handleName, handle);
 	return true;
 }

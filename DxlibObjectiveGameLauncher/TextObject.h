@@ -13,7 +13,8 @@ public:
 	TextObject(PosVec _pos, PosVec _size, int _fontHandle, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 		: ObjectBase(_pos, PosVec()), fontHandle(_fontHandle), fontHandleName(), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0), adjusted(false),
-		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1), returnNum(0)
+		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1), returnNum(0),
+		forcedAreaMode(false)
 	{
 		CalcPos();
 	}
@@ -23,14 +24,16 @@ public:
 	TextObject(PosVec _pos, PosVec _size, std::string _fontHandleName, std::string _text, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 		: ObjectBase(_pos, PosVec()), fontHandle(-1), fontHandleName(_fontHandleName), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0), adjusted(false),
-		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(true), maxWidth(-1), returnNum(0)
+		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(true), maxWidth(-1), returnNum(0),
+		forcedAreaMode(false)
 	{
 		CalcPos();
 	}
 
 	TextObject()
 		: ObjectBase(PosVec(), PosVec()), fontHandle(-1), fontHandleName(), text(), innerColor(0), align(TextAlign::LEFT), enabledBack(false), backColor(0),
-		finallyPos(PosVec()), textWidth(0), fontHeight(0), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1), adjusted(false), returnNum(0)
+		finallyPos(PosVec()), textWidth(0), fontHeight(0), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1), adjusted(false), returnNum(0),
+		forcedAreaMode(false)
 	{}
 
 	// ï∂éöèÓïÒìoò^
@@ -52,6 +55,15 @@ public:
 		return true;
 	}
 	bool SetBackColor(Color255 _backColor) { backColor = _backColor; return true; }
+
+	bool SetOffForcedArea() { forcedAreaMode = false; return true; }
+	bool SetForcedArea(PosVec _areaUpperLeft, PosVec _areaLowerRight)
+	{
+		forcedAreaMode = true;
+		areaUpperLeft = _areaUpperLeft;
+		areaLowerRight = _areaLowerRight;
+		return true;
+	}
 
 	// Paddingê›íË(enabledBackÇÃÇ›óLå¯)
 	// trueÇÃèÍçáñ≥éã
@@ -127,6 +139,10 @@ private:
 	int fontHeight;
 
 	int returnNum;
+
+	PosVec areaUpperLeft;
+	PosVec areaLowerRight;
+	bool forcedAreaMode;
 
 	PosVec paddingUpperLeft;
 	PosVec paddingLowerRight;

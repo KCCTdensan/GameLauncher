@@ -96,9 +96,10 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		PosVec(
 			ApplicationPreference::GetBackgroundSize().x - 700.f,
 			ApplicationPreference::startScenePos + 10.f),
-		PosVec(150, 30), 40, true, true, true);
+		PosVec(200, 30), 40, true, true, true);
 	ideleteList->SetupText(
 		"smart20", ColorPreset::textBlack);
+	ideleteList->SetEnabledOutline(true);
 	ideleteList->SetInnerColor(
 		ColorPreset::inputInner,
 		ColorPreset::inputHovered,
@@ -111,9 +112,10 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 
 	bdeleteList = new ButtonObject(
 		PosVec(
-			ApplicationPreference::GetBackgroundSize().x - 530.f,
+			ApplicationPreference::GetBackgroundSize().x - 480.f,
 			ApplicationPreference::startScenePos + 10.f),
-		PosVec(30, 30), true, true);
+		PosVec(200, 30), true, true);
+	bdeleteList->SetupText("smart15", "入力された番号を削除", ColorPreset::textObject);
 	bdeleteList->SetInnerColor(
 		ColorPreset::yellowButtonInner,
 		ColorPreset::yellowButtonHovered,
@@ -142,6 +144,7 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	fonts.push_back(FontHandle("mplus40", "M PLUS 2", 40, 100));
 	fonts.push_back(FontHandle("smart40", "03スマートフォントUI", 40, 15));
 	fonts.push_back(FontHandle("smart20", "03スマートフォントUI", 20, 15));
+	fonts.push_back(FontHandle("smart15", "03スマートフォントUI", 15, 15));
 }
 
 PlayerScene::~PlayerScene()
@@ -160,6 +163,17 @@ void PlayerScene::Update()
 
 	layer.Update();
 	canvases.Update();
+
+	if (bdeleteList != nullptr) {
+		bdeleteList->GetTextObject()->SetPos(bdeleteList->GetPos());
+		bdeleteList->GetTextObject()->Move(PosVec(
+			(bdeleteList->GetSize().x - bdeleteList->GetTextObject()->GetTextWidth()) / 2.f,
+			(bdeleteList->GetSize().y - bdeleteList->GetTextObject()->GetTextHeight()) / 2.f));
+		bdeleteList->GetTextObject()->SetForcedArea(
+			bdeleteList->GetPos(),
+			PosVec(bdeleteList->GetPos().x + bdeleteList->GetSize().x, bdeleteList->GetPos().y + bdeleteList->GetSize().y));
+
+	}
 
 	if (startButton != nullptr)
 		if (startButton->GetMouseSelected()) {

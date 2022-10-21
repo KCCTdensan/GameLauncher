@@ -52,6 +52,8 @@ void TextObject::Draw()
 	else {
 		SetDrawScreen(DX_SCREEN_BACK);
 	}
+	if (forcedAreaMode)
+		SetDrawArea((int)areaUpperLeft.x, (int)areaUpperLeft.y, (int)areaLowerRight.x, (int)areaLowerRight.y);
 	if (enabledBack) {
 		DrawBoxAA(finallyPos.x - paddingUpperLeft.x, finallyPos.y - paddingUpperLeft.y, finallyPos.x + textWidth + paddingLowerRight.x, finallyPos.y + fontHeight + paddingLowerRight.y, backColor.Get(), true);
 	}
@@ -59,11 +61,16 @@ void TextObject::Draw()
 	DrawFormatStringFToHandle(finallyPos.x, finallyPos.y, innerAnimation.current.Get(), fontHandle, text.c_str());
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	SetDrawScreen(DX_SCREEN_BACK);
+	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 }
 
 bool TextObject::Move(PosVec _delta, bool _involvedParent)
 {
 	ObjectBase::Move(_delta, _involvedParent);
+	areaUpperLeft.x += _delta.x;
+	areaUpperLeft.y += _delta.y;
+	areaLowerRight.x += _delta.x;
+	areaLowerRight.y += _delta.y;
 	CalcPos();
 
 	return true;

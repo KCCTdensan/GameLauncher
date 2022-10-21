@@ -41,7 +41,7 @@ PlayData MusicPlayer::GetPlayNextData(int offset)
 
 float MusicPlayer::GetPlayingRate()
 {
-    if (playlists.size() == 0) return 0.f;
+    if (playlists.size() == 0 || playingIndex >= playlists.size()) return 0.f;
     return (float)GetSoundCurrentTime(playlists[playingIndex].handle) / (float)GetSoundTotalTime(playlists[playingIndex].handle);
 }
 
@@ -52,14 +52,14 @@ void MusicPlayer::SetPlayingState(PlayState playState)
 
 void MusicPlayer::SetPlayingRate(float value)
 {
-    if (playlists.size() == 0) return;
+    if (playlists.size() == 0 || playingIndex >= playlists.size()) return;
     SetSoundCurrentTime((long long)((float)GetSoundTotalTime(playlists[playingIndex].handle) * value), playlists[playingIndex].handle);
 }
 
 void MusicPlayer::AddToList(PlayData playData)
 {
     for (auto& item : playlists) {
-        if (item.handle == playData.handle) return;
+        if (item.title == playData.title && item.author == playData.author) return;
     }
     playlists.push_back(playData);
 }

@@ -53,9 +53,11 @@ private:
     TextObject* lWorkName;
     TextObject* lWorkAuthor;
     TextObject* lWorkCategory;
+    TextObject* lWorkURL;
     TextObject* lWorkDescription;
     InputObject* iWorkName;
     InputObject* iWorkCategory;
+    InputObject* iWorkURL;
     InputObject* iWorkAuthor;
     InputObject* iWorkDescription;
 

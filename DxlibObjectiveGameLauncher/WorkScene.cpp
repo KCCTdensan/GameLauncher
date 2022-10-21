@@ -243,6 +243,24 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		descriptionLines[1]->SetPos(PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 150.f + descriptionCanvas->GetSize().y));
 		descriptionLines[1]->SetSize(PosVec(75.f + maxThumbnailLongLength + descriptionCanvas->GetSize().x, ApplicationPreference::startScenePos + 150.f + descriptionCanvas->GetSize().y));
 
+		openWeb = new ButtonObject(
+			PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 375.f),
+			PosVec(maxThumbnailLongLength, 100.f), true, true);
+		openWeb->SetInnerColor(
+			ColorPreset::yellowButtonInner,
+			ColorPreset::yellowButtonHovered,
+			ColorPreset::yellowButtonClicked,
+			ColorPreset::yellowButtonSelected);
+		openWeb->SetInnerAnimation(.1f);
+		openWeb->SetOutlineColor(ColorPreset::yellowButtonOuter, 3.f);
+		openWeb->SetupText("smart30", "Open In Browser", ColorPreset::textObject, TextAlign::LEFT);
+
+		if (this->obj["URL"].get<std::string>() == "") openWeb->SetEnabled(false);
+
+		/*openWeb->GetTextObject()->Move(PosVec(
+			(maxThumbnailLongLength - launch->GetTextObject()->GetTextWidth()) / 2.f,
+			(150.f - launch->GetTextObject()->GetTextHeight()) / 2.f));*/
+
 		launch = new ButtonObject(
 			PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 200.f),
 			PosVec(maxThumbnailLongLength, 150.f), true, true);
@@ -257,6 +275,8 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		launch->GetTextObject()->Move(PosVec(
 			(maxThumbnailLongLength - launch->GetTextObject()->GetTextWidth()) / 2.f,
 			(150.f - launch->GetTextObject()->GetTextHeight()) / 2.f));
+
+		if (this->obj["FilePath"].get<std::string>() == "") launch->SetEnabled(false);
 
 		(void)_chdir(exePath.GetPath());
 
@@ -275,6 +295,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		layer.AddObject(description);
 		layer.AddObject(photoGalleryText);
 
+		layer.AddObject(openWeb);
 		layer.AddObject(launch);
 
 		canvases.AddObject(canvas);
@@ -331,18 +352,43 @@ void WorkScene::Update()
 			descriptionCanvas->SetArea(PosVec(0, textHeight), (float)description->GetFontHeight() * 2.f / textHeight);
 		}
 
+	if (openWeb != nullptr) {
+		openWeb->GetTextObject()->SetPos(openWeb->GetPos());
+		openWeb->GetTextObject()->Move(PosVec(
+			(openWeb->GetSize().x - openWeb->GetTextObject()->GetTextWidth()) / 2.f,
+			(openWeb->GetSize().y - openWeb->GetTextObject()->GetTextHeight()) / 2.f));
+		openWeb->GetTextObject()->SetForcedArea(
+			openWeb->GetPos(),
+			PosVec(launch->GetPos().x + launch->GetSize().x, launch->GetPos().y + launch->GetSize().y));
+	}
+
 	if (launch != nullptr) {
 		launch->GetTextObject()->SetPos(launch->GetPos());
 		launch->GetTextObject()->Move(PosVec(
-			(thumbnailSize.x - launch->GetTextObject()->GetTextWidth()) / 2.f,
-			(150.f - launch->GetTextObject()->GetTextHeight()) / 2.f));
-
+			(launch->GetSize().x - launch->GetTextObject()->GetTextWidth()) / 2.f,
+			(launch->GetSize().y - launch->GetTextObject()->GetTextHeight()) / 2.f));
+		launch->GetTextObject()->SetForcedArea(
+			launch->GetPos(),
+			PosVec(launch->GetPos().x + launch->GetSize().x, launch->GetPos().y + launch->GetSize().y));
 	}
 
 	sharingScenes->header->SetSubtitle(this->obj["TitleName"].get<std::string>());
 
+	if (openWeb != nullptr)
+		if (openWeb->GetMouseSelected() && this->obj["URL"].get<std::string>() != "") {
+			openWeb->SetMouseOff();
+
+			try {
+				ShellExecute(GetMainWindowHandle(), "open", this->obj["URL"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
+			}
+			catch (std::exception e) {
+				// throw
+			}
+		}
+
 	if (launch != nullptr)
-		if (launch->GetMouseSelected()) {
+		if (launch->GetMouseSelected() && this->obj["FilePath"].get<std::string>() != "") {
+
 			ExePath exePath;
 			(void)_chdir(exePath.GetPath());
 
@@ -354,7 +400,7 @@ void WorkScene::Update()
 			(void)_getcwd(cwd, 512);
 			// ファイル直下まで移動
 			returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
-			
+
 			StringConvert stringConvert;
 
 			std::wstring fullpath = stringConvert.ConvertString(this->obj["FilePath"].get<std::string>());
@@ -363,8 +409,26 @@ void WorkScene::Update()
 
 			(void)_chdir(stringConvert.ConvertString(pathname).c_str());
 
-			// 実行
-			ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
+			if (this->obj["Category"].get<std::string>() == ApplicationPreference::musicCategoryName) {
+				PlayData playData;
+				MusicChest::CreateMusicHandle(this->obj["GUID"].get<std::string>(), this->obj["FilePath"].get<std::string>());
+
+				playData.title = this->obj["TitleName"].get<std::string>();
+				playData.author = this->obj["Author"].get<std::string>();
+				playData.handle = MusicChest::GetMusicHandle(this->obj["GUID"].get<std::string>());
+				MusicPlayer::AddToList(playData);
+
+				// 元のディレクトリに戻す
+				returnId = _chdir(cwd);
+				(void)_chdir(exePath.GetPath());
+
+				SceneManager::ChangeScene("Music Player", new PlayerScene(sharingScenes));
+			}
+			else {
+
+				// 実行
+				ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
+			}
 			// 元のディレクトリに戻す
 			returnId = _chdir(cwd);
 

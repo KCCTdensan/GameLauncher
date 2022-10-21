@@ -13,6 +13,9 @@
 #include <direct.h>
 #include "StringConvert.h"
 #include "ExePath.h"
+#include <exception>
+#include "MusicPlayer.h"
+#include "PlayerScene.h"
 
 class WorkScene :
     public SceneBase
@@ -46,6 +49,7 @@ private:
     std::vector<ImageObject*> images;
     CanvasObject* imagesCanvas;
 
+    ButtonObject* openWeb;
     ButtonObject* launch;
 
     RectangleObject* imageBackGround;

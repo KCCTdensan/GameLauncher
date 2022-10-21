@@ -1,5 +1,10 @@
 #include "ObjectBase.h"
 
+ObjectBase::~ObjectBase()
+{
+	DeleteGraph(imageHandle);
+}
+
 void ObjectBase::UpdateEnforcedMouseCollision()
 {
 	if (enforcedHovered) {

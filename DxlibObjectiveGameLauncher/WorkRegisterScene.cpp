@@ -26,7 +26,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	PosVec startFormPos(400.f, ApplicationPreference::startScenePos + 150.f);
 	PosVec startButtonPos(1300.f, startFormPos.y);
 	PosVec startLabelPos(380.f, startFormPos.y + 25.f);
-	PosVec startDispPos(380.f, startFormPos.y + 550.f);
+	PosVec startDispPos(380.f, startFormPos.y + 575.f);
 	PosVec defaultFormSize(800, 80);
 	PosVec defaultButtonSize(400, 80);
 	PosVec defaultDispSize(400, 40);
@@ -35,13 +35,13 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	PosVec defaultDispGap(15, 15);
 
 	titlename = new TextObject(
-		PosVec(startLabelPos.x, startLabelPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
-		defaultFormSize, "smart50", "作品データ登録", ColorPreset::textBlack, TextAlign::CENTER);
+		PosVec(startLabelPos.x / 2.f, startLabelPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
+		defaultFormSize, "smart50", "作品データ登録/変更/削除", ColorPreset::textBlack, TextAlign::LEFT);
 	formIndex++;
 
 	lWorkName = new TextObject(
 		PosVec(startLabelPos.x, startLabelPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
-		defaultFormSize, "smart30", "作品名", ColorPreset::textBlack, TextAlign::RIGHT);
+		defaultFormSize, "smart30", "作品名*", ColorPreset::textBlack, TextAlign::RIGHT);
 
 	iWorkName = new InputObject(
 		PosVec(startFormPos.x, startFormPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
@@ -61,7 +61,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 
 	lWorkAuthor = new TextObject(
 		PosVec(startLabelPos.x, startLabelPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
-		defaultFormSize, "smart30", "制作者名", ColorPreset::textBlack, TextAlign::RIGHT);
+		defaultFormSize, "smart30", "制作者名*", ColorPreset::textBlack, TextAlign::RIGHT);
 
 	iWorkAuthor = new InputObject(
 		PosVec(startFormPos.x, startFormPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
@@ -81,7 +81,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 
 	lWorkCategory = new TextObject(
 		PosVec(startLabelPos.x, startLabelPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
-		defaultFormSize, "smart30", "カテゴリー", ColorPreset::textBlack, TextAlign::RIGHT);
+		defaultFormSize, "smart30", "カテゴリー*", ColorPreset::textBlack, TextAlign::RIGHT);
 
 	iWorkCategory = new InputObject(
 		PosVec(startFormPos.x, startFormPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
@@ -99,13 +99,33 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	iWorkCategory->SetInnerAnimation(.2f);
 	formIndex++;
 
+	lWorkURL = new TextObject(
+		PosVec(startLabelPos.x, startLabelPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
+		defaultFormSize, "smart30", "URL", ColorPreset::textBlack, TextAlign::RIGHT);
+
+	iWorkURL = new InputObject(
+		PosVec(startFormPos.x, startFormPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
+		defaultFormSize, 8192);
+	iWorkURL->SetupText("smart30", ColorPreset::textBlack);
+	iWorkURL->SetEnabledOutline(true);
+	iWorkURL->SetInnerColor(
+		ColorPreset::inputInner,
+		ColorPreset::inputHovered,
+		ColorPreset::inputClicked,
+		ColorPreset::inputSelected);
+	iWorkURL->SetOutlineColor(
+		ColorPreset::inputOuter,
+		2.f);
+	iWorkURL->SetInnerAnimation(.2f);
+	formIndex++;
+
 	lWorkDescription = new TextObject(
 		PosVec(startLabelPos.x, startLabelPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
 		defaultFormSize, "smart30", "紹介用説明", ColorPreset::textBlack, TextAlign::RIGHT);
 
 	iWorkDescription = new InputObject(
 		PosVec(startFormPos.x, startFormPos.y + formIndex * (defaultFormGap.y + defaultFormSize.y)),
-		PosVec(defaultFormSize.x, defaultFormSize.y * 3.f), 8192);
+		PosVec(defaultFormSize.x, defaultFormSize.y * 2.f), 8192);
 	iWorkDescription->SetupText("smart30", ColorPreset::textBlack);
 	iWorkDescription->SetEnabledOutline(true);
 	iWorkDescription->SetInnerColor(
@@ -125,7 +145,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 
 	lExistingGUID = new TextObject(
 		PosVec(startButtonPos.x, startButtonPos.y + formIndex * (defaultButtonGap.y + defaultButtonSize.y)),
-		PosVec(), "smart10", "既にGUIDがある場合は入力", ColorPreset::textBlack, TextAlign::LEFT);
+		PosVec(), "smart10", "既にGUIDがある場合は入力*", ColorPreset::textBlack, TextAlign::LEFT);
 	lExistingGUID->SetMaxWidth((int)spaceWriting);
 
 	iExistingGUID = new InputObject(
@@ -149,7 +169,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	openDirectoryButtton = new ButtonObject(
 		PosVec(startButtonPos.x, startButtonPos.y + formIndex * (defaultButtonGap.y + defaultButtonSize.y)),
 		defaultButtonSize, true, true);
-	openDirectoryButtton->SetupText("smart30", "新規/フォルダ開く", ColorPreset::textBlack);
+	openDirectoryButtton->SetupText("smart30", "新規/フォルダ開く*", ColorPreset::textBlack);
 	openDirectoryButtton->SetInnerColor(
 		ColorPreset::yellowButtonInner,
 		ColorPreset::yellowButtonHovered,
@@ -164,7 +184,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	setWorkerButtton = new ButtonObject(
 		PosVec(startButtonPos.x, startButtonPos.y + formIndex * (defaultButtonGap.y + defaultButtonSize.y)),
 		defaultButtonSize, true, true);
-	setWorkerButtton->SetupText("smart30", "起動するものを選択", ColorPreset::textBlack);
+	setWorkerButtton->SetupText("smart30", "起動するものを選択*", ColorPreset::textBlack);
 	setWorkerButtton->SetInnerColor(
 		ColorPreset::yellowButtonInner,
 		ColorPreset::yellowButtonHovered,
@@ -258,6 +278,10 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
 		defaultFormSize, "smart30", "未登録", ColorPreset::textBlack, TextAlign::LEFT);
 	dguid->SetMaxWidth((int)defaultDispSize.x);
+	dguid->SetForcedArea(
+		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		PosVec(startDispPos.x + defaultDispGap.x + defaultFormSize.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y) + defaultFormSize.y)
+	);
 	formIndex++;
 
 	lWorkPath = new TextObject(
@@ -267,6 +291,10 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
 		defaultFormSize, "smart10", "文字列", ColorPreset::textBlack, TextAlign::LEFT);
 	dWorkPath->SetMaxWidth((int)defaultDispSize.x);
+	dWorkPath->SetForcedArea(
+		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		PosVec(startDispPos.x + defaultDispGap.x + defaultFormSize.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y) + defaultFormSize.y)
+	);
 	formIndex++;
 
 	lThumbPath = new TextObject(
@@ -276,6 +304,10 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
 		defaultFormSize, "smart10", "文字列", ColorPreset::textBlack, TextAlign::LEFT);
 	dThumbPath->SetMaxWidth((int)defaultDispSize.x);
+	dThumbPath->SetForcedArea(
+		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		PosVec(startDispPos.x + defaultDispGap.x + defaultFormSize.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y) + defaultFormSize.y)
+	);
 	formIndex++;
 
 	lImagesPath = new TextObject(
@@ -285,6 +317,10 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
 		defaultFormSize, "smart10", "文字列", ColorPreset::textBlack, TextAlign::LEFT);
 	dImagesPath->SetMaxWidth((int)defaultDispSize.x);
+	dImagesPath->SetForcedArea(
+		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		PosVec(startDispPos.x + defaultDispGap.x + defaultFormSize.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y) + defaultFormSize.y)
+	);
 	formIndex++;
 
 	layer.AddObject(bg);
@@ -295,6 +331,8 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	layer.AddObject(iWorkAuthor);
 	layer.AddObject(lWorkCategory);
 	layer.AddObject(iWorkCategory);
+	layer.AddObject(lWorkURL);
+	layer.AddObject(iWorkURL);
 	layer.AddObject(lWorkDescription);
 	layer.AddObject(iWorkDescription);
 	layer.AddObject(lguid);
@@ -346,6 +384,7 @@ void WorkRegisterScene::Update()
 	iWorkName->SetEnabled(isguid);
 	iWorkAuthor->SetEnabled(isguid);
 	iWorkCategory->SetEnabled(isguid);
+	iWorkURL->SetEnabled(isguid);
 	iWorkDescription->SetEnabled(isguid);
 	setWorkerButtton->SetEnabled(isguid);
 	setThumbnailButtton->SetEnabled(isguid);
@@ -355,6 +394,11 @@ void WorkRegisterScene::Update()
 	clearButton->SetEnabled(isguid);
 
 	iExistingGUID->SetEnabled(!isguid);
+
+	if (workerPath == "" ||
+		iWorkName->GetString() == "" ||
+		iWorkAuthor->GetString() == "" ||
+		iWorkCategory->GetString() == "") makeJsonDataButton->SetEnabled(false);
 
 	if (clearButton != nullptr)
 		if (clearButton->GetMouseSelected()) {
@@ -458,8 +502,9 @@ void WorkRegisterScene::Update()
 				/********** JSON 読込 ***********/
 
 				for (auto& item : lists) {
-					if (item.get<picojson::object>()["GUID"].get<std::string>() != guid) return;
+					if (item.get<picojson::object>()["GUID"].get<std::string>() != guid) continue;
 					iWorkCategory->SetString(item.get<picojson::object>()["Category"].get<std::string>());
+					iWorkURL->SetString(item.get<picojson::object>()["URL"].get<std::string>());
 					iWorkName->SetString(item.get<picojson::object>()["TitleName"].get<std::string>());
 					iWorkAuthor->SetString(item.get<picojson::object>()["Author"].get<std::string>());
 					iWorkDescription->SetString(item.get<picojson::object>()["Description"].get<std::string>());
@@ -616,6 +661,7 @@ void WorkRegisterScene::Update()
 					//item.get<picojson::object>()["GUID"].get<picojson::value>() = picojson::value(guid.c_str());
 					item.get<picojson::object>()["TitleName"].get<std::string>() = iWorkName->GetString();
 					item.get<picojson::object>()["Author"].get<std::string>() = iWorkAuthor->GetString();
+					item.get<picojson::object>()["URL"].get<std::string>() = iWorkURL->GetString();
 					item.get<picojson::object>()["Description"].get<std::string>() = iWorkDescription->GetString();
 					item.get<picojson::object>()["Directory"].get<std::string>() = path;
 					item.get<picojson::object>()["FilePath"].get<std::string>() = workerPath;
@@ -639,6 +685,7 @@ void WorkRegisterScene::Update()
 				work->insert(std::make_pair("GUID", picojson::value(guid.c_str())));
 				work->insert(std::make_pair("TitleName", picojson::value(iWorkName->GetString().c_str())));
 				work->insert(std::make_pair("Author", picojson::value(iWorkAuthor->GetString().c_str())));
+				work->insert(std::make_pair("URL", picojson::value(iWorkURL->GetString().c_str())));
 				work->insert(std::make_pair("Description", picojson::value(iWorkDescription->GetString().c_str())));
 				std::string pathJson = path.c_str();
 				work->insert(std::make_pair("Directory", picojson::value(pathJson)));
@@ -694,6 +741,7 @@ void WorkRegisterScene::ResetParams()
 
 	iWorkName->RemakeHandle();
 	iWorkAuthor->RemakeHandle();
+	iWorkURL->RemakeHandle();
 	iWorkCategory->RemakeHandle();
 	iWorkDescription->RemakeHandle();
 }
@@ -705,6 +753,9 @@ void WorkRegisterScene::SetMiddleCenterText(ButtonObject* button)
 		button->GetTextObject()->Move(PosVec(
 			(button->GetSize().x - button->GetTextObject()->GetTextWidth()) / 2.f,
 			(button->GetSize().y - button->GetTextObject()->GetTextHeight()) / 2.f));
+		button->GetTextObject()->SetForcedArea(
+			button->GetPos(),
+			PosVec(button->GetPos().x + button->GetSize().x, button->GetPos().y + button->GetSize().y));
 
 	}
 }

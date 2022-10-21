@@ -52,6 +52,8 @@ protected:
 		guid = uuidGenerator.GetGUID();
 	}
 
+	virtual ~ObjectBase();
+
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); } // オブジェクト重なり判定において一番上ではなかった場合選択を解除する(推奨呼び出し)
 	void UpdateEnforcedMouseCollision();
 
