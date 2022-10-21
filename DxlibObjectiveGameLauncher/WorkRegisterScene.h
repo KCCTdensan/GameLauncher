@@ -32,6 +32,10 @@ public:
 
 private:
 
+    void ResetParams();
+    void SetMiddleCenterText(ButtonObject* button);
+    void SetDisplayText(TextObject* text, std::string* value);
+
     RectangleObject* bg;
 
     picojson::object obj;
@@ -74,6 +78,7 @@ private:
     ButtonObject* setImagesButtton; // ダイアログを開く
     ButtonObject* makeJsonDataButton; // picojson
 
-    ButtonObject* resetButton;
+    ButtonObject* clearButton;
+    ButtonObject* deleteButton;
 };
 

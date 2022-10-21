@@ -132,6 +132,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 		PosVec(startButtonPos.x + spaceWriting, startButtonPos.y + formIndex * (defaultButtonGap.y + defaultButtonSize.y)),
 		PosVec(defaultButtonSize.x - spaceWriting, defaultButtonSize.y));
 	iExistingGUID->SetupText("smart10", ColorPreset::textBlack);
+	iExistingGUID->SetEnabledOutline(true);
 	iExistingGUID->SetInnerColor(
 		ColorPreset::inputInner,
 		ColorPreset::inputHovered,
@@ -148,7 +149,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	openDirectoryButtton = new ButtonObject(
 		PosVec(startButtonPos.x, startButtonPos.y + formIndex * (defaultButtonGap.y + defaultButtonSize.y)),
 		defaultButtonSize, true, true);
-	openDirectoryButtton->SetupText("smart30", "保存用ディレクトリを開く", ColorPreset::textBlack);
+	openDirectoryButtton->SetupText("smart30", "新規/フォルダ開く", ColorPreset::textBlack);
 	openDirectoryButtton->SetInnerColor(
 		ColorPreset::yellowButtonInner,
 		ColorPreset::yellowButtonHovered,
@@ -220,6 +221,34 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	makeJsonDataButton->SetInnerAnimation(.2f);
 	formIndex++;
 
+	clearButton = new ButtonObject(
+		PosVec(ApplicationPreference::GetBackgroundSize().x - 100.f, ApplicationPreference::GetBackgroundSize().y - 100.f * 2.f),
+		PosVec(100.f, 100.f), true, true);
+	clearButton->SetupText("smart30", "CLEAR", ColorPreset::textBlack);
+	clearButton->SetInnerColor(
+		ColorPreset::yellowButtonInner,
+		ColorPreset::yellowButtonHovered,
+		ColorPreset::yellowButtonClicked,
+		ColorPreset::yellowButtonSelected);
+	clearButton->SetOutlineColor(
+		ColorPreset::yellowButtonOuter,
+		2.f);
+	clearButton->SetInnerAnimation(.2f);
+
+	deleteButton = new ButtonObject(
+		PosVec(ApplicationPreference::GetBackgroundSize().x - 100.f, ApplicationPreference::GetBackgroundSize().y - 100.f),
+		PosVec(100.f, 100.f), true, true);
+	deleteButton->SetupText("smart30", "削除", ColorPreset::textBlack);
+	deleteButton->SetInnerColor(
+		ColorPreset::yellowButtonInner,
+		ColorPreset::yellowButtonHovered,
+		ColorPreset::yellowButtonClicked,
+		ColorPreset::yellowButtonSelected);
+	deleteButton->SetOutlineColor(
+		ColorPreset::yellowButtonOuter,
+		2.f);
+	deleteButton->SetInnerAnimation(.2f);
+
 	formIndex = 0;
 
 	lguid = new TextObject(
@@ -283,6 +312,8 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	layer.AddObject(setThumbnailButtton);
 	layer.AddObject(setImagesButtton);
 	layer.AddObject(makeJsonDataButton);
+	layer.AddObject(deleteButton);
+	layer.AddObject(clearButton);
 
 	// フォント追加
 	fonts.push_back(FontHandle("smart10", "03スマートフォントUI", 20, 15));
@@ -303,79 +334,98 @@ void WorkRegisterScene::Update()
 	layer.Update();
 	canvases.Update();
 
-	if (openDirectoryButtton != nullptr) {
-		openDirectoryButtton->GetTextObject()->SetPos(openDirectoryButtton->GetPos());
-		openDirectoryButtton->GetTextObject()->Move(PosVec(
-			(openDirectoryButtton->GetSize().x - openDirectoryButtton->GetTextObject()->GetTextWidth()) / 2.f,
-			(openDirectoryButtton->GetSize().y - openDirectoryButtton->GetTextObject()->GetTextHeight()) / 2.f));
+	SetMiddleCenterText(openDirectoryButtton);
+	SetMiddleCenterText(setWorkerButtton);
+	SetMiddleCenterText(setImagesButtton);
+	SetMiddleCenterText(setThumbnailButtton);
+	SetMiddleCenterText(makeJsonDataButton);
+	SetMiddleCenterText(clearButton);
+	SetMiddleCenterText(deleteButton);
 
-	}
-	if (setWorkerButtton != nullptr) {
-		setWorkerButtton->GetTextObject()->SetPos(setWorkerButtton->GetPos());
-		setWorkerButtton->GetTextObject()->Move(PosVec(
-			(setWorkerButtton->GetSize().x - setWorkerButtton->GetTextObject()->GetTextWidth()) / 2.f,
-			(setWorkerButtton->GetSize().y - setWorkerButtton->GetTextObject()->GetTextHeight()) / 2.f));
+	bool isguid = guid == "" ? false : true;
+	iWorkName->SetEnabled(isguid);
+	iWorkAuthor->SetEnabled(isguid);
+	iWorkCategory->SetEnabled(isguid);
+	iWorkDescription->SetEnabled(isguid);
+	setWorkerButtton->SetEnabled(isguid);
+	setThumbnailButtton->SetEnabled(isguid);
+	setImagesButtton->SetEnabled(isguid);
+	makeJsonDataButton->SetEnabled(isguid);
+	deleteButton->SetEnabled(isguid);
+	clearButton->SetEnabled(isguid);
 
-	}
-	if (setThumbnailButtton != nullptr) {
-		setThumbnailButtton->GetTextObject()->SetPos(setThumbnailButtton->GetPos());
-		setThumbnailButtton->GetTextObject()->Move(PosVec(
-			(setThumbnailButtton->GetSize().x - setThumbnailButtton->GetTextObject()->GetTextWidth()) / 2.f,
-			(setThumbnailButtton->GetSize().y - setThumbnailButtton->GetTextObject()->GetTextHeight()) / 2.f));
+	iExistingGUID->SetEnabled(!isguid);
 
-	}
-	if (setImagesButtton != nullptr) {
-		setImagesButtton->GetTextObject()->SetPos(setImagesButtton->GetPos());
-		setImagesButtton->GetTextObject()->Move(PosVec(
-			(setImagesButtton->GetSize().x - setImagesButtton->GetTextObject()->GetTextWidth()) / 2.f,
-			(setImagesButtton->GetSize().y - setImagesButtton->GetTextObject()->GetTextHeight()) / 2.f));
+	if (clearButton != nullptr)
+		if (clearButton->GetMouseSelected()) {
+			clearButton->SetMouseOff();
+			ResetParams();
+		}
 
-	}
-	if (makeJsonDataButton != nullptr) {
-		makeJsonDataButton->GetTextObject()->SetPos(makeJsonDataButton->GetPos());
-		makeJsonDataButton->GetTextObject()->Move(PosVec(
-			(makeJsonDataButton->GetSize().x - makeJsonDataButton->GetTextObject()->GetTextWidth()) / 2.f,
-			(makeJsonDataButton->GetSize().y - makeJsonDataButton->GetTextObject()->GetTextHeight()) / 2.f));
+	if (deleteButton != nullptr)
+		if (deleteButton->GetMouseSelected()) {
+			deleteButton->SetMouseOff();
 
-	}
 
-	if (guid == "") {
-		iWorkName->SetEnabled(false);
-		iWorkAuthor->SetEnabled(false);
-		iWorkCategory->SetEnabled(false);
-		iWorkDescription->SetEnabled(false);
+			/********** JSON 読込 ***********/
 
-		setWorkerButtton->SetEnabled(false);
-		setThumbnailButtton->SetEnabled(false);
-		setImagesButtton->SetEnabled(false);
-		makeJsonDataButton->SetEnabled(false);
+			ExePath exePath;
+			(void)_chdir(exePath.GetPath());
 
-		iExistingGUID->SetEnabled(true);
-	}
-	else {
-		iWorkName->SetEnabled(true);
-		iWorkAuthor->SetEnabled(true);
-		iWorkCategory->SetEnabled(true);
-		iWorkDescription->SetEnabled(true);
+			std::stringstream ss;
+			std::ifstream fs;
+			fs.open(ApplicationPreference::worksJson, std::ios::binary);
 
-		setWorkerButtton->SetEnabled(true);
-		setThumbnailButtton->SetEnabled(true);
-		setImagesButtton->SetEnabled(true);
-		makeJsonDataButton->SetEnabled(true);
+			if (!fs.is_open()) {
+				return;
+			}
 
-		iExistingGUID->SetEnabled(false);
-	}
+			ss << fs.rdbuf();
+			fs.close();
+
+			picojson::value val;
+			ss >> val;
+			std::string err = picojson::get_last_error();
+			if (!err.empty()) {
+				std::cerr << err << std::endl;
+				return;
+			}
+
+			picojson::object& obj = val.get<picojson::object>();
+			picojson::array& lists = obj["Lists"].get<picojson::array>();
+
+			int i = 0;
+			bool isExisting = false;
+			for (auto& item : lists) {
+				if (item.get<picojson::object>()["GUID"].get<std::string>() == guid) {
+					lists.erase(lists.begin() + i);
+					isExisting = true;
+					break;
+				}
+				i++;
+			}
+
+			if (isExisting) {
+				std::ofstream ofs;
+				ofs.open(ApplicationPreference::worksJson, std::ios::binary);
+
+				ofs << picojson::value(obj).serialize(true) << std::endl;
+				ofs.close();
+			}
+
+			ResetParams();
+		}
 
 	if (iExistingGUID != nullptr) {
 		struct stat statBuf;
 		ExePath exePath;
 		(void)_chdir(exePath.GetPath());
-		if (iExistingGUID->GetString() != "") {
+		if (iExistingGUID->GetString() != "" && !iExistingGUID->GetMouseSelected()) {
 			std::string path = exePath.GetPath();
 			path += "works\\" + iExistingGUID->GetString();
 			if (stat(path.c_str(), &statBuf) == 0) {
 				guid = iExistingGUID->GetString();
-				this->path = path;
+				this->path = ".\\" + iExistingGUID->GetString() + "\\";
 				iExistingGUID->RemakeHandle();
 
 				/********** JSON 読込 ***********/
@@ -416,7 +466,14 @@ void WorkRegisterScene::Update()
 					workerPath = item.get<picojson::object>()["Description"].get<std::string>();
 					workerPath = item.get<picojson::object>()["FilePath"].get<std::string>();
 					thumbnailPath = item.get<picojson::object>()["Thumbnail"].get<std::string>();
+					for (auto& item2 : item.get<picojson::object>()["Images"].get<picojson::array>()) {
+						imagesPath += item2.get<picojson::object>()["FilePath"].get<std::string>() + "\n";
+						imagePathVector.push_back(item2.get<picojson::object>()["FilePath"].get<std::string>());
+					}
 				}
+			}
+			else {
+				iExistingGUID->RemakeHandle();
 			}
 		}
 	}
@@ -550,31 +607,56 @@ void WorkRegisterScene::Update()
 
 			picojson::object& obj = val.get<picojson::object>();
 			picojson::array& lists = obj["Lists"].get<picojson::array>();
+			bool isExisting = false;
+			for (auto& item : lists) {
+				if (item.get<picojson::object>()["GUID"].get<std::string>() == guid) {
+					isExisting = true;
 
-			picojson::array* imagesList = new picojson::array;
+					item.get<picojson::object>()["Category"].get<std::string>() = iWorkCategory->GetString();
+					//item.get<picojson::object>()["GUID"].get<picojson::value>() = picojson::value(guid.c_str());
+					item.get<picojson::object>()["TitleName"].get<std::string>() = iWorkName->GetString();
+					item.get<picojson::object>()["Author"].get<std::string>() = iWorkAuthor->GetString();
+					item.get<picojson::object>()["Description"].get<std::string>() = iWorkDescription->GetString();
+					item.get<picojson::object>()["Directory"].get<std::string>() = path;
+					item.get<picojson::object>()["FilePath"].get<std::string>() = workerPath;
+					item.get<picojson::object>()["Thumbnail"].get<std::string>() = thumbnailPath;
+					item.get<picojson::object>()["Images"].get<picojson::array>().clear();
 
-			picojson::object* work = new picojson::object;
-			work->insert(std::make_pair("Category", picojson::value(iWorkCategory->GetString().c_str())));
-			work->insert(std::make_pair("GUID", picojson::value(guid.c_str())));
-			work->insert(std::make_pair("TitleName", picojson::value(iWorkName->GetString().c_str())));
-			work->insert(std::make_pair("Author", picojson::value(iWorkAuthor->GetString().c_str())));
-			work->insert(std::make_pair("Description", picojson::value(iWorkDescription->GetString().c_str())));
-			std::string pathJson = path.c_str();
-			work->insert(std::make_pair("Directory", picojson::value(pathJson)));
-			std::string workJson = workerPath.c_str();
-			work->insert(std::make_pair("FilePath", picojson::value(workJson)));
-			std::string thumbPath = thumbnailPath.c_str();
-			work->insert(std::make_pair("Thumbnail", picojson::value(thumbPath)));
+					for (auto& item2 : imagePathVector) {
+						picojson::object imageJsonObject;
+						imageJsonObject.insert(std::make_pair("FilePath", picojson::value(item2.c_str())));
+						item.get<picojson::object>()["Images"].get<picojson::array>().push_back(picojson::value(imageJsonObject));
+					}
 
-			for (auto& item : imagePathVector) {
-				picojson::object imageJsonObject;
-				imageJsonObject.insert(std::make_pair("FilePath", picojson::value(item.c_str())));
-				imagesList->push_back(picojson::value(imageJsonObject));
+					break;
+				}
 			}
+			if (!isExisting) {
+				picojson::array* imagesList = new picojson::array;
 
-			work->insert(std::make_pair("Images", picojson::value(*imagesList)));
+				picojson::object* work = new picojson::object;
+				work->insert(std::make_pair("Category", picojson::value(iWorkCategory->GetString().c_str())));
+				work->insert(std::make_pair("GUID", picojson::value(guid.c_str())));
+				work->insert(std::make_pair("TitleName", picojson::value(iWorkName->GetString().c_str())));
+				work->insert(std::make_pair("Author", picojson::value(iWorkAuthor->GetString().c_str())));
+				work->insert(std::make_pair("Description", picojson::value(iWorkDescription->GetString().c_str())));
+				std::string pathJson = path.c_str();
+				work->insert(std::make_pair("Directory", picojson::value(pathJson)));
+				std::string workJson = workerPath.c_str();
+				work->insert(std::make_pair("FilePath", picojson::value(workJson)));
+				std::string thumbPath = thumbnailPath.c_str();
+				work->insert(std::make_pair("Thumbnail", picojson::value(thumbPath)));
 
-			lists.push_back(picojson::value(*work));
+				for (auto& item : imagePathVector) {
+					picojson::object imageJsonObject;
+					imageJsonObject.insert(std::make_pair("FilePath", picojson::value(item.c_str())));
+					imagesList->push_back(picojson::value(imageJsonObject));
+				}
+
+				work->insert(std::make_pair("Images", picojson::value(*imagesList)));
+
+				lists.push_back(picojson::value(*work));
+			}
 
 			std::ofstream ofs;
 			ofs.open(ApplicationPreference::worksJson, std::ios::binary);
@@ -584,40 +666,52 @@ void WorkRegisterScene::Update()
 
 			/******** JSON 読込終了 *********/
 
-			guid = "";
-			path = "";
-			workerPath = "";
-			thumbnailPath = "";
-			imagesPath = "";
-			imagePathVector.clear();
-
-			iWorkName->RemakeHandle();
-			iWorkAuthor->RemakeHandle();
-			iWorkCategory->RemakeHandle();
-			iWorkDescription->RemakeHandle();
+			ResetParams();
 
 		}
 	}
 
-	if (dguid != nullptr)
-		if (dguid->GetText() != guid)
-			dguid->SetText(guid);
-
-	if (dWorkPath != nullptr)
-		if (dWorkPath->GetText() != workerPath)
-			dWorkPath->SetText(workerPath);
-
-	if (dThumbPath != nullptr)
-		if (dThumbPath->GetText() != thumbnailPath)
-			dThumbPath->SetText(thumbnailPath);
-
-	if (dImagesPath != nullptr)
-		if (dImagesPath->GetText() != imagesPath)
-			dImagesPath->SetText(imagesPath);
+	SetDisplayText(dguid, &guid);
+	SetDisplayText(dWorkPath, &workerPath);
+	SetDisplayText(dThumbPath, &thumbnailPath);
+	SetDisplayText(dImagesPath, &imagesPath);
 }
 
 void WorkRegisterScene::Draw()
 {
 	layer.Draw();
 	canvases.Draw();
+}
+
+void WorkRegisterScene::ResetParams()
+{
+	guid = "";
+	path = "";
+	workerPath = "";
+	thumbnailPath = "";
+	imagesPath = "";
+	imagePathVector.clear();
+
+	iWorkName->RemakeHandle();
+	iWorkAuthor->RemakeHandle();
+	iWorkCategory->RemakeHandle();
+	iWorkDescription->RemakeHandle();
+}
+
+void WorkRegisterScene::SetMiddleCenterText(ButtonObject* button)
+{
+	if (button != nullptr) {
+		button->GetTextObject()->SetPos(button->GetPos());
+		button->GetTextObject()->Move(PosVec(
+			(button->GetSize().x - button->GetTextObject()->GetTextWidth()) / 2.f,
+			(button->GetSize().y - button->GetTextObject()->GetTextHeight()) / 2.f));
+
+	}
+}
+
+void WorkRegisterScene::SetDisplayText(TextObject* text, std::string* value)
+{
+	if (text != nullptr)
+		if (text->GetText() != *value)
+			text->SetText(*value);
 }

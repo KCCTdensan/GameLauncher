@@ -202,7 +202,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		Input::MouseInput::Update(); // マウス更新処理
 		MusicPlayer::Update();
 
-		SceneManager::Collide();
+		if (GetWindowActiveFlag()) SceneManager::Collide();
 		SceneManager::Update();
 		SceneManager::Draw(); // シーン更新処理
 

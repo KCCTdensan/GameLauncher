@@ -56,6 +56,7 @@ public:
 		DeleteKeyInput(inputHandle);
 		inputHandle = MakeKeyInput(maxLength, cancelVaildFlag, singleCharOnlyFlag, numCharOnlyFlag);
 		textObject.SetText("");
+		inputText = "";
 	}
 
 	// IMEの入力専用の状態にするか，falseで通常描画に記述可能
@@ -130,6 +131,8 @@ public:
 	std::string GetString() { return inputText;	}
 	void SetString(std::string text) {
 		SetKeyInputString(text.c_str(), inputHandle);
+		textObject.SetText(text);
+		inputText = text;
 	}
 
 	// 更新描画
