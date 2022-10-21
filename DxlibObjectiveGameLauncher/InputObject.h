@@ -128,6 +128,9 @@ public:
 	}
 
 	std::string GetString() { return inputText;	}
+	void SetString(std::string text) {
+		SetKeyInputString(text.c_str(), inputHandle);
+	}
 
 	// XV•`‰æ
 	void Collide() override;

@@ -119,7 +119,31 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	iWorkDescription->SetInnerAnimation(.2f);
 	// formIndex++;
 
-	formIndex = 0;
+	formIndex = -1;
+
+	float spaceWriting = 80.f;
+
+	lExistingGUID = new TextObject(
+		PosVec(startButtonPos.x, startButtonPos.y + formIndex * (defaultButtonGap.y + defaultButtonSize.y)),
+		PosVec(), "smart10", "ä˘Ç…GUIDÇ™Ç†ÇÈèÍçáÇÕì¸óÕ", ColorPreset::textBlack, TextAlign::LEFT);
+	lExistingGUID->SetMaxWidth((int)spaceWriting);
+
+	iExistingGUID = new InputObject(
+		PosVec(startButtonPos.x + spaceWriting, startButtonPos.y + formIndex * (defaultButtonGap.y + defaultButtonSize.y)),
+		PosVec(defaultButtonSize.x - spaceWriting, defaultButtonSize.y));
+	iExistingGUID->SetupText("smart10", ColorPreset::textBlack);
+	iExistingGUID->SetInnerColor(
+		ColorPreset::inputInner,
+		ColorPreset::inputHovered,
+		ColorPreset::inputClicked,
+		ColorPreset::inputSelected);
+	iExistingGUID->SetOutlineColor(
+		ColorPreset::inputOuter,
+		2.f);
+	iExistingGUID->SetInnerAnimation(.2f);
+
+
+	formIndex++;
 
 	openDirectoryButtton = new ButtonObject(
 		PosVec(startButtonPos.x, startButtonPos.y + formIndex * (defaultButtonGap.y + defaultButtonSize.y)),
@@ -252,6 +276,8 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	layer.AddObject(dThumbPath);
 	layer.AddObject(lImagesPath);
 	layer.AddObject(dImagesPath);
+	layer.AddObject(lExistingGUID);
+	layer.AddObject(iExistingGUID);
 	layer.AddObject(openDirectoryButtton);
 	layer.AddObject(setWorkerButtton);
 	layer.AddObject(setThumbnailButtton);
@@ -323,6 +349,8 @@ void WorkRegisterScene::Update()
 		setThumbnailButtton->SetEnabled(false);
 		setImagesButtton->SetEnabled(false);
 		makeJsonDataButton->SetEnabled(false);
+
+		iExistingGUID->SetEnabled(true);
 	}
 	else {
 		iWorkName->SetEnabled(true);
@@ -334,6 +362,63 @@ void WorkRegisterScene::Update()
 		setThumbnailButtton->SetEnabled(true);
 		setImagesButtton->SetEnabled(true);
 		makeJsonDataButton->SetEnabled(true);
+
+		iExistingGUID->SetEnabled(false);
+	}
+
+	if (iExistingGUID != nullptr) {
+		struct stat statBuf;
+		ExePath exePath;
+		(void)_chdir(exePath.GetPath());
+		if (iExistingGUID->GetString() != "") {
+			std::string path = exePath.GetPath();
+			path += "works\\" + iExistingGUID->GetString();
+			if (stat(path.c_str(), &statBuf) == 0) {
+				guid = iExistingGUID->GetString();
+				this->path = path;
+				iExistingGUID->RemakeHandle();
+
+				/********** JSON ì«çû ***********/
+
+				ExePath exePath;
+				(void)_chdir(exePath.GetPath());
+
+				std::stringstream ss;
+				std::ifstream fs;
+				fs.open(ApplicationPreference::worksJson, std::ios::binary);
+
+				if (!fs.is_open()) {
+					return;
+				}
+
+				ss << fs.rdbuf();
+				fs.close();
+
+				picojson::value val;
+				ss >> val;
+				std::string err = picojson::get_last_error();
+				if (!err.empty()) {
+					std::cerr << err << std::endl;
+					return;
+				}
+
+				picojson::object& obj = val.get<picojson::object>();
+				picojson::array& lists = obj["Lists"].get<picojson::array>();
+
+				/********** JSON ì«çû ***********/
+
+				for (auto& item : lists) {
+					if (item.get<picojson::object>()["GUID"].get<std::string>() != guid) return;
+					iWorkCategory->SetString(item.get<picojson::object>()["Category"].get<std::string>());
+					iWorkName->SetString(item.get<picojson::object>()["TitleName"].get<std::string>());
+					iWorkAuthor->SetString(item.get<picojson::object>()["Author"].get<std::string>());
+					iWorkDescription->SetString(item.get<picojson::object>()["Description"].get<std::string>());
+					workerPath = item.get<picojson::object>()["Description"].get<std::string>();
+					workerPath = item.get<picojson::object>()["FilePath"].get<std::string>();
+					thumbnailPath = item.get<picojson::object>()["Thumbnail"].get<std::string>();
+				}
+			}
+		}
 	}
 
 	if (openDirectoryButtton != nullptr) {

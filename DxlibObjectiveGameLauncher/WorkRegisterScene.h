@@ -17,6 +17,7 @@
 #include <Windows.h>
 #include <tchar.h>
 #include "StringConvert.h"
+#include <sys/stat.h>
 
 class WorkRegisterScene :
     public SceneBase
@@ -54,6 +55,10 @@ private:
     InputObject* iWorkAuthor;
     InputObject* iWorkDescription;
 
+    TextObject* lExistingGUID;
+    InputObject* iExistingGUID;
+    
+
     TextObject* lguid;
     TextObject* lWorkPath;
     TextObject* lThumbPath;
@@ -68,5 +73,7 @@ private:
     ButtonObject* setThumbnailButtton; // ダイアログを開く
     ButtonObject* setImagesButtton; // ダイアログを開く
     ButtonObject* makeJsonDataButton; // picojson
+
+    ButtonObject* resetButton;
 };
 

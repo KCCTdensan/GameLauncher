@@ -94,9 +94,9 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 
 	ideleteList = new InputObject(
 		PosVec(
-			ApplicationPreference::GetBackgroundSize().x - 800.f,
-			ApplicationPreference::startScenePos + 50.f),
-		PosVec(60, 20));
+			ApplicationPreference::GetBackgroundSize().x - 700.f,
+			ApplicationPreference::startScenePos + 10.f),
+		PosVec(150, 30), 40, true, true, true);
 	ideleteList->SetupText(
 		"smart20", ColorPreset::textBlack);
 	ideleteList->SetInnerColor(
@@ -111,9 +111,9 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 
 	bdeleteList = new ButtonObject(
 		PosVec(
-			ApplicationPreference::GetBackgroundSize().x - 730.f,
-			ApplicationPreference::startScenePos + 50.f),
-		PosVec(20, 20), true, true);
+			ApplicationPreference::GetBackgroundSize().x - 530.f,
+			ApplicationPreference::startScenePos + 10.f),
+		PosVec(30, 30), true, true);
 	bdeleteList->SetInnerColor(
 		ColorPreset::yellowButtonInner,
 		ColorPreset::yellowButtonHovered,
@@ -215,7 +215,13 @@ void PlayerScene::Update()
 	if (bdeleteList != nullptr)
 		if (bdeleteList->GetMouseSelected()) {
 			bdeleteList->SetMouseOff();
-			MusicPlayer::DeleteFromList(std::atoi(ideleteList->GetString().c_str()));
+			int deleteIndex;
+			try {
+				deleteIndex = std::atoi(ideleteList->GetString().c_str());
+				MusicPlayer::DeleteFromList(deleteIndex);
+			}
+			catch (std::exception e) {
+			}
 			ideleteList->RemakeHandle();
 		}
 }
