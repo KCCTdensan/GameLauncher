@@ -39,7 +39,7 @@ void HomeScene::Update()
 		if (item->GetMouseSelected()) {
 			item->SetMouseOff();
 			std::string id = item->GetTag();
-			SceneManager::ChangeScene(item->GetTag(), new WorkScene(sharingScenes, item->GetTag()), false);
+			SceneManager::ChangeScene(item->GetTag(), new WorkScene(sharingScenes, item->GetTag()), false, true);
 		}
 	}
 
@@ -64,6 +64,14 @@ void HomeScene::Update()
 
 	if (val.get<picojson::object>()["Lists"].get<picojson::array>().size() != works.size())
 		SetupWorks();
+	int i = 0;
+	for (auto& item : val.get<picojson::object>()["Lists"].get<picojson::array>()) {
+		if (item.get<picojson::object>()["TitleName"].get<std::string>() != works[i]->GetTextObject()->GetOriginalText()) {
+			SetupWorks();
+			break;
+		}
+		i++;
+	}
 
 	/****************/
 
@@ -87,6 +95,8 @@ void HomeScene::SetupWorks()
 
 	layer.Clear();
 	canvases.Clear();
+
+	delete canvas; delete bg;
 
 	canvas = new CanvasObject(PosVec(0.f, ApplicationPreference::startScenePos), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y - ApplicationPreference::startScenePos), false);
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));

@@ -4,6 +4,7 @@ std::map<std::string, int> FontChest::handles;
 
 bool FontChest::CreateFontHandle(std::string handleName, std::string fontName, int fontSize, int fontThick, int fontType)
 {
+	handles.erase(handleName);
 	handles.emplace(handleName, CreateFontToHandle(fontName.c_str(), fontSize, fontThick, fontType));
 	return true;
 }

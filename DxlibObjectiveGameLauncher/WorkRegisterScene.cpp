@@ -469,7 +469,7 @@ void WorkRegisterScene::Update()
 			path += "works\\" + iExistingGUID->GetString();
 			if (stat(path.c_str(), &statBuf) == 0) {
 				guid = iExistingGUID->GetString();
-				this->path = ".\\" + iExistingGUID->GetString() + "\\";
+				this->path = ".\\works\\" + iExistingGUID->GetString() + "\\";
 				iExistingGUID->RemakeHandle();
 
 				/********** JSON ì«çû ***********/

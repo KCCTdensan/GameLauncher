@@ -50,8 +50,9 @@ public:
 	{}
 
 
-	~CanvasObject() 
+	~CanvasObject() override 
 	{
+		ObjectBase::~ObjectBase();
 		DeleteGraph(canvasId);
 	}
 

@@ -63,7 +63,10 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		//printfDx("%s\n", lists[i].get<picojson::object>()["GUID"].get<std::string>().c_str());
 		this->obj = lists[i].get<picojson::object>(); // •Û‘¶
 
-		std::string thumbnailName = "[work]Thumb:" + this->obj["GUID"].get<std::string>();
+		UUIDGenerator uuidGenarator;
+		std::string iuuid = uuidGenarator.GetGUID();
+
+		std::string thumbnailName = iuuid + "[work]Thumb:" + this->obj["GUID"].get<std::string>();
 		std::string thumbnailPath = /*this->obj["Directory"].get<std::string>() + */this->obj["Thumbnail"].get<std::string>();
 
 		ExePath exePath;
@@ -144,7 +147,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 			(void)_chdir(stringConvert.ConvertString(pathname).c_str());
 
 			// printfDx("%s\n", item.get<picojson::object>()["FilePath"].get<std::string>().c_str());
-			std::string imageName = "Image" + std::to_string(i) + ":" + this->obj["GUID"].get<std::string>();
+			std::string imageName = iuuid + "Image" + std::to_string(i) + ":" + this->obj["GUID"].get<std::string>();
 			std::string imagePath = /*this->obj["Directory"].get<std::string>() + */item.get<picojson::object>()["FilePath"].get<std::string>();
 
 			ImageChest::CreateImageHandle(imageName, imagePath);
@@ -313,18 +316,17 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 
 WorkScene::~WorkScene()
 {
-	for (const auto& font : fonts) {
-		FontChest::DeleteFontHandle(font.handleName);
-	}
+	SceneBase::~SceneBase();
 
 	for (auto& item : handleNames) {
 		ImageChest::DeleteImageHandle(item);
 	}
 
-	delete 
-		canvas, bg, thumbnail, category, title, author, guidText, description,
-		photoGalleryText, descriptionCanvas, thumbnailCanvas, imagesCanvas, launch, imageBackGround,
-		isBigImage, isBigCanvas, isBigPos, isBigSize;
+	delete canvas;	delete bg;
+	delete thumbnail; delete category; delete title; delete author; delete guidText;
+	delete description; delete photoGalleryText; delete descriptionCanvas;
+	delete thumbnailCanvas; delete imagesCanvas; delete launch; delete imageBackGround;
+	delete isBigImage; delete isBigCanvas; delete isBigPos; delete isBigSize;
 
 	for (auto& item : descriptionLines)
 		delete item;
