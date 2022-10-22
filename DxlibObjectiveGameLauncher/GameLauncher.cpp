@@ -16,6 +16,7 @@
 #include "ApplicationTime.h"
 #include "AppClose.h"
 #include "MouseInput.h"
+#include "KeyboardInput.h"
 #include "MusicPlayer.h"
 
 /*void InputUpdate(); // threadA
@@ -200,6 +201,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 		SetDrawScreen(DX_SCREEN_BACK); // 描画初期化
 		Input::MouseInput::Update(); // マウス更新処理
+		Input::KeyboardInput::Update(); // キーボード更新処理
 		MusicPlayer::Update();
 
 		if (GetWindowActiveFlag()) SceneManager::Collide();

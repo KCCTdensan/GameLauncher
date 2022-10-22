@@ -82,5 +82,7 @@ private:
 
     ButtonObject* clearButton;
     ButtonObject* deleteButton;
+
+    ButtonObject* imagesResetButton;
 };
 

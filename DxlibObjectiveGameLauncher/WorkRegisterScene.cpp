@@ -321,6 +321,21 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
 		PosVec(startDispPos.x + defaultDispGap.x + defaultFormSize.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y) + defaultFormSize.y)
 	);
+
+	imagesResetButton = new ButtonObject(
+		PosVec(75.f, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		PosVec(50.f, 50.f), true, true);
+	imagesResetButton->SetupText("smart10", "RE\nSET", ColorPreset::textBlack);
+	imagesResetButton->SetInnerColor(
+		ColorPreset::yellowButtonInner,
+		ColorPreset::yellowButtonHovered,
+		ColorPreset::yellowButtonClicked,
+		ColorPreset::yellowButtonSelected);
+	imagesResetButton->SetOutlineColor(
+		ColorPreset::yellowButtonOuter,
+		2.f);
+	imagesResetButton->SetInnerAnimation(.2f);
+
 	formIndex++;
 
 	layer.AddObject(bg);
@@ -350,6 +365,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	layer.AddObject(setThumbnailButtton);
 	layer.AddObject(setImagesButtton);
 	layer.AddObject(makeJsonDataButton);
+	layer.AddObject(imagesResetButton);
 	layer.AddObject(deleteButton);
 	layer.AddObject(clearButton);
 
@@ -379,6 +395,7 @@ void WorkRegisterScene::Update()
 	SetMiddleCenterText(makeJsonDataButton);
 	SetMiddleCenterText(clearButton);
 	SetMiddleCenterText(deleteButton);
+	SetMiddleCenterText(imagesResetButton);
 
 	bool isguid = guid == "" ? false : true;
 	iWorkName->SetEnabled(isguid);
@@ -520,6 +537,14 @@ void WorkRegisterScene::Update()
 			else {
 				iExistingGUID->RemakeHandle();
 			}
+		}
+	}
+
+	if (imagesResetButton != nullptr) {
+		if (imagesResetButton->GetMouseSelected()) {
+			imagesResetButton->SetMouseOff();
+			imagesPath = "";
+			imagePathVector.clear();
 		}
 	}
 

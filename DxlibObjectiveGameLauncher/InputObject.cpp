@@ -46,6 +46,12 @@ void InputObject::Update()
 				// printfDx("Exception\n");
 			}
 			inputText = text;
+
+			if (turnedOn) {
+				if (Input::KeyboardInput::KEY[KEY_INPUT_LALT] == 1) {
+					SetString(inputText + "\n");
+				}
+			}
 		}
 		else {
 			char text[inputStringMax] = "";

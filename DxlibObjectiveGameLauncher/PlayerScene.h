@@ -30,6 +30,7 @@ private:
     TextObject* songHandleName; // ƒnƒ“ƒhƒ‹”Ô†•\¦
     ButtonObject* startButton; // ‰Ÿ‚·‚²‚Æ‚É‰æ‘œØ‚è‘Ö‚¦
     ProgressObject* playBar;
+    ProgressObject* volumeBar;
     ButtonObject* loopButton; // 
 
     PlayListObject* playListObject;

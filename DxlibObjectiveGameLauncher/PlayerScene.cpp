@@ -40,6 +40,7 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 100.f),
 		PosVec(ApplicationPreference::GetBackgroundSize().x - 100.f, 50.f), false);
 	playBar->SetupSlider();
+	playBar->SetEnabledOutline(true);
 	playBar->GetSlider()->SetInnerColor(Color255());
 	playBar->GetSlider()->SetInnerColor(
 		Color255("#73D4C7"));
@@ -61,6 +62,19 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		ColorPreset::tileOuterMouse,
 		ColorPreset::tileOuterMouse,
 		ColorPreset::tileOuterMouse, 2.f);
+
+	volumeBar = new ProgressObject(
+		PosVec(
+			(ApplicationPreference::GetBackgroundSize().x - 100.f) / 2.f + 100.f,
+			ApplicationPreference::GetBackgroundSize().y - 200.f),
+		PosVec(75.f, 75.f), false);
+	volumeBar->SetupSlider();
+	volumeBar->SetEnabledOutline(true);
+	volumeBar->GetSlider()->SetInnerColor(Color255());
+	volumeBar->GetSlider()->SetInnerColor(
+		Color255("#73D4C7"));
+	volumeBar->SetInnerColor(Color255(200, 200, 200));
+	volumeBar->SetOutlineColor(Color255(0, 0, 0), 1.f);
 
 	playListObject = new PlayListObject(
 		PosVec(

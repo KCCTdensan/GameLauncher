@@ -96,8 +96,6 @@ void HomeScene::SetupWorks()
 	layer.Clear();
 	canvases.Clear();
 
-	delete canvas; delete bg;
-
 	canvas = new CanvasObject(PosVec(0.f, ApplicationPreference::startScenePos), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y - ApplicationPreference::startScenePos), false);
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
 
