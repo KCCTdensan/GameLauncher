@@ -178,4 +178,5 @@ void Header::SetSubtitle(std::string subtitle)
 {
 	if (subtitleLogo->GetText() == subtitle) return;
 	subtitleLogo->SetText(subtitle);
+	subtitleLogo->DeleteNewLine();
 }

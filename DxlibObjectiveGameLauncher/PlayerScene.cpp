@@ -23,6 +23,16 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		PosVec(50.f, ApplicationPreference::startScenePos + 125.f), PosVec(),
 		"smart20", "123456", ColorPreset::textBlack);
 
+	nextLabel = new TextObject(
+		PosVec(50.f, ApplicationPreference::startScenePos + 200.f), PosVec(),
+		"smart20", "NEXT...", ColorPreset::textBlack);
+	nextTitle = new TextObject(
+		PosVec(70.f, ApplicationPreference::startScenePos + 225.f), PosVec(),
+		"smart20", "NEXT TITLE", ColorPreset::textBlack);
+	nextAuthor = new TextObject(
+		PosVec(70.f, ApplicationPreference::startScenePos + 250.f), PosVec(),
+		"smart20", "NEXT AUTHOR", ColorPreset::textBlack);
+
 	startButton = new ButtonObject(
 		PosVec(
 			(ApplicationPreference::GetBackgroundSize().x - 100.f) / 2.f,
@@ -66,8 +76,8 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	volumeBar = new ProgressObject(
 		PosVec(
 			(ApplicationPreference::GetBackgroundSize().x - 100.f) / 2.f + 100.f,
-			ApplicationPreference::GetBackgroundSize().y - 200.f),
-		PosVec(75.f, 75.f), false);
+			ApplicationPreference::GetBackgroundSize().y - 200.f + 32.5f),
+		PosVec(150.f, 32.5f), false);
 	volumeBar->SetupSlider();
 	volumeBar->SetEnabledOutline(true);
 	volumeBar->GetSlider()->SetInnerColor(Color255());
@@ -145,9 +155,13 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	layer.AddObject(songTitle);
 	layer.AddObject(songAuthor);
 	layer.AddObject(songHandleName);
+	layer.AddObject(nextLabel);
+	layer.AddObject(nextTitle);
+	layer.AddObject(nextAuthor);
 	layer.AddObject(startButton);
 	layer.AddObject(loopButton);
 	layer.AddObject(playBar);
+	layer.AddObject(volumeBar);
 	layer.AddObject(playListObject);
 	layer.AddObject(ideleteList);
 	layer.AddObject(bdeleteList);
@@ -205,6 +219,11 @@ void PlayerScene::Update()
 			MusicPlayer::SetPlayingState(playStateRotater.GetNowState());
 		}
 
+	if (nextTitle != nullptr)
+		nextTitle->SetText(MusicPlayer::GetPlayNextData().title);
+	if (nextAuthor != nullptr)
+		nextAuthor->SetText(MusicPlayer::GetPlayNextData().author);
+
 	if (playListObject->GetSelectingIndex() >= 0) {
 		playListObject->SetMouseOffIndex();
 		MusicPlayer::PlayInList(playStateRotater.GetNowState(), playListObject->GetSelectingIndex(), true);
@@ -223,6 +242,10 @@ void PlayerScene::Update()
 		if (playBar->GetMouseClicked())
 			MusicPlayer::SetPlayingRate(playBar->GetValue());
 		playBar->SetValue(MusicPlayer::GetPlayingRate());
+	}
+
+	if (volumeBar != nullptr) {
+		MusicPlayer::SetVolumeRate(volumeBar->GetValue());
 	}
 
 	if (playListObject != nullptr) {

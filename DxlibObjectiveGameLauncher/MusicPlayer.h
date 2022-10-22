@@ -21,6 +21,8 @@ public:
 
 	static void SetPlayingRate(float value);
 
+	static void SetVolumeRate(float value);
+
 	static void AddToList(PlayData playData);
 	static void DeleteFromList(int index);
 	static void RemoveFromList(int index);

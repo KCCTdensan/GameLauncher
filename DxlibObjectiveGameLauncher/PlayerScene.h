@@ -25,6 +25,10 @@ private:
 
     PlayData* nowPlaying;
 
+    TextObject* nextLabel;
+    TextObject* nextTitle;
+    TextObject* nextAuthor;
+
     TextObject* songTitle;
     TextObject* songAuthor;
     TextObject* songHandleName; // ƒnƒ“ƒhƒ‹”Ô†•\¦

@@ -98,6 +98,8 @@ public:
 	// 描画開始位置を計算
 	void CalcPos();
 
+	void DeleteNewLine();
+
 	// 更新描画
 	void Collide() override {}
 	void Update() override;
