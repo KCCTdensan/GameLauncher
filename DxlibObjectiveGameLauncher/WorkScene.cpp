@@ -324,10 +324,10 @@ WorkScene::~WorkScene()
 		ImageChest::DeleteImageHandle(item);
 	}
 
-	delete canvas;	delete bg;
-	delete thumbnail; delete category; delete title; delete author; delete guidText;
-	delete description; delete photoGalleryText; delete descriptionCanvas;
-	delete thumbnailCanvas; delete imagesCanvas; delete launch; delete imageBackGround;
+	SaftyDelete(canvas);	SaftyDelete(bg);
+	SaftyDelete(thumbnail); SaftyDelete(category); SaftyDelete(title); SaftyDelete(author); SaftyDelete(guidText);
+	SaftyDelete(description); SaftyDelete(photoGalleryText); SaftyDelete(descriptionCanvas);
+	SaftyDelete(thumbnailCanvas); SaftyDelete(imagesCanvas); SaftyDelete(launch); SaftyDelete(imageBackGround);
 	delete isBigImage; delete isBigCanvas; delete isBigPos; delete isBigSize;
 
 	for (auto& item : descriptionLines)

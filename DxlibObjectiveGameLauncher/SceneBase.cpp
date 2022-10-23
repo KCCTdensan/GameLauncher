@@ -25,3 +25,9 @@ void SceneBase::DeletePopUpWindow(ObjectBase* canvas)
 {
 	layer.DeleteObject(canvas);
 }
+
+void SceneBase::SaftyDelete(ObjectBase* object)
+{
+	if (object != nullptr)
+		delete object;
+}

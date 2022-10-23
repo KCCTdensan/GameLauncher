@@ -152,6 +152,7 @@
     <ClCompile Include="PlayStateRotater.cpp">
       <Filter>Media</Filter>
     </ClCompile>
+    <ClCompile Include="RequiredFileChecker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -361,6 +362,7 @@
     <ClInclude Include="PlayStateRotater.h">
       <Filter>Media</Filter>
     </ClInclude>
+    <ClInclude Include="RequiredFileChecker.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">

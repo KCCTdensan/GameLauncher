@@ -29,6 +29,8 @@ private:
     TextObject* nextTitle;
     TextObject* nextAuthor;
 
+    TextObject* lvolume;
+
     TextObject* songTitle;
     TextObject* songAuthor;
     TextObject* songHandleName; // ƒnƒ“ƒhƒ‹”Ô†•\¦

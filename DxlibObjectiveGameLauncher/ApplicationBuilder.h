@@ -4,6 +4,7 @@
 #include "ApplicationTime.h"
 #include "WindowHolding.h"
 #include "Color255.h"
+#include "RequiredFileChecker.h"
 #include <locale.h>
 
 

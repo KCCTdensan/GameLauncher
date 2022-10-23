@@ -484,7 +484,7 @@ void WorkRegisterScene::Update()
 		if (iExistingGUID->GetString() != "" && !iExistingGUID->GetMouseSelected()) {
 			std::string path = exePath.GetPath();
 			path += "works\\" + iExistingGUID->GetString();
-			if (stat(path.c_str(), &statBuf) == 0) {
+			if (stat(path.c_str(), &statBuf) == 0 || iExistingGUID->GetString() == ApplicationPreference::initializeGUID) {
 				guid = iExistingGUID->GetString();
 				this->path = ".\\works\\" + iExistingGUID->GetString() + "\\";
 				iExistingGUID->RemakeHandle();

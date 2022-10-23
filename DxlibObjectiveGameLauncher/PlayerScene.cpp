@@ -85,6 +85,13 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		Color255("#73D4C7"));
 	volumeBar->SetInnerColor(Color255(200, 200, 200));
 	volumeBar->SetOutlineColor(Color255(0, 0, 0), 1.f);
+	volumeBar->SetValue(.4f);
+
+	lvolume = new TextObject(
+		PosVec(
+			(ApplicationPreference::GetBackgroundSize().x - 100.f) / 2.f + 100.f,
+			ApplicationPreference::GetBackgroundSize().y - 200.f), PosVec(),
+		"smart20", "VOLUME", ColorPreset::textBlack);
 
 	playListObject = new PlayListObject(
 		PosVec(
@@ -162,6 +169,7 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 	layer.AddObject(loopButton);
 	layer.AddObject(playBar);
 	layer.AddObject(volumeBar);
+	layer.AddObject(lvolume);
 	layer.AddObject(playListObject);
 	layer.AddObject(ideleteList);
 	layer.AddObject(bdeleteList);

@@ -21,7 +21,7 @@
 /// <param name="_size">オブジェクトの大きさ(2次元)</param>
 class ObjectBase
 {
-protected:
+public:
 	ObjectBase(PosVec _pos, PosVec _size)
 		:pos(_pos), size(_size),
 		enabled(true), mouseHit(false), mouseClicked(false), mouseSelected(false),
@@ -53,6 +53,8 @@ protected:
 	}
 
 	virtual ~ObjectBase();
+
+protected:
 
 	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); } // オブジェクト重なり判定において一番上ではなかった場合選択を解除する(推奨呼び出し)
 	void UpdateEnforcedMouseCollision();
