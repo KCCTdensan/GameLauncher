@@ -328,7 +328,11 @@ WorkScene::~WorkScene()
 	SaftyDelete(thumbnail); SaftyDelete(category); SaftyDelete(title); SaftyDelete(author); SaftyDelete(guidText);
 	SaftyDelete(description); SaftyDelete(photoGalleryText); SaftyDelete(descriptionCanvas);
 	SaftyDelete(thumbnailCanvas); SaftyDelete(imagesCanvas); SaftyDelete(launch); SaftyDelete(imageBackGround);
-	delete isBigImage; delete isBigCanvas; delete isBigPos; delete isBigSize;
+	
+	if (isBigPos == nullptr)
+		delete isBigPos;
+	if (isBigSize == nullptr)
+		delete isBigSize;
 
 	for (auto& item : descriptionLines)
 		delete item;

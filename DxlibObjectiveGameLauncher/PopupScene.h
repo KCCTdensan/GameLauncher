@@ -2,6 +2,7 @@
 #include "SceneBase.h"
 #include "PopupWindow.h"
 #include "MusicCanvas.h"
+#include "NoticeCanvas.h"
 #include <vector>
 
 class PopupScene :
@@ -19,6 +20,8 @@ private:
     std::vector<PopupWindow> popups;
 
     MusicCanvas* musicCanvas;
-    PopupWindow popupWindow;
+    NoticeCanvas* noticeCanvas;
+    PopupWindow popupMusic;
+    PopupWindow popupNotice;
 };
 

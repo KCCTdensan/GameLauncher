@@ -153,6 +153,8 @@
       <Filter>Media</Filter>
     </ClCompile>
     <ClCompile Include="RequiredFileChecker.cpp" />
+    <ClCompile Include="NoticeCanvas.cpp" />
+    <ClCompile Include="NoticeObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -363,6 +365,8 @@
       <Filter>Media</Filter>
     </ClInclude>
     <ClInclude Include="RequiredFileChecker.h" />
+    <ClInclude Include="NoticeCanvas.h" />
+    <ClInclude Include="NoticeObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">

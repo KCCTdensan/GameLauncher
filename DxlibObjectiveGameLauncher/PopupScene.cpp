@@ -3,9 +3,13 @@
 PopupScene::PopupScene()
 {
 	musicCanvas = new MusicCanvas();
-	popupWindow.Setup(musicCanvas);
+	popupMusic.Setup(musicCanvas);
+
+	noticeCanvas = new NoticeCanvas();
+	popupNotice.Setup(noticeCanvas);
 
 	//popups.push_back(popupWindow);
+	popups.push_back(popupNotice);
 }
 
 void PopupScene::Collide()
