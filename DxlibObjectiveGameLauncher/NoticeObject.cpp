@@ -1,6 +1,6 @@
 #include "NoticeObject.h"
 
-NoticeObject::NoticeObject(std::string text, std::string handlename)
+NoticeObject::NoticeObject(std::string text, std::string handlename, std::string title)
 	: lifeMaxRemain(5.f)
 {
 	timeValue = lifeMaxRemain;
@@ -50,6 +50,11 @@ NoticeObject::NoticeObject(std::string text, std::string handlename)
 		PosVec(noticeInitializePos.x + textOffset.x, noticeInitializePos.y + textOffset.y),
 		PosVec(), handlename, text);
 	noticeText->SetMaxWidth((int)(noticeSize.x - 2 * textOffset.x));
+
+	titleText = new TextObject(
+		noticeInitializePos,
+		PosVec(), handlename, title);
+	titleText->SetMaxWidth((int)(noticeSize.x - 2 * textOffset.x));
 }
 
 NoticeObject::~NoticeObject()

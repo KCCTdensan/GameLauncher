@@ -1,4 +1,5 @@
 #include "PlayerScene.h"
+#include "PopupScene.h"
 
 PlayerScene::PlayerScene()
 	: bg(nullptr), loopButton(nullptr), nowPlaying(nullptr), playBar(nullptr), playListObject(nullptr),
@@ -278,6 +279,7 @@ void PlayerScene::Update()
 			try {
 				deleteIndex = std::atoi(ideleteList->GetString().c_str());
 				MusicPlayer::DeleteFromList(deleteIndex);
+				sharingScenes->popupScene->MakeNotice(std::to_string(deleteIndex) + "番をプレイリストから削除しました。");
 			}
 			catch (std::exception e) {
 			}

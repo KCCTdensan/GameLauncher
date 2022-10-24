@@ -54,7 +54,7 @@ void PopupScene::Draw()
 	}
 }
 
-void PopupScene::MakeNotice(std::string text)
+void PopupScene::MakeNotice(std::string text, std::string title)
 {
-	noticeCanvas->MakeNotice(text);
+	noticeCanvas->MakeNotice(text, title);
 }

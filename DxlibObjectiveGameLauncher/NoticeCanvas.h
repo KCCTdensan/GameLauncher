@@ -11,7 +11,7 @@ public:
     NoticeCanvas();
 
     void UpdateAction() override;
-    void MakeNotice(std::string text);
+    void MakeNotice(std::string text, std::string title);
 
 private:
 
