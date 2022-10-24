@@ -539,7 +539,7 @@ void WorkRegisterScene::Update()
 			}
 			else {
 				iExistingGUID->RemakeHandle();
-				sharingScenes->popupScene->MakeNotice("–³Œø‚ÈGUID‚Å‚·B");
+				sharingScenes->popupScene->MakeNotice("–³Œø‚ÈGUID‚Å‚·B", "ERROR");
 			}
 		}
 	}

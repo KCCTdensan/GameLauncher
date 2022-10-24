@@ -14,6 +14,7 @@ public:
 	static PlayData GetPlayingData();
 	static PlayData GetPlayNextData(int offset = 1);
 	static float GetPlayingRate();
+	static PlayState GetPlayState() { return playState; }
 	static int GetPlayingIndex() { return playingIndex; }
 	static bool GetPlaying() { return playing; }
 

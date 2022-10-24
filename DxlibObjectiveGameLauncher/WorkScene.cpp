@@ -8,7 +8,7 @@ WorkScene::WorkScene()
 	thumbnail(nullptr), category(nullptr), title(nullptr), author(nullptr), guidText(nullptr), description(nullptr), descriptionLines(),
 	launch(nullptr),
 	imagesCanvas(nullptr), isBigCanvas(nullptr), isBigImage(nullptr), isBigPos(nullptr), isBigSize(nullptr), photoGalleryText(nullptr),
-	imageBackGround(nullptr)
+	imageBackGround(nullptr), copyGUID(nullptr)
 {}
 
 WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
@@ -18,7 +18,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 	thumbnail(nullptr), category(nullptr), title(nullptr), author(nullptr), guidText(nullptr), description(nullptr), descriptionLines(),
 	launch(nullptr),
 	imagesCanvas(nullptr), isBigCanvas(nullptr), isBigImage(nullptr), isBigPos(nullptr), isBigSize(nullptr), photoGalleryText(nullptr),
-	imageBackGround(nullptr)
+	imageBackGround(nullptr), copyGUID(nullptr)
 {
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
 	bg->SetInnerColor(ColorPreset::bgColor); // 非キャンバス追加オブジェクト(常に同じ背景)
@@ -261,6 +261,18 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		openWeb->SetOutlineColor(ColorPreset::yellowButtonOuter, 3.f);
 		openWeb->SetupText("smart30", "Open In Browser", ColorPreset::textObject, TextAlign::LEFT);
 
+		copyGUID = new ButtonObject(
+			PosVec(650.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 120.f),
+			PosVec(100, 25.f), true, true);
+		copyGUID->SetInnerColor(
+			ColorPreset::yellowButtonInner,
+			ColorPreset::yellowButtonHovered,
+			ColorPreset::yellowButtonClicked,
+			ColorPreset::yellowButtonSelected);
+		copyGUID->SetInnerAnimation(.1f);
+		copyGUID->SetOutlineColor(ColorPreset::yellowButtonOuter, 3.f);
+		copyGUID->SetupText("smart20", "COPY", ColorPreset::textObject, TextAlign::LEFT);
+
 		if (this->obj["URL"].get<std::string>() == "") openWeb->SetEnabled(false);
 
 		/*openWeb->GetTextObject()->Move(PosVec(
@@ -298,6 +310,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		layer.AddObject(title);
 		layer.AddObject(author);
 		layer.AddObject(guidText);
+		layer.AddObject(copyGUID);
 		layer.AddObject(description);
 		layer.AddObject(photoGalleryText);
 
@@ -315,6 +328,7 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 	fonts.push_back(FontHandle("smart50", "03スマートフォントUI", 50, 15));
 	fonts.push_back(FontHandle("smart30", "03スマートフォントUI", 30, 15));
 	fonts.push_back(FontHandle("smart25", "03スマートフォントUI", 25, 15));
+	fonts.push_back(FontHandle("smart20", "03スマートフォントUI", 20, 15));
 }
 
 WorkScene::~WorkScene()
@@ -381,7 +395,49 @@ void WorkScene::Update()
 			PosVec(launch->GetPos().x + launch->GetSize().x, launch->GetPos().y + launch->GetSize().y));
 	}
 
+	if (copyGUID != nullptr) {
+		copyGUID->GetTextObject()->SetPos(copyGUID->GetPos());
+		copyGUID->GetTextObject()->Move(PosVec(
+			(copyGUID->GetSize().x - copyGUID->GetTextObject()->GetTextWidth()) / 2.f,
+			(copyGUID->GetSize().y - copyGUID->GetTextObject()->GetTextHeight()) / 2.f));
+		copyGUID->GetTextObject()->SetForcedArea(
+			copyGUID->GetPos(),
+			PosVec(copyGUID->GetPos().x + copyGUID->GetSize().x, copyGUID->GetPos().y + copyGUID->GetSize().y));
+	}
+
 	sharingScenes->header->SetSubtitle(this->obj["TitleName"].get<std::string>());
+
+	if (copyGUID != nullptr)
+		if (copyGUID->GetMouseSelected()) {
+			copyGUID->SetMouseOff();
+
+			if (!::OpenClipboard(GetMainWindowHandle())) {
+				sharingScenes->popupScene->MakeNotice("クリップボードを開けませんでした。", "ERROR");
+				return;
+			}
+
+			if (!::EmptyClipboard()) {
+				::CloseClipboard();
+				sharingScenes->popupScene->MakeNotice("クリップボードをクリアできませんでした。", "ERROR");
+				return;
+			}
+
+			HGLOBAL hGlobal = GlobalAlloc(GHND, guid.length() + 1);
+			if (!hGlobal) {
+				::CloseClipboard();
+				sharingScenes->popupScene->MakeNotice("クリップボードにてメモリを確保できませんでした。", "ERROR");
+			}
+			else {
+				LPTSTR p = (LPTSTR)GlobalLock(hGlobal);
+				wsprintf(p, guid.c_str());
+				GlobalUnlock(hGlobal);
+
+				::SetClipboardData(CF_TEXT, hGlobal);
+
+				::CloseClipboard();
+				sharingScenes->popupScene->MakeNotice("クリップボードにコピーしました。");
+			}
+		}
 
 	if (openWeb != nullptr)
 		if (openWeb->GetMouseSelected() && this->obj["URL"].get<std::string>() != "") {
@@ -427,7 +483,7 @@ void WorkScene::Update()
 				playData.handle = MusicChest::GetMusicHandle(this->obj["GUID"].get<std::string>());
 
 				if (playData.handle < 0) {
-					sharingScenes->popupScene->MakeNotice("ファイルが見つからない、もしくは開けませんでした。");
+					sharingScenes->popupScene->MakeNotice("ファイルが見つからない、もしくは開けませんでした。", "ERROR");
 				}
 				else {
 					sharingScenes->popupScene->MakeNotice("音声ファイル読み込み完了");
@@ -443,24 +499,69 @@ void WorkScene::Update()
 			}
 			else {
 
-				// 実行
-				ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
-				switch (GetLastError())
-				{
-				case ERROR_FILE_NOT_FOUND:
-					sharingScenes->popupScene->MakeNotice("ファイルが見つかりませんでした。");
-					break;
-				case ERROR_PATH_NOT_FOUND:
-					sharingScenes->popupScene->MakeNotice("パスが見つかりませんでした。");
-					break;
-				case ERROR_ACCESS_DENIED:
-					sharingScenes->popupScene->MakeNotice("アクセス拒否されました。");
-					break;
-				case ERROR_NOT_ENOUGH_MEMORY:
-					sharingScenes->popupScene->MakeNotice("メモリ不足です。");
-					break;
-				default:
-					break;
+				const char* ext = std::strrchr(this->obj["FilePath"].get<std::string>().c_str(), '.');
+
+				bool normalLaunch = true;
+
+				if (ext) {
+					std::string extNoticeText = "拡張子を取得しました。: ";
+					extNoticeText += ext;
+					sharingScenes->popupScene->MakeNotice(extNoticeText);
+					std::string extname = ext;
+					if (
+						extname == ".wav" || extname == ".WAV" ||
+						extname == ".mp3" || extname == ".MP3" ||
+						extname == ".ogg" || extname == ".Ogg" || extname == "Ogg" ||
+						extname == ".opus" || extname == ".OPUS") {
+						sharingScenes->popupScene->MakeNotice("拡張子が音楽ファイルであったため音楽プレイヤーで読込を開始します。");
+						normalLaunch = false;
+
+						PlayData playData;
+						MusicChest::CreateMusicHandle(this->obj["GUID"].get<std::string>(), this->obj["FilePath"].get<std::string>());
+
+						playData.title = this->obj["TitleName"].get<std::string>();
+						playData.author = this->obj["Author"].get<std::string>();
+						playData.handle = MusicChest::GetMusicHandle(this->obj["GUID"].get<std::string>());
+
+						if (playData.handle < 0) {
+							sharingScenes->popupScene->MakeNotice("ファイルが見つからない、もしくは開けませんでした。");
+						}
+						else {
+							sharingScenes->popupScene->MakeNotice("音声ファイル読み込み完了");
+						}
+
+						MusicPlayer::AddToList(playData);
+
+						// 元のディレクトリに戻す
+						returnId = _chdir(cwd);
+						(void)_chdir(exePath.GetPath());
+
+						SceneManager::ChangeScene("Music Player", new PlayerScene(sharingScenes));
+					}
+				}
+				else {
+					sharingScenes->popupScene->MakeNotice("拡張子のないファイルです。");
+				}
+				if (normalLaunch) {
+					// 実行
+					ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
+					switch (GetLastError())
+					{
+					case ERROR_FILE_NOT_FOUND:
+						sharingScenes->popupScene->MakeNotice("ファイルが見つかりませんでした。", "ERROR");
+						break;
+					case ERROR_PATH_NOT_FOUND:
+						sharingScenes->popupScene->MakeNotice("パスが見つかりませんでした。", "ERROR");
+						break;
+					case ERROR_ACCESS_DENIED:
+						sharingScenes->popupScene->MakeNotice("アクセス拒否されました。", "ERROR");
+						break;
+					case ERROR_NOT_ENOUGH_MEMORY:
+						sharingScenes->popupScene->MakeNotice("メモリ不足です。", "ERROR");
+						break;
+					default:
+						break;
+					}
 				}
 			}
 			// 元のディレクトリに戻す

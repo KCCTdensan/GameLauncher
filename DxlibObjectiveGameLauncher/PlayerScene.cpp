@@ -46,6 +46,8 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		ColorPreset::yellowButtonSelected);
 	startButton->SetInnerAnimation(.1f);
 	startButton->SetOutlineColor(ColorPreset::yellowButtonOuter, 3.f);
+	startButton->SetImageSize(PosVec(75.f, 75.f));
+	startButton->SetImageTurnFlag(false, false);
 
 	playBar = new ProgressObject(
 		PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 100.f),
@@ -73,6 +75,8 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		ColorPreset::tileOuterMouse,
 		ColorPreset::tileOuterMouse,
 		ColorPreset::tileOuterMouse, 2.f);
+	loopButton->SetImageSize(PosVec(75.f, 75.f));
+	loopButton->SetImageTurnFlag(false, false);
 
 	volumeBar = new ProgressObject(
 		PosVec(
@@ -158,6 +162,39 @@ PlayerScene::PlayerScene(SharingScenes* _sharingScenes)
 		2.f);
 	bdeleteList->SetInnerAnimation(.2f);
 
+	/********** JSON 読込 ***********/
+
+	std::stringstream ss;
+	std::ifstream fs;
+	fs.open(ApplicationPreference::setJson, std::ios::binary);
+
+	if (!fs.is_open()) {
+		return;
+	}
+
+	ss << fs.rdbuf();
+	fs.close();
+
+	picojson::value val;
+	ss >> val;
+	std::string err = picojson::get_last_error();
+	if (!err.empty()) {
+		std::cerr << err << std::endl;
+		return;
+	}
+
+	picojson::object& obj = val.get<picojson::object>();
+	picojson::object& jPlayer = obj["Player"].get<picojson::object>();
+
+	ImageChest::CreateImageHandle("Player_play", jPlayer["play"].get<std::string>());
+	ImageChest::CreateImageHandle("Player_stop", jPlayer["stop"].get<std::string>());
+	ImageChest::CreateImageHandle("Player_noloop", jPlayer["noloop"].get<std::string>());
+	ImageChest::CreateImageHandle("Player_oneloop", jPlayer["oneloop"].get<std::string>());
+	ImageChest::CreateImageHandle("Player_loop", jPlayer["loop"].get<std::string>());
+	ImageChest::CreateImageHandle("Player_shuffle", jPlayer["shuffle"].get<std::string>());
+
+	/******** JSON 読込終了 *********/
+
 	layer.AddObject(bg);
 
 	layer.AddObject(songTitle);
@@ -212,7 +249,7 @@ void PlayerScene::Update()
 
 	}
 
-	if (startButton != nullptr)
+	if (startButton != nullptr) {
 		if (startButton->GetMouseSelected()) {
 			startButton->SetMouseOff();
 			if (!MusicPlayer::GetPlaying())
@@ -221,12 +258,39 @@ void PlayerScene::Update()
 				MusicPlayer::StopInList();
 		}
 
-	if (loopButton != nullptr)
+		if (MusicPlayer::GetPlaying()) {
+			startButton->SetImageHandle(ImageChest::GetImageHandle("Player_stop"));
+		}
+		else {
+			startButton->SetImageHandle(ImageChest::GetImageHandle("Player_play"));
+		}
+	}
+
+	if (loopButton != nullptr) {
 		if (loopButton->GetMouseSelected()) {
 			loopButton->SetMouseOff();
 			playStateRotater.Rotate();
 			MusicPlayer::SetPlayingState(playStateRotater.GetNowState());
 		}
+		PlayState playState = MusicPlayer::GetPlayState();
+		switch (playState)
+		{
+		case PlayState::SIMPLE:
+			loopButton->SetImageHandle(ImageChest::GetImageHandle("Player_noloop"));
+			break;
+		case PlayState::ONE_LOOP:
+			loopButton->SetImageHandle(ImageChest::GetImageHandle("Player_oneloop"));
+			break;
+		case PlayState::ALL_LOOP:
+			loopButton->SetImageHandle(ImageChest::GetImageHandle("Player_loop"));
+			break;
+		case PlayState::RANDOM:
+			loopButton->SetImageHandle(ImageChest::GetImageHandle("Player_shuffle"));
+			break;
+		default:
+			break;
+		}
+	}
 
 	if (nextTitle != nullptr)
 		nextTitle->SetText(MusicPlayer::GetPlayNextData().title);
@@ -273,7 +337,7 @@ void PlayerScene::Update()
 	}
 
 	if (bdeleteList != nullptr)
-		if (bdeleteList->GetMouseSelected()) {
+		if (bdeleteList->GetMouseSelected() && ideleteList->GetString() != "") {
 			bdeleteList->SetMouseOff();
 			int deleteIndex;
 			try {
@@ -282,6 +346,7 @@ void PlayerScene::Update()
 				sharingScenes->popupScene->MakeNotice(std::to_string(deleteIndex) + "番をプレイリストから削除しました。");
 			}
 			catch (std::exception e) {
+				sharingScenes->popupScene->MakeNotice("有効な数字を記入してください", "ERROR");
 			}
 			ideleteList->RemakeHandle();
 		}

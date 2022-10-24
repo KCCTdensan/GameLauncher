@@ -44,5 +44,6 @@ private:
     ButtonObject* bdeleteList;
 
     PlayStateRotater playStateRotater;
+
 };
 

@@ -262,8 +262,11 @@ void LauncherScene::Update()
 	if (launch != nullptr) {
 		launch->GetTextObject()->SetPos(launch->GetPos());
 		launch->GetTextObject()->Move(PosVec(
-			(thumbnailSize.x - launch->GetTextObject()->GetTextWidth()) / 2.f,
-			(150.f - launch->GetTextObject()->GetTextHeight()) / 2.f));
+			(launch->GetSize().x - launch->GetTextObject()->GetTextWidth()) / 2.f,
+			(launch->GetSize().y - launch->GetTextObject()->GetTextHeight()) / 2.f));
+		launch->GetTextObject()->SetForcedArea(
+			launch->GetPos(),
+			PosVec(launch->GetPos().x + launch->GetSize().x, launch->GetPos().y + launch->GetSize().y));
 
 	}
 
