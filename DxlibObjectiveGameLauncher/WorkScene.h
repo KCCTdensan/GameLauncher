@@ -51,6 +51,7 @@ private:
 
     ButtonObject* openWeb;
     ButtonObject* launch;
+    ButtonObject* copyGUID;
 
     RectangleObject* imageBackGround;
 

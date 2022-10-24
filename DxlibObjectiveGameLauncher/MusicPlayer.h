@@ -14,12 +14,15 @@ public:
 	static PlayData GetPlayingData();
 	static PlayData GetPlayNextData(int offset = 1);
 	static float GetPlayingRate();
+	static PlayState GetPlayState() { return playState; }
 	static int GetPlayingIndex() { return playingIndex; }
 	static bool GetPlaying() { return playing; }
 
 	static void SetPlayingState(PlayState playState);
 
 	static void SetPlayingRate(float value);
+
+	static void SetVolumeRate(float value);
 
 	static void AddToList(PlayData playData);
 	static void DeleteFromList(int index);

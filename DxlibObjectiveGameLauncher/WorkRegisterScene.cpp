@@ -1,5 +1,6 @@
 #include "WorkRegisterScene.h"
 #include "ExePath.h"
+#include "PopupScene.h"
 
 WorkRegisterScene::WorkRegisterScene()
 	:iWorkName(nullptr), iWorkAuthor(nullptr), iWorkDescription(nullptr),
@@ -321,6 +322,21 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 		PosVec(startDispPos.x + defaultDispGap.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
 		PosVec(startDispPos.x + defaultDispGap.x + defaultFormSize.x, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y) + defaultFormSize.y)
 	);
+
+	imagesResetButton = new ButtonObject(
+		PosVec(75.f, startDispPos.y + formIndex * (defaultDispGap.y + defaultDispSize.y)),
+		PosVec(50.f, 50.f), true, true);
+	imagesResetButton->SetupText("smart10", "RE\nSET", ColorPreset::textBlack);
+	imagesResetButton->SetInnerColor(
+		ColorPreset::yellowButtonInner,
+		ColorPreset::yellowButtonHovered,
+		ColorPreset::yellowButtonClicked,
+		ColorPreset::yellowButtonSelected);
+	imagesResetButton->SetOutlineColor(
+		ColorPreset::yellowButtonOuter,
+		2.f);
+	imagesResetButton->SetInnerAnimation(.2f);
+
 	formIndex++;
 
 	layer.AddObject(bg);
@@ -350,6 +366,7 @@ WorkRegisterScene::WorkRegisterScene(SharingScenes* _sharingScenes)
 	layer.AddObject(setThumbnailButtton);
 	layer.AddObject(setImagesButtton);
 	layer.AddObject(makeJsonDataButton);
+	layer.AddObject(imagesResetButton);
 	layer.AddObject(deleteButton);
 	layer.AddObject(clearButton);
 
@@ -379,6 +396,7 @@ void WorkRegisterScene::Update()
 	SetMiddleCenterText(makeJsonDataButton);
 	SetMiddleCenterText(clearButton);
 	SetMiddleCenterText(deleteButton);
+	SetMiddleCenterText(imagesResetButton);
 
 	bool isguid = guid == "" ? false : true;
 	iWorkName->SetEnabled(isguid);
@@ -455,6 +473,7 @@ void WorkRegisterScene::Update()
 
 				ofs << picojson::value(obj).serialize(true) << std::endl;
 				ofs.close();
+				sharingScenes->popupScene->MakeNotice(ApplicationPreference::worksJson + "に保存しました。");
 			}
 
 			ResetParams();
@@ -467,9 +486,9 @@ void WorkRegisterScene::Update()
 		if (iExistingGUID->GetString() != "" && !iExistingGUID->GetMouseSelected()) {
 			std::string path = exePath.GetPath();
 			path += "works\\" + iExistingGUID->GetString();
-			if (stat(path.c_str(), &statBuf) == 0) {
+			if (stat(path.c_str(), &statBuf) == 0 || iExistingGUID->GetString() == ApplicationPreference::initializeGUID) {
 				guid = iExistingGUID->GetString();
-				this->path = ".\\" + iExistingGUID->GetString() + "\\";
+				this->path = ".\\works\\" + iExistingGUID->GetString() + "\\";
 				iExistingGUID->RemakeHandle();
 
 				/********** JSON 読込 ***********/
@@ -516,10 +535,20 @@ void WorkRegisterScene::Update()
 						imagePathVector.push_back(item2.get<picojson::object>()["FilePath"].get<std::string>());
 					}
 				}
+				sharingScenes->popupScene->MakeNotice("有効なデータ発見しました");
 			}
 			else {
 				iExistingGUID->RemakeHandle();
+				sharingScenes->popupScene->MakeNotice("無効なGUIDです。", "ERROR");
 			}
+		}
+	}
+
+	if (imagesResetButton != nullptr) {
+		if (imagesResetButton->GetMouseSelected()) {
+			imagesResetButton->SetMouseOff();
+			imagesPath = "";
+			imagePathVector.clear();
 		}
 	}
 
@@ -544,6 +573,9 @@ void WorkRegisterScene::Update()
 				fs.close();
 			}
 			ShellExecute(GetMainWindowHandle(), "open", path.c_str(), NULL, NULL, SW_SHOWNORMAL);
+			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
+			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
+			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
 		}
 	}
 
@@ -710,6 +742,8 @@ void WorkRegisterScene::Update()
 
 			ofs << picojson::value(obj).serialize(true) << std::endl;
 			ofs.close();
+
+			sharingScenes->popupScene->MakeNotice(ApplicationPreference::worksJson+"に保存しました。");
 
 			/******** JSON 読込終了 *********/
 

@@ -28,10 +28,6 @@ Header::Header()
 		navLinks[i]->SetOuterAnimation(0);
 	}
 
-	/*navLinks[0].SetupText("mplus25", "Debug", ColorPreset::titleLogo);
-	navLinks[1].SetupText("mplus25", "Home", ColorPreset::titleLogo);
-	navLinks[2].SetupText("mplus25", "Home", ColorPreset::titleLogo);*/
-
 	for (i = 0; i < ApplicationPreference::headerButtonNum; i++) {
 		navLinks[i]->SetupText("mplus40", sceneSets[i].sceneName, ColorPreset::titleLogo);
 		navLinks[i]->GetTextObject()->Move(PosVec(7.f, 7.f));
@@ -158,6 +154,16 @@ void Header::Update()
 		SceneManager::ChangeSceneForward();
 	}
 
+	if (SceneManager::GetSceneHistoryPosition() == 0)
+		arrowButtons[1]->SetEnabled(false);
+	else
+		arrowButtons[1]->SetEnabled(true);
+
+	if (SceneManager::GetSceneHistoryPosition() == SceneManager::GetSceneHistorMaxPosition())
+		arrowButtons[0]->SetEnabled(false);
+	else
+		arrowButtons[0]->SetEnabled(true);
+
 	std::string titleName = titleLogo->GetText() + " : " + subtitleLogo->GetText();
 
 	SetMainWindowText(titleName.c_str()); // アプリのタイトル名の変更
@@ -172,4 +178,5 @@ void Header::SetSubtitle(std::string subtitle)
 {
 	if (subtitleLogo->GetText() == subtitle) return;
 	subtitleLogo->SetText(subtitle);
+	subtitleLogo->DeleteNewLine();
 }

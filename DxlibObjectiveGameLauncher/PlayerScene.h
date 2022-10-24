@@ -25,11 +25,18 @@ private:
 
     PlayData* nowPlaying;
 
+    TextObject* nextLabel;
+    TextObject* nextTitle;
+    TextObject* nextAuthor;
+
+    TextObject* lvolume;
+
     TextObject* songTitle;
     TextObject* songAuthor;
     TextObject* songHandleName; // ƒnƒ“ƒhƒ‹”Ô†•\¦
     ButtonObject* startButton; // ‰Ÿ‚·‚²‚Æ‚É‰æ‘œØ‚è‘Ö‚¦
     ProgressObject* playBar;
+    ProgressObject* volumeBar;
     ButtonObject* loopButton; // 
 
     PlayListObject* playListObject;
@@ -37,5 +44,6 @@ private:
     ButtonObject* bdeleteList;
 
     PlayStateRotater playStateRotater;
+
 };
 

@@ -152,6 +152,12 @@
     <ClCompile Include="PlayStateRotater.cpp">
       <Filter>Media</Filter>
     </ClCompile>
+    <ClCompile Include="RequiredFileChecker.cpp" />
+    <ClCompile Include="NoticeObject.cpp" />
+    <ClCompile Include="NoticeCanvas.cpp">
+      <Filter>Scenes\Popup</Filter>
+    </ClCompile>
+    <ClCompile Include="NoticeGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -361,6 +367,10 @@
     <ClInclude Include="PlayStateRotater.h">
       <Filter>Media</Filter>
     </ClInclude>
+    <ClInclude Include="RequiredFileChecker.h" />
+    <ClInclude Include="NoticeCanvas.h" />
+    <ClInclude Include="NoticeObject.h" />
+    <ClInclude Include="NoticeGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">

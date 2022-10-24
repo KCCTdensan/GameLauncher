@@ -22,6 +22,7 @@ public:
 	static bool ChangeSceneBackward();
 	static bool ChangeSceneForward();
 	static int GetSceneHistoryPosition() { return sceneHistoryPosition; }
+	static int GetSceneHistorMaxPosition() { return ApplicationPreference::sceneHistories - 1; }
 	static bool UpdateForwardBackwardScene(int forwardButton, int forwardFrame, int backwardButton, int backwardFrame);
 
 	static SharingScenes* GetSharingScenes() {
@@ -36,8 +37,6 @@ public:
 
 private:
 	static bool beInitialized;
-	static bool isAddingMap;
-	static bool deleteNotAddedScene;
 	static SceneSet current;
 	static std::map<std::string, SceneBase*> scenes;
 	static std::array<SceneSet, ApplicationPreference::sceneHistories> sceneHistory;

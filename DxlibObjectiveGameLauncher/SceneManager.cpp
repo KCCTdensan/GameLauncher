@@ -6,8 +6,6 @@ std::map<std::string, SceneBase*> SceneManager::scenes;
 std::array<SceneSet, ApplicationPreference::sceneHistories> SceneManager::sceneHistory{};
 int SceneManager::sceneHistoryPosition = 0;
 bool SceneManager::beInitialized = false;
-bool SceneManager::isAddingMap = false;
-bool SceneManager::deleteNotAddedScene = false;
 SceneSet SceneManager::blankScene = SceneSet("_blank", new BlankRedirectScene());
 SceneSet SceneManager::current = SceneSet("", nullptr);
 Header* SceneManager::header = nullptr;
@@ -47,8 +45,6 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 	bool changed = false;
 	//if (!isAddingMap && SceneManager::deleteNotAddedScene)
 	//	delete(current.scene);
-	isAddingMap = addSceneToMap;
-	SceneManager::deleteNotAddedScene = deleteNotAddedScene;
 	if (scenes.count(sceneName) >= 1) {
 		//if (current.sceneName == sceneName)
 		//	deleteNotAddedScene = false;
@@ -70,15 +66,40 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 	}
 	if (changed) {
 		Update();
-		std::rotate(sceneHistory.rbegin(), sceneHistory.rbegin() + 1, sceneHistory.rend());
-		sceneHistory[0] = SceneSet(current.sceneName, current.scene);
+		//std::rotate(sceneHistory.rbegin(), sceneHistory.rbegin() + 1, sceneHistory.rend());
+		for (int i = 0; i < sceneHistoryPosition; i++) {
+			std::rotate(sceneHistory.begin(), sceneHistory.begin() + sceneHistoryPosition, sceneHistory.end());
+			if (!sceneHistory[sceneHistory.size() - 1].addSceneToMap && sceneHistory[sceneHistory.size() - 1].deleteNotAddedScene) {
+				bool isExisting = false;
+				for (int i = sceneHistory.size() - 2; i >= 0; i--) {
+					if (sceneHistory[i].scene == sceneHistory[sceneHistory.size()-1].scene) {
+						isExisting = true;
+						break;
+					}
+				}
+				if (!isExisting) delete sceneHistory[sceneHistory.size() - 1].scene;
+			}
+			sceneHistory[sceneHistory.size() - 1] = blankScene;
+		}
 		sceneHistoryPosition = 0;
+		std::rotate(sceneHistory.rbegin(), sceneHistory.rbegin() + 1, sceneHistory.rend());
+		if (!sceneHistory[0].addSceneToMap && sceneHistory[0].deleteNotAddedScene) {
+			bool isExisting = false;
+			for (int i = 1; i < sceneHistory.size(); i++) {
+				if (sceneHistory[i].scene == sceneHistory[0].scene) {
+					isExisting = true;
+					break;
+				}
+			}
+			if (!isExisting) delete sceneHistory[0].scene;
+		}
+		sceneHistory[0] = SceneSet(current.sceneName, current.scene, addSceneToMap, deleteNotAddedScene);
 		header->SetSubtitle(current.sceneName);
 
-		if (scenes.size() > 4) {
+		/*if (scenes.size() > 4) {
 			delete(scenes.begin()->second);
 			scenes.erase(scenes.begin());
-		}
+		}*/
 	}
 	return true;
 }

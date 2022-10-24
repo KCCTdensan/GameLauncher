@@ -56,6 +56,12 @@ void MusicPlayer::SetPlayingRate(float value)
     SetSoundCurrentTime((long long)((float)GetSoundTotalTime(playlists[playingIndex].handle) * value), playlists[playingIndex].handle);
 }
 
+void MusicPlayer::SetVolumeRate(float value)
+{
+    if (playlists.size() == 0 || playingIndex >= playlists.size()) return;
+    ChangeVolumeSoundMem((int)(255.f * value), playlists[playingIndex].handle);
+}
+
 void MusicPlayer::AddToList(PlayData playData)
 {
     for (auto& item : playlists) {

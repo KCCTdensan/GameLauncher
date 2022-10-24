@@ -16,6 +16,8 @@ public:
     void ItemUpdate();
     void ItemDraw();
 
+    void UpdateAction();
+
 private:
     CanvasTemplate* cTemplate;
 };

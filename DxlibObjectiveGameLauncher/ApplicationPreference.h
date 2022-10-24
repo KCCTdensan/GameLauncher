@@ -17,6 +17,8 @@ public:
 	inline static const std::string worksJson = ".\\assets\\json\\works.json";
 	inline static const std::string setJson = ".\\assets\\json\\sets.json";
 
+	inline static const std::string initializeGUID = "00000000-0000-0000-0000-000000000000";
+
 	inline static const std::string musicCategoryName = "MUSIC";
 
 	inline static constexpr float bannerHeight = 75.f;

@@ -1,9 +1,10 @@
 #pragma once
 #include "ObjectBase.h"
-#include "TextObject.h"
+#include "textObject.h"
 #include "MouseInput.h"
 #include "ObjectOverlapping.h"
 #include "PressFrameEnum.h"
+#include "KeyboardInput.h"
 #include <string>
 #include <exception>
 
@@ -33,31 +34,32 @@ public:
 		inputHandle = MakeKeyInput(maxLength, cancelVaildFlag, singleCharOnlyFlag, numCharOnlyFlag);
 	}
 
-	~InputObject() {
+	~InputObject() override {
+		ObjectBase::~ObjectBase();
 		DeleteKeyInput(inputHandle);
 	}
 
 	void SetupText(int _fontHandle, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 	{
-		textObject = TextObject(pos, size, _fontHandle, inputText, _innerColor, _align, _enabledBack);
-		RegisterChildren(&textObject);
-		textObject.SetMaxWidth((int)size.x);
-		textObject.SetForcedArea(pos, PosVec(pos.x + size.x, pos.y + size.y));
-		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
+		textObject = new TextObject(pos, size, _fontHandle, inputText, _innerColor, _align, _enabledBack);
+		RegisterChildren(textObject);
+		textObject->SetMaxWidth((int)size.x);
+		textObject->SetForcedArea(pos, PosVec(pos.x + size.x, pos.y + size.y));
+		textObject->Move(PosVec(textObject->GetFinallyPos().x - pos.x, textObject->GetFinallyPos().y - pos.y, textObject->GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
 	}
 	void SetupText(std::string _fontHandleName, Color255 _innerColor = 0, TextAlign _align = TextAlign::LEFT, bool _enabledBack = false)
 	{
-		textObject = TextObject(pos, size, _fontHandleName, inputText, _innerColor, _align, _enabledBack);
-		RegisterChildren(&textObject);
-		textObject.SetMaxWidth((int)size.x);
-		textObject.SetForcedArea(pos, PosVec(pos.x + size.x, pos.y + size.y));
-		textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
+		textObject = new TextObject(pos, size, _fontHandleName, inputText, _innerColor, _align, _enabledBack);
+		RegisterChildren(textObject);
+		textObject->SetMaxWidth((int)size.x);
+		textObject->SetForcedArea(pos, PosVec(pos.x + size.x, pos.y + size.y));
+		textObject->Move(PosVec(textObject->GetFinallyPos().x - pos.x, textObject->GetFinallyPos().y - pos.y, textObject->GetFinallyPos().z - pos.z)); // 文字の構造に対して位置調整
 	}
 
 	void RemakeHandle() {
 		DeleteKeyInput(inputHandle);
 		inputHandle = MakeKeyInput(maxLength, cancelVaildFlag, singleCharOnlyFlag, numCharOnlyFlag);
-		textObject.SetText("");
+		textObject->SetText("");
 		inputText = "";
 	}
 
@@ -65,7 +67,7 @@ public:
 	void SetInterruptMode(bool _flag) { interruptMode = _flag; }
 	bool SetInterruptMode() { return interruptMode; }
 
-	TextObject* GetTextObject() { return &textObject; }
+	TextObject* GetTextObject() { return textObject; }
 
 	// 色有効化無効化
 	bool SetEnabledFill(bool _enabled) { enabledFill = _enabled; return true; }
@@ -133,7 +135,7 @@ public:
 	std::string GetString() { return inputText;	}
 	void SetString(std::string text) {
 		SetKeyInputString(text.c_str(), inputHandle);
-		textObject.SetText(text);
+		textObject->SetText(text);
 		inputText = text;
 	}
 
@@ -147,7 +149,7 @@ private:
 	void CollideMouse() override;
 
 private:
-	TextObject textObject;
+	TextObject* textObject;
 
 	Color255 innerColor;
 	Color255 hoveredInnerColor;

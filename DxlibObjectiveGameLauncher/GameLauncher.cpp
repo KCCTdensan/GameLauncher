@@ -16,6 +16,7 @@
 #include "ApplicationTime.h"
 #include "AppClose.h"
 #include "MouseInput.h"
+#include "KeyboardInput.h"
 #include "MusicPlayer.h"
 
 /*void InputUpdate(); // threadA
@@ -181,7 +182,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SceneManager::Initialize();
 
-	SceneManager::ChangeScene("Welcome", new WelcomeScene(SceneManager::GetSharingScenes())); // 最初に表示するページ
+	SceneManager::ChangeScene("Welcome", new WelcomeScene(SceneManager::GetSharingScenes()), false, false); // 最初に表示するページ
+	//SceneManager::ChangeScene("Music Player", new PlayerScene(SceneManager::GetSharingScenes()), false, false); // 最初に表示するページ
 
 	//std::thread inputUpdate(InputUpdate);
 	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
@@ -200,6 +202,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 		SetDrawScreen(DX_SCREEN_BACK); // 描画初期化
 		Input::MouseInput::Update(); // マウス更新処理
+		Input::KeyboardInput::Update(); // キーボード更新処理
 		MusicPlayer::Update();
 
 		if (GetWindowActiveFlag()) SceneManager::Collide();

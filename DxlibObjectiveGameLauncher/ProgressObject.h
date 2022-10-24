@@ -15,14 +15,14 @@ public:
         if (initialValue < 0.f) initialValue = 0.f;
         else if (initialValue > 1.f) initialValue = 1.f;
         if (verticalMode)
-            slider = ButtonObject(PosVec(pos.x, pos.y), PosVec(size.x, size.y * initialValue), true, false);
+            slider = new ButtonObject(PosVec(pos.x, pos.y), PosVec(size.x, size.y * initialValue), true, false);
         else
-            slider = ButtonObject(PosVec(pos.x, pos.y), PosVec(size.x * initialValue, size.y), true, false);
+            slider = new ButtonObject(PosVec(pos.x, pos.y), PosVec(size.x * initialValue, size.y), true, false);
         expandedNum = true;
     }
 
     ProgressObject()
-        : ObjectBase(PosVec(), PosVec()),
+        : ObjectBase(PosVec(), PosVec()), slider(nullptr),
         enabledFill(true), enabledOutline(false), outlineWidth(0.f), verticalMode(true), value(0.f) {}
 
     // 色有効化無効化
@@ -116,7 +116,7 @@ public:
     }
 
     // 移動系の操作は非推奨
-    ButtonObject* GetSlider() { return &slider; }
+    ButtonObject* GetSlider() { return slider; }
 
     float GetValue() { return value; }
     void SetValue(float _value) { 
@@ -124,10 +124,10 @@ public:
         if (value < 0.f) value = 0.f;
         else if (value > 1.f) value = 1.f;
         if (verticalMode) {
-            slider.SetSize(PosVec(slider.GetSize().x, value * size.y));
+            slider->SetSize(PosVec(slider->GetSize().x, value * size.y));
         }
         else {
-            slider.SetSize(PosVec(value * size.x, slider.GetSize().y));
+            slider->SetSize(PosVec(value * size.x, slider->GetSize().y));
         }
     }
 
@@ -162,7 +162,7 @@ private:
 
     bool verticalMode;
 
-    ButtonObject slider;
+    ButtonObject* slider;
 
     // スライダークリック時に登録
     PosVec clickedPos;

@@ -2,5 +2,5 @@
 
 void BlankRedirectScene::Update()
 {
-	SceneManager::ChangeScene("home", new HomeScene());
+	SceneManager::ChangeScene("Home", new HomeScene());
 }

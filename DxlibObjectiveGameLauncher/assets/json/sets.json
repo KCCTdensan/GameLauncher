@@ -44,5 +44,13 @@
       {"FilePath": "2.png"},
       {"FilePath": "3.png"}
     ]
+  },
+  "Player": {
+    "play": ".\\assets\\client\\player\\play.png",
+    "stop": ".\\assets\\client\\player\\stop.png",
+    "noloop": ".\\assets\\client\\player\\noloop.png",
+    "oneloop": ".\\assets\\client\\player\\oneloop.png",
+    "loop": ".\\assets\\client\\player\\loop.png",
+    "shuffle": ".\\assets\\client\\player\\shuffle.png"
   }
 }

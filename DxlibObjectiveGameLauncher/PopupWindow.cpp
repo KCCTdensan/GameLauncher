@@ -46,3 +46,9 @@ void PopupWindow::ItemDraw()
 	if (cTemplate == nullptr) return;
 	cTemplate->ItemDraw();
 }
+
+void PopupWindow::UpdateAction()
+{
+	if (cTemplate == nullptr) return;
+	cTemplate->UpdateAction();
+}

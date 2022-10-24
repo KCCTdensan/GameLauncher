@@ -14,7 +14,7 @@ public:
 		: ObjectBase(_pos, PosVec()), fontHandle(_fontHandle), fontHandleName(), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0), adjusted(false),
 		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1), returnNum(0),
-		forcedAreaMode(false)
+		forcedAreaMode(false), originalText(_text)
 	{
 		CalcPos();
 	}
@@ -25,7 +25,7 @@ public:
 		: ObjectBase(_pos, PosVec()), fontHandle(-1), fontHandleName(_fontHandleName), text(_text), innerColor(_innerColor), align(_align),
 		enabledBack(_enabledBack), backColor(0), textWidth(0), fontHeight(0), adjusted(false),
 		finallyPos(_pos), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(true), maxWidth(-1), returnNum(0),
-		forcedAreaMode(false)
+		forcedAreaMode(false), originalText(_text)
 	{
 		CalcPos();
 	}
@@ -33,11 +33,11 @@ public:
 	TextObject()
 		: ObjectBase(PosVec(), PosVec()), fontHandle(-1), fontHandleName(), text(), innerColor(0), align(TextAlign::LEFT), enabledBack(false), backColor(0),
 		finallyPos(PosVec()), textWidth(0), fontHeight(0), paddingUpperLeft(PosVec()), paddingLowerRight(PosVec()), fontAutoSerching(false), maxWidth(-1), adjusted(false), returnNum(0),
-		forcedAreaMode(false)
+		forcedAreaMode(false), originalText()
 	{}
 
 	// •¶šî•ñ“o˜^
-	bool SetText(std::string _text) { text = _text; CalcPos(); adjusted = false; return true; }
+	bool SetText(std::string _text) { text = _text; originalText = _text; CalcPos(); adjusted = false; return true; }
 	bool SetFontHandle(int _fontHandle) { fontHandle = _fontHandle; CalcPos();  return true; }
 	int SetFontHandle() { return fontHandle; }
 
@@ -75,6 +75,7 @@ public:
 	bool SetMaxWidth(int _value) {maxWidth = _value >= 1 ? _value : -1;	return true;}
 
 	std::string GetText() { return text; }
+	std::string GetOriginalText() { return originalText; }
 
 	int GetTextWidth() { return textWidth; }
 	PosVec GetFinallyPos() { return finallyPos; }
@@ -96,6 +97,8 @@ public:
 
 	// •`‰æŠJnˆÊ’u‚ğŒvZ
 	void CalcPos();
+
+	void DeleteNewLine();
 
 	// XV•`‰æ
 	void Collide() override {}
@@ -135,6 +138,7 @@ private:
 	std::string fontHandleName;
 	bool fontAutoSerching;
 	std::string text;
+	std::string originalText;
 	int textWidth;
 	int fontHeight;
 

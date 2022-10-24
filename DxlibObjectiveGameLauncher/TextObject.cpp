@@ -107,3 +107,13 @@ void TextObject::FontSerch()
 	SetFontHandle(FontChest::GetFontHandle(fontHandleName));
 	if (fontHandle > 0) fontAutoSerching = false;
 }
+
+void TextObject::DeleteNewLine()
+{
+	std::wstring wText = ConvertString(text);
+	std::wstring chars = L"\n";
+	for (auto& c : chars) {
+		wText.erase(std::remove(wText.begin(), wText.end(), c), wText.end());
+	}
+	text = ConvertString(wText);
+}

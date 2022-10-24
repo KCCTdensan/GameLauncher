@@ -3,7 +3,7 @@
 void InputObject::Collide()
 {
 	CollideMouseAsBox();
-	textObject.Collide();
+	textObject->Collide();
 }
 
 void InputObject::Update()
@@ -46,10 +46,16 @@ void InputObject::Update()
 				// printfDx("Exception\n");
 			}
 			inputText = text;
+
+			if (turnedOn) {
+				if (Input::KeyboardInput::KEY[KEY_INPUT_LALT] == 1) {
+					SetString(inputText + "\n");
+				}
+			}
 		}
 		else {
 			char text[inputStringMax] = "";
-			textObject.SetText("");
+			textObject->SetText("");
 			Draw();
 			try {
 				KeyInputString((int)pos.x, (int)pos.y, inputStringMax, text, true);
@@ -58,7 +64,7 @@ void InputObject::Update()
 				// printfDx("Exception\n");
 			}
 			inputText = text;
-			textObject.SetText(inputText);
+			textObject->SetText(inputText);
 			SetMouseOff();
 		}
 	}
@@ -67,9 +73,9 @@ void InputObject::Update()
 			SetActiveKeyInput(-1);
 			SetMouseOff();
 			turnedOn = false;
-			textObject.SetPos(pos);
-			textObject.SetText(inputText);
-			textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z));
+			textObject->SetPos(pos);
+			textObject->SetText(inputText);
+			textObject->Move(PosVec(textObject->GetFinallyPos().x - pos.x, textObject->GetFinallyPos().y - pos.y, textObject->GetFinallyPos().z - pos.z));
 		}
 	}
 
@@ -99,13 +105,13 @@ void InputObject::Update()
 			SetActiveKeyInput(-1);
 			SetMouseOff();
 			turnedOn = false;
-			textObject.SetPos(pos);
-			textObject.SetText(inputText);
-			textObject.Move(PosVec(textObject.GetFinallyPos().x - pos.x, textObject.GetFinallyPos().y - pos.y, textObject.GetFinallyPos().z - pos.z));
+			textObject->SetPos(pos);
+			textObject->SetText(inputText);
+			textObject->Move(PosVec(textObject->GetFinallyPos().x - pos.x, textObject->GetFinallyPos().y - pos.y, textObject->GetFinallyPos().z - pos.z));
 		}
 	}
 
-	textObject.Update();
+	textObject->Update();
 }
 
 void InputObject::Draw()
@@ -134,7 +140,7 @@ void InputObject::Draw()
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	if (!turnedOn)
-		textObject.Draw();
+		textObject->Draw();
 	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 	if (turnedOn) {
 		SetDrawArea(0, 0, (int)(pos.x + size.x + 1), (int)ApplicationPreference::GetBackgroundSize().y);

@@ -323,19 +323,19 @@ void WelcomeScene::Update()
 	if (gotoHome != nullptr)
 		if (gotoHome->GetMouseSelected()) {
 			gotoHome->SetMouseOff();
-			SceneManager::ChangeScene("Home", new HomeScene(sharingScenes));
+			SceneManager::ChangeScene("Home", new HomeScene(sharingScenes), false, false);
 		}
 
 	if (whatis != nullptr)
 		if (whatis->GetMouseSelected()) {
 			whatis->SetMouseOff();
-			SceneManager::ChangeScene("WhatIs", new LauncherScene(sharingScenes));
+			SceneManager::ChangeScene("WhatIs", new LauncherScene(sharingScenes), false, true);
 		}
 
 	if (jumpToMusic != nullptr)
 		if (jumpToMusic->GetMouseSelected()) {
 			jumpToMusic->SetMouseOff();
-			SceneManager::ChangeScene("Music Player", new PlayerScene(sharingScenes));
+			SceneManager::ChangeScene("Music Player", new PlayerScene(sharingScenes), false, false);
 		}
 
 	if (jumpToWorkMan != nullptr)

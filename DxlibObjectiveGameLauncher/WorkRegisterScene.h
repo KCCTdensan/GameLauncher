@@ -17,7 +17,6 @@
 #include <Windows.h>
 #include <tchar.h>
 #include "StringConvert.h"
-#include <sys/stat.h>
 
 class WorkRegisterScene :
     public SceneBase
@@ -82,5 +81,7 @@ private:
 
     ButtonObject* clearButton;
     ButtonObject* deleteButton;
+
+    ButtonObject* imagesResetButton;
 };
 

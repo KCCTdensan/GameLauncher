@@ -3,9 +3,16 @@
 PopupScene::PopupScene()
 {
 	musicCanvas = new MusicCanvas();
-	popupWindow.Setup(musicCanvas);
+	popupMusic.Setup(musicCanvas);
+
+	noticeCanvas = new NoticeCanvas();
+	popupNotice.Setup(noticeCanvas);
 
 	//popups.push_back(popupWindow);
+	popups.push_back(popupNotice);
+
+	// ƒtƒHƒ“ƒg’Ç‰Á
+	fonts.push_back(FontHandle("mplus20", "M PLUS 2", 20, 100));
 }
 
 void PopupScene::Collide()
@@ -21,12 +28,18 @@ void PopupScene::Collide()
 
 void PopupScene::Update()
 {
+	RegFonts();
+
 	for (auto& item : popups) {
 		item.ItemUpdate();
 	}
 
 	for (auto& item : popups) {
 		item.CanvasUpdate();
+	}
+
+	for (auto& item : popups) {
+		item.UpdateAction();
 	}
 }
 
@@ -39,4 +52,9 @@ void PopupScene::Draw()
 	for (auto& item : popups) {
 		item.CanvasDraw();
 	}
+}
+
+void PopupScene::MakeNotice(std::string text, std::string title)
+{
+	noticeCanvas->MakeNotice(text, title);
 }

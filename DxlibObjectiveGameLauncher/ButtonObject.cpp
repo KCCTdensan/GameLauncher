@@ -3,7 +3,8 @@
 void ButtonObject::Collide()
 {
 	CollideMouseAsBox();
-	textObject.Collide();
+	if (textObject != nullptr)
+		textObject->Collide();
 }
 
 void ButtonObject::Update()
@@ -52,7 +53,8 @@ void ButtonObject::Update()
 	}
 
 	EventRectSetVector();
-	textObject.Update();
+	if (textObject != nullptr)
+		textObject->Update();
 
 	UpdateAnimationColor(&innerAnimation);
 	UpdateAnimationColor(&outerAnimation);
@@ -82,7 +84,8 @@ void ButtonObject::Draw()
 
 	DrawImage();
 
-	textObject.Draw();
+	if (textObject != nullptr)
+		textObject->Draw();
 
 	if (canvasId != -1) {
 		SetDrawScreen(canvasId);

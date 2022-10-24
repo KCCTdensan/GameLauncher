@@ -28,6 +28,8 @@ protected:
 	void CreatePopUpWindow(ObjectBase* canvas);
 	void DeletePopUpWindow(ObjectBase* canvas);
 
+	void SaftyDelete(ObjectBase* object);
+
 	std::vector<FontHandle> fonts;
 
 	ObjectLayer layer;

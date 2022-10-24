@@ -1,7 +1,6 @@
 #pragma once
 #include "DxLib.h"
 
-
 namespace Input {
 	class KeyboardInput
 	{

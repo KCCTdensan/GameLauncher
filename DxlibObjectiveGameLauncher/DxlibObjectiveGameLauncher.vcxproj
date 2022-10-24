@@ -42,6 +42,9 @@
     <ClCompile Include="MusicChest.cpp" />
     <ClCompile Include="MusicData.cpp" />
     <ClCompile Include="MusicPlayer.cpp" />
+    <ClCompile Include="NoticeCanvas.cpp" />
+    <ClCompile Include="NoticeGenerator.cpp" />
+    <ClCompile Include="NoticeObject.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
@@ -52,6 +55,7 @@
     <ClCompile Include="PopupWindow.cpp" />
     <ClCompile Include="ProgressObject.cpp" />
     <ClCompile Include="RectangleObject.cpp" />
+    <ClCompile Include="RequiredFileChecker.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollInput.cpp" />
@@ -102,6 +106,9 @@
     <ClInclude Include="MusicChest.h" />
     <ClInclude Include="MusicData.h" />
     <ClInclude Include="MusicPlayer.h" />
+    <ClInclude Include="NoticeCanvas.h" />
+    <ClInclude Include="NoticeGenerator.h" />
+    <ClInclude Include="NoticeObject.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="ObjectFuncData.h" />
     <ClInclude Include="ObjectLayer.h" />
@@ -118,6 +125,7 @@
     <ClInclude Include="PressFrameEnum.h" />
     <ClInclude Include="ProgressObject.h" />
     <ClInclude Include="RectangleObject.h" />
+    <ClInclude Include="RequiredFileChecker.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSet.h" />

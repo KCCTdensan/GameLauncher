@@ -2,7 +2,7 @@
 
 void ProgressObject::SetupSlider()
 {
-	RegisterChildren(&slider);
+	RegisterChildren(slider);
 }
 
 void ProgressObject::Collide()
@@ -62,10 +62,10 @@ void ProgressObject::Update()
 		if (newRate < 0.f) newRate = 0.f;
 		else if (newRate > 1.f) newRate = 1.f;
 		if (verticalMode) {
-			slider.SetSize(PosVec(slider.GetSize().x, newRate * size.y));
+			slider->SetSize(PosVec(slider->GetSize().x, newRate * size.y));
 		}
 		else {
-			slider.SetSize(PosVec(newRate * size.x, slider.GetSize().y));
+			slider->SetSize(PosVec(newRate * size.x, slider->GetSize().y));
 		}
 		value = newRate;
 	}
@@ -79,7 +79,7 @@ void ProgressObject::Update()
 	UpdateAnimation(&innerAlphaAnimation);
 	UpdateAnimation(&outerAlphaAnimation);
 
-	slider.Update();
+	slider->Update();
 
 	UpdatePointerAnimation();
 }
@@ -100,7 +100,7 @@ void ProgressObject::Draw()
 		DrawBoxAA(pos.x, pos.y, pos.x + size.x + 1, pos.y + size.y + 1, resultInnerColor, true, 0);
 	}
 	/*if (rectMode) eventRect.Draw();*/
-	slider.Draw();
+	slider->Draw();
 	if (canvasId != -1) {
 		SetDrawScreen(canvasId);
 	}
