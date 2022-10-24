@@ -43,6 +43,7 @@
     <ClCompile Include="MusicData.cpp" />
     <ClCompile Include="MusicPlayer.cpp" />
     <ClCompile Include="NoticeCanvas.cpp" />
+    <ClCompile Include="NoticeGenerator.cpp" />
     <ClCompile Include="NoticeObject.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="MusicData.h" />
     <ClInclude Include="MusicPlayer.h" />
     <ClInclude Include="NoticeCanvas.h" />
+    <ClInclude Include="NoticeGenerator.h" />
     <ClInclude Include="NoticeObject.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="ObjectFuncData.h" />

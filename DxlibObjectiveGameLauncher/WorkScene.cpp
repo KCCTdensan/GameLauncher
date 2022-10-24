@@ -1,5 +1,6 @@
 #include "WorkScene.h"
 #include "Header.h"
+#include "PopupScene.h"
 
 WorkScene::WorkScene()
 	: descriptionCanvas(nullptr), thumbnailCanvas(nullptr),
@@ -424,6 +425,14 @@ void WorkScene::Update()
 				playData.title = this->obj["TitleName"].get<std::string>();
 				playData.author = this->obj["Author"].get<std::string>();
 				playData.handle = MusicChest::GetMusicHandle(this->obj["GUID"].get<std::string>());
+
+				if (playData.handle < 0) {
+					sharingScenes->popupScene->MakeNotice("ファイルが見つからない、もしくは開けませんでした。");
+				}
+				else {
+					sharingScenes->popupScene->MakeNotice("音声ファイル読み込み完了");
+				}
+
 				MusicPlayer::AddToList(playData);
 
 				// 元のディレクトリに戻す
@@ -436,6 +445,23 @@ void WorkScene::Update()
 
 				// 実行
 				ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
+				switch (GetLastError())
+				{
+				case ERROR_FILE_NOT_FOUND:
+					sharingScenes->popupScene->MakeNotice("ファイルが見つかりませんでした。");
+					break;
+				case ERROR_PATH_NOT_FOUND:
+					sharingScenes->popupScene->MakeNotice("パスが見つかりませんでした。");
+					break;
+				case ERROR_ACCESS_DENIED:
+					sharingScenes->popupScene->MakeNotice("アクセス拒否されました。");
+					break;
+				case ERROR_NOT_ENOUGH_MEMORY:
+					sharingScenes->popupScene->MakeNotice("メモリ不足です。");
+					break;
+				default:
+					break;
+				}
 			}
 			// 元のディレクトリに戻す
 			returnId = _chdir(cwd);

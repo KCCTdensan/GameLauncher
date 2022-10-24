@@ -11,10 +11,10 @@ public:
     NoticeCanvas();
 
     void UpdateAction() override;
+    void MakeNotice(std::string text);
 
 private:
 
-    CanvasObject* canvas;
     std::vector<NoticeObject*> notices;
 
 };

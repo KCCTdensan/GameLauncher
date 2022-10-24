@@ -1,5 +1,6 @@
 #include "WorkRegisterScene.h"
 #include "ExePath.h"
+#include "PopupScene.h"
 
 WorkRegisterScene::WorkRegisterScene()
 	:iWorkName(nullptr), iWorkAuthor(nullptr), iWorkDescription(nullptr),
@@ -472,6 +473,7 @@ void WorkRegisterScene::Update()
 
 				ofs << picojson::value(obj).serialize(true) << std::endl;
 				ofs.close();
+				sharingScenes->popupScene->MakeNotice(ApplicationPreference::worksJson + "に保存しました。");
 			}
 
 			ResetParams();
@@ -533,9 +535,11 @@ void WorkRegisterScene::Update()
 						imagePathVector.push_back(item2.get<picojson::object>()["FilePath"].get<std::string>());
 					}
 				}
+				sharingScenes->popupScene->MakeNotice("有効なデータ発見しました");
 			}
 			else {
 				iExistingGUID->RemakeHandle();
+				sharingScenes->popupScene->MakeNotice("無効なGUIDです。");
 			}
 		}
 	}
@@ -569,6 +573,7 @@ void WorkRegisterScene::Update()
 				fs.close();
 			}
 			ShellExecute(GetMainWindowHandle(), "open", path.c_str(), NULL, NULL, SW_SHOWNORMAL);
+			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
 		}
 	}
 
@@ -735,6 +740,8 @@ void WorkRegisterScene::Update()
 
 			ofs << picojson::value(obj).serialize(true) << std::endl;
 			ofs.close();
+
+			sharingScenes->popupScene->MakeNotice(ApplicationPreference::worksJson+"に保存しました。");
 
 			/******** JSON 読込終了 *********/
 

@@ -16,6 +16,8 @@ public:
     void Update() override;
     void Draw() override;
 
+    void MakeNotice(std::string text);
+
 private:
     std::vector<PopupWindow> popups;
 
