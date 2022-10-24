@@ -574,6 +574,8 @@ void WorkRegisterScene::Update()
 			}
 			ShellExecute(GetMainWindowHandle(), "open", path.c_str(), NULL, NULL, SW_SHOWNORMAL);
 			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
+			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
+			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
 		}
 	}
 

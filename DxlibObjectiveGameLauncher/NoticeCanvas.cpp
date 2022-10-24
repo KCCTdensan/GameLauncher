@@ -30,8 +30,11 @@ void NoticeCanvas::UpdateAction()
 		it++;
 	}
 
+	int i = 0;
 	for (auto& item : notices) {
+		item->GetNoticeFrame()->ChangeValueWithAnimation(&item->GetNoticeFrame()->GetVectorPointer(VectorType::POS)->y, notices[0]->GetNoticeFrame()->GetPos().y - item->GetNoticeFrame()->GetSize().y * (float)i, 1.f);
 		item->TimerUpdate();
+		i++;
 	}
 }
 
