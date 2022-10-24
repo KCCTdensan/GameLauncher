@@ -12,6 +12,9 @@ public:
 	ButtonObject* GetDeletedFrame() { return deleteButton; }
 	TextObject* GetTextObject() { return noticeText; }
 
+	PosVec GetNoticeInitializePos() { return noticeInitializePos; }
+	PosVec GetTextOffset() { return textOffset; }
+
 	void TimerUpdate();
 
 	bool GetIsNoLife() { return isNoLife; }
