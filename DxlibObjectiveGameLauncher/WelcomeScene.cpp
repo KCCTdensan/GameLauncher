@@ -252,7 +252,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	jumpToWorkMan = new ButtonObject(
 		PosVec(
 			tileStartPos.x + tileMass.x * 3.f,
-			tileStartPos.y + tileMass.y * 3.f),
+			tileStartPos.y + tileMass.y * 5.f),
 		PosVec(
 			tileSize.x * 1.f + tileGap.x * 0.f,
 			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
@@ -272,6 +272,121 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	jumpToWorkMan->SetInnerAnimation(.2f);
 	jumpToWorkMan->SetOuterAnimation(.2f);
 
+	jumpTorandomPage = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 1.f,
+			tileStartPos.y + tileMass.y * 2.f),
+		PosVec(
+			tileSize.x * 3.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpTorandomPage->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	jumpTorandomPage->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpTorandomPage->SetupText("mplus100",
+		"Random Work",
+		Color255(50, 30));
+	jumpTorandomPage->SetInnerAnimation(.2f);
+	jumpTorandomPage->SetOuterAnimation(.2f);
+
+	rankButton = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 0.f,
+			tileStartPos.y + tileMass.y * 3.f),
+		PosVec(
+			tileSize.x * 1.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	rankButton->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	rankButton->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	rankButton->SetupText("mplus100",
+		"ÉâÉìÉLÉìÉO",
+		Color255(50, 30));
+	rankButton->SetInnerAnimation(.2f);
+	rankButton->SetOuterAnimation(.2f);
+
+	jumpToNo1 = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 1.f,
+			tileStartPos.y + tileMass.y * 3.f),
+		PosVec(
+			tileSize.x * 1.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpToNo1->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	jumpToNo1->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpToNo1->SetupText("mplus100",
+		"No.1",
+		Color255(50, 30));
+	jumpToNo1->SetInnerAnimation(.2f);
+	jumpToNo1->SetOuterAnimation(.2f);
+
+	jumpToNo2 = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 2.f,
+			tileStartPos.y + tileMass.y * 3.f),
+		PosVec(
+			tileSize.x * 1.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpToNo2->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	jumpToNo2->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpToNo2->SetupText("mplus100",
+		"No.2",
+		Color255(50, 30));
+	jumpToNo2->SetInnerAnimation(.2f);
+	jumpToNo2->SetOuterAnimation(.2f);
+
+	jumpToNo3 = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 3.f,
+			tileStartPos.y + tileMass.y * 3.f),
+		PosVec(
+			tileSize.x * 1.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpToNo3->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	jumpToNo3->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpToNo3->SetupText("mplus100",
+		"No.3",
+		Color255(50, 30));
+	jumpToNo3->SetInnerAnimation(.2f);
+	jumpToNo3->SetOuterAnimation(.2f);
+
 	canvas->RegisterChildren(icon);
 	canvas->RegisterChildren(whatis);
 	canvas->RegisterChildren(organization);
@@ -280,6 +395,11 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	canvas->RegisterChildren(qrcode);
 	canvas->RegisterChildren(jumpToMusic);
 	canvas->RegisterChildren(jumpToWorkMan);
+	canvas->RegisterChildren(jumpTorandomPage);
+	canvas->RegisterChildren(rankButton);
+	canvas->RegisterChildren(jumpToNo1);
+	canvas->RegisterChildren(jumpToNo2);
+	canvas->RegisterChildren(jumpToNo3);
 
 	layer.AddObject(icon);
 	layer.AddObject(whatis);
@@ -289,8 +409,13 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	layer.AddObject(qrcode);
 	layer.AddObject(jumpToMusic);
 	layer.AddObject(jumpToWorkMan);
+	layer.AddObject(jumpTorandomPage);
+	layer.AddObject(rankButton);
+	layer.AddObject(jumpToNo1);
+	layer.AddObject(jumpToNo2);
+	layer.AddObject(jumpToNo3);
 
-	int tileNumY = 3;
+	int tileNumY = 5;
 
 	canvas->SetArea(PosVec(
 		ApplicationPreference::GetBackgroundSize().x,
@@ -342,6 +467,43 @@ void WelcomeScene::Update()
 		if (jumpToWorkMan->GetMouseSelected()) {
 			jumpToWorkMan->SetMouseOff();
 			SceneManager::ChangeScene("Work Register", new WorkRegisterScene(sharingScenes));
+		}
+
+	if (jumpTorandomPage != nullptr)
+		if (jumpTorandomPage->GetMouseSelected()) {
+			jumpTorandomPage->SetMouseOff();
+			std::random_device rnd;
+
+			/********** JSON ì«çû ***********/
+
+			ExePath exePath;
+			(void)_chdir(exePath.GetPath());
+
+			std::stringstream ss;
+			std::ifstream fs;
+			fs.open(ApplicationPreference::worksJson, std::ios::binary);
+
+			if (!fs.is_open()) {
+				return;
+			}
+
+			ss << fs.rdbuf();
+			fs.close();
+
+			picojson::value val;
+			ss >> val;
+			std::string err = picojson::get_last_error();
+			if (!err.empty()) {
+				std::cerr << err << std::endl;
+				return;
+			}
+
+			picojson::object& obj = val.get<picojson::object>();
+			picojson::array& lists = obj["Lists"].get<picojson::array>();
+
+			std::string cGUID = lists[rnd() % lists.size()].get<picojson::object>()["GUID"].get<std::string>();
+			SceneManager::ChangeScene(cGUID, new WorkScene(sharingScenes, cGUID), false, true);
+
 		}
 
 	layer.Update();

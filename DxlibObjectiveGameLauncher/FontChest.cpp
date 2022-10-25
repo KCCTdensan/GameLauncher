@@ -10,7 +10,6 @@ bool FontChest::CreateFontHandle(std::string handleName, std::string fontName, i
 	}
 	handles.erase(handleName);
 	int value = CreateFontToHandle(fontName.c_str(), fontSize, fontThick, fontType);
-	printfDx("%d, %s\n", value, handleName.c_str());
 	handles.emplace(handleName, value);
 	return true;
 }
