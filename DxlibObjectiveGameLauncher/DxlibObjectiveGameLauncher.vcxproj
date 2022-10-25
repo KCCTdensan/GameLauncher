@@ -126,6 +126,7 @@
     <ClInclude Include="ProgressObject.h" />
     <ClInclude Include="RectangleObject.h" />
     <ClInclude Include="RequiredFileChecker.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSet.h" />
@@ -141,6 +142,12 @@
     <ClInclude Include="WindowHwnd.h" />
     <ClInclude Include="WorkRegisterScene.h" />
     <ClInclude Include="WorkScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DxlibObjectiveGameLauncher.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

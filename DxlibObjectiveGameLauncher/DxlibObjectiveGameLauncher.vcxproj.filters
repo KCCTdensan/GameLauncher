@@ -371,6 +371,7 @@
     <ClInclude Include="NoticeCanvas.h" />
     <ClInclude Include="NoticeObject.h" />
     <ClInclude Include="NoticeGenerator.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -505,5 +506,11 @@
     <Filter Include="Objects\Variety\PlayList">
       <UniqueIdentifier>{bd56b3f6-ab89-4479-b7f8-844f27ba1bb6}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DxlibObjectiveGameLauncher.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
   </ItemGroup>
 </Project>
