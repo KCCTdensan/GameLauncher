@@ -19,5 +19,6 @@ public:
 private:
 	void CheckAssetsJson();
 	void CheckWorksJson();
+	void CheckAnalyticsJson();
 };
 
