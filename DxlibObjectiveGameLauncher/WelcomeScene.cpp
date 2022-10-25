@@ -155,7 +155,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	organization->SetOuterAnimation(.2f);
 	organization->SetupText("mplus100",
 		welcome["organization"].get<picojson::object>()["text"].get<std::string>(),
-		Color255(250,30));
+		Color255(250, 30));
 	organization->SetImageHandle(ImageChest::GetImageHandle(orgName));
 	organization->SetImageSize(PosVec(maxThumbnailLongLength * 2.f, maxThumbnailLongLength));
 	organization->SetImageTurnFlag(false, false);
@@ -340,6 +340,8 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		Color255(50, 30));
 	jumpToNo1->SetInnerAnimation(.2f);
 	jumpToNo1->SetOuterAnimation(.2f);
+	jumpToNo1->SetImageSize(tileSize);
+	jumpToNo1->SetImageTurnFlag(false, false);
 
 	jumpToNo2 = new ButtonObject(
 		PosVec(
@@ -363,6 +365,8 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		Color255(50, 30));
 	jumpToNo2->SetInnerAnimation(.2f);
 	jumpToNo2->SetOuterAnimation(.2f);
+	jumpToNo2->SetImageSize(tileSize);
+	jumpToNo2->SetImageTurnFlag(false, false);
 
 	jumpToNo3 = new ButtonObject(
 		PosVec(
@@ -386,6 +390,9 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		Color255(50, 30));
 	jumpToNo3->SetInnerAnimation(.2f);
 	jumpToNo3->SetOuterAnimation(.2f);
+	jumpToNo3->SetImageSize(tileSize);
+	jumpToNo3->SetImageTurnFlag(false, false);
+
 
 	canvas->RegisterChildren(icon);
 	canvas->RegisterChildren(whatis);
@@ -421,7 +428,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ApplicationPreference::GetBackgroundSize().x,
 		ApplicationPreference::startScenePos + tileSize.y * (float)tileNumY),
 		tileSize.y / ((float)tileNumY * tileSize.y) / 2.f
-		);
+	);
 	canvases.AddObject(canvas);
 
 	//fonts.push_back(FontHandle("mplus180", "M PLUS 2", 180, 100));
@@ -505,6 +512,120 @@ void WelcomeScene::Update()
 			SceneManager::ChangeScene(cGUID, new WorkScene(sharingScenes, cGUID), false, true);
 
 		}
+
+	if (jumpToNo1 != nullptr && jumpToNo2 != nullptr && jumpToNo3 != nullptr) {
+
+		/********** JSON ì«çû ***********/
+
+		ExePath exePath;
+		(void)_chdir(exePath.GetPath());
+
+		std::stringstream ss;
+		std::ifstream fs;
+		fs.open(ApplicationPreference::analyticsJson, std::ios::binary);
+
+		if (!fs.is_open()) {
+			return;
+		}
+
+		ss << fs.rdbuf();
+		fs.close();
+
+		picojson::value aval;
+		ss >> aval;
+		std::string err = picojson::get_last_error();
+		if (!err.empty()) {
+			std::cerr << err << std::endl;
+			return;
+		}
+
+		picojson::object& aobj = aval.get<picojson::object>();
+		picojson::array& alists = aobj["Lists"].get<picojson::array>();
+
+		std::vector<std::pair<int, std::string>> v;
+
+		// É\Å[Ég
+		for (auto& item : alists) {
+			v.push_back({ (int)item.get<picojson::object>()["LaunchedTimes"].get<double>(), item.get<picojson::object>()["GUID"].get<std::string>() });
+		}
+		std::sort(v.begin(), v.end());
+
+		/********** JSON ì«çû ***********/
+
+		(void)_chdir(exePath.GetPath());
+
+		fs.open(ApplicationPreference::worksJson, std::ios::binary);
+
+		if (!fs.is_open()) {
+			return;
+		}
+
+		ss << fs.rdbuf();
+		fs.close();
+
+		picojson::value val;
+		ss >> val;
+		err = picojson::get_last_error();
+		if (!err.empty()) {
+			std::cerr << err << std::endl;
+			return;
+		}
+
+		picojson::object& obj = val.get<picojson::object>();
+		picojson::array& lists = obj["Lists"].get<picojson::array>();
+
+		int rankMax = 3;
+		if (alists.size() < rankMax) rankMax = alists.size();
+
+		for (int i = 0; i < rankMax; i++) {
+			ButtonObject* button = nullptr;
+			if (i == 0) {
+				button = jumpToNo1;
+			}
+			else if (i == 1) {
+				button = jumpToNo2;
+			}
+			else if (i == 2) {
+				button = jumpToNo3;
+			}
+			for (int j = 0; j < lists.size(); j++) {
+				if (alists[i].get<picojson::object>()["GUID"].get<std::string>() == lists[j].get<picojson::object>()["GUID"].get<std::string>()) {
+					if (button->GetTag() != alists[i].get<picojson::object>()["GUID"].get<std::string>()) {
+
+						ExePath exePath;
+						(void)_chdir(exePath.GetPath());
+						std::string iconName = "Ranking:" + std::to_string(i);
+						std::string iconPath = lists[j].get<picojson::object>()["Thumbnail"].get<std::string>();
+
+						ImageChest::DeleteImageHandle(iconName);
+						ImageChest::CreateImageHandle(iconName, iconPath);
+
+						button->SetImageHandle(ImageChest::GetImageHandle(iconName));
+						button->SetTag(alists[i].get<picojson::object>()["GUID"].get<std::string>());
+					}
+					break;
+
+				}
+
+			}
+			
+			if (jumpToNo1->GetMouseSelected()) {
+				jumpToNo1->SetMouseOff();
+				SceneManager::ChangeScene(jumpToNo1->GetTag(), new WorkScene(sharingScenes, jumpToNo1->GetTag()), false, true);
+			}
+			if (jumpToNo2->GetMouseSelected()) {
+				jumpToNo2->SetMouseOff();
+				SceneManager::ChangeScene(jumpToNo2->GetTag(), new WorkScene(sharingScenes, jumpToNo2->GetTag()), false, true);
+			}
+			if (jumpToNo3->GetMouseSelected()) {
+				jumpToNo3->SetMouseOff();
+				SceneManager::ChangeScene(jumpToNo3->GetTag(), new WorkScene(sharingScenes, jumpToNo3->GetTag()), false, true);
+			}
+		}
+
+
+
+	}
 
 	layer.Update();
 	canvases.Update();

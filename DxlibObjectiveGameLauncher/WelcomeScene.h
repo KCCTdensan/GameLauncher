@@ -9,6 +9,7 @@
 #include "WorkRegisterScene.h"
 #include "ImageChest.h"
 #include <random>
+#include <algorithm>
 
 class WelcomeScene :
     public SceneBase
