@@ -343,7 +343,7 @@ WorkScene::~WorkScene()
 	SaftyDelete(thumbnail); SaftyDelete(category); SaftyDelete(title); SaftyDelete(author); SaftyDelete(guidText);
 	SaftyDelete(description); SaftyDelete(photoGalleryText); SaftyDelete(descriptionCanvas);
 	SaftyDelete(thumbnailCanvas); SaftyDelete(imagesCanvas); SaftyDelete(launch); SaftyDelete(imageBackGround);
-	
+
 	if (isBigPos == nullptr)
 		delete isBigPos;
 	if (isBigSize == nullptr)
@@ -568,6 +568,68 @@ void WorkScene::Update()
 			returnId = _chdir(cwd);
 
 			(void)_chdir(exePath.GetPath());
+
+			/********** JSON ì«çû ***********/
+
+			std::stringstream ss;
+			std::ifstream fs;
+			fs.open(ApplicationPreference::analyticsJson, std::ios::binary);
+
+			if (!fs.is_open()) {
+				return;
+			}
+
+			ss << fs.rdbuf();
+			fs.close();
+
+			picojson::value val;
+			ss >> val;
+			std::string err = picojson::get_last_error();
+			if (!err.empty()) {
+				std::cerr << err << std::endl;
+				return;
+			}
+
+			picojson::object& obj = val.get<picojson::object>();
+			picojson::array& lists = obj["Lists"].get<picojson::array>();
+
+			picojson::object* newGUIDSave = new picojson::object;
+			picojson::object* newTime = new picojson::object;
+			picojson::array* newTimeList = new picojson::array;
+
+			bool isExisting = false;
+
+			for (auto& item : lists) {
+				if (item.get<picojson::object>()["GUID"].get<std::string>() == guid) {
+					isExisting = true;
+
+					item.get<picojson::object>()["LaunchedTimes"].get<double>() += 1.;
+
+					picojson::array& time = item.get<picojson::object>()["Time"].get<picojson::array>();
+					newTime->insert(std::make_pair("Time", picojson::value(static_cast<double>(::time(nullptr)))));
+					time.push_back(picojson::value(*newTime));
+
+					break;
+				}
+			}
+
+			if (!isExisting) {
+				newGUIDSave->insert(std::make_pair("GUID", picojson::value(guid.c_str())));
+				newGUIDSave->insert(std::make_pair("LaunchedTimes", picojson::value(1.)));
+				
+				newTime->insert(std::make_pair("Time", picojson::value(static_cast<double>(::time(nullptr)))));
+				newTimeList->push_back(picojson::value(*newTime));
+				newGUIDSave->insert(std::make_pair("Time", picojson::value(*newTimeList)));
+
+				lists.push_back(picojson::value(*newGUIDSave));
+			}
+
+			std::ofstream ofs;
+			ofs.open(ApplicationPreference::analyticsJson, std::ios::binary);
+
+			ofs << picojson::value(obj).serialize(true) << std::endl;
+			ofs.close();
+			sharingScenes->popupScene->MakeNotice(ApplicationPreference::analyticsJson + "Ç…ï€ë∂ÇµÇ‹ÇµÇΩÅB");
 		}
 
 	if (thumbnail != nullptr)

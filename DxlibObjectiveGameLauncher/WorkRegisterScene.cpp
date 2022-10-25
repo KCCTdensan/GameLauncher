@@ -410,6 +410,7 @@ void WorkRegisterScene::Update()
 	makeJsonDataButton->SetEnabled(isguid);
 	deleteButton->SetEnabled(isguid);
 	clearButton->SetEnabled(isguid);
+	imagesResetButton->SetEnabled(isguid);
 
 	iExistingGUID->SetEnabled(!isguid);
 
@@ -417,6 +418,9 @@ void WorkRegisterScene::Update()
 		iWorkName->GetString() == "" ||
 		iWorkAuthor->GetString() == "" ||
 		iWorkCategory->GetString() == "") makeJsonDataButton->SetEnabled(false);
+
+	if (imagePathVector.size() == 0)
+		imagesResetButton->SetEnabled(false);
 
 	if (clearButton != nullptr)
 		if (clearButton->GetMouseSelected()) {
