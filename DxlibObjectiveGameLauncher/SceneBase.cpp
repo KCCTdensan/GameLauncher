@@ -3,9 +3,9 @@
 
 SceneBase::~SceneBase()
 {
-	for (const auto& font : fonts) {
-		FontChest::DeleteFontHandle(font.handleName);
-	}
+	//for (const auto& font : fonts) {
+	//	FontChest::DeleteFontHandle(font.handleName);
+	//}
 }
 
 void SceneBase::RegFonts()
