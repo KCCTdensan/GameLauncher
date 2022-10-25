@@ -577,6 +577,16 @@ void WelcomeScene::Update()
 		int rankMax = 3;
 		if (alists.size() < rankMax) rankMax = alists.size();
 
+		if (rankMax < 3) {
+			jumpToNo3->SetEnabled(false);
+			if (rankMax < 2) {
+				jumpToNo2->SetEnabled(false);
+					if (rankMax < 1) {
+						jumpToNo1->SetEnabled(false);
+					}else jumpToNo1->SetEnabled(true);
+			}else jumpToNo1->SetEnabled(true);
+		}else jumpToNo1->SetEnabled(true);
+
 		for (int i = 0; i < rankMax; i++) {
 			ButtonObject* button = nullptr;
 			if (i == 0) {
