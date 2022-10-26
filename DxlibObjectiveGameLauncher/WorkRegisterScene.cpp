@@ -578,8 +578,6 @@ void WorkRegisterScene::Update()
 			}
 			ShellExecute(GetMainWindowHandle(), "open", path.c_str(), NULL, NULL, SW_SHOWNORMAL);
 			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
-			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
-			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
 		}
 	}
 
@@ -604,7 +602,20 @@ void WorkRegisterScene::Update()
 			o.nFilterIndex = 1;
 			int returnCode = GetOpenFileName(&o);
 
-			workerPath = sxFile;
+			StringConvert stringConvert;
+
+			std::wstring wsxFile = stringConvert.ConvertString(sxFile);
+			std::wstring name = L"\\works\\" + stringConvert.ConvertString(guid) + L"\\";
+			int pos = wsxFile.find(name);
+			if (pos != -1) {
+				wsxFile.erase(wsxFile.begin(), wsxFile.begin() + pos + name.size());
+				pos = wsxFile.find(L"\\");
+				if (pos != -1) {
+					wsxFile = L".\\" + wsxFile;
+				}
+			}
+
+			workerPath = stringConvert.ConvertString(wsxFile);
 		}
 
 	if (setThumbnailButtton != nullptr)
@@ -628,7 +639,20 @@ void WorkRegisterScene::Update()
 			o.nFilterIndex = 1;
 			int returnCode = GetOpenFileName(&o);
 
-			thumbnailPath = sxFile;
+			StringConvert stringConvert;
+
+			std::wstring wsxFile = stringConvert.ConvertString(sxFile);
+			std::wstring name = L"\\works\\" + stringConvert.ConvertString(guid) + L"\\";
+			int pos = wsxFile.find(name);
+			if (pos != -1) {
+				wsxFile.erase(wsxFile.begin(), wsxFile.begin() + pos + name.size());
+				pos = wsxFile.find(L"\\");
+				if (pos != -1) {
+					wsxFile = L".\\" + wsxFile;
+				}
+			}
+
+			thumbnailPath = stringConvert.ConvertString(wsxFile);
 		}
 
 	if (setImagesButtton != nullptr)
@@ -653,10 +677,21 @@ void WorkRegisterScene::Update()
 			//o.Flags = OFN_ALLOWMULTISELECT | OFN_EXPLORER;
 			int returnCode = GetOpenFileName(&o);
 
-			std::string newFileName = sxFile;
-			imagePathVector.push_back(newFileName);
+			StringConvert stringConvert;
 
-			imagesPath += newFileName + "\n";
+			std::wstring wsxFile = stringConvert.ConvertString(sxFile);
+			std::wstring name = L"\\works\\" + stringConvert.ConvertString(guid) + L"\\";
+			int pos = wsxFile.find(name);
+			if (pos != -1) {
+				wsxFile.erase(wsxFile.begin(), wsxFile.begin() + pos + name.size());
+				pos = wsxFile.find(L"\\");
+				if (pos != -1) {
+					wsxFile = L".\\" + wsxFile;
+				}
+			}
+
+			imagePathVector.push_back(stringConvert.ConvertString(wsxFile));
+			imagesPath += stringConvert.ConvertString(wsxFile) + "\n";
 		}
 
 	if (makeJsonDataButton != nullptr) {

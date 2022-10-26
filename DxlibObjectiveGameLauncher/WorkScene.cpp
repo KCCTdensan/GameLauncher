@@ -543,8 +543,23 @@ void WorkScene::Update()
 					sharingScenes->popupScene->MakeNotice("拡張子のないファイルです。");
 				}
 				if (normalLaunch) {
+					StringConvert stringConvert;
+
+					std::string path = this->obj["FilePath"].get<std::string>().c_str();
+					std::wstring wpath = stringConvert.ConvertString(path);
+
+					size_t posPath = wpath.rfind(L"\\");
+					if (posPath != std::wstring::npos) {
+						wpath = wpath.substr(posPath + 1, wpath.size() - posPath - 1);
+					}
+
+					posPath = wpath.rfind(L"/");
+					if (posPath != std::wstring::npos) {
+						wpath = wpath.substr(posPath + 1, wpath.size() - posPath - 1);
+					}
+
 					// 実行
-					ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
+					ShellExecute(GetMainWindowHandle(), "open", stringConvert.ConvertString(wpath).c_str(), NULL, NULL, SW_SHOWNORMAL);
 					switch (GetLastError())
 					{
 					case ERROR_FILE_NOT_FOUND:

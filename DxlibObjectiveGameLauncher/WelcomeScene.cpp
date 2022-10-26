@@ -337,7 +337,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse, 3.f);
 	jumpToNo1->SetupText("mplus100",
 		"No.1",
-		Color255(50, 30));
+		Color255(255, 100));
 	jumpToNo1->SetInnerAnimation(.2f);
 	jumpToNo1->SetOuterAnimation(.2f);
 	jumpToNo1->SetImageSize(tileSize);
@@ -362,7 +362,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse, 3.f);
 	jumpToNo2->SetupText("mplus100",
 		"No.2",
-		Color255(50, 30));
+		Color255(255, 100));
 	jumpToNo2->SetInnerAnimation(.2f);
 	jumpToNo2->SetOuterAnimation(.2f);
 	jumpToNo2->SetImageSize(tileSize);
@@ -387,7 +387,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse, 3.f);
 	jumpToNo3->SetupText("mplus100",
 		"No.3",
-		Color255(50, 30));
+		Color255(255, 100));
 	jumpToNo3->SetInnerAnimation(.2f);
 	jumpToNo3->SetOuterAnimation(.2f);
 	jumpToNo3->SetImageSize(tileSize);
@@ -548,7 +548,7 @@ void WelcomeScene::Update()
 		for (auto& item : alists) {
 			v.push_back({ (int)item.get<picojson::object>()["LaunchedTimes"].get<double>(), item.get<picojson::object>()["GUID"].get<std::string>() });
 		}
-		std::sort(v.begin(), v.end());
+		std::sort(v.rbegin(), v.rend());
 
 		/********** JSON ì«çû ***********/
 
@@ -599,8 +599,8 @@ void WelcomeScene::Update()
 				button = jumpToNo3;
 			}
 			for (int j = 0; j < lists.size(); j++) {
-				if (alists[i].get<picojson::object>()["GUID"].get<std::string>() == lists[j].get<picojson::object>()["GUID"].get<std::string>()) {
-					if (button->GetTag() != alists[i].get<picojson::object>()["GUID"].get<std::string>()) {
+				if (v[i].second == lists[j].get<picojson::object>()["GUID"].get<std::string>()) {
+					if (button->GetTag() != v[i].second) {
 
 						ExePath exePath;
 						(void)_chdir(exePath.GetPath());
@@ -611,7 +611,7 @@ void WelcomeScene::Update()
 						ImageChest::CreateImageHandle(iconName, iconPath);
 
 						button->SetImageHandle(ImageChest::GetImageHandle(iconName));
-						button->SetTag(alists[i].get<picojson::object>()["GUID"].get<std::string>());
+						button->SetTag(v[i].second);
 					}
 					break;
 

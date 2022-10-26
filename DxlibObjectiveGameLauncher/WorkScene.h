@@ -16,6 +16,7 @@
 #include <exception>
 #include "MusicPlayer.h"
 #include "PlayerScene.h"
+#include "StringConvert.h"
 
 class WorkScene :
     public SceneBase
