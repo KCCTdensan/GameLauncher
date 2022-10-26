@@ -76,6 +76,10 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	std::string gotoPath = welcome["goto-home"].get<picojson::object>()["src"].get<std::string>();
 	std::string musicName = "GOTO:" + welcome["music-player"].get<picojson::object>()["src"].get <std::string>();
 	std::string musicPath = welcome["music-player"].get<picojson::object>()["src"].get<std::string>();
+	std::string rankName = "RANK:" + welcome["ranking"].get<picojson::object>()["src"].get <std::string>();
+	std::string rankpath = welcome["ranking"].get<picojson::object>()["src"].get<std::string>();
+	std::string randomName = "GOTO:" + welcome["random"].get<picojson::object>()["src"].get <std::string>();
+	std::string randomPath = welcome["random"].get<picojson::object>()["src"].get<std::string>();
 
 	ImageChest::CreateImageHandle(iconName, iconPath);
 	ImageChest::CreateImageHandle(qrName, qrPath);
@@ -84,6 +88,8 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	ImageChest::CreateImageHandle(gotoName, gotoPath);
 	ImageChest::CreateImageHandle(whatName, whatPath);
 	ImageChest::CreateImageHandle(musicName, musicPath);
+	ImageChest::CreateImageHandle(rankName, rankpath);
+	ImageChest::CreateImageHandle(randomName, randomPath);
 
 	const PosVec tileStartPos(175.f, ApplicationPreference::startScenePos + 50.f);
 	const PosVec tileSize(400.f, 400.f);
@@ -294,6 +300,9 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		Color255(50, 30));
 	jumpTorandomPage->SetInnerAnimation(.2f);
 	jumpTorandomPage->SetOuterAnimation(.2f);
+	jumpTorandomPage->SetImageHandle(ImageChest::GetImageHandle(randomName));
+	jumpTorandomPage->SetImageSize(PosVec(maxThumbnailLongLength * 3.f, maxThumbnailLongLength));
+	jumpTorandomPage->SetImageTurnFlag(false, false);
 
 	rankButton = new ButtonObject(
 		PosVec(
@@ -313,10 +322,13 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse,
 		ColorPreset::navLinksOuterMouse, 3.f);
 	rankButton->SetupText("mplus100",
-		"ƒ‰ƒ“ƒLƒ“ƒO",
+		welcome["ranking"].get<picojson::object>()["text"].get<std::string>(),
 		Color255(50, 30));
 	rankButton->SetInnerAnimation(.2f);
 	rankButton->SetOuterAnimation(.2f);
+	rankButton->SetImageHandle(ImageChest::GetImageHandle(rankName));
+	rankButton->SetImageSize(PosVec(maxThumbnailLongLength, maxThumbnailLongLength));
+	rankButton->SetImageTurnFlag(false, false);
 
 	jumpToNo1 = new ButtonObject(
 		PosVec(
