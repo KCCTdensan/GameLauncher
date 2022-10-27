@@ -4,6 +4,7 @@ RequiredFileChecker::RequiredFileChecker()
 {
 	CheckWorksJson();
 	CheckAssetsJson();
+	CheckAnalyticsJson();
 }
 
 void RequiredFileChecker::CheckAssetsJson()
@@ -71,4 +72,31 @@ void RequiredFileChecker::CheckWorksJson()
 		fs.close();
 
 	/********** JSON 読込 ***********/
+}
+
+void RequiredFileChecker::CheckAnalyticsJson()
+{
+	/********** JSON 読込 ***********/
+
+	ExePath exePath;
+	(void)_chdir(exePath.GetPath());
+
+	std::stringstream ss;
+	std::ifstream fs;
+	fs.open(ApplicationPreference::analyticsJson, std::ios::binary);
+
+	if (!fs.is_open()) { // ファイル開けなかった(ない場合)
+		picojson::object* obj = new picojson::object;
+		picojson::array* lists = new picojson::array;
+
+		obj->insert(std::make_pair("Lists", picojson::value(*lists)));
+
+		std::ofstream ofs;
+		ofs.open(ApplicationPreference::analyticsJson, std::ios::binary);
+
+		ofs << picojson::value(*obj).serialize(true) << std::endl;
+		ofs.close();
+	}
+	else
+		fs.close();
 }

@@ -163,6 +163,8 @@ private:
 	Color255 disabledInnerColor;
 	Color255 disabledOuterColor;
 
+	PosVec writingOffset;
+
 	float outlineWidth;
 
 	bool enabledFill;

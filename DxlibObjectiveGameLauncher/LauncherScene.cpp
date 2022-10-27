@@ -1,5 +1,6 @@
 #include "LauncherScene.h"
 #include "Header.h"
+#include "PopupScene.h"
 
 LauncherScene::LauncherScene()
 	: descriptionCanvas(nullptr), thumbnailCanvas(nullptr),
@@ -7,7 +8,7 @@ LauncherScene::LauncherScene()
 	thumbnail(nullptr), category(nullptr), title(nullptr), author(nullptr), guidText(nullptr), description(nullptr), descriptionLines(),
 	launch(nullptr),
 	imagesCanvas(nullptr), isBigCanvas(nullptr), isBigImage(nullptr), isBigPos(nullptr), isBigSize(nullptr), photoGalleryText(nullptr),
-	imageBackGround(nullptr)
+	imageBackGround(nullptr), copyGUID(nullptr), openWeb(nullptr)
 {
 }
 
@@ -18,7 +19,7 @@ LauncherScene::LauncherScene(SharingScenes* _sharingScenes)
 	thumbnail(nullptr), category(nullptr), title(nullptr), author(nullptr), guidText(nullptr), description(nullptr), descriptionLines(),
 	launch(nullptr),
 	imagesCanvas(nullptr), isBigCanvas(nullptr), isBigImage(nullptr), isBigPos(nullptr), isBigSize(nullptr), photoGalleryText(nullptr),
-	imageBackGround(nullptr)
+	imageBackGround(nullptr), copyGUID(nullptr), openWeb(nullptr)
 {
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
 	bg->SetInnerColor(ColorPreset::bgColor); // 非キャンバス追加オブジェクト(常に同じ背景)
@@ -52,10 +53,34 @@ LauncherScene::LauncherScene(SharingScenes* _sharingScenes)
 
 	this->obj = welcome; // 保存
 
-	std::string thumbnailName = "Thumb:" + this->obj["GUID"].get<std::string>();
-	std::string thumbnailPath = this->obj["Directory"].get<std::string>() + this->obj["Thumbnail"].get<std::string>();
+	UUIDGenerator uuidGenarator;
+	std::string iuuid = uuidGenarator.GetGUID();
+
+	guid = this->obj["GUID"].get<std::string>();
+
+	std::string thumbnailName = iuuid + "[work]Thumb:" + this->obj["GUID"].get<std::string>();
+	std::string thumbnailPath = this->obj["Thumbnail"].get<std::string>();
+
+	ExePath exePath;
+	(void)_chdir(exePath.GetPath());
+
+	char cwd[512];
+	// ディレクトリ取得
+	int returnId;
+	(void)_getcwd(cwd, 512);
+	// ファイル直下まで移動
+	returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
+
+	StringConvert stringConvert;
+
+	std::wstring fullpath = stringConvert.ConvertString(this->obj["Thumbnail"].get<std::string>());
+	int path_i = (int)fullpath.find_last_of(L"\\");
+	std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
+
+	(void)_chdir(stringConvert.ConvertString(pathname).c_str());
 
 	ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
+	handleNames.push_back(thumbnailName);
 	float maxThumbnailLongLength = 500.f; // 最大幅 どちらかの幅が500になる
 	PosVec imageSize = ImageChest::GetImageSize(thumbnailName);
 	float imageSizeRate = 0.f;
@@ -96,11 +121,28 @@ LauncherScene::LauncherScene(SharingScenes* _sharingScenes)
 	float maxImageLongLength = 300.f; // 最大幅 どちらかの幅が300になる
 
 	for (auto& item : this->obj["Images"].get<picojson::array>()) {
-		// printfDx("%s\n", item.get<picojson::object>()["FilePath"].get<std::string>().c_str());
-		std::string imageName = "Image" + std::to_string(i) + ":" + this->obj["GUID"].get<std::string>();
-		std::string imagePath = this->obj["Directory"].get<std::string>() + item.get<picojson::object>()["FilePath"].get<std::string>();
+		(void)_chdir(exePath.GetPath());
+
+		char cwd[512];
+		// ディレクトリ取得
+		int returnId;
+		(void)_getcwd(cwd, 512);
+		// ファイル直下まで移動
+		returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
+
+		StringConvert stringConvert;
+
+		std::wstring fullpath = stringConvert.ConvertString(item.get<picojson::object>()["FilePath"].get<std::string>());
+		int path_i = (int)fullpath.find_last_of(L"\\");
+		std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
+
+		(void)_chdir(stringConvert.ConvertString(pathname).c_str());
+
+		std::string imageName = iuuid + "Image" + std::to_string(i) + ":" + this->obj["GUID"].get<std::string>();
+		std::string imagePath = item.get<picojson::object>()["FilePath"].get<std::string>();
 
 		ImageChest::CreateImageHandle(imageName, imagePath);
+		handleNames.push_back(imageName);
 		PosVec imageSize = ImageChest::GetImageSize(imageName);
 		float imageSizeRate = 0.f;
 		if (imageSize.x >= imageSize.y) {
@@ -122,6 +164,7 @@ LauncherScene::LauncherScene(SharingScenes* _sharingScenes)
 		images[i]->SetOutlineColor(ColorPreset::tileOuterMouse, 3.f);
 
 		i++;
+		(void)_chdir(exePath.GetPath());
 		if (i == 3) break; // 3枚までしか考慮しない
 	}
 
@@ -145,25 +188,23 @@ LauncherScene::LauncherScene(SharingScenes* _sharingScenes)
 	category = new TextObject(
 		PosVec(ApplicationPreference::GetBackgroundSize().x - 20.f, ApplicationPreference::startScenePos + 10.f), PosVec(),
 		"smart30", "Category: " + this->obj["Category"].get<std::string>(), ColorPreset::textGray, TextAlign::RIGHT, false);
-	//category->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
 
 	// 初期位置 +50
 	title = new TextObject(
 		PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 50.f), PosVec(),
 		"smart50", this->obj["TitleName"].get<std::string>(), ColorPreset::textBlack, TextAlign::LEFT, false);
-	//title->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
+	title->DeleteNewLine();
 
 	// +100
 	author = new TextObject(
 		PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 100.f), PosVec(),
 		"smart25", this->obj["Author"].get<std::string>(), ColorPreset::textBlack, TextAlign::LEFT, false);
-	//author->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
+	author->DeleteNewLine();
 
 	// +125
 	guidText = new TextObject(
 		PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 125.f), PosVec(),
 		"smart25", this->obj["GUID"].get<std::string>(), ColorPreset::textGray, TextAlign::LEFT, false);
-	//guidText->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
 
 	// +150
 	description = new TextObject(
@@ -194,6 +235,32 @@ LauncherScene::LauncherScene(SharingScenes* _sharingScenes)
 	descriptionLines[1]->SetPos(PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 150.f + descriptionCanvas->GetSize().y));
 	descriptionLines[1]->SetSize(PosVec(75.f + maxThumbnailLongLength + descriptionCanvas->GetSize().x, ApplicationPreference::startScenePos + 150.f + descriptionCanvas->GetSize().y));
 
+	openWeb = new ButtonObject(
+		PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 375.f),
+		PosVec(maxThumbnailLongLength, 100.f), true, true);
+	openWeb->SetInnerColor(
+		ColorPreset::yellowButtonInner,
+		ColorPreset::yellowButtonHovered,
+		ColorPreset::yellowButtonClicked,
+		ColorPreset::yellowButtonSelected);
+	openWeb->SetInnerAnimation(.1f);
+	openWeb->SetOutlineColor(ColorPreset::yellowButtonOuter, 3.f);
+	openWeb->SetupText("smart30", "Open In Browser", ColorPreset::textObject, TextAlign::LEFT);
+
+	copyGUID = new ButtonObject(
+		PosVec(650.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 120.f),
+		PosVec(100, 25.f), true, true);
+	copyGUID->SetInnerColor(
+		ColorPreset::yellowButtonInner,
+		ColorPreset::yellowButtonHovered,
+		ColorPreset::yellowButtonClicked,
+		ColorPreset::yellowButtonSelected);
+	copyGUID->SetInnerAnimation(.1f);
+	copyGUID->SetOutlineColor(ColorPreset::yellowButtonOuter, 3.f);
+	copyGUID->SetupText("smart20", "COPY", ColorPreset::textObject, TextAlign::LEFT);
+
+	if (this->obj["URL"].get<std::string>() == "") openWeb->SetEnabled(false);
+
 	launch = new ButtonObject(
 		PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 200.f),
 		PosVec(maxThumbnailLongLength, 150.f), true, true);
@@ -223,6 +290,8 @@ LauncherScene::LauncherScene(SharingScenes* _sharingScenes)
 	layer.AddObject(guidText);
 	layer.AddObject(description);
 	layer.AddObject(photoGalleryText);
+	layer.AddObject(copyGUID);
+	layer.AddObject(openWeb);
 
 	layer.AddObject(launch);
 
@@ -237,6 +306,31 @@ LauncherScene::LauncherScene(SharingScenes* _sharingScenes)
 	fonts.push_back(FontHandle("smart50", "03スマートフォントUI", 50, 15));
 	fonts.push_back(FontHandle("smart30", "03スマートフォントUI", 30, 15));
 	fonts.push_back(FontHandle("smart25", "03スマートフォントUI", 25, 15));
+	fonts.push_back(FontHandle("smart20", "03スマートフォントUI", 20, 15));
+}
+
+LauncherScene::~LauncherScene()
+{
+	SceneBase::~SceneBase();
+
+	for (auto& item : handleNames) {
+		ImageChest::DeleteImageHandle(item);
+	}
+
+	SaftyDelete(canvas);	SaftyDelete(bg);
+	SaftyDelete(thumbnail); SaftyDelete(category); SaftyDelete(title); SaftyDelete(author); SaftyDelete(guidText);
+	SaftyDelete(description); SaftyDelete(photoGalleryText); SaftyDelete(descriptionCanvas);
+	SaftyDelete(thumbnailCanvas); SaftyDelete(imagesCanvas); SaftyDelete(launch); SaftyDelete(imageBackGround);
+
+	if (isBigPos == nullptr)
+		delete isBigPos;
+	if (isBigSize == nullptr)
+		delete isBigSize;
+
+	for (auto& item : descriptionLines)
+		delete item;
+	for (auto& item : images)
+		delete item;
 }
 
 void LauncherScene::Collide()
@@ -249,8 +343,8 @@ void LauncherScene::Update()
 {
 	RegFonts();
 
-	canvases.Update();
 	layer.Update();
+	canvases.Update();
 
 	// 高さ取得
 	if (descriptionCanvas != nullptr && description != nullptr)
@@ -258,6 +352,16 @@ void LauncherScene::Update()
 			float textHeight = (float)description->GetTextHeight() * ApplicationPreference::returnTextIndent;
 			descriptionCanvas->SetArea(PosVec(0, textHeight), (float)description->GetFontHeight() * 2.f / textHeight);
 		}
+
+	if (openWeb != nullptr) {
+		openWeb->GetTextObject()->SetPos(openWeb->GetPos());
+		openWeb->GetTextObject()->Move(PosVec(
+			(openWeb->GetSize().x - openWeb->GetTextObject()->GetTextWidth()) / 2.f,
+			(openWeb->GetSize().y - openWeb->GetTextObject()->GetTextHeight()) / 2.f));
+		openWeb->GetTextObject()->SetForcedArea(
+			openWeb->GetPos(),
+			PosVec(launch->GetPos().x + launch->GetSize().x, launch->GetPos().y + launch->GetSize().y));
+	}
 
 	if (launch != nullptr) {
 		launch->GetTextObject()->SetPos(launch->GetPos());
@@ -267,13 +371,70 @@ void LauncherScene::Update()
 		launch->GetTextObject()->SetForcedArea(
 			launch->GetPos(),
 			PosVec(launch->GetPos().x + launch->GetSize().x, launch->GetPos().y + launch->GetSize().y));
+	}
 
+	if (copyGUID != nullptr) {
+		copyGUID->GetTextObject()->SetPos(copyGUID->GetPos());
+		copyGUID->GetTextObject()->Move(PosVec(
+			(copyGUID->GetSize().x - copyGUID->GetTextObject()->GetTextWidth()) / 2.f,
+			(copyGUID->GetSize().y - copyGUID->GetTextObject()->GetTextHeight()) / 2.f));
+		copyGUID->GetTextObject()->SetForcedArea(
+			copyGUID->GetPos(),
+			PosVec(copyGUID->GetPos().x + copyGUID->GetSize().x, copyGUID->GetPos().y + copyGUID->GetSize().y));
 	}
 
 	sharingScenes->header->SetSubtitle(this->obj["TitleName"].get<std::string>());
 
+	if (copyGUID != nullptr)
+		if (copyGUID->GetMouseSelected()) {
+			copyGUID->SetMouseOff();
+
+			if (!::OpenClipboard(GetMainWindowHandle())) {
+				sharingScenes->popupScene->MakeNotice("クリップボードを開けませんでした。", "ERROR");
+				return;
+			}
+
+			if (!::EmptyClipboard()) {
+				::CloseClipboard();
+				sharingScenes->popupScene->MakeNotice("クリップボードをクリアできませんでした。", "ERROR");
+				return;
+			}
+
+			HGLOBAL hGlobal = GlobalAlloc(GHND, guid.length() + 1);
+			if (!hGlobal) {
+				::CloseClipboard();
+				sharingScenes->popupScene->MakeNotice("クリップボードにてメモリを確保できませんでした。", "ERROR");
+			}
+			else {
+				LPTSTR p = (LPTSTR)GlobalLock(hGlobal);
+				wsprintf(p, guid.c_str());
+				GlobalUnlock(hGlobal);
+
+				::SetClipboardData(CF_TEXT, hGlobal);
+
+				::CloseClipboard();
+				sharingScenes->popupScene->MakeNotice("クリップボードにコピーしました。");
+			}
+		}
+
+	if (openWeb != nullptr)
+		if (openWeb->GetMouseSelected() && this->obj["URL"].get<std::string>() != "") {
+			openWeb->SetMouseOff();
+
+			try {
+				ShellExecute(GetMainWindowHandle(), "open", this->obj["URL"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
+			}
+			catch (std::exception e) {
+				// throw
+			}
+		}
+
 	if (launch != nullptr)
-		if (launch->GetMouseSelected()) {
+		if (launch->GetMouseSelected() && this->obj["FilePath"].get<std::string>() != "") {
+
+			ExePath exePath;
+			(void)_chdir(exePath.GetPath());
+
 			// 押下時の処理をここに
 			launch->SetMouseOff();
 			char cwd[512];
@@ -282,10 +443,186 @@ void LauncherScene::Update()
 			(void)_getcwd(cwd, 512);
 			// ファイル直下まで移動
 			returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
-			// 実行
-			ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
+
+			StringConvert stringConvert;
+
+			std::wstring fullpath = stringConvert.ConvertString(this->obj["FilePath"].get<std::string>());
+			int path_i = (int)fullpath.find_last_of(L"\\");
+			std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
+
+			(void)_chdir(stringConvert.ConvertString(pathname).c_str());
+
+			if (this->obj["Category"].get<std::string>() == ApplicationPreference::musicCategoryName) {
+				PlayData playData;
+				MusicChest::CreateMusicHandle(this->obj["GUID"].get<std::string>(), this->obj["FilePath"].get<std::string>());
+
+				playData.title = this->obj["TitleName"].get<std::string>();
+				playData.author = this->obj["Author"].get<std::string>();
+				playData.handle = MusicChest::GetMusicHandle(this->obj["GUID"].get<std::string>());
+
+				if (playData.handle < 0) {
+					sharingScenes->popupScene->MakeNotice("ファイルが見つからない、もしくは開けませんでした。", "ERROR");
+				}
+				else {
+					sharingScenes->popupScene->MakeNotice("音声ファイル読み込み完了");
+				}
+
+				MusicPlayer::AddToList(playData);
+
+				// 元のディレクトリに戻す
+				returnId = _chdir(cwd);
+				(void)_chdir(exePath.GetPath());
+
+				SceneManager::ChangeScene("Music Player", new PlayerScene(sharingScenes));
+			}
+			else {
+
+				const char* ext = std::strrchr(this->obj["FilePath"].get<std::string>().c_str(), '.');
+
+				bool normalLaunch = true;
+
+				if (ext) {
+					std::string extNoticeText = "拡張子を取得しました。: ";
+					extNoticeText += ext;
+					sharingScenes->popupScene->MakeNotice(extNoticeText);
+					std::string extname = ext;
+					if (
+						extname == ".wav" || extname == ".WAV" ||
+						extname == ".mp3" || extname == ".MP3" ||
+						extname == ".ogg" || extname == ".Ogg" || extname == "Ogg" ||
+						extname == ".opus" || extname == ".OPUS") {
+						sharingScenes->popupScene->MakeNotice("拡張子が音楽ファイルであったため音楽プレイヤーで読込を開始します。");
+						normalLaunch = false;
+
+						PlayData playData;
+						MusicChest::CreateMusicHandle(this->obj["GUID"].get<std::string>(), this->obj["FilePath"].get<std::string>());
+
+						playData.title = this->obj["TitleName"].get<std::string>();
+						playData.author = this->obj["Author"].get<std::string>();
+						playData.handle = MusicChest::GetMusicHandle(this->obj["GUID"].get<std::string>());
+
+						if (playData.handle < 0) {
+							sharingScenes->popupScene->MakeNotice("ファイルが見つからない、もしくは開けませんでした。");
+						}
+						else {
+							sharingScenes->popupScene->MakeNotice("音声ファイル読み込み完了");
+						}
+
+						MusicPlayer::AddToList(playData);
+
+						// 元のディレクトリに戻す
+						returnId = _chdir(cwd);
+						(void)_chdir(exePath.GetPath());
+
+						SceneManager::ChangeScene("Music Player", new PlayerScene(sharingScenes));
+					}
+				}
+				else {
+					sharingScenes->popupScene->MakeNotice("拡張子のないファイルです。");
+				}
+				if (normalLaunch) {
+					StringConvert stringConvert;
+
+					std::string path = this->obj["FilePath"].get<std::string>().c_str();
+					std::wstring wpath = stringConvert.ConvertString(path);
+
+					size_t posPath = wpath.rfind(L"\\");
+					if (posPath != std::wstring::npos) {
+						wpath = wpath.substr(posPath + 1, wpath.size() - posPath - 1);
+					}
+
+					posPath = wpath.rfind(L"/");
+					if (posPath != std::wstring::npos) {
+						wpath = wpath.substr(posPath + 1, wpath.size() - posPath - 1);
+					}
+
+					// 実行
+					ShellExecute(GetMainWindowHandle(), "open", stringConvert.ConvertString(wpath).c_str(), NULL, NULL, SW_SHOWNORMAL);
+					switch (GetLastError())
+					{
+					case ERROR_FILE_NOT_FOUND:
+						sharingScenes->popupScene->MakeNotice("ファイルが見つかりませんでした。", "ERROR");
+						break;
+					case ERROR_PATH_NOT_FOUND:
+						sharingScenes->popupScene->MakeNotice("パスが見つかりませんでした。", "ERROR");
+						break;
+					case ERROR_ACCESS_DENIED:
+						sharingScenes->popupScene->MakeNotice("アクセス拒否されました。", "ERROR");
+						break;
+					case ERROR_NOT_ENOUGH_MEMORY:
+						sharingScenes->popupScene->MakeNotice("メモリ不足です。", "ERROR");
+						break;
+					default:
+						break;
+					}
+				}
+			}
 			// 元のディレクトリに戻す
 			returnId = _chdir(cwd);
+
+			(void)_chdir(exePath.GetPath());
+
+			/********** JSON 読込 ***********/
+
+			std::stringstream ss;
+			std::ifstream fs;
+			fs.open(ApplicationPreference::analyticsJson, std::ios::binary);
+
+			if (!fs.is_open()) {
+				return;
+			}
+
+			ss << fs.rdbuf();
+			fs.close();
+
+			picojson::value val;
+			ss >> val;
+			std::string err = picojson::get_last_error();
+			if (!err.empty()) {
+				std::cerr << err << std::endl;
+				return;
+			}
+
+			picojson::object& obj = val.get<picojson::object>();
+			picojson::array& lists = obj["Lists"].get<picojson::array>();
+
+			picojson::object* newGUIDSave = new picojson::object;
+			picojson::object* newTime = new picojson::object;
+			picojson::array* newTimeList = new picojson::array;
+
+			bool isExisting = false;
+
+			for (auto& item : lists) {
+				if (item.get<picojson::object>()["GUID"].get<std::string>() == guid) {
+					isExisting = true;
+
+					item.get<picojson::object>()["LaunchedTimes"].get<double>() += 1.;
+
+					picojson::array& time = item.get<picojson::object>()["Time"].get<picojson::array>();
+					newTime->insert(std::make_pair("Time", picojson::value(static_cast<double>(::time(nullptr)))));
+					time.push_back(picojson::value(*newTime));
+
+					break;
+				}
+			}
+
+			if (!isExisting) {
+				newGUIDSave->insert(std::make_pair("GUID", picojson::value(guid.c_str())));
+				newGUIDSave->insert(std::make_pair("LaunchedTimes", picojson::value(1.)));
+
+				newTime->insert(std::make_pair("Time", picojson::value(static_cast<double>(::time(nullptr)))));
+				newTimeList->push_back(picojson::value(*newTime));
+				newGUIDSave->insert(std::make_pair("Time", picojson::value(*newTimeList)));
+
+				lists.push_back(picojson::value(*newGUIDSave));
+			}
+
+			std::ofstream ofs;
+			ofs.open(ApplicationPreference::analyticsJson, std::ios::binary);
+
+			ofs << picojson::value(obj).serialize(true) << std::endl;
+			ofs.close();
+			sharingScenes->popupScene->MakeNotice(ApplicationPreference::analyticsJson + "に保存しました。");
 		}
 
 	if (thumbnail != nullptr)

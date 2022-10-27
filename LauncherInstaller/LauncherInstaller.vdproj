@@ -15,14 +15,146 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_119AC4E798E64F42921234CD673EC3E2"
+        "MsmKey" = "8:_1518E2C187E143DDB8B7DC88D047E68A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9E6DFFEEFD62B3619E1FED41CF043FE1"
-        "OwnerKey" = "8:_119AC4E798E64F42921234CD673EC3E2"
+        "MsmKey" = "8:_1F1A900ACDE542609DFD2C3DE7F30C27"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2CCF7040A0F04A3D8E2814482701BBAD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3EDA83A7A71745ACBFA02A2B6A4A4A11"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4305FB3B55D542168D98AA1EF2705DC0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4C363B67BE914AC7AE19A5F19A6FABAD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5A5B73FF89454FCF979A1BC6D14062DE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5B109FDE85DB458C9CA2FB052F0DB46F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5F69A32265CD479F90154C0D73994406"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_74B1E7C09EA74312B1D2490F7FF6E008"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7D3AA7C442774FAF8210F05EC7E76A67"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7F14E4273DEC4370BCB9F16E185AC2AA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8169C82B0DC4466CA4540FB4181EFFE1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_83ECC51E6FCA44E9BA130D90843AE94E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8EC876ADDDF24BA8983E907BF4E96E78"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A29E956E9BA940F287DBE5A2EAD574F6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B0403D25406947DDA78D436805D926AA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B4D17933A77C4D9592C161AC81208243"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B8EB4781F95240B1A6A321832DA5CDF7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C3EB76F733834E1A93B2A32CB44EB578"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C5311FC971B446C5ACABDD2584EDD8B6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CB959880E1F547EF9FB434045B54C3D4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EE8FB6536FBA4A3E937D7815604D9B7C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F1D120B0C82B4829B6DA184D6831A937"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -43,6 +175,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -59,6 +207,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -80,10 +244,210 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9E6DFFEEFD62B3619E1FED41CF043FE1"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1518E2C187E143DDB8B7DC88D047E68A"
             {
-            "SourcePath" = "8:RPCRT4.dll"
-            "TargetName" = "8:RPCRT4.dll"
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\player\\shuffle.png"
+            "TargetName" = "8:shuffle.png"
+            "Tag" = "8:"
+            "Folder" = "8:_9164E960CA0C40619B06BCCCD363AE3F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1F1A900ACDE542609DFD2C3DE7F30C27"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\launcher\\qr.png"
+            "TargetName" = "8:qr.png"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB5847D28B941D9B92CD1D0067077B2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2CCF7040A0F04A3D8E2814482701BBAD"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\player\\oneloop.png"
+            "TargetName" = "8:oneloop.png"
+            "Tag" = "8:"
+            "Folder" = "8:_9164E960CA0C40619B06BCCCD363AE3F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3EDA83A7A71745ACBFA02A2B6A4A4A11"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\qr.png"
+            "TargetName" = "8:qr.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4305FB3B55D542168D98AA1EF2705DC0"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\json\\sets.json"
+            "TargetName" = "8:sets.json"
+            "Tag" = "8:"
+            "Folder" = "8:_2B986804282F4597808E30998C6C6086"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4C363B67BE914AC7AE19A5F19A6FABAD"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\player\\loop.png"
+            "TargetName" = "8:loop.png"
+            "Tag" = "8:"
+            "Folder" = "8:_9164E960CA0C40619B06BCCCD363AE3F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A5B73FF89454FCF979A1BC6D14062DE"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\music-scene.png"
+            "TargetName" = "8:music-scene.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5B109FDE85DB458C9CA2FB052F0DB46F"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\player\\play.png"
+            "TargetName" = "8:play.png"
+            "Tag" = "8:"
+            "Folder" = "8:_9164E960CA0C40619B06BCCCD363AE3F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_74B1E7C09EA74312B1D2490F7FF6E008"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\player\\stop.png"
+            "TargetName" = "8:stop.png"
+            "Tag" = "8:"
+            "Folder" = "8:_9164E960CA0C40619B06BCCCD363AE3F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7D3AA7C442774FAF8210F05EC7E76A67"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\works.png"
+            "TargetName" = "8:works.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7F14E4273DEC4370BCB9F16E185AC2AA"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\icon.ico"
+            "TargetName" = "8:icon.ico"
             "Tag" = "8:"
             "Folder" = "8:_2578813388214FB2A9920538D44BB463"
             "Condition" = "8:"
@@ -97,7 +461,247 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8169C82B0DC4466CA4540FB4181EFFE1"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\random.png"
+            "TargetName" = "8:random.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_83ECC51E6FCA44E9BA130D90843AE94E"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\fonts\\MPLUS2-Medium.ttf"
+            "TargetName" = "8:MPLUS2-Medium.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_BA5F038D85E14800AB8D4DD5DD9F76F8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8EC876ADDDF24BA8983E907BF4E96E78"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\launcher\\icon.png"
+            "TargetName" = "8:icon.png"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB5847D28B941D9B92CD1D0067077B2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A29E956E9BA940F287DBE5A2EAD574F6"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\launcher\\3.png"
+            "TargetName" = "8:3.png"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB5847D28B941D9B92CD1D0067077B2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B0403D25406947DDA78D436805D926AA"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\launcher\\2.png"
+            "TargetName" = "8:2.png"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB5847D28B941D9B92CD1D0067077B2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4D17933A77C4D9592C161AC81208243"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\home-link.png"
+            "TargetName" = "8:home-link.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B8EB4781F95240B1A6A321832DA5CDF7"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\ranking.png"
+            "TargetName" = "8:ranking.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C3EB76F733834E1A93B2A32CB44EB578"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\icon.png"
+            "TargetName" = "8:icon.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C5311FC971B446C5ACABDD2584EDD8B6"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\fonts\\03スマートフォントUI.otf"
+            "TargetName" = "8:03スマートフォントUI.otf"
+            "Tag" = "8:"
+            "Folder" = "8:_BA5F038D85E14800AB8D4DD5DD9F76F8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB959880E1F547EF9FB434045B54C3D4"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\kcct.png"
+            "TargetName" = "8:kcct.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EE8FB6536FBA4A3E937D7815604D9B7C"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\player\\noloop.png"
+            "TargetName" = "8:noloop.png"
+            "Tag" = "8:"
+            "Folder" = "8:_9164E960CA0C40619B06BCCCD363AE3F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F1D120B0C82B4829B6DA184D6831A937"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\whatis.png"
+            "TargetName" = "8:whatis.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -108,7 +712,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_2578813388214FB2A9920538D44BB463"
             {
-            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[LocalAppDataFolder]\\[Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -116,6 +720,83 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_93D8CEBB9A3F41D0BDFEEA2BD16BABA3"
+                    {
+                    "Name" = "8:assets"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_2BF5EDF9051841068F1E6AE24623B122"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_28F49C4718134CC2B22185E607CF59FF"
+                            {
+                            "Name" = "8:client"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_EF98A8600A7446199DEF262F0BFD60B8"
+                                "Folders"
+                                {
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_3CB5847D28B941D9B92CD1D0067077B2"
+                                    {
+                                    "Name" = "8:launcher"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_5D0BA954B19F4106AA21E024AE47D085"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_9164E960CA0C40619B06BCCCD363AE3F"
+                                    {
+                                    "Name" = "8:player"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_49CD26EDF22E437AB035C9ED44C853B7"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_BA5F038D85E14800AB8D4DD5DD9F76F8"
+                                    {
+                                    "Name" = "8:fonts"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_BDF0EED2839643BA906C35FA5D4BF8D3"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_DC83C8EAA55944D2AE61E13B981DCB59"
+                                    {
+                                    "Name" = "8:welcome"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_9F374617AF494028AEB598B8C3A042D4"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_2B986804282F4597808E30998C6C6086"
+                            {
+                            "Name" = "8:json"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_0CF50F4CBEC24389B75E5BF7FD59BC27"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_4D4D6FD58DF64920939BBB2F0BEE2CA5"
@@ -155,16 +836,16 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:LauncherInstaller"
-        "ProductCode" = "8:{3E236FC0-F48C-4B38-A66F-2A3F1DC0E3DF}"
-        "PackageCode" = "8:{10E9855E-B0CC-40D7-9D3D-021D3CCC0B21}"
+        "ProductName" = "8:Game Launcher"
+        "ProductCode" = "8:{1A026BA4-F567-47D2-AA64-6D3CDF1BF513}"
+        "PackageCode" = "8:{D5CDB1BD-C05D-476E-9C2D-A69C6DE3BB3C}"
         "UpgradeCode" = "8:{9F7372BB-ABB3-489D-9411-EED18078A7BD}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.2"
         "Manufacturer" = "8:KCCT densan"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -277,32 +958,32 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7E6047FDD7A845BEBF878B961C3F1A65"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_42E420A6301B47CB9856BC42127DD20B"
             {
-            "Name" = "8:Launcher"
+            "Name" = "8:Game Launcher"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_119AC4E798E64F42921234CD673EC3E2"
-            "Folder" = "8:_D54E2782BFB243DD9E781AB6C594E74D"
-            "WorkingFolder" = "8:_2578813388214FB2A9920538D44BB463"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_AC2C92BAD9404552A0562A94120F6419"
-            {
-            "Name" = "8:Launcher"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_119AC4E798E64F42921234CD673EC3E2"
+            "Target" = "8:_5F69A32265CD479F90154C0D73994406"
             "Folder" = "8:_4D4D6FD58DF64920939BBB2F0BEE2CA5"
             "WorkingFolder" = "8:_2578813388214FB2A9920538D44BB463"
-            "Icon" = "8:"
+            "Icon" = "8:_7F14E4273DEC4370BCB9F16E185AC2AA"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_81BCCA0F815D4214A38C4B380F170352"
+            {
+            "Name" = "8:Game Launcher"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_5F69A32265CD479F90154C0D73994406"
+            "Folder" = "8:_D54E2782BFB243DD9E781AB6C594E74D"
+            "WorkingFolder" = "8:_2578813388214FB2A9920538D44BB463"
+            "Icon" = "8:_7F14E4273DEC4370BCB9F16E185AC2AA"
             "Feature" = "8:"
             }
         }
@@ -545,7 +1226,7 @@
                             "ContextData" = "8:1;True=1;False=0"
                             "Attributes" = "3:0"
                             "Setting" = "3:0"
-                            "Value" = "3:1"
+                            "Value" = "3:0"
                             "DefaultValue" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -704,9 +1385,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_119AC4E798E64F42921234CD673EC3E2"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5F69A32265CD479F90154C0D73994406"
             {
-            "SourcePath" = "8:..\\x64\\Debug\\DxlibObjectiveGameLauncher.exe"
+            "SourcePath" = "8:..\\x64\\Release\\DxlibObjectiveGameLauncher.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2578813388214FB2A9920538D44BB463"
@@ -724,7 +1405,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|x64"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{C7DF38E5-DC3D-43FB-9557-9C97C74FCA01}"
             "ShowKeyOutput" = "11:TRUE"

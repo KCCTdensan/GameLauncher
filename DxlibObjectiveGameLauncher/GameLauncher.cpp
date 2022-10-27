@@ -71,71 +71,12 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 	return 0;
 }
 
-void GradX_RGB(int x1, int y1, int x2, int y2, BYTE r1, BYTE g1, BYTE b1, BYTE r2, BYTE g2, BYTE b2)
-{
-	VERTEX2D Vertex[6]{};
-
-	Vertex[0].pos.x = (float)x1;
-	Vertex[0].pos.y = (float)y1;
-	Vertex[0].pos.z = 0.0f;
-	Vertex[0].rhw = 1.0f;
-	Vertex[0].dif.r = r1;
-	Vertex[0].dif.g = g1;
-	Vertex[0].dif.b = b1;
-	Vertex[0].dif.a = 255;
-	Vertex[0].u = 0.0f;
-	Vertex[0].v = 0.0f;
-
-	Vertex[1].pos.x = (float)x2;
-	Vertex[1].pos.y = (float)y1;
-	Vertex[1].pos.z = 0.0f;
-	Vertex[1].rhw = 1.0f;
-	Vertex[1].dif.r = r2;
-	Vertex[1].dif.g = g2;
-	Vertex[1].dif.b = b2;
-	Vertex[1].dif.a = 255;
-	Vertex[1].u = 0.0f;
-	Vertex[1].v = 0.0f;
-
-	Vertex[2].pos.x = (float)x1;
-	Vertex[2].pos.y = (float)y2;
-	Vertex[2].pos.z = 0.0f;
-	Vertex[2].rhw = 1.0f;
-	Vertex[2].dif.r = r1;
-	Vertex[2].dif.g = g1;
-	Vertex[2].dif.b = b1;
-	Vertex[2].dif.a = 255;
-	Vertex[2].u = 0.0f;
-	Vertex[2].v = 0.0f;
-
-	Vertex[3].pos.x = (float)x2;
-	Vertex[3].pos.y = (float)y2;
-	Vertex[3].pos.z = 0.0f;
-	Vertex[3].rhw = 1.0f;
-	Vertex[3].dif.r = r2;
-	Vertex[3].dif.g = g2;
-	Vertex[3].dif.b = b2;
-	Vertex[3].dif.a = 255;
-	Vertex[3].u = 0.0f;
-	Vertex[3].v = 0.0f;
-
-	Vertex[4] = Vertex[2];
-
-	Vertex[5] = Vertex[1];
-
-	DrawPolygon2D(Vertex, 2, DX_NONE_GRAPH, FALSE);
-}
-
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) // windowsに定義された関数 ※修正不可
 {
 	ExePath exePath; //現在のカレントディレクトリを取得設定するためのクラスの変数宣言 ※修正不可
 	SetOutApplicationLogValidFlag(FALSE);
 
-//#if _DEBUG // DEBUGの時の宣言 現時点で特に記述はなし
-	// .vcxprojのディレクトリに放り込む
-//#else
 	SetCurrentDirectory(exePath.GetPath());//こちらにも完成時にCopy&Paste
-//#endif
 
 	const HWND MAIN_WINDOW_HANDLE = GetMainWindowHandle(); // ウインドウハンドル取得 ※修正不可
 
@@ -147,8 +88,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SetMainWindowText("Launcher"); // アプリのタイトル名の変更
 	SetUseIMEFlag(TRUE);
 	SetUseTSFFlag(FALSE);
-
-	//SetWindowStyleMode(11); // ボーダレスウインドウ
 
 	SetGraphMode((int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y, 32);
 
@@ -183,7 +122,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	SceneManager::Initialize();
 
 	SceneManager::ChangeScene("Welcome", new WelcomeScene(SceneManager::GetSharingScenes()), false, false); // 最初に表示するページ
-	//SceneManager::ChangeScene("Music Player", new PlayerScene(SceneManager::GetSharingScenes()), false, false); // 最初に表示するページ
 
 	//std::thread inputUpdate(InputUpdate);
 	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
@@ -195,9 +133,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 	while (!ScreenFlip() && !ClearDrawScreen() && !MainThread::SetEnd()) // メインループ この中の条件はないとバグるもの
 	{	
 		applicationBuilder.Update(); // システム系更新処理(がまとめられている)
-		//GetMessage(&msg, NULL, 0, 0); // 3,4 最小値最大値
-		//TranslateMessage(&msg);
-		//DispatchMessage(&msg); // ウインドウメッセージ処理
 		ProcessMessage();
 
 		SetDrawScreen(DX_SCREEN_BACK); // 描画初期化
@@ -209,8 +144,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		SceneManager::Update();
 		SceneManager::Draw(); // シーン更新処理
 
-		//GradX_RGB(10, 200, 630, 280, 255, 128, 0, 0, 255, 128);
-
 		SceneManager::UpdateForwardBackwardScene(
 			Input::MouseInput::GetClick(MOUSE_INPUT_5), PressFrame::FIRST,
 			Input::MouseInput::GetClick(MOUSE_INPUT_4), PressFrame::FIRST);
@@ -221,29 +154,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 		}
 	}
 
-	//inputUpdate.join();
-	//applicationUpdate.join();
-
 	DxLib_End(); // ライブラリend
 	return 0;
 }
-
-/*void InputUpdate() {
-	while (!MainThread::SetEnd()) {
-
-		Input::MouseInput::Update();
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
-	}
-}
-
-void ApplicationUpdate(SceneManager* _sceneManager) {
-	while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen() && !MainThread::SetEnd()) // メインループ この中の条件はないとバグるもの
-	{
-		_sceneManager->Update(); // ループ内で継続して使用，ヘッダーはそれぞれでインスタンス化してください
-		_sceneManager->Draw();
-
-		std::string tmp = std::to_string(Input::MouseInput::GetMouse().x);
-		std::string tmp2 = std::to_string(Input::MouseInput::GetMouse().y);
-		DrawString(500, 500, tmp.c_str(), GetColor(255, 255, 255));
-	}
-}*/

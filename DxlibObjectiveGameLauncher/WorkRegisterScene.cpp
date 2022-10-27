@@ -7,7 +7,9 @@ WorkRegisterScene::WorkRegisterScene()
 	openDirectoryButtton(nullptr), setThumbnailButtton(nullptr), setImagesButtton(nullptr),
 	lguid(nullptr), bg(nullptr), dImagesPath(nullptr), dThumbPath(nullptr), dWorkPath(nullptr), dguid(nullptr),
 	iWorkCategory(nullptr), lWorkName(nullptr), lWorkAuthor(nullptr), lWorkCategory(nullptr), lWorkDescription(nullptr),
-	lImagesPath(nullptr), lThumbPath(nullptr), lWorkPath(nullptr), guid(), makeJsonDataButton(nullptr), setWorkerButtton(nullptr), titlename(nullptr)
+	lImagesPath(nullptr), lThumbPath(nullptr), lWorkPath(nullptr), guid(), makeJsonDataButton(nullptr), setWorkerButtton(nullptr), titlename(nullptr),
+	clearButton(nullptr), deleteButton(nullptr), iExistingGUID(nullptr), iWorkURL(nullptr), imagesResetButton(nullptr),
+	lExistingGUID(nullptr), lWorkURL(nullptr)
 {
 	// 記入の必要性なし
 }
@@ -410,6 +412,7 @@ void WorkRegisterScene::Update()
 	makeJsonDataButton->SetEnabled(isguid);
 	deleteButton->SetEnabled(isguid);
 	clearButton->SetEnabled(isguid);
+	imagesResetButton->SetEnabled(isguid);
 
 	iExistingGUID->SetEnabled(!isguid);
 
@@ -417,6 +420,9 @@ void WorkRegisterScene::Update()
 		iWorkName->GetString() == "" ||
 		iWorkAuthor->GetString() == "" ||
 		iWorkCategory->GetString() == "") makeJsonDataButton->SetEnabled(false);
+
+	if (imagePathVector.size() == 0)
+		imagesResetButton->SetEnabled(false);
 
 	if (clearButton != nullptr)
 		if (clearButton->GetMouseSelected()) {
@@ -574,8 +580,6 @@ void WorkRegisterScene::Update()
 			}
 			ShellExecute(GetMainWindowHandle(), "open", path.c_str(), NULL, NULL, SW_SHOWNORMAL);
 			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
-			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
-			sharingScenes->popupScene->MakeNotice("フォルダーを開きました。");
 		}
 	}
 
@@ -600,7 +604,20 @@ void WorkRegisterScene::Update()
 			o.nFilterIndex = 1;
 			int returnCode = GetOpenFileName(&o);
 
-			workerPath = sxFile;
+			StringConvert stringConvert;
+
+			std::wstring wsxFile = stringConvert.ConvertString(sxFile);
+			std::wstring name = L"\\works\\" + stringConvert.ConvertString(guid) + L"\\";
+			size_t pos = wsxFile.find(name);
+			if (pos != -1) {
+				wsxFile.erase(wsxFile.begin(), wsxFile.begin() + pos + name.size());
+				pos = wsxFile.find(L"\\");
+				if (pos != -1) {
+					wsxFile = L".\\" + wsxFile;
+				}
+			}
+
+			workerPath = stringConvert.ConvertString(wsxFile);
 		}
 
 	if (setThumbnailButtton != nullptr)
@@ -624,7 +641,20 @@ void WorkRegisterScene::Update()
 			o.nFilterIndex = 1;
 			int returnCode = GetOpenFileName(&o);
 
-			thumbnailPath = sxFile;
+			StringConvert stringConvert;
+
+			std::wstring wsxFile = stringConvert.ConvertString(sxFile);
+			std::wstring name = L"\\works\\" + stringConvert.ConvertString(guid) + L"\\";
+			size_t pos = wsxFile.find(name);
+			if (pos != -1) {
+				wsxFile.erase(wsxFile.begin(), wsxFile.begin() + pos + name.size());
+				pos = wsxFile.find(L"\\");
+				if (pos != -1) {
+					wsxFile = L".\\" + wsxFile;
+				}
+			}
+
+			thumbnailPath = stringConvert.ConvertString(wsxFile);
 		}
 
 	if (setImagesButtton != nullptr)
@@ -649,10 +679,21 @@ void WorkRegisterScene::Update()
 			//o.Flags = OFN_ALLOWMULTISELECT | OFN_EXPLORER;
 			int returnCode = GetOpenFileName(&o);
 
-			std::string newFileName = sxFile;
-			imagePathVector.push_back(newFileName);
+			StringConvert stringConvert;
 
-			imagesPath += newFileName + "\n";
+			std::wstring wsxFile = stringConvert.ConvertString(sxFile);
+			std::wstring name = L"\\works\\" + stringConvert.ConvertString(guid) + L"\\";
+			size_t pos = wsxFile.find(name);
+			if (pos != -1) {
+				wsxFile.erase(wsxFile.begin(), wsxFile.begin() + pos + name.size());
+				pos = wsxFile.find(L"\\");
+				if (pos != -1) {
+					wsxFile = L".\\" + wsxFile;
+				}
+			}
+
+			imagePathVector.push_back(stringConvert.ConvertString(wsxFile));
+			imagesPath += stringConvert.ConvertString(wsxFile) + "\n";
 		}
 
 	if (makeJsonDataButton != nullptr) {

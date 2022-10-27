@@ -3,7 +3,9 @@
 WelcomeScene::WelcomeScene()
 	: bg(nullptr), canvas(nullptr), icon(nullptr), whatis(nullptr), organization(nullptr), gotoHome(nullptr), openURL(nullptr),
 	qrcode(nullptr), imagesCanvas(nullptr), imageBackGround(nullptr),
-	jumpToMusic(nullptr), jumpToWorkMan(nullptr)
+	jumpToMusic(nullptr), jumpToWorkMan(nullptr),
+	jumpToNo1(nullptr), jumpToNo2(nullptr), jumpToNo3(nullptr), jumpToOwnerPlaying(nullptr), jumpTorandomPage(nullptr),
+	rankButton(nullptr)
 {
 }
 
@@ -11,7 +13,9 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	: SceneBase(_sharingScenes),
 	bg(nullptr), canvas(nullptr), icon(nullptr), whatis(nullptr), organization(nullptr), gotoHome(nullptr), openURL(nullptr),
 	qrcode(nullptr), imagesCanvas(nullptr), imageBackGround(nullptr),
-	jumpToMusic(nullptr), jumpToWorkMan(nullptr)
+	jumpToMusic(nullptr), jumpToWorkMan(nullptr),
+	jumpToNo1(nullptr), jumpToNo2(nullptr), jumpToNo3(nullptr), jumpToOwnerPlaying(nullptr), jumpTorandomPage(nullptr),
+	rankButton(nullptr)
 {
 	ExePath exePath;
 	(void)_chdir(exePath.GetPath());
@@ -76,6 +80,10 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	std::string gotoPath = welcome["goto-home"].get<picojson::object>()["src"].get<std::string>();
 	std::string musicName = "GOTO:" + welcome["music-player"].get<picojson::object>()["src"].get <std::string>();
 	std::string musicPath = welcome["music-player"].get<picojson::object>()["src"].get<std::string>();
+	std::string rankName = "RANK:" + welcome["ranking"].get<picojson::object>()["src"].get <std::string>();
+	std::string rankpath = welcome["ranking"].get<picojson::object>()["src"].get<std::string>();
+	std::string randomName = "GOTO:" + welcome["random"].get<picojson::object>()["src"].get <std::string>();
+	std::string randomPath = welcome["random"].get<picojson::object>()["src"].get<std::string>();
 
 	ImageChest::CreateImageHandle(iconName, iconPath);
 	ImageChest::CreateImageHandle(qrName, qrPath);
@@ -84,6 +92,8 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	ImageChest::CreateImageHandle(gotoName, gotoPath);
 	ImageChest::CreateImageHandle(whatName, whatPath);
 	ImageChest::CreateImageHandle(musicName, musicPath);
+	ImageChest::CreateImageHandle(rankName, rankpath);
+	ImageChest::CreateImageHandle(randomName, randomPath);
 
 	const PosVec tileStartPos(175.f, ApplicationPreference::startScenePos + 50.f);
 	const PosVec tileSize(400.f, 400.f);
@@ -155,7 +165,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	organization->SetOuterAnimation(.2f);
 	organization->SetupText("mplus100",
 		welcome["organization"].get<picojson::object>()["text"].get<std::string>(),
-		Color255(250,30));
+		Color255(250, 30));
 	organization->SetImageHandle(ImageChest::GetImageHandle(orgName));
 	organization->SetImageSize(PosVec(maxThumbnailLongLength * 2.f, maxThumbnailLongLength));
 	organization->SetImageTurnFlag(false, false);
@@ -252,7 +262,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	jumpToWorkMan = new ButtonObject(
 		PosVec(
 			tileStartPos.x + tileMass.x * 3.f,
-			tileStartPos.y + tileMass.y * 3.f),
+			tileStartPos.y + tileMass.y * 5.f),
 		PosVec(
 			tileSize.x * 1.f + tileGap.x * 0.f,
 			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
@@ -272,6 +282,155 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	jumpToWorkMan->SetInnerAnimation(.2f);
 	jumpToWorkMan->SetOuterAnimation(.2f);
 
+	jumpTorandomPage = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 1.f,
+			tileStartPos.y + tileMass.y * 2.f),
+		PosVec(
+			tileSize.x * 3.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpTorandomPage->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	jumpTorandomPage->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpTorandomPage->SetupText("mplus100",
+		"Random Work",
+		Color255(50, 30));
+	jumpTorandomPage->SetInnerAnimation(.2f);
+	jumpTorandomPage->SetOuterAnimation(.2f);
+	jumpTorandomPage->SetImageHandle(ImageChest::GetImageHandle(randomName));
+	jumpTorandomPage->SetImageSize(PosVec(maxThumbnailLongLength * 3.f, maxThumbnailLongLength));
+	jumpTorandomPage->SetImageTurnFlag(false, false);
+
+	rankButton = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 0.f,
+			tileStartPos.y + tileMass.y * 3.f),
+		PosVec(
+			tileSize.x * 1.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	rankButton->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	rankButton->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	rankButton->SetInnerAnimation(.2f);
+	rankButton->SetOuterAnimation(.2f);
+	rankButton->SetImageHandle(ImageChest::GetImageHandle(rankName));
+	rankButton->SetImageSize(PosVec(maxThumbnailLongLength, maxThumbnailLongLength));
+	rankButton->SetImageTurnFlag(false, false);
+
+	jumpToNo1 = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 1.f,
+			tileStartPos.y + tileMass.y * 3.f),
+		PosVec(
+			tileSize.x * 1.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpToNo1->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	jumpToNo1->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpToNo1->SetupText("mplus100",
+		"No.1",
+		Color255(255, 100));
+	jumpToNo1->SetInnerAnimation(.2f);
+	jumpToNo1->SetOuterAnimation(.2f);
+	jumpToNo1->SetImageSize(tileSize);
+	jumpToNo1->SetImageTurnFlag(false, false);
+
+	jumpToNo2 = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 2.f,
+			tileStartPos.y + tileMass.y * 3.f),
+		PosVec(
+			tileSize.x * 1.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpToNo2->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	jumpToNo2->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpToNo2->SetupText("mplus100",
+		"No.2",
+		Color255(255, 100));
+	jumpToNo2->SetInnerAnimation(.2f);
+	jumpToNo2->SetOuterAnimation(.2f);
+	jumpToNo2->SetImageSize(tileSize);
+	jumpToNo2->SetImageTurnFlag(false, false);
+
+	jumpToNo3 = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 3.f,
+			tileStartPos.y + tileMass.y * 3.f),
+		PosVec(
+			tileSize.x * 1.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpToNo3->SetInnerColor(
+		ColorPreset::tileInner,
+		ColorPreset::tileHovered,
+		ColorPreset::tileClicked,
+		ColorPreset::tileSelected);
+	jumpToNo3->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpToNo3->SetupText("mplus100",
+		"No.3",
+		Color255(255, 100));
+	jumpToNo3->SetInnerAnimation(.2f);
+	jumpToNo3->SetOuterAnimation(.2f);
+	jumpToNo3->SetImageSize(tileSize);
+	jumpToNo3->SetImageTurnFlag(false, false);
+
+	jumpToOwnerPlaying = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 0.f,
+			tileStartPos.y + tileMass.y * 4.f),
+		PosVec(
+			tileSize.x * 4.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpToOwnerPlaying->SetInnerColor(Color255(255));
+	jumpToOwnerPlaying->SetInnerColor(
+		ColorPreset::navLinksInner,
+		ColorPreset::navLinksHovered,
+		ColorPreset::navLinksClicked,
+		ColorPreset::navLinksSelected);
+	jumpToOwnerPlaying->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpToOwnerPlaying->SetupText("mplus100",
+		"ゲームランチャーならこれができる！",
+		ColorPreset::textObject);
+	jumpToOwnerPlaying->SetInnerAnimation(.2f);
+	jumpToOwnerPlaying->SetOuterAnimation(.2f);
+
+
 	canvas->RegisterChildren(icon);
 	canvas->RegisterChildren(whatis);
 	canvas->RegisterChildren(organization);
@@ -280,6 +439,12 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	canvas->RegisterChildren(qrcode);
 	canvas->RegisterChildren(jumpToMusic);
 	canvas->RegisterChildren(jumpToWorkMan);
+	canvas->RegisterChildren(jumpTorandomPage);
+	canvas->RegisterChildren(rankButton);
+	canvas->RegisterChildren(jumpToNo1);
+	canvas->RegisterChildren(jumpToNo2);
+	canvas->RegisterChildren(jumpToNo3);
+	canvas->RegisterChildren(jumpToOwnerPlaying);
 
 	layer.AddObject(icon);
 	layer.AddObject(whatis);
@@ -289,17 +454,22 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	layer.AddObject(qrcode);
 	layer.AddObject(jumpToMusic);
 	layer.AddObject(jumpToWorkMan);
+	layer.AddObject(jumpTorandomPage);
+	layer.AddObject(rankButton);
+	layer.AddObject(jumpToNo1);
+	layer.AddObject(jumpToNo2);
+	layer.AddObject(jumpToNo3);
+	layer.AddObject(jumpToOwnerPlaying);
 
-	int tileNumY = 3;
+	int tileNumY = 5;
 
 	canvas->SetArea(PosVec(
 		ApplicationPreference::GetBackgroundSize().x,
 		ApplicationPreference::startScenePos + tileSize.y * (float)tileNumY),
 		tileSize.y / ((float)tileNumY * tileSize.y) / 2.f
-		);
+	);
 	canvases.AddObject(canvas);
 
-	//fonts.push_back(FontHandle("mplus180", "M PLUS 2", 180, 100));
 	fonts.push_back(FontHandle("mplus100", "M PLUS 2", 100, 100));
 	fonts.push_back(FontHandle("mplus25", "M PLUS 2", 25, 100));
 }
@@ -343,6 +513,185 @@ void WelcomeScene::Update()
 			jumpToWorkMan->SetMouseOff();
 			SceneManager::ChangeScene("Work Register", new WorkRegisterScene(sharingScenes));
 		}
+
+	if (jumpToOwnerPlaying != nullptr) {
+		if (jumpToOwnerPlaying->GetMouseSelected()) {
+			jumpToOwnerPlaying->SetMouseOff();
+			SceneManager::ChangeScene("ゲームランチャーならこれができる!", new OwnerPlayingScene(sharingScenes), false);
+		}
+	}
+
+	if (jumpTorandomPage != nullptr)
+		if (jumpTorandomPage->GetMouseSelected()) {
+			jumpTorandomPage->SetMouseOff();
+			std::random_device rnd;
+
+			/********** JSON 読込 ***********/
+
+			ExePath exePath;
+			(void)_chdir(exePath.GetPath());
+
+			std::stringstream ss;
+			std::ifstream fs;
+			fs.open(ApplicationPreference::worksJson, std::ios::binary);
+
+			if (!fs.is_open()) {
+				return;
+			}
+
+			ss << fs.rdbuf();
+			fs.close();
+
+			picojson::value val;
+			ss >> val;
+			std::string err = picojson::get_last_error();
+			if (!err.empty()) {
+				std::cerr << err << std::endl;
+				return;
+			}
+
+			picojson::object& obj = val.get<picojson::object>();
+			picojson::array& lists = obj["Lists"].get<picojson::array>();
+
+			std::string cGUID = lists[rnd() % lists.size()].get<picojson::object>()["GUID"].get<std::string>();
+			SceneManager::ChangeScene(cGUID, new WorkScene(sharingScenes, cGUID), false, true);
+
+		}
+
+	if (jumpToNo1 != nullptr && jumpToNo2 != nullptr && jumpToNo3 != nullptr) {
+
+		/********** JSON 読込 ***********/
+
+		ExePath exePath;
+		(void)_chdir(exePath.GetPath());
+
+		std::stringstream ss;
+		std::ifstream fs;
+		fs.open(ApplicationPreference::analyticsJson, std::ios::binary);
+
+		if (!fs.is_open()) {
+			return;
+		}
+
+		ss << fs.rdbuf();
+		fs.close();
+
+		picojson::value aval;
+		ss >> aval;
+		std::string err = picojson::get_last_error();
+		if (!err.empty()) {
+			std::cerr << err << std::endl;
+			return;
+		}
+
+		picojson::object& aobj = aval.get<picojson::object>();
+		picojson::array& alists = aobj["Lists"].get<picojson::array>();
+
+		std::vector<std::pair<int, std::string>> v;
+
+		// ソート
+		for (auto& item : alists) {
+			v.push_back({ (int)item.get<picojson::object>()["LaunchedTimes"].get<double>(), item.get<picojson::object>()["GUID"].get<std::string>() });
+		}
+		std::sort(v.rbegin(), v.rend());
+
+		/********** JSON 読込 ***********/
+
+		(void)_chdir(exePath.GetPath());
+
+		fs.open(ApplicationPreference::worksJson, std::ios::binary);
+
+		if (!fs.is_open()) {
+			return;
+		}
+
+		ss << fs.rdbuf();
+		fs.close();
+
+		picojson::value val;
+		ss >> val;
+		err = picojson::get_last_error();
+		if (!err.empty()) {
+			std::cerr << err << std::endl;
+			return;
+		}
+
+		picojson::object& obj = val.get<picojson::object>();
+		picojson::array& lists = obj["Lists"].get<picojson::array>();
+
+		int rankMax = 3;
+		if ((int)alists.size() < rankMax) rankMax = (int)alists.size();
+
+		if (rankMax < 3) {
+			jumpToNo3->SetEnabled(false);
+			if (rankMax < 2) {
+				jumpToNo2->SetEnabled(false);
+				if (rankMax < 1) {
+					jumpToNo1->SetEnabled(false);
+				}
+				else jumpToNo1->SetEnabled(true);
+			}
+			else jumpToNo1->SetEnabled(true);
+		}
+		else jumpToNo1->SetEnabled(true);
+
+		for (int i = 0; i < rankMax; i++) {
+			ButtonObject* button = nullptr;
+			if (i == 0) {
+				button = jumpToNo1;
+			}
+			else if (i == 1) {
+				button = jumpToNo2;
+			}
+			else if (i == 2) {
+				button = jumpToNo3;
+			}
+			for (int j = 0; j < lists.size(); j++) {
+				if (v[i].second == lists[j].get<picojson::object>()["GUID"].get<std::string>()) {
+					if (button->GetTag() != v[i].second) {
+
+						ExePath exePath;
+						(void)_chdir(exePath.GetPath());
+
+						char cwd[512];
+						// ディレクトリ取得
+						int returnId;
+						(void)_getcwd(cwd, 512);
+						// ファイル直下まで移動
+						returnId = _chdir(lists[j].get<picojson::object>()["Directory"].get<std::string>().c_str());
+
+						std::string iconName = "Ranking:" + std::to_string(i);
+						std::string iconPath = lists[j].get<picojson::object>()["Thumbnail"].get<std::string>();
+
+						ImageChest::DeleteImageHandle(iconName);
+						ImageChest::CreateImageHandle(iconName, iconPath);
+
+						button->SetImageHandle(ImageChest::GetImageHandle(iconName));
+						button->SetTag(v[i].second);
+					}
+					break;
+
+				}
+
+			}
+
+			if (jumpToNo1->GetMouseSelected()) {
+				jumpToNo1->SetMouseOff();
+				SceneManager::ChangeScene(jumpToNo1->GetTag(), new WorkScene(sharingScenes, jumpToNo1->GetTag()), false, true);
+			}
+			if (jumpToNo2->GetMouseSelected()) {
+				jumpToNo2->SetMouseOff();
+				SceneManager::ChangeScene(jumpToNo2->GetTag(), new WorkScene(sharingScenes, jumpToNo2->GetTag()), false, true);
+			}
+			if (jumpToNo3->GetMouseSelected()) {
+				jumpToNo3->SetMouseOff();
+				SceneManager::ChangeScene(jumpToNo3->GetTag(), new WorkScene(sharingScenes, jumpToNo3->GetTag()), false, true);
+			}
+		}
+
+
+
+	}
 
 	layer.Update();
 	canvases.Update();

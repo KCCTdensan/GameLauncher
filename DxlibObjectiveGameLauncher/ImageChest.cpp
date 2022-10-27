@@ -4,6 +4,8 @@ std::map<std::string, int> ImageChest::handles;
 
 bool ImageChest::CreateImageHandle(std::string handleName, std::string filePath)
 {
+	auto itr = handles.find(handleName);
+	if (itr != handles.end()) return false;
 	int handle = LoadGraph(filePath.c_str());
 	if (handle == -1) return false;
 	handles.erase(handleName);

@@ -71,7 +71,7 @@ bool SceneManager::ChangeScene(std::string sceneName, SceneBase* altScene, bool 
 			std::rotate(sceneHistory.begin(), sceneHistory.begin() + sceneHistoryPosition, sceneHistory.end());
 			if (!sceneHistory[sceneHistory.size() - 1].addSceneToMap && sceneHistory[sceneHistory.size() - 1].deleteNotAddedScene) {
 				bool isExisting = false;
-				for (int i = sceneHistory.size() - 2; i >= 0; i--) {
+				for (int i = (int)sceneHistory.size() - 2; i >= 0; i--) {
 					if (sceneHistory[i].scene == sceneHistory[sceneHistory.size()-1].scene) {
 						isExisting = true;
 						break;

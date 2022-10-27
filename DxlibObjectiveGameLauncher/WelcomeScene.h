@@ -8,6 +8,10 @@
 #include "ExePath.h"
 #include "WorkRegisterScene.h"
 #include "ImageChest.h"
+#include <random>
+#include <algorithm>
+
+#include  "OwnerPlayingScene.h"
 
 class WelcomeScene :
     public SceneBase
@@ -32,6 +36,14 @@ private:
     ImageObject* qrcode;
     ButtonObject* jumpToMusic;
     ButtonObject* jumpToWorkMan;
+
+    ButtonObject* jumpTorandomPage;
+    ButtonObject* rankButton;
+    ButtonObject* jumpToNo1;
+    ButtonObject* jumpToNo2;
+    ButtonObject* jumpToNo3;
+
+    ButtonObject* jumpToOwnerPlaying;
 
     CanvasObject* imagesCanvas;
     RectangleObject* imageBackGround;

@@ -51,6 +51,12 @@ void InputObject::Update()
 				if (Input::KeyboardInput::KEY[KEY_INPUT_LALT] == 1) {
 					SetString(inputText + "\n");
 				}
+				if (Input::KeyboardInput::KEY[KEY_INPUT_LCONTROL] > 1 && Input::KeyboardInput::KEY[KEY_INPUT_UP] == 1) {
+					writingOffset.y += 15.f;
+				}
+				if (Input::KeyboardInput::KEY[KEY_INPUT_LCONTROL] > 1 && Input::KeyboardInput::KEY[KEY_INPUT_DOWN] == 1) {
+					writingOffset.y -= 15.f;
+				}
 			}
 		}
 		else {
@@ -111,6 +117,8 @@ void InputObject::Update()
 		}
 	}
 
+	if (!turnedOn) writingOffset = PosVec();
+
 	textObject->Update();
 }
 
@@ -144,7 +152,7 @@ void InputObject::Draw()
 	SetDrawArea(0, 0, (int)ApplicationPreference::GetBackgroundSize().x, (int)ApplicationPreference::GetBackgroundSize().y);
 	if (turnedOn) {
 		SetDrawArea(0, 0, (int)(pos.x + size.x + 1), (int)ApplicationPreference::GetBackgroundSize().y);
-		DrawKeyInputString((int)pos.x, (int)pos.y, inputHandle);
+		DrawKeyInputString((int)pos.x + (int)writingOffset.x, (int)pos.y + (int)writingOffset.y, inputHandle);
 		DrawKeyInputModeString((int)pos.x, (int)(pos.y + size.y));
 	}
 	SetDrawScreen(DX_SCREEN_BACK);

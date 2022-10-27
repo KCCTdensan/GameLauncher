@@ -28,6 +28,13 @@
     },
     "work":  {
       "text": "MODIFY\nWORK"
+    },
+    "ranking": {
+      "text": "ƒ‰ƒ“\nƒLƒ“ƒO",
+      "src": ".\\assets\\client\\welcome\\ranking.png"
+    },
+    "random": {
+      "src": ".\\assets\\client\\welcome\\random.png"
     }
   },
   "Launcher": {

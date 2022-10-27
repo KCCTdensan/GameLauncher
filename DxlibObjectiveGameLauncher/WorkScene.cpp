@@ -61,14 +61,13 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		//printfDx("Not Found : %s\n", guid.c_str());
 	}
 	else { // 発見時の処理
-		//printfDx("%s\n", lists[i].get<picojson::object>()["GUID"].get<std::string>().c_str());
 		this->obj = lists[i].get<picojson::object>(); // 保存
 
 		UUIDGenerator uuidGenarator;
 		std::string iuuid = uuidGenarator.GetGUID();
 
 		std::string thumbnailName = iuuid + "[work]Thumb:" + this->obj["GUID"].get<std::string>();
-		std::string thumbnailPath = /*this->obj["Directory"].get<std::string>() + */this->obj["Thumbnail"].get<std::string>();
+		std::string thumbnailPath = this->obj["Thumbnail"].get<std::string>();
 
 		ExePath exePath;
 		(void)_chdir(exePath.GetPath());
@@ -79,14 +78,6 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		(void)_getcwd(cwd, 512);
 		// ファイル直下まで移動
 		returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
-
-		StringConvert stringConvert;
-
-		std::wstring fullpath = stringConvert.ConvertString(this->obj["Thumbnail"].get<std::string>());
-		int path_i = (int)fullpath.find_last_of(L"\\");
-		std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
-
-		(void)_chdir(stringConvert.ConvertString(pathname).c_str());
 
 		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
 		handleNames.push_back(thumbnailName);
@@ -139,17 +130,8 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 			// ファイル直下まで移動
 			returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
 
-			StringConvert stringConvert;
-
-			std::wstring fullpath = stringConvert.ConvertString(item.get<picojson::object>()["FilePath"].get<std::string>());
-			int path_i = (int)fullpath.find_last_of(L"\\");
-			std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
-
-			(void)_chdir(stringConvert.ConvertString(pathname).c_str());
-
-			// printfDx("%s\n", item.get<picojson::object>()["FilePath"].get<std::string>().c_str());
 			std::string imageName = iuuid + "Image" + std::to_string(i) + ":" + this->obj["GUID"].get<std::string>();
-			std::string imagePath = /*this->obj["Directory"].get<std::string>() + */item.get<picojson::object>()["FilePath"].get<std::string>();
+			std::string imagePath = item.get<picojson::object>()["FilePath"].get<std::string>();
 
 			ImageChest::CreateImageHandle(imageName, imagePath);
 			handleNames.push_back(imageName);
@@ -198,27 +180,23 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		category = new TextObject(
 			PosVec(ApplicationPreference::GetBackgroundSize().x - 20.f, ApplicationPreference::startScenePos + 10.f), PosVec(),
 			"smart30", "Category: " + this->obj["Category"].get<std::string>(), ColorPreset::textGray, TextAlign::RIGHT, false);
-		//category->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
 
 		// 初期位置 +50
 		title = new TextObject(
 			PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 50.f), PosVec(),
 			"smart50", this->obj["TitleName"].get<std::string>(), ColorPreset::textBlack, TextAlign::LEFT, false);
 		title->DeleteNewLine();
-		//title->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
 
 		// +100
 		author = new TextObject(
 			PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 100.f), PosVec(),
 			"smart25", this->obj["Author"].get<std::string>(), ColorPreset::textBlack, TextAlign::LEFT, false);
 		author->DeleteNewLine();
-		//author->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
 
 		// +125
 		guidText = new TextObject(
 			PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 125.f), PosVec(),
 			"smart25", this->obj["GUID"].get<std::string>(), ColorPreset::textGray, TextAlign::LEFT, false);
-		//guidText->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
 
 		// +150
 		description = new TextObject(
@@ -274,10 +252,6 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		copyGUID->SetupText("smart20", "COPY", ColorPreset::textObject, TextAlign::LEFT);
 
 		if (this->obj["URL"].get<std::string>() == "") openWeb->SetEnabled(false);
-
-		/*openWeb->GetTextObject()->Move(PosVec(
-			(maxThumbnailLongLength - launch->GetTextObject()->GetTextWidth()) / 2.f,
-			(150.f - launch->GetTextObject()->GetTextHeight()) / 2.f));*/
 
 		launch = new ButtonObject(
 			PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 200.f),
@@ -343,7 +317,7 @@ WorkScene::~WorkScene()
 	SaftyDelete(thumbnail); SaftyDelete(category); SaftyDelete(title); SaftyDelete(author); SaftyDelete(guidText);
 	SaftyDelete(description); SaftyDelete(photoGalleryText); SaftyDelete(descriptionCanvas);
 	SaftyDelete(thumbnailCanvas); SaftyDelete(imagesCanvas); SaftyDelete(launch); SaftyDelete(imageBackGround);
-	
+
 	if (isBigPos == nullptr)
 		delete isBigPos;
 	if (isBigSize == nullptr)
@@ -543,8 +517,23 @@ void WorkScene::Update()
 					sharingScenes->popupScene->MakeNotice("拡張子のないファイルです。");
 				}
 				if (normalLaunch) {
+					StringConvert stringConvert;
+
+					std::string path = this->obj["FilePath"].get<std::string>().c_str();
+					std::wstring wpath = stringConvert.ConvertString(path);
+
+					size_t posPath = wpath.rfind(L"\\");
+					if (posPath != std::wstring::npos) {
+						wpath = wpath.substr(posPath + 1, wpath.size() - posPath - 1);
+					}
+
+					posPath = wpath.rfind(L"/");
+					if (posPath != std::wstring::npos) {
+						wpath = wpath.substr(posPath + 1, wpath.size() - posPath - 1);
+					}
+
 					// 実行
-					ShellExecute(GetMainWindowHandle(), "open", this->obj["FilePath"].get<std::string>().c_str(), NULL, NULL, SW_SHOWNORMAL);
+					ShellExecute(GetMainWindowHandle(), "open", stringConvert.ConvertString(wpath).c_str(), NULL, NULL, SW_SHOWNORMAL);
 					switch (GetLastError())
 					{
 					case ERROR_FILE_NOT_FOUND:
@@ -568,6 +557,68 @@ void WorkScene::Update()
 			returnId = _chdir(cwd);
 
 			(void)_chdir(exePath.GetPath());
+
+			/********** JSON 読込 ***********/
+
+			std::stringstream ss;
+			std::ifstream fs;
+			fs.open(ApplicationPreference::analyticsJson, std::ios::binary);
+
+			if (!fs.is_open()) {
+				return;
+			}
+
+			ss << fs.rdbuf();
+			fs.close();
+
+			picojson::value val;
+			ss >> val;
+			std::string err = picojson::get_last_error();
+			if (!err.empty()) {
+				std::cerr << err << std::endl;
+				return;
+			}
+
+			picojson::object& obj = val.get<picojson::object>();
+			picojson::array& lists = obj["Lists"].get<picojson::array>();
+
+			picojson::object* newGUIDSave = new picojson::object;
+			picojson::object* newTime = new picojson::object;
+			picojson::array* newTimeList = new picojson::array;
+
+			bool isExisting = false;
+
+			for (auto& item : lists) {
+				if (item.get<picojson::object>()["GUID"].get<std::string>() == guid) {
+					isExisting = true;
+
+					item.get<picojson::object>()["LaunchedTimes"].get<double>() += 1.;
+
+					picojson::array& time = item.get<picojson::object>()["Time"].get<picojson::array>();
+					newTime->insert(std::make_pair("Time", picojson::value(static_cast<double>(::time(nullptr)))));
+					time.push_back(picojson::value(*newTime));
+
+					break;
+				}
+			}
+
+			if (!isExisting) {
+				newGUIDSave->insert(std::make_pair("GUID", picojson::value(guid.c_str())));
+				newGUIDSave->insert(std::make_pair("LaunchedTimes", picojson::value(1.)));
+				
+				newTime->insert(std::make_pair("Time", picojson::value(static_cast<double>(::time(nullptr)))));
+				newTimeList->push_back(picojson::value(*newTime));
+				newGUIDSave->insert(std::make_pair("Time", picojson::value(*newTimeList)));
+
+				lists.push_back(picojson::value(*newGUIDSave));
+			}
+
+			std::ofstream ofs;
+			ofs.open(ApplicationPreference::analyticsJson, std::ios::binary);
+
+			ofs << picojson::value(obj).serialize(true) << std::endl;
+			ofs.close();
+			sharingScenes->popupScene->MakeNotice(ApplicationPreference::analyticsJson + "に保存しました。");
 		}
 
 	if (thumbnail != nullptr)

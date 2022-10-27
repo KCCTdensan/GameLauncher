@@ -18,6 +18,7 @@ class LauncherScene :
 public:
     LauncherScene();
     LauncherScene(SharingScenes* _sharingScenes);
+    ~LauncherScene() override;
 
     void Collide();
     void Update();
@@ -43,11 +44,15 @@ private:
     std::vector<ImageObject*> images;
     CanvasObject* imagesCanvas;
 
+    ButtonObject* openWeb;
     ButtonObject* launch;
+    ButtonObject* copyGUID;
 
     RectangleObject* imageBackGround;
 
     /* 紹介用オブジェクト */
+
+    std::string guid;
 
     // buffer
     PosVec thumbnailPos;
@@ -59,6 +64,8 @@ private:
     CanvasObject* isBigCanvas;
     PosVec* isBigPos;
     PosVec* isBigSize;
+
+    std::vector<std::string> handleNames;
 
     const float maxImageLongLengthOnBig = 800.f;
     const float zoomFrame = .5f;

@@ -16,7 +16,7 @@ public:
 		enabledFill(_enabledFill), enabledOutline(_enabledOutline),
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
-		outlineWidth(0),
+		outlineWidth(0), textObject(nullptr),
 		rectMode(false), rectDirectionFrom(DirectionType::BOTTOM), rectEventEnabled(nullptr), rectEventCase(MouseEventCase::HOVERED)
 	{}
 
@@ -24,7 +24,7 @@ public:
 		: ObjectBase(PosVec(), PosVec()), enabledFill(true), enabledOutline(false),
 		innerColor(0), selectedInnerColor(0), hoveredInnerColor(0), clickedInnerColor(0),
 		outerColor(0), selectedOuterColor(0), hoveredOuterColor(0), clickedOuterColor(0),
-		outlineWidth(0),
+		outlineWidth(0), textObject(nullptr),
 		rectMode(false), rectDirectionFrom(DirectionType::BOTTOM), rectEventEnabled(nullptr), rectEventCase(MouseEventCase::HOVERED)
 	{}
 
