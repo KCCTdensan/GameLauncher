@@ -148,6 +148,7 @@ void HomeScene::SetupWorks()
 		works[i]->SetOuterAnimation(.15f);
 		works[i]->SetImageAlpha(Color255(0, 220), Color255(0, 25), Color255(0, 255), Color255(0, 255));
 		std::string thumbnailName = "Thumb:" + o["GUID"].get<std::string>();
+		ImageChest::DeleteImageHandle(thumbnailName);
 		works[i]->SetTag(o["GUID"].get<std::string>());
 		std::string thumbnailPath = o["Thumbnail"].get<std::string>();
 

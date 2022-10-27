@@ -80,14 +80,10 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	std::string gotoPath = welcome["goto-home"].get<picojson::object>()["src"].get<std::string>();
 	std::string musicName = "GOTO:" + welcome["music-player"].get<picojson::object>()["src"].get <std::string>();
 	std::string musicPath = welcome["music-player"].get<picojson::object>()["src"].get<std::string>();
-	/*std::string rankName = "RANK:" + welcome["ranking"].get<picojson::object>()["src"].get <std::string>();
+	std::string rankName = "RANK:" + welcome["ranking"].get<picojson::object>()["src"].get <std::string>();
 	std::string rankpath = welcome["ranking"].get<picojson::object>()["src"].get<std::string>();
 	std::string randomName = "GOTO:" + welcome["random"].get<picojson::object>()["src"].get <std::string>();
-	std::string randomPath = welcome["random"].get<picojson::object>()["src"].get<std::string>();*/
-	std::string rankName = "RANK:" + welcome["organization"].get<picojson::object>()["src"].get <std::string>();
-	std::string rankpath = welcome["organization"].get<picojson::object>()["src"].get<std::string>();
-	std::string randomName = "GOTO:" + welcome["organization"].get<picojson::object>()["src"].get <std::string>();
-	std::string randomPath = welcome["organization"].get<picojson::object>()["src"].get<std::string>();
+	std::string randomPath = welcome["random"].get<picojson::object>()["src"].get<std::string>();
 
 	ImageChest::CreateImageHandle(iconName, iconPath);
 	ImageChest::CreateImageHandle(qrName, qrPath);
