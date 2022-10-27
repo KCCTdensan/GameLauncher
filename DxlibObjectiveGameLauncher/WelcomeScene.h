@@ -11,6 +11,8 @@
 #include <random>
 #include <algorithm>
 
+#include  "OwnerPlayingScene.h"
+
 class WelcomeScene :
     public SceneBase
 {
@@ -40,6 +42,8 @@ private:
     ButtonObject* jumpToNo1;
     ButtonObject* jumpToNo2;
     ButtonObject* jumpToNo3;
+
+    ButtonObject* jumpToOwnerPlaying;
 
     CanvasObject* imagesCanvas;
     RectangleObject* imageBackGround;

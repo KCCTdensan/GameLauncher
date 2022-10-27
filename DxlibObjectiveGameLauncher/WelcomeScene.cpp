@@ -76,10 +76,14 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	std::string gotoPath = welcome["goto-home"].get<picojson::object>()["src"].get<std::string>();
 	std::string musicName = "GOTO:" + welcome["music-player"].get<picojson::object>()["src"].get <std::string>();
 	std::string musicPath = welcome["music-player"].get<picojson::object>()["src"].get<std::string>();
-	std::string rankName = "RANK:" + welcome["ranking"].get<picojson::object>()["src"].get <std::string>();
+	/*std::string rankName = "RANK:" + welcome["ranking"].get<picojson::object>()["src"].get <std::string>();
 	std::string rankpath = welcome["ranking"].get<picojson::object>()["src"].get<std::string>();
 	std::string randomName = "GOTO:" + welcome["random"].get<picojson::object>()["src"].get <std::string>();
-	std::string randomPath = welcome["random"].get<picojson::object>()["src"].get<std::string>();
+	std::string randomPath = welcome["random"].get<picojson::object>()["src"].get<std::string>();*/
+	std::string rankName = "RANK:" + welcome["organization"].get<picojson::object>()["src"].get <std::string>();
+	std::string rankpath = welcome["organization"].get<picojson::object>()["src"].get<std::string>();
+	std::string randomName = "GOTO:" + welcome["organization"].get<picojson::object>()["src"].get <std::string>();
+	std::string randomPath = welcome["organization"].get<picojson::object>()["src"].get<std::string>();
 
 	ImageChest::CreateImageHandle(iconName, iconPath);
 	ImageChest::CreateImageHandle(qrName, qrPath);
@@ -321,9 +325,9 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse,
 		ColorPreset::navLinksOuterMouse,
 		ColorPreset::navLinksOuterMouse, 3.f);
-	rankButton->SetupText("mplus100",
+	/*rankButton->SetupText("mplus100",
 		welcome["ranking"].get<picojson::object>()["text"].get<std::string>(),
-		Color255(50, 30));
+		Color255(50, 30));*/
 	rankButton->SetInnerAnimation(.2f);
 	rankButton->SetOuterAnimation(.2f);
 	rankButton->SetImageHandle(ImageChest::GetImageHandle(rankName));
@@ -405,6 +409,25 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	jumpToNo3->SetImageSize(tileSize);
 	jumpToNo3->SetImageTurnFlag(false, false);
 
+	jumpToOwnerPlaying = new ButtonObject(
+		PosVec(
+			tileStartPos.x + tileMass.x * 0.f,
+			tileStartPos.y + tileMass.y * 4.f),
+		PosVec(
+			tileSize.x * 4.f + tileGap.x * 0.f,
+			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
+	jumpToOwnerPlaying->SetInnerColor(Color255(255));
+	jumpToOwnerPlaying->SetOutlineColor(
+		ColorPreset::navLinksOuter,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse,
+		ColorPreset::navLinksOuterMouse, 3.f);
+	jumpToOwnerPlaying->SetupText("mplus100",
+		"ゲームランチャーならこれができる！",
+		ColorPreset::textObject);
+	jumpToOwnerPlaying->SetInnerAnimation(.2f);
+	jumpToOwnerPlaying->SetOuterAnimation(.2f);
+
 
 	canvas->RegisterChildren(icon);
 	canvas->RegisterChildren(whatis);
@@ -419,6 +442,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	canvas->RegisterChildren(jumpToNo1);
 	canvas->RegisterChildren(jumpToNo2);
 	canvas->RegisterChildren(jumpToNo3);
+	canvas->RegisterChildren(jumpToOwnerPlaying);
 
 	layer.AddObject(icon);
 	layer.AddObject(whatis);
@@ -433,6 +457,7 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	layer.AddObject(jumpToNo1);
 	layer.AddObject(jumpToNo2);
 	layer.AddObject(jumpToNo3);
+	layer.AddObject(jumpToOwnerPlaying);
 
 	int tileNumY = 5;
 
@@ -487,6 +512,25 @@ void WelcomeScene::Update()
 			jumpToWorkMan->SetMouseOff();
 			SceneManager::ChangeScene("Work Register", new WorkRegisterScene(sharingScenes));
 		}
+
+	if (jumpToOwnerPlaying != nullptr) {
+		if (jumpToOwnerPlaying->GetMouseSelected()) {
+			jumpToOwnerPlaying->SetMouseOff();
+			SceneManager::ChangeScene("ゲームランチャーならこれができる!", new OwnerPlayingScene(sharingScenes), false);
+		}
+
+		std::random_device rnd;
+
+		Color255* newRandomColor = new Color255(100 + rnd() % 155, 100 + rnd() % 155, 100 + rnd() % 155);
+		jumpToOwnerPlaying->ChangeColorWithAnimation(jumpToOwnerPlaying->GetColor(ColorType::INNER), 
+			newRandomColor, .25f);
+		jumpToOwnerPlaying->ChangeColorWithAnimation(jumpToOwnerPlaying->GetColor(ColorType::HOVERED),
+			newRandomColor, .25f);
+		jumpToOwnerPlaying->ChangeColorWithAnimation(jumpToOwnerPlaying->GetColor(ColorType::SELECTED),
+			newRandomColor, .25f);
+		jumpToOwnerPlaying->ChangeColorWithAnimation(jumpToOwnerPlaying->GetColor(ColorType::CLICKED),
+			newRandomColor, .25f);
+	}
 
 	if (jumpTorandomPage != nullptr)
 		if (jumpTorandomPage->GetMouseSelected()) {
@@ -593,11 +637,14 @@ void WelcomeScene::Update()
 			jumpToNo3->SetEnabled(false);
 			if (rankMax < 2) {
 				jumpToNo2->SetEnabled(false);
-					if (rankMax < 1) {
-						jumpToNo1->SetEnabled(false);
-					}else jumpToNo1->SetEnabled(true);
-			}else jumpToNo1->SetEnabled(true);
-		}else jumpToNo1->SetEnabled(true);
+				if (rankMax < 1) {
+					jumpToNo1->SetEnabled(false);
+				}
+				else jumpToNo1->SetEnabled(true);
+			}
+			else jumpToNo1->SetEnabled(true);
+		}
+		else jumpToNo1->SetEnabled(true);
 
 		for (int i = 0; i < rankMax; i++) {
 			ButtonObject* button = nullptr;
@@ -630,7 +677,7 @@ void WelcomeScene::Update()
 				}
 
 			}
-			
+
 			if (jumpToNo1->GetMouseSelected()) {
 				jumpToNo1->SetMouseOff();
 				SceneManager::ChangeScene(jumpToNo1->GetTag(), new WorkScene(sharingScenes, jumpToNo1->GetTag()), false, true);

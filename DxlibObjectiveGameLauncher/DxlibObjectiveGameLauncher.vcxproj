@@ -48,6 +48,7 @@
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectOverlapping.cpp" />
+    <ClCompile Include="OwnerPlayingScene.cpp" />
     <ClCompile Include="PlayerScene.cpp" />
     <ClCompile Include="PlayListObject.cpp" />
     <ClCompile Include="PlayStateRotater.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectOverlapping.h" />
     <ClInclude Include="OriginalObjects.h" />
+    <ClInclude Include="OwnerPlayingScene.h" />
     <ClInclude Include="PlayData.h" />
     <ClInclude Include="PlayerScene.h" />
     <ClInclude Include="PlayListObject.h" />
