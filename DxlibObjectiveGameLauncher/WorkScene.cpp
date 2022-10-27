@@ -61,14 +61,13 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		//printfDx("Not Found : %s\n", guid.c_str());
 	}
 	else { // ”­Œ©‚Ìˆ—
-		//printfDx("%s\n", lists[i].get<picojson::object>()["GUID"].get<std::string>().c_str());
 		this->obj = lists[i].get<picojson::object>(); // •Û‘¶
 
 		UUIDGenerator uuidGenarator;
 		std::string iuuid = uuidGenarator.GetGUID();
 
 		std::string thumbnailName = iuuid + "[work]Thumb:" + this->obj["GUID"].get<std::string>();
-		std::string thumbnailPath = /*this->obj["Directory"].get<std::string>() + */this->obj["Thumbnail"].get<std::string>();
+		std::string thumbnailPath = this->obj["Thumbnail"].get<std::string>();
 
 		ExePath exePath;
 		(void)_chdir(exePath.GetPath());

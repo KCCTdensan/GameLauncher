@@ -59,7 +59,7 @@ LauncherScene::LauncherScene(SharingScenes* _sharingScenes)
 	guid = this->obj["GUID"].get<std::string>();
 
 	std::string thumbnailName = iuuid + "[work]Thumb:" + this->obj["GUID"].get<std::string>();
-	std::string thumbnailPath = /*this->obj["Directory"].get<std::string>() + */this->obj["Thumbnail"].get<std::string>();
+	std::string thumbnailPath = this->obj["Thumbnail"].get<std::string>();
 
 	ExePath exePath;
 	(void)_chdir(exePath.GetPath());
