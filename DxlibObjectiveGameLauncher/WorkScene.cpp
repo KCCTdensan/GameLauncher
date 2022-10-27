@@ -147,9 +147,8 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 
 			(void)_chdir(stringConvert.ConvertString(pathname).c_str());
 
-			// printfDx("%s\n", item.get<picojson::object>()["FilePath"].get<std::string>().c_str());
 			std::string imageName = iuuid + "Image" + std::to_string(i) + ":" + this->obj["GUID"].get<std::string>();
-			std::string imagePath = /*this->obj["Directory"].get<std::string>() + */item.get<picojson::object>()["FilePath"].get<std::string>();
+			std::string imagePath = item.get<picojson::object>()["FilePath"].get<std::string>();
 
 			ImageChest::CreateImageHandle(imageName, imagePath);
 			handleNames.push_back(imageName);
@@ -198,27 +197,23 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		category = new TextObject(
 			PosVec(ApplicationPreference::GetBackgroundSize().x - 20.f, ApplicationPreference::startScenePos + 10.f), PosVec(),
 			"smart30", "Category: " + this->obj["Category"].get<std::string>(), ColorPreset::textGray, TextAlign::RIGHT, false);
-		//category->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
 
 		// ‰ŠúˆÊ’u +50
 		title = new TextObject(
 			PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 50.f), PosVec(),
 			"smart50", this->obj["TitleName"].get<std::string>(), ColorPreset::textBlack, TextAlign::LEFT, false);
 		title->DeleteNewLine();
-		//title->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
 
 		// +100
 		author = new TextObject(
 			PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 100.f), PosVec(),
 			"smart25", this->obj["Author"].get<std::string>(), ColorPreset::textBlack, TextAlign::LEFT, false);
 		author->DeleteNewLine();
-		//author->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
 
 		// +125
 		guidText = new TextObject(
 			PosVec(75.f + maxThumbnailLongLength, ApplicationPreference::startScenePos + 125.f), PosVec(),
 			"smart25", this->obj["GUID"].get<std::string>(), ColorPreset::textGray, TextAlign::LEFT, false);
-		//guidText->SetMaxWidth((int)(ApplicationPreference::GetBackgroundSize().x - 100.f - maxImageLongLength));
 
 		// +150
 		description = new TextObject(
@@ -274,10 +269,6 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		copyGUID->SetupText("smart20", "COPY", ColorPreset::textObject, TextAlign::LEFT);
 
 		if (this->obj["URL"].get<std::string>() == "") openWeb->SetEnabled(false);
-
-		/*openWeb->GetTextObject()->Move(PosVec(
-			(maxThumbnailLongLength - launch->GetTextObject()->GetTextWidth()) / 2.f,
-			(150.f - launch->GetTextObject()->GetTextHeight()) / 2.f));*/
 
 		launch = new ButtonObject(
 			PosVec(50.f, ApplicationPreference::GetBackgroundSize().y - 200.f),

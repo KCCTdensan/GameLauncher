@@ -18,7 +18,6 @@
 #include "MouseInput.h"
 #include "KeyboardInput.h"
 #include "MusicPlayer.h"
-#include "OwnerPlayingScene.h"
 
 /*void InputUpdate(); // threadA
 void ApplicationUpdate(SceneManager* _sceneManager); // threadB*/
@@ -122,8 +121,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPSTR lpCm
 
 	SceneManager::Initialize();
 
-	SceneManager::ChangeScene("ゲームランチャーならこれができる!", new OwnerPlayingScene(SceneManager::GetSharingScenes()), false);
-	//SceneManager::ChangeScene("Welcome", new WelcomeScene(SceneManager::GetSharingScenes()), false, false); // 最初に表示するページ
+	SceneManager::ChangeScene("Welcome", new WelcomeScene(SceneManager::GetSharingScenes()), false, false); // 最初に表示するページ
 
 	//std::thread inputUpdate(InputUpdate);
 	//std::thread applicationUpdate(ApplicationUpdate, &sceneManager);
