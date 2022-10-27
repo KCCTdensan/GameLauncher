@@ -418,6 +418,11 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 			tileSize.x * 4.f + tileGap.x * 0.f,
 			tileSize.y * 1.f + tileGap.y * 0.f), true, true);
 	jumpToOwnerPlaying->SetInnerColor(Color255(255));
+	jumpToOwnerPlaying->SetInnerColor(
+		ColorPreset::navLinksInner,
+		ColorPreset::navLinksHovered,
+		ColorPreset::navLinksClicked,
+		ColorPreset::navLinksSelected);
 	jumpToOwnerPlaying->SetOutlineColor(
 		ColorPreset::navLinksOuter,
 		ColorPreset::navLinksOuterMouse,
@@ -518,18 +523,6 @@ void WelcomeScene::Update()
 			jumpToOwnerPlaying->SetMouseOff();
 			SceneManager::ChangeScene("ƒQ[ƒ€ƒ‰ƒ“ƒ`ƒƒ[‚È‚ç‚±‚ê‚ª‚Å‚«‚é!", new OwnerPlayingScene(sharingScenes), false);
 		}
-
-		std::random_device rnd;
-
-		Color255* newRandomColor = new Color255(100 + rnd() % 155, 100 + rnd() % 155, 100 + rnd() % 155);
-		jumpToOwnerPlaying->ChangeColorWithAnimation(jumpToOwnerPlaying->GetColor(ColorType::INNER), 
-			newRandomColor, .25f);
-		jumpToOwnerPlaying->ChangeColorWithAnimation(jumpToOwnerPlaying->GetColor(ColorType::HOVERED),
-			newRandomColor, .25f);
-		jumpToOwnerPlaying->ChangeColorWithAnimation(jumpToOwnerPlaying->GetColor(ColorType::SELECTED),
-			newRandomColor, .25f);
-		jumpToOwnerPlaying->ChangeColorWithAnimation(jumpToOwnerPlaying->GetColor(ColorType::CLICKED),
-			newRandomColor, .25f);
 	}
 
 	if (jumpTorandomPage != nullptr)
