@@ -8,7 +8,7 @@ LauncherScene::LauncherScene()
 	thumbnail(nullptr), category(nullptr), title(nullptr), author(nullptr), guidText(nullptr), description(nullptr), descriptionLines(),
 	launch(nullptr),
 	imagesCanvas(nullptr), isBigCanvas(nullptr), isBigImage(nullptr), isBigPos(nullptr), isBigSize(nullptr), photoGalleryText(nullptr),
-	imageBackGround(nullptr)
+	imageBackGround(nullptr), copyGUID(nullptr), openWeb(nullptr)
 {
 }
 
@@ -19,7 +19,7 @@ LauncherScene::LauncherScene(SharingScenes* _sharingScenes)
 	thumbnail(nullptr), category(nullptr), title(nullptr), author(nullptr), guidText(nullptr), description(nullptr), descriptionLines(),
 	launch(nullptr),
 	imagesCanvas(nullptr), isBigCanvas(nullptr), isBigImage(nullptr), isBigPos(nullptr), isBigSize(nullptr), photoGalleryText(nullptr),
-	imageBackGround(nullptr)
+	imageBackGround(nullptr), copyGUID(nullptr), openWeb(nullptr)
 {
 	bg = new RectangleObject(PosVec(), PosVec(ApplicationPreference::GetBackgroundSize().x, ApplicationPreference::GetBackgroundSize().y));
 	bg->SetInnerColor(ColorPreset::bgColor); // 非キャンバス追加オブジェクト(常に同じ背景)
