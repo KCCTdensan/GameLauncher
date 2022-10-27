@@ -325,9 +325,6 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 		ColorPreset::navLinksOuterMouse,
 		ColorPreset::navLinksOuterMouse,
 		ColorPreset::navLinksOuterMouse, 3.f);
-	/*rankButton->SetupText("mplus100",
-		welcome["ranking"].get<picojson::object>()["text"].get<std::string>(),
-		Color255(50, 30));*/
 	rankButton->SetInnerAnimation(.2f);
 	rankButton->SetOuterAnimation(.2f);
 	rankButton->SetImageHandle(ImageChest::GetImageHandle(rankName));
@@ -468,7 +465,6 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	);
 	canvases.AddObject(canvas);
 
-	//fonts.push_back(FontHandle("mplus180", "M PLUS 2", 180, 100));
 	fonts.push_back(FontHandle("mplus100", "M PLUS 2", 100, 100));
 	fonts.push_back(FontHandle("mplus25", "M PLUS 2", 25, 100));
 }
@@ -663,6 +659,14 @@ void WelcomeScene::Update()
 
 						ExePath exePath;
 						(void)_chdir(exePath.GetPath());
+
+						char cwd[512];
+						// ディレクトリ取得
+						int returnId;
+						(void)_getcwd(cwd, 512);
+						// ファイル直下まで移動
+						returnId = _chdir(lists[j].get<picojson::object>()["Directory"].get<std::string>().c_str());
+
 						std::string iconName = "Ranking:" + std::to_string(i);
 						std::string iconPath = lists[j].get<picojson::object>()["Thumbnail"].get<std::string>();
 

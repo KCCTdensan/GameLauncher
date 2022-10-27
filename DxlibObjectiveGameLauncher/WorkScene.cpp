@@ -79,14 +79,6 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 		// ファイル直下まで移動
 		returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
 
-		StringConvert stringConvert;
-
-		std::wstring fullpath = stringConvert.ConvertString(this->obj["Thumbnail"].get<std::string>());
-		int path_i = (int)fullpath.find_last_of(L"\\");
-		std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
-
-		(void)_chdir(stringConvert.ConvertString(pathname).c_str());
-
 		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
 		handleNames.push_back(thumbnailName);
 		float maxThumbnailLongLength = 500.f; // 最大幅 どちらかの幅が500になる
@@ -137,14 +129,6 @@ WorkScene::WorkScene(SharingScenes* _sharingScenes, std::string workGuid)
 			(void)_getcwd(cwd, 512);
 			// ファイル直下まで移動
 			returnId = _chdir(this->obj["Directory"].get<std::string>().c_str());
-
-			StringConvert stringConvert;
-
-			std::wstring fullpath = stringConvert.ConvertString(item.get<picojson::object>()["FilePath"].get<std::string>());
-			int path_i = (int)fullpath.find_last_of(L"\\");
-			std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
-
-			(void)_chdir(stringConvert.ConvertString(pathname).c_str());
 
 			std::string imageName = iuuid + "Image" + std::to_string(i) + ":" + this->obj["GUID"].get<std::string>();
 			std::string imagePath = item.get<picojson::object>()["FilePath"].get<std::string>();

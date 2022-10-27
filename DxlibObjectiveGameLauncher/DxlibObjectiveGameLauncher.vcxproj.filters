@@ -152,13 +152,21 @@
     <ClCompile Include="PlayStateRotater.cpp">
       <Filter>Media</Filter>
     </ClCompile>
-    <ClCompile Include="RequiredFileChecker.cpp" />
-    <ClCompile Include="NoticeObject.cpp" />
     <ClCompile Include="NoticeCanvas.cpp">
       <Filter>Scenes\Popup</Filter>
     </ClCompile>
-    <ClCompile Include="NoticeGenerator.cpp" />
-    <ClCompile Include="OwnerPlayingScene.cpp" />
+    <ClCompile Include="NoticeGenerator.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="NoticeObject.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="RequiredFileChecker.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="OwnerPlayingScene.cpp">
+      <Filter>Scenes\Pages\OwnerPlaying</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageChest.h">
@@ -368,12 +376,22 @@
     <ClInclude Include="PlayStateRotater.h">
       <Filter>Media</Filter>
     </ClInclude>
-    <ClInclude Include="RequiredFileChecker.h" />
-    <ClInclude Include="NoticeCanvas.h" />
-    <ClInclude Include="NoticeObject.h" />
-    <ClInclude Include="NoticeGenerator.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="OwnerPlayingScene.h" />
+    <ClInclude Include="NoticeGenerator.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="NoticeObject.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="NoticeCanvas.h">
+      <Filter>Scenes\Popup</Filter>
+    </ClInclude>
+    <ClInclude Include="RequiredFileChecker.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="OwnerPlayingScene.h">
+      <Filter>Scenes\Pages\OwnerPlaying</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -507,6 +525,9 @@
     </Filter>
     <Filter Include="Objects\Variety\PlayList">
       <UniqueIdentifier>{bd56b3f6-ab89-4479-b7f8-844f27ba1bb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Pages\OwnerPlaying">
+      <UniqueIdentifier>{eae32897-e0aa-41cb-9dc1-e7df2f42a6f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

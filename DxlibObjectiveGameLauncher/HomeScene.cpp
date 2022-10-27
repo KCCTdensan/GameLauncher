@@ -149,7 +149,7 @@ void HomeScene::SetupWorks()
 		works[i]->SetImageAlpha(Color255(0, 220), Color255(0, 25), Color255(0, 255), Color255(0, 255));
 		std::string thumbnailName = "Thumb:" + o["GUID"].get<std::string>();
 		works[i]->SetTag(o["GUID"].get<std::string>());
-		std::string thumbnailPath = /*o["Directory"].get<std::string>() +*/ o["Thumbnail"].get<std::string>();
+		std::string thumbnailPath = o["Thumbnail"].get<std::string>();
 
 		ExePath exePath;
 		(void)_chdir(exePath.GetPath());
@@ -160,14 +160,6 @@ void HomeScene::SetupWorks()
 		(void)_getcwd(cwd, 512);
 		// ƒtƒ@ƒCƒ‹’¼‰º‚Ü‚ÅˆÚ“®
 		returnId = _chdir(o["Directory"].get<std::string>().c_str());
-
-		StringConvert stringConvert;
-
-		std::wstring fullpath = stringConvert.ConvertString(o["Thumbnail"].get<std::string>());
-		int path_i = (int)fullpath.find_last_of(L"\\");
-		std::wstring pathname = fullpath.substr(0, (size_t)(path_i + 1));
-
-		(void)_chdir(stringConvert.ConvertString(pathname).c_str());
 
 		ImageChest::CreateImageHandle(thumbnailName, thumbnailPath);
 		int handle = ImageChest::GetImageHandle(thumbnailName);
