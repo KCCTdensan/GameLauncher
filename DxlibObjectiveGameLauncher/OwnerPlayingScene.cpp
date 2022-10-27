@@ -2,6 +2,9 @@
 #include "PopupScene.h"
 
 OwnerPlayingScene::OwnerPlayingScene()
+	: bg(nullptr), canvas(nullptr), button1(nullptr), button2(nullptr), button3(nullptr), button4(nullptr),
+	button5(nullptr), button6(nullptr), button7(nullptr), input1(nullptr), progress1(nullptr), rect1(nullptr), 
+	noticeGenerated(0), noticeGenerateNum(1),title(nullptr)
 {
 }
 

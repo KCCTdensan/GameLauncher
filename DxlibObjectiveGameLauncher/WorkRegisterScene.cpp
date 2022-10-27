@@ -7,7 +7,9 @@ WorkRegisterScene::WorkRegisterScene()
 	openDirectoryButtton(nullptr), setThumbnailButtton(nullptr), setImagesButtton(nullptr),
 	lguid(nullptr), bg(nullptr), dImagesPath(nullptr), dThumbPath(nullptr), dWorkPath(nullptr), dguid(nullptr),
 	iWorkCategory(nullptr), lWorkName(nullptr), lWorkAuthor(nullptr), lWorkCategory(nullptr), lWorkDescription(nullptr),
-	lImagesPath(nullptr), lThumbPath(nullptr), lWorkPath(nullptr), guid(), makeJsonDataButton(nullptr), setWorkerButtton(nullptr), titlename(nullptr)
+	lImagesPath(nullptr), lThumbPath(nullptr), lWorkPath(nullptr), guid(), makeJsonDataButton(nullptr), setWorkerButtton(nullptr), titlename(nullptr),
+	clearButton(nullptr), deleteButton(nullptr), iExistingGUID(nullptr), iWorkURL(nullptr), imagesResetButton(nullptr),
+	lExistingGUID(nullptr), lWorkURL(nullptr)
 {
 	// ãLì¸ÇÃïKóvê´Ç»Çµ
 }
@@ -606,7 +608,7 @@ void WorkRegisterScene::Update()
 
 			std::wstring wsxFile = stringConvert.ConvertString(sxFile);
 			std::wstring name = L"\\works\\" + stringConvert.ConvertString(guid) + L"\\";
-			int pos = wsxFile.find(name);
+			size_t pos = wsxFile.find(name);
 			if (pos != -1) {
 				wsxFile.erase(wsxFile.begin(), wsxFile.begin() + pos + name.size());
 				pos = wsxFile.find(L"\\");
@@ -643,7 +645,7 @@ void WorkRegisterScene::Update()
 
 			std::wstring wsxFile = stringConvert.ConvertString(sxFile);
 			std::wstring name = L"\\works\\" + stringConvert.ConvertString(guid) + L"\\";
-			int pos = wsxFile.find(name);
+			size_t pos = wsxFile.find(name);
 			if (pos != -1) {
 				wsxFile.erase(wsxFile.begin(), wsxFile.begin() + pos + name.size());
 				pos = wsxFile.find(L"\\");
@@ -681,7 +683,7 @@ void WorkRegisterScene::Update()
 
 			std::wstring wsxFile = stringConvert.ConvertString(sxFile);
 			std::wstring name = L"\\works\\" + stringConvert.ConvertString(guid) + L"\\";
-			int pos = wsxFile.find(name);
+			size_t pos = wsxFile.find(name);
 			if (pos != -1) {
 				wsxFile.erase(wsxFile.begin(), wsxFile.begin() + pos + name.size());
 				pos = wsxFile.find(L"\\");

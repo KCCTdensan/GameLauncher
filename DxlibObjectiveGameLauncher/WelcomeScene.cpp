@@ -3,7 +3,9 @@
 WelcomeScene::WelcomeScene()
 	: bg(nullptr), canvas(nullptr), icon(nullptr), whatis(nullptr), organization(nullptr), gotoHome(nullptr), openURL(nullptr),
 	qrcode(nullptr), imagesCanvas(nullptr), imageBackGround(nullptr),
-	jumpToMusic(nullptr), jumpToWorkMan(nullptr)
+	jumpToMusic(nullptr), jumpToWorkMan(nullptr),
+	jumpToNo1(nullptr), jumpToNo2(nullptr), jumpToNo3(nullptr), jumpToOwnerPlaying(nullptr), jumpTorandomPage(nullptr),
+	rankButton(nullptr)
 {
 }
 
@@ -11,7 +13,9 @@ WelcomeScene::WelcomeScene(SharingScenes* _sharingScenes)
 	: SceneBase(_sharingScenes),
 	bg(nullptr), canvas(nullptr), icon(nullptr), whatis(nullptr), organization(nullptr), gotoHome(nullptr), openURL(nullptr),
 	qrcode(nullptr), imagesCanvas(nullptr), imageBackGround(nullptr),
-	jumpToMusic(nullptr), jumpToWorkMan(nullptr)
+	jumpToMusic(nullptr), jumpToWorkMan(nullptr),
+	jumpToNo1(nullptr), jumpToNo2(nullptr), jumpToNo3(nullptr), jumpToOwnerPlaying(nullptr), jumpTorandomPage(nullptr),
+	rankButton(nullptr)
 {
 	ExePath exePath;
 	(void)_chdir(exePath.GetPath());
@@ -627,7 +631,7 @@ void WelcomeScene::Update()
 		picojson::array& lists = obj["Lists"].get<picojson::array>();
 
 		int rankMax = 3;
-		if (alists.size() < rankMax) rankMax = alists.size();
+		if ((int)alists.size() < rankMax) rankMax = (int)alists.size();
 
 		if (rankMax < 3) {
 			jumpToNo3->SetEnabled(false);
