@@ -87,6 +87,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8169C82B0DC4466CA4540FB4181EFFE1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_83ECC51E6FCA44E9BA130D90843AE94E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -112,6 +118,12 @@
         "Entry"
         {
         "MsmKey" = "8:_B4D17933A77C4D9592C161AC81208243"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B8EB4781F95240B1A6A321832DA5CDF7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -452,6 +464,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8169C82B0DC4466CA4540FB4181EFFE1"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\random.png"
+            "TargetName" = "8:random.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_83ECC51E6FCA44E9BA130D90843AE94E"
             {
             "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\fonts\\MPLUS2-Medium.ttf"
@@ -536,6 +568,26 @@
             {
             "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\home-link.png"
             "TargetName" = "8:home-link.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B8EB4781F95240B1A6A321832DA5CDF7"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\ranking.png"
+            "TargetName" = "8:ranking.png"
             "Tag" = "8:"
             "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
             "Condition" = "8:"
@@ -785,15 +837,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Game Launcher"
-        "ProductCode" = "8:{ABAC6656-1E62-4F98-8BE5-2CF1154BA09C}"
-        "PackageCode" = "8:{AA2BA3F3-E0CF-4966-80DA-55177EA40214}"
+        "ProductCode" = "8:{1A026BA4-F567-47D2-AA64-6D3CDF1BF513}"
+        "PackageCode" = "8:{D5CDB1BD-C05D-476E-9C2D-A69C6DE3BB3C}"
         "UpgradeCode" = "8:{9F7372BB-ABB3-489D-9411-EED18078A7BD}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:TRUE"
+        "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.2"
         "Manufacturer" = "8:KCCT densan"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
