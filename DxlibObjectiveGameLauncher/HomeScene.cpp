@@ -192,7 +192,7 @@ void HomeScene::SetupWorks()
 		canvas->RegisterChildren(item);
 	}
 
-	canvas->SetArea(PosVec(startArrangePos.x + startArrangePos.x + tileSize.x * (1.f + .15f) * (float)lists.size(), -1.f), (startArrangePos.x + tileSize.x * (1.f + .15f)) * 2 / 5000.f);
+	canvas->SetArea(PosVec(startArrangePos.x + startArrangePos.x + tileSize.x * (1.f + .15f) * (float)lists.size(), -1.f), tileSize.x / (tileSize.x * (1.f + .15f) * (float)lists.size()));
 
 	canvases.AddObject(canvas);
 }
