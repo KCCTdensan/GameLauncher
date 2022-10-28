@@ -63,7 +63,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5F69A32265CD479F90154C0D73994406"
+        "MsmKey" = "8:_67061109A675475B9BBF728EAD42036D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -93,6 +93,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_83A719BDCC071C29D7499BB4E2110E09"
+        "OwnerKey" = "8:_A0D0799D591948EB8D72B238430145F0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_83ECC51E6FCA44E9BA130D90843AE94E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -100,6 +106,18 @@
         "Entry"
         {
         "MsmKey" = "8:_8EC876ADDDF24BA8983E907BF4E96E78"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9E6DFFEEFD62B3619E1FED41CF043FE1"
+        "OwnerKey" = "8:_A0D0799D591948EB8D72B238430145F0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A0D0799D591948EB8D72B238430145F0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -136,12 +154,6 @@
         "Entry"
         {
         "MsmKey" = "8:_C5311FC971B446C5ACABDD2584EDD8B6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CB959880E1F547EF9FB434045B54C3D4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -404,6 +416,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_67061109A675475B9BBF728EAD42036D"
+            {
+            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\kcct.png"
+            "TargetName" = "8:kcct.png"
+            "Tag" = "8:"
+            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_74B1E7C09EA74312B1D2490F7FF6E008"
             {
             "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\player\\stop.png"
@@ -484,6 +516,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_83A719BDCC071C29D7499BB4E2110E09"
+            {
+            "SourcePath" = "8:COMDLG32.dll"
+            "TargetName" = "8:COMDLG32.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_2578813388214FB2A9920538D44BB463"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_83ECC51E6FCA44E9BA130D90843AE94E"
             {
             "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\fonts\\MPLUS2-Medium.ttf"
@@ -522,6 +574,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9E6DFFEEFD62B3619E1FED41CF043FE1"
+            {
+            "SourcePath" = "8:RPCRT4.dll"
+            "TargetName" = "8:RPCRT4.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_2578813388214FB2A9920538D44BB463"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A29E956E9BA940F287DBE5A2EAD574F6"
@@ -630,26 +702,6 @@
             "TargetName" = "8:03スマートフォントUI.otf"
             "Tag" = "8:"
             "Folder" = "8:_BA5F038D85E14800AB8D4DD5DD9F76F8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB959880E1F547EF9FB434045B54C3D4"
-            {
-            "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\kcct.png"
-            "TargetName" = "8:kcct.png"
-            "Tag" = "8:"
-            "Folder" = "8:_DC83C8EAA55944D2AE61E13B981DCB59"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -837,15 +889,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Game Launcher"
-        "ProductCode" = "8:{1A026BA4-F567-47D2-AA64-6D3CDF1BF513}"
-        "PackageCode" = "8:{D5CDB1BD-C05D-476E-9C2D-A69C6DE3BB3C}"
+        "ProductCode" = "8:{C88685C5-76D4-46A5-AA3B-AB5BC88A6BC0}"
+        "PackageCode" = "8:{85A8EF13-223C-479B-BCDF-85AF60922686}"
         "UpgradeCode" = "8:{9F7372BB-ABB3-489D-9411-EED18078A7BD}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:KCCT densan"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -958,7 +1010,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_42E420A6301B47CB9856BC42127DD20B"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3E258BEF442B4F69BBD88FF49134558B"
             {
             "Name" = "8:Game Launcher"
             "Arguments" = "8:"
@@ -966,13 +1018,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5F69A32265CD479F90154C0D73994406"
-            "Folder" = "8:_4D4D6FD58DF64920939BBB2F0BEE2CA5"
+            "Target" = "8:_A0D0799D591948EB8D72B238430145F0"
+            "Folder" = "8:_D54E2782BFB243DD9E781AB6C594E74D"
             "WorkingFolder" = "8:_2578813388214FB2A9920538D44BB463"
             "Icon" = "8:_7F14E4273DEC4370BCB9F16E185AC2AA"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_81BCCA0F815D4214A38C4B380F170352"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B60C4A99F6D04BC4BD048CA871993008"
             {
             "Name" = "8:Game Launcher"
             "Arguments" = "8:"
@@ -980,8 +1032,8 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5F69A32265CD479F90154C0D73994406"
-            "Folder" = "8:_D54E2782BFB243DD9E781AB6C594E74D"
+            "Target" = "8:_A0D0799D591948EB8D72B238430145F0"
+            "Folder" = "8:_4D4D6FD58DF64920939BBB2F0BEE2CA5"
             "WorkingFolder" = "8:_2578813388214FB2A9920538D44BB463"
             "Icon" = "8:_7F14E4273DEC4370BCB9F16E185AC2AA"
             "Feature" = "8:"
@@ -1385,7 +1437,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5F69A32265CD479F90154C0D73994406"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A0D0799D591948EB8D72B238430145F0"
             {
             "SourcePath" = "8:..\\x64\\Release\\DxlibObjectiveGameLauncher.exe"
             "TargetName" = "8:"
@@ -1405,7 +1457,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{C7DF38E5-DC3D-43FB-9557-9C97C74FCA01}"
             "ShowKeyOutput" = "11:TRUE"

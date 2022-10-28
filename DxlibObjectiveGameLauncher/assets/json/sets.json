@@ -1,63 +1,63 @@
 {
-  "Welcome": {
-    "icon": {
-      "src": ".\\assets\\client\\welcome\\icon.png"
+    "Welcome": {
+        "icon": {
+            "src": ".\\assets\\client\\welcome\\icon.png"
+        },
+        "whatis": {
+            "text": "",
+            "src": ".\\assets\\client\\welcome\\whatis.png"
+        },
+        "organization": {
+            "text": "",
+            "src": ".\\assets\\client\\welcome\\kcct.png"
+        },
+        "openURL": {
+            "url": "https://d3bu.net/",
+            "src": ".\\assets\\client\\welcome\\home-link.png"
+        },
+        "goto-home": {
+            "text": "OPEN",
+            "src": ".\\assets\\client\\welcome\\works.png"
+        },
+        "qrcode": {
+            "src": ".\\assets\\client\\welcome\\qr.png"
+        },
+        "music-player": {
+            "text": "PLAYER",
+            "src": ".\\assets\\client\\welcome\\music-scene.png"
+        },
+        "work": {
+            "text": "MODIFY\nWORK"
+        },
+        "ranking": {
+            "text": "ラン\nキング",
+            "src": ".\\assets\\client\\welcome\\ranking.png"
+        },
+        "random": {
+            "src": ".\\assets\\client\\welcome\\random.png"
+        }
     },
-    "whatis": {
-      "text": "",
-      "src": ".\\assets\\client\\welcome\\whatis.png"
+    "Launcher": {
+        "Category": "This APP!",
+        "GUID": "1d435cee-d030-4502-9449-f9735d17cf4c",
+        "TitleName": "ゲームランチャーとは",
+        "Author": "isirmt",
+        "Description": "操作方法はマウスによって制御可のうです！\n\nこのSoftは，C++のDxlibを主に用いたSoftwareとなっております！\nConceptとしてはページの生成を簡単にしつつ，Animationをつける。という目的でこのVersionに至りました！\n\n以下のStart ButtonでSource Codeを是非ご覧ください!\n\nちなみに，さっきからちょくちょく英語になっているのは何故かjsonが読み込めなくなってしまうからだよ（どうして）\n\n生成できるObject\n\n・Button\n・Image\n・Input\n・Line\n・Progress\n・Rectangle\n・Text\n・Canvas etc...\n\n特徴\n・レイヤー管理\n・オブジェクト重複判定\n・設計可のうなAnimation etc...",
+        "Directory": ".\\assets\\client\\launcher\\",
+        "FilePath": "https://github.com/KCCTdensan/GameLauncher",
+        "Thumbnail": "icon.png",
+        "Images": [
+            { "FilePath": "qr.png" },
+            { "FilePath": "2.png" },
+            { "FilePath": "3.png" }
+        ]
     },
-    "organization": {
-      "text": "OPEN",
-      "src": ".\\assets\\client\\welcome\\kcct.png"
-    },
-    "openURL": {
-      "url": "https://d3bu.net/",
-      "src": ".\\assets\\client\\welcome\\home-link.png"
-    },
-    "goto-home": {
-      "text": "OPEN",
-      "src": ".\\assets\\client\\welcome\\works.png"
-    },
-    "qrcode":  {
-      "src": ".\\assets\\client\\welcome\\qr.png"
-    },
-    "music-player":  {
-      "text": "PLAYER",
-      "src": ".\\assets\\client\\welcome\\music-scene.png"
-    },
-    "work":  {
-      "text": "MODIFY\nWORK"
-    },
-    "ranking": {
-      "text": "ラン\nキング",
-      "src": ".\\assets\\client\\welcome\\ranking.png"
-    },
-    "random": {
-      "src": ".\\assets\\client\\welcome\\random.png"
+    "Player": {
+        "play": ".\\assets\\client\\player\\play.png",
+        "stop": ".\\assets\\client\\player\\stop.png",
+        "noloop": ".\\assets\\client\\player\\noloop.png",
+        "oneloop": ".\\assets\\client\\player\\oneloop.png",
+        "loop": ".\\assets\\client\\player\\loop.png",
+        "shuffle": ".\\assets\\client\\player\\shuffle.png"
     }
-  },
-  "Launcher": {
-    "Category": "This APP!",
-    "GUID": "1d435cee-d030-4502-9449-f9735d17cf4c",
-    "TitleName": "ゲームランチャーとは",
-    "Author": "isirmt",
-    "Description": "操作方法はマウスによって制御可のうです！\n\nこのSoftは，C++のDxlibを主に用いたSoftwareとなっております！\nConceptとしてはページの生成を簡単にしつつ，Animationをつける。という目的でこのVersionに至りました！\n\n以下のStart ButtonでSource Codeを是非ご覧ください!\n\nちなみに，さっきからちょくちょく英語になっているのは何故かjsonが読み込めなくなってしまうからだよ（どうして）\n\n生成できるObject\n\n・Button\n・Image\n・Input\n・Line\n・Progress\n・Rectangle\n・Text\n・Canvas etc...\n\n特徴\n・レイヤー管理\n・オブジェクト重複判定\n・設計可のうなAnimation etc...",
-    "Directory": ".\\assets\\client\\launcher\\",
-    "FilePath": "https://github.com/KCCTdensan/GameLauncher",
-    "Thumbnail": "icon.png",
-    "Images" : [
-      {"FilePath": "qr.png"},
-      {"FilePath": "2.png"},
-      {"FilePath": "3.png"}
-    ]
-  },
-  "Player": {
-    "play": ".\\assets\\client\\player\\play.png",
-    "stop": ".\\assets\\client\\player\\stop.png",
-    "noloop": ".\\assets\\client\\player\\noloop.png",
-    "oneloop": ".\\assets\\client\\player\\oneloop.png",
-    "loop": ".\\assets\\client\\player\\loop.png",
-    "shuffle": ".\\assets\\client\\player\\shuffle.png"
-  }
 }
