@@ -63,7 +63,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_67061109A675475B9BBF728EAD42036D"
+        "MsmKey" = "8:_6581522E8DD94729B6DDFF27A20E5920"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -416,7 +416,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_67061109A675475B9BBF728EAD42036D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6581522E8DD94729B6DDFF27A20E5920"
             {
             "SourcePath" = "8:..\\DxlibObjectiveGameLauncher\\assets\\client\\welcome\\kcct.png"
             "TargetName" = "8:kcct.png"
@@ -527,12 +527,12 @@
             "Vital" = "11:TRUE"
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
+            "System" = "11:TRUE"
             "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
+            "SharedLegacy" = "11:TRUE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -587,12 +587,12 @@
             "Vital" = "11:TRUE"
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
+            "System" = "11:TRUE"
             "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
+            "SharedLegacy" = "11:TRUE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -889,15 +889,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Game Launcher"
-        "ProductCode" = "8:{C88685C5-76D4-46A5-AA3B-AB5BC88A6BC0}"
-        "PackageCode" = "8:{85A8EF13-223C-479B-BCDF-85AF60922686}"
+        "ProductCode" = "8:{184E9CDA-9BF0-4044-B737-643DD14887AC}"
+        "PackageCode" = "8:{1BBBE8AD-3F32-4D79-AF92-2669D7FEBBD1}"
         "UpgradeCode" = "8:{9F7372BB-ABB3-489D-9411-EED18078A7BD}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.3"
+        "ProductVersion" = "8:1.0.31"
         "Manufacturer" = "8:KCCT densan"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
