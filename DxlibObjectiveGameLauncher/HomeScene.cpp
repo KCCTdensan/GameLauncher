@@ -15,6 +15,13 @@ HomeScene::HomeScene(SharingScenes* _sharingScenes)
 	fonts.push_back(FontHandle("smart80", "03スマートフォントUI", 80, 15));
 }
 
+HomeScene::~HomeScene()
+{
+	for (auto& item : works) {
+		delete item;
+	}
+}
+
 void HomeScene::Collide()
 {
 	canvases.Collide();
@@ -128,6 +135,7 @@ void HomeScene::SetupWorks()
 	int i = 0;
 	PosVec startArrangePos(150.f, ApplicationPreference::startScenePos + 100.f);
 	PosVec tileSize(350.f, 700.f);
+	UUIDGenerator uuidGenerator;
 	for (auto& list : lists) {
 		works.push_back(nullptr);
 		picojson::object& o = list.get<picojson::object>();
@@ -147,7 +155,7 @@ void HomeScene::SetupWorks()
 		works[i]->SetInnerAnimation(.15f);
 		works[i]->SetOuterAnimation(.15f);
 		works[i]->SetImageAlpha(Color255(0, 220), Color255(0, 25), Color255(0, 255), Color255(0, 255));
-		std::string thumbnailName = "Thumb:" + o["GUID"].get<std::string>();
+		std::string thumbnailName = "Thumb:" + uuidGenerator.GetGUID() + o["GUID"].get<std::string>();
 		ImageChest::DeleteImageHandle(thumbnailName);
 		works[i]->SetTag(o["GUID"].get<std::string>());
 		std::string thumbnailPath = o["Thumbnail"].get<std::string>();

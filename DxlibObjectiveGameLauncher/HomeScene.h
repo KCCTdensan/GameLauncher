@@ -19,6 +19,7 @@ class HomeScene :
 public:
     HomeScene();
     HomeScene(SharingScenes* _sharingScenes);
+    ~HomeScene();
 
     void Collide();
     void Update();

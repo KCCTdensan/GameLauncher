@@ -493,7 +493,7 @@ void WelcomeScene::Update()
 	if (gotoHome != nullptr)
 		if (gotoHome->GetMouseSelected()) {
 			gotoHome->SetMouseOff();
-			SceneManager::ChangeScene("Home", new HomeScene(sharingScenes), false, false);
+			SceneManager::ChangeScene("WHome", new HomeScene(sharingScenes), false, true);
 		}
 
 	if (whatis != nullptr)
