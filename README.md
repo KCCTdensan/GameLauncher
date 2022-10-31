@@ -8,5 +8,8 @@ Visual Studioで起動したいソフトウェアをスタートアッププロ�
 
 ## 履歴
 - Comment Editor (~2018)
-- DxlibGameLauncher : DXライブラリを用いたゲームランチャー開発(完成版) ※オブジェクト指向が不完全
-- DxlibObjectiveGameLauncher : 上記のランチャーにオブジェクト指向を適応，かつ新機能を取り込む(開発中)
+- DxlibGameLauncher (2019~2021): DXライブラリを用いたゲームランチャー開発(完成版) ※オブジェクト指向が不完全
+- DxlibObjectiveGameLauncher (2022~): ランチャーをオブジェクト指向を重視し，製作。v1.0.31
+
+## 入手方法
+- Releasesにあります。そちらよりダウンロードお願いします。
