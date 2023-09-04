@@ -7,7 +7,6 @@ void ImageObject::Collide()
 
 void ImageObject::Update()
 {
-	CheckGUID();
 	UpdateEnforcedMouseCollision();
 
 	SetAnimationColorPoint(&innerAnimation, innerAnimation.current, innerColor);

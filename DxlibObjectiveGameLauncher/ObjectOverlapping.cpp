@@ -1,19 +1,26 @@
 #include "ObjectOverlapping.h"
+#include "ObjectBase.h"
 
-std::string ObjectOverlapping::guid = "";
-std::string ObjectOverlapping::guidCanvas = "";
+
+ObjectBase* ObjectOverlapping::object = nullptr;
+ObjectBase* ObjectOverlapping::canvas = nullptr;
 int ObjectOverlapping::enforcementedNum = 0;
 
-bool ObjectOverlapping::UpdateObject(std::string _guid, int enforcement)
+
+bool ObjectOverlapping::UpdateObject(ObjectBase* _object, int enforcemented)
 {
-	if (enforcementedNum > enforcement) return false;
-	enforcementedNum = enforcement;
-	guid = _guid;
+	if (enforcementedNum > enforcemented) return false;
+	enforcementedNum = enforcemented;
+	if (object != nullptr)
+		object->SetNoMouseWithClick();
+	object = _object;
 	return true;
 }
 
-bool ObjectOverlapping::UpdateObjectForCanvas(std::string _guid, int enforcemented)
+bool ObjectOverlapping::UpdateObjectForCanvas(ObjectBase* _canvas, int enforcemented)
 {
-	guidCanvas = _guid;
+	if (canvas != nullptr)
+		canvas->SetNoMouseWithClick();
+	canvas = _canvas;
 	return true;
 }

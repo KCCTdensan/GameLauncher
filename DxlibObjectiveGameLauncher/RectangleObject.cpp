@@ -7,13 +7,11 @@ void RectangleObject::Collide()
 
 void RectangleObject::Update()
 {
-	CheckGUID();
 	UpdateEnforcedMouseCollision();
 
 	currentInnerColor = innerColor;
 	UpdatePointerAnimation();
 
-	CheckGUID();
 	SetAnimationColorPoint(&innerAnimation, innerAnimation.current, innerColor);
 	SetAnimationColorPoint(&outerAnimation, outerAnimation.current, outerColor);
 	SetAnimationPoint(&innerAlphaAnimation, (float)innerAlphaAnimation.current, (float)innerColor.a);

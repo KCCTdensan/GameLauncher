@@ -2,7 +2,6 @@
 
 void TextObject::Update()
 {
-	CheckGUID();
 	UpdateEnforcedMouseCollision();
 
 	if (fontAutoSerching) FontSerch();

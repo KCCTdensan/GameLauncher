@@ -11,7 +11,6 @@ void PlayListObject::Collide()
 
 void PlayListObject::Update()
 {
-	CheckGUID();
 	UpdateEnforcedMouseCollision();
 
 	mouseHoveringIndex = -1;

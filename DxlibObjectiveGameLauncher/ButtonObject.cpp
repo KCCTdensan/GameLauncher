@@ -9,7 +9,6 @@ void ButtonObject::Collide()
 
 void ButtonObject::Update()
 {
-	CheckGUID();
 	UpdateEnforcedMouseCollision();
 
 	// アニメーション記述をする場合，ここに記述

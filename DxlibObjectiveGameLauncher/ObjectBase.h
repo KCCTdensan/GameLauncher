@@ -56,7 +56,6 @@ public:
 
 protected:
 
-	void CheckGUID() { if (ObjectOverlapping::GetGUID() != guid) SetNoMouseWithClick(); } // オブジェクト重なり判定において一番上ではなかった場合選択を解除する(推奨呼び出し)
 	void UpdateEnforcedMouseCollision();
 
 	void SetAnimationColorPoint(AnimationColorStatus* type, Color255 _start, Color255 _goal); // アニメーションカラー初期設定

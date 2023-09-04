@@ -1,22 +1,21 @@
 #pragma once
-#include "UUIDGenerator.h"
+
+class ObjectBase;
 
 class ObjectOverlapping
 {
 public:
 	static bool Reset() {
 		enforcementedNum = 0;
-		guid = "";
-		guidCanvas = "";
+		object = nullptr;
+		canvas = nullptr;
 		return true;
 	}
-	static bool UpdateObject(std::string _guid, int enforcemented = 1); // SetNoMouse() メソッドを持っている必要あり
-	static bool UpdateObjectForCanvas(std::string _guid, int enforcemented = 1); // SetNoMouse() メソッドを持っている必要あり
-	static std::string GetGUID() { return guid; }
-	static std::string GetGUIDForCanvas() { return guidCanvas; }
+	static bool UpdateObject(ObjectBase* _object, int enforcemented = 1); // SetNoMouse() メソッドを持っている必要あり
+	static bool UpdateObjectForCanvas(ObjectBase* _canvas, int enforcemented = 1); // SetNoMouse() メソッドを持っている必要あり
 
 private:
 	static int enforcementedNum;
-	static std::string guid;
-	static std::string guidCanvas;
+	static ObjectBase* object;
+	static ObjectBase* canvas;
 };

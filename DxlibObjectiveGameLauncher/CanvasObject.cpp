@@ -96,7 +96,7 @@ void CanvasObject::Update()
 
 	float distance = scrollPercentage;
 
-	if (scrollButton[(int)DirectionType::LEFT]->GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
+	if (scrollButton[(int)DirectionType::LEFT]->GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled/* && ObjectOverlapping::GetGUIDForCanvas() == guid*/) {
 		distance *= -1.f;
 		if (scrollValue.x + distance < 0.001f) {
 			distance = -scrollValue.x;
@@ -120,7 +120,7 @@ void CanvasObject::Update()
 		scrollButton[(int)DirectionType::RIGHT]->SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::RIGHT]->GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
+	if (scrollButton[(int)DirectionType::RIGHT]->GetMouseSelected() || (mouseHit && !scrollVertical && Input::MouseInput::GetWheelRot() < 0.f)/* && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid*/) {
 		if (scrollValue.x + distance > 1.001f) {
 			distance = 1.f - scrollValue.x;
 		}
@@ -143,7 +143,7 @@ void CanvasObject::Update()
 		scrollButton[(int)DirectionType::LEFT]->SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::TOP]->GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() > 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
+	if (scrollButton[(int)DirectionType::TOP]->GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() > 0.f)/* && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid*/) {
 		distance *= -1.f;
 		if (scrollValue.y + distance < 0.001f) {
 			distance = -scrollValue.y;
@@ -167,7 +167,7 @@ void CanvasObject::Update()
 		scrollButton[(int)DirectionType::BOTTOM]->SetEnabled(true);
 	}
 
-	if (scrollButton[(int)DirectionType::BOTTOM]->GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() < 0.f) && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid) {
+	if (scrollButton[(int)DirectionType::BOTTOM]->GetMouseSelected() || (mouseHit && scrollVertical && Input::MouseInput::GetWheelRot() < 0.f)/* && enabled && ObjectOverlapping::GetGUIDForCanvas() == guid*/) {
 		if (scrollValue.y + distance > 1.001f) {
 			distance = 1.f - scrollValue.y;
 		}
@@ -304,7 +304,7 @@ void CanvasObject::CollideMouse()
 		pos.y + size.y >= Input::MouseInput::GetMouse().y) {
 
 		mouseHit = true;
-		ObjectOverlapping::UpdateObjectForCanvas(guid);
+		ObjectOverlapping::UpdateObjectForCanvas(this);
 	}
 	else {
 		mouseHit = false;
